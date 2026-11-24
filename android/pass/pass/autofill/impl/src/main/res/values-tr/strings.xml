@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Proton Pass üzerinden alın</string>
+  <string name="error_loading_items">Ögeler yüklenemedi</string>
+  <string name="inline_suggestions_open_app">Proton Pass uygulamasını aç</string>
+  <string name="autofill_associate_web_app_name_dialog_title">Bu uygulama ya da sitede \"%s\" oturum açma bilgileri kullanılsın.</string>
+  <string name="autofill_dialog_associate_and_autofill">Her zaman kullan</string>
+  <string name="autofill_dialog_just_autofill">Bir kez kullan</string>
+  <string name="autofill_dialog_cancel">İptal</string>
+  <string name="autofill_notification_copy_to_clipboard">Tek kullanımlık parola panoya kopyalandı</string>
+  <string name="autofill_dialog_associate_title">Oturum açma kaydı kullanılsın mı?</string>
+  <string name="autofill_user_logged_out">Oturumunuz kapatıldı. Lütfen uygulamayı yeniden açarak oturum açın.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">İşleminizi onaylayın</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Geçerli uygulamanız tarafından açılan bir sitede kimlik bilgilerinizi otomatik olarak doldurmak üzeresiniz. Uygulama, otomatik doldurmanın ardından kimlik bilgilerine erişebilir. Bu işlemi yalnızca uygulamaya güveniyorsanız yapın.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">Otomatik doldur</string>
+  <string name="autofill_confirm_unverified_browser_title">Bu uygulama güvenilir bir tarayıcı olduğunu iddia ediyor</string>
+  <string name="autofill_confirm_unverified_browser_body">Bu uygulama kendisini bilinen bir tarayıcı olarak tanımlıyor, ancak Pass bunu doğrulayamadı. İmza sertifikası beklediğimizle eşleşmiyor. Bu durum tarayıcı alışılmadık bir şekilde yapılandırılmışsa veya kimlik bilgilerinizi ele geçirmek için başka bir uygulama onu taklit ediyorsa ortaya çıkabilir. Yalnızca bu uygulamanın sorunsuz olduğundan eminseniz ilerleyin.</string>
+  <string name="autofill_confirm_dont_ask_again">Bu uygulama bir daha sorulmasın</string>
+  <string name="autofill_troubleshooting_title">Otomatik doldurma sorun giderme</string>
+  <string name="autofill_troubleshooting_subtitle">Aygıtınızın otomatik doldurma için doğru ayarlandığını denetleyin.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">Otomatik doldurma tümüyle ayarlandı</string>
+  <string name="autofill_troubleshooting_verdict_attention">Dikkat etmeniz gereken birkaç şey var</string>
+  <string name="autofill_troubleshooting_service_ok">Otomatik doldurma hizmetiniz Proton Pass</string>
+  <string name="autofill_troubleshooting_service_current_other">Şu anda %1$s olarak ayarlanmış.</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Otomatik doldurma hizmetiniz Proton Pass değil</string>
+  <string name="autofill_troubleshooting_service_not_default_body">Uygulamalarınızda otomatik doldurma için varsayılan olarak ayarlayın.</string>
+  <string name="autofill_troubleshooting_service_enable_action">Otomatik doldurmayı aç</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">Bu aygıt otomatik doldurmayı desteklemiyor</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">Etkin olmayan tarayıcılar bulundu</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Kimlik doğrulama bilgilerinizin Proton Pass tarafından doldurulabilmesi için otomatik doldurma özelliğini açın. Ayarlarını açmak için bir tarayıcıya dokunun.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">Tarayıcılar uyumlu</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">Tarayıcılarınız bağlı ve otomatik doldurma kullanmaya hazır.</string>
+  <string name="autofill_troubleshooting_browser_active">Etkin</string>
+  <string name="autofill_troubleshooting_inline_info">Anlık öneriler klavyenizde görüntülenir. Bu özelliğin kullanılabilmesi için Android 11 veya daha yeni bir sürüm ile Gboard gibi uyumlu klavye gereklidir.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">Tanılamayı paylaş</string>
+  <string name="autofill_troubleshooting_open_diagnostics">Gelişmiş tanılama</string>
+  <string name="autofill_diagnostics_title">Gelişmiş tanılama</string>
+  <string name="autofill_diagnostics_enable">Otomatik doldurma tanılamasını aç</string>
+  <string name="autofill_diagnostics_enable_description">Açıkken, Proton Pass otomatik doldurma sırasında ne olduğunu kaydeder. Böylece neden doldurulmadığını görebilirsiniz. İşiniz bittiğinde kapatın.</string>
+  <string name="autofill_diagnostics_instructions">Uygulamada veya tarayıcıda otomatik doldurma sorununu yeniden oluşturun ardından bu ekrana geri dönün.</string>
+  <string name="autofill_diagnostics_last_attempt_title">Son otomatik doldurma denemesi</string>
+  <string name="autofill_diagnostics_no_attempts">Henüz herhangi bir otomatik doldurma denemesi kaydedilmemiş.</string>
+  <string name="autofill_diagnostics_reason_not_default">Otomatik doldurma hizmetiniz Proton Pass değil. Bu yüzden henüz hiçbir alanı dolduramaz.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass %1$s içinde öneriler sundu.</string>
+  <string name="autofill_diagnostics_outcome_nothing">%1$s üzerinde otomatik doldurma özelliği tetiklendi ancak eşleşen bir oturum açma bilgisi önerilmedi. Sayfada algılanabilen oturum açma alanları olmayabilir ya da bu site için herhangi bir öge kaydı olmayabilir.</string>
+  <string name="autofill_diagnostics_outcome_error">Otomatik doldurma %1$s içinde bir sorunla karşılaştı.</string>
+  <string name="autofill_diagnostics_recent_title">Son denemeler</string>
+  <string name="autofill_diagnostics_clear">Temizle</string>
+  <string name="autofill_diagnostics_share">Destek ile paylaş</string>
+</resources>

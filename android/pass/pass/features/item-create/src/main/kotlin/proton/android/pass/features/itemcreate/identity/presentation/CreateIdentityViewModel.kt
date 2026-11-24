@@ -1,0 +1,290 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.itemcreate.identity.presentation
+
+import android.content.Context
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.snapshotFlow
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.SavedStateHandleSaveableApi
+import androidx.lifecycle.viewmodel.compose.saveable
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.Some
+import proton.android.pass.common.api.asLoadingResult
+import proton.android.pass.common.api.safeRunCatching
+import proton.android.pass.common.api.toOption
+import proton.android.pass.commonui.api.ClassHolder
+import proton.android.pass.commonui.api.SavedStateHandleProvider
+import proton.android.pass.composecomponents.impl.uievents.IsLoadingState
+import proton.android.pass.crypto.api.context.EncryptionContextProvider
+import proton.android.pass.data.api.usecases.ObservePrimaryUserId
+import proton.android.pass.data.api.usecases.CreateItem
+import proton.android.pass.data.api.usecases.GetItemById
+import proton.android.pass.data.api.usecases.capabilities.CanCreateItemsInFolder
+import proton.android.pass.data.api.usecases.ObserveVaultsWithItemCount
+import proton.android.pass.data.api.usecases.defaultvault.ObserveDefaultVault
+import proton.android.pass.data.api.usecases.defaultvault.SetDefaultVault
+import proton.android.pass.data.api.usecases.folders.ObserveFolder
+import proton.android.pass.data.api.usecases.folders.ObserveFoldersByParentId
+import proton.android.pass.data.api.usecases.shares.ObserveShare
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.attachments.FileMetadata
+import proton.android.pass.features.itemcreate.ItemCreate
+import proton.android.pass.features.itemcreate.R
+import proton.android.pass.features.itemcreate.common.OptionFolderIdSaver
+import proton.android.pass.features.itemcreate.common.OptionShareIdSaver
+import proton.android.pass.features.itemcreate.common.ShareUiState
+import proton.android.pass.features.itemcreate.common.canDisplayWarningMessageForCreationFlow
+import proton.android.pass.features.itemcreate.common.getFolderNameFlow
+import proton.android.pass.features.itemcreate.common.getShareUiStateFlow
+import proton.android.pass.features.itemcreate.common.persistDefaultVaultAndFolder
+import proton.android.pass.features.itemcreate.identity.presentation.IdentitySnackbarMessage.ItemCreated
+import proton.android.pass.features.itemcreate.identity.presentation.IdentitySnackbarMessage.ItemCreationError
+import proton.android.pass.inappreview.api.InAppReviewTriggerMetrics
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.navigation.api.CommonOptionalNavArgId
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import proton.android.pass.preferences.InternalSettingsRepository
+import proton.android.pass.telemetry.api.EventItemType
+import proton.android.pass.telemetry.api.TelemetryManager
+import java.net.URI
+import javax.inject.Inject
+
+@Suppress("LongParameterList")
+@HiltViewModel
+class CreateIdentityViewModel @Inject constructor(
+    private val observePrimaryUserId: ObservePrimaryUserId,
+    private val encryptionContextProvider: EncryptionContextProvider,
+    private val createItem: CreateItem,
+    private val identityActionsProvider: IdentityActionsProvider,
+    private val telemetryManager: TelemetryManager,
+    private val inAppReviewTriggerMetrics: InAppReviewTriggerMetrics,
+    private val snackbarDispatcher: SnackbarDispatcher,
+    private val getItemById: GetItemById,
+    private val setDefaultVault: SetDefaultVault,
+    observeVaults: ObserveVaultsWithItemCount,
+    observeDefaultVault: ObserveDefaultVault,
+    observeFolder: ObserveFolder,
+    private val observeFoldersByParentId: ObserveFoldersByParentId,
+    savedStateHandleProvider: SavedStateHandleProvider,
+    observeShare: ObserveShare,
+    private val canCreateItemsInFolder: CanCreateItemsInFolder,
+    private val settingsRepository: InternalSettingsRepository
+) : ViewModel(), IdentityActionsProvider by identityActionsProvider {
+
+    private val navShareId: Option<ShareId> =
+        savedStateHandleProvider.get().get<String>(CommonOptionalNavArgId.ShareId.key)
+            .toOption()
+            .map(::ShareId)
+
+    private val navItemId: Option<ItemId> =
+        savedStateHandleProvider.get().get<String>(CommonOptionalNavArgId.ItemId.key)
+            .toOption()
+            .map(::ItemId)
+
+    private val navFolderId: FolderId? =
+        savedStateHandleProvider.get().get<String>(CommonOptionalNavArgId.FolderId.key)
+            ?.let(::FolderId)
+
+    init {
+        viewModelScope.launch {
+            identityActionsProvider.observeActions(this)
+        }
+    }
+
+    @OptIn(SavedStateHandleSaveableApi::class)
+    private var selectedShareIdMutableState: Option<ShareId> by savedStateHandleProvider.get()
+        .saveable(stateSaver = OptionShareIdSaver) { mutableStateOf(None) }
+    private val selectedShareIdState: Flow<Option<ShareId>> =
+        snapshotFlow { selectedShareIdMutableState }
+            .filterNotNull()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = None
+            )
+
+    @OptIn(SavedStateHandleSaveableApi::class)
+    private var selectedFolderIdMutableState: Option<FolderId> by savedStateHandleProvider.get()
+        .saveable(stateSaver = OptionFolderIdSaver) { mutableStateOf(navFolderId.toOption()) }
+
+    private val selectedFolderIdState: Flow<Option<FolderId>> =
+        snapshotFlow { selectedFolderIdMutableState }
+            .filterNotNull()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = navFolderId.toOption()
+            )
+
+    private val defaultVaultFlow = observeDefaultVault()
+
+    private val selectedFolderNameFlow = getFolderNameFlow(
+        observePrimaryUserId = observePrimaryUserId,
+        observeFolder = observeFolder,
+        selectedShareIdState = selectedShareIdState,
+        selectedFolderIdFlow = selectedFolderIdState,
+        navShareIdState = flowOf(navShareId),
+        defaultVaultShareIdFlow = defaultVaultFlow.map { it.map { vwf -> vwf.shareId } },
+        defaultVaultFolderIdFlow = defaultVaultFlow.map { it.flatMap { vwf -> vwf.folderId } }
+    )
+
+    private val canDisplayWarningVaultSharedDialogFlow =
+        canDisplayWarningMessageForCreationFlow(
+            selectedShareIdMutableState = selectedShareIdMutableState,
+            observeShare = observeShare,
+            navShareId = navShareId,
+            settingsRepository = settingsRepository
+        )
+
+    private val shareUiState: StateFlow<ShareUiState> = getShareUiStateFlow(
+        navShareIdState = flowOf(navShareId),
+        selectedShareIdState = selectedShareIdState,
+        observeAllVaultsFlow = observeVaults(includeHidden = true).asLoadingResult(),
+        observeDefaultVaultFlow = defaultVaultFlow.asLoadingResult(),
+        observeFoldersByParentId = observeFoldersByParentId,
+        viewModelScope = viewModelScope,
+        tag = TAG,
+        selectedFolderNameFlow = selectedFolderNameFlow,
+        selectedFolderIdFlow = selectedFolderIdState
+    )
+
+    val state: StateFlow<IdentityUiState> = combine(
+        shareUiState,
+        identityActionsProvider.observeSharedState(),
+        canDisplayWarningVaultSharedDialogFlow
+    ) { shareUiState, sharedState, canDisplayWarningVaultSharedDialog ->
+        when (shareUiState) {
+            is ShareUiState.Error -> IdentityUiState.Error(shareUiState.shareError)
+            is ShareUiState.Loading -> IdentityUiState.Loading
+            is ShareUiState.Success -> IdentityUiState.CreateIdentity(
+                shareUiState = shareUiState,
+                sharedState = sharedState,
+                isCloned = navItemId.isNotEmpty(),
+                canDisplayVaultSharedWarningDialog = canDisplayWarningVaultSharedDialog
+            )
+
+            ShareUiState.NotInitialised -> IdentityUiState.NotInitialised
+        }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = IdentityUiState.NotInitialised
+    )
+
+    fun onShareInitError() {
+        viewModelScope.launch { snackbarDispatcher(IdentitySnackbarMessage.InitError) }
+    }
+
+    fun onVaultSelect(shareId: ShareId) {
+        selectedShareIdMutableState = Some(shareId)
+        selectedFolderIdMutableState = None
+    }
+
+    fun onFolderSelect(folderId: FolderId) {
+        selectedFolderIdMutableState = Some(folderId)
+    }
+
+    suspend fun duplicateContents(context: Context) {
+        val shareId = navShareId.value() ?: return
+        val itemId = navItemId.value() ?: return
+        val item = getItemById(shareId = shareId, itemId = itemId)
+        item.folderId?.let { folderId ->
+            if (canCreateItemsInFolder(shareId).first()) {
+                selectedFolderIdMutableState = Some(folderId)
+            }
+        }
+        val encryptedTitle = encryptionContextProvider.withEncryptionContextSuspendable {
+            val decryptedTitle = context.getString(R.string.title_duplicate, decrypt(item.title))
+            return@withEncryptionContextSuspendable encrypt(decryptedTitle)
+        }
+        identityActionsProvider.onItemReceivedState(item.copy(title = encryptedTitle))
+        identityActionsProvider.copyAttachmentsAsDraft(shareId = shareId, itemId = itemId)
+    }
+
+    internal fun doNotDisplayWarningDialog() {
+        settingsRepository.setHasShownItemInSharedVaultWarning(true)
+    }
+
+    fun onSubmit(shareId: ShareId) = viewModelScope.launch {
+        if (!identityActionsProvider.isFormStateValid()) return@launch
+        identityActionsProvider.updateLoadingState(IsLoadingState.Loading)
+        safeRunCatching {
+            createItem(
+                shareId = shareId,
+                folderId = selectedFolderIdMutableState.value(),
+                itemContents = identityActionsProvider.getFormState().toItemContents()
+            )
+        }
+            .onFailure {
+                PassLogger.w(TAG, "Could not create item")
+                PassLogger.w(TAG, it)
+                snackbarDispatcher(ItemCreationError)
+            }
+            .onSuccess { item ->
+                snackbarDispatcher(ItemCreated)
+                inAppReviewTriggerMetrics.incrementItemCreatedCount()
+                identityActionsProvider.onItemSavedState(item)
+                persistDefaultVaultAndFolder(viewModelScope, shareUiState, setDefaultVault, TAG)
+                telemetryManager.sendEvent(ItemCreate(EventItemType.Identity))
+            }
+        identityActionsProvider.updateLoadingState(IsLoadingState.NotLoading)
+    }
+
+    fun onRetryUploadDraftAttachment(metadata: FileMetadata) {
+        viewModelScope.launch { identityActionsProvider.retryUploadDraftAttachment(metadata) }
+    }
+
+    fun onOpenDraftAttachment(
+        contextHolder: ClassHolder<Context>,
+        uri: URI,
+        mimetype: String
+    ) {
+        viewModelScope.launch {
+            identityActionsProvider.openDraftAttachment(contextHolder, uri, mimetype)
+        }
+    }
+
+    fun dismissFileAttachmentsOnboarding() {
+        viewModelScope.launch { identityActionsProvider.dismissFileAttachmentsOnboardingBanner() }
+    }
+
+    fun onPasteTotp() {
+        viewModelScope.launch { identityActionsProvider.pasteTotp() }
+    }
+
+    companion object {
+        private const val TAG = "CreateIdentityViewModel"
+    }
+}

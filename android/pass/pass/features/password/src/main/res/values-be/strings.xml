@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">Скапіяваць і закрыць</string>
+  <string name="password_copied_to_clipboard">Пароль скапіяваны</string>
+  <string name="bottomsheet_generate_password_title">Згенерыраваць пароль</string>
+  <string name="password_type">Тып</string>
+  <string name="special_characters">Спецыяльныя сімвалы (!&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="one">%s сімвал</item>
+    <item quantity="few">%s сімвалы</item>
+    <item quantity="many">%s сімвалаў</item>
+    <item quantity="other">%s сімвалаў</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">Вялікія літары (A-Z)</string>
+  <string name="bottomsheet_option_include_numbers">Уключаць лічбы (0-9)</string>
+  <string name="regenerate_password_icon_content_description">Кнопка паўторнай генерацыі пароля</string>
+  <string name="password_mode_memorable">Пароль, які лёгка запомніць</string>
+  <string name="password_mode_random">Выпадковы пароль</string>
+  <string name="password_mode_icon">Значок рэжыму пароля</string>
+  <string name="password_words_separator_icon">Раздзяляльнік слоў для пароля</string>
+  <string name="password_history_title">Згенерыраваныя паролі</string>
+  <string name="password_history_empty">Няма гісторыі</string>
+  <string name="password_history_description">Згенерыраваныя паролі будуць захоўвацца на працягу 2 тыдняў.</string>
+  <string name="password_history_today">Сёння, %s</string>
+  <string name="password_history_yesterday">Учора, %s</string>
+  <string name="password_history_before_yesterday">%d дзён таму, %s</string>
+  <string name="password_history_clear_history">Ачысціць гісторыю</string>
+  <string name="password_history_remove_from_history">Выдаліць з гісторыі</string>
+</resources>

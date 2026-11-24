@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Profil</string>
+  <string name="profile_option_settings">Ayarlar</string>
+  <string name="profile_option_account">Hesap</string>
+  <string name="profile_help_center">Yardım merkezi</string>
+  <string name="profile_security">Güvenlik</string>
+  <string name="profile_option_autofill_troubleshooting">Otomatik doldurma sorun giderme</string>
+  <string name="profile_option_feedback">Geri bildirim</string>
+  <string name="profile_option_import_export">İçe/dışa aktarma</string>
+  <string name="profile_option_tutorial">Proton Pass nasıl kullanılır</string>
+  <string name="profile_option_rating">Uygulamayı değerlendirin</string>
+  <string name="profile_spread_the_word">Herkese duyurun</string>
+  <string name="profile_option_tell_a_friend">Arkadaşınıza önerin</string>
+  <string name="profile_spread_the_word_share_message">Parolalarımı korumak için Proton Pass kullanıyorum. Sen de dene: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Otomatik doldurma</string>
+  <string name="profile_option_autofill_subtitle">Kullanıcı adı ve parolalarınızı otomatik olarak doldurun.</string>
+  <string name="profile_option_secure_links">Güvenli bağlantılar</string>
+  <string name="profile_option_alias_management">Takma ad yönetimi</string>
+  <string name="profile_option_generated_passwords">Oluşturulmuş parolalar</string>
+  <string name="profile_error_biometry_failed_to_start">Biyometrik kimlik doğrulaması başlatılamadı</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Kimlik doğrulanamadı</string>
+  <string name="profile_error_app_lock_update_failed">Uygulama kilidi güncellenemedi. Lütfen yeniden deneyin.</string>
+  <string name="profile_fingerprint_lock_enabled">Parmak izi kilidi kullanıma alındı</string>
+  <string name="profile_fingerprint_lock_disabled">Parmak izi kilidi kullanım dışı bırakıldı</string>
+  <string name="profile_app_version_copied_to_clipboard">Uygulama sürümü kopyalandı</string>
+  <string name="feedback_option_reddit">Reddit Proton konularına bakın</string>
+  <string name="feedback_option_mail">Bize ileti gönderin</string>
+  <string name="feedback_option_vote_new_features">Yeni özellikler için oy verin</string>
+  <string name="app_lock_immediately">Hemen</string>
+  <string name="app_lock_one_minute">1 dakika sonra</string>
+  <string name="app_lock_two_minutes">2 dakika sonra</string>
+  <string name="app_lock_five_minutes">5 dakika sonra</string>
+  <string name="app_lock_ten_minutes">10 dakika sonra</string>
+  <string name="app_lock_one_hour">1 saat sonra</string>
+  <string name="app_lock_four_hours">4 saat sonra</string>
+  <string name="app_lock_config_none">Yok</string>
+  <string name="app_lock_config_biometric">Biyometrik</string>
+  <string name="app_lock_config_pin_code">PIN kodu</string>
+  <string name="app_lock_config_app_lock_time">Otomatik kilitleme</string>
+  <string name="app_lock_config_password">Parola</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Biyometrik kullanılamadığında sistem kilidi kullanılsın</string>
+  <string name="configure_pin_set_pin_code">PIN kodu ayarla</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Uygulama kilidi bu kod ile açılsın</string>
+  <string name="configure_pin_enter_pin_code">PIN kodunu yazın</string>
+  <string name="configure_pin_repeat_pin_code">PIN kodu onayı</string>
+  <string name="configure_pin_continue">İlerle</string>
+  <string name="configure_pin_pin_does_not_match">PIN kodu doğru değil</string>
+  <string name="configure_pin_pin_too_short">PIN kodu çok kısa</string>
+  <string name="configure_pin_pin_cannot_be_blank">PIN kodu boş olamaz</string>
+  <string name="configure_pin_pin_lock_enabled">PIN kodu ile kilitleme açık</string>
+  <string name="configure_pin_pin_lock_disabled">PIN kodu ile kilitleme kapalı</string>
+  <string name="profile_option_lock_with">Şununla kilitlensin</string>
+  <string name="profile_option_unlock_with">Kilit açma</string>
+  <string name="profile_option_change_pin_code">PIN kodunu değiştir</string>
+  <string name="profile_passkey_support_section_title">Geçiş anahtarları</string>
+  <string name="profile_passkey_support_subtitle_supported">Bu aygıtta geçiş anahtarları desteklenebilir</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Android sürümünüz geçiş anahtarlarını desteklemiyor.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Geçiş anahtarı desteği olup olmadığı denetlenemedi</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">%d gün sonra</item>
+    <item quantity="other">%d gün sonra</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">%d dakika sonra</item>
+    <item quantity="other">%d dakika sonra</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">%d saat sonra</item>
+    <item quantity="other">%d saat sonra</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Bir dakikadan daha az</string>
+  <string name="account_switcher_manage_account">Hesap yönetimi</string>
+  <string name="account_switcher_sign_in">Oturum aç</string>
+  <string name="account_switcher_sign_out">Oturumu kapat</string>
+  <string name="account_switcher_switch_to">Şuna geç</string>
+  <string name="account_switcher_add_account">Hesap ekle</string>
+  <string name="account_switcher_remove">Kaldır</string>
+  <string name="filtered_by_logins">Oturum açma kayıtları süzüldü. Çöpe atılmış ögeler görüntülenmiyor</string>
+  <string name="filtered_by_logins_with_mfa">Tek kullanımlık parola kullanan oturum açma kayıtları süzüldü. Çöpe atılmış ögeler görüntülenmiyor</string>
+  <string name="filtered_by_aliases">Takma adlar süzüldü. Çöpe atılmış ögeler görüntülenmiyor</string>
+  <string name="filtered_by_notes">Notlar süzüldü. Çöpe atılmış ögeler görüntülenmiyor</string>
+  <string name="filtered_by_credit_cards">Kredi kartları süzüldü. Çöpe atılmış ögeler görüntülenmiyor</string>
+  <string name="filtered_by_identities">Kimlikler süzüldü. Çöpe atılmış ögeler görüntülenmiyor</string>
+  <string name="filtered_by_custom_items">Özel ögeler süzüldü. Çöpe atılmış ögeler görüntülenmiyor</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Yönetebilmek için %1$s adresine geçmelisiniz</string>
+  <string name="account_switch_confirmation_title">Hesap yönetimi</string>
+  <string name="account_switch_confirmation_confirm">Geç ve yönet</string>
+  <string name="profile_storage_data_title">Depolama alanı</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s / %2$s</string>
+</resources>

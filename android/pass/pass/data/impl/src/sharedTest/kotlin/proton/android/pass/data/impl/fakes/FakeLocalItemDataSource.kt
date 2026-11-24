@@ -1,0 +1,365 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.fakes
+
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import me.proton.core.crypto.common.keystore.EncryptedString
+import proton.android.pass.common.api.FlowUtils.testFlow
+import proton.android.pass.common.api.Option
+import proton.android.pass.data.api.ItemCountSummary
+import proton.android.pass.data.api.repositories.ObserveItemCountSummaryRequest
+import proton.android.pass.data.api.repositories.ShareItemCount
+import proton.android.pass.data.api.usecases.ItemTypeFilter
+import proton.android.pass.data.impl.db.dao.ItemEntityWithRowId
+import proton.android.pass.data.impl.db.entities.ItemEntity
+import proton.android.pass.data.impl.local.ItemWithTotp
+import proton.android.pass.data.impl.local.LocalItemDataSource
+import proton.android.pass.data.impl.local.SlNoteUpdate
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.ItemFlag
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ItemState
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.VaultId
+
+data class AliasItemsPageRequest(
+    val shareId: ShareId,
+    val afterRowId: Long,
+    val limit: Int
+)
+
+data class ObserveItemCountSummaryCall(
+    val userId: String,
+    val shareIds: List<String>,
+    val folderId: String?
+)
+
+class FakeLocalItemDataSource : LocalItemDataSource {
+
+    private val memory: MutableList<ItemEntity> = mutableListOf()
+    private var summary: MutableStateFlow<ItemCountSummary> =
+        MutableStateFlow(ItemCountSummary.Initial)
+    private var itemCount: MutableStateFlow<Map<ShareId, ShareItemCount>> =
+        MutableStateFlow(emptyMap())
+    private val itemsWithTotpFlow = testFlow<Result<List<ItemWithTotp>>>()
+    private val itemEntityFlow = testFlow<ItemEntity>()
+
+    private val sharedItemsFlow = testFlow<List<ItemEntity>>()
+    private val slNoteUpdates = mutableListOf<Triple<ShareId, ItemId, EncryptedString?>>()
+    private val slNoteUpdateBatches = mutableListOf<List<SlNoteUpdate>>()
+    private val observeItemsShareIdsMemory = mutableListOf<List<ShareId>>()
+    private val activeAliasItemsPageRequests = mutableListOf<AliasItemsPageRequest>()
+    private var committedSlNoteUpdateIds: List<Pair<ShareId, ItemId>>? = null
+    private var onActiveAliasItemsPageRequested: suspend () -> Unit = {}
+    private val observeItemCountSummaryCallMemory = mutableListOf<ObserveItemCountSummaryCall>()
+    private val getByShareItemPairsCallMemory = mutableListOf<Pair<UserId, List<Pair<ShareId, ItemId>>>>()
+
+
+    fun getMemory(): List<ItemEntity> = memory
+
+    fun getByShareItemPairsCalls(): List<Pair<UserId, List<Pair<ShareId, ItemId>>>> =
+        getByShareItemPairsCallMemory.toList()
+
+    fun getObserveItemCountSummaryCalls(): List<ObserveItemCountSummaryCall> =
+        observeItemCountSummaryCallMemory.toList()
+
+    fun getSlNoteUpdates(): List<Triple<ShareId, ItemId, EncryptedString?>> = slNoteUpdates
+
+    fun getSlNoteUpdateBatches(): List<List<SlNoteUpdate>> = slNoteUpdateBatches
+
+    fun getObserveItemsShareIdsMemory(): List<List<ShareId>> = observeItemsShareIdsMemory
+
+    fun getActiveAliasItemsPageRequests(): List<AliasItemsPageRequest> = activeAliasItemsPageRequests
+
+    fun setOnActiveAliasItemsPageRequested(block: suspend () -> Unit) {
+        onActiveAliasItemsPageRequested = block
+    }
+
+    fun setCommittedSlNoteUpdateIds(ids: List<Pair<ShareId, ItemId>>) {
+        committedSlNoteUpdateIds = ids
+    }
+
+    fun emitSummary(value: ItemCountSummary) {
+        summary.tryEmit(value)
+    }
+
+    fun emitItemCount(value: Map<ShareId, ShareItemCount>) {
+        itemCount.tryEmit(value)
+    }
+
+    suspend fun emitItemEntity(newItemEntity: ItemEntity) {
+        itemEntityFlow.emit(newItemEntity)
+    }
+
+    fun emitSharedItems(value: List<ItemEntity>) {
+        sharedItemsFlow.tryEmit(value)
+    }
+
+    fun emitItemsWithTotp(value: Result<List<ItemWithTotp>>) {
+        itemsWithTotpFlow.tryEmit(value)
+    }
+
+    override suspend fun upsertItem(item: ItemEntity) {
+        memory.add(item)
+    }
+
+    override suspend fun upsertItems(items: List<ItemEntity>) {
+        memory.addAll(items)
+    }
+
+    override fun observeItems(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState?,
+        filter: ItemTypeFilter,
+        itemFlags: Map<ItemFlag, Boolean>,
+        anyFlags: List<ItemFlag>,
+        onlyDirectItems: Boolean
+    ): Flow<List<ItemEntity>> {
+        observeItemsShareIdsMemory.add(shareIds)
+        return flowOf(
+            memory.filter { entity ->
+                ShareId(entity.shareId) in shareIds && (!onlyDirectItems || entity.folderId == null)
+            }
+        )
+    }
+
+    override suspend fun getItemsPageForIndex(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState,
+        afterRowId: Long,
+        limit: Int
+    ): List<ItemEntityWithRowId> = emptyList()
+
+    override suspend fun getActiveAliasItemsPage(
+        userId: UserId,
+        shareId: ShareId,
+        afterRowId: Long,
+        limit: Int
+    ): List<ItemEntityWithRowId> {
+        activeAliasItemsPageRequests.add(AliasItemsPageRequest(shareId, afterRowId, limit))
+        onActiveAliasItemsPageRequested()
+        return memory.mapIndexed { index, item ->
+            ItemEntityWithRowId(item = item, rowId = index + 1L)
+        }.asSequence()
+            .filter { it.item.shareId == shareId.id && it.item.aliasEmail != null && it.rowId > afterRowId }
+            .take(limit)
+            .toList()
+    }
+
+    override suspend fun countItemsForIndex(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState
+    ): Int = 0
+
+    override fun observeItemsPaging(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState?,
+        filter: ItemTypeFilter,
+        itemFlags: Map<ItemFlag, Boolean>
+    ): Flow<PagingData<ItemEntity>> {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override fun observePinnedItems(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        filter: ItemTypeFilter
+    ): Flow<List<ItemEntity>> {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override fun observeItem(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId
+    ): Flow<ItemEntity?> = itemEntityFlow
+
+    override suspend fun getById(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId
+    ): ItemEntity = memory.firstOrNull {
+        it.userId == userId.id && it.shareId == shareId.id && it.id == itemId.id
+    } ?: throw IllegalStateException("Item not found")
+
+    override suspend fun getByIdList(
+        userId: UserId,
+        shareId: ShareId,
+        itemIds: List<ItemId>
+    ): List<ItemEntity> {
+        val ids = itemIds.map(ItemId::id).toSet()
+        return memory.filter {
+            it.userId == userId.id && it.shareId == shareId.id && it.id in ids
+        }
+    }
+
+    override suspend fun getByShareItemPairs(userId: UserId, pairs: List<Pair<ShareId, ItemId>>): List<ItemEntity> {
+        getByShareItemPairsCallMemory.add(userId to pairs)
+        return memory.filter { entity ->
+            entity.userId == userId.id &&
+                pairs.any { (shareId, itemId) -> entity.shareId == shareId.id && entity.id == itemId.id }
+        }
+    }
+
+    override suspend fun setItemStates(
+        userId: UserId,
+        shareId: ShareId,
+        itemIds: List<ItemId>,
+        itemState: ItemState
+    ) {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override suspend fun getTrashedItems(userId: UserId, shareIds: List<ShareId>): List<ItemEntity> {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override suspend fun delete(
+        userId: UserId,
+        shareId: ShareId,
+        itemIds: List<ItemId>
+    ): Boolean {
+        if (itemIds.isEmpty()) return true
+        val ids = itemIds.map { it.id }.toSet()
+        val removed = memory.removeAll { entity ->
+            entity.userId == userId.id && entity.shareId == shareId.id && entity.id in ids
+        }
+        return removed
+    }
+
+    override suspend fun hasItemsForShare(userId: UserId, shareId: ShareId): Boolean {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override suspend fun updateLastUsedTime(
+        shareId: ShareId,
+        itemId: ItemId,
+        now: Long
+    ) {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override suspend fun getItemByAliasEmail(userId: UserId, aliasEmail: String): ItemEntity {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override fun observeItemCount(shareIds: List<ShareId>): Flow<Map<ShareId, ShareItemCount>> = itemCount
+
+    override suspend fun getItemsPendingForTotpMigration(): List<ItemEntity> {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override fun observeItemsWithTotp(userId: UserId, shareIds: List<ShareId>): Flow<List<ItemWithTotp>> =
+        itemsWithTotpFlow.map { it.getOrThrow() }
+
+    override fun countAllItemsWithTotp(userId: UserId, shareIds: List<ShareId>): Flow<Int> =
+        itemsWithTotpFlow.map { it.getOrThrow().count() }
+
+    override fun observeItemsWithPasskeys(userId: UserId, shareIds: List<ShareId>): Flow<List<ItemEntity>> {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override suspend fun updateItemFlags(
+        shareId: ShareId,
+        itemId: ItemId,
+        flags: Int
+    ) {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override suspend fun getByVaultIdAndItemId(
+        userIds: List<UserId>,
+        vaultId: VaultId,
+        itemId: ItemId
+    ): List<ItemEntity> {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override suspend fun findUserId(shareId: ShareId, itemId: ItemId): Option<UserId> {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override fun observeFolderItemCounts(userId: UserId, shareId: ShareId): Flow<Map<FolderId, Long>> {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override fun observeItemsByFolder(
+        userId: UserId,
+        shareId: ShareId,
+        folderId: FolderId,
+        itemState: ItemState?,
+        filter: ItemTypeFilter,
+        itemFlags: Map<ItemFlag, Boolean>
+    ): Flow<List<ItemEntity>> = flowOf(
+        memory.filter { it.shareId == shareId.id && it.folderId == folderId.id }
+    )
+
+    override fun observeItemCountByFolder(
+        userId: UserId,
+        shareId: ShareId,
+        folderId: FolderId,
+        itemState: ItemState?
+    ): Flow<Int> = flowOf(
+        memory.count { it.shareId == shareId.id && it.folderId == folderId.id }
+    )
+
+    override fun observeRecentSearchItems(userId: UserId, shareId: ShareId?): Flow<List<ItemEntity>> {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override suspend fun getItemsPendingForPasskeyMigration(): List<ItemEntity> {
+        throw IllegalStateException("Not yet implemented")
+    }
+
+    override suspend fun updateSlNote(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        slNote: EncryptedString?
+    ) {
+        slNoteUpdates.add(Triple(shareId, itemId, slNote))
+    }
+
+    override suspend fun updateSlNotes(userId: UserId, updates: List<SlNoteUpdate>): List<Pair<ShareId, ItemId>> {
+        slNoteUpdateBatches.add(updates)
+        slNoteUpdates.addAll(updates.map { Triple(it.shareId, it.itemId, it.encryptedNote) })
+        return committedSlNoteUpdateIds ?: updates.map { it.shareId to it.itemId }
+    }
+
+    override fun observeItemCountSummary(request: ObserveItemCountSummaryRequest): Flow<ItemCountSummary> {
+        observeItemCountSummaryCallMemory.add(
+            ObserveItemCountSummaryCall(
+                userId = request.userId.id,
+                shareIds = request.shareIds.map { it.id },
+                folderId = request.folderId?.id
+            )
+        )
+        return summary
+    }
+
+}

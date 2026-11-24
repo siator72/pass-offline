@@ -1,0 +1,146 @@
+/*
+ * Copyright (c) 2025-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.db.dao
+
+import androidx.room.Dao
+import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+import me.proton.core.data.room.db.BaseDao
+import proton.android.pass.data.impl.db.entities.FolderEntity
+import proton.android.pass.data.impl.db.entities.ItemEntity
+
+@Dao
+abstract class FoldersDao : BaseDao<FolderEntity>() {
+
+    @Query(
+        """
+        SELECT * FROM ${FolderEntity.TABLE}
+        WHERE ${FolderEntity.Columns.USER_ID} = :userId
+          AND ${FolderEntity.Columns.SHARE_ID} = :shareId
+        ORDER BY ${FolderEntity.Columns.ID}
+        """
+    )
+    abstract fun observeAllFolders(userId: String, shareId: String): Flow<List<FolderEntity>>
+
+    @Query(
+        """
+        SELECT * FROM ${FolderEntity.TABLE}
+        WHERE ${FolderEntity.Columns.USER_ID} = :userId
+          AND ${FolderEntity.Columns.SHARE_ID} = :shareId
+          AND (
+            (:parentFolderId IS NULL AND ${FolderEntity.Columns.PARENT_FOLDER_ID} IS NULL)
+            OR ${FolderEntity.Columns.PARENT_FOLDER_ID} = :parentFolderId
+          )
+        ORDER BY ${FolderEntity.Columns.ID}
+        """
+    )
+    abstract fun observeFolders(
+        userId: String,
+        shareId: String,
+        parentFolderId: String?
+    ): Flow<List<FolderEntity>>
+
+    @Query(
+        """
+        SELECT * FROM ${FolderEntity.TABLE}
+        WHERE ${FolderEntity.Columns.USER_ID} = :userId
+          AND ${FolderEntity.Columns.SHARE_ID} = :shareId
+          AND ${FolderEntity.Columns.ID} = :folderId
+        LIMIT 1
+        """
+    )
+    abstract fun observeById(
+        userId: String,
+        shareId: String,
+        folderId: String
+    ): Flow<FolderEntity?>
+
+    @Query(
+        """
+        SELECT * FROM ${FolderEntity.TABLE}
+        WHERE ${FolderEntity.Columns.USER_ID} = :userId
+          AND ${FolderEntity.Columns.SHARE_ID} = :shareId
+          AND ${FolderEntity.Columns.ID} = :folderId
+        LIMIT 1
+        """
+    )
+    abstract suspend fun getById(
+        userId: String,
+        shareId: String,
+        folderId: String
+    ): FolderEntity?
+
+    @Query(
+        """
+        SELECT * FROM ${FolderEntity.TABLE}
+        WHERE ${FolderEntity.Columns.USER_ID} = :userId
+          AND ${FolderEntity.Columns.SHARE_ID} = :shareId
+          AND ${FolderEntity.Columns.ID} IN (:folderIds)
+        """
+    )
+    abstract suspend fun getByIds(
+        userId: String,
+        shareId: String,
+        folderIds: List<String>
+    ): List<FolderEntity>
+
+    @Query(
+        """
+        DELETE FROM ${FolderEntity.TABLE}
+        WHERE ${FolderEntity.Columns.USER_ID} = :userId
+          AND ${FolderEntity.Columns.SHARE_ID} = :shareId
+          AND ${FolderEntity.Columns.ID} IN (:folderIds)
+        """
+    )
+    abstract suspend fun deleteFolders(
+        userId: String,
+        shareId: String,
+        folderIds: List<String>
+    ): Int
+
+    @Query(
+        """
+        ${FolderEntity.DESCENDANT_FOLDER_TREE_CTE}
+        SELECT id FROM folder_tree
+        """
+    )
+    abstract suspend fun getDescendantFolderIds(
+        userId: String,
+        shareId: String,
+        rootFolderId: String
+    ): List<String>
+
+    @Query(
+        """
+        ${FolderEntity.DESCENDANT_FOLDER_TREE_CTE}
+        SELECT COUNT(*)
+        FROM ${ItemEntity.TABLE} item
+        JOIN folder_tree ON item.${ItemEntity.Columns.FOLDER_ID} = folder_tree.id
+        WHERE item.${ItemEntity.Columns.USER_ID} = :userId
+          AND item.${ItemEntity.Columns.SHARE_ID} = :shareId
+          AND (:itemState IS NULL OR item.${ItemEntity.Columns.STATE} = :itemState)
+        """
+    )
+    abstract fun observeItemCountByFolder(
+        userId: String,
+        shareId: String,
+        rootFolderId: String,
+        itemState: Int?
+    ): Flow<Int>
+}

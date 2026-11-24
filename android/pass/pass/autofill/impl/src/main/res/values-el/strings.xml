@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Λήψη από το Proton Pass</string>
+  <string name="error_loading_items">Αδυναμία φόρτωσης των στοιχείων</string>
+  <string name="inline_suggestions_open_app">Άνοιγμα Proton Pass</string>
+  <string name="autofill_associate_web_app_name_dialog_title">Χρησιμοποιήστε τα στοιχεία σύνδεσης από το \"%s\" σε αυτήν την εφαρμογή ή ιστότοπο.</string>
+  <string name="autofill_dialog_associate_and_autofill">Χρήση πάντα</string>
+  <string name="autofill_dialog_just_autofill">Χρήση μία φορά</string>
+  <string name="autofill_dialog_cancel">Ακύρωση</string>
+  <string name="autofill_notification_copy_to_clipboard">Ο TOTP έχει αντιγραφεί στο πρόχειρο</string>
+  <string name="autofill_dialog_associate_title">Χρησιμοποίηση διαπιστευτηρίων;</string>
+  <string name="autofill_user_logged_out">Έχετε αποσυνδεθεί. Παρακαλούμε συνδεθείτε ξανά ανοίγοντας την εφαρμογή.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Επιβεβαίωση ενέργειας</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Πρόκειται να συμπληρώσετε αυτόματα τα διαπιστευτήριά σας σε έναν ιστότοπο που ανοίγει από την τρέχουσα εφαρμογή σας. Η εφαρμογή μπορεί να έχει πρόσβαση στα διαπιστευτήρια μετά την αυτόματη συμπλήρωση - κάντε το μόνο εάν εμπιστεύεστε την εφαρμογή.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">Αυτόματη συμπλήρωση</string>
+  <string name="autofill_confirm_unverified_browser_title">Αυτή η εφαρμογή ισχυρίζεται ότι είναι ένα αξιόπιστο πρόγραμμα περιήγησης</string>
+  <string name="autofill_confirm_unverified_browser_body">Αυτή η εφαρμογή αυτοπροσδιορίζεται ως γνωστό πρόγραμμα περιήγησης, αλλά το Pass δεν μπόρεσε να την επαληθεύσει. Το πιστοποιητικό υπογραφής της δεν ταιριάζει με αυτό που περιμένουμε, κάτι που μπορεί να συμβεί εάν το πρόγραμμα περιήγησης έχει ασυνήθιστα διαμορφωθεί ή εάν κάποια άλλη εφαρμογή το μιμείται για να υποκλέψει τα διαπιστευτήριά σας. Συνεχίστε μόνο εάν είστε βέβαιοι ότι αυτή η εφαρμογή είναι νόμιμη.</string>
+  <string name="autofill_confirm_dont_ask_again">Μην ρωτήσετε ξανά για αυτήν την εφαρμογή</string>
+  <string name="autofill_troubleshooting_title">Αντιμετώπιση προβλημάτων αυτόματης συμπλήρωσης</string>
+  <string name="autofill_troubleshooting_subtitle">Ελέγξτε ότι η συσκευή σας έχει ρυθμιστεί σωστά για αυτόματη συμπλήρωση.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">Η αυτόματη συμπλήρωση έχει ρυθμιστεί πλήρως</string>
+  <string name="autofill_troubleshooting_verdict_attention">Μερικά πράγματα χρειάζονται την προσοχή σας</string>
+  <string name="autofill_troubleshooting_service_ok">Το Proton Pass είναι η υπηρεσία αυτόματης συμπλήρωσης σας</string>
+  <string name="autofill_troubleshooting_service_current_other">Επί του παρόντος ορισμένο σε %1$s.</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Το Proton Pass δεν είναι η υπηρεσία αυτόματης συμπλήρωσης σας</string>
+  <string name="autofill_troubleshooting_service_not_default_body">Ορίστε το ως προεπιλογή για αυτόματη συμπλήρωση σε όλες τις εφαρμογές σας.</string>
+  <string name="autofill_troubleshooting_service_enable_action">Ενεργοποίηση αυτόματης συμπλήρωσης</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">Αυτή η συσκευή δεν υποστηρίζει αυτόματη συμπλήρωση</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">Εντοπίστηκαν ανενεργά προγράμματα περιήγησης</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Ενεργοποιήστε την αυτόματη συμπλήρωση, ώστε το Proton Pass να μπορεί να συμπληρώσει τα διαπιστευτήριά σας. Πατήστε ένα πρόγραμμα περιήγησης για να ανοίξετε τις ρυθμίσεις του.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">Τα προγράμματα περιήγησης είναι συμβατά</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">Τα προγράμματα περιήγησής σας είναι συνδεδεμένα και έτοιμα για αυτόματη συμπλήρωση.</string>
+  <string name="autofill_troubleshooting_browser_active">Ενεργό</string>
+  <string name="autofill_troubleshooting_inline_info">Οι ενσωματωμένες προτάσεις εμφανίζονται στο πληκτρολόγιό σας. Απαιτούν Android 11 ή νεότερη έκδοση και ένα συμβατό πληκτρολόγιο, όπως το Gboard.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">Κοινοποίηση διαγνωστικών</string>
+  <string name="autofill_troubleshooting_open_diagnostics">Προηγμένα διαγνωστικά</string>
+  <string name="autofill_diagnostics_title">Προηγμένα διαγνωστικά</string>
+  <string name="autofill_diagnostics_enable">Ενεργοποίηση διαγνωστικών αυτόματης συμπλήρωσης</string>
+  <string name="autofill_diagnostics_enable_description">Όταν είναι ενεργοποιημένη, η λειτουργία Proton Pass καταγράφει τι συμβαίνει κατά την αυτόματη συμπλήρωση, ώστε να μπορείτε να δείτε γιατί δε συμπληρώθηκε. Απενεργοποιήστε την όταν τελειώσετε.</string>
+  <string name="autofill_diagnostics_instructions">Αναπαράγετε το πρόβλημα αυτόματης συμπλήρωσης στην εφαρμογή ή στο πρόγραμμα περιήγησης και, στη συνέχεια, επιστρέψτε σε αυτήν την οθόνη.</string>
+  <string name="autofill_diagnostics_last_attempt_title">Τελευταία προσπάθεια αυτόματης συμπλήρωσης</string>
+  <string name="autofill_diagnostics_no_attempts">Δεν έχει καταγραφεί ακόμη προσπάθεια αυτόματης συμπλήρωσης.</string>
+  <string name="autofill_diagnostics_reason_not_default">Το Proton Pass δεν είναι η υπηρεσία αυτόματης συμπλήρωσης, επομένως δεν μπορεί να συμπληρωθεί πουθενά ακόμα.</string>
+  <string name="autofill_diagnostics_outcome_offered">Το Proton Pass προσέφερε προτάσεις στο %1$s.</string>
+  <string name="autofill_diagnostics_outcome_nothing">Η αυτόματη συμπλήρωση ενεργοποιήθηκε στο %1$s, αλλά δεν προσφέρθηκε αντίστοιχη σύνδεση. Η σελίδα ενδέχεται να μην έχει ανιχνεύσιμα πεδία σύνδεσης ή δεν έχετε κανένα στοιχείο για αυτόν τον ιστότοπο.</string>
+  <string name="autofill_diagnostics_outcome_error">Η Αυτόματη Συμπλήρωση παρουσίασε σφάλμα στο %1$s.</string>
+  <string name="autofill_diagnostics_recent_title">Πρόσφατες προσπάθειες</string>
+  <string name="autofill_diagnostics_clear">Εκκαθάριση</string>
+  <string name="autofill_diagnostics_share">Κοινοποίηση στην υποστήρηξη</string>
+</resources>

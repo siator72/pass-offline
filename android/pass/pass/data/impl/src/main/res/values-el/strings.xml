@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sync_channel">Συγχρονισμός</string>
+  <string name="sync_channel_description">Κανάλι ειδοποιήσεων για συγχρονισμό στοιχείων</string>
+  <string name="syncing_vaults">Συγχρονισμός κρυπτών και στοιχείων</string>
+  <string name="logging_out_free_users">Αποσύνδεση επιπλέον δωρεάν χρηστών</string>
+  <string name="attachment_download_channel">Λήψεις συνημμένων</string>
+  <string name="attachment_download_channel_description">Κανάλι ειδοποιήσεων για λήψεις συνημμένων</string>
+  <string name="downloading_attachments">Λήψη συνημμένων</string>
+  <string name="downloading_attachments_progress" comment="%1$s is the download progress counter, e.g. 3 / 10">%1$s αρχεία</string>
+  <string name="plan_subscription_auto_renews_monthly">Η συνδρομή ανανεώνεται αυτόματα στα %1$s/μήνα</string>
+  <string name="plan_subscription_auto_renews_annual">Η συνδρομή ανανεώνεται αυτόματα στα %1$s/χρόνο</string>
+  <string name="plan_welcome_offer_auto_renews_monthly">Προσφορά καλωσορίσματος. Αυτόματη ανανέωση στα %1$s/μήνα</string>
+  <string name="plan_welcome_offer_auto_renews_annual">Προσφορά καλωσορίσματος. Αυτόματη ανανέωση στα %1$s/χρόνο</string>
+</resources>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Nimi (A-Ö)</string>
+  <string name="sort_by_title_desc">Nimi (Ö-A)</string>
+  <string name="sort_by_creation_asc">Vanhimmasta uusimpaan</string>
+  <string name="sort_by_creation_desc">Uusimmasta vanhimpaan</string>
+  <string name="sort_by_modification_date">Käytön mukaan</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Kaikki</string>
+  <string name="item_list_header_pinned_search_results">Kiinnitetyt</string>
+  <string name="item_list_header_logins_type">Kirjautumistiedot</string>
+  <string name="item_list_header_logins_totp_type">TOTP-kirjautumistiedot</string>
+  <string name="item_list_header_aliases_type">Aliakset</string>
+  <string name="item_list_header_notes_type">Muistiinpanot</string>
+  <string name="item_list_header_credit_cards_type">Maksukortit</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">tulos</item>
+    <item quantity="other">tulosta</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Identiteetit</string>
+  <string name="item_list_header_custom_type">Mukautetut kohteet</string>
+  <string name="item_list_header_shared_with_me">Jaettu minulle</string>
+  <string name="item_list_header_shared_by_me">Minun jakamani</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Vahvista</string>
+  <string name="bottomsheet_cancel_button">Peruuta</string>
+  <string name="bottomsheet_move_to_trash">Siirrä roskakoriin</string>
+  <string name="bottomsheet_pin_item">Kiinnitä</string>
+  <string name="bottomsheet_unpin_item">Irrota</string>
+  <string name="bottomsheet_view_item_history">Näytä historia</string>
+  <string name="bottomsheet_monitor_exclude">Poissulje valvonnasta</string>
+  <string name="bottomsheet_monitor_include">Sisällytä valvontaan</string>
+  <string name="bottomsheet_migrate_item_v2">Siirrä</string>
+  <string name="bottomsheet_create_folder">Luo kansio</string>
+  <string name="folder_tree_create_folder">Luo kansio</string>
+  <string name="bottomsheet_rename_folder">Nimeä uudelleen</string>
+  <string name="bottomsheet_create_sub_folder">Luo alikansio</string>
+  <string name="bottomsheet_move_folder">Siirrä kansio</string>
+  <string name="bottomsheet_move_all_items_in_folder">Siirrä kaikki kohteet</string>
+  <string name="bottomsheet_copy_item_note">Kopioi muistiinpano</string>
+  <string name="bottomsheet_delete_permanently">Poista pysyvästi</string>
+  <string name="bottomsheet_restore">Palauta</string>
+  <string name="bottomsheet_leave">Poistu</string>
+  <string name="bottomsheet_duplicate">Luo kopio</string>
+  <string name="bottomsheet_no_actions">Toimintoja ei ole käytettävissä</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Avaa kohteen toimintovalikko</string>
+  <string name="action_upgrade_now">Päivitä tilaus nyt</string>
+  <string name="action_not_now">Ei nyt</string>
+  <string name="action_learn_more">Lue lisää</string>
+  <string name="action_enable">Ota käyttöön</string>
+  <string name="action_view_details">Näytä tiedot</string>
+  <string name="action_see_all">Näytä kaikki</string>
+  <string name="action_confirm">Vahvista</string>
+  <string name="action_cancel">Peruuta</string>
+  <string name="action_continue">Jatka</string>
+  <string name="action_retry">Yritä uudelleen</string>
+  <string name="action_edit">Muokkaa</string>
+  <string name="action_add">Lisää</string>
+  <string name="action_delete">Poista</string>
+  <string name="action_make_default">Aseta oletukseksi</string>
+  <string name="action_verify">Vahvista</string>
+  <string name="action_close">Sulje</string>
+  <string name="action_update">Vaihda</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Lisää ensimmäinen kohteesi</string>
+  <string name="empty_search_results_title">Tuloksia ei löytynyt</string>
+  <string name="empty_list_open_extension">Vieraile verkkolaajennuksessa</string>
+  <string name="empty_list_create_item_button">Luo uusi kohde</string>
+  <!-- Field -->
+  <string name="field_title_title">Nimi</string>
+  <string name="field_title_hint">Nimetön</string>
+  <string name="field_title_required">Nimi vaaditaan</string>
+  <string name="small_cross_icon_content_description">Pieni risti -kuvake</string>
+  <string name="field_note_title">Muistiinpano</string>
+  <string name="field_note_hint">Lisää muistiinpano</string>
+  <string name="linked_apps_title">Yhdistetyt sovellukset</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Ei yhteyttä</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Sovellus puuttuu -kuvake</string>
+  <string name="add_item_icon_content_description">Lisää kohde -kuvake</string>
+  <string name="navigate_back_icon_content_description">Palaa takaisin -kuvake</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Listaa kohteet</string>
+  <string name="bottom_bar_add_item_icon_content_description">Lisää kohde</string>
+  <string name="bottom_bar_profile_icon_content_description">Profiili</string>
+  <string name="bottom_bar_security_center_icon_content_description">Suojauskeskus</string>
+  <string name="bottom_bar_explore_icon_content_description">Tutustu</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Tänään</string>
+  <string name="most_recent_yesterday">Eilen</string>
+  <string name="most_recent_this_week">Viikon sisällä</string>
+  <string name="most_recent_last_two_weeks">Kahden viikon sisällä</string>
+  <string name="most_recent_last_30_days">Kuukauden sisällä</string>
+  <string name="most_recent_last_60_days">60 päivän sisällä</string>
+  <string name="most_recent_last_90_days">90 päivän sisällä</string>
+  <string name="most_recent_within_the_last_year">Vuoden sisällä</string>
+  <string name="most_recent_more_than_1_year">Yli vuosi sitten</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Hakukuvake</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 kohde</item>
+    <item quantity="other">%d kohdetta</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Hylätäänkö muutokset?</string>
+  <string name="confirm_close_dialog_message">Sinulla on tallentamattomia muutoksia. Haluatko varmasti hylätä ne?</string>
+  <string name="confirm_close_dialog_close_button">Hylkää</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Päivitä</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Lisävalinnat</string>
+  <string name="hide_advanced_options">Piilota lisävalinnat</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Vahva</string>
+  <string name="label_password_strength_vulnerable">Haavoittuvainen</string>
+  <string name="label_password_strength_weak">Heikko</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Näytä kaikki</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Tänään %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Eilen %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd. LLLL HH.mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd. LLLL yyyy HH.mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Aliasosoite</string>
+  <string name="item_details_alias_section_alias_disabled_title">Aliasosoite (ei käytössä)</string>
+  <string name="item_details_alias_section_mailboxes_title">Ohjaa osoitteeseen</string>
+  <string name="item_details_credit_card_section_cardholder_title">Kortinhaltijan nimi</string>
+  <string name="item_details_credit_card_section_card_number_title">Kortin numero</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Voimassaolo päättyy</string>
+  <string name="item_details_credit_card_section_cvv_title">Turvakoodi</string>
+  <string name="item_details_credit_card_section_pin_title">PIN-koodi</string>
+  <string name="item_details_login_section_email_title">Sähköpostiosoite</string>
+  <string name="item_details_login_section_username_title">Käyttäjätunnus</string>
+  <string name="item_details_login_section_password_title">Salasana</string>
+  <string name="item_details_login_section_primary_totp_title">Vahvistuskoodi (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Verkkosivustot</string>
+  <string name="autofill_mode_label_default">Pääverkkotunnus ja aliverkkotunnukset</string>
+  <string name="autofill_mode_label_exact">Tarkka (ala)verkkotunnus</string>
+  <string name="autofill_mode_label_never">Älä koskaan täytä tällä verkkosivustolla</string>
+  <string name="autofill_mode_label_start_with">Alkaa</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">Säännöllinen lauseke</string>
+  <string name="autofill_mode_label_exact_path">Tarkka URL-vastaavuus</string>
+  <string name="autofill_mode_label_unsupported">Tätä URL-osoitetta ei oteta huomioon automaattisen täytön yhteydessä</string>
+  <string name="login_item_view_alias_button">Näytä alias</string>
+  <string name="item_details_identity_section_personal_title">Henkilötiedot</string>
+  <string name="item_details_identity_section_personal_first_name_title">Etunimi</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Toinen nimi</string>
+  <string name="item_details_identity_section_personal_last_name_title">Sukunimi</string>
+  <string name="item_details_identity_section_personal_full_name_title">Koko nimi</string>
+  <string name="item_details_identity_section_personal_email_title">Sähköpostiosoite</string>
+  <string name="item_details_identity_section_personal_gender_title">Sukupuoli</string>
+  <string name="item_details_identity_section_personal_phone_title">Puhelinnumero</string>
+  <string name="item_details_identity_section_personal_birthday_title">Syntymäpäivä</string>
+  <string name="item_details_identity_section_address_title">Osoitetiedot</string>
+  <string name="item_details_identity_section_address_organization_title">Organisaatio</string>
+  <string name="item_details_identity_section_address_street_address_title">Katuosoite, postilokero</string>
+  <string name="item_details_identity_section_address_floor_title">Kerros</string>
+  <string name="item_details_identity_section_address_city_title">Kaupunki</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">Postinumero</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Osavaltio tai maakunta</string>
+  <string name="item_details_identity_section_address_county_title">Piirikunta</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Maa tai alue</string>
+  <string name="item_details_identity_section_contact_title">Yhteystiedot</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Henkilötunnus</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Passin numero</string>
+  <string name="item_details_identity_section_contact_license_number_title">Ajokortin numero</string>
+  <string name="item_details_identity_section_contact_website_title">Verkkosivusto</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X-tunnus</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Toissijainen puhelinnumero</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Työtiedot</string>
+  <string name="item_details_identity_section_work_company_title">Yritys</string>
+  <string name="item_details_identity_section_work_occupation_title">Ammatti</string>
+  <string name="item_details_identity_section_work_email_title">Työsähköposti</string>
+  <string name="item_details_identity_section_work_phone_number_title">Työpuhelin</string>
+  <string name="item_details_identity_section_work_personal_website_title">Henkilökohtainen verkkosivusto</string>
+  <string name="item_details_shared_section_note_title">Muistiinpano</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Automaattitäytetty</string>
+  <string name="item_details_shared_section_item_history_created_title">Luotu</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Muokattu (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Näytä kohteen historia</string>
+  <string name="item_details_shared_section_more_info_header_title">Lisätiedot</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Lisää kohteen tietoja -kuvake</string>
+  <string name="item_details_shared_section_more_info_item_id">Kohteen ID</string>
+  <string name="item_details_shared_section_more_info_vault_id">Holvin ID</string>
+  <string name="item_details_shared_section_more_info_share_id">Share ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">Nimi (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Salasana</string>
+  <string name="item_details_wifi_network_label_security">Suojaus</string>
+  <string name="item_details_ssh_key_label_public_key">Julkinen avain</string>
+  <string name="item_details_ssh_key_label_private_key">Yksityinen avain</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Tätä sovellusversiota ei enää tueta. Päivitä sovelluksesi.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Pääsyavain</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Päivitetäänkö tilaus?</string>
+  <string name="dialog_upgrade_plan_message">Tämä ominaisuus ei ole ilmaistason käyttäjien käytettävissä. Jos haluat nauttia tästä ja muista hienouksista, päivitä tilauksesi ja kokeile sitä!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Päivitä tilaus</string>
+  <string name="dialog_upgrade_plan_action_cancel">Ei nyt</string>
+  <!-- Words -->
+  <string name="email_address">Sähköpostiosoite</string>
+  <string name="email_address_invalid">Virheellinen sähköpostiosoite</string>
+  <string name="password">Salasana</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Painike, joka sulkee työkaluvihjeen ja estää sitä näkymästä uudelleen.</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d vuosi</item>
+    <item quantity="other">%d vuotta</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d kuukausi</item>
+    <item quantity="other">%d kuukautta</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d viikko</item>
+    <item quantity="other">%d viikkoa</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d päivä</item>
+    <item quantity="other">%d päivää</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d tunti</item>
+    <item quantity="other">%d tuntia</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d minuuttia</item>
+    <item quantity="other">%d minuuttia</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d sekunti</item>
+    <item quantity="other">%d sekuntia</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d alias</item>
+    <item quantity="other">%d aliasta</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Muistiinpano kopioitiin</string>
+  <string name="snack_bar_message_item_migration_error">Virhe siirrettäessä kohdetta</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Kohde poissuljettiin valvonnasta</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Virhe poissuljettaessa kohdetta valvonnasta</string>
+  <string name="snack_bar_message_item_monitor_included_success">Kohde sisällytettiin valvontaan</string>
+  <string name="snack_bar_message_item_monitor_included_error">Virhe lisättäessä kohdetta valvontaan</string>
+  <string name="snack_bar_message_item_pinned_success">Kohde kiinnitettiin</string>
+  <string name="snack_bar_message_item_pinned_error">Virhe kiinnitettäessä kohdetta</string>
+  <string name="snack_bar_message_item_unpinned_success">Kohde irrotettiin</string>
+  <string name="snack_bar_message_item_unpinned_error">Virhe irrotettaessa kohdetta</string>
+  <string name="snack_bar_message_item_trashed_success">Kohde siirrettiin roskakoriin</string>
+  <string name="snack_bar_message_item_trashed_error">Virhe siirrettäessä kohdetta roskakoriin</string>
+  <string name="snack_bar_message_item_restore_success">Kohde palautettiin</string>
+  <string name="snack_bar_message_item_restore_error">Virhe palautettaessa kohdetta</string>
+  <string name="snack_bar_message_item_delete_success">Kohde poistettiin</string>
+  <string name="snack_bar_message_item_delete_error">Virhe poistettaessa kohdetta</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Käytä SimpleLogin-synkronointia</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">Havaitsimme, että sinulla on SimpleLoginissa %d Proton Passista puuttuva alias. Haluatko tuoda sen?</item>
+    <item quantity="other">Havaitsimme, että sinulla on SimpleLoginissa %d Proton Passista puuttuvaa aliasta. Haluatko tuoda ne?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Synkronoi aliakset</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Etkö saanut koodia?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Tarkista, onko roskapostissasi viestiä otsikolla \"%s\"</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Vahvista sähköpostiosoitteesi Proton Passille</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Vahvista postilaatikkosi</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Jos et löydä tällaista viestiä, voit %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">pyytää uuden koodin</string>
+  <string name="field_display_name_title">Näyttönimi</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s tiedosto</item>
+    <item quantity="other">%1$s tiedostoa</item>
+  </plurals>
+  <string name="attachment_title">Liitteet</string>
+  <string name="attachment_no_files">Tallenna tiedostoja laitteeltasi</string>
+  <string name="attachment_add_file">Liitä tiedosto</string>
+  <string name="attachment_row_upload_failed">Tallennus epäonnistui</string>
+  <string name="attachment_row_retry">Yritä uudelleen</string>
+  <string name="options_menu_content_description">Asetusvalikko</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d jaettu kohde</item>
+    <item quantity="other">%d jaettua kohdetta</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d käyttäjä</item>
+    <item quantity="other">%d käyttäjää</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d jäsen</item>
+    <item quantity="other">%d jäsentä</item>
+  </plurals>
+  <string name="show_network_qr_code">Näytä verkon QR-koodi</string>
+  <string name="expand_collpased_text">enemmän</string>
+  <string name="collapse_expanded_text">vähemmän</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Heikko salasana</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Tämä tili on vaarassa. Käy vaihtamassa salasanasi palvelun tiliasetuksista.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Vaarantunut salasana</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">This login password appears in a data breach. Please visit the service and change the password.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d muu kirjautumistieto käyttää samaa salasanaa</item>
+    <item quantity="other">%d muuta kirjautumistietoa käyttää samaa salasanaa</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Vahvista suojausta määrittämällä 2FA</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Palvelu mahdollistaa kaksivaiheisen tunnistautumisen. Paranna tilin suojausta ottamalla se käyttöön.</string>
+  <string name="login_item_monitor_action_ignore">Ohita</string>
+  <string name="login_item_monitor_action_restore">Palauta hälytys</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Heikko salasana</string>
+  <string name="login_item_monitor_label_compromised">Vaarantunut salasana</string>
+  <string name="login_item_monitor_label_reused">Reused password</string>
+  <string name="login_item_monitor_label_missing_2fa">Puuttuva 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">Holviesi tätä salasanaa käyttävät kohteet.</string>
+  <string name="mfa_limit_reached">Kaksivaiheisen tunnistautumisen rajoitus on saavutettu</string>
+  <string name="activity_in_last_two_weeks">Tapahtumat viimeisten kahden viikon ajalta</string>
+  <string name="contacts">Yhteystiedot</string>
+  <string name="contacts_section_description">Voit pitää henkilökohtaisen sähköpostiosoitteesi piilossa luomalla aliasyhteystiedon, joka naamioi sen.</string>
+  <string name="field_detail_display_name_title">Näyttönimi</string>
+  <string name="display_name_section_description">Näyttönimi, kun lähetät sähköpostia tästä aliaksesta.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s välitys</item>
+    <item quantity="other">%1$s välitystä</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s vastaus</item>
+    <item quantity="other">%1$s vastausta</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s esto</item>
+    <item quantity="other">%1$s estoa</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Luo kirjautumistieto</string>
+  <string name="banner_contacts_title">Tiesitkö?</string>
+  <string name="banner_contacts_subtitle">Aina kun aliaksesi vastaanottaa viestin, luodaan automaattisesti uusi yhteystieto.</string>
+  <string name="action_reveal">Paljasta</string>
+  <string name="action_conceal">Piilota</string>
+  <string name="warning_dialog_item_shared_vault_title">Kohde jaetussa holvissa</string>
+  <string name="warning_dialog_item_shared_title">Jaettu kohde</string>
+  <string name="warning_dialog_item_shared_vault_creating">Luot kohteen jaettuun holviin, ja jäsenet voivat välittömästi käyttää sitä.</string>
+  <string name="warning_dialog_item_shared_vault_moving">Luot kohteen jaettuun holviin, ja jäsenet voivat välittömästi käyttää sitä.</string>
+  <string name="warning_dialog_item_shared_vault_updating">Muokkaat kohdetta jaetussa holvissa, ja jäsenet voivat käyttää sitä välittömästi.</string>
+  <string name="warning_dialog_item_shared_updating">Muokkaat jaettua kohdetta. Muutokset näkyvät välittömästi kaikille, joiden kanssa se on jaettu.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Älä muistuta uudelleen</string>
+  <string name="upgrade_to_pass_plus">Päivitä Pass Plussaan</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">Teidät ohjataan pian verkkosivustollemme. Jos ostat tilauksen, käynnistä sovellus uudelleen.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Sanojen erotin</string>
+  <string name="bottomsheet_option_capitalise">Isot kirjaimet</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Yhdysmerkki ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Välilyönti</string>
+  <string name="bottomsheet_option_word_separator_periods">Piste ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Pilkku ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Alaviiva ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Numerot</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Numerot ja erikoismerkit</string>
+  <plurals name="word_count">
+    <item quantity="one">%s sana</item>
+    <item quantity="other">%s sanaa</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Salasanan vahvuus</string>
+  <string name="password_check_min_length">Password is too short</string>
+  <string name="password_check_lowercase">Pienet kirjaimet</string>
+  <string name="password_check_uppercase">Isot kirjaimet</string>
+  <string name="password_check_no_consecutive">Ei toistuvia merkkejä</string>
+  <string name="password_check_no_common">Ei yleistä salasanaa</string>
+</resources>

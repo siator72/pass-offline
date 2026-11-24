@@ -1,0 +1,140 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+plugins {
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
+    id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.plugin.serialization")
+    alias(libs.plugins.gradlePlugin.compose.compiler)
+}
+
+android {
+    namespace = "proton.android.pass.features.credentials"
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+        testInstrumentationRunner = "proton.android.pass.test.HiltRunner"
+    }
+    
+    buildFeatures {
+        compose = true
+    }
+
+    testOptions {
+        managedDevices {
+            allDevices {
+                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel2api30").apply {
+                    device = "Pixel 2"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                }
+                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel2api34").apply {
+                    device = "Pixel 2"
+                    apiLevel = 34
+                    systemImageSource = "default"
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation(libs.accompanist.navigation.material)
+    implementation(libs.androidx.credentials)
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.core.compose)
+    debugImplementation(libs.androidx.compose.uiTooling)
+
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.core.accountManager.domain)
+    implementation(libs.core.presentation)
+    implementation(libs.core.presentation.compose)
+    implementation(libs.core.utilKotlin)
+    implementation(libs.dagger.hilt.android)
+    implementation(libs.kotlinx.collections)
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.kotlinx.serialization.json)
+
+
+    debugImplementation(libs.showkase)
+    kspDebug(libs.showkaseProcessor)
+
+    ksp(libs.dagger.hilt.android.compiler)
+    ksp(libs.androidx.hilt.compiler)
+
+    implementation(projects.pass.account.api)
+    implementation(projects.pass.appConfig.api)
+    implementation(projects.pass.autofill.api)
+    implementation(projects.pass.biometry.api)
+    implementation(projects.pass.browserAllowlist.api)
+    implementation(projects.pass.common.api)
+    implementation(projects.pass.commonPresentation.api)
+    implementation(projects.pass.commonPresentation.impl)
+    implementation(projects.pass.commonUi.api)
+    implementation(projects.pass.commonUi.impl)
+    implementation(projects.pass.commonUiModels.api)
+    implementation(projects.pass.composeComponents.impl)
+    implementation(projects.pass.crypto.api)
+    implementation(projects.pass.data.api)
+    implementation(projects.pass.domain)
+    implementation(projects.pass.log.api)
+    implementation(projects.pass.navigation.api)
+    implementation(projects.pass.notifications.api)
+    implementation(projects.pass.passkeys.api)
+    implementation(projects.pass.preferences.api)
+    implementation(projects.pass.signingCertificates)
+    implementation(projects.pass.telemetry.api)
+
+    implementation(projects.pass.features.accountSelector)
+    implementation(projects.pass.features.auth)
+    implementation(projects.pass.features.upsell)
+    implementation(projects.pass.features.itemCreate)
+    implementation(projects.pass.features.passkeys)
+    implementation(projects.pass.features.password)
+    implementation(projects.pass.features.searchOptions)
+    implementation(projects.pass.features.selectItem)
+    implementation(projects.pass.features.username)
+    implementation(projects.pass.features.vault)
+
+    testImplementation(libs.truth)
+    testImplementation(libs.kotlinTest)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.junit)
+    testImplementation(libs.turbine)
+
+    testImplementation(projects.pass.account.fakes)
+    testImplementation(projects.pass.appConfig.fakes)
+    testImplementation(projects.pass.biometry.fakes)
+    testImplementation(projects.pass.commonTest)
+    testImplementation(projects.pass.crypto.fakes)
+    testImplementation(projects.pass.data.fakes)
+    testImplementation(projects.pass.notifications.fakes)
+    testImplementation(projects.pass.passkeys.fakes)
+    testImplementation(projects.pass.preferences.fakes)
+    testImplementation(projects.pass.telemetry.fakes)
+
+    kspAndroidTest(libs.dagger.hilt.android.compiler)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(projects.pass.commonTest)
+}

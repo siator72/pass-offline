@@ -1,0 +1,146 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.sharing.sharefromitem
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import proton.android.pass.common.api.FlowUtils.oneShot
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.combineN
+import proton.android.pass.common.api.some
+import proton.android.pass.commonui.api.SavedStateHandleProvider
+import proton.android.pass.commonui.api.require
+import proton.android.pass.data.api.repositories.BulkMoveToVaultRepository
+import proton.android.pass.data.api.repositories.ParentContainer
+import proton.android.pass.data.api.usecases.GetItemById
+import proton.android.pass.data.api.usecases.GetUserPlan
+import proton.android.pass.data.api.usecases.capabilities.CanCreateSecureLink
+import proton.android.pass.data.api.usecases.organization.ObserveOrganizationSettings
+import proton.android.pass.data.api.usecases.shares.ObserveShare
+import proton.android.pass.domain.Item
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.OrganizationSettings
+import proton.android.pass.domain.ShareId
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.navigation.api.CommonNavArgId
+import javax.inject.Inject
+
+@HiltViewModel
+class ShareFromItemViewModel @Inject constructor(
+    private val bulkMoveToVaultRepository: BulkMoveToVaultRepository,
+    savedStateHandleProvider: SavedStateHandleProvider,
+    getUserPlan: GetUserPlan,
+    private val getItemById: GetItemById,
+    observeShare: ObserveShare,
+    observeOrganizationSettings: ObserveOrganizationSettings,
+    canCreateSecureLink: CanCreateSecureLink
+) : ViewModel() {
+
+    private val shareId: ShareId = savedStateHandleProvider.get()
+        .require<String>(CommonNavArgId.ShareId.key)
+        .let(::ShareId)
+
+    private val itemId: ItemId = savedStateHandleProvider.get()
+        .require<String>(CommonNavArgId.ItemId.key)
+        .let(::ItemId)
+
+    private val navEventState: MutableStateFlow<ShareFromItemNavEvent> =
+        MutableStateFlow(ShareFromItemNavEvent.Unknown)
+
+    private val itemFlow: StateFlow<Item?> = oneShot<Item?> { getItemById(shareId = shareId, itemId = itemId) }
+        .catch { emit(null) }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = null
+        )
+
+    internal val stateFlow: StateFlow<ShareFromItemUiState> = combineN(
+        navEventState,
+        getUserPlan().map { it.isPaidPlan },
+        itemFlow,
+        observeShare(shareId = shareId),
+        observeOrganizationSettings(),
+        canCreateSecureLink()
+    ) { event, canUsePaidFeatures, item, share, organizationSettings, canCreateSecureLinks ->
+
+        val isItemSharingAllowed = when (val settings = organizationSettings.value()) {
+            OrganizationSettings.NotAnOrganization -> canUsePaidFeatures
+            is OrganizationSettings.Organization -> settings.sharingPolicy.canShareItems
+            null -> false
+        }
+
+        ShareFromItemUiState(
+            shareId = shareId,
+            itemId = itemId,
+            event = event,
+            canUsePaidFeatures = canUsePaidFeatures,
+            itemOption = item?.some() ?: None,
+            shareOption = share.some(),
+            isItemSharingAllowed = isItemSharingAllowed,
+            canCreateSecureLinks = canCreateSecureLinks
+        )
+    }.catch { error ->
+        PassLogger.w(TAG, "There was an error loading share from item state")
+        PassLogger.w(TAG, error)
+        emit(ShareFromItemUiState.initial(shareId, itemId).copy(event = ShareFromItemNavEvent.DismissBottomSheet))
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000L),
+        initialValue = ShareFromItemUiState.initial(shareId, itemId)
+    )
+
+    internal fun moveItemToSharedVault() {
+        viewModelScope.launch {
+            val parentContainer = itemFlow
+                .filterNotNull()
+                .first()
+                .folderId
+                ?.let(ParentContainer::Folder)
+                ?: ParentContainer.Share
+            val selection = mapOf(
+                shareId to mapOf(parentContainer to setOf(itemId))
+            )
+            bulkMoveToVaultRepository.save(selection)
+            navEventState.update { ShareFromItemNavEvent.MoveToSharedVault }
+        }
+    }
+
+    internal fun onEventConsumed(event: ShareFromItemNavEvent) {
+        navEventState.compareAndSet(event, ShareFromItemNavEvent.Unknown)
+    }
+
+    private companion object {
+
+        private const val TAG = "ShareFromItemViewModel"
+
+    }
+
+}

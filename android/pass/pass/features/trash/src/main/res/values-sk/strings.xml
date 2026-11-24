@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="bottomsheet_delete_permanently">Odstrániť natrvalo</string>
+  <string name="alert_confirm_delete_item_dialog_title">Odstrániť natrvalo?</string>
+  <string name="alert_confirm_delete_item_dialog_message">Táto akcia je nezvratná.</string>
+  <string name="alert_confirm_delete_item_dialog_shared_warning_message">Táto položka je v súčasnosti zdieľaná. Jej odstránením sa zruší prístup pre všetkých ostatných používateľov.</string>
+  <string name="alias_dialog_move_to_trash_title">Presunúť do koša?</string>
+  <string name="alias_dialog_move_to_trash_content">Presunutím aliasu do koša sa prestanú preposielať emaily do vašej poštovej schránky.</string>
+  <string name="alias_dialog_move_to_trash_confirm">Potvrdiť</string>
+  <string name="delete_alias_confirm">Vymazať, nikdy ho nebudem potrebovať</string>
+  <string name="delete_alias_title">Vymazať %s</string>
+  <string name="delete_alias_enabled_subtitle">"Upozorňujeme, že po vymazaní sa alias nedá obnoviť. Nechcete alias radšej deaktivovať? "</string>
+  <string name="delete_alias_disabled_subtitle">Upozorňujeme, že po vymazaní sa alias nedá obnoviť. Alias je už deaktivovaný a nebude preposielať emaily do vašej poštovej schránky.</string>
+  <plurals name="bulk_delete_alias_title">
+    <item quantity="one">Chystáte sa natrvalo vymazať %d alias</item>
+    <item quantity="few">Chystáte sa natrvalo vymazať %d aliasy</item>
+    <item quantity="many">Chystáte sa natrvalo vymazať %d aliasov</item>
+    <item quantity="other">Chystáte sa natrvalo vymazať %d aliasov</item>
+  </plurals>
+  <string name="bulk_delete_alias_subtitle">Upozorňujeme, že po odstránení nie je možné aliasy obnoviť.</string>
+  <string name="bulk_delete_alias_confirm">Rozumiem, nikdy ich nebudem potrebovať</string>
+  <string name="delete_alias_disable">Vypnúť alias</string>
+</resources>

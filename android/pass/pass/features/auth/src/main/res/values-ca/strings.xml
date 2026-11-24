@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="enter_your_pin_code">Introduïu el codi PIN</string>
+  <string name="unlock">Desbloqueja</string>
+  <plurals name="enter_your_pin_code_error">
+    <item quantity="one">El codi PIN és incorrecte. Us queda %d intent.</item>
+    <item quantity="other">El codi PIN és incorrecte. Us queden %d intents.</item>
+  </plurals>
+  <string name="auth_unlock_app_title">Desbloqueja Proton Pass</string>
+  <string name="auth_unlock_app_subtitle">Introduïu la contrasenya principal per a %s</string>
+  <string name="auth_unlock_app_extra_password_subtitle">Introduïu la contrasenya addicional per a %s</string>
+  <string name="auth_unlock_app_subtitle_account_switch">Introduïu la contrasenya principal per a:</string>
+  <string name="auth_unlock_app_extra_password_subtitle_account_switch">Introduïu la contrasenya addicional per a:</string>
+  <string name="auth_master_password_label">Contrasenya principal</string>
+  <string name="auth_action_reveal_password">Mostra la contrasenya principal</string>
+  <string name="auth_action_conceal_password">Oculta la contrasenya principal</string>
+  <string name="auth_action_enter_pin_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Utilitzeu el codi PIN en lloc</string>
+  <string name="auth_action_enter_fingerprint_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Utilitzeu l\'empremta digital</string>
+  <string name="auth_unlock_button">Desbloqueja</string>
+  <string name="auth_error_empty_password">La contrasenya no pot estar buida.</string>
+  <string name="auth_error_pin_cannot_be_empty">El codi PIN no pot estar buit.</string>
+  <string name="auth_extra_password_label">Introduïu la vostra contrasenya addicional</string>
+  <string name="auth_extra_password_error">S\'ha produït un error en autenticar-se amb la contrasenya addicional</string>
+  <string name="auth_extra_password_too_many_attempts">Hi ha hagut massa intents fallits d\'inici de sessió. Se us ha tancat la sessió.</string>
+  <string name="auth_biometric_enrollment_changed">Les vostres dades biomètriques han canviat. Torneu a activar el desbloqueig biomètric a la configuració.</string>
+  <string name="auth_error_wrong_password_no_attempts">La contrasenya no és correcta.</string>
+  <plurals name="auth_error_wrong_password">
+    <item quantity="one">La contrasenya és incorrecta. Us queda %d intent.</item>
+    <item quantity="other">La contrasenya és incorrecta. Us queden %d intents.</item>
+  </plurals>
+  <plurals name="auth_attempts_remaining">
+    <item quantity="one">%d intent restant</item>
+    <item quantity="other">%d intents restants</item>
+  </plurals>
+  <string name="auth_pin_too_many_attempts">Hi ha hagut massa intents fallits del codi PIN. S\'està tancant la sessió de tots els vostres usuaris.</string>
+  <string name="auth_pin_too_many_attempts_dismiss">Massa intents fallits del codi PIN</string>
+</resources>

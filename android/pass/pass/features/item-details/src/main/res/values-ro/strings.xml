@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="item_details_toolbar_content_description_menu_button">Buton pentru afișarea meniului de opțiuni</string>
+  <!-- Item details forbidden actions -->
+  <string name="item_details_forbidden_actions_edit_title">Nu se poate edita</string>
+  <string name="item_details_forbidden_actions_edit_permission">Nu puteți edita acest articol deoarece nu aveți suficiente permisiuni pentru a face acest lucru.</string>
+  <string name="item_details_forbidden_actions_edit_trash">Nu puteți edita acest articol deoarece este în coșul de gunoi. Scoateți-l din coșul de gunoi înainte de a-l edita.</string>
+  <string name="item_details_forbidden_actions_edit_upgrade">Aveți voie să editați doar articole doar din seifurile vechi. Pentru a edita acest articol, modificați-vă planul actual.</string>
+  <string name="item_details_forbidden_actions_share_title">Nu se poate partaja</string>
+  <string name="item_details_forbidden_actions_share_limit">Ați atins limita de partajare a seifului. Pentru a partaja mai multe seifuri, alegeți alt plan cu plată.</string>
+  <string name="item_details_forbidden_actions_sharing_permission">Nu aveți suficiente permisiuni pentru a efectua această acțiune.</string>
+  <string name="item_details_forbidden_actions_share_trash">Nu puteți partaja acest articol deoarece este în coșul de gunoi. Scoateți-l din coșul de gunoi înainte de a-l partaja.</string>
+  <!-- Item details leave item -->
+  <string name="item_details_leave_dialog_title">Părăsiți acest articol?</string>
+  <string name="item_details_leave_dialog_message">Veți pierde accesul la acest articol și la detaliile sale. Doriți să continuați?</string>
+  <string name="item_details_leave_item_message_error">A apărut o eroare la părăsirea articolului.</string>
+  <string name="item_details_leave_item_message_success">Articolul a fost părăsit.</string>
+  <string name="item_details_monitor_check_update_error">Nu s-a putut actualiza monitorizarea. Reîncercați.</string>
+  <string name="item_details_snackbar_message_alias_copied">Aliasul a fost copiat.</string>
+  <string name="item_details_snackbar_message_birthdate_copied">Data nașterii s-a copiat.</string>
+  <string name="item_details_snackbar_message_card_number_copied">Număr card a fost copiat.</string>
+  <string name="item_details_snackbar_message_city_copied">Orașul s-a copiat.</string>
+  <string name="item_details_snackbar_message_company_copied">Compania s-a copiat.</string>
+  <string name="item_details_snackbar_message_country_or_region_copied">Tara sau județul s-a copiat.</string>
+  <string name="item_details_snackbar_message_county_copied">Țara s-a copiat.</string>
+  <string name="item_details_snackbar_message_custom_field_copied">Câmpul personal a fost copiat.</string>
+  <string name="item_details_snackbar_message_cvv_copied">Codul de securitate s-a copiat.</string>
+  <string name="item_details_snackbar_message_email_copied">Adresa de e-mail a fost copiată</string>
+  <string name="item_details_snackbar_message_facebook_copied">Adresa Facebook s-a copiat.</string>
+  <string name="item_details_snackbar_message_first_name_copied">Numele s-a copiat.</string>
+  <string name="item_details_snackbar_message_floor_copied">Etajul s-a copiat.</string>
+  <string name="item_details_snackbar_message_full_name_copied">Numele complet s-a copiat.</string>
+  <string name="item_details_snackbar_message_gender_copied">Genul s-a copiat.</string>
+  <string name="item_details_snackbar_message_instagram_copied">Adresa Instagram s-a copiat.</string>
+  <string name="item_details_snackbar_message_last_name_copied">Prenumele s-a copiat.</string>
+  <string name="item_details_snackbar_message_license_number_copied">Numărul permisului de conducere s-a copiat.</string>
+  <string name="item_details_snackbar_message_linkedin_copied">Adresa LinkedIn s-a copiat.</string>
+  <string name="item_details_snackbar_message_middle_name_copied">Numele mijlociu s-a copiat.</string>
+  <string name="item_details_snackbar_message_occupation_copied">Ocupația s-a copiat.</string>
+  <string name="item_details_snackbar_message_organization_copied">Organizația s-a copiat.</string>
+  <string name="item_details_snackbar_message_passport_number_copied">Numărul pașaportului s-a copiat.</string>
+  <string name="item_details_snackbar_message_password_copied">Parola a fost copiată.</string>
+  <string name="item_details_snackbar_message_phone_number_copied">Numărul de telefon s-a copiat.</string>
+  <string name="item_details_snackbar_message_pin_copied">Codul PIN a fost copiat.</string>
+  <string name="item_details_snackbar_message_reddit_copied">Adresa Reddit s-a copiat.</string>
+  <string name="item_details_snackbar_message_social_security_number_copied">Numărul de asigurări sociale s-a copiat.</string>
+  <string name="item_details_snackbar_message_state_or_province_copied">Statul sau județul s-a copiat.</string>
+  <string name="item_details_snackbar_message_street_address_copied">Adresa poștală s-a copiat.</string>
+  <string name="item_details_snackbar_message_totp_copied">TOTP a fost copiat.</string>
+  <string name="item_details_snackbar_message_username_copied">Numele de utilizator a fost copiat.</string>
+  <string name="item_details_snackbar_message_website_copied">Adresa URL a fost copiată.</string>
+  <string name="item_details_snackbar_message_x_handle_copied">Adresa X s-a copiat.</string>
+  <string name="item_details_snackbar_message_yahoo_copied">Adresa Yahoo s-a copiat.</string>
+  <string name="item_details_snackbar_message_zip_or_postal_code_copied">Codul poștal s-a copiat.</string>
+  <string name="item_details_snackbar_message_public_key_copied">Cheia publică s-a copiat.</string>
+  <string name="item_details_snackbar_message_private_key_copied">Cheia privată s-a copiat.</string>
+  <string name="item_details_snackbar_message_ssid_copied">SSID s-a copiat.</string>
+  <string name="open_with">Deschideți cu:</string>
+  <string name="open_attachments_error">Atașamentul nu a putut fi deschis.</string>
+  <string name="passkey_detail_bottomsheet_title">Cheie de acces</string>
+  <string name="passkey_detail_bottomsheet_username">Nume utilizator</string>
+  <string name="passkey_detail_bottomsheet_domain">Domeniu</string>
+  <string name="passkey_detail_bottomsheet_key">Cheia</string>
+  <string name="passkey_detail_bottomsheet_created">Creată la</string>
+  <string name="login_item_reused_passwords_subtitle">Articole din seifuri care folosesc această parolă.</string>
+</resources>

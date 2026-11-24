@@ -1,0 +1,181 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.sharing.manage.item.presentation
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import proton.android.pass.common.api.FlowUtils.oneShot
+import proton.android.pass.common.api.LoadingResult
+import proton.android.pass.common.api.asLoadingResult
+import proton.android.pass.common.api.combineN
+import proton.android.pass.common.api.getOrNull
+import proton.android.pass.commonui.api.SavedStateHandleProvider
+import proton.android.pass.commonui.api.require
+import proton.android.pass.composecomponents.impl.uievents.IsLoadingState
+import proton.android.pass.data.api.usecases.ObserveCurrentUser
+import proton.android.pass.data.api.usecases.ObserveGroupMembersByGroup
+import proton.android.pass.data.api.usecases.organization.ObserveOrganizationSharingPolicy
+import proton.android.pass.data.api.usecases.shares.ObserveShare
+import proton.android.pass.data.api.usecases.shares.ObserveShareItemMembers
+import proton.android.pass.data.api.usecases.shares.ObserveShareItemsCount
+import proton.android.pass.data.api.usecases.shares.ObserveSharePendingInvites
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ShareId
+import proton.android.pass.features.sharing.SharingSnackbarMessage
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.navigation.api.CommonNavArgId
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import proton.android.pass.preferences.FeatureFlag
+import proton.android.pass.preferences.FeatureFlagsPreferencesRepository
+import javax.inject.Inject
+
+@HiltViewModel
+class ManageItemViewModel @Inject constructor(
+    savedStateHandleProvider: SavedStateHandleProvider,
+    observeShare: ObserveShare,
+    observeShareItemMembers: ObserveShareItemMembers,
+    observeSharePendingInvites: ObserveSharePendingInvites,
+    observeShareItemsCount: ObserveShareItemsCount,
+    observeOrganizationSharingPolicy: ObserveOrganizationSharingPolicy,
+    observeGroupMembersByGroup: ObserveGroupMembersByGroup,
+    observeCurrentUser: ObserveCurrentUser,
+    private val snackbarDispatcher: SnackbarDispatcher,
+    featureFlagsPreferencesRepository: FeatureFlagsPreferencesRepository
+) : ViewModel() {
+
+    private val shareId: ShareId = savedStateHandleProvider.get()
+        .require<String>(CommonNavArgId.ShareId.key)
+        .let(::ShareId)
+
+    private val itemId: ItemId = savedStateHandleProvider.get()
+        .require<String>(CommonNavArgId.ItemId.key)
+        .let(::ItemId)
+
+    private val eventFlow = MutableStateFlow<ManageItemEvent>(ManageItemEvent.Idle)
+
+    private val shareFlow = oneShot { observeShare(shareId = shareId).first() }
+
+    private val refreshShareItemMembersFlow = MutableStateFlow(value = false)
+
+    private val shareItemMembersFlow = refreshShareItemMembersFlow
+        .flatMapLatest {
+            observeShareItemMembers(shareId, itemId)
+                .catch { error ->
+                    PassLogger.w(TAG, "There was an error observing share members")
+                    PassLogger.w(TAG, error)
+
+                    snackbarDispatcher(SharingSnackbarMessage.FetchMembersError)
+                    eventFlow.update { ManageItemEvent.OnShareManagementError }
+                    emit(emptyList())
+                }
+        }
+
+
+    private val itemSharePendingInvitesFlow = observeSharePendingInvites(shareId, itemId)
+        .catch { error ->
+            PassLogger.w(TAG, "There was an error observing item share pending invites")
+            PassLogger.w(TAG, error)
+
+            snackbarDispatcher(SharingSnackbarMessage.FetchPendingInvitesError)
+            eventFlow.update { ManageItemEvent.OnShareManagementError }
+            emit(emptyList())
+        }
+
+    private val vaultSharePendingInvitesFlow = observeSharePendingInvites(shareId)
+        .catch { error ->
+            PassLogger.w(TAG, "There was an error observing vault share pending invites")
+            PassLogger.w(TAG, error)
+
+            snackbarDispatcher(SharingSnackbarMessage.FetchPendingInvitesError)
+            eventFlow.update { ManageItemEvent.OnShareManagementError }
+            emit(emptyList())
+        }
+
+    private val isLoadingStateFlow = MutableStateFlow<IsLoadingState>(IsLoadingState.NotLoading)
+
+    private val groupMembersWithUserFlow = combine(
+        observeGroupMembersByGroup().asLoadingResult(),
+        observeCurrentUser()
+    ) { groupResult, user -> groupResult to user }
+
+    private val isRenameAdminToManagerEnabledFlow =
+        featureFlagsPreferencesRepository.get<Boolean>(FeatureFlag.RENAME_ADMIN_TO_MANAGER)
+
+    internal val stateFlow: StateFlow<ManageItemState> = combineN(
+        eventFlow,
+        flowOf(itemId),
+        shareFlow,
+        itemSharePendingInvitesFlow,
+        vaultSharePendingInvitesFlow,
+        observeShareItemsCount(shareId),
+        shareItemMembersFlow,
+        isLoadingStateFlow,
+        observeOrganizationSharingPolicy(),
+        groupMembersWithUserFlow,
+        isRenameAdminToManagerEnabledFlow
+    ) { event, itemId, share, itemPendingInvites, vaultPendingInvites, itemsCount, members,
+        loadingState, orgPolicy, (groupMembersResult, currentUser), isRenameAdminToManagerEnabled ->
+        if (groupMembersResult is LoadingResult.Loading) return@combineN ManageItemState.Loading
+        ManageItemState.Success(
+            event = event,
+            itemId = itemId,
+            share = share,
+            itemPendingInvites = itemPendingInvites,
+            vaultPendingInvites = vaultPendingInvites,
+            itemsCount = itemsCount,
+            members = members,
+            isLoadingState = loadingState,
+            organizationSharingPolicy = orgPolicy,
+            groupMembers = groupMembersResult.getOrNull().orEmpty(),
+            isRenameAdminToManagerEnabled = isRenameAdminToManagerEnabled,
+            currentUserEmail = currentUser.email.orEmpty(),
+            isGroupMembersLoaded = groupMembersResult is LoadingResult.Success
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000L),
+        initialValue = ManageItemState.Loading
+    )
+
+    internal fun onConsumeEvent(event: ManageItemEvent) {
+        eventFlow.compareAndSet(event, ManageItemEvent.Idle)
+    }
+
+    internal fun onRefreshShareMembers() {
+        refreshShareItemMembersFlow.update { true }
+    }
+
+    private companion object {
+
+        private const val TAG = "ManageItemViewModel"
+
+    }
+
+}

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Tittel (A-Å)</string>
+  <string name="sort_by_title_desc">Tittel (Å-A)</string>
+  <string name="sort_by_creation_asc">Eldste til nyeste</string>
+  <string name="sort_by_creation_desc">Nyeste til eldste</string>
+  <string name="sort_by_modification_date">Nylig brukt</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Alle</string>
+  <string name="item_list_header_pinned_search_results">Festet</string>
+  <string name="item_list_header_logins_type">Pålogginger</string>
+  <string name="item_list_header_logins_totp_type">Pålogginger med TOTP</string>
+  <string name="item_list_header_aliases_type">Aliaser</string>
+  <string name="item_list_header_notes_type">Notater</string>
+  <string name="item_list_header_credit_cards_type">Kredittkort</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">resultat</item>
+    <item quantity="other">resultater</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Identiteter</string>
+  <string name="item_list_header_custom_type">Tilpassede elementer</string>
+  <string name="item_list_header_shared_with_me">Delt med meg</string>
+  <string name="item_list_header_shared_by_me">Delt av meg</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Bekreft</string>
+  <string name="bottomsheet_cancel_button">Avbryt</string>
+  <string name="bottomsheet_move_to_trash">Flytt til papirkurven</string>
+  <string name="bottomsheet_pin_item">Fest</string>
+  <string name="bottomsheet_unpin_item">Løsne</string>
+  <string name="bottomsheet_view_item_history">Vis historikk</string>
+  <string name="bottomsheet_monitor_exclude">Ekskluder fra overvåking</string>
+  <string name="bottomsheet_monitor_include">Inkluder i overvåking</string>
+  <string name="bottomsheet_migrate_item_v2">Flytt</string>
+  <string name="bottomsheet_create_folder">Opprett mappe</string>
+  <string name="folder_tree_create_folder">Opprett mappe</string>
+  <string name="bottomsheet_rename_folder">Gi nytt navn</string>
+  <string name="bottomsheet_create_sub_folder">Opprett undermappe</string>
+  <string name="bottomsheet_move_folder">Flytt mappe</string>
+  <string name="bottomsheet_move_all_items_in_folder">Flytt alle elementer</string>
+  <string name="bottomsheet_copy_item_note">Kopier notat</string>
+  <string name="bottomsheet_delete_permanently">Slett permanent</string>
+  <string name="bottomsheet_restore">Gjenopprett</string>
+  <string name="bottomsheet_leave">Forlat</string>
+  <string name="bottomsheet_duplicate">Dupliser</string>
+  <string name="bottomsheet_no_actions">Ingen handlinger tilgjengelig</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Åpne elementhandlingsmenyen</string>
+  <string name="action_upgrade_now">Oppgrader nå</string>
+  <string name="action_not_now">Ikke nå</string>
+  <string name="action_learn_more">Lær mer</string>
+  <string name="action_enable">Aktiver</string>
+  <string name="action_view_details">Vis detaljer</string>
+  <string name="action_see_all">Se alle</string>
+  <string name="action_confirm">Bekreft</string>
+  <string name="action_cancel">Avbryt</string>
+  <string name="action_continue">Fortsett</string>
+  <string name="action_retry">Prøv igjen</string>
+  <string name="action_edit">Rediger</string>
+  <string name="action_add">Legg til</string>
+  <string name="action_delete">Slett</string>
+  <string name="action_make_default">Angi som standard</string>
+  <string name="action_verify">Verifiser</string>
+  <string name="action_close">Lukk</string>
+  <string name="action_update">Oppdater</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Legg til ditt første element</string>
+  <string name="empty_search_results_title">Ingen resultater funnet</string>
+  <string name="empty_list_open_extension">Besøk nettutvidelse</string>
+  <string name="empty_list_create_item_button">Opprett nytt element</string>
+  <!-- Field -->
+  <string name="field_title_title">Tittel</string>
+  <string name="field_title_hint">Uten tittel</string>
+  <string name="field_title_required">Tittel kreves</string>
+  <string name="small_cross_icon_content_description">Lite kryssikon</string>
+  <string name="field_note_title">Notat</string>
+  <string name="field_note_hint">Legg til notat</string>
+  <string name="linked_apps_title">Koblede apper</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Frakoblet</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Mangler appikon</string>
+  <string name="add_item_icon_content_description">Legg til elementsikon</string>
+  <string name="navigate_back_icon_content_description">Naviger tilbake ikon</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">List elementer</string>
+  <string name="bottom_bar_add_item_icon_content_description">Legg til element</string>
+  <string name="bottom_bar_profile_icon_content_description">Profil</string>
+  <string name="bottom_bar_security_center_icon_content_description">Sikkerhetssenter</string>
+  <string name="bottom_bar_explore_icon_content_description">Utforsk</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">I dag</string>
+  <string name="most_recent_yesterday">I går</string>
+  <string name="most_recent_this_week">Denne uken</string>
+  <string name="most_recent_last_two_weeks">Siste to uker</string>
+  <string name="most_recent_last_30_days">Siste måned</string>
+  <string name="most_recent_last_60_days">Seneste 60 dager</string>
+  <string name="most_recent_last_90_days">Seneste 90 dager</string>
+  <string name="most_recent_within_the_last_year">I løpet av det siste året</string>
+  <string name="most_recent_more_than_1_year">Eldre enn 1 år</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Søkeikon</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 element</item>
+    <item quantity="other">%d elementer</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Forkaste endringer?</string>
+  <string name="confirm_close_dialog_message">Du har ulagrede endringer, er du sikker på at du vil forkaste dem?</string>
+  <string name="confirm_close_dialog_close_button">Forkast</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Oppgrader</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Avanserte innstillinger</string>
+  <string name="hide_advanced_options">Skjul avanserte innstillinger</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Sterk</string>
+  <string name="label_password_strength_vulnerable">Sårbar</string>
+  <string name="label_password_strength_weak">Svak</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Se alle</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">I dag %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">I går %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Aliasadresse</string>
+  <string name="item_details_alias_section_alias_disabled_title">Aliasadresse (deaktivert)</string>
+  <string name="item_details_alias_section_mailboxes_title">Videresender til</string>
+  <string name="item_details_credit_card_section_cardholder_title">Navn på kortet</string>
+  <string name="item_details_credit_card_section_card_number_title">Kortnummer</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Utløpsdato</string>
+  <string name="item_details_credit_card_section_cvv_title">Sikkerhetskode</string>
+  <string name="item_details_credit_card_section_pin_title">PIN-kode</string>
+  <string name="item_details_login_section_email_title">E-postadresse</string>
+  <string name="item_details_login_section_username_title">Brukernavn</string>
+  <string name="item_details_login_section_password_title">Passord</string>
+  <string name="item_details_login_section_primary_totp_title">2FA-token (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Nettsteder</string>
+  <string name="autofill_mode_label_default">Overordnet domene og underdomener</string>
+  <string name="autofill_mode_label_exact">Eksakt (under)domene</string>
+  <string name="autofill_mode_label_never">Aldri fyll ut på dette nettstedet</string>
+  <string name="autofill_mode_label_start_with">Begynner med</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">Regulært uttrykk</string>
+  <string name="autofill_mode_label_exact_path">Nøyaktig URL-samsvar</string>
+  <string name="autofill_mode_label_unsupported">Denne nettadressen vil bli hoppet over for autofyll</string>
+  <string name="login_item_view_alias_button">Vis alias</string>
+  <string name="item_details_identity_section_personal_title">Personopplysninger</string>
+  <string name="item_details_identity_section_personal_first_name_title">Fornavn</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Mellomnavn</string>
+  <string name="item_details_identity_section_personal_last_name_title">Etternavn</string>
+  <string name="item_details_identity_section_personal_full_name_title">Fullt navn</string>
+  <string name="item_details_identity_section_personal_email_title">E-postadresse</string>
+  <string name="item_details_identity_section_personal_gender_title">Kjønn</string>
+  <string name="item_details_identity_section_personal_phone_title">Telefonnummer</string>
+  <string name="item_details_identity_section_personal_birthday_title">Bursdag</string>
+  <string name="item_details_identity_section_address_title">Adressedetaljer</string>
+  <string name="item_details_identity_section_address_organization_title">Organisasjon</string>
+  <string name="item_details_identity_section_address_street_address_title">Gateadresse, postboksadresse</string>
+  <string name="item_details_identity_section_address_floor_title">Etasje</string>
+  <string name="item_details_identity_section_address_city_title">By</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">ZIP-kode eller postnummer</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Delstat eller provins</string>
+  <string name="item_details_identity_section_address_county_title">Fylke</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Land eller region</string>
+  <string name="item_details_identity_section_contact_title">Kontaktdetaljer</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Personnummer</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Passnummer</string>
+  <string name="item_details_identity_section_contact_license_number_title">Førerkortnummer</string>
+  <string name="item_details_identity_section_contact_website_title">Nettsted</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X-brukernavn</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Sekundært telefonnummer</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Arbeidsdetaljer</string>
+  <string name="item_details_identity_section_work_company_title">Firma</string>
+  <string name="item_details_identity_section_work_occupation_title">Yrke</string>
+  <string name="item_details_identity_section_work_email_title">E-postadresse for arbeid</string>
+  <string name="item_details_identity_section_work_phone_number_title">Telefonnummer for arbeid</string>
+  <string name="item_details_identity_section_work_personal_website_title">Personlig nettside</string>
+  <string name="item_details_shared_section_note_title">Notat</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Siste autofyll</string>
+  <string name="item_details_shared_section_item_history_created_title">Opprettet</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Endret (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Vis elementhistorikk</string>
+  <string name="item_details_shared_section_more_info_header_title">Mer informasjon</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Ikon for mer elementinformasjon</string>
+  <string name="item_details_shared_section_more_info_item_id">Element-ID</string>
+  <string name="item_details_shared_section_more_info_vault_id">Hvelv-ID</string>
+  <string name="item_details_shared_section_more_info_share_id">Del-ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">Navn (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Passord</string>
+  <string name="item_details_wifi_network_label_security">Sikkerhet</string>
+  <string name="item_details_ssh_key_label_public_key">Offentlig nøkkel</string>
+  <string name="item_details_ssh_key_label_private_key">Privat nøkkel</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Appversjonen støttes ikke lenger, oppdater appen din.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Tilgangsnøkkel</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Oppgradere plan?</string>
+  <string name="dialog_upgrade_plan_message">Denne funksjonen er ikke tilgjengelig for gratisnivåbrukere. Hvis du vil nyte dette sammen med andre kule funksjoner, oppgrader planen din og prøv!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Oppgrader</string>
+  <string name="dialog_upgrade_plan_action_cancel">Ikke nå</string>
+  <!-- Words -->
+  <string name="email_address">E-postadresse</string>
+  <string name="email_address_invalid">Ugyldig e-postadresse</string>
+  <string name="password">Passord</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Knapp for å lukke dette verktøytipset og ikke vise det igjen</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d år</item>
+    <item quantity="other">%d år</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d måned</item>
+    <item quantity="other">%d måneder</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d uke</item>
+    <item quantity="other">%d uker</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d dag</item>
+    <item quantity="other">%d dager</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d time</item>
+    <item quantity="other">%d timer</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d minutt</item>
+    <item quantity="other">%d minutter</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d sekund</item>
+    <item quantity="other">%d sekunder</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d alias</item>
+    <item quantity="other">%d aliaser</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Notat kopiert</string>
+  <string name="snack_bar_message_item_migration_error">Det oppstod en feil under overføring av dette elementet</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Element ekskludert fra overvåking</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Det oppstod en feil under ekskludering av element fra overvåking</string>
+  <string name="snack_bar_message_item_monitor_included_success">Element inkludert i overvåking</string>
+  <string name="snack_bar_message_item_monitor_included_error">Det oppstod en feil under inkludering av element i overvåking</string>
+  <string name="snack_bar_message_item_pinned_success">Element festet</string>
+  <string name="snack_bar_message_item_pinned_error">Feil ved festing av dette elementet</string>
+  <string name="snack_bar_message_item_unpinned_success">Element løsnet</string>
+  <string name="snack_bar_message_item_unpinned_error">Det oppstod en feil ved å løsne dette elementet</string>
+  <string name="snack_bar_message_item_trashed_success">Elementet ble sendt i papirkurven</string>
+  <string name="snack_bar_message_item_trashed_error">Det oppstod en feil under sletting av dette elementet</string>
+  <string name="snack_bar_message_item_restore_success">Element vellykket gjenopprettet</string>
+  <string name="snack_bar_message_item_restore_error">Det oppstod en feil under gjenoppretting av dette elementet</string>
+  <string name="snack_bar_message_item_delete_success">Element vellykket slettet</string>
+  <string name="snack_bar_message_item_delete_error">Det oppstod en feil under sletting av dette elementet</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Aktiver SimpleLogin-synkronisering</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">Vi oppdaget at du har %d alias som er til stede i SimpleLogin, men mangler i Proton Pass. Vil du importere det?</item>
+    <item quantity="other">Vi oppdaget at du har %d aliaser som er til stede i SimpleLogin, men mangler i Proton Pass. Vil du importere dem?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Synkroniser aliaser</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Fikk du ikke koden?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Sjekk i søppelposten din for en e-post som heter \"%s\"</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Bekreft e-postadressen din for Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Bekreft postboksen din</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Hvis du ikke finner en slik e-post, kan du %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">be om en ny kode</string>
+  <string name="field_display_name_title">Visningsnavn</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s fil</item>
+    <item quantity="other">%1$s filer</item>
+  </plurals>
+  <string name="attachment_title">Vedlegg</string>
+  <string name="attachment_no_files">Last opp filer fra enheten din</string>
+  <string name="attachment_add_file">Legg ved en fil</string>
+  <string name="attachment_row_upload_failed">Opplasting mislyktes</string>
+  <string name="attachment_row_retry">Prøv igjen</string>
+  <string name="options_menu_content_description">Alternativermeny</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d delt element</item>
+    <item quantity="other">%d delte elementer</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d bruker</item>
+    <item quantity="other">%d brukere</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d medlem</item>
+    <item quantity="other">%d medlemmer</item>
+  </plurals>
+  <string name="show_network_qr_code">Vis QR-kode for nettverk</string>
+  <string name="expand_collpased_text">mer</string>
+  <string name="collapse_expanded_text">mindre</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Svakt passord</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Denne kontoen er sårbar, besøk tjenesten og endre passordet ditt.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Kompromittert passord</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">Dette påloggingspassordet dukker opp i et datainnbrudd. Gå til tjenesten og endre passordet.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d annen pålogging bruker det samme passordet</item>
+    <item quantity="other">%d andre pålogginger bruker det samme passordet</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Sett opp 2FA for ekstra sikkerhet</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Denne tjenesten tilbyr 2FA. Aktiver den for ekstra kontosikkerhet.</string>
+  <string name="login_item_monitor_action_ignore">Ignorer</string>
+  <string name="login_item_monitor_action_restore">Gjenopprett varsel</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Svakt passord</string>
+  <string name="login_item_monitor_label_compromised">Kompromittert passord</string>
+  <string name="login_item_monitor_label_reused">Gjenbrukt passord</string>
+  <string name="login_item_monitor_label_missing_2fa">Mangler 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">Elementer fra hvelvene dine som bruker dette passordet.</string>
+  <string name="mfa_limit_reached">2FA-grensen nådd</string>
+  <string name="activity_in_last_two_weeks">Aktivitet siste 14 dager</string>
+  <string name="contacts">Kontakter</string>
+  <string name="contacts_section_description">Hvis du vil holde den personlige e-postadressen din skjult, kan du opprette en aliaskontakt som maskerer adressen din.</string>
+  <string name="field_detail_display_name_title">Visningsnavn</string>
+  <string name="display_name_section_description">Visningsnavnet når du sender en e-post fra dette aliaset.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s videresending</item>
+    <item quantity="other">%1$s videresendinger</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s svar</item>
+    <item quantity="other">%1$s svar</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s blokkering</item>
+    <item quantity="other">%1$s blokkeringer</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Opprett pålogging</string>
+  <string name="banner_contacts_title">Visste du at?</string>
+  <string name="banner_contacts_subtitle">Hver gang aliaset ditt mottar en e-post fra noen, opprettes det automatisk en ny kontakt.</string>
+  <string name="action_reveal">Avslør</string>
+  <string name="action_conceal">Skjul</string>
+  <string name="warning_dialog_item_shared_vault_title">Element i et delt hvelv</string>
+  <string name="warning_dialog_item_shared_title">Delt element</string>
+  <string name="warning_dialog_item_shared_vault_creating">Du oppretter et element i et delt hvelv, og medlemmene vil umiddelbart få tilgang til dette elementet.</string>
+  <string name="warning_dialog_item_shared_vault_moving">Du flytter et element til et delt hvelv, og medlemmene vil umiddelbart få tilgang til dette elementet.</string>
+  <string name="warning_dialog_item_shared_vault_updating">Du redigerer et element i et delt hvelv, og medlemmene vil umiddelbart få tilgang til dette elementet.</string>
+  <string name="warning_dialog_item_shared_updating">Du redigerer et delt element. Endringene vil umiddelbart være synlige for alle det deles med.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Ikke minn meg på det igjen</string>
+  <string name="upgrade_to_pass_plus">Oppgrader til Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">Du blir snart omdirigert til nettstedet vårt. Hvis du kjøper et abonnement, må du starte appen på nytt.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Skilletegn for ord</string>
+  <string name="bottomsheet_option_capitalise">Gjør bokstaver store</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Bindestreker ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Mellomrom</string>
+  <string name="bottomsheet_option_word_separator_periods">Punktum ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Komma ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Understrekingstegn ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Tall</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Tall og symboler</string>
+  <plurals name="word_count">
+    <item quantity="one">%s ord</item>
+    <item quantity="other">%s ord</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Passordstyrke</string>
+  <string name="password_check_min_length">Passordet er for kort</string>
+  <string name="password_check_lowercase">Små bokstaver</string>
+  <string name="password_check_uppercase">Store bokstaver</string>
+  <string name="password_check_no_consecutive">Ingen gjentatte tegn</string>
+  <string name="password_check_no_common">Ingen vanlige passord</string>
+</resources>

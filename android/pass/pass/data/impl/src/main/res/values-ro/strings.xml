@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sync_channel">Sincronizare</string>
+  <string name="sync_channel_description">Canal de notificare pentru sincronizarea articolelor.</string>
+  <string name="syncing_vaults">Sincronizare seifuri și articole</string>
+  <string name="logging_out_free_users">Deconectare utilizatori gratuiți suplimentari</string>
+  <string name="attachment_download_channel">Descărcări atașamente</string>
+  <string name="attachment_download_channel_description">Canal de notificări pentru descărcări atașamente</string>
+  <string name="downloading_attachments">Se descarcă atașamentele</string>
+  <string name="downloading_attachments_progress" comment="%1$s is the download progress counter, e.g. 3 / 10">%1$s de fișiere</string>
+  <string name="plan_subscription_auto_renews_monthly">Abonamentul se autoreînnoiește cu %1$s/lună.</string>
+  <string name="plan_subscription_auto_renews_annual">Abonamentul se autoreînnoiește cu %1$s/an.</string>
+  <string name="plan_welcome_offer_auto_renews_monthly">Ofertă de bun venit. Autoreînnoire cu %1$s/lună.</string>
+  <string name="plan_welcome_offer_auto_renews_annual">Ofertă de bun venit. Autoreînnoire cu %1$s/an.</string>
+</resources>

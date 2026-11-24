@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_screen_title">Profile</string>
+    <string name="profile_option_settings">Settings</string>
+    <string name="profile_option_account">Account</string>
+    <string name="profile_help_center">Help center</string>
+    <string name="profile_security">Security</string>
+    <string name="profile_option_autofill_troubleshooting">Autofill troubleshooting</string>
+    <string name="profile_option_feedback">Feedback</string>
+    <string name="profile_option_import_export">Import/export</string>
+    <string name="profile_option_tutorial">How to use Proton Pass</string>
+    <string name="profile_option_rating">Rate app</string>
+    <string name="profile_spread_the_word">Spread the word</string>
+    <string name="profile_option_tell_a_friend">Tell a friend</string>
+    <string name="profile_spread_the_word_share_message">I\'m using Proton Pass to keep my passwords secure. Try it: https://proton.me/pass/download</string>
+    <string name="profile_option_autofill">Autofill</string>
+    <string name="profile_option_autofill_subtitle">Automatically fill in your usernames and passwords.</string>
+    <string name="profile_option_secure_links">Secure links</string>
+    <string name="profile_option_alias_management">Alias management</string>
+    <string name="profile_option_generated_passwords">Generated passwords</string>
+    <string name="profile_error_biometry_failed_to_start">Could not start the biometric authentication</string>
+    <string name="profile_error_biometry_failed_to_authenticate">Failed to authenticate</string>
+    <string name="profile_error_app_lock_update_failed">Could not update the app lock. Please try again.</string>
+    <string name="profile_fingerprint_lock_enabled">Fingerprint lock enabled</string>
+    <string name="profile_fingerprint_lock_disabled">Fingerprint lock disabled</string>
+    <string name="profile_app_lock_disabled">App lock disabled</string>
+    <string name="profile_app_version_copied_to_clipboard">App version copied</string>
+    <string name="feedback_option_reddit">Check out Proton on Reddit</string>
+    <string name="feedback_option_mail">Send us a message</string>
+    <string name="feedback_option_vote_new_features">Vote for new features</string>
+    <string name="app_lock_immediately">Immediately</string>
+    <string name="app_lock_one_minute">After 1 minute</string>
+    <string name="app_lock_two_minutes">After 2 minutes</string>
+    <string name="app_lock_five_minutes">After 5 minutes</string>
+    <string name="app_lock_ten_minutes">After 10 minutes</string>
+    <string name="app_lock_one_hour">After 1 hour</string>
+    <string name="app_lock_four_hours">After 4 hours</string>
+    <string name="app_lock_config_none">None</string>
+    <string name="app_lock_config_biometric">Biometric</string>
+    <string name="app_lock_config_pin_code">PIN code</string>
+    <string name="app_lock_config_app_lock_time">Automatic lock</string>
+    <string name="app_lock_config_password">Password</string>
+    <string name="app_lock_config_use_system_lock_when_biometric_fails">Use system lock when biometric fails</string>
+    <string name="app_lock_config_system_lock_locked_explanation">Your device has no strong biometric available, so your device PIN or password is the only way to unlock. Change your app lock type before turning this off.</string>
+    <string name="configure_pin_set_pin_code">Set PIN code</string>
+    <string name="configure_pin_unlock_the_app_with_this_code">Unlock the app with this code</string>
+    <string name="configure_pin_enter_pin_code">Enter PIN code</string>
+    <string name="configure_pin_repeat_pin_code">Repeat PIN code</string>
+    <string name="configure_pin_continue">Continue</string>
+    <string name="configure_pin_pin_does_not_match">The PIN does not match</string>
+    <string name="configure_pin_pin_too_short">The PIN is too short</string>
+    <string name="configure_pin_pin_cannot_be_blank">The PIN cannot be blank</string>
+    <string name="configure_pin_pin_lock_enabled">PIN lock enabled</string>
+    <string name="configure_pin_pin_lock_disabled">PIN lock disabled</string>
+    <string name="profile_option_lock_with">Lock with</string>
+    <string name="profile_option_unlock_with">Unlock with</string>
+    <string name="profile_option_change_pin_code">Change PIN Code</string>
+    <string name="profile_passkey_support_section_title">Passkeys</string>
+    <string name="profile_passkey_support_subtitle_supported">Passkeys can be supported on this device</string>
+    <string name="profile_passkey_support_subtitle_not_supported_android_version">Your Android version does not support passkeys.</string>
+    <string name="profile_passkey_support_subtitle_not_supported_unknown">Could not check support for passkeys</string>
+    <plurals name="profile_after_days">
+        <item quantity="one">After %d day</item>
+        <item quantity="other">After %d days</item>
+    </plurals>
+    <plurals name="profile_after_minutes">
+        <item quantity="one">After %d minute</item>
+        <item quantity="other">After %d minutes</item>
+    </plurals>
+    <plurals name="profile_after_hours">
+        <item quantity="one">After %d hour</item>
+        <item quantity="other">After %d hours</item>
+    </plurals>
+    <string name="profile_less_than_a_minute">Less than a minute</string>
+    <string name="account_switcher_manage_account">Manage account</string>
+    <string name="account_switcher_sign_in">Sign in</string>
+    <string name="account_switcher_sign_out">Sign out</string>
+    <string name="account_switcher_switch_to">Switch to</string>
+    <string name="account_switcher_add_account">Add account</string>
+    <string name="account_switcher_remove">Remove</string>
+
+    <string name="filtered_by_logins">Filtered by logins. Trashed items aren\'t shown</string>
+    <string name="filtered_by_logins_with_mfa">Filtered by logins with TOTP. Trashed items aren\'t shown</string>
+    <string name="filtered_by_aliases">Filtered by aliases. Trashed items aren\'t shown</string>
+    <string name="filtered_by_notes">Filtered by notes. Trashed items aren\'t shown</string>
+    <string name="filtered_by_credit_cards">Filtered by credit cards. Trashed items aren\'t shown</string>
+    <string name="filtered_by_identities">Filtered by identities. Trashed items aren\'t shown</string>
+    <string name="filtered_by_custom_items">Filtered by custom items. Trashed items aren\'t shown</string>
+
+    <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">You need to switch to %1$s in order to manage it</string>
+    <string name="account_switch_confirmation_title">Manage account</string>
+    <string name="account_switch_confirmation_confirm">Switch and manage</string>
+    <string name="profile_storage_data_title">Storage</string>
+    <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s of %2$s</string>
+</resources>

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Actions -->
+  <string name="action_save">Uložiť</string>
+  <string name="action_remove">Odstrániť</string>
+  <!-- Create item bottomsheet -->
+  <string name="action_login">Prihlásiť sa</string>
+  <string name="action_alias">Alias</string>
+  <string name="action_note">Poznámka</string>
+  <string name="action_credit_card">Platobná karta</string>
+  <string name="action_password">Heslo</string>
+  <string name="action_identity">Identita</string>
+  <string name="action_more">Viac</string>
+  <string name="item_type_login_description" comment="Subtitle of the Item Type LOGIN in the Create new item bottomsheet">Pridať prihlasovacie údaje pre aplikáciu alebo stránku</string>
+  <string name="item_type_alias_description" comment="Subtitle of the Item Type ALIAS in the Create new item bottomsheet">Získať emailový alias na použitie v nových aplikáciách</string>
+  <string name="item_type_note_description" comment="Subtitle of the Item Type NOTE in the Create new item bottomsheet">Poznačte si PIN, kód alebo poznámku pre seba</string>
+  <string name="item_type_credit_card_description" comment="Subtitle of the Item Type CREDIT CARD in the Create new item bottomsheet">Bezpečne uložte svoje platobné informácie</string>
+  <string name="item_type_identity_description" comment="Subtitle of the Item Type IDENTITY in the Create new item bottomsheet">Vyplňte svoje osobné údaje</string>
+  <string name="item_type_more_description" comment="Subtitle of the Item Type CUSTOM in the Create new item bottomsheet">Ukladajte Wi-Fi, heslá, SSH, alebo vlastné položky</string>
+  <string name="item_type_password_description" comment="Subtitle of the Item Type PASSWORD in the Create new item bottomsheet">Vygenerovať bezpečné heslo</string>
+  <string name="sticky_button_generate_username">Vygenerovať používateľské meno</string>
+  <!-- Create Login -->
+  <string name="field_email_title">Emailová adresa</string>
+  <string name="field_email_hint">Pridať emailovú adresu</string>
+  <string name="field_email_error">Neplatná emailová adresa</string>
+  <string name="field_email_tooltip_title">Pridať pole mena používateľa</string>
+  <string name="field_email_tooltip_description">Ťuknite sem pre pridanie poľa s používateľským menom</string>
+  <string name="field_username_title">Používateľské meno</string>
+  <string name="field_username_hint">Pridať používateľské meno</string>
+  <string name="field_username_or_email_title">Používateľské meno alebo emailová adresa</string>
+  <string name="field_username_or_email_hint">Pridať používateľské meno alebo emailovú adresu</string>
+  <string name="field_password_title">Heslo</string>
+  <string name="field_password_hint">Pridať heslo</string>
+  <string name="field_website_address_title">Webová stránka</string>
+  <string name="field_website_address_invalid">Neplatná URL</string>
+  <string name="field_website_address_hint">https://</string>
+  <string name="field_website_add_another">Pridať</string>
+  <string name="sticky_button_generate_password" comment="Sticky button on the Create login screen. When tapped, the Generate password bottomsheet is shown">Vygenerovať nové heslo</string>
+  <string name="sticky_button_create_alias" comment="Sticky button on the Create login screen. When tapped, the Create alias bottomsheet is shown">Skryť môj email</string>
+  <string name="sticky_button_use_account_email" comment="Sticky button on the Create login screen. When tapped, the current user email is autofilled">Použiť %s</string>
+  <string name="create_login_item_creation_error">Nepodarilo sa vytvoriť prihlásenie</string>
+  <string name="create_login_item_update_error">Nepodarilo sa aktualizovať prihlásenie</string>
+  <string name="create_login_init_error">Problém s načítaním prihlasovacích údajov</string>
+  <string name="create_login_invalid_totp">Obsah 2FA je neplatný</string>
+  <string name="update_login_attachments_init_error">Problém s načítaním prihlasovacích príloh</string>
+  <string name="login_link_attachments_error">Nepodarilo sa prepojiť alebo zrušiť prepojenie príloh s prihlásením</string>
+  <string name="login_rename_attachments_error">Premenovanie príloh prihlásenia zlyhalo</string>
+  <string name="login_created">Prihlásenie vytvorené</string>
+  <string name="bottomsheet_modify_alias_title">Upraviť alias</string>
+  <string name="bottomsheet_custom_field_type_text">Text</string>
+  <string name="bottomsheet_custom_field_type_hidden">Skryté</string>
+  <string name="bottomsheet_custom_field_type_totp">2FA tajný kľúč (TOTP)</string>
+  <string name="bottomsheet_custom_field_type_date">Dátum</string>
+  <string name="bottomsheet_custom_field_option_edit">Upraviť názov</string>
+  <string name="bottomsheet_custom_field_option_remove">Odstrániť pole</string>
+  <string name="bottomsheet_custom_field_option_remove_content_description">Odstrániť vlastné pole</string>
+  <string name="bottomsheet_custom_section_option_remove">Odstrániť sekciu</string>
+  <string name="custom_field_hidden_placeholder">Pridať skrytý text</string>
+  <string name="custom_field_hidden_icon_content_description">Ikona skrytého vlastného poľa</string>
+  <string name="custom_field_text_placeholder">Pridať text</string>
+  <string name="custom_field_date_placeholder">Pridať dátum</string>
+  <string name="custom_field_dialog_title">Názov vlastného poľa</string>
+  <string name="custom_field_dialog_body">Pomenujte svoje vlastné pole</string>
+  <string name="custom_field_dialog_placeholder">Napr. ID používateľa, PIN</string>
+  <string name="custom_section_dialog_title">Zadať názov sekcie</string>
+  <string name="custom_section_dialog_placeholder">Názov</string>
+  <string name="custom_field_options_content_description">Možnosti vlastného poľa</string>
+  <!-- Create Note -->
+  <string name="create_note_item_creation_error">Nepodarilo sa vytvoriť poznámku</string>
+  <string name="create_note_item_update_error">Nepodarilo sa aktualizovať poznámku</string>
+  <string name="create_note_init_error">Problém s načítaním podrobností poznámky</string>
+  <string name="update_note_attachments_init_error">Problém s načítaním príloh k poznámkam</string>
+  <string name="note_link_attachments_error">Nepodarilo sa prepojiť alebo zrušiť prepojenie príloh s poznámkou</string>
+  <string name="note_rename_attachments_error">Premenovanie príloh k poznámke zlyhalo</string>
+  <string name="note_created">Poznámka vytvorená</string>
+  <!-- Create Alias -->
+  <string name="field_alias_title">Alias adresy</string>
+  <string name="field_mailboxes_creation_title">Preposlať</string>
+  <string name="field_mailboxes_edit_title">Preposielam</string>
+  <string name="field_alias_you_are_about_to_create">Chystáte sa vytvoriť</string>
+  <string name="field_alias_prefix">Predpona</string>
+  <string name="field_alias_suffix">Prípona</string>
+  <string name="alias_bottomsheet_alias_title">Alias</string>
+  <string name="alias_bottomsheet_suffix_title">Prípona</string>
+  <string name="create_alias_item_creation_error">Nepodarilo sa vytvoriť alias</string>
+  <string name="create_alias_cannot_create_more_aliases_error">Nemôžete vytvoriť ďalšie aliasy</string>
+  <string name="create_alias_email_not_validated_error">Pre vytvorenie aliasov najprv musíte overiť svoj email</string>
+  <string name="alias_rate_limited">Príliš veľa aliasov vytvorených v poslednej dobe</string>
+  <string name="create_alias_item_update_error">Nepodarilo sa aktualizovať alias</string>
+  <string name="create_alias_init_error">Problém s načítaním podrobností o aliase</string>
+  <string name="update_alias_attachments_init_error">Problém s načítaním príloh k aliasom</string>
+  <string name="alias_link_attachments_error">Nepodarilo sa prepojiť alebo zrušiť prepojenie príloh s aliasom</string>
+  <string name="alias_rename_attachments_error">Premenovanie príloh k aliasu zlyhalo</string>
+  <string name="alias_created">Alias vytvorený</string>
+  <string name="cannot_retrieve_alias_options">Nemožno načítať možnosti aliasu</string>
+  <string name="alias_mailbox_dialog_title">Preposlať</string>
+  <string name="sl_note_info_title">Čo je poznámka SimpleLogin?</string>
+  <string name="sl_note_info_message_part1" comment="this is the first part of a text compose by this and the following part2 and part3">V aplikácii Pass je poznámka k položke zašifrovaná pomocou šifrovacieho kľúča položky a poznámku môžu zobraziť len používatelia, ktorí majú prístup k položke.</string>
+  <string name="sl_note_info_message_part2">Nevidí ju ani Proton alebo SimpleLogin.</string>
+  <string name="sl_note_info_message_part3">Poznámka SimpleLogin je uložená na rovnakom mieste, ako adresa aliasu a hoci je chránená šifrovaním v pokoji, nie je šifrovaná E2E, čo znamená, že ju môže čítať ktokoľvek, kto má prístup k databáze SimpleLogin.</string>
+  <string name="sl_note_info_content_description">Zobrazí dialógové okno s informáciami o poznámke SL</string>
+  <!-- Create note -->
+  <string name="note_hint">Poznámka</string>
+  <!-- Create Credit Card -->
+  <string name="field_cardholder_name_title">Meno na karte</string>
+  <string name="field_cardholder_name_hint">Meno a priezvisko</string>
+  <string name="field_card_number_title">Číslo karty</string>
+  <string name="field_card_number_hint">1234 1234 1234 1234</string>
+  <string name="field_card_cvv_title">Bezpečnostný kód</string>
+  <string name="field_card_cvv_hint">123</string>
+  <string name="field_card_pin_title">PIN</string>
+  <string name="field_card_pin_hint">123456</string>
+  <string name="field_card_expiration_date_title">Koniec platnosti</string>
+  <string name="field_card_expiration_date_hint">MM/RR</string>
+  <string name="field_card_expiration_date_error">Zadajte platný dátum vo formáte MM/RR</string>
+  <string name="create_credit_card_item_creation_error">Nepodarilo sa vytvoriť platobnú kartu</string>
+  <string name="create_credit_card_item_creation_success">Platobná karta vytvorená</string>
+  <string name="credit_card_init_error">Problém s načítaním podrobností o platobnej karte</string>
+  <string name="update_credit_card_attachments_init_error">Problém s načítaním príloh ku platobnej karte</string>
+  <string name="credit_card_link_attachments_error">Nepodarilo sa prepojiť alebo zrušiť prepojenie príloh s platobnou kartou</string>
+  <string name="credit_card_rename_attachments_error">Premenovanie príloh k patobnej karte zlyhalo</string>
+  <string name="credit_card_item_update_error">Nepodarilo sa aktualizovať platobnú kartu</string>
+  <!-- Create Identity -->
+  <string name="identity_field_full_name_title">Celé meno</string>
+  <string name="identity_field_email_title">Email</string>
+  <string name="identity_field_phone_number_title">Telefónne číslo</string>
+  <string name="identity_field_organization_title">Organizácia</string>
+  <string name="identity_field_street_address_title">Ulica, P.O. Box</string>
+  <string name="identity_field_zip_or_postal_code_title">PSČ</string>
+  <string name="identity_field_city_title">Mesto</string>
+  <string name="identity_field_state_or_province_title">Kraj alebo región</string>
+  <string name="identity_field_country_or_region_title">Krajina alebo región</string>
+  <string name="identity_field_social_security_number_title">Číslo poistenca sociálnej poisťovne</string>
+  <string name="identity_field_passport_number_title">Číslo pasu</string>
+  <string name="identity_field_license_number_title">Licenčné číslo</string>
+  <string name="identity_field_website_title">Webová stránka</string>
+  <string name="identity_field_xhandle_title">Meno v sieti X</string>
+  <string name="identity_field_company_title">Spoločnosť</string>
+  <string name="identity_field_job_title_title">Názov pracovnej pozície</string>
+  <string name="identity_field_first_name_title">Krstné meno</string>
+  <string name="identity_field_last_name_title">Priezvisko</string>
+  <string name="identity_field_middle_name_title">Stredné meno</string>
+  <string name="identity_field_birthdate_title">Dátum narodenia</string>
+  <string name="identity_field_gender_title">Pohlavie</string>
+  <string name="identity_field_floor_title">Poschodie</string>
+  <string name="identity_field_county_title">Kraj</string>
+  <string name="identity_field_linkedin_title">Linkedin</string>
+  <string name="identity_field_reddit_title">Používateľské meno v Reddit</string>
+  <string name="identity_field_facebook_title">Facebook URL</string>
+  <string name="identity_field_yahoo_title">Používateľské meno v Yahoo</string>
+  <string name="identity_field_instagram_title">Používateľské meno v Instagrame</string>
+  <string name="identity_field_personal_website_title">URL osobnej stránky</string>
+  <string name="identity_field_work_phone_number_title">Pracovné telefónne číslo</string>
+  <string name="identity_field_work_email_title">Pracovná emailová adresa</string>
+  <string name="identity_add_field_first_name">Krstné meno</string>
+  <string name="identity_add_field_middle_name">Stredné meno</string>
+  <string name="identity_add_field_last_name">Priezvisko</string>
+  <string name="identity_add_field_birthdate">Dátum narodenia</string>
+  <string name="identity_add_field_gender">Pohlavie</string>
+  <string name="identity_add_field_floor">Poschodie</string>
+  <string name="identity_add_field_county">Krajina</string>
+  <string name="identity_add_field_linkedin">Linkedin</string>
+  <string name="identity_add_field_reddit">Používateľské meno v Reddit</string>
+  <string name="identity_add_field_facebook">Facebook URL</string>
+  <string name="identity_add_field_yahoo">Používateľské meno v Yahoo</string>
+  <string name="identity_add_field_instagram">Používateľské meno v Instagrame</string>
+  <string name="identity_add_field_personal_website">URL osobnej stránky</string>
+  <string name="identity_add_field_work_phone_number">Pracovné telefónne číslo</string>
+  <string name="identity_add_field_work_email_address">Pracovná emailová adresa</string>
+  <string name="identity_add_field_custom_field">Vlastné pole</string>
+  <string name="identity_section_personal_details">Osobné údaje</string>
+  <string name="identity_section_address_details">Detaily adresy</string>
+  <string name="identity_section_contact_details">Kontaktné údaje</string>
+  <string name="identity_section_work_details">Podrobnosti o pracovnej činnosti</string>
+  <string name="identity_bottomsheet_add_field">Pridať pole</string>
+  <string name="create_identity_init_error">Problém s načítaním podrobností identity</string>
+  <string name="update_identity_attachments_init_error">Problém s načítaním príloh k identite</string>
+  <string name="identity_link_attachments_error">Nepodarilo sa prepojiť alebo zrušiť prepojenie príloh s identitou</string>
+  <string name="identity_rename_attachments_error">Premenovanie príloh k identite zlyhalo</string>
+  <string name="create_identity_item_creation_error">Nepodarilo sa vytvoriť identitu</string>
+  <string name="create_identity_item_creation_success">Identita bola vytvorená</string>
+  <string name="update_identity_item_creation_success">Identita aktualizovaná</string>
+  <string name="update_identity_item_creation_error">Nepodarilo sa aktualizovať identitu</string>
+  <!--  Common create items  -->
+  <string name="title_create">Vytvoriť</string>
+  <string name="title_duplicate" comment="Default title when duplicating an item. Placeholder is the title of the item being duplicated.">%s (skopírované)</string>
+  <string name="changes_saved">Zmeny uložené</string>
+  <!--  TOTP  -->
+  <string name="totp_create_login_field_title">2FA tajný kľúč (TOTP)</string>
+  <string name="totp_create_login_field_invalid">Neplatný 2FA tajný kľúč (TOTP)</string>
+  <string name="totp_create_login_field_placeholder">Pridať 2FA tajný kľúč (TOTP)</string>
+  <string name="close_scree_icon_content_description">Tlačidlo zatvorenia obrazovky</string>
+  <string name="totp_paste_code_action">Vložiť kód</string>
+  <string name="totp_scan_code_action">Skenovať kód</string>
+  <string name="camera_permission_explanation">Na sprístupnenie tejto funkcie sa vyžaduje prístup k fotoaparátu.</string>
+  <string name="camera_permission_open_settings">Otvoriť nastavenia</string>
+  <!--  TOTP limit  -->
+  <string name="mfa_limit_reached">2FA limit dosiahnutý</string>
+  <string name="upgrade">Upgradovať</string>
+  <string name="mfa_icon_content_description">Ikona 2FA</string>
+  <string name="create_alias_content_limit_banner">Dosiahli ste limit aliasov, ktoré môžete vytvoriť. Vytvorte neobmedzený počet aliasov po navýšení predplatného.</string>
+  <string name="snackbar_update_app_to_update_item" comment="This message will appear to users that try to update an item that needs a newer version of the app to do so">Na úpravu tejto položky je potrebné aktualizovať aplikáciu</string>
+  <string name="remove_passkey_dialog_title">Odstrániť tento prístupový kľúč?</string>
+  <string name="remove_passkey_dialog_body" comment="Body of the dialog that asks the user if they want to remove the passkey for an item. Placeholder 1 is the username (such as my_user). Placeholder 2 is the domain (such as google.com)">Chystáte sa odstrániť prístupový kľúč používateľa \'%1$s\' pre \'%2$s\'. Ste si istí?</string>
+  <!-- Attachments -->
+  <string name="banner_title_attachments">Prílohy</string>
+  <string name="banner_body_attachments">Pre lepšiu organizáciu môžete k položkám pripojiť súbory</string>
+  <string name="open_with">Otvoriť pomocou:</string>
+  <string name="banner_advanced_options_title">Vedeli ste?</string>
+  <string name="banner_advanced_options_subtitle">Ťuknite na ikonu ozubeného kolieska a prispôsobte si alias podľa svojich predstáv.</string>
+  <string name="banner_custom_domain_title">Vedeli ste?</string>
+  <string name="banner_custom_domain_subtitle">Pridaním domény môžete vytvoriť aliasy, ako napríklad ahoj@moja-domena.sk.</string>
+  <string name="banner_custom_domain_button">Pridať doménu</string>
+  <string name="banner_mailbox_title">Vedeli ste?</string>
+  <string name="banner_mailbox_subtitle">Zdieľajte aliasy s ostatnými pridaním ich schránky ako ďalšej schránky.</string>
+  <string name="banner_mailbox_button">Pridať poštovú schránku</string>
+  <!-- Suffix -->
+  <string name="suffix_subtitle_premium_domain">Prémiová doména</string>
+  <string name="suffix_subtitle_public_domain">Verejná doména</string>
+  <string name="suffix_subtitle_private_domain">Vaša doména</string>
+  <!-- Templates -->
+  <string name="template_item_api_credential">API poverenie</string>
+  <string name="template_item_database">Databáza</string>
+  <string name="template_item_server">Server</string>
+  <string name="template_item_software_license">Softvérová licencia</string>
+  <string name="template_item_ssh_key">SSH kľúč</string>
+  <string name="template_item_wifi_network">WiFi sieť</string>
+  <string name="template_item_bank_account">Bankový účet</string>
+  <string name="template_item_crypto_wallet">Krypto peňaženka</string>
+  <string name="template_item_driver_license">Vodičský preukaz</string>
+  <string name="template_item_medical_record">Zdravotný záznam</string>
+  <string name="template_item_membership">Členstvo</string>
+  <string name="template_item_passport">Cestovný pas</string>
+  <string name="template_item_reward_program">Vernostný program</string>
+  <string name="template_item_social_security_number">Číslo poistenca sociálnej poisťovne</string>
+  <!-- API Credential Fields -->
+  <string name="template_api_credential_field_api_key">API kľúč</string>
+  <string name="template_api_credential_field_secret">Tajné</string>
+  <string name="template_api_credential_field_expiry_date">Dátum exspirácie</string>
+  <string name="template_api_credential_field_permissions">Oprávnenia</string>
+  <!-- Database Fields -->
+  <string name="template_database_field_host">Hostiteľ</string>
+  <string name="template_database_field_port">Port</string>
+  <string name="template_database_field_username">Používateľské meno</string>
+  <string name="template_database_field_password">Heslo</string>
+  <string name="template_database_field_database_type">Typ databázy</string>
+  <!-- Server Fields -->
+  <string name="template_server_field_ip_address">IP adresa</string>
+  <string name="template_server_field_hostname">Názov hostiteľa</string>
+  <string name="template_server_field_os">Operačný systém</string>
+  <string name="template_server_field_username">Používateľské meno</string>
+  <string name="template_server_field_password">Heslo</string>
+  <!-- Software License Fields -->
+  <string name="template_software_license_field_license_key">Licenčný kľúč</string>
+  <string name="template_software_license_field_product">Produkt</string>
+  <string name="template_software_license_field_expiry_date">Dátum exspirácie</string>
+  <string name="template_software_license_field_owner">Vlastník</string>
+  <!-- SSH Key Fields -->
+  <string name="template_ssh_key_field_private_key">Súkromný kľúč</string>
+  <string name="template_ssh_key_field_public_key">Verejný kľúč</string>
+  <string name="template_ssh_key_field_username">Používateľské meno</string>
+  <string name="template_ssh_key_field_host">Hostiteľ</string>
+  <!-- SSH Key Generation -->
+  <string name="ssh_key_generate_button">Generovať</string>
+  <string name="ssh_key_type_ed25519">Ed25519</string>
+  <string name="ssh_key_type_rsa_2048">RSA-2048</string>
+  <string name="ssh_key_type_rsa_4096">RSA-4096</string>
+  <string name="ssh_key_generation_error">Generovanie SSH kľúča zlyhalo</string>
+  <!-- WiFi Network Fields -->
+  <string name="template_wifi_network_field_name">Názov (SSID)</string>
+  <!-- Bank Account Fields -->
+  <string name="template_bank_account_field_bank_name">Názov banky</string>
+  <string name="template_bank_account_field_account_number">Číslo účtu</string>
+  <string name="template_bank_account_field_routing_number">Smerový kód banky</string>
+  <string name="template_bank_account_field_account_type">Typ účtu</string>
+  <string name="template_bank_account_field_iban">IBAN</string>
+  <string name="template_bank_account_field_swift_bic">SWIFT/BIC</string>
+  <string name="template_bank_account_field_holder_name">Meno vlastníka</string>
+  <!-- Crypto Wallet Fields -->
+  <string name="template_crypto_wallet_field_wallet_name">Názov peňaženky</string>
+  <string name="template_crypto_wallet_field_address">Adresa</string>
+  <string name="template_crypto_wallet_field_private_key">Súkromný kľúč</string>
+  <string name="template_crypto_wallet_field_seed_phrase">Seed fráza</string>
+  <string name="template_crypto_wallet_field_network">Sieť</string>
+  <!-- Driver License Fields -->
+  <string name="template_driver_license_field_full_name">Celé meno</string>
+  <string name="template_driver_license_field_license_number">Licenčné číslo</string>
+  <string name="template_driver_license_field_issuing_state_country">Štát vydania/Krajina</string>
+  <string name="template_driver_license_field_expiry_date">Dátum exspirácie</string>
+  <string name="template_driver_license_field_date_of_birth">Dátum narodenia</string>
+  <string name="template_driver_license_field_class">Trieda</string>
+  <!-- Medical Record Fields -->
+  <string name="template_medical_record_field_patient_name">Meno pacienta</string>
+  <string name="template_medical_record_field_record_number">Číslo záznamu</string>
+  <string name="template_medical_record_field_medical_conditions">Zdravotný stav</string>
+  <string name="template_medical_record_field_medications">Lieky</string>
+  <string name="template_medical_record_field_doctor">Lekár</string>
+  <string name="template_medical_record_field_hospital">Nemocnica</string>
+  <!-- Membership Fields -->
+  <string name="template_membership_field_organization_name">Názov organizácie</string>
+  <string name="template_membership_field_membership_id">ID členstva</string>
+  <string name="template_membership_field_member_name">Meno člena</string>
+  <string name="template_membership_field_expiry_date">Dátum exspirácie</string>
+  <string name="template_membership_field_tier_level">Úroveň členstva</string>
+  <!-- Passport Fields -->
+  <string name="template_passport_field_full_name">Celé meno</string>
+  <string name="template_passport_field_passport_number">Číslo pasu</string>
+  <string name="template_passport_field_country">Krajina</string>
+  <string name="template_passport_field_expiry_date">Dátum exspirácie</string>
+  <string name="template_passport_field_date_of_birth">Dátum narodenia</string>
+  <string name="template_passport_field_issuing_authority">Vydal</string>
+  <!-- Reward Program Fields -->
+  <string name="template_reward_program_field_program_name">Názov programu</string>
+  <string name="template_reward_program_field_member_id">ID člena</string>
+  <string name="template_reward_program_field_points_balance">Stav bodov</string>
+  <string name="template_reward_program_field_expiry_date">Dátum exspirácie</string>
+  <string name="template_reward_program_field_tier_status">Úroveň/Stav</string>
+  <!-- Social Security Number Fields -->
+  <string name="template_social_security_number_field_full_name">Celé meno</string>
+  <string name="template_social_security_number_field_ssn">Číslo poistenca sociálnej poisťovne</string>
+  <string name="template_social_security_number_field_issuing_country">Vydávajúca krajina</string>
+  <string name="template_header_technology">Technológia</string>
+  <string name="template_header_finance">Financie</string>
+  <string name="template_header_title_personal">Osobné</string>
+  <string name="button_start_from_scratch">Začať úplne od začiatku</string>
+  <string name="select_template_title">Vlastná položka</string>
+  <!-- Custom item screen -->
+  <string name="add_custom_field_button">Pridať pole</string>
+  <string name="add_section_button">Pridať sekciu</string>
+  <string name="add_public_key_placeholder">Pridať verejný kľúč</string>
+  <string name="add_private_key_placeholder">Pridať súkromný kľúč</string>
+  <string name="add_ssid_name_placeholder">Pridať názov (SSID)</string>
+  <string name="create_custom_item_init_error">Problém s načítaním podrobností vlastnej položky</string>
+  <string name="update_custom_item_attachments_init_error">Problém s načítaním príloh vlastnej položky</string>
+  <string name="custom_item_link_attachments_error">Nepodarilo sa prepojiť alebo zrušiť prepojenie príloh s vlastnou položkou</string>
+  <string name="custom_item_rename_attachments_error">Nepodarilo sa premenovať prílohy vlastnej položky</string>
+  <string name="create_custom_item_item_creation_error">Nepodarilo sa vytvoriť vlastnú položku</string>
+  <string name="create_custom_item_item_creation_success">Vlastná položka vytvorená</string>
+  <string name="update_custom_item_item_creation_success">Vlastná položka aktualizovaná</string>
+  <string name="update_custom_item_item_creation_error">Nepodarilo sa aktualizovať vlastnú položku</string>
+  <!-- Cannot create items dialog -->
+  <string name="cannot_create_items_dialog_title">Nie je možné vytvoriť položky</string>
+  <string name="cannot_create_items_dialog_message">Nemáte žiadne trezory s prístupom editora alebo administrátora. Skúste si ich vytvoriť v hlavnej aplikácii alebo požiadajte o podporu správcu vašej organizácie.</string>
+  <string name="wifi_security_type_field_label">Typ zabezpečenia</string>
+  <string name="functionality_not_available">Táto funkcionalita nie je pre vaše zariadenie k dispozícii.</string>
+  <!-- Autofill URL suggestions screen -->
+  <string name="autofill_suggestions_title">Porovnávanie URL</string>
+  <string name="autofill_suggestions_description">Upravte správanie automatického vypĺňania, aby ste zmenili, kde sa pre %s navrhujú a vypĺňajú prihlasovacie údaje.</string>
+  <string name="autofill_suggestions_tab_basic">Základné</string>
+  <string name="autofill_suggestions_tab_advanced">Pokročilé</string>
+  <string name="autofill_suggestions_mode_default">Nadradená doména a subdomény</string>
+  <string name="autofill_suggestions_mode_exact">Presná (pod)doména</string>
+  <string name="autofill_suggestions_mode_never">Nikdy nevypĺňať formuláre na tejto webovej stránke</string>
+  <string name="autofill_suggestions_mode_start_with">Začína s</string>
+  <string name="autofill_suggestions_mode_pattern">Vzor so zástupnými znakmi</string>
+  <string name="autofill_suggestions_mode_regular_expression">Regulárny výraz</string>
+  <string name="autofill_suggestions_mode_exact_path">Presná zhoda URL</string>
+  <string name="autofill_suggestions_android_limitation">Pokročilé pravidlá nie sú v systéme Android k dispozícii kvôli obmedzeniam v rozhraniach API operačného systému.</string>
+  <string name="autofill_suggestions_mode_default_badge">PREDVOLENÉ</string>
+  <string name="autofill_suggestions_url_column">URL</string>
+  <string name="autofill_suggestions_suggested_column">Odporúčané</string>
+  <string name="field_website_skipped_autofill">Táto URL adresa bude pri automatickom vypĺňaní preskočená</string>
+</resources>

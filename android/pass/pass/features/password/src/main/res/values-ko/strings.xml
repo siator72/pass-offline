@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">복사 및 닫기</string>
+  <string name="password_copied_to_clipboard">비밀번호 복사됨</string>
+  <string name="bottomsheet_generate_password_title">비밀번호 생성</string>
+  <string name="password_type">유형</string>
+  <string name="special_characters">특수 문자 (!&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="other">%s글자</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">대문자 알파벳 (A-Z)</string>
+  <string name="bottomsheet_option_include_numbers">숫자 포함 (0~9)</string>
+  <string name="regenerate_password_icon_content_description">비밀번호 버튼 재생성</string>
+  <string name="password_mode_memorable">기억할 만한 비밀번호</string>
+  <string name="password_mode_random">무작위 비밀번호</string>
+  <string name="password_mode_icon">비밀번호 모드 아이콘</string>
+  <string name="password_words_separator_icon">비밀번호 단어 구분 기호</string>
+  <string name="password_history_title">생성된 비밀번호</string>
+  <string name="password_history_empty">기록 없음</string>
+  <string name="password_history_description">생성된 비밀번호는 2주 간 저장됩니다.</string>
+  <string name="password_history_today">오늘, %s</string>
+  <string name="password_history_yesterday">어제, %s</string>
+  <string name="password_history_before_yesterday">%d일 전, %s</string>
+  <string name="password_history_clear_history">기록 삭제</string>
+  <string name="password_history_remove_from_history">기록에서 삭제</string>
+</resources>

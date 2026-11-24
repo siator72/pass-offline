@@ -1,0 +1,694 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.local
+
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapLatest
+import kotlinx.datetime.Instant
+import me.proton.core.crypto.common.keystore.EncryptedString
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.combineN
+import proton.android.pass.common.api.toOption
+import proton.android.pass.data.api.ItemCountSummary
+import proton.android.pass.data.api.repositories.ObserveItemCountSummaryRequest
+import proton.android.pass.data.api.repositories.ShareItemCount
+import proton.android.pass.data.api.usecases.ItemTypeFilter
+import proton.android.pass.data.impl.db.PassDatabase
+import proton.android.pass.data.impl.db.dao.ItemEntityWithRowId
+import proton.android.pass.data.impl.db.dao.SummaryRow
+import proton.android.pass.data.impl.db.entities.ItemEntity
+import proton.android.pass.data.impl.repositories.CompromisedPasswordChecker
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.ItemFlag
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ItemState
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.VaultId
+import proton.android.pass.domain.foldFlags
+import proton.android.pass.domain.items.ItemCategory
+import proton.android.pass.log.api.PassLogger
+import javax.inject.Inject
+
+internal fun shareItemKey(shareId: String, itemId: String): String = "$shareId-$itemId"
+
+internal fun needsStoredSlNote(item: ItemEntity): Boolean = item.slNote == null && item.aliasEmail != null
+
+internal fun mergeStoredSlNotes(
+    items: List<ItemEntity>,
+    storedSlNotes: Map<String, EncryptedString>
+): List<ItemEntity> {
+    if (storedSlNotes.isEmpty()) return items
+
+    return items.map { item ->
+        if (!needsStoredSlNote(item)) return@map item
+        storedSlNotes[shareItemKey(item.shareId, item.id)]
+            ?.let { item.copy(slNote = it) }
+            ?: item
+    }
+}
+
+@Suppress("TooManyFunctions", "LargeClass")
+class LocalItemDataSourceImpl @Inject constructor(
+    private val database: PassDatabase,
+    private val localShareDataSource: LocalShareDataSource,
+    private val compromisedPasswordChecker: CompromisedPasswordChecker
+) : LocalItemDataSource {
+
+    override suspend fun upsertItem(item: ItemEntity) = upsertItems(listOf(item))
+
+    override suspend fun upsertItems(items: List<ItemEntity>) {
+        val itemsToUpsert = keepStoredSlNotes(items)
+        database.itemsDao().insertOrUpdate(*itemsToUpsert.toTypedArray())
+        compromisedPasswordChecker.onItemsUpserted(itemsToUpsert)
+    }
+
+    /**
+     * The SL note lives only in SimpleLogin, so items coming from the Pass API always carry a null
+     * slNote. Without this, every item upsert would wipe the note we fetched from SL. Clearing a
+     * note goes through [updateSlNote], never through an upsert.
+     */
+    private suspend fun keepStoredSlNotes(items: List<ItemEntity>): List<ItemEntity> {
+        val candidates = items.filter(::needsStoredSlNote)
+        if (candidates.isEmpty()) return items
+
+        val storedSlNotes = candidates.groupBy { it.userId }
+            .flatMap { (userId, userItems) ->
+                database.itemsDao().getByShareItemKeys(
+                    userId = userId,
+                    shareItemKeys = userItems.map { shareItemKey(it.shareId, it.id) }
+                )
+            }
+            .mapNotNull { entity ->
+                entity.slNote?.let { shareItemKey(entity.shareId, entity.id) to it }
+            }
+            .toMap()
+
+        return mergeStoredSlNotes(items, storedSlNotes)
+    }
+
+    override fun observeItems(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState?,
+        filter: ItemTypeFilter,
+        itemFlags: Map<ItemFlag, Boolean>,
+        anyFlags: List<ItemFlag>,
+        onlyDirectItems: Boolean
+    ): Flow<List<ItemEntity>> {
+        val (setFlags, clearFlags) = foldFlags(itemFlags)
+        val itemTypes = filter.value()
+        return database.itemsDao().observeItems(
+            userId = userId.id,
+            shareIds = shareIds.map(ShareId::id),
+            itemIds = null,
+            applyItemIds = false,
+            itemTypes = itemTypes,
+            applyItemTypes = itemTypes != null,
+            itemState = itemState?.value,
+            isPinned = null,
+            hasTotp = null,
+            hasPasskeys = null,
+            setFlags = setFlags,
+            clearFlags = clearFlags,
+            anyFlags = anyFlags.sumOf { it.value }.takeIf { it != 0 },
+            onlyDirectItems = onlyDirectItems
+        )
+    }
+
+    override suspend fun getItemsPageForIndex(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState,
+        afterRowId: Long,
+        limit: Int
+    ): List<ItemEntityWithRowId> = database.itemsDao().getItemsPageForIndex(
+        userId = userId.id,
+        shareIds = shareIds.map(ShareId::id),
+        itemState = itemState.value,
+        afterRowId = afterRowId,
+        limit = limit
+    )
+
+    override suspend fun getActiveAliasItemsPage(
+        userId: UserId,
+        shareId: ShareId,
+        afterRowId: Long,
+        limit: Int
+    ): List<ItemEntityWithRowId> = database.itemsDao().getItemsPageForShareAndType(
+        userId = userId.id,
+        shareId = shareId.id,
+        itemType = ItemCategory.Alias.value,
+        itemState = ItemState.Active.value,
+        afterRowId = afterRowId,
+        limit = limit
+    )
+
+    override suspend fun countItemsForIndex(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState
+    ): Int = database.itemsDao().countItemsForIndex(
+        userId = userId.id,
+        shareIds = shareIds.map(ShareId::id),
+        itemState = itemState.value
+    )
+
+    override fun observeItemsPaging(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState?,
+        filter: ItemTypeFilter,
+        itemFlags: Map<ItemFlag, Boolean>
+    ): Flow<PagingData<ItemEntity>> = Pager(
+        config = PagingConfig(pageSize = 20),
+        pagingSourceFactory = {
+            val (setFlags, clearFlags) = foldFlags(itemFlags)
+            val itemTypes = filter.value()
+            database.itemsDao().observeItemsPaging(
+                userId = userId.id,
+                shareIds = shareIds.map(ShareId::id),
+                itemIds = null,
+                applyItemIds = false,
+                itemTypes = itemTypes,
+                applyItemTypes = itemTypes != null,
+                itemState = itemState?.value,
+                isPinned = null,
+                hasTotp = null,
+                hasPasskeys = null,
+                setFlags = setFlags,
+                clearFlags = clearFlags
+            )
+        }
+    ).flow
+
+    override fun observePinnedItems(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        filter: ItemTypeFilter
+    ): Flow<List<ItemEntity>> {
+        val itemTypes = filter.value()
+        return database.itemsDao().observeItems(
+            userId = userId.id,
+            shareIds = shareIds.map(ShareId::id),
+            itemIds = null,
+            applyItemIds = false,
+            itemTypes = itemTypes,
+            applyItemTypes = itemTypes != null,
+            itemState = ItemState.Active.value,
+            isPinned = true,
+            hasTotp = null,
+            hasPasskeys = null,
+            setFlags = null,
+            clearFlags = null,
+            anyFlags = null
+        )
+    }
+
+    override fun observeItem(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId
+    ): Flow<ItemEntity?> = database.itemsDao()
+        .observeById(
+            userId = userId.id,
+            shareId = shareId.id,
+            itemId = itemId.id
+        )
+
+    override suspend fun getById(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId
+    ): ItemEntity? = database.itemsDao().observeById(
+        userId = userId.id,
+        shareId = shareId.id,
+        itemId = itemId.id
+    ).firstOrNull()
+
+    override suspend fun getByIdList(
+        userId: UserId,
+        shareId: ShareId,
+        itemIds: List<ItemId>
+    ): List<ItemEntity> = database.itemsDao().getByIds(
+        userId = userId.id,
+        shareId = shareId.id,
+        itemIds = itemIds.map { it.id }
+    )
+
+    override suspend fun getByShareItemPairs(userId: UserId, pairs: List<Pair<ShareId, ItemId>>): List<ItemEntity> =
+        database.itemsDao().getByShareItemKeys(
+            userId = userId.id,
+            shareItemKeys = pairs.map { (shareId, itemId) -> "${shareId.id}-${itemId.id}" }
+        )
+
+    override suspend fun setItemStates(
+        userId: UserId,
+        shareId: ShareId,
+        itemIds: List<ItemId>,
+        itemState: ItemState
+    ) = database.itemsDao().setItemState(
+        userId = userId.id,
+        shareId = shareId.id,
+        itemIds = itemIds.map(ItemId::id),
+        state = itemState.value
+    )
+
+    override suspend fun getTrashedItems(userId: UserId, shareIds: List<ShareId>): List<ItemEntity> =
+        database.itemsDao().observeItems(
+            userId = userId.id,
+            shareIds = shareIds.map(ShareId::id),
+            itemIds = null,
+            applyItemIds = false,
+            itemTypes = null,
+            applyItemTypes = false,
+            itemState = ItemState.Trashed.value,
+            isPinned = null,
+            hasTotp = null,
+            hasPasskeys = null,
+            setFlags = null,
+            clearFlags = null,
+            anyFlags = null
+        ).firstOrNull()
+            ?: emptyList()
+
+    override suspend fun delete(
+        userId: UserId,
+        shareId: ShareId,
+        itemIds: List<ItemId>
+    ): Boolean {
+        if (itemIds.isEmpty()) return true
+        PassLogger.i(
+            TAG,
+            "Deleting items [shareId=${shareId.id}] [itemIds=${itemIds.map { it.id }}]"
+        )
+        return database.itemsDao().delete(
+            userId = userId.id,
+            shareId = shareId.id,
+            itemIds = itemIds.map(ItemId::id)
+        ) > 0
+    }
+
+    override suspend fun hasItemsForShare(userId: UserId, shareId: ShareId): Boolean =
+        database.itemsDao().countItems(userId.id, listOf(shareId.id)) > 0
+
+    override fun observeItemCountSummary(request: ObserveItemCountSummaryRequest): Flow<ItemCountSummary> =
+        with(request) {
+            combineN(
+                observeItemSummary(
+                    userId = userId,
+                    itemState = itemState,
+                    shareIds = shareIds,
+                    onlyShared = onlyShared,
+                    folderId = folderId,
+                    restrictToRootFolder = restrictToRootFolder
+                ),
+                observeItemsWithTotpCount(
+                    userId = userId,
+                    itemState = itemState,
+                    shareIds = shareIds,
+                    folderId = folderId,
+                    restrictToRootFolder = restrictToRootFolder
+                ),
+                observeSharedWithMeItemCount(
+                    userId = userId,
+                    shareIds = shareIds,
+                    itemState = itemState,
+                    applyItemStateToSharedItems = applyItemStateToSharedItems,
+                    includeHiddenVault = includeHiddenVault,
+                    folderId = folderId,
+                    restrictToRootFolder = restrictToRootFolder
+                ),
+                observeSharedByMeItemCount(
+                    userId = userId,
+                    shareIds = shareIds,
+                    itemState = itemState,
+                    applyItemStateToSharedItems = applyItemStateToSharedItems,
+                    includeHiddenVault = includeHiddenVault,
+                    folderId = folderId,
+                    restrictToRootFolder = restrictToRootFolder
+                ),
+                observeTrashedItemsCount(
+                    userId = userId,
+                    shareIds = shareIds,
+                    folderId = folderId,
+                    restrictToRootFolder = restrictToRootFolder
+                ),
+                observeSharedWithMeTrashedItemCount(
+                    userId = userId,
+                    shareIds = shareIds,
+                    includeHiddenVault = includeHiddenVault,
+                    folderId = folderId,
+                    restrictToRootFolder = restrictToRootFolder
+                )
+            ) { rows: List<SummaryRow>, totp, sharedWithMe, sharedByMe, trashed, sharedWithMeTrashed ->
+                rows.toItemCountSummary(totp, sharedWithMe, sharedByMe, trashed, sharedWithMeTrashed)
+            }
+        }
+
+    private fun List<SummaryRow>.toItemCountSummary(
+        totpCount: Int,
+        sharedWithMeItemCount: Int,
+        sharedByMeItemCount: Int,
+        trashedItemsCount: Int,
+        sharedWithMeTrashedItemsCount: Int
+    ): ItemCountSummary = ItemCountSummary(
+        login = getCount(ItemCategory.Login),
+        loginWithMFA = totpCount.toLong(),
+        note = getCount(ItemCategory.Note),
+        alias = getCount(ItemCategory.Alias),
+        creditCard = getCount(ItemCategory.CreditCard),
+        identities = getCount(ItemCategory.Identity),
+        custom = getCount(ItemCategory.Custom) +
+            getCount(ItemCategory.WifiNetwork) +
+            getCount(ItemCategory.SSHKey),
+        sharedWithMe = sharedWithMeItemCount.toLong(),
+        sharedByMe = sharedByMeItemCount.toLong(),
+        trashed = trashedItemsCount.toLong(),
+        sharedWithMeTrashed = sharedWithMeTrashedItemsCount.toLong()
+    )
+
+    private fun observeItemSummary(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState?,
+        onlyShared: Boolean,
+        folderId: FolderId? = null,
+        restrictToRootFolder: Boolean = false
+    ): Flow<List<SummaryRow>> = folderId?.let { nonNullFolderId ->
+        database.itemsDao().itemSummaryForFolder(
+            userId.id,
+            shareIds.map { it.id },
+            nonNullFolderId.id,
+            itemState?.value,
+            onlyShared
+        )
+    } ?: database.itemsDao().itemSummary(
+        userId.id,
+        shareIds.map { it.id },
+        itemState?.value,
+        onlyShared,
+        restrictToRootFolder
+    )
+
+    private fun List<SummaryRow>.getCount(itemCategory: ItemCategory): Long = filter {
+        it.itemKind == itemCategory.value
+    }.sumOf { it.itemCount }
+
+    private fun observeItemsWithTotpCount(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState?,
+        folderId: FolderId? = null,
+        restrictToRootFolder: Boolean = false
+    ): Flow<Int> = folderId?.let { nonNullFolderId ->
+        database.itemsDao().countItemsWithTotpForFolder(
+            userId.id,
+            shareIds.map { it.id },
+            nonNullFolderId.id,
+            itemState?.value
+        ).map { rows -> rows.sumOf { it.itemCount } }
+    } ?: database.itemsDao().countItemsWithTotp(
+        userId = userId.id,
+        shareIds = shareIds.map { it.id },
+        itemState = itemState?.value,
+        restrictToRootFolder = restrictToRootFolder
+    )
+        .map { rows -> rows.sumOf { it.itemCount } }
+
+    private fun observeSharedWithMeItemCount(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState?,
+        applyItemStateToSharedItems: Boolean,
+        includeHiddenVault: Boolean,
+        folderId: FolderId? = null,
+        restrictToRootFolder: Boolean = false
+    ) = localShareDataSource.observeSharedWithMeIds(userId, includeHiddenVault)
+        .map { sharedWithMeShareIds ->
+            sharedWithMeShareIds.filter { sharedWithMeShareId ->
+                sharedWithMeShareId.id in shareIds.map(ShareId::id)
+            }
+        }
+        .flatMapLatest { sharedWithMeShareIds ->
+            database.itemsDao().countSharedItems(
+                userId = userId.id,
+                shareIds = sharedWithMeShareIds.map(ShareId::id),
+                itemState = itemState?.value.takeIf { applyItemStateToSharedItems },
+                folderId = folderId?.id,
+                restrictToRootFolder = restrictToRootFolder
+            )
+        }
+
+    private fun observeSharedByMeItemCount(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        itemState: ItemState?,
+        applyItemStateToSharedItems: Boolean,
+        includeHiddenVault: Boolean,
+        folderId: FolderId? = null,
+        restrictToRootFolder: Boolean = false
+    ) = localShareDataSource.observeSharedByMeIds(userId, includeHiddenVault)
+        .mapLatest { sharedByMeShareIds ->
+            sharedByMeShareIds.filter { sharedByMeShareId ->
+                sharedByMeShareId.id in shareIds.map(ShareId::id)
+            }
+        }
+        .flatMapLatest { sharedByMeShareIds ->
+            database.itemsDao().countSharedItems(
+                userId = userId.id,
+                shareIds = sharedByMeShareIds.map(ShareId::id),
+                itemState = itemState?.value.takeIf { applyItemStateToSharedItems },
+                folderId = folderId?.id,
+                restrictToRootFolder = restrictToRootFolder
+            )
+        }
+
+    private fun observeSharedWithMeTrashedItemCount(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        includeHiddenVault: Boolean,
+        folderId: FolderId? = null,
+        restrictToRootFolder: Boolean = false
+    ) = localShareDataSource.observeSharedWithMeIds(userId, includeHiddenVault)
+        .mapLatest { sharedByMeShareIds ->
+            sharedByMeShareIds.filter { sharedByMeShareId ->
+                sharedByMeShareId.id in shareIds.map(ShareId::id)
+            }
+        }
+        .flatMapLatest { sharedWithMeShareIds ->
+            observeTrashedItemsCount(userId, sharedWithMeShareIds, folderId, restrictToRootFolder)
+        }
+
+    private fun observeTrashedItemsCount(
+        userId: UserId,
+        shareIds: List<ShareId>,
+        folderId: FolderId? = null,
+        restrictToRootFolder: Boolean = false
+    ): Flow<Int> = database.itemsDao()
+        .countTrashedItems(userId.id, shareIds.map { it.id }, folderId?.id, restrictToRootFolder)
+        .map { rows -> rows.sumOf { it.itemCount } }
+
+    override suspend fun updateLastUsedTime(
+        shareId: ShareId,
+        itemId: ItemId,
+        now: Long
+    ) {
+        database.itemsDao().updateLastUsedTime(shareId.id, itemId.id, now)
+    }
+
+    override fun observeItemCount(shareIds: List<ShareId>): Flow<Map<ShareId, ShareItemCount>> = database.itemsDao()
+        .countItemsForShares(shareIds.map { it.id })
+        .map { values ->
+            shareIds.associate { shareId ->
+                val rowForShare = values.firstOrNull { it.shareId == shareId.id }
+                if (rowForShare == null) {
+                    shareId to ShareItemCount(0, 0)
+                } else {
+                    shareId to ShareItemCount(
+                        activeItems = rowForShare.activeItemCount,
+                        trashedItems = rowForShare.trashedItemCount
+                    )
+                }
+            }
+        }
+
+    override suspend fun getItemByAliasEmail(userId: UserId, aliasEmail: String): ItemEntity? =
+        database.itemsDao().getItemByAliasEmail(userId.id, aliasEmail)
+
+    override suspend fun getItemsPendingForTotpMigration(): List<ItemEntity> =
+        database.itemsDao().getItemsPendingForTotpMigration()
+
+    override suspend fun getItemsPendingForPasskeyMigration(): List<ItemEntity> =
+        database.itemsDao().getItemsPendingForPasskeyMigration()
+
+    override suspend fun updateSlNote(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        slNote: EncryptedString?
+    ) {
+        database.itemsDao().updateSlNote(userId.id, shareId.id, itemId.id, slNote)
+    }
+
+    override suspend fun updateSlNotes(userId: UserId, updates: List<SlNoteUpdate>): List<Pair<ShareId, ItemId>> =
+        database.itemsDao().updateSlNotes(userId.id, updates)
+
+    override fun countAllItemsWithTotp(userId: UserId, shareIds: List<ShareId>): Flow<Int> = observeItemsWithTotpCount(
+        userId = userId,
+        itemState = null,
+        shareIds = shareIds
+    )
+
+    override fun observeItemsWithTotp(userId: UserId, shareIds: List<ShareId>): Flow<List<ItemWithTotp>> =
+        database.itemsDao()
+            .observeItems(
+                userId = userId.id,
+                shareIds = shareIds.map(ShareId::id),
+                itemIds = null,
+                applyItemIds = false,
+                itemTypes = null,
+                applyItemTypes = false,
+                itemState = null,
+                isPinned = null,
+                hasTotp = true,
+                hasPasskeys = null,
+                setFlags = null,
+                clearFlags = null,
+                anyFlags = null
+            )
+            .map { items -> items.map { it.toItemWithTotp() } }
+
+    override fun observeItemsWithPasskeys(userId: UserId, shareIds: List<ShareId>): Flow<List<ItemEntity>> =
+        database.itemsDao().observeItems(
+            userId = userId.id,
+            shareIds = shareIds.map(ShareId::id),
+            itemIds = null,
+            applyItemIds = false,
+            itemTypes = null,
+            applyItemTypes = false,
+            itemState = null,
+            isPinned = null,
+            hasTotp = null,
+            hasPasskeys = true,
+            setFlags = null,
+            clearFlags = null,
+            anyFlags = null
+        )
+
+    override suspend fun updateItemFlags(
+        shareId: ShareId,
+        itemId: ItemId,
+        flags: Int
+    ) = database.itemsDao().updateItemFlags(shareId.id, itemId.id, flags)
+
+    override suspend fun getByVaultIdAndItemId(
+        userIds: List<UserId>,
+        vaultId: VaultId,
+        itemId: ItemId
+    ): List<ItemEntity> = database.itemsDao()
+        .getByVaultIdAndItemId(
+            userIds = userIds.map { it.id },
+            vaultId = vaultId.id,
+            itemId = itemId.id
+        )
+
+    override suspend fun findUserId(shareId: ShareId, itemId: ItemId): Option<UserId> =
+        database.itemsDao().findUserId(shareId.id, itemId.id)?.let(::UserId).toOption()
+
+    override fun observeFolderItemCounts(userId: UserId, shareId: ShareId): Flow<Map<FolderId, Long>> =
+        database.itemsDao()
+            .observeFolderItemCounts(userId.id, shareId.id)
+            .map { rows ->
+                rows.associate { row -> FolderId(row.folderId) to row.itemCount }
+            }
+
+    override fun observeItemsByFolder(
+        userId: UserId,
+        shareId: ShareId,
+        folderId: FolderId,
+        itemState: ItemState?,
+        filter: ItemTypeFilter,
+        itemFlags: Map<ItemFlag, Boolean>
+    ): Flow<List<ItemEntity>> {
+        val (setFlags, clearFlags) = foldFlags(itemFlags)
+        val itemTypes = filter.value()
+        return database.itemsDao().observeItemsByFolder(
+            userId = userId.id,
+            shareId = shareId.id,
+            rootFolderId = folderId.id,
+            itemState = itemState?.value,
+            itemTypes = itemTypes,
+            applyItemTypes = itemTypes != null,
+            setFlags = setFlags,
+            clearFlags = clearFlags
+        )
+    }
+
+    override fun observeItemCountByFolder(
+        userId: UserId,
+        shareId: ShareId,
+        folderId: FolderId,
+        itemState: ItemState?
+    ): Flow<Int> = database.foldersDao().observeItemCountByFolder(
+        userId = userId.id,
+        shareId = shareId.id,
+        rootFolderId = folderId.id,
+        itemState = itemState?.value
+    )
+
+    override fun observeRecentSearchItems(userId: UserId, shareId: ShareId?): Flow<List<ItemEntity>> =
+        database.itemsDao().observeRecentSearchItems(
+            userId = userId.id,
+            shareId = shareId?.id
+        )
+
+    private fun ItemEntity.toItemWithTotp(): ItemWithTotp = ItemWithTotp(
+        shareId = ShareId(shareId),
+        itemId = ItemId(id),
+        createTime = Instant.fromEpochSeconds(createTime)
+    )
+
+    private fun ItemTypeFilter.value(): List<Int>? = when (this) {
+        ItemTypeFilter.Logins,
+        ItemTypeFilter.LoginWithTotp -> listOf(ItemCategory.Login.value)
+        ItemTypeFilter.Aliases -> listOf(ItemCategory.Alias.value)
+        ItemTypeFilter.Notes -> listOf(ItemCategory.Note.value)
+        ItemTypeFilter.CreditCards -> listOf(ItemCategory.CreditCard.value)
+        ItemTypeFilter.Identity -> listOf(ItemCategory.Identity.value)
+        ItemTypeFilter.Custom -> listOf(
+            ItemCategory.Custom.value,
+            ItemCategory.WifiNetwork.value,
+            ItemCategory.SSHKey.value
+        )
+
+        ItemTypeFilter.All -> null
+    }
+
+    private companion object {
+
+        private const val TAG = "LocalItemDataSourceImpl"
+    }
+}

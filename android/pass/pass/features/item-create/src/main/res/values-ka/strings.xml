@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Actions -->
+  <string name="action_save">შენახვა</string>
+  <string name="action_remove">წაშლა</string>
+  <!-- Create item bottomsheet -->
+  <string name="action_login">შესვლა</string>
+  <string name="action_alias">ფსევდონიმი</string>
+  <string name="action_note">შენიშვნა</string>
+  <string name="action_credit_card">საკრედიტო ბარათი</string>
+  <string name="action_password">პაროლი</string>
+  <string name="action_identity">იდენტობა</string>
+  <string name="action_more">მეტი</string>
+  <string name="item_type_login_description" comment="Subtitle of the Item Type LOGIN in the Create new item bottomsheet">აპისთვის ან საიტისთვის შესვლის დეტალების დამატება</string>
+  <string name="item_type_alias_description" comment="Subtitle of the Item Type ALIAS in the Create new item bottomsheet">მიიღეთ ელფოსტის ფსევდონიმი ახალ აპებზე გამოსაყენებლად</string>
+  <string name="item_type_note_description" comment="Subtitle of the Item Type NOTE in the Create new item bottomsheet">PIN კოდი სადმე საიმედო ადგილას ჩაიწერეთ</string>
+  <string name="item_type_credit_card_description" comment="Subtitle of the Item Type CREDIT CARD in the Create new item bottomsheet">უსაფრთხოდ შეინახეთ თქვენი გადახდის ინფორმაცია</string>
+  <string name="item_type_identity_description" comment="Subtitle of the Item Type IDENTITY in the Create new item bottomsheet">შეავსეთ თქვენი პირადი მონაცემები</string>
+  <string name="item_type_more_description" comment="Subtitle of the Item Type CUSTOM in the Create new item bottomsheet">შეინახეთ WiFi, პასპორტი, SSH ან აირჩიეთ მორგებული</string>
+  <string name="item_type_password_description" comment="Subtitle of the Item Type PASSWORD in the Create new item bottomsheet">უსაფრთხო პაროლის გენერირება</string>
+  <string name="sticky_button_generate_username">მომხმარებლის სახელის გენერაცია</string>
+  <!-- Create Login -->
+  <string name="field_email_title">ელფოსტის მისამართი</string>
+  <string name="field_email_hint">ელფოსტის მისამართის დამატება</string>
+  <string name="field_email_error">არასწორი ელფოსტის მისამართი</string>
+  <string name="field_email_tooltip_title">მომხმარებლის სახელის ველის დამატება</string>
+  <string name="field_email_tooltip_description">დაატყაპუნეთ აქ მომხმარებლის სახელისთვის ველის დასამატებლად.</string>
+  <string name="field_username_title">მომხმარებლის სახელი</string>
+  <string name="field_username_hint">მომხმარებლის სახელის დამატება</string>
+  <string name="field_username_or_email_title">მომხმარებლის სახელი ან ელფოსტის მისამართი</string>
+  <string name="field_username_or_email_hint">დაამატეთ მომხმარებლის სახელი ან ელფოსტის მისამართი</string>
+  <string name="field_password_title">პაროლი</string>
+  <string name="field_password_hint">პაროლის დამატება</string>
+  <string name="field_website_address_title">საიტი</string>
+  <string name="field_website_address_invalid">არასწორი URL</string>
+  <string name="field_website_address_hint">https://</string>
+  <string name="field_website_add_another">დამატება</string>
+  <string name="sticky_button_generate_password" comment="Sticky button on the Create login screen. When tapped, the Generate password bottomsheet is shown">ახალი პაროლის გენერირება</string>
+  <string name="sticky_button_create_alias" comment="Sticky button on the Create login screen. When tapped, the Create alias bottomsheet is shown">Hide my email</string>
+  <string name="sticky_button_use_account_email" comment="Sticky button on the Create login screen. When tapped, the current user email is autofilled">%s-ის გამოყენება</string>
+  <string name="create_login_item_creation_error">შესვლის ჩანაწერის შექმნის შეცდომა</string>
+  <string name="create_login_item_update_error">შესვლის ჩანაწერის განახლების შეცდომა</string>
+  <string name="create_login_init_error">შეცდომა შესვლის დეტალების მიღებისას</string>
+  <string name="create_login_invalid_totp">2FA-ს შემცველობა არასწორია</string>
+  <string name="update_login_attachments_init_error">შესვლაზე მიმაგრებული ფაილების მიღების შეცდომა</string>
+  <string name="login_link_attachments_error">მომხმარებლისთვის ფაილის მიმაგრების ან მოხსნის მცდელობა ჩავარდა</string>
+  <string name="login_rename_attachments_error">შესვლის დეტალებზე მიმაგრებული ფაილების სახელის გადარქმევა ჩავარდა</string>
+  <string name="login_created">შესვლის ჩანაწერი შეიქმნა</string>
+  <string name="bottomsheet_modify_alias_title">ფსევდონიმის ჩასწორება</string>
+  <string name="bottomsheet_custom_field_type_text">ტექსტი</string>
+  <string name="bottomsheet_custom_field_type_hidden">დამალული</string>
+  <string name="bottomsheet_custom_field_type_totp">2FA საიდუმლო გასაღები (TOTP)</string>
+  <string name="bottomsheet_custom_field_type_date">თარიღი</string>
+  <string name="bottomsheet_custom_field_option_edit">სახელის ჩასწორება</string>
+  <string name="bottomsheet_custom_field_option_remove">ველის წაშლა</string>
+  <string name="bottomsheet_custom_field_option_remove_content_description">ხელით მითითებული ველის წაშლა</string>
+  <string name="bottomsheet_custom_section_option_remove">განყოფილების მოცილება</string>
+  <string name="custom_field_hidden_placeholder">ფარული ტექსტის დამატება</string>
+  <string name="custom_field_hidden_icon_content_description">დამალული ხელით მითითებული ველის ხატულა</string>
+  <string name="custom_field_text_placeholder">ტექსტის დამატება</string>
+  <string name="custom_field_date_placeholder">თარიღის დამატება</string>
+  <string name="custom_field_dialog_title">არასტანდარტული ველის სახელი</string>
+  <string name="custom_field_dialog_body">დაარქვით თქვენს მიერ შექმნილ ველს სახელი</string>
+  <string name="custom_field_dialog_placeholder">მაგ: მომხმარებლის ID, PIN-კოდი</string>
+  <string name="custom_section_dialog_title">შეიყვანეთ განყოფილების სათაური</string>
+  <string name="custom_section_dialog_placeholder">სათაური</string>
+  <string name="custom_field_options_content_description">ხელით მითითებული ველის მორგება</string>
+  <!-- Create Note -->
+  <string name="create_note_item_creation_error">შენიშვნის შექმნის შეცდომა</string>
+  <string name="create_note_item_update_error">შენიშვნის განახლების შეცდომა</string>
+  <string name="create_note_init_error">შეცდომა შენიშვნის დეტალების მიღებისას</string>
+  <string name="update_note_attachments_init_error">შენიშვნაზე მიმაგრებული ფაილების მიღების შეცდომა</string>
+  <string name="note_link_attachments_error">შენიშვნისთვის ფაილის მიმაგრების ან მოხსნის მცდელობა ჩავარდა</string>
+  <string name="note_rename_attachments_error">შენიშვნაზე მიმაგრებული ფაილების სახელის გადარქმევა ჩავარდა</string>
+  <string name="note_created">შენიშვნა შეიქმნა</string>
+  <!-- Create Alias -->
+  <string name="field_alias_title">ფსევდონიმის მისამართი</string>
+  <string name="field_mailboxes_creation_title">გადაგზავნა</string>
+  <string name="field_mailboxes_edit_title">გადამისამართება</string>
+  <string name="field_alias_you_are_about_to_create">აპირებთ, შექმნათ</string>
+  <string name="field_alias_prefix">პრეფიქსი</string>
+  <string name="field_alias_suffix">სუფიქსი</string>
+  <string name="alias_bottomsheet_alias_title">ფსევდონიმი</string>
+  <string name="alias_bottomsheet_suffix_title">სუფიქსი</string>
+  <string name="create_alias_item_creation_error">ფსევდონიმის შექმნის შეცდომა</string>
+  <string name="create_alias_cannot_create_more_aliases_error">მეტი ფსევდონიმის დამატება შეუძლებელია</string>
+  <string name="create_alias_email_not_validated_error">თქვენი ელფოსტის გადამოწმების გარეშე ფსევდონიმების შექმნა აკრძალულია</string>
+  <string name="alias_rate_limited">ახლახან, მეტისმეტად, ბევრი ფსევდონიმი შექმენით</string>
+  <string name="create_alias_item_update_error">ფსევდონიმის განახლების შეცდომა</string>
+  <string name="create_alias_init_error">შეცდომა ფსევდონიმის დეტალების მიღებისას</string>
+  <string name="update_alias_attachments_init_error">ფსევდონიმზე მიმაგრებული ფაილების მიღების შეცდომა</string>
+  <string name="alias_link_attachments_error">ფსევდონიმისთვის ფაილის მიმაგრების ან მოხსნის მცდელობა ჩავარდა</string>
+  <string name="alias_rename_attachments_error">ფსევდონიმებზე მიმაგრებული ფაილების სახელის გადარქმევა ჩავარდა</string>
+  <string name="alias_created">ფსევდონიმი შეიქმნა</string>
+  <string name="cannot_retrieve_alias_options">ფსევდონიმის პარამეტების მიღების შეცდომა</string>
+  <string name="alias_mailbox_dialog_title">გადაგზავნა</string>
+  <string name="sl_note_info_title">რა არის SimpleLogin-ის შენიშვნა?</string>
+  <string name="sl_note_info_message_part1" comment="this is the first part of a text compose by this and the following part2 and part3">Pass-ში ელემენტის შენიშვნა ელემენტთან ერთად იშიფრება და, მხოლოდ, მომხმარებლებს, რომლებსაც აქვთ წვდომა ელემენთან, აქვთ წვდომა შენიშვნასთან.</string>
+  <string name="sl_note_info_message_part2">მისი დანახვა Proton-ს ან SimpleLogin-საც კი არ შეუძლიათ.</string>
+  <string name="sl_note_info_message_part3">SimpleLogin-ის შენიშვნა შენახულია მისამართის ფსევდონიმთან ერთად ერთსა და იმავე ადგილას და მიუხედავად იმისა, რომ დაცულია დაშიფვრით, არ არის გამჭოლად დაშიფრული, რაც ნიშნავს, რომ ნებისმიერს, ვისაც აქვს წვდომა SimpleLogin-ის მონაცემთა ბაზაზე, შეუძლია მისი წაკითხვა.</string>
+  <string name="sl_note_info_content_description">SL-ის შენიშვნის ინფორმაციის დიალოგის ჩვენება</string>
+  <!-- Create note -->
+  <string name="note_hint">შენიშვნა</string>
+  <!-- Create Credit Card -->
+  <string name="field_cardholder_name_title">სახელი ბარათზე</string>
+  <string name="field_cardholder_name_hint">სრული სახელი</string>
+  <string name="field_card_number_title">ბარათის ნომერი</string>
+  <string name="field_card_number_hint">1234 1234 1234 1234</string>
+  <string name="field_card_cvv_title">უსაფრთხოების კოდი</string>
+  <string name="field_card_cvv_hint">123</string>
+  <string name="field_card_pin_title">PIN-კოდი</string>
+  <string name="field_card_pin_hint">123456</string>
+  <string name="field_card_expiration_date_title">ვადის ამოწურვის თარიღი</string>
+  <string name="field_card_expiration_date_hint">თთ/წწ</string>
+  <string name="field_card_expiration_date_error">შეიყვანეთ სწორი თარიღი თთ/წწ ფორმატში</string>
+  <string name="create_credit_card_item_creation_error">საკრედიტო ბარათის შექმნის შეცდომა</string>
+  <string name="create_credit_card_item_creation_success">საკრედიტო ბარათი შეიქმნა</string>
+  <string name="credit_card_init_error">შეცდომა საკრედიტო ბარათის დეტალების მიღებისას</string>
+  <string name="update_credit_card_attachments_init_error">საკრედიტო ბარათზე მმაგრებული ფაილების მიღების შეცდომა</string>
+  <string name="credit_card_link_attachments_error">საკრედიტო ბარათისთვის ფაილის მიმაგრების ან მოხსნის მცდელობა ჩავარდა</string>
+  <string name="credit_card_rename_attachments_error">საკრედიტო ბარათზე მიმაგრებული ფაილების სახელის გადარქმევა ჩავარდა</string>
+  <string name="credit_card_item_update_error">საკრედიტო ბარათის განახლების შეცდომა</string>
+  <!-- Create Identity -->
+  <string name="identity_field_full_name_title">სრული სახელი</string>
+  <string name="identity_field_email_title">ელფოსტა</string>
+  <string name="identity_field_phone_number_title">ტელეფონის ნომერი</string>
+  <string name="identity_field_organization_title">ორგანიზაცია</string>
+  <string name="identity_field_street_address_title">მისამართი, საფოსტო ყუთი</string>
+  <string name="identity_field_zip_or_postal_code_title">Zip ან საფოსტო კოდი</string>
+  <string name="identity_field_city_title">ქალაქი</string>
+  <string name="identity_field_state_or_province_title">შტატი ან პროვინცია</string>
+  <string name="identity_field_country_or_region_title">ქვეყანა ან რეგიონი</string>
+  <string name="identity_field_social_security_number_title">სოციალური უსაფრთხოების ნომერი</string>
+  <string name="identity_field_passport_number_title">პასპორტის ნომერი</string>
+  <string name="identity_field_license_number_title">ლიცენზიის ნომერი</string>
+  <string name="identity_field_website_title">საიტი</string>
+  <string name="identity_field_xhandle_title">X-ის პროფილი</string>
+  <string name="identity_field_company_title">კომპანია</string>
+  <string name="identity_field_job_title_title">ვაკანსიის დასახელება</string>
+  <string name="identity_field_first_name_title">სახელი</string>
+  <string name="identity_field_last_name_title">გვარი</string>
+  <string name="identity_field_middle_name_title">მამის / მეორე სახელი</string>
+  <string name="identity_field_birthdate_title">დაბადების თარიღი</string>
+  <string name="identity_field_gender_title">სქესი</string>
+  <string name="identity_field_floor_title">სართული</string>
+  <string name="identity_field_county_title">ქვეყანა</string>
+  <string name="identity_field_linkedin_title">Linkedin</string>
+  <string name="identity_field_reddit_title">Reddit-ის მომხმარებლის სახელი</string>
+  <string name="identity_field_facebook_title">Facebook URL</string>
+  <string name="identity_field_yahoo_title">Yahoo-ის მომხმარებლის სახელი</string>
+  <string name="identity_field_instagram_title">Instagram-ის მომხმარებლის სახელი</string>
+  <string name="identity_field_personal_website_title">პირადი ვებგვერდის URL</string>
+  <string name="identity_field_work_phone_number_title">სამსახურის ტელეფონის ნომერი</string>
+  <string name="identity_field_work_email_title">სამსახურის ელფოსტის მისამართი</string>
+  <string name="identity_add_field_first_name">სახელი</string>
+  <string name="identity_add_field_middle_name">მამის / მეორე სახელი</string>
+  <string name="identity_add_field_last_name">გვარი</string>
+  <string name="identity_add_field_birthdate">დაბადების თარიღი</string>
+  <string name="identity_add_field_gender">სქესი</string>
+  <string name="identity_add_field_floor">სართული</string>
+  <string name="identity_add_field_county">ქვეყანა</string>
+  <string name="identity_add_field_linkedin">Linkedin</string>
+  <string name="identity_add_field_reddit">Reddit-ის მომხმარებლის სახელი</string>
+  <string name="identity_add_field_facebook">Facebook URL</string>
+  <string name="identity_add_field_yahoo">Yahoo-ის მომხმარებლის სახელი</string>
+  <string name="identity_add_field_instagram">Instagram-ის მომხმარებლის სახელი</string>
+  <string name="identity_add_field_personal_website">პირადი ვებგვერდის URL</string>
+  <string name="identity_add_field_work_phone_number">სამსახურის ტელეფონის ნომერი</string>
+  <string name="identity_add_field_work_email_address">სამსახურის ელფოსტის მისამართი</string>
+  <string name="identity_add_field_custom_field">მომხმარებლის ველი</string>
+  <string name="identity_section_personal_details">პირადი ინფორმაცია</string>
+  <string name="identity_section_address_details">მისამართის დეტალები</string>
+  <string name="identity_section_contact_details">კონტაქტის დეტალები</string>
+  <string name="identity_section_work_details">სამსახურის დეტალები</string>
+  <string name="identity_bottomsheet_add_field">ველის დამატება</string>
+  <string name="create_identity_init_error">შეცდომა იდენტიფიკატორის დეტალების მიღებისას</string>
+  <string name="update_identity_attachments_init_error">იდენტიფიკატორზე მიმაგრებული ფაილების მიღების შეცდომა</string>
+  <string name="identity_link_attachments_error">იდენტიფიკატორისთვის ფაილის მიმაგრების ან მოხსნის მცდელობა ჩავარდა</string>
+  <string name="identity_rename_attachments_error">იდენტიფიკატორზე მიმაგრებული ფაილების სახელის გადარქმევა ჩავარდა</string>
+  <string name="create_identity_item_creation_error">იდენტიფიკატორის შექმნა შეუძლებელია</string>
+  <string name="create_identity_item_creation_success">იდენტიფიკატორი შეიცვალა</string>
+  <string name="update_identity_item_creation_success">იდენტიფიკატორი განახლდა</string>
+  <string name="update_identity_item_creation_error">იდენტიფიკატორის განახლება შეუძლებელია</string>
+  <!--  Common create items  -->
+  <string name="title_create">შექმნა</string>
+  <string name="title_duplicate" comment="Default title when duplicating an item. Placeholder is the title of the item being duplicated.">%s (დაკოპირდა)</string>
+  <string name="changes_saved">ცვლილებები შენახულია</string>
+  <!--  TOTP  -->
+  <string name="totp_create_login_field_title">2FA საიდუმლო გასაღები (TOTP)</string>
+  <string name="totp_create_login_field_invalid">არასწორი 2FA საიდუმლო გასაღები (TOTP)</string>
+  <string name="totp_create_login_field_placeholder">2FA საიდუმლო გასაღების (TOTP) დამატება</string>
+  <string name="close_scree_icon_content_description">ეკრანის დახურვის ღილაკი</string>
+  <string name="totp_paste_code_action">კოდის ჩასმა</string>
+  <string name="totp_scan_code_action">კოდის სკანირება</string>
+  <string name="camera_permission_explanation">ამ ფუნქციას კამერასთან წვდომა სჭირდება.</string>
+  <string name="camera_permission_open_settings">მორგების ფანჯრის გახსნა</string>
+  <!--  TOTP limit  -->
+  <string name="mfa_limit_reached">მიღწეულია 2FA-ის ლიმიტი</string>
+  <string name="upgrade">გაუმჯობესება</string>
+  <string name="mfa_icon_content_description">2FA-ის ხატულა</string>
+  <string name="create_alias_content_limit_banner">მიაღწიეთ შესაძლო ფსევდონიმების რაოდენობს ზღვარს. სატარიფო გეგმის აწევის შემთხვევაში ფსევდონიმების რაოდენობა უსაზღვროა.</string>
+  <string name="snackbar_update_app_to_update_item" comment="This message will appear to users that try to update an item that needs a newer version of the app to do so">ამ ელემენტის ჩასასწორებლად აუცილებელია აპი განაახლოთ</string>
+  <string name="remove_passkey_dialog_title">წავშალო ეს წვდომის გასაღები?</string>
+  <string name="remove_passkey_dialog_body" comment="Body of the dialog that asks the user if they want to remove the passkey for an item. Placeholder 1 is the username (such as my_user). Placeholder 2 is the domain (such as google.com)">მართლა გნებავთ, წაშალოთ მომხმარებლის \'%1$s\' წვდომის გასაღები ელემენტისთვის \'%2$s\'?</string>
+  <!-- Attachments -->
+  <string name="banner_title_attachments">მიმაგრებული ფაილები</string>
+  <string name="banner_body_attachments">უკეთესად ორგანიზმებისთვის ელემენტებს, შეგიძლიათ, ფაილები მიამაგროთ</string>
+  <string name="open_with">გახსნა პროგრამით:</string>
+  <string name="banner_advanced_options_title">იცოდით?</string>
+  <string name="banner_advanced_options_subtitle">დაატყაპუნეთ კბილანას ხატულაზე, რომ მოირგოთ ფსევდონიმი თქვენი სურვილისამებრ.</string>
+  <string name="banner_custom_domain_title">იცოდით?</string>
+  <string name="banner_custom_domain_subtitle">თქვენი დომენის დამატების შემდეგ შეგეძლებათ, hi@my-domain.com-ის მსგავსი ფსევდონიმები შექმნათ.</string>
+  <string name="banner_custom_domain_button">დომენის დამატება</string>
+  <string name="banner_mailbox_title">იცოდით?</string>
+  <string name="banner_mailbox_subtitle">გაუზარეთ ფსევდონიმების სხვებს მათი საფოსტო ყუთის თქვენს დამატებთად დამატებით.</string>
+  <string name="banner_mailbox_button">საფოსტო ყუთის დამატება</string>
+  <!-- Suffix -->
+  <string name="suffix_subtitle_premium_domain">ფასიანი დომენი</string>
+  <string name="suffix_subtitle_public_domain">საყოველთაო კუთვნილება</string>
+  <string name="suffix_subtitle_private_domain">თქვენი დომენი</string>
+  <!-- Templates -->
+  <string name="template_item_api_credential">API-ის ავტორიზაციის დეტალები</string>
+  <string name="template_item_database">მონაცემთა ბაზა</string>
+  <string name="template_item_server">სერვერი</string>
+  <string name="template_item_software_license">პროგრამული უზრუნველყოფის ლიცენზია</string>
+  <string name="template_item_ssh_key">SSH გასაღები</string>
+  <string name="template_item_wifi_network">WiFi ქსელი</string>
+  <string name="template_item_bank_account">საბანკო ანგარიში</string>
+  <string name="template_item_crypto_wallet">კრიპტო საფულე</string>
+  <string name="template_item_driver_license">მართვის მოწმობა</string>
+  <string name="template_item_medical_record">სამედიცინო ჩანაწერი</string>
+  <string name="template_item_membership">წევრობა</string>
+  <string name="template_item_passport">პასპორტი</string>
+  <string name="template_item_reward_program">დაჯილდოების პროგრამა</string>
+  <string name="template_item_social_security_number">სოციალური უსაფრთხოების ნომერი</string>
+  <!-- API Credential Fields -->
+  <string name="template_api_credential_field_api_key">API-ის გასაღები</string>
+  <string name="template_api_credential_field_secret">საიდუმლო</string>
+  <string name="template_api_credential_field_expiry_date">ვადის ამოწურვის თარიღი</string>
+  <string name="template_api_credential_field_permissions">წვდომები</string>
+  <!-- Database Fields -->
+  <string name="template_database_field_host">ჰოსტი</string>
+  <string name="template_database_field_port">პორტი</string>
+  <string name="template_database_field_username">მომხმარებლის სახელი</string>
+  <string name="template_database_field_password">პაროლი</string>
+  <string name="template_database_field_database_type">მონაცემთა ბაზის ტიპი</string>
+  <!-- Server Fields -->
+  <string name="template_server_field_ip_address">IP მისამართი</string>
+  <string name="template_server_field_hostname">ჰოსტის სახელი</string>
+  <string name="template_server_field_os">ოპერაციული სისტემა</string>
+  <string name="template_server_field_username">მომხმარებლის სახელი</string>
+  <string name="template_server_field_password">პაროლი</string>
+  <!-- Software License Fields -->
+  <string name="template_software_license_field_license_key">ლიცენზიის გასაღები</string>
+  <string name="template_software_license_field_product">პროდუქტი</string>
+  <string name="template_software_license_field_expiry_date">ვადის ამოწურვის თარიღი</string>
+  <string name="template_software_license_field_owner">მფლობელი</string>
+  <!-- SSH Key Fields -->
+  <string name="template_ssh_key_field_private_key">პირადი გასაღები</string>
+  <string name="template_ssh_key_field_public_key">საჯარო გასაღები</string>
+  <string name="template_ssh_key_field_username">მომხმარებლის სახელი</string>
+  <string name="template_ssh_key_field_host">ჰოსტი</string>
+  <!-- SSH Key Generation -->
+  <string name="ssh_key_generate_button">გენერაცია</string>
+  <string name="ssh_key_type_ed25519">Ed25519</string>
+  <string name="ssh_key_type_rsa_2048">RSA-2048</string>
+  <string name="ssh_key_type_rsa_4096">RSA-4096</string>
+  <string name="ssh_key_generation_error">SSH გასაღების გენერაცია ჩავარდა</string>
+  <!-- WiFi Network Fields -->
+  <string name="template_wifi_network_field_name">სახელი (SSID)</string>
+  <!-- Bank Account Fields -->
+  <string name="template_bank_account_field_bank_name">ბანკის სახელი</string>
+  <string name="template_bank_account_field_account_number">ანგარიშის ნომერი</string>
+  <string name="template_bank_account_field_routing_number">რაუტინგის ნომერი</string>
+  <string name="template_bank_account_field_account_type">ანგარიშის ტიპი</string>
+  <string name="template_bank_account_field_iban">IBAN</string>
+  <string name="template_bank_account_field_swift_bic">SWIFT/BIC</string>
+  <string name="template_bank_account_field_holder_name">მფლობელის სახელი</string>
+  <!-- Crypto Wallet Fields -->
+  <string name="template_crypto_wallet_field_wallet_name">საფულის სახელი</string>
+  <string name="template_crypto_wallet_field_address">მისამართი</string>
+  <string name="template_crypto_wallet_field_private_key">პირადი გასაღები</string>
+  <string name="template_crypto_wallet_field_seed_phrase">Seed-ფრაზა</string>
+  <string name="template_crypto_wallet_field_network">ქსელი</string>
+  <!-- Driver License Fields -->
+  <string name="template_driver_license_field_full_name">სახელი და გვარი</string>
+  <string name="template_driver_license_field_license_number">ლიცენზიის ნომერი</string>
+  <string name="template_driver_license_field_issuing_state_country">გამომცენელი შტატი/ქვეყანა</string>
+  <string name="template_driver_license_field_expiry_date">ვადის ამოწურვის თარიღი</string>
+  <string name="template_driver_license_field_date_of_birth">დაბადების თარიღი</string>
+  <string name="template_driver_license_field_class">კლასი</string>
+  <!-- Medical Record Fields -->
+  <string name="template_medical_record_field_patient_name">პაციენტის სახელი</string>
+  <string name="template_medical_record_field_record_number">ჩანაწერის ნომერი</string>
+  <string name="template_medical_record_field_medical_conditions">სამედიცინო პირობები</string>
+  <string name="template_medical_record_field_medications">მედიკამენტები</string>
+  <string name="template_medical_record_field_doctor">ექიმი</string>
+  <string name="template_medical_record_field_hospital">საავადმყოფო</string>
+  <!-- Membership Fields -->
+  <string name="template_membership_field_organization_name">ორგანიზაციის სახელი</string>
+  <string name="template_membership_field_membership_id">წევრობის ID</string>
+  <string name="template_membership_field_member_name">წევრის სახელი</string>
+  <string name="template_membership_field_expiry_date">ვადის ამოწურვის თარიღი</string>
+  <string name="template_membership_field_tier_level">დონე</string>
+  <!-- Passport Fields -->
+  <string name="template_passport_field_full_name">სახელი და გვარი</string>
+  <string name="template_passport_field_passport_number">პასპორტის ნომერი</string>
+  <string name="template_passport_field_country">ქვეყანა</string>
+  <string name="template_passport_field_expiry_date">ვადის ამოწურვის თარიღი</string>
+  <string name="template_passport_field_date_of_birth">დაბადების თარიღი</string>
+  <string name="template_passport_field_issuing_authority">გამცემი ორგანო</string>
+  <!-- Reward Program Fields -->
+  <string name="template_reward_program_field_program_name">პროგრამის სახელი</string>
+  <string name="template_reward_program_field_member_id">წევრის ID</string>
+  <string name="template_reward_program_field_points_balance">ქულების ბალანსი</string>
+  <string name="template_reward_program_field_expiry_date">ვადის ამოწურვის თარიღი</string>
+  <string name="template_reward_program_field_tier_status">დონე/სტატუსი</string>
+  <!-- Social Security Number Fields -->
+  <string name="template_social_security_number_field_full_name">სახელი და გვარი</string>
+  <string name="template_social_security_number_field_ssn">სოციალური უსაფრთხოების ნომერი</string>
+  <string name="template_social_security_number_field_issuing_country">გამომცემელი ქვეყანა</string>
+  <string name="template_header_technology">ტექნოლოგია</string>
+  <string name="template_header_finance">ფინანსები</string>
+  <string name="template_header_title_personal">პირადი</string>
+  <string name="button_start_from_scratch">ნულიდან დაწყება</string>
+  <string name="select_template_title">მომხმარებლის ელემენტი</string>
+  <!-- Custom item screen -->
+  <string name="add_custom_field_button">ველის დამატება</string>
+  <string name="add_section_button">სექციის დამატება</string>
+  <string name="add_public_key_placeholder">საჯარო გასაღების დამატება</string>
+  <string name="add_private_key_placeholder">პირადი გასაღების დამატება</string>
+  <string name="add_ssid_name_placeholder">სახელის (SSID) დამატება</string>
+  <string name="create_custom_item_init_error">შეცდომა მორგებული ელემენტის დეტალების მიღებისას</string>
+  <string name="update_custom_item_attachments_init_error">შეცდომა მორგებული ელემენტზე მიმაგრებული ფაილების მიღებისას</string>
+  <string name="custom_item_link_attachments_error">მორგებული ელემენტისთვის ფაილის მიმაგრების ან მოხსნის მცდელობა ჩავარდა</string>
+  <string name="custom_item_rename_attachments_error">მიმაგრებული მორგებული ელემენტის სახელის გადარქმევა ჩავარდა</string>
+  <string name="create_custom_item_item_creation_error">მორგებული ელემენტის შექმნა შეუძლებელია</string>
+  <string name="create_custom_item_item_creation_success">მორგებული ელემენტი შეიქმნა</string>
+  <string name="update_custom_item_item_creation_success">მორგებული ელემენტი განახლდა</string>
+  <string name="update_custom_item_item_creation_error">მორგებული ელემენტის განახლება შეუძლებელია</string>
+  <!-- Cannot create items dialog -->
+  <string name="cannot_create_items_dialog_title">ელემენტების შექმნა შეუძლებელია</string>
+  <string name="cannot_create_items_dialog_message">თქვენ არ გაქვს საცავები ჩასწორების, ან ადმინისტრირების უფლებებით. სცადეთ, შექმნათ ის მთავარ აპში, ან სთხოვეთ თქვენი ორგანიზაციის ადმინისტრატორს, დაგეხმაროთ.</string>
+  <string name="wifi_security_type_field_label">უსაფრთხოების ტიპი</string>
+  <string name="functionality_not_available">ეს ფუნქციონალი თქვენი მოწყობილობისთვის მხარდაჭერილი არაა.</string>
+  <!-- Autofill URL suggestions screen -->
+  <string name="autofill_suggestions_title">URL-ის დამთხვევა</string>
+  <string name="autofill_suggestions_description">მოირგეთ ავტოშევსების ქცევა, რომ შეცვალოთ, სად ხდება ავტორიზაციის დეტალების შეთავაზება და შევსება %s-ისთვის.</string>
+  <string name="autofill_suggestions_tab_basic">საბაზისო</string>
+  <string name="autofill_suggestions_tab_advanced">დამატებით</string>
+  <string name="autofill_suggestions_mode_default">მშობელი დომენი და ქვედომენები</string>
+  <string name="autofill_suggestions_mode_exact">ზუსტი (ქვე)დომენი</string>
+  <string name="autofill_suggestions_mode_never">არასდროს შეავსო ამ ვებსაიტზე</string>
+  <string name="autofill_suggestions_mode_start_with">იწყება რით</string>
+  <string name="autofill_suggestions_mode_pattern">Wildcard pattern</string>
+  <string name="autofill_suggestions_mode_regular_expression">რეგულარული გამოსახულება</string>
+  <string name="autofill_suggestions_mode_exact_path">ზუსტი URL-ის დამთხვევა</string>
+  <string name="autofill_suggestions_android_limitation">დამატებითი წესები Android-ზე ხელმისაწვდომი არაა ოპერაციული სისტემის API-ების შეზღუდვების გამო.</string>
+  <string name="autofill_suggestions_mode_default_badge">ნაგულისხმევი</string>
+  <string name="autofill_suggestions_url_column">URL</string>
+  <string name="autofill_suggestions_suggested_column">გთავაზობთ</string>
+  <string name="field_website_skipped_autofill">ეს url ავტოშევსებისთვის გამოტოვებული იქნება</string>
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="other">Chuyển %d nội dung vào kho lưu trữ này?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="other">Move %d items to the following folder?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Di chuyển</string>
+  <string name="migrate_item_success_snackbar">Đã di chuyển nội dung</string>
+  <string name="migrate_item_error_snackbar">Lỗi khi di chuyển nội dung</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Lỗi khi di chuyển một số nội dung</string>
+  <string name="migrate_item_warning_history">Khi di chuyển nội dung giữa các két sắt, chúng tôi chỉ giữ lại 50 phiên bản gần nhất của từng nội dung.</string>
+  <string name="migrate_item_warning_secure_link">Các đường liên kết an toàn của mục sẽ bị xóa khi được chuyển sang một két sắt khác</string>
+  <string name="migrate_all_items_success_snackbar">Đã chuyển tất cả nội dung</string>
+  <string name="migrate_all_items_error_snackbar">Lỗi khi di chuyển tất cả các mục của két sắt</string>
+  <string name="migrate_init_error_snackbar">Không thể chuẩn bị màn hình chuyển</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Move folder to the following vault?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Move folder to the following folder?</string>
+  <string name="migrate_folder_success_snackbar">Folder moved</string>
+  <string name="migrate_folder_error_snackbar">Error moving the folder</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Folder is already in this location</string>
+  <string name="migrate_dissolve_folder_dialog_title">Move folder contents</string>
+  <string name="migrate_dissolve_folder_dialog_message">This folder is already at the vault root. Its items and subfolders will be moved to the vault root.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Di chuyển</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">This folder is already in this location</string>
+  <string name="migrate_disabled_folder_reason_being_moved">This folder is being moved</string>
+  <string name="migrate_disabled_folder_reason_descendant">This folder is inside the folder being moved</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Moving here would exceed the folder limits</string>
+  <string name="migrate_disabled_vault_reason_no_permission">Bạn không thể tạo nội dung trong két sắt này</string>
+  <string name="migrate_disabled_vault_reason_same_vault">Bạn không thể di chuyển mục vào cùng két sắt</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="other">Move %d items to another vault?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Mục này hiện đang được chia sẻ. Việc di chuyển mục này sang kho lưu trữ khác sẽ xóa quyền truy cập của tất cả người dùng còn lại.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="other">%d items are currently shared. Moving them to another vault will remove access for all other users.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Chọn một két sắt</string>
+  <string name="migrate_select_destination_for_source_title">Select the destination to move all items from %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Đã di chuyển nội dung</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Lỗi khi di chuyển nội dung</string>
+</resources>

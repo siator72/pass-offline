@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title">Konto</string>
+  <string name="account_recovery_title">Kontowiederherstellung</string>
+  <string name="account_username_label">Benutzername</string>
+  <string name="account_subscription_label">Abonnement</string>
+  <string name="account_permanently_delete_warning">Dadurch wird dein Konto und alle zugehörigen Daten dauerhaft gelöscht. Dieses Konto kann dann nicht mehr reaktiviert werden.</string>
+  <string name="account_delete_account">Konto löschen</string>
+  <string name="account_delete_account_icon_content_description">Schaltfläche \"Konto löschen\"</string>
+  <string name="account_sign_out">Abmelden</string>
+  <string name="account_sign_out_icon_content_description">Schaltfläche \"Abmelden\"</string>
+  <string name="account_manage_account">Konto verwalten</string>
+  <string name="account_manage_account_icon_content_description">Schaltfläche \"Konto verwalten\"</string>
+  <string name="account_manage_subscription">Abonnement verwalten</string>
+  <string name="account_get_user_info_error">Benutzerinformationen konnten nicht abgerufen werden.</string>
+  <string name="manage_subscription_icon_content_description">Schaltfläche \"Abonnement verwalten\"</string>
+  <string name="account_settings_list_item_password_header">Passwort ändern</string>
+  <string name="account_settings_list_item_recovery_header">Wiederherstellungs-E-Mail-Adresse</string>
+  <string name="account_settings_list_item_security_keys">Sicherheitsschlüssel</string>
+  <string name="account_settings_list_item_recovery_hint_not_set">Nicht festgelegt</string>
+  <string name="account_settings_list_item_password_hint_grace">Passwortzurücksetzung ausstehend</string>
+  <string name="account_settings_list_item_password_hint_insecure">Passwortzurücksetzung bereit</string>
+  <string name="account_settings_list_item_extra_password_header">Zusätzliches Passwort für Proton Pass</string>
+  <string name="account_settings_list_item_extra_password_header_set">Zusätzliches Passwort für Proton Pass festlegen</string>
+  <string name="account_settings_list_item_extra_password_active">Aktiv</string>
+  <string name="account_settings_list_item_extra_password_description">Das zusätzliche Passwort wird für die Verwendung von Pass benötigt. Es dient als zusätzliches Passwort zu deinem Proton-Passwort.</string>
+  <string name="account_settings_list_item_security_keys_hint_not_set">Nicht festgelegt</string>
+  <string name="account_settings_list_item_security_keys_hint_single">%s</string>
+  <plurals name="account_settings_list_item_security_keys_hint_many">
+    <item quantity="one">%d Sicherheitsschlüssel festgelegt</item>
+    <item quantity="other">%d Sicherheitsschlüssel festgelegt</item>
+  </plurals>
+</resources>

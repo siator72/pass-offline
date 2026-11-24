@@ -1,0 +1,588 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.db.dao
+
+import androidx.paging.PagingSource
+import androidx.room.ColumnInfo
+import androidx.room.Dao
+import androidx.room.Embedded
+import androidx.room.Query
+import androidx.room.Transaction
+import kotlinx.coroutines.flow.Flow
+import me.proton.core.crypto.common.keystore.EncryptedString
+import me.proton.core.data.room.db.BaseDao
+import proton.android.pass.data.impl.db.entities.FolderEntity
+import proton.android.pass.data.impl.db.entities.ItemEntity
+import proton.android.pass.data.impl.db.entities.SearchEntryEntity
+import proton.android.pass.data.impl.db.entities.ShareEntity
+import proton.android.pass.data.impl.local.SlNoteUpdate
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ItemStateValues
+import proton.android.pass.domain.ShareId
+
+data class SummaryRow(
+    val itemKind: Int,
+    val itemCount: Long,
+    val shareId: String
+)
+
+data class ShareItemCountRow(
+    val shareId: String,
+    val activeItemCount: Long,
+    val trashedItemCount: Long
+)
+
+data class ShareIdCountRow(
+    val itemCount: Int,
+    val shareId: String
+)
+
+data class FolderItemCountRow(
+    val folderId: String,
+    val itemCount: Long
+)
+
+data class ItemEntityWithRowId(
+    @Embedded val item: ItemEntity,
+    @ColumnInfo(name = "rowid") val rowId: Long
+)
+
+@Dao
+@Suppress("TooManyFunctions")
+abstract class ItemsDao : BaseDao<ItemEntity>() {
+
+    @Suppress("LongParameterList")
+    @Query(
+        """
+        SELECT * FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+          AND (NOT :applyItemIds OR ${ItemEntity.Columns.ID} IN (:itemIds))
+          AND (NOT :applyItemTypes OR ${ItemEntity.Columns.ITEM_TYPE} IN (:itemTypes))
+          AND (:itemState IS NULL OR ${ItemEntity.Columns.STATE} = :itemState)
+          AND (:setFlags IS NULL OR (flags & :setFlags) == :setFlags)
+          AND (:clearFlags IS NULL OR (flags & :clearFlags) == 0)
+          AND (:anyFlags IS NULL OR (flags & :anyFlags) != 0)
+          AND (:isPinned IS NULL OR ${ItemEntity.Columns.IS_PINNED} = :isPinned)
+          AND (:hasTotp IS NULL OR ${ItemEntity.Columns.HAS_TOTP} = :hasTotp)
+          AND (:hasPasskeys IS NULL OR ${ItemEntity.Columns.HAS_PASSKEYS} = :hasPasskeys)
+          AND (NOT :onlyDirectItems OR ${ItemEntity.Columns.FOLDER_ID} IS NULL)
+        ORDER BY ${ItemEntity.Columns.CREATE_TIME} DESC
+        """
+    )
+    abstract fun observeItems(
+        userId: String,
+        shareIds: List<String>,
+        itemIds: List<String>?,
+        applyItemIds: Boolean,
+        itemTypes: List<Int>?,
+        applyItemTypes: Boolean,
+        itemState: Int?,
+        isPinned: Boolean?,
+        hasTotp: Boolean?,
+        hasPasskeys: Boolean?,
+        setFlags: Int?,
+        clearFlags: Int?,
+        anyFlags: Int?,
+        onlyDirectItems: Boolean = false
+    ): Flow<List<ItemEntity>>
+
+    @Query(
+        """
+        SELECT *, rowid AS rowid FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+          AND ${ItemEntity.Columns.STATE} = :itemState
+          AND rowid > :afterRowId
+        ORDER BY rowid ASC
+        LIMIT :limit
+        """
+    )
+    abstract suspend fun getItemsPageForIndex(
+        userId: String,
+        shareIds: List<String>,
+        itemState: Int,
+        afterRowId: Long,
+        limit: Int
+    ): List<ItemEntityWithRowId>
+
+    @Query(
+        """
+        SELECT *, rowid AS rowid FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} = :shareId
+          AND ${ItemEntity.Columns.ITEM_TYPE} = :itemType
+          AND ${ItemEntity.Columns.STATE} = :itemState
+          AND rowid > :afterRowId
+        ORDER BY rowid ASC
+        LIMIT :limit
+        """
+    )
+    @Suppress("LongParameterList")
+    abstract suspend fun getItemsPageForShareAndType(
+        userId: String,
+        shareId: String,
+        itemType: Int,
+        itemState: Int,
+        afterRowId: Long,
+        limit: Int
+    ): List<ItemEntityWithRowId>
+
+    @Query(
+        """
+        SELECT COUNT(*) FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+          AND ${ItemEntity.Columns.STATE} = :itemState
+        """
+    )
+    abstract suspend fun countItemsForIndex(
+        userId: String,
+        shareIds: List<String>,
+        itemState: Int
+    ): Int
+
+    @Suppress("LongParameterList")
+    @Query(
+        """
+        SELECT * FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+          AND (NOT :applyItemIds OR ${ItemEntity.Columns.ID} IN (:itemIds))
+          AND (NOT :applyItemTypes OR ${ItemEntity.Columns.ITEM_TYPE} IN (:itemTypes))
+          AND (:itemState IS NULL OR ${ItemEntity.Columns.STATE} = :itemState)
+          AND (:setFlags IS NULL OR (flags & :setFlags) == :setFlags)
+          AND (:clearFlags IS NULL OR (flags & :clearFlags) == 0)
+          AND (:isPinned IS NULL OR ${ItemEntity.Columns.IS_PINNED} = :isPinned)
+          AND (:hasTotp IS NULL OR ${ItemEntity.Columns.HAS_TOTP} = :hasTotp)
+          AND (:hasPasskeys IS NULL OR ${ItemEntity.Columns.HAS_PASSKEYS} = :hasPasskeys)
+        ORDER BY ${ItemEntity.Columns.CREATE_TIME} DESC
+        """
+    )
+    abstract fun observeItemsPaging(
+        userId: String,
+        shareIds: List<String>,
+        itemIds: List<String>?,
+        applyItemIds: Boolean,
+        itemTypes: List<Int>?,
+        applyItemTypes: Boolean,
+        itemState: Int?,
+        isPinned: Boolean?,
+        hasTotp: Boolean?,
+        hasPasskeys: Boolean?,
+        setFlags: Int?,
+        clearFlags: Int?
+    ): PagingSource<Int, ItemEntity>
+
+    @Query(
+        """
+        SELECT * FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} = :shareId
+          AND ${ItemEntity.Columns.ID} = :itemId
+        """
+    )
+    abstract fun observeById(
+        userId: String,
+        shareId: String,
+        itemId: String
+    ): Flow<ItemEntity?>
+
+    @Query(
+        """
+        SELECT * FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} = :shareId
+          AND ${ItemEntity.Columns.ID} IN (:itemIds)
+        """
+    )
+    abstract suspend fun getByIds(
+        userId: String,
+        shareId: String,
+        itemIds: List<String>
+    ): List<ItemEntity>
+
+    /**
+     * Fetch multiple items across different shares in a single query.
+     * @param shareItemKeys List of "shareId-itemId" concatenated keys
+     */
+    @Query(
+        """
+        SELECT * FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND (${ItemEntity.Columns.SHARE_ID} || '-' || ${ItemEntity.Columns.ID}) IN (:shareItemKeys)
+        """
+    )
+    abstract suspend fun getByShareItemKeys(userId: String, shareItemKeys: List<String>): List<ItemEntity>
+
+    @Query(
+        """
+        UPDATE ${ItemEntity.TABLE}
+        SET ${ItemEntity.Columns.STATE} = :state
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} = :shareId
+          AND ${ItemEntity.Columns.ID} IN (:itemIds)
+        """
+    )
+    abstract suspend fun setItemState(
+        userId: String,
+        shareId: String,
+        itemIds: List<String>,
+        state: Int
+    )
+
+    @Query(
+        """
+        DELETE FROM ${ItemEntity.TABLE} 
+        WHERE  ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} = :shareId
+          AND ${ItemEntity.Columns.ID} IN (:itemIds)
+        """
+    )
+    abstract suspend fun delete(
+        userId: String,
+        shareId: String,
+        itemIds: List<String>
+    ): Int
+
+    @Query(
+        """
+        SELECT COUNT(*)
+        FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+        """
+    )
+    abstract suspend fun countItems(userId: String, shareIds: List<String>): Int
+
+    @Query(
+        """
+        SELECT
+            ${ItemEntity.Columns.SHARE_ID} as shareId,
+            ${ItemEntity.Columns.ITEM_TYPE} as itemKind,
+            COUNT(${ItemEntity.Columns.ITEM_TYPE}) as itemCount
+        FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+          AND (:itemState IS NULL OR ${ItemEntity.Columns.STATE} = :itemState)
+          AND (:onlyShared = 0 OR ${ItemEntity.Columns.SHARE_COUNT} > 0)
+          AND (:restrictToRootFolder = 0 OR ${ItemEntity.Columns.FOLDER_ID} IS NULL)
+        GROUP BY ${ItemEntity.Columns.SHARE_ID}, ${ItemEntity.Columns.ITEM_TYPE}
+        """
+    )
+    abstract fun itemSummary(
+        userId: String,
+        shareIds: List<String>,
+        itemState: Int?,
+        onlyShared: Boolean,
+        restrictToRootFolder: Boolean
+    ): Flow<List<SummaryRow>>
+
+    @Query(
+        """
+        SELECT
+            ${ItemEntity.Columns.SHARE_ID} as shareId,
+            ${ItemEntity.Columns.ITEM_TYPE} as itemKind,
+            COUNT(${ItemEntity.Columns.ITEM_TYPE}) as itemCount
+        FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+          AND ${ItemEntity.Columns.FOLDER_ID} = :folderId
+          AND (:itemState IS NULL OR ${ItemEntity.Columns.STATE} = :itemState)
+          AND (:onlyShared = 0 OR ${ItemEntity.Columns.SHARE_COUNT} > 0)
+        GROUP BY ${ItemEntity.Columns.SHARE_ID}, ${ItemEntity.Columns.ITEM_TYPE}
+        """
+    )
+    abstract fun itemSummaryForFolder(
+        userId: String,
+        shareIds: List<String>,
+        folderId: String,
+        itemState: Int?,
+        onlyShared: Boolean
+    ): Flow<List<SummaryRow>>
+
+    @Query(
+        """
+        SELECT ${ItemEntity.Columns.SHARE_ID} as shareId,
+        SUM(CASE WHEN ${ItemEntity.Columns.STATE} = ${ItemStateValues.ACTIVE} THEN 1 ELSE 0 END) as activeItemCount,
+        SUM(CASE WHEN ${ItemEntity.Columns.STATE} = ${ItemStateValues.TRASHED} THEN 1 ELSE 0 END) as trashedItemCount
+        FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+        GROUP BY ${ItemEntity.Columns.SHARE_ID}
+        """
+    )
+    abstract fun countItemsForShares(shareIds: List<String>): Flow<List<ShareItemCountRow>>
+
+    @Query(
+        """
+        SELECT
+            ${ItemEntity.Columns.FOLDER_ID} as folderId,
+            COUNT(*) as itemCount
+        FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} = :shareId
+          AND ${ItemEntity.Columns.FOLDER_ID} IS NOT NULL
+          AND ${ItemEntity.Columns.STATE} = ${ItemStateValues.ACTIVE}
+        GROUP BY ${ItemEntity.Columns.FOLDER_ID}
+        """
+    )
+    abstract fun observeFolderItemCounts(userId: String, shareId: String): Flow<List<FolderItemCountRow>>
+
+    @Query(
+        """
+        UPDATE ${ItemEntity.TABLE}
+        SET ${ItemEntity.Columns.LAST_USED_TIME} = :now
+        WHERE ${ItemEntity.Columns.ID} = :itemId
+          AND ${ItemEntity.Columns.SHARE_ID} = :shareId
+        """
+    )
+    abstract suspend fun updateLastUsedTime(
+        shareId: String,
+        itemId: String,
+        now: Long
+    )
+
+    @Query(
+        """
+        SELECT * FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.ALIAS_EMAIL} = :aliasEmail
+        """
+    )
+    abstract suspend fun getItemByAliasEmail(userId: String, aliasEmail: String): ItemEntity?
+
+    @Query(
+        """
+        SELECT * FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.HAS_TOTP} IS NULL
+        """
+    )
+    abstract suspend fun getItemsPendingForTotpMigration(): List<ItemEntity>
+
+    @Query(
+        """
+        SELECT * FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.HAS_PASSKEYS} IS NULL
+        """
+    )
+    abstract suspend fun getItemsPendingForPasskeyMigration(): List<ItemEntity>
+
+    @Query(
+        """
+        SELECT
+          ${ItemEntity.Columns.SHARE_ID} as shareId,
+          COUNT(${ItemEntity.Columns.ITEM_TYPE}) as itemCount
+        FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+          AND ${ItemEntity.Columns.HAS_TOTP} = 1
+          AND (:itemState IS NULL OR ${ItemEntity.Columns.STATE} = :itemState)
+          AND (:restrictToRootFolder = 0 OR ${ItemEntity.Columns.FOLDER_ID} IS NULL)
+        GROUP BY ${ItemEntity.Columns.SHARE_ID}
+        """
+    )
+    abstract fun countItemsWithTotp(
+        userId: String,
+        shareIds: List<String>,
+        itemState: Int?,
+        restrictToRootFolder: Boolean
+    ): Flow<List<ShareIdCountRow>>
+
+    @Query(
+        """
+        SELECT
+          ${ItemEntity.Columns.SHARE_ID} as shareId,
+          COUNT(${ItemEntity.Columns.ITEM_TYPE}) as itemCount
+        FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+          AND ${ItemEntity.Columns.FOLDER_ID} = :folderId
+          AND ${ItemEntity.Columns.HAS_TOTP} = 1
+          AND (:itemState IS NULL OR ${ItemEntity.Columns.STATE} = :itemState)
+        GROUP BY ${ItemEntity.Columns.SHARE_ID}
+        """
+    )
+    abstract fun countItemsWithTotpForFolder(
+        userId: String,
+        shareIds: List<String>,
+        folderId: String,
+        itemState: Int?
+    ): Flow<List<ShareIdCountRow>>
+
+    @Query(
+        """
+        UPDATE ${ItemEntity.TABLE}
+        SET ${ItemEntity.Columns.FLAGS} = :flags
+        WHERE ${ItemEntity.Columns.SHARE_ID} = :shareId
+            AND ${ItemEntity.Columns.ID} = :itemId
+        """
+    )
+    abstract suspend fun updateItemFlags(
+        shareId: String,
+        itemId: String,
+        flags: Int
+    )
+
+    @Query(
+        """
+        SELECT item.*
+        FROM ${ItemEntity.TABLE} AS item
+        JOIN ${ShareEntity.TABLE} AS share
+        ON item.${ItemEntity.Columns.SHARE_ID} = share.${ShareEntity.Columns.ID}
+        WHERE share.${ShareEntity.Columns.VAULT_ID} = :vaultId
+          AND item.${ItemEntity.Columns.ID} = :itemId
+          AND share.${ShareEntity.Columns.USER_ID} IN (:userIds)
+        """
+    )
+    abstract suspend fun getByVaultIdAndItemId(
+        userIds: List<String>,
+        vaultId: String,
+        itemId: String
+    ): List<ItemEntity>
+
+    @Query(
+        """
+        SELECT ${ItemEntity.Columns.USER_ID} FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.SHARE_ID} = :shareId
+          AND ${ItemEntity.Columns.ID} = :itemId
+        """
+    )
+    abstract suspend fun findUserId(shareId: String, itemId: String): String?
+
+    @Suppress("LongParameterList")
+    @Query(
+        """
+        ${FolderEntity.DESCENDANT_FOLDER_TREE_CTE}
+        SELECT item.*
+        FROM ${ItemEntity.TABLE} item
+        JOIN folder_tree ON item.${ItemEntity.Columns.FOLDER_ID} = folder_tree.id
+        WHERE item.${ItemEntity.Columns.USER_ID} = :userId
+          AND item.${ItemEntity.Columns.SHARE_ID} = :shareId
+          AND (:itemState IS NULL OR item.${ItemEntity.Columns.STATE} = :itemState)
+          AND (NOT :applyItemTypes OR item.${ItemEntity.Columns.ITEM_TYPE} IN (:itemTypes))
+          AND (:setFlags IS NULL OR (item.${ItemEntity.Columns.FLAGS} & :setFlags) = :setFlags)
+          AND (:clearFlags IS NULL OR (item.${ItemEntity.Columns.FLAGS} & :clearFlags) = 0)
+        ORDER BY item.${ItemEntity.Columns.CREATE_TIME} DESC
+        """
+    )
+    abstract fun observeItemsByFolder(
+        userId: String,
+        shareId: String,
+        rootFolderId: String,
+        itemState: Int?,
+        itemTypes: List<Int>?,
+        applyItemTypes: Boolean,
+        setFlags: Int?,
+        clearFlags: Int?
+    ): Flow<List<ItemEntity>>
+
+    @Query(
+        """
+        SELECT COUNT(*) FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+          AND (:folderId IS NULL OR ${ItemEntity.Columns.FOLDER_ID} = :folderId)
+          AND ${ItemEntity.Columns.SHARE_COUNT} > 0
+          AND (:itemState IS NULL OR ${ItemEntity.Columns.STATE} = :itemState)
+          AND (:restrictToRootFolder = 0 OR ${ItemEntity.Columns.FOLDER_ID} IS NULL)
+        """
+    )
+    abstract fun countSharedItems(
+        userId: String,
+        shareIds: List<String>,
+        itemState: Int?,
+        folderId: String?,
+        restrictToRootFolder: Boolean
+    ): Flow<Int>
+
+    @Query(
+        """
+        UPDATE ${ItemEntity.TABLE}
+        SET ${ItemEntity.Columns.SL_NOTE} = :slNote
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} = :shareId
+          AND ${ItemEntity.Columns.ID} = :itemId
+        """
+    )
+    abstract suspend fun updateSlNote(
+        userId: String,
+        shareId: String,
+        itemId: String,
+        slNote: EncryptedString?
+    ): Int
+
+    @Transaction
+    open suspend fun updateSlNotes(userId: String, updates: List<SlNoteUpdate>): List<Pair<ShareId, ItemId>> =
+        updates.mapNotNull { update ->
+            val updated = updateSlNote(
+                userId = userId,
+                shareId = update.shareId.id,
+                itemId = update.itemId.id,
+                slNote = update.encryptedNote
+            )
+            if (updated > 0) update.shareId to update.itemId else null
+        }
+
+    @Query(
+        """
+        SELECT EXISTS(
+            SELECT 1
+            FROM ${ItemEntity.TABLE}
+            WHERE ${ItemEntity.Columns.ID} = :itemId
+              AND ${ItemEntity.Columns.SHARE_ID} = :shareId
+        )
+        """
+    )
+    abstract suspend fun checkIfItemExists(shareId: String, itemId: String): Boolean
+
+    @Query(
+        """
+        SELECT
+          ${ItemEntity.Columns.SHARE_ID} as shareId,
+          COUNT(${ItemEntity.Columns.ITEM_TYPE}) as itemCount
+        FROM ${ItemEntity.TABLE}
+        WHERE ${ItemEntity.Columns.USER_ID} = :userId
+          AND ${ItemEntity.Columns.SHARE_ID} IN (:shareIds)
+          AND (:folderId IS NULL OR ${ItemEntity.Columns.FOLDER_ID} = :folderId)
+          AND ${ItemEntity.Columns.STATE} = ${ItemStateValues.TRASHED}
+          AND (:restrictToRootFolder = 0 OR ${ItemEntity.Columns.FOLDER_ID} IS NULL)
+        GROUP BY ${ItemEntity.Columns.SHARE_ID}
+        """
+    )
+    abstract fun countTrashedItems(
+        userId: String,
+        shareIds: List<String>,
+        folderId: String?,
+        restrictToRootFolder: Boolean
+    ): Flow<List<ShareIdCountRow>>
+
+    @Query(
+        """
+        SELECT item.* FROM ${ItemEntity.TABLE} AS item
+        INNER JOIN ${SearchEntryEntity.TABLE} AS search
+        ON item.${ItemEntity.Columns.ID} = search.${SearchEntryEntity.Columns.ITEM_ID}
+          AND item.${ItemEntity.Columns.SHARE_ID} = search.${SearchEntryEntity.Columns.SHARE_ID}
+        WHERE item.${ItemEntity.Columns.USER_ID} = :userId
+          AND item.${ItemEntity.Columns.STATE} = ${ItemStateValues.ACTIVE}
+          AND (:shareId IS NULL OR item.${ItemEntity.Columns.SHARE_ID} = :shareId)
+        ORDER BY search.${SearchEntryEntity.Columns.CREATE_TIME} DESC
+        """
+    )
+    abstract fun observeRecentSearchItems(userId: String, shareId: String?): Flow<List<ItemEntity>>
+}

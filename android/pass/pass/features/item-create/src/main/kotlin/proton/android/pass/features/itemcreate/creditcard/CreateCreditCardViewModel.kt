@@ -1,0 +1,327 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.itemcreate.creditcard
+
+import android.content.Context
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.snapshotFlow
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.SavedStateHandleSaveableApi
+import androidx.lifecycle.viewmodel.compose.saveable
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import proton.android.pass.clipboard.api.ClipboardManager
+import proton.android.pass.common.api.AppDispatchers
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.Some
+import proton.android.pass.common.api.asLoadingResult
+import proton.android.pass.common.api.safeRunCatching
+import proton.android.pass.common.api.toOption
+import proton.android.pass.commonpresentation.api.attachments.AttachmentsHandler
+import proton.android.pass.commonui.api.SavedStateHandleProvider
+import proton.android.pass.commonui.api.toUiModel
+import proton.android.pass.composecomponents.impl.uievents.IsLoadingState
+import proton.android.pass.composecomponents.impl.uievents.IsLoadingState.NotLoading
+import proton.android.pass.crypto.api.context.EncryptionContextProvider
+import proton.android.pass.data.api.usecases.ObservePrimaryUserId
+import proton.android.pass.data.api.usecases.CanPerformPaidAction
+import proton.android.pass.data.api.usecases.CreateItem
+import proton.android.pass.data.api.usecases.GetItemById
+import proton.android.pass.data.api.usecases.ObserveVaultsWithItemCount
+import proton.android.pass.data.api.usecases.attachments.LinkAttachmentsToItem
+import proton.android.pass.data.api.usecases.capabilities.CanCreateItemsInFolder
+import proton.android.pass.data.api.usecases.defaultvault.ObserveDefaultVault
+import proton.android.pass.data.api.usecases.defaultvault.SetDefaultVault
+import proton.android.pass.data.api.usecases.folders.ObserveFolder
+import proton.android.pass.data.api.usecases.folders.ObserveFoldersByParentId
+import proton.android.pass.data.api.usecases.shares.ObserveShare
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.VaultWithItemCount
+import proton.android.pass.domain.toItemContents
+import proton.android.pass.features.itemcreate.ItemCreate
+import proton.android.pass.features.itemcreate.ItemSavedState
+import proton.android.pass.features.itemcreate.R
+import proton.android.pass.features.itemcreate.common.CustomFieldDraftRepository
+import proton.android.pass.features.itemcreate.common.OptionFolderIdSaver
+import proton.android.pass.features.itemcreate.common.OptionShareIdSaver
+import proton.android.pass.features.itemcreate.common.ShareUiState
+import proton.android.pass.features.itemcreate.common.canDisplayWarningMessageForCreationFlow
+import proton.android.pass.features.itemcreate.common.customfields.CustomFieldHandler
+import proton.android.pass.features.itemcreate.common.formprocessor.CreditCardFormProcessorType
+import proton.android.pass.features.itemcreate.common.getFolderNameFlow
+import proton.android.pass.features.itemcreate.common.getShareUiStateFlow
+import proton.android.pass.features.itemcreate.common.persistDefaultVaultAndFolder
+import proton.android.pass.features.itemcreate.creditcard.CreditCardSnackbarMessage.ItemCreated
+import proton.android.pass.features.itemcreate.creditcard.CreditCardSnackbarMessage.ItemCreationError
+import proton.android.pass.features.itemcreate.creditcard.CreditCardSnackbarMessage.ItemLinkAttachmentsError
+import proton.android.pass.inappreview.api.InAppReviewTriggerMetrics
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.navigation.api.CommonOptionalNavArgId
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import proton.android.pass.preferences.InternalSettingsRepository
+import proton.android.pass.preferences.UserPreferencesRepository
+import proton.android.pass.telemetry.api.EventItemType
+import proton.android.pass.telemetry.api.TelemetryGrowthFeatureUsageAction
+import proton.android.pass.telemetry.api.TelemetryManager
+import proton.android.pass.telemetry.api.TelemetryGrowthFeatureUsageEvent
+import javax.inject.Inject
+
+@Suppress("LongParameterList")
+@HiltViewModel
+class CreateCreditCardViewModel @Inject constructor(
+    private val encryptionContextProvider: EncryptionContextProvider,
+    private val snackbarDispatcher: SnackbarDispatcher,
+    private val createItem: CreateItem,
+    private val observePrimaryUserId: ObservePrimaryUserId,
+    private val observeFolder: ObserveFolder,
+    private val observeFoldersByParentId: ObserveFoldersByParentId,
+    private val telemetryManager: TelemetryManager,
+    private val inAppReviewTriggerMetrics: InAppReviewTriggerMetrics,
+    private val linkAttachmentsToItem: LinkAttachmentsToItem,
+    private val getItemById: GetItemById,
+    private val setDefaultVault: SetDefaultVault,
+    userPreferencesRepository: UserPreferencesRepository,
+    attachmentsHandler: AttachmentsHandler,
+    observeVaults: ObserveVaultsWithItemCount,
+    canPerformPaidAction: CanPerformPaidAction,
+    observeDefaultVault: ObserveDefaultVault,
+    customFieldHandler: CustomFieldHandler,
+    customFieldDraftRepository: CustomFieldDraftRepository,
+    creditCardItemFormProcessor: CreditCardFormProcessorType,
+    clipboardManager: ClipboardManager,
+    savedStateHandleProvider: SavedStateHandleProvider,
+    observeShare: ObserveShare,
+    private val canCreateItemsInFolder: CanCreateItemsInFolder,
+    private val settingsRepository: InternalSettingsRepository,
+    appDispatchers: AppDispatchers
+) : BaseCreditCardViewModel(
+    userPreferencesRepository = userPreferencesRepository,
+    attachmentsHandler = attachmentsHandler,
+    encryptionContextProvider = encryptionContextProvider,
+    canPerformPaidAction = canPerformPaidAction,
+    customFieldHandler = customFieldHandler,
+    customFieldDraftRepository = customFieldDraftRepository,
+    creditCardItemFormProcessor = creditCardItemFormProcessor,
+    clipboardManager = clipboardManager,
+    appDispatchers = appDispatchers,
+    savedStateHandleProvider = savedStateHandleProvider
+) {
+    private val navShareId: Option<ShareId> =
+        savedStateHandleProvider.get().get<String>(CommonOptionalNavArgId.ShareId.key)
+            .toOption()
+            .map(::ShareId)
+
+    private val navItemId: Option<ItemId> =
+        savedStateHandleProvider.get().get<String>(CommonOptionalNavArgId.ItemId.key)
+            .toOption()
+            .map(::ItemId)
+
+    private val navFolderId: FolderId? =
+        savedStateHandleProvider.get().get<String>(CommonOptionalNavArgId.FolderId.key)
+            ?.let(::FolderId)
+
+    @OptIn(SavedStateHandleSaveableApi::class)
+    private var selectedShareIdMutableState: Option<ShareId> by savedStateHandleProvider.get()
+        .saveable(stateSaver = OptionShareIdSaver) { mutableStateOf(None) }
+    private val selectedShareIdState: Flow<Option<ShareId>> =
+        snapshotFlow { selectedShareIdMutableState }
+            .filterNotNull()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = None
+            )
+
+    @OptIn(SavedStateHandleSaveableApi::class)
+    private var selectedFolderIdMutableState: Option<FolderId> by savedStateHandleProvider.get()
+        .saveable(stateSaver = OptionFolderIdSaver) { mutableStateOf(navFolderId.toOption()) }
+
+    private val selectedFolderIdState: Flow<Option<FolderId>> =
+        snapshotFlow { selectedFolderIdMutableState }
+            .filterNotNull()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = navFolderId.toOption()
+            )
+
+    private val defaultVaultFlow = observeDefaultVault()
+
+    private val selectedFolderNameFlow = getFolderNameFlow(
+        observePrimaryUserId = observePrimaryUserId,
+        observeFolder = observeFolder,
+        selectedShareIdState = selectedShareIdState,
+        selectedFolderIdFlow = selectedFolderIdState,
+        navShareIdState = flowOf(navShareId),
+        defaultVaultShareIdFlow = defaultVaultFlow.map { it.map { vwf -> vwf.shareId } },
+        defaultVaultFolderIdFlow = defaultVaultFlow.map { it.flatMap { vwf -> vwf.folderId } }
+    )
+
+    private val observeAllVaultsFlow: Flow<List<VaultWithItemCount>> =
+        observeVaults(includeHidden = true).distinctUntilChanged()
+
+    private val canDisplayWarningVaultSharedDialogFlow =
+        canDisplayWarningMessageForCreationFlow(
+            selectedShareIdMutableState = selectedShareIdMutableState,
+            observeShare = observeShare,
+            navShareId = navShareId,
+            settingsRepository = settingsRepository
+        )
+
+    private val shareUiState: StateFlow<ShareUiState> = getShareUiStateFlow(
+        navShareIdState = flowOf(navShareId),
+        selectedShareIdState = selectedShareIdState,
+        observeAllVaultsFlow = observeAllVaultsFlow.asLoadingResult(),
+        observeDefaultVaultFlow = defaultVaultFlow.asLoadingResult(),
+        observeFoldersByParentId = observeFoldersByParentId,
+        viewModelScope = viewModelScope,
+        tag = TAG,
+        selectedFolderNameFlow = selectedFolderNameFlow,
+        selectedFolderIdFlow = selectedFolderIdState
+    )
+
+    internal val state: StateFlow<CreateCreditCardUiState> = combine(
+        shareUiState,
+        baseState,
+        canDisplayWarningVaultSharedDialogFlow
+    ) { shareUiState, baseState, canDisplayWarningVaultSharedDialog ->
+        CreateCreditCardUiState.Success(
+            shareUiState = shareUiState,
+            baseState = baseState,
+            canDisplayWarningVaultSharedDialog = canDisplayWarningVaultSharedDialog
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = CreateCreditCardUiState.NotInitialised
+    )
+
+    fun changeVault(shareId: ShareId) {
+        onUserEditedContent()
+        selectedShareIdMutableState = Some(shareId)
+        selectedFolderIdMutableState = None
+    }
+
+    fun changeFolder(folderId: FolderId) {
+        onUserEditedContent()
+        selectedFolderIdMutableState = Some(folderId)
+    }
+
+    suspend fun duplicateContents(context: Context) {
+        val shareId = navShareId.value() ?: return
+        val itemId = navItemId.value() ?: return
+        val item = getItemById(shareId = shareId, itemId = itemId)
+        item.folderId?.let { folderId ->
+            if (canCreateItemsInFolder(shareId).first()) {
+                selectedFolderIdMutableState = Some(folderId)
+            }
+        }
+
+        encryptionContextProvider.withEncryptionContextSuspendable {
+            val formState = CreditCardItemFormState(item.toItemContents { decrypt(it) })
+            creditCardItemFormMutableState = formState.copy(
+                title = context.getString(R.string.title_duplicate, decrypt(item.title)),
+                expirationDate = ExpirationDateProtoMapper.fromProto(formState.expirationDate),
+                customFields = customFieldHandler.sanitiseForEditingCustomFields(formState.customFields)
+            )
+        }
+        attachmentsHandler.copyAttachmentsAsDraft(shareId = shareId, itemId = itemId)
+    }
+
+    internal fun doNotDisplayWarningDialog() {
+        settingsRepository.setHasShownItemInSharedVaultWarning(true)
+    }
+
+    fun createItem() = viewModelScope.launch {
+        if (!isFormStateValid()) return@launch
+
+        isLoadingState.update { IsLoadingState.Loading }
+        val vault = when (val state = shareUiState.value) {
+            is ShareUiState.Error -> null
+            ShareUiState.Loading -> null
+            ShareUiState.NotInitialised -> null
+            is ShareUiState.Success -> state.currentVault
+        }
+        val userId = observePrimaryUserId().firstOrNull { it != null }
+        if (userId != null && vault != null) {
+            safeRunCatching {
+                val sanitisedItemFormState = creditCardItemFormState.sanitise()
+                createItem(
+                    userId = userId,
+                    shareId = vault.vault.shareId,
+                    folderId = selectedFolderIdMutableState.value(),
+                    itemContents = sanitisedItemFormState.toItemContents()
+                )
+            }
+                .onFailure {
+                    PassLogger.w(TAG, "Could not create item")
+                    PassLogger.w(TAG, it)
+                    snackbarDispatcher(ItemCreationError)
+                }
+                .onSuccess { item ->
+                    snackbarDispatcher(ItemCreated)
+                    safeRunCatching {
+                        linkAttachmentsToItem(item.shareId, item.id, item.revision)
+                    }.onFailure {
+                        PassLogger.w(TAG, "Link attachment error")
+                        PassLogger.w(TAG, it)
+                        snackbarDispatcher(ItemLinkAttachmentsError)
+                    }
+                    inAppReviewTriggerMetrics.incrementItemCreatedCount()
+                    isItemSavedState.update {
+                        encryptionContextProvider.withEncryptionContext {
+                            ItemSavedState.Success(
+                                item.id,
+                                item.toUiModel(this@withEncryptionContext)
+                            )
+                        }
+                    }
+                    persistDefaultVaultAndFolder(viewModelScope, shareUiState, setDefaultVault, TAG)
+                    telemetryManager.sendEvent(ItemCreate(EventItemType.CreditCard))
+                    telemetryManager.sendEvent(
+                        event = TelemetryGrowthFeatureUsageEvent(
+                            action = TelemetryGrowthFeatureUsageAction.ItemCreatedCreditCard
+                        )
+                    )
+                }
+        } else {
+            snackbarDispatcher(ItemCreationError)
+        }
+        isLoadingState.update { NotLoading }
+    }
+
+    companion object {
+        private const val TAG = "CreateCreditCardViewModel"
+    }
+}

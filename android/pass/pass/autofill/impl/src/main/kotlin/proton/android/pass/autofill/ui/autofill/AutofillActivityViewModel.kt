@@ -1,0 +1,153 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.autofill.ui.autofill
+
+import android.os.Bundle
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import proton.android.pass.appconfig.api.AppConfig
+import proton.android.pass.appconfig.api.BuildFlavor.Companion.supportPayment
+import proton.android.pass.autofill.api.suggestions.PackageNameUrlSuggestionAdapter
+import proton.android.pass.autofill.entities.AutofillAppState
+import proton.android.pass.autofill.service.R
+import proton.android.pass.autofill.ui.autofill.AutofillIntentExtras.ARG_EXTRAS_BUNDLE
+import proton.android.pass.autofill.ui.autofill.AutofillUiState.NotValidAutofillUiState
+import proton.android.pass.autofill.ui.autofill.AutofillUiState.UninitialisedAutofillUiState
+import proton.android.pass.biometry.NeedsBiometricAuth
+import proton.android.pass.common.api.combineN
+import proton.android.pass.data.api.usecases.DisableAccount
+import proton.android.pass.data.api.usecases.GetReadyAccounts
+import proton.android.pass.domain.UserId
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.notifications.api.ToastManager
+import proton.android.pass.preferences.InternalSettingsRepository
+import proton.android.pass.preferences.ThemePreference
+import proton.android.pass.preferences.UserPreferencesRepository
+import proton.android.pass.preferences.value
+import javax.inject.Inject
+
+@HiltViewModel
+class AutofillActivityViewModel @Inject constructor(
+    private val getReadyAccounts: GetReadyAccounts,
+    private val disableAccount: DisableAccount,
+    private val toastManager: ToastManager,
+    private val internalSettingsRepository: InternalSettingsRepository,
+    private val packageNameUrlSuggestionAdapter: PackageNameUrlSuggestionAdapter,
+    savedStateHandle: SavedStateHandle,
+    userPreferencesRepository: UserPreferencesRepository,
+    needsBiometricAuth: NeedsBiometricAuth,
+    appConfig: AppConfig,
+    private val settingsRepository: InternalSettingsRepository
+) : ViewModel() {
+
+    private val closeScreenFlow: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
+    private val copyTotpToClipboardPreferenceState = userPreferencesRepository
+        .getCopyTotpToClipboardEnabled()
+        .distinctUntilChanged()
+
+    private val themePreferenceState: Flow<ThemePreference> = userPreferencesRepository
+        .getThemePreference()
+        .distinctUntilChanged()
+
+    internal val stateFlow: StateFlow<AutofillUiState> = combineN(
+        themePreferenceState,
+        needsBiometricAuth(),
+        copyTotpToClipboardPreferenceState,
+        closeScreenFlow,
+        savedStateHandle.getStateFlow<Bundle?>(ARG_EXTRAS_BUNDLE, null),
+        flowOf(appConfig.flavor.supportPayment()),
+        settingsRepository.hasShownReloadAppWarning()
+    ) { themePreference, needsAuth, copyTotpToClipboard, closeScreen, extrasBundle,
+        supportPayment, hasShownReloadAppWarning ->
+        when {
+            closeScreen -> AutofillUiState.CloseScreen
+            extrasBundle == null -> UninitialisedAutofillUiState
+            else -> {
+                runCatching {
+                    val extras = AutofillIntentExtras.fromExtras(extrasBundle)
+                    val appState = AutofillAppState(
+                        autofillData = extras.first,
+                        packageNameUrlSuggestionAdapter = packageNameUrlSuggestionAdapter
+                    )
+
+                    if (!appState.isValid()) {
+                        NotValidAutofillUiState
+                    } else {
+                        AutofillUiState.StartAutofillUiState(
+                            themePreference = themePreference.value(),
+                            needsAuth = needsAuth,
+                            autofillAppState = appState,
+                            copyTotpToClipboardPreference = copyTotpToClipboard.value(),
+                            selectedAutofillItem = extras.second,
+                            supportPayment = supportPayment,
+                            canShowWarningReloadApp = !hasShownReloadAppWarning
+                        )
+                    }
+                }.fold(
+                    onFailure = {
+                        PassLogger.w(TAG, it)
+                        PassLogger.w(TAG, "Failed to parse extras bundle")
+                        NotValidAutofillUiState
+                    },
+                    onSuccess = { it }
+                )
+            }
+        }
+    }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = UninitialisedAutofillUiState
+        )
+
+    internal fun signOut(userId: UserId) {
+        viewModelScope.launch {
+            val accounts = getReadyAccounts()
+            val hasAccountsLeft = accounts.filterNot { it.userId == userId }.isNotEmpty()
+            internalSettingsRepository.setMasterPasswordAttemptsCount(userId, 0)
+
+            disableAccount(userId)
+            toastManager.showToast(R.string.autofill_user_logged_out)
+
+            if (hasAccountsLeft.not()) {
+                closeScreenFlow.update { true }
+            }
+        }
+    }
+
+    internal fun doNotDisplayReloadAppWarningDialog() {
+        settingsRepository.setHasShownReloadAppWarning(true)
+    }
+
+    companion object {
+        private const val TAG = "AutofillActivityViewModel"
+    }
+}

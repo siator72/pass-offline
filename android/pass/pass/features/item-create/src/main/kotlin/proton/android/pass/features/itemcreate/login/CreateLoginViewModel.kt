@@ -1,0 +1,736 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.itemcreate.login
+
+import android.content.Context
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.snapshotFlow
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.SavedStateHandleSaveableApi
+import androidx.lifecycle.viewmodel.compose.saveable
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableSet
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import proton.android.pass.clipboard.api.ClipboardManager
+import proton.android.pass.common.api.AppDispatchers
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.Some
+import proton.android.pass.common.api.asLoadingResult
+import proton.android.pass.common.api.safeRunCatching
+import proton.android.pass.common.api.some
+import proton.android.pass.common.api.toOption
+import proton.android.pass.commonpresentation.api.attachments.AttachmentsHandler
+import proton.android.pass.commonrust.api.EmailValidator
+import proton.android.pass.commonrust.api.PasswordScorer
+import proton.android.pass.commonui.api.SavedStateHandleProvider
+import proton.android.pass.commonui.api.toUiModel
+import proton.android.pass.commonuimodels.api.PackageInfoUi
+import proton.android.pass.commonuimodels.api.UIAutofillUrl
+import proton.android.pass.commonuimodels.api.UIPasskeyContent
+import proton.android.pass.composecomponents.impl.item.toPasswordChecksUiState
+import proton.android.pass.composecomponents.impl.uievents.IsLoadingState
+import proton.android.pass.crypto.api.context.EncryptionContextProvider
+import proton.android.pass.data.api.errors.AliasRateLimitError
+import proton.android.pass.data.api.errors.CannotCreateMoreAliasesError
+import proton.android.pass.data.api.errors.EmailNotValidatedError
+import proton.android.pass.data.api.repositories.DraftRepository
+import proton.android.pass.data.api.usecases.ObservePrimaryUserId
+import proton.android.pass.data.api.usecases.CreateItem
+import proton.android.pass.data.api.usecases.CreateLoginAndAlias
+import proton.android.pass.data.api.usecases.GetItemById
+import proton.android.pass.data.api.usecases.popularservices.GetPopularServices
+import proton.android.pass.data.api.usecases.popularservices.PopularService
+import proton.android.pass.data.api.usecases.ObserveCurrentUser
+import proton.android.pass.data.api.usecases.ObserveUpgradeInfo
+import proton.android.pass.data.api.usecases.ObserveVaultsWithItemCount
+import proton.android.pass.data.api.usecases.attachments.LinkAttachmentsToItem
+import proton.android.pass.data.api.usecases.capabilities.CanCreateAlias
+import proton.android.pass.data.api.usecases.capabilities.CanCreateItemsInFolder
+import proton.android.pass.data.api.usecases.defaultvault.ObserveDefaultVault
+import proton.android.pass.data.api.usecases.defaultvault.SetDefaultVault
+import proton.android.pass.data.api.usecases.folders.ObserveFolder
+import proton.android.pass.data.api.usecases.folders.ObserveFoldersByParentId
+import proton.android.pass.data.api.usecases.shares.ObserveShare
+import proton.android.pass.data.api.usecases.tooltips.DisableTooltip
+import proton.android.pass.data.api.usecases.tooltips.ObserveTooltipEnabled
+import proton.android.pass.data.api.work.WorkerItem
+import proton.android.pass.data.api.work.WorkerLauncher
+import proton.android.pass.domain.CustomField
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.HiddenState
+import proton.android.pass.domain.ItemContents
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ItemType
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.VaultWithItemCount
+import proton.android.pass.domain.entity.NewAlias
+import proton.android.pass.domain.toItemContents
+import proton.android.pass.features.itemcreate.ItemCreate
+import proton.android.pass.features.itemcreate.ItemSavedState
+import proton.android.pass.features.itemcreate.MFACreated
+import proton.android.pass.features.itemcreate.R
+import proton.android.pass.features.itemcreate.alias.AliasItemFormState
+import proton.android.pass.features.itemcreate.alias.AliasMailboxUiModel
+import proton.android.pass.features.itemcreate.alias.CreateAliasViewModel
+import proton.android.pass.features.itemcreate.common.CustomFieldDraftRepository
+import proton.android.pass.features.itemcreate.common.OptionFolderIdSaver
+import proton.android.pass.features.itemcreate.common.OptionShareIdSaver
+import proton.android.pass.features.itemcreate.common.ShareUiState
+import proton.android.pass.features.itemcreate.common.UICustomFieldContent
+import proton.android.pass.features.itemcreate.common.UIHiddenState
+import proton.android.pass.features.itemcreate.common.canDisplayWarningMessageForCreationFlow
+import proton.android.pass.features.itemcreate.common.customfields.CustomFieldHandler
+import proton.android.pass.features.itemcreate.common.formprocessor.LoginItemFormProcessorType
+import proton.android.pass.features.itemcreate.common.getFolderNameFlow
+import proton.android.pass.features.itemcreate.common.getShareUiStateFlow
+import proton.android.pass.features.itemcreate.common.persistDefaultVaultAndFolder
+import proton.android.pass.features.itemcreate.login.LoginSnackbarMessages.AliasRateLimited
+import proton.android.pass.features.itemcreate.login.LoginSnackbarMessages.CannotCreateMoreAliases
+import proton.android.pass.features.itemcreate.login.LoginSnackbarMessages.EmailNotValidated
+import proton.android.pass.features.itemcreate.login.LoginSnackbarMessages.ItemCreationError
+import proton.android.pass.features.itemcreate.login.LoginSnackbarMessages.ItemLinkAttachmentsError
+import proton.android.pass.features.itemcreate.login.LoginSnackbarMessages.LoginCreated
+import proton.android.pass.inappreview.api.InAppReviewTriggerMetrics
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.navigation.api.CommonOptionalNavArgId
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import proton.android.pass.passkeys.api.GeneratePasskey
+import proton.android.pass.preferences.FeatureFlagsPreferencesRepository
+import proton.android.pass.preferences.InternalSettingsRepository
+import proton.android.pass.preferences.UserPreferencesRepository
+import proton.android.pass.telemetry.api.EventItemType
+import proton.android.pass.telemetry.api.TelemetryGrowthFeatureUsageAction
+import proton.android.pass.telemetry.api.TelemetryManager
+import proton.android.pass.telemetry.api.TelemetryGrowthFeatureUsageEvent
+import proton.android.pass.totp.api.TotpManager
+import javax.inject.Inject
+import kotlin.time.Duration.Companion.milliseconds
+
+@Suppress("LongParameterList", "LargeClass")
+@HiltViewModel
+class CreateLoginViewModel @Inject constructor(
+    private val createItem: CreateItem,
+    private val createLoginAndAlias: CreateLoginAndAlias,
+    private val observeFolder: ObserveFolder,
+    private val observeFoldersByParentId: ObserveFoldersByParentId,
+    private val snackbarDispatcher: SnackbarDispatcher,
+    private val encryptionContextProvider: EncryptionContextProvider,
+    private val telemetryManager: TelemetryManager,
+    private val draftRepository: DraftRepository,
+    private val inAppReviewTriggerMetrics: InAppReviewTriggerMetrics,
+    private val generatePasskey: GeneratePasskey,
+    private val workerLauncher: WorkerLauncher,
+    private val linkAttachmentsToItem: LinkAttachmentsToItem,
+    private val getItemById: GetItemById,
+    private val setDefaultVault: SetDefaultVault,
+    passwordScorer: PasswordScorer,
+    observePrimaryUserId: ObservePrimaryUserId,
+    clipboardManager: ClipboardManager,
+    totpManager: TotpManager,
+    observeCurrentUser: ObserveCurrentUser,
+    observeUpgradeInfo: ObserveUpgradeInfo,
+    observeVaults: ObserveVaultsWithItemCount,
+    observeDefaultVault: ObserveDefaultVault,
+    emailValidator: EmailValidator,
+    observeTooltipEnabled: ObserveTooltipEnabled,
+    disableTooltip: DisableTooltip,
+    attachmentsHandler: AttachmentsHandler,
+    customFieldHandler: CustomFieldHandler,
+    userPreferencesRepository: UserPreferencesRepository,
+    featureFlagsPreferencesRepository: FeatureFlagsPreferencesRepository,
+    customFieldDraftRepository: CustomFieldDraftRepository,
+    loginItemFormProcessor: LoginItemFormProcessorType,
+    savedStateHandleProvider: SavedStateHandleProvider,
+    observeShare: ObserveShare,
+    getPopularServices: GetPopularServices,
+    private val canCreateAlias: CanCreateAlias,
+    private val canCreateItemsInFolder: CanCreateItemsInFolder,
+    private val settingsRepository: InternalSettingsRepository,
+    appDispatchers: AppDispatchers
+) : BaseLoginViewModel(
+    observePrimaryUserId = observePrimaryUserId,
+    snackbarDispatcher = snackbarDispatcher,
+    clipboardManager = clipboardManager,
+    totpManager = totpManager,
+    observeCurrentUser = observeCurrentUser,
+    observeUpgradeInfo = observeUpgradeInfo,
+    draftRepository = draftRepository,
+    encryptionContextProvider = encryptionContextProvider,
+    passwordScorer = passwordScorer,
+    emailValidator = emailValidator,
+    observeTooltipEnabled = observeTooltipEnabled,
+    disableTooltip = disableTooltip,
+    userPreferencesRepository = userPreferencesRepository,
+    featureFlagsPreferencesRepository = featureFlagsPreferencesRepository,
+    attachmentsHandler = attachmentsHandler,
+    customFieldHandler = customFieldHandler,
+    customFieldDraftRepository = customFieldDraftRepository,
+    loginItemFormProcessor = loginItemFormProcessor,
+    appDispatchers = appDispatchers,
+    canCreateAlias = canCreateAlias,
+    savedStateHandleProvider = savedStateHandleProvider
+) {
+    private val navShareId: Option<ShareId> = savedStateHandleProvider.get()
+        .get<String>(CommonOptionalNavArgId.ShareId.key)
+        .toOption()
+        .map(::ShareId)
+
+    private val navItemId: Option<ItemId> = savedStateHandleProvider.get()
+        .get<String>(CommonOptionalNavArgId.ItemId.key)
+        .toOption()
+        .map(::ItemId)
+
+    private val navFolderId: FolderId? =
+        savedStateHandleProvider.get().get<String>(CommonOptionalNavArgId.FolderId.key)
+            ?.let(::FolderId)
+
+    private val initialEmail: Option<String> = savedStateHandleProvider.get()
+        .get<String>(CreateLoginDefaultEmailArg.key)
+        .toOption()
+
+    @OptIn(SavedStateHandleSaveableApi::class)
+    private var _generatePasskeyData: Option<GeneratePasskeyData> by savedStateHandleProvider.get()
+        .saveable(stateSaver = GeneratePasskeyDataStateSaver) { mutableStateOf(None) }
+
+    private val createPasskeyStateFlow: MutableStateFlow<Option<CreatePasskeyState>> =
+        MutableStateFlow(None)
+
+    private val generatePasskeyData: Option<GeneratePasskeyData> get() = _generatePasskeyData
+
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        PassLogger.w(TAG, throwable)
+    }
+
+    @OptIn(SavedStateHandleSaveableApi::class)
+    private var selectedShareIdMutableState: Option<ShareId> by savedStateHandleProvider.get()
+        .saveable(stateSaver = OptionShareIdSaver) { mutableStateOf(None) }
+    private val selectedShareIdState: Flow<Option<ShareId>> =
+        snapshotFlow { selectedShareIdMutableState }
+            .filterNotNull()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = None
+            )
+
+    @OptIn(SavedStateHandleSaveableApi::class)
+    private var selectedFolderIdMutableState: Option<FolderId> by savedStateHandleProvider.get()
+        .saveable(stateSaver = OptionFolderIdSaver) { mutableStateOf(navFolderId.toOption()) }
+
+    private val selectedFolderIdState: Flow<Option<FolderId>> =
+        snapshotFlow { selectedFolderIdMutableState }
+            .filterNotNull()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = navFolderId.toOption()
+            )
+
+    private val defaultVaultFlow = observeDefaultVault()
+
+    private val selectedFolderNameFlow = getFolderNameFlow(
+        observePrimaryUserId = observePrimaryUserId,
+        observeFolder = observeFolder,
+        selectedShareIdState = selectedShareIdState,
+        selectedFolderIdFlow = selectedFolderIdState,
+        navShareIdState = flowOf(navShareId),
+        defaultVaultShareIdFlow = defaultVaultFlow.map { it.map { vwf -> vwf.shareId } },
+        defaultVaultFolderIdFlow = defaultVaultFlow.map { it.flatMap { vwf -> vwf.folderId } }
+    )
+
+    private val canDisplayWarningVaultSharedDialogFlow =
+        canDisplayWarningMessageForCreationFlow(
+            selectedShareIdMutableState = selectedShareIdMutableState,
+            observeShare = observeShare,
+            navShareId = navShareId,
+            settingsRepository = settingsRepository
+        )
+
+    private val observeAllVaultsFlow: Flow<List<VaultWithItemCount>> =
+        observeVaults(includeHidden = true).distinctUntilChanged()
+
+    private val shareUiState: StateFlow<ShareUiState> = getShareUiStateFlow(
+        navShareIdState = flowOf(navShareId),
+        selectedShareIdState = selectedShareIdState,
+        observeAllVaultsFlow = observeAllVaultsFlow.asLoadingResult(),
+        observeDefaultVaultFlow = defaultVaultFlow.asLoadingResult(),
+        observeFoldersByParentId = observeFoldersByParentId,
+        viewModelScope = viewModelScope,
+        tag = TAG,
+        selectedFolderNameFlow = selectedFolderNameFlow,
+        selectedFolderIdFlow = selectedFolderIdState
+    )
+
+    private val popularServicesFlow: Flow<List<PopularService>> = flow {
+        val services = safeRunCatching { getPopularServices() }
+            .getOrElse {
+                PassLogger.w(TAG, "Failed to load popular services")
+                PassLogger.w(TAG, it)
+                emptyList()
+            }
+        emit(services)
+    }
+
+    // Title of the service the user just picked, used to hide the popup right after a selection
+    // (the title then equals the service name). Comparing against the whole catalog instead would
+    // also hide a name the user typed in full, which is not what we want.
+    private val selectedServiceTitleState = MutableStateFlow<String?>(null)
+
+    @OptIn(FlowPreview::class)
+    private val popularServiceSuggestionsFlow: Flow<ImmutableList<PopularService>> = combine(
+        snapshotFlow { loginItemFormState.title }
+            .debounce(timeout = POPULAR_SERVICES_DEBOUNCE)
+            .onStart { emit("") }
+            .distinctUntilChanged(),
+        popularServicesFlow,
+        selectedServiceTitleState
+    ) { title, services, selectedTitle ->
+        if (title.equals(selectedTitle, ignoreCase = true)) {
+            persistentListOf()
+        } else {
+            matchPopularServices(query = title, services = services).toImmutableList()
+        }
+    }
+
+    internal val createLoginUiState: StateFlow<CreateLoginUiState> = combine(
+        shareUiState,
+        baseLoginUiState,
+        createPasskeyStateFlow,
+        canDisplayWarningVaultSharedDialogFlow,
+        popularServiceSuggestionsFlow,
+        ::CreateLoginUiState
+    ).stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = CreateLoginUiState.Initial
+    )
+
+    internal fun onPopularServiceSelected(service: PopularService) {
+        selectedServiceTitleState.update { service.title }
+        onTitleChange(service.title)
+        service.urls.firstOrNull()?.let { url -> onWebsiteChange(value = url, index = 0) }
+    }
+
+    internal fun changeVault(shareId: ShareId) {
+        selectedShareIdMutableState = Some(shareId)
+        selectedFolderIdMutableState = None
+    }
+
+    internal fun changeFolder(folderId: FolderId) {
+        onUserEditedContent()
+        selectedFolderIdMutableState = Some(folderId)
+    }
+
+    internal suspend fun duplicateContents(context: Context) {
+        val shareId = navShareId.value() ?: return
+        val itemId = navItemId.value() ?: return
+        val item = getItemById(shareId = shareId, itemId = itemId)
+        item.folderId?.let { folderId ->
+            if (canCreateItemsInFolder(shareId).first()) {
+                selectedFolderIdMutableState = Some(folderId)
+            }
+        }
+
+        val currentValue = loginItemFormState
+        encryptionContextProvider.withEncryptionContextSuspendable {
+            val itemContents = item.toItemContents<ItemContents.Login> { decrypt(it) }
+            val customFields = itemContents.customFields.map(UICustomFieldContent.Companion::from)
+            val passwordHiddenState = when (val hiddenState = itemContents.password) {
+                is HiddenState.Empty -> UIHiddenState.Empty(hiddenState.encrypted)
+                is HiddenState.Concealed,
+                is HiddenState.Revealed -> UIHiddenState.Concealed(hiddenState.encrypted)
+            }
+            val mergedAutofillUrls = mergeAutofillUrls(
+                rawUrls = itemContents.urls,
+                rawAutofillUrls = itemContents.autofillUrls,
+                contentFormatVersion = item.contentFormatVersion
+            )
+            val decryptedPassword = decrypt(itemContents.password.encrypted)
+            val passwordEvaluation = passwordScorer.evaluate(decryptedPassword)
+            loginItemFormMutableState = currentValue.copy(
+                title = context.getString(R.string.title_duplicate, decrypt(item.title)),
+                note = decrypt(item.note),
+                email = itemContents.itemEmail,
+                username = itemContents.itemUsername,
+                password = passwordHiddenState,
+                passwordStrength = passwordEvaluation.strength,
+                passwordChecks = passwordEvaluation.penalties.toPasswordChecksUiState(),
+                urls = mergedAutofillUrls.map { it.url }.ifEmpty { listOf("") },
+                packageInfoSet = itemContents.packageInfoSet.map { PackageInfoUi(it) }.toSet(),
+                primaryTotp = UIHiddenState.Revealed(
+                    encrypted = itemContents.primaryTotp.encrypted,
+                    clearText = decrypt(itemContents.primaryTotp.encrypted)
+                ),
+                customFields = customFieldHandler.sanitiseForEditingCustomFields(customFields),
+                passkeys = itemContents.passkeys.map { UIPasskeyContent.from(it) },
+                autofillUrls = mergedAutofillUrls.map { UIAutofillUrl.from(it) },
+                isExpandedByContent = itemContents.itemEmail.isNotBlank() && itemContents.itemUsername.isNotBlank()
+            )
+        }
+        attachmentsHandler.copyAttachmentsAsDraft(shareId = shareId, itemId = itemId)
+    }
+
+    @Suppress("ComplexMethod", "LongMethod")
+    internal fun setInitialContents(initialContents: InitialCreateLoginUiState) {
+        canCreateAliasOverride.update { initialContents.canCreateAlias }
+        val currentValue = loginItemFormState
+        val websites = currentValue.urls.toMutableList()
+
+        if (initialContents.url != null) {
+            // Check if we are in the initial state, and if so, clear the list
+            if (websites.size == 1 && websites.first().isEmpty()) {
+                websites.clear()
+                websites.add(initialContents.url)
+            } else if (!websites.contains(initialContents.url)) {
+                websites.add(initialContents.url)
+            }
+        }
+        aliasLocalItemState.update { initialContents.aliasItemFormState.toOption() }
+
+        val email = when {
+            initialContents.email != null -> initialContents.email
+            initialContents.aliasItemFormState?.aliasToBeCreated != null ->
+                initialContents.aliasItemFormState.aliasToBeCreated
+
+            initialEmail is Some -> initialEmail.value
+            else -> currentValue.email
+        }
+
+        val username = initialContents.username ?: currentValue.username
+
+        if (initialContents.aliasItemFormState?.aliasToBeCreated?.isNotEmpty() == true) {
+            canUpdateUsernameState.update { false }
+        }
+
+        val packageInfoSet = if (initialContents.packageInfoUi != null) {
+            currentValue.packageInfoSet.toMutableSet()
+                .apply { add(initialContents.packageInfoUi) }
+                .toImmutableSet()
+        } else {
+            currentValue.packageInfoSet
+        }
+
+        val password = initialContents.password
+            ?.let { password ->
+                encryptionContextProvider.withEncryptionContext {
+                    UIHiddenState.Concealed(encrypt(password))
+                }
+            }
+            ?: currentValue.password
+        val primaryTotp = updatePrimaryTotpIfNeeded(
+            navTotpUri = initialContents.navTotpUri,
+            navTotpIndex = initialContents.navTotpIndex,
+            currentValue = currentValue
+        )
+        val customFields = updateCustomFieldsIfNeeded(
+            navTotpUri = initialContents.navTotpUri,
+            navTotpIndex = initialContents.navTotpIndex,
+            currentValue = currentValue
+        )
+
+        initialContents.passkeyData?.let { passkeyData ->
+            _generatePasskeyData = GeneratePasskeyData(
+                origin = passkeyData.origin,
+                request = passkeyData.request
+            ).some()
+            if (!websites.contains(passkeyData.origin)) {
+                websites.add(passkeyData.origin)
+            }
+            createPasskeyStateFlow.update {
+                CreatePasskeyState(
+                    domain = passkeyData.domain,
+                    username = initialContents.username.orEmpty()
+                ).some()
+            }
+        }
+
+        loginItemFormMutableState = loginItemFormState.copy(
+            title = initialContents.title ?: currentValue.title,
+            email = email,
+            username = username,
+            password = password,
+            passwordStrength = currentValue.passwordStrength,
+            passwordChecks = currentValue.passwordChecks,
+            urls = websites,
+            packageInfoSet = packageInfoSet,
+            primaryTotp = primaryTotp,
+            customFields = customFields,
+            passkeys = emptyList()
+        )
+    }
+
+    internal fun doNotDisplayWarningDialog() {
+        settingsRepository.setHasShownItemInSharedVaultWarning(true)
+    }
+
+    internal fun createItem() = viewModelScope.launch(coroutineExceptionHandler) {
+        if (!isFormStateValid()) return@launch
+        isLoadingState.update { IsLoadingState.Loading }
+        val vault = when (val state = shareUiState.value) {
+            is ShareUiState.Error -> null
+            ShareUiState.Loading -> null
+            ShareUiState.NotInitialised -> null
+            is ShareUiState.Success -> state.currentVault
+        }
+        val userId = observePrimaryUserId()
+            .firstOrNull { userId -> userId != null }
+
+        val generatedPasskey = when (val data = generatePasskeyData) {
+            None -> None
+            is Some -> {
+                PassLogger.i(TAG, "Generating passkey for [origin=${data.value.origin}]")
+                safeRunCatching {
+                    val generatedPasskey = generatePasskey(
+                        url = data.value.origin,
+                        request = data.value.request
+                    )
+                    loginItemFormMutableState = loginItemFormMutableState.copy(
+                        passkeyToBeGenerated = UIPasskeyContent.from(generatedPasskey.passkey)
+                    )
+                    generatedPasskey.some()
+                }.getOrElse {
+                    PassLogger.w(TAG, "Error generating passkey")
+                    PassLogger.w(TAG, it)
+                    snackbarDispatcher(ItemCreationError)
+                    isLoadingState.update { IsLoadingState.NotLoading }
+                    return@launch
+                }
+            }
+        }
+
+        if (userId != null && vault != null) {
+            val aliasItemOption = aliasLocalItemState.value
+            if (aliasItemOption is Some) {
+                performCreateItemAndAlias(
+                    userId = userId,
+                    shareId = vault.vault.shareId,
+                    folderId = selectedFolderIdMutableState.value(),
+                    aliasItemFormState = aliasItemOption.value,
+                    passkeyResponse = generatedPasskey.map { it.response }
+                )
+            } else {
+                performCreateItem(
+                    userId = userId,
+                    shareId = vault.vault.shareId,
+                    folderId = selectedFolderIdMutableState.value(),
+                    passkeyResponse = generatedPasskey.map { it.response }
+                )
+            }
+        } else {
+            snackbarDispatcher(ItemCreationError)
+        }
+        isLoadingState.update { IsLoadingState.NotLoading }
+    }
+
+    @Suppress("LongMethod")
+    private suspend fun performCreateItemAndAlias(
+        userId: UserId,
+        shareId: ShareId,
+        folderId: FolderId?,
+        aliasItemFormState: AliasItemFormState,
+        passkeyResponse: Option<String>
+    ) {
+        val selectedSuffix = aliasItemFormState.selectedSuffix
+        if (selectedSuffix == null) {
+            val message = "Empty suffix on create alias"
+            PassLogger.w(TAG, message)
+            snackbarDispatcher(ItemCreationError)
+            return
+        }
+
+        val contents = loginItemFormState.toItemContents(emailValidator = emailValidator)
+        safeRunCatching {
+            createLoginAndAlias(
+                userId = userId,
+                shareId = shareId,
+                folderId = folderId,
+                itemContents = contents,
+                newAlias = NewAlias(
+                    contents = aliasItemFormState.toItemContents(),
+                    prefix = aliasItemFormState.prefix,
+                    suffix = aliasItemFormState.selectedSuffix.toDomain(),
+                    aliasName = aliasItemFormState.senderName,
+                    mailboxes = aliasItemFormState.selectedMailboxes
+                        .map(AliasMailboxUiModel::toDomain)
+                )
+            )
+        }
+            .onFailure {
+                when (it) {
+                    is CannotCreateMoreAliasesError -> snackbarDispatcher(CannotCreateMoreAliases)
+                    is EmailNotValidatedError -> snackbarDispatcher(EmailNotValidated)
+                    is AliasRateLimitError -> snackbarDispatcher(AliasRateLimited)
+                    else -> snackbarDispatcher(ItemCreationError)
+                }
+                PassLogger.w(TAG, "Could not create item")
+                PassLogger.w(TAG, it)
+            }
+            .onSuccess { item ->
+                snackbarDispatcher(LoginCreated)
+                safeRunCatching {
+                    linkAttachmentsToItem(item.shareId, item.id, item.revision)
+                }.onFailure {
+                    PassLogger.w(TAG, "Link attachment error")
+                    PassLogger.w(TAG, it)
+                    snackbarDispatcher(ItemLinkAttachmentsError)
+                }
+                launchUpdateAssetLinksWorker(contents.urls.toSet())
+                inAppReviewTriggerMetrics.incrementItemCreatedCount()
+                when (passkeyResponse) {
+                    None -> {
+                        isItemSavedState.update {
+                            encryptionContextProvider.withEncryptionContext {
+                                ItemSavedState.Success(
+                                    item.id,
+                                    item.toUiModel(this@withEncryptionContext)
+                                )
+                            }
+                        }
+                    }
+
+                    is Some -> {
+                        isItemSavedState.update {
+                            ItemSavedState.SuccessWithPasskeyResponse(passkeyResponse.value)
+                        }
+                    }
+                }
+
+                persistDefaultVaultAndFolder(viewModelScope, shareUiState, setDefaultVault, TAG)
+                telemetryManager.sendEvent(ItemCreate(EventItemType.Alias))
+                telemetryManager.sendEvent(ItemCreate(EventItemType.Login))
+                telemetryManager.sendEvent(
+                    event = TelemetryGrowthFeatureUsageEvent(
+                        action = TelemetryGrowthFeatureUsageAction.ItemCreatedLogin
+                    )
+                )
+                send2FACreatedTelemetryEvent(item.itemType as ItemType.Login)
+                draftRepository.delete<AliasItemFormState>(CreateAliasViewModel.KEY_DRAFT_ALIAS)
+            }
+    }
+
+    private suspend fun performCreateItem(
+        userId: UserId,
+        shareId: ShareId,
+        folderId: FolderId?,
+        passkeyResponse: Option<String>
+    ) {
+        val contents = loginItemFormState.toItemContents(emailValidator = emailValidator)
+        safeRunCatching {
+            createItem(
+                userId = userId,
+                shareId = shareId,
+                folderId = folderId,
+                itemContents = contents
+            )
+        }
+            .onFailure {
+                PassLogger.w(TAG, "Could not create item")
+                PassLogger.w(TAG, it)
+                snackbarDispatcher(ItemCreationError)
+            }
+            .onSuccess { item ->
+                snackbarDispatcher(LoginCreated)
+                safeRunCatching {
+                    linkAttachmentsToItem(item.shareId, item.id, item.revision)
+                }.onFailure {
+                    PassLogger.w(TAG, "Link attachment error")
+                    PassLogger.w(TAG, it)
+                    snackbarDispatcher(ItemLinkAttachmentsError)
+                }
+
+                launchUpdateAssetLinksWorker(contents.urls.toSet())
+                inAppReviewTriggerMetrics.incrementItemCreatedCount()
+
+                when (passkeyResponse) {
+                    None -> {
+                        isItemSavedState.update {
+                            encryptionContextProvider.withEncryptionContext {
+                                ItemSavedState.Success(
+                                    item.id,
+                                    item.toUiModel(this@withEncryptionContext)
+                                )
+                            }
+                        }
+                    }
+
+                    is Some -> {
+                        isItemSavedState.update {
+                            ItemSavedState.SuccessWithPasskeyResponse(passkeyResponse.value)
+                        }
+                    }
+                }
+                persistDefaultVaultAndFolder(viewModelScope, shareUiState, setDefaultVault, TAG)
+                telemetryManager.sendEvent(ItemCreate(EventItemType.Login))
+                telemetryManager.sendEvent(
+                    TelemetryGrowthFeatureUsageEvent(
+                        TelemetryGrowthFeatureUsageAction.ItemCreatedLogin
+                    )
+                )
+                send2FACreatedTelemetryEvent(item.itemType as ItemType.Login)
+            }
+    }
+
+    private fun send2FACreatedTelemetryEvent(login: ItemType.Login) {
+        if (login.customFields.any { it is CustomField.Totp }) {
+            telemetryManager.sendEvent(MFACreated)
+        } else {
+            encryptionContextProvider.withEncryptionContext {
+                if (decrypt(login.primaryTotp).isNotBlank()) {
+                    telemetryManager.sendEvent(MFACreated)
+                }
+            }
+        }
+    }
+
+    private suspend fun launchUpdateAssetLinksWorker(websites: Set<String>) {
+        if (isDALEnabled()) {
+            workerLauncher.launch(WorkerItem.SingleItemAssetLink(websites))
+        }
+    }
+
+    private companion object {
+
+        private const val TAG = "CreateLoginViewModel"
+
+        private val POPULAR_SERVICES_DEBOUNCE = 200.milliseconds
+    }
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="updates_notification_channel_name">Cập nhật</string>
+  <string name="autofill_notification_channel_name">Tự động điền</string>
+  <string name="autofill_notification_copy_to_clipboard_title">Mã TOTP</string>
+  <string name="autofill_notification_copy_to_clipboard_body">Đã sao chép mã TOTP vào bộ nhớ tạm</string>
+  <string name="new_item_invite_notification_title">New item invite received</string>
+  <string name="new_item_invite_notification_message" comment="the placeholder will be replaced by an email address">%s muốn chia sẻ một nội dung với bạn.</string>
+  <string name="new_vault_invite_notification_title">New vault invite received</string>
+  <string name="new_vault_invite_notification_message" comment="the placeholder will be replaced by an email address">%s muốn chia sẻ một két sắt với bạn.</string>
+  <string name="new_group_item_invite_notification_title">New group item invite received</string>
+  <string name="new_group_item_invite_notification_message" comment="%1$s = inviter email, %2$s = group name">%1$s wants to share an item with your group %2$s.</string>
+  <string name="new_group_vault_invite_notification_title">New group vault invite received</string>
+  <string name="new_group_vault_invite_notification_message" comment="%1$s = inviter email, %2$s = group name">%1$s wants to share a vault with your group %2$s.</string>
+</resources>

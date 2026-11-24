@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">ფოტოს გადაღება</string>
+  <string name="add_attachment_choose_a_photo_or_video">აირჩიეთ ფოტო ან ვიდეო</string>
+  <string name="add_attachment_choose_a_file">ფაილის არჩევა</string>
+  <string name="attachment_options_rename">გადარქმევა</string>
+  <string name="attachment_options_delete">წაშლა</string>
+  <string name="attachment_options_download">გადმოწერა</string>
+  <string name="attachment_options_share">გაზიარება</string>
+  <string name="file_picker_open_error">ვერ გავხსენი ფაილის ამრჩევი</string>
+  <string name="media_picker_open_error">ვერ გავხსენი მედიაფაილის ამრჩევი</string>
+  <string name="camera_open_error">კამერა ვერ გავხსენი</string>
+  <string name="camera_permission_explanation">ამ ფუნქციას კამერასთან წვდომა სჭირდება.</string>
+  <string name="camera_permission_open_settings">მორგების ფანჯრის გახსნა</string>
+  <string name="delete_all_attachments_title">წავშალო ყველა მიმაგრებული ფაილი?</string>
+  <string name="delete_all_attachments_subtitle">ეს ქმედება არ შეიძლება, დაბრუნდეს</string>
+  <string name="delete_all_attachments_confirm">ყველას წაშლა</string>
+  <string name="rename_attachment_dialog_title">ფაილის სახელის გადარქმევა</string>
+  <string name="storage_full_title">თქვენი საცავი, თითქმის, სავსეა.</string>
+  <string name="storage_full_body">ასწიეთ ტარიფი მეტი საცავის მისაღებად.</string>
+  <string name="storage_full_upgrade">გაუმჯობესება</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%1$s %2$s-დან</string>
+  <string name="attachments_saved_to_location_success">მიმაგრებული ფაილი შენახულია მდებარეობაზე</string>
+  <string name="attachments_saved_to_location_error">მიმაგრებული ფაილის მდებარეობაზე შენახვა შეუძლებელია</string>
+  <string name="attachment_sync_dialog_title_waiting">დაკავშირების მოლოდინი</string>
+  <string name="attachment_sync_dialog_title_downloading">მიმდინარეობს მიმაგრებული ფაილების გადმოწერა</string>
+  <string name="attachment_sync_dialog_title_done">გადმოწერა დასრულებულია</string>
+  <string name="attachment_sync_dialog_title_partial_failure">გადმოწერა ჩავარდა</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">ინტერნეტკავშირის მოლოდინი მიმაგრებული ფაილების გადმოსაწერად.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">მიმდინარეობს %1$d/%2$d მიმაგრებული ფაილის გადმოწერა</string>
+  <string name="attachment_sync_dialog_subtitle_done">ყველა მიმაგრებული ფაილის გადმოწერა წარმატებით დასრულდა.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">ზოგიერთი მიმაგრებული ფაილი გადმოწერა შეუძლებელია. ჩავარდნილი გადმოწერების თავიდან ცდა ქვემოთ შეგიძლიათ.</string>
+  <string name="attachment_sync_dialog_retry_content_description">გადმოწერის თავიდან ცდა</string>
+  <string name="attachment_sync_vault_files_count">%1$d / %2$d ფაილი</string>
+</resources>

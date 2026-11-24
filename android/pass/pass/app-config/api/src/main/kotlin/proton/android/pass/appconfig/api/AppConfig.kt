@@ -1,0 +1,134 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.appconfig.api
+
+interface AppConfig {
+    val isDebug: Boolean
+    val applicationId: String
+    val flavor: BuildFlavor
+    val versionCode: Int
+    val versionName: String
+    val host: String
+    val humanVerificationHost: String
+    val proxyToken: String?
+    val useDefaultPins: Boolean
+    val sentryDSN: String?
+    val accountSentryDSN: String?
+    val androidVersion: Int
+    val allowScreenshotsDefaultValue: Boolean
+    val metaAppId: String?
+    val firstInstallTime: Result<Long> get() = Result.failure(NotImplementedError("firstInstallTime not provided"))
+    val lastUpdateTime: Result<Long> get() = Result.failure(NotImplementedError("lastUpdateTime not provided"))
+
+    val isFreshInstall: Result<Boolean>
+        get() {
+            val firstInstall = firstInstallTime.getOrElse { return Result.failure(it) }
+            val lastUpdate = lastUpdateTime.getOrElse { return Result.failure(it) }
+            return Result.success(firstInstall == lastUpdate)
+        }
+}
+
+enum class BuildEnv {
+    BLACK,
+    PROD
+}
+
+const val PASS_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=proton.android.pass"
+const val PASS_FDROID_URL = "https://f-droid.org/packages/proton.android.pass.fdroid/"
+const val PASS_HORIZON_URL =
+    "https://www.meta.com/en-gb/experiences/proton-pass-password-manager/25447164831535276/"
+
+const val PROTON_DEFAULT_UPGRADE_URL = "https://account.proton.me/pass/upgrade"
+const val PROTON_HORIZON_UPGRADE_URL =
+    "https://go.getproton.me/aff_c?offer_id=48&aff_id=11853&url_id=1283"
+
+fun upgradeUrl(isQuest: Boolean): String = if (isQuest) PROTON_HORIZON_UPGRADE_URL else PROTON_DEFAULT_UPGRADE_URL
+
+sealed class BuildFlavor(val env: BuildEnv) {
+    class Dev(env: BuildEnv) : BuildFlavor(env)
+    class Alpha(env: BuildEnv) : BuildFlavor(env)
+    class Play(env: BuildEnv) : BuildFlavor(env)
+    class Fdroid(env: BuildEnv) : BuildFlavor(env)
+    class Quest(env: BuildEnv) : BuildFlavor(env)
+    class Nogms(env: BuildEnv) : BuildFlavor(env)
+
+    companion object {
+        fun from(string: String): BuildFlavor = when (string) {
+            "devBlack" -> Dev(BuildEnv.BLACK)
+            "devProd" -> Dev(BuildEnv.PROD)
+            "alphaBlack" -> Alpha(BuildEnv.BLACK)
+            "alphaProd" -> Alpha(BuildEnv.PROD)
+            "playBlack" -> Play(BuildEnv.BLACK)
+            "playProd" -> Play(BuildEnv.PROD)
+            "fdroidBlack" -> Fdroid(BuildEnv.BLACK)
+            "fdroidProd" -> Fdroid(BuildEnv.PROD)
+            "questBlack" -> Quest(BuildEnv.BLACK)
+            "questProd" -> Quest(BuildEnv.PROD)
+            "nogmsBlack" -> Nogms(BuildEnv.BLACK)
+            "nogmsProd" -> Nogms(BuildEnv.PROD)
+            else -> throw UnsupportedOperationException("Unsupported flavour")
+        }
+
+        fun BuildFlavor.toValue(): String = when (this) {
+            is Dev -> when (this.env) {
+                BuildEnv.BLACK -> "devBlack"
+                BuildEnv.PROD -> "devProd"
+            }
+
+            is Alpha -> when (this.env) {
+                BuildEnv.BLACK -> "alphaBlack"
+                BuildEnv.PROD -> "alphaProd"
+            }
+
+            is Play -> when (this.env) {
+                BuildEnv.BLACK -> "playBlack"
+                BuildEnv.PROD -> "playProd"
+            }
+
+            is Fdroid -> when (this.env) {
+                BuildEnv.BLACK -> "fdroidBlack"
+                BuildEnv.PROD -> "fdroidProd"
+            }
+
+            is Quest -> when (this.env) {
+                BuildEnv.BLACK -> "questBlack"
+                BuildEnv.PROD -> "questProd"
+            }
+
+            is Nogms -> when (this.env) {
+                BuildEnv.BLACK -> "nogmsBlack"
+                BuildEnv.PROD -> "nogmsProd"
+            }
+        }
+
+        fun BuildFlavor.supportPayment() = this !is Fdroid && this !is Quest && this !is Nogms
+
+        fun BuildFlavor.supportTelemetryGrowth() = this !is Fdroid && this !is Alpha && env == BuildEnv.PROD
+
+        fun BuildFlavor.isQuest() = this is Quest
+
+        fun BuildFlavor.passStoreUrl(): String = when (this) {
+            is Fdroid -> PASS_FDROID_URL
+            is Quest -> PASS_HORIZON_URL
+            else -> PASS_PLAY_STORE_URL
+        }
+
+        fun BuildFlavor.upgradeUrl(): String = upgradeUrl(isQuest = isQuest())
+    }
+}

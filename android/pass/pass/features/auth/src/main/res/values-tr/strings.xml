@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="enter_your_pin_code">PIN kodunuzu yazın</string>
+  <string name="unlock">Kilidi aç</string>
+  <plurals name="enter_your_pin_code_error">
+    <item quantity="one">PIN kodu doğru değil. %d kez daha deneyebilirsiniz.</item>
+    <item quantity="other">PIN kodu doğru değil. %d kez daha deneyebilirsiniz.</item>
+  </plurals>
+  <string name="auth_unlock_app_title">Proton Pass kilidini aç</string>
+  <string name="auth_unlock_app_subtitle">%s ana parolasını yazın</string>
+  <string name="auth_unlock_app_extra_password_subtitle">%s ek parolasını yazın</string>
+  <string name="auth_unlock_app_subtitle_account_switch">Şunun ana parolasını yazın:</string>
+  <string name="auth_unlock_app_extra_password_subtitle_account_switch">Şunun ek parolasını yazın:</string>
+  <string name="auth_master_password_label">Ana parola</string>
+  <string name="auth_action_reveal_password">Ana parolayı göster</string>
+  <string name="auth_action_conceal_password">Ana parolayı gizle</string>
+  <string name="auth_action_enter_pin_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Bunun yerine PIN kodunu yazın</string>
+  <string name="auth_action_enter_fingerprint_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Bunun yerine parmak izi kullanın</string>
+  <string name="auth_unlock_button">Kilidi aç</string>
+  <string name="auth_error_empty_password">Parola boş olamaz</string>
+  <string name="auth_error_pin_cannot_be_empty">PIN kodu boş olamaz</string>
+  <string name="auth_extra_password_label">Ek parolanızı yazın</string>
+  <string name="auth_extra_password_error">Ek parola ile kimlik doğrulanırken sorun çıktı</string>
+  <string name="auth_extra_password_too_many_attempts">Çok sayıda başarısız oturum açma girişimi yapıldığından oturumunuz kapatıldı.</string>
+  <string name="auth_biometric_enrollment_changed">Biyometrik verileriniz değiştirildi. Lütfen ayarlar altından biyometrik kilit açmayı yeniden açın.</string>
+  <string name="auth_error_wrong_password_no_attempts">Parola geçersiz</string>
+  <plurals name="auth_error_wrong_password">
+    <item quantity="one">Parola geçersiz. %d kez daha deneyebilirsiniz</item>
+    <item quantity="other">Parola geçersiz. %d kez daha deneyebilirsiniz</item>
+  </plurals>
+  <plurals name="auth_attempts_remaining">
+    <item quantity="one">%d deneme hakkı kaldı</item>
+    <item quantity="other">%d deneme hakkı kaldı</item>
+  </plurals>
+  <string name="auth_pin_too_many_attempts">Çok fazla sayıda başarısız PIN kodu denemesi yapıldığından tüm kullanıcılarınızın oturumu kapatıldı.</string>
+  <string name="auth_pin_too_many_attempts_dismiss">Çok fazla sayıda başarısız olan PIN kodu girişimi yapıldı.</string>
+</resources>

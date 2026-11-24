@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">Tomar una foto</string>
+  <string name="add_attachment_choose_a_photo_or_video">Elige una foto o video</string>
+  <string name="add_attachment_choose_a_file">Elegir un archivo</string>
+  <string name="attachment_options_rename">Cambiar el nombre</string>
+  <string name="attachment_options_delete">Eliminar</string>
+  <string name="attachment_options_download">Descarga</string>
+  <string name="attachment_options_share">Compartir</string>
+  <string name="file_picker_open_error">No se ha podido abrir el selector de archivos.</string>
+  <string name="media_picker_open_error">No se ha podido abrir el selector de media.</string>
+  <string name="camera_open_error">No se ha podido abrir la cámara.</string>
+  <string name="camera_permission_explanation">Se requiere el permiso de cámara para que esta función esté disponible.</string>
+  <string name="camera_permission_open_settings">Abrir ajustes</string>
+  <string name="delete_all_attachments_title">¿Deseas borrar todos los archivos?</string>
+  <string name="delete_all_attachments_subtitle">Esta acción no se puede deshacer.</string>
+  <string name="delete_all_attachments_confirm">Eliminar todo</string>
+  <string name="rename_attachment_dialog_title">Cambiar el nombre del archivo</string>
+  <string name="storage_full_title">El almacenamiento está casi lleno.</string>
+  <string name="storage_full_body">Mejora para aumentar el almacenamiento.</string>
+  <string name="storage_full_upgrade">Cambiar de plan</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%1$s de %2$s</string>
+  <string name="attachments_saved_to_location_success">Archivo adjunto guardado en la ubicación</string>
+  <string name="attachments_saved_to_location_error">No se pudo guardar el archivo adjunto en la ubicación</string>
+  <string name="attachment_sync_dialog_title_waiting">Esperar conexión</string>
+  <string name="attachment_sync_dialog_title_downloading">Descargar archivos adjuntos</string>
+  <string name="attachment_sync_dialog_title_done">Descarga completada</string>
+  <string name="attachment_sync_dialog_title_partial_failure">Error de descarga</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">Esperando conexión de red para descargar los archivos adjuntos.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">Descargando %1$d/%2$d archivos adjuntos</string>
+  <string name="attachment_sync_dialog_subtitle_done">Todos los archivos adjuntos se han descargado correctamente.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">No se han podido descargar algunos archivos adjuntos. Puedes reintentar los que han fallado abajo.</string>
+  <string name="attachment_sync_dialog_retry_content_description">Reintentar descarga</string>
+  <string name="attachment_sync_vault_files_count">%1$d / %2$d archivos</string>
+</resources>

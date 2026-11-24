@@ -1,0 +1,355 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.api.repositories
+
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
+import kotlinx.serialization.Serializable
+import proton.android.pass.common.api.Option
+import proton.android.pass.data.api.ItemCountSummary
+import proton.android.pass.data.api.ItemPendingEvent
+import proton.android.pass.data.api.usecases.ItemTypeFilter
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.Item
+import proton.android.pass.domain.ItemContents
+import proton.android.pass.domain.ItemEncrypted
+import proton.android.pass.domain.ItemFlag
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ItemState
+import proton.android.pass.domain.Passkey
+import proton.android.pass.domain.Share
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.ShareSelection
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.VaultId
+import proton.android.pass.domain.entity.NewAlias
+import proton.android.pass.domain.entity.PackageInfo
+import proton.android.pass.domain.events.EventToken
+import proton.android.pass.domain.events.SyncEventShareItem
+
+data class ShareItemCount(
+    val activeItems: Long,
+    val trashedItems: Long
+) {
+
+    val totalItems: Long
+        get() = activeItems.plus(trashedItems)
+
+}
+
+data class ObserveItemCountSummaryRequest(
+    val userId: UserId,
+    val shareIds: List<ShareId>,
+    val itemState: ItemState?,
+    val onlyShared: Boolean,
+    val applyItemStateToSharedItems: Boolean,
+    val includeHiddenVault: Boolean,
+    val folderId: FolderId? = null,
+    val restrictToRootFolder: Boolean = false
+)
+
+@Suppress("ComplexInterface", "TooManyFunctions")
+interface ItemRepository {
+    suspend fun createItem(
+        userId: UserId,
+        share: Share,
+        folderId: FolderId? = null,
+        contents: ItemContents
+    ): Item
+
+    suspend fun createAlias(
+        userId: UserId,
+        share: Share,
+        folderId: FolderId? = null,
+        newAlias: NewAlias
+    ): Item
+
+    suspend fun createLoginAndAlias(
+        userId: UserId,
+        shareId: ShareId,
+        folderId: FolderId? = null,
+        contents: ItemContents.Login,
+        newAlias: NewAlias
+    ): Item
+
+    suspend fun updateItem(
+        userId: UserId,
+        share: Share,
+        item: Item,
+        contents: ItemContents
+    ): Item
+
+    suspend fun updateItemFlags(
+        userId: UserId,
+        share: Share,
+        itemId: ItemId,
+        flags: Map<ItemFlag, Boolean>
+    ): Item
+
+    suspend fun updateLocalItemFlags(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        flag: ItemFlag,
+        isFlagEnabled: Boolean
+    )
+
+    suspend fun updateLocalItemsFlags(
+        userId: UserId,
+        items: List<Pair<ShareId, ItemId>>,
+        flag: ItemFlag,
+        isFlagEnabled: Boolean
+    )
+
+    suspend fun refreshItem(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        eventToken: EventToken
+    )
+
+    suspend fun refreshItems(userId: UserId, items: List<SyncEventShareItem>)
+
+    fun observeItems(
+        userId: UserId,
+        shareSelection: ShareSelection,
+        itemState: ItemState?,
+        itemTypeFilter: ItemTypeFilter = ItemTypeFilter.All,
+        itemFlags: Map<ItemFlag, Boolean>,
+        anyFlags: List<ItemFlag> = emptyList(),
+        includeHidden: Boolean
+    ): Flow<List<Item>>
+
+    fun observeItemsPaging(
+        userId: UserId,
+        shareSelection: ShareSelection,
+        itemState: ItemState?,
+        itemTypeFilter: ItemTypeFilter = ItemTypeFilter.All,
+        itemFlags: Map<ItemFlag, Boolean>,
+        includeHidden: Boolean
+    ): Flow<PagingData<Item>>
+
+    fun observeEncryptedItems(
+        userId: UserId,
+        shareSelection: ShareSelection,
+        itemState: ItemState?,
+        itemTypeFilter: ItemTypeFilter = ItemTypeFilter.All,
+        itemFlags: Map<ItemFlag, Boolean>,
+        includeHidden: Boolean
+    ): Flow<List<ItemEncrypted>>
+
+    fun observeEncryptedItemsPaging(
+        userId: UserId,
+        shareSelection: ShareSelection,
+        itemState: ItemState?,
+        itemTypeFilter: ItemTypeFilter = ItemTypeFilter.All,
+        itemFlags: Map<ItemFlag, Boolean>,
+        includeHidden: Boolean
+    ): Flow<PagingData<ItemEncrypted>>
+
+    fun observePinnedItems(
+        userId: UserId,
+        shareSelection: ShareSelection,
+        itemTypeFilter: ItemTypeFilter,
+        includeHidden: Boolean
+    ): Flow<List<Item>>
+
+    fun observeById(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId
+    ): Flow<Item?>
+
+    suspend fun getById(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId
+    ): Item
+
+    suspend fun getByIds(
+        userId: UserId,
+        shareId: ShareId,
+        itemIds: List<ItemId>
+    ): List<Item>
+
+    suspend fun trashItems(userId: UserId, items: Map<ShareId, List<ItemId>>)
+    suspend fun untrashItems(userId: UserId, items: Map<ShareId, List<ItemId>>)
+    suspend fun deleteItems(userId: UserId, items: Map<ShareId, List<ItemId>>)
+    suspend fun deleteLocalItems(userId: UserId, items: Map<ShareId, List<ItemId>>)
+    suspend fun clearTrash(userId: UserId, includeHidden: Boolean)
+    suspend fun restoreItems(userId: UserId, includeHidden: Boolean)
+    suspend fun addPackageAndUrlToItem(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        packageInfo: Option<PackageInfo>,
+        url: Option<String>
+    ): Item
+
+    suspend fun downloadItemsAndObserveProgress(
+        userId: UserId,
+        shareId: ShareId,
+        eventToken: EventToken? = null,
+        onProgress: suspend (VaultProgress) -> Unit
+    ): List<ItemRevision>
+
+    suspend fun setShareItems(
+        userId: UserId,
+        items: Map<ShareId, List<ItemRevision>>,
+        onProgress: suspend (VaultProgress) -> Unit
+    ): SetShareItemsResult
+
+    suspend fun applyPendingEvent(event: ItemPendingEvent)
+
+    suspend fun purgePendingEvent(event: ItemPendingEvent): Boolean
+
+    suspend fun indexPendingEvent(event: ItemPendingEvent)
+
+    fun observeItemCountSummary(request: ObserveItemCountSummaryRequest): Flow<ItemCountSummary>
+
+    fun observeItemCount(shareIds: List<ShareId>): Flow<Map<ShareId, ShareItemCount>>
+
+    suspend fun updateItemLastUsed(vaultId: VaultId, itemId: ItemId)
+
+    suspend fun migrateItems(
+        userId: UserId,
+        items: Map<ShareId, List<ItemId>>,
+        destination: Share,
+        destinationFolderId: FolderId? = null
+    ): MigrateItemsResult
+
+    suspend fun migrateAllVaultItems(
+        userId: UserId,
+        source: ShareId,
+        destination: ShareId,
+        destinationFolderId: FolderId? = null
+    )
+
+    suspend fun moveItemsInsideShare(
+        userId: UserId,
+        shareId: ShareId,
+        folderId: FolderId?,
+        itemIds: List<ItemId>
+    )
+
+    suspend fun getItemByAliasEmail(userId: UserId, aliasEmail: String): Item?
+
+    suspend fun pinItems(items: List<Pair<ShareId, ItemId>>): PinItemsResult
+    suspend fun unpinItems(items: List<Pair<ShareId, ItemId>>): PinItemsResult
+
+    suspend fun getItemRevisions(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId
+    ): List<ItemRevision>
+
+    suspend fun addPasskeyToItem(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        passkey: Passkey
+    )
+
+    suspend fun findUserId(shareId: ShareId, itemId: ItemId): Option<UserId>
+
+    suspend fun deleteItemRevisions(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId
+    )
+
+    fun observeSharedByMeEncryptedItems(
+        userId: UserId,
+        itemState: ItemState?,
+        includeHiddenVault: Boolean
+    ): Flow<List<ItemEncrypted>>
+
+    fun observeSharedByMeEncryptedItemsPaging(
+        userId: UserId,
+        itemState: ItemState?,
+        includeHiddenVault: Boolean
+    ): Flow<PagingData<ItemEncrypted>>
+
+    fun observeSharedWithMeEncryptedItems(
+        userId: UserId,
+        itemState: ItemState?,
+        includeHiddenVault: Boolean
+    ): Flow<List<ItemEncrypted>>
+
+    fun observeSharedWithMeEncryptedItemsPaging(
+        userId: UserId,
+        itemState: ItemState?,
+        includeHiddenVault: Boolean
+    ): Flow<PagingData<ItemEncrypted>>
+
+    fun observeRecentSearchItems(userId: UserId, shareId: ShareId?): Flow<List<ItemEncrypted>>
+}
+
+data class VaultProgress(
+    val total: Int,
+    val current: Int
+)
+
+data class SetShareItemsResult(
+    val failedShareIds: Set<ShareId>,
+    val insertedCountByShare: Map<ShareId, Int>
+)
+
+sealed interface MigrateItemsResult {
+    @JvmInline
+    value class AllMigrated(val items: List<Item>) : MigrateItemsResult
+
+    @JvmInline
+    value class SomeMigrated(val migratedItems: List<Item>) : MigrateItemsResult
+
+    @JvmInline
+    value class NoneMigrated(val exception: Throwable) : MigrateItemsResult
+}
+
+sealed interface PinItemsResult {
+    @JvmInline
+    value class AllPinned(val items: List<Item>) : PinItemsResult
+
+    @JvmInline
+    value class SomePinned(val migratedItems: List<Item>) : PinItemsResult
+
+    @JvmInline
+    value class NonePinned(val exception: Throwable) : PinItemsResult
+}
+
+@Serializable
+data class ItemRevision(
+    val itemId: String,
+    val revision: Long,
+    val contentFormatVersion: Int,
+    val keyRotation: Long,
+    val content: String,
+    val itemKey: String?,
+    val state: Int,
+    val aliasEmail: String?,
+    val createTime: Long,
+    val modifyTime: Long,
+    val lastUseTime: Long?,
+    val revisionTime: Long,
+    val isPinned: Boolean,
+    val pinTime: Long?,
+    val flags: Int,
+    val shareCount: Int,
+    val folderId: String? = null
+)

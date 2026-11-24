@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="other">%d 件のアイテムを次の保管庫に移動しますか？</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="other">%d個のアイテムを次のフォルダに移動しますか？</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">移動</string>
+  <string name="migrate_item_success_snackbar">アイテムを移動しました</string>
+  <string name="migrate_item_error_snackbar">アイテムの移動エラー</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">一部のアイテムの移動中にエラーが発生</string>
+  <string name="migrate_item_warning_history">保管庫間でアイテムを移動する場合、各アイテムの直近50回以内の変更のみ保持します。</string>
+  <string name="migrate_item_warning_secure_link">アイテムが別の保管庫に移動されると、そのアイテムのセキュアリンクは削除されます。</string>
+  <string name="migrate_all_items_success_snackbar">すべてのアイテムが移動されました</string>
+  <string name="migrate_all_items_error_snackbar">すべての保管庫アイテムの移動エラー</string>
+  <string name="migrate_init_error_snackbar">移行画面を準備できませんでした</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">フォルダを次の保管庫に移動しますか？</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">フォルダを次のフォルダに移動しますか？</string>
+  <string name="migrate_folder_success_snackbar">フォルダは移動しました</string>
+  <string name="migrate_folder_error_snackbar">フォルダの移動中にエラー</string>
+  <string name="migrate_folder_already_same_parent_snackbar">フォルダはすでにこの場所にあります</string>
+  <string name="migrate_dissolve_folder_dialog_title">Move folder contents</string>
+  <string name="migrate_dissolve_folder_dialog_message">This folder is already at the vault root. Its items and subfolders will be moved to the vault root.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">移動</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="other">%d個のアイテムはすでにこのフォルダにあります</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">This folder is already in this location</string>
+  <string name="migrate_disabled_folder_reason_being_moved">This folder is being moved</string>
+  <string name="migrate_disabled_folder_reason_descendant">This folder is inside the folder being moved</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Moving here would exceed the folder limits</string>
+  <string name="migrate_disabled_vault_reason_no_permission">この保管庫にはアイテムを作成できません</string>
+  <string name="migrate_disabled_vault_reason_same_vault">同じ保管庫にアイテムを移動することはできません</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="other">%d個のアイテムを別の保管庫に移動しますか？</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">このアイテムは現在共有されています。他の保管庫に移動すると、他のすべてのユーザーのアクセス権が削除されます。</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="other">現在%d個のアイテムが共有されています。他の保管庫に移動すると、他のすべてのユーザーのアクセス権が削除されます。</item>
+  </plurals>
+  <string name="migrate_select_vault_title">保管庫を選択してください</string>
+  <string name="migrate_select_destination_for_source_title">Select the destination to move all items from %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">アイテムを移動しました</string>
+  <string name="migrate_folder_items_moved_error_snackbar">アイテムの移動エラー</string>
+</resources>

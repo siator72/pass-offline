@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Proton Pass에서 가져오기</string>
+  <string name="error_loading_items">항목을 불러올 수 없습니다</string>
+  <string name="inline_suggestions_open_app">Proton Pass 열기</string>
+  <string name="autofill_associate_web_app_name_dialog_title">이 앱 및 웹사이트에서 \"%s\"의 로그인 세부 정보를 사용하세요.</string>
+  <string name="autofill_dialog_associate_and_autofill">항상 사용</string>
+  <string name="autofill_dialog_just_autofill">한 번만 사용</string>
+  <string name="autofill_dialog_cancel">취소</string>
+  <string name="autofill_notification_copy_to_clipboard">TOTP를 클립보드에 복사했습니다</string>
+  <string name="autofill_dialog_associate_title">로그인을 사용하시겠어요?</string>
+  <string name="autofill_user_logged_out">로그아웃했습니다. 앱을 열어 다시 로그인해 주세요.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">허용</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">현재 앱에 의해 열린 웹사이트에 사용자의 자격 증명을 자동완성하려고 합니다. 자동완성 이후에 앱이 자격 증명에 접근할 수 있게 될 수 있으므로 앱을 신뢰하는 경우에만 계속하십시오.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">자동 완성</string>
+  <string name="autofill_confirm_unverified_browser_title">이 앱은 신뢰할 수 있는 브라우저가 아닐 가능성이 있습니다</string>
+  <string name="autofill_confirm_unverified_browser_body">이 앱은 알려진 브라우저로 식별되었으나, Pass에서 검증할 수 없었습니다. 서명 인증서가 예상된 값과 일치하지 않습니다. 이는 브라우저 설정이 비정상적이거나, 다른 앱이 사용자의 자격 증명을 가로채기 위해 해당 브라우저를 사칭할 때 발생할 수 있습니다. 이 앱이 신뢰할 수 있는 앱인지 확실한 경우에만 계속 진행하세요.</string>
+  <string name="autofill_confirm_dont_ask_again">이 앱에서 다시 묻지 않기</string>
+  <string name="autofill_troubleshooting_title">자동 완성 문제 해결</string>
+  <string name="autofill_troubleshooting_subtitle">자동 완성이 기기에 올바르게 설정되었는지 확인하세요.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">자동 완성이 이미 설정되었습니다</string>
+  <string name="autofill_troubleshooting_verdict_attention">주의가 필요한 몇 가지 항목</string>
+  <string name="autofill_troubleshooting_service_ok">Proton Pass가 자동 완성 서비스로 설정되어 있습니다</string>
+  <string name="autofill_troubleshooting_service_current_other">현재 %1$s(으)로 설정되어 있습니다.</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Proton Pass가 자동 완성 서비스로 설정되어 있지 않습니다</string>
+  <string name="autofill_troubleshooting_service_not_default_body">모든 앱에서 자동 완성하려면 Proton Pass를 기본값으로 설정하세요.</string>
+  <string name="autofill_troubleshooting_service_enable_action">자동 완성 활성화</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">이 기기는 자동 완성이 지원되지 않습니다</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">비활성화된 브라우저 감지됨</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Proton Pass가 자격 증명을 자동 완성하려면 활성화해야 합니다. 브라우저 설정에서 변경할 수 있습니다.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">호환 가능한 브라우저입니다</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">브라우저와 연결되었으며 자동 완성이 준비되었습니다.</string>
+  <string name="autofill_troubleshooting_browser_active">활성</string>
+  <string name="autofill_troubleshooting_inline_info">인라인 제안이 키보드상에서 표시됩니다. Gboard와 같은 호환 가능한 키보드와 Android 11 이상이 필요합니다.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">진단 공유</string>
+  <string name="autofill_troubleshooting_open_diagnostics">고급 진단</string>
+  <string name="autofill_diagnostics_title">고급 진단</string>
+  <string name="autofill_diagnostics_enable">자동 완성 진단 활성화</string>
+  <string name="autofill_diagnostics_enable_description">활성화시 Proton Pass가 자동 완성 중에 발생하는 일을 기록하여 자동 완성이 불가한 이유를 확인할 수 있습니다. 진단 완료 후에는 반드시 비활성화하십시오.</string>
+  <string name="autofill_diagnostics_instructions">문제 발생 중인 앱이나 브라우저에서 문제를 다시 발생해본 다음 이 화면으로 돌아와 주세요.</string>
+  <string name="autofill_diagnostics_last_attempt_title">마지막 자동 완성 시도</string>
+  <string name="autofill_diagnostics_no_attempts">기록된 자동 완성 시도가 없습니다.</string>
+  <string name="autofill_diagnostics_reason_not_default">Proton Pass가 자동 완성 서비스로 설정되지 않았습니다. 일부 위치에서는 사용할 수 없습니다.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass가 %1$s(에)서 제안을 제공했습니다.</string>
+  <string name="autofill_diagnostics_outcome_nothing">자동 완성이 %1$s(에)서 사용되었으나 일치하는 로그인 항목이 없습니다. 감지된 로그인 입력란이 없거나, 해당 사이트에 대해 일치하는 로그인 항목이 없습니다.</string>
+  <string name="autofill_diagnostics_outcome_error">자동 완성이 %1$s(에)서 문제가 발생했습니다.</string>
+  <string name="autofill_diagnostics_recent_title">최근 시도</string>
+  <string name="autofill_diagnostics_clear">삭제</string>
+  <string name="autofill_diagnostics_share">지원 팀과 공유</string>
+</resources>

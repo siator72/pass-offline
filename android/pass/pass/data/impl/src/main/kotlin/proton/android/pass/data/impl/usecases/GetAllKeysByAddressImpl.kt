@@ -1,0 +1,80 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.usecases
+
+import me.proton.core.key.domain.entity.key.PublicAddressKey
+import me.proton.core.key.domain.repository.PublicAddressRepository
+import me.proton.core.key.domain.repository.getPublicAddressOrNull
+import proton.android.pass.common.api.safeRunCatching
+import proton.android.pass.data.api.usecases.GetAllKeysByAddress
+import proton.android.pass.data.api.usecases.GetPrimaryUserId
+import proton.android.pass.data.impl.api.PasswordManagerApi
+import proton.android.pass.data.impl.network.RemoteApiGateway
+import proton.android.pass.data.impl.network.get
+import proton.android.pass.data.impl.network.valueOrThrow
+import proton.android.pass.log.api.PassLogger
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class GetAllKeysByAddressImpl @Inject constructor(
+    private val getPrimaryUserId: GetPrimaryUserId,
+    private val publicAddressRepository: PublicAddressRepository,
+    private val apiProvider: RemoteApiGateway
+) : GetAllKeysByAddress {
+
+    @Suppress("ReturnCount")
+    override suspend fun invoke(email: String): Result<List<PublicAddressKey>> {
+        val userId = getPrimaryUserId()
+            ?: return Result.failure(IllegalStateException("Could not find Primary User Id"))
+
+        // Primary lookup via proton-libs. Guarded because it can throw (e.g. 422) instead of
+        // returning null for addresses that don't exist as regular internal users.
+        val remoteAddress = safeRunCatching {
+            publicAddressRepository.getPublicAddressOrNull(userId, email)
+        }.getOrNull()
+        if (remoteAddress != null && remoteAddress.keys.isNotEmpty()) {
+            return Result.success(remoteAddress.keys)
+        }
+
+        PassLogger.d(TAG, "Could not find keys for email. Fetching from new endpoint")
+        val res = apiProvider.get<PasswordManagerApi>(userId).invoke {
+            getAllKeysByAddress(email = email)
+        }
+
+        val response = safeRunCatching { res.valueOrThrow }.getOrElse {
+            return Result.failure(it)
+        }
+
+        if (response.code != CODE_SUCCESS) {
+            return Result.failure(IllegalStateException("Could not find keys for email. Code: ${response.code}"))
+        }
+
+        val keys = response.address.keys.mapIndexed { idx, key ->
+            key.toPublicAddressKey(email = email, isPrimary = idx == 0)
+        }
+
+        return Result.success(keys)
+    }
+
+    companion object {
+        private const val TAG = "GetKeysForEmailImpl"
+        private const val CODE_SUCCESS = 1000
+    }
+}

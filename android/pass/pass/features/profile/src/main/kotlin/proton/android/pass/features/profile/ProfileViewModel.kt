@@ -1,0 +1,560 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.profile
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.toPersistentList
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.scan
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import me.proton.core.util.kotlin.takeIfNotBlank
+import proton.android.pass.appconfig.api.AppConfig
+import proton.android.pass.appconfig.api.BuildFlavor
+import proton.android.pass.appconfig.api.BuildFlavor.Companion.isQuest
+import proton.android.pass.appconfig.api.BuildFlavor.Companion.passStoreUrl
+import proton.android.pass.autofill.api.AutofillManager
+import proton.android.pass.autofill.api.AutofillSupportedStatus
+import proton.android.pass.biometry.BiometryManager
+import proton.android.pass.clipboard.api.ClipboardManager
+import proton.android.pass.common.api.FlowUtils.oneShot
+import proton.android.pass.common.api.LoadingResult
+import proton.android.pass.common.api.Some
+import proton.android.pass.common.api.asLoadingResult
+import proton.android.pass.common.api.combineN
+import proton.android.pass.common.api.getOrNull
+import proton.android.pass.common.api.safeRunCatching
+import proton.android.pass.composecomponents.impl.bottombar.AccountType
+import proton.android.pass.data.api.usecases.ObserveAccounts
+import proton.android.pass.data.api.usecases.ObserveItemCount
+import proton.android.pass.data.api.usecases.ObserveMFACount
+import proton.android.pass.data.api.usecases.ObservePrimaryAccount
+import proton.android.pass.data.api.usecases.ObserveUpgradeInfo
+import proton.android.pass.data.api.usecases.ObserveUser
+import proton.android.pass.data.api.usecases.ObserveUserAccessData
+import proton.android.pass.data.api.usecases.PerformSync
+import proton.android.pass.data.api.usecases.SetAppLockType
+import proton.android.pass.data.api.usecases.SetPasswordOnlyLock
+import proton.android.pass.data.api.usecases.UpgradeInfo
+import proton.android.pass.data.api.usecases.capabilities.CanCreateAlias
+import proton.android.pass.data.api.usecases.organization.ObserveAnyAccountHasEnforcedLock
+import proton.android.pass.data.api.usecases.securelink.ObserveSecureLinksCount
+import proton.android.pass.domain.PlanType
+import proton.android.pass.domain.ShareSelection
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.account.Account
+import proton.android.pass.domain.account.AccountState
+import proton.android.pass.domain.account.User
+import proton.android.pass.features.profile.applocktype.PendingAppLockChangeHolder
+import proton.android.pass.features.profile.ProfileSnackbarMessage.AppVersionCopied
+import proton.android.pass.features.profile.ProfileSnackbarMessage.FilteredByAliases
+import proton.android.pass.features.profile.ProfileSnackbarMessage.FilteredByCreditCards
+import proton.android.pass.features.profile.ProfileSnackbarMessage.FilteredByCustomItems
+import proton.android.pass.features.profile.ProfileSnackbarMessage.FilteredByIdentities
+import proton.android.pass.features.profile.ProfileSnackbarMessage.FilteredByLogins
+import proton.android.pass.features.profile.ProfileSnackbarMessage.FilteredByLoginsWithMFA
+import proton.android.pass.features.profile.ProfileSnackbarMessage.FilteredByNote
+import proton.android.pass.features.profile.accountswitcher.AccountItem
+import proton.android.pass.features.profile.accountswitcher.AccountListItem
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import proton.android.pass.passkeys.api.CanDeviceSupportPasskeys
+import proton.android.pass.passkeys.api.PasskeySupport
+import proton.android.pass.preferences.AppLockTypePreference
+import proton.android.pass.preferences.AppLockState
+import proton.android.pass.preferences.BiometricSystemLockPreference
+import proton.android.pass.preferences.HasAuthenticated
+import proton.android.pass.preferences.UserPreferencesRepository
+import proton.android.pass.preferences.value
+import proton.android.pass.searchoptions.api.FilterOption
+import proton.android.pass.searchoptions.api.HomeSearchOptionsRepository
+import proton.android.pass.searchoptions.api.SearchFilterType
+import proton.android.pass.searchoptions.api.VaultSelectionOption
+import javax.inject.Inject
+
+@Suppress("LongParameterList")
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
+    private val userPreferencesRepository: UserPreferencesRepository,
+    private val autofillManager: AutofillManager,
+    private val biometryManager: BiometryManager,
+    private val pendingAppLockChangeHolder: PendingAppLockChangeHolder,
+    private val setAppLockType: SetAppLockType,
+    private val setPasswordOnlyLock: SetPasswordOnlyLock,
+    private val clipboardManager: ClipboardManager,
+    private val snackbarDispatcher: SnackbarDispatcher,
+    private val appConfig: AppConfig,
+    private val canDeviceSupportPasskeys: CanDeviceSupportPasskeys,
+    private val observeUser: ObserveUser,
+    private val performSync: PerformSync,
+    private val searchOptionsRepository: HomeSearchOptionsRepository,
+    observeAccounts: ObserveAccounts,
+    observePrimaryAccount: ObservePrimaryAccount,
+    observeItemCount: ObserveItemCount,
+    observeMFACount: ObserveMFACount,
+    observeUpgradeInfo: ObserveUpgradeInfo,
+    private val observeAnyAccountHasEnforcedLock: ObserveAnyAccountHasEnforcedLock,
+    observeSecureLinksCount: ObserveSecureLinksCount,
+    observeUserAccessData: ObserveUserAccessData,
+    canCreateAlias: CanCreateAlias
+) : ViewModel() {
+
+    private val systemLockRefreshTrigger = MutableStateFlow(0)
+
+    private val userAppLockSectionStateFlow: Flow<AppLockSectionState> = combine(
+        userPreferencesRepository.getAppLockState(),
+        userPreferencesRepository.getAppLockTimePreference(),
+        userPreferencesRepository.getAppLockTypePreference(),
+        userPreferencesRepository.getBiometricSystemLockPreference(),
+        systemLockRefreshTrigger
+    ) { appLockState, time, type, biometricSystemLock, _ ->
+        when (type) {
+            AppLockTypePreference.Biometrics ->
+                UserAppLockSectionState.Biometric(
+                    appLockTimePreference = time,
+                    biometricSystemLockPreference = biometricSystemLock,
+                    isSystemLockToggleLocked = isSystemLockToggleLocked(biometricSystemLock)
+                )
+
+            AppLockTypePreference.Pin -> UserAppLockSectionState.Pin(time)
+            AppLockTypePreference.None -> if (appLockState == AppLockState.Enabled) {
+                UserAppLockSectionState.Password(time)
+            } else {
+                UserAppLockSectionState.None
+            }
+        }
+
+    }
+
+    private val appLockSectionStateFlow: Flow<AppLockSectionState> =
+        observeAnyAccountHasEnforcedLock()
+            .flatMapLatest { orgSettings ->
+                if (orgSettings is Some && orgSettings.value.isEnforced()) {
+                    val seconds = orgSettings.value.secondsToForceLock()
+                    combine(
+                        userPreferencesRepository.getAppLockTypePreference(),
+                        userPreferencesRepository.getBiometricSystemLockPreference(),
+                        systemLockRefreshTrigger
+                    ) { type, biometricSystemLock, _ ->
+                        when (type) {
+                            AppLockTypePreference.Biometrics ->
+                                EnforcedAppLockSectionState.Biometric(
+                                    seconds = seconds,
+                                    biometricSystemLockPreference = biometricSystemLock,
+                                    isSystemLockToggleLocked = isSystemLockToggleLocked(biometricSystemLock)
+                                )
+
+                            AppLockTypePreference.Pin ->
+                                EnforcedAppLockSectionState.Pin(seconds)
+
+                            AppLockTypePreference.None ->
+                                EnforcedAppLockSectionState.Password(seconds)
+                        }
+                    }
+                } else {
+                    userAppLockSectionStateFlow
+                }
+            }
+
+    private val autofillStatusFlow: Flow<AutofillSupportedStatus> = autofillManager
+        .getAutofillStatus()
+        .distinctUntilChanged()
+
+    private val eventFlow: MutableStateFlow<ProfileEvent> = MutableStateFlow(ProfileEvent.Unknown)
+
+
+    private val upgradeInfoFlow = observeUpgradeInfo().asLoadingResult()
+
+    private val itemSummaryUiStateFlow = combine(
+        observeItemCount(
+            itemState = null,
+            shareSelection = ShareSelection.AllShares,
+            includeHiddenVault = false
+        ).asLoadingResult(),
+        observeMFACount(includeHiddenVault = false),
+        upgradeInfoFlow
+    ) { itemCountResult, mfaCount, upgradeInfoResult ->
+        val itemCount = itemCountResult.getOrNull()
+        val upgradeInfo = upgradeInfoResult.getOrNull()
+        val isUpgradeAvailable = upgradeInfo?.isUpgradeAvailable ?: false
+
+        val aliasLimit = if (isUpgradeAvailable) {
+            upgradeInfo.plan.aliasLimit.limitOrNull()
+        } else null
+
+        val mfaLimit = if (isUpgradeAvailable) {
+            upgradeInfo.plan.totpLimit.limitOrNull()
+        } else null
+
+        ItemSummaryUiState(
+            loginCount = itemCount?.login?.toInt() ?: 0,
+            notesCount = itemCount?.note?.toInt() ?: 0,
+            aliasCount = itemCount?.alias?.toInt() ?: 0,
+            creditCardsCount = itemCount?.creditCard?.toInt() ?: 0,
+            identityCount = itemCount?.identities?.toInt() ?: 0,
+            customItemCount = itemCount?.custom?.toInt() ?: 0,
+            mfaCount = mfaCount,
+            aliasLimit = aliasLimit,
+            mfaLimit = mfaLimit
+        )
+    }
+
+    private val passkeySupportFlow: Flow<ProfilePasskeySupportSection> =
+        oneShot<ProfilePasskeySupportSection> {
+            val support = canDeviceSupportPasskeys()
+            if (support is PasskeySupport.NotSupported &&
+                support.reason == PasskeySupport.NotSupportedReason.Quest
+            ) {
+                ProfilePasskeySupportSection.Hide
+            } else {
+                ProfilePasskeySupportSection.Show(support)
+            }
+        }.onStart {
+            emit(ProfilePasskeySupportSection.Hide)
+        }.distinctUntilChanged()
+
+    private val accountItemsFlow = observeAccounts()
+        .flatMapLatest { accounts ->
+            combine(
+                accounts.map { account ->
+                    combine(
+                        observeUpgradeInfo(account.userId).asLoadingResult(),
+                        observeUser(account.userId)
+                    ) { upgradeInfo, user ->
+                        val (planInfo, _) = processUpgradeInfo(upgradeInfo)
+                        account.getAccountItem(user, planInfo)
+                    }
+                }
+            ) { it.toList() }
+        }
+
+    private val primaryAccountFlow = observePrimaryAccount()
+
+    private val accountsFlow =
+        primaryAccountFlow.combine(accountItemsFlow) { primary, accounts -> primary to accounts }
+            .mapLatest { (primary, accounts) ->
+                accounts.mapNotNull {
+                    when {
+                        primary?.userId == it.userId -> AccountListItem.Primary(it)
+                        it.state == AccountState.Ready -> AccountListItem.Ready(it)
+                        it.state == AccountState.Disabled -> AccountListItem.Disabled(it)
+                        else -> null
+                    }
+                }.toPersistentList()
+            }
+
+    internal val onAccountReadyFlow = observeAccounts()
+        .scan(emptyMap<UserId, AccountState>() to emptySet<UserId>()) { (previousStates, _), accounts ->
+            val currentStates = accounts.associate { it.userId to it.state }
+            val newReadyUserIds = currentStates.filter { (userId, currentState) ->
+                previousStates.containsKey(userId) &&
+                    previousStates[userId] != AccountState.Ready &&
+                    currentState == AccountState.Ready
+            }.keys
+            currentStates to newReadyUserIds
+        }
+        .map { (_, readyUserIds) -> readyUserIds }
+        .distinctUntilChanged()
+
+    private val dataStorageStateFlow = combine(
+        observeUserAccessData(),
+        upgradeInfoFlow
+    ) { userAccessData, upgradeInfo ->
+        DataStorageState(
+            shouldDisplay = userAccessData?.storageAllowed ?: false,
+            canUpgrade = upgradeInfo.getOrNull()?.isUpgradeAvailable ?: false,
+            used = userAccessData?.storageUsed ?: 0,
+            quota = userAccessData?.storageQuota ?: 0
+        )
+    }
+
+    internal val state: StateFlow<ProfileUiState> = combineN(
+        appLockSectionStateFlow,
+        autofillStatusFlow,
+        itemSummaryUiStateFlow,
+        upgradeInfoFlow,
+        eventFlow,
+        passkeySupportFlow,
+        observeSecureLinksCount(),
+        dataStorageStateFlow,
+        accountsFlow,
+        flowOf(appConfig.flavor.isQuest()),
+        canCreateAlias()
+    ) { appLockSectionState, autofillStatus, itemSummaryUiState, upgradeInfo, event,
+        passkey, secureLinksCount, dataStorage, accounts, isQuest, canCreateAliases ->
+
+        val (accountType, showUpgradeButton) = processUpgradeInfo(upgradeInfo)
+        ProfileUiState(
+            appLockSectionState = appLockSectionState,
+            autofillStatus = autofillStatus,
+            itemSummaryUiState = itemSummaryUiState,
+            appVersion = appConfig.versionName,
+            accountType = accountType,
+            event = event,
+            showUpgradeButton = showUpgradeButton,
+            passkeySupport = passkey,
+            secureLinksCount = secureLinksCount,
+            canCreateAlias = canCreateAliases,
+            accounts = accounts,
+            dataStorageState = dataStorage,
+            canDisplaySignInToAnotherDeviceSection = !isQuest,
+            passStoreUrl = appConfig.flavor.passStoreUrl()
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000L),
+        initialValue = ProfileUiState.initial(
+            appVersion = appConfig.versionName,
+            passStoreUrl = appConfig.flavor.passStoreUrl()
+        )
+    )
+
+    private fun processUpgradeInfo(upgradeInfo: LoadingResult<UpgradeInfo>) = when (upgradeInfo) {
+        LoadingResult.Loading -> PlanInfo.Hide to false
+        is LoadingResult.Error -> {
+            PassLogger.w(TAG, "Error getting upgradeInfo")
+            PassLogger.w(TAG, upgradeInfo.exception)
+            PlanInfo.Hide to false
+        }
+
+        is LoadingResult.Success -> {
+            val info = upgradeInfo.data
+            when (val plan = info.plan.planType) {
+                is PlanType.Free -> PlanInfo.Hide to info.isUpgradeAvailable
+                is PlanType.Paid -> PlanInfo.Unlimited(
+                    planName = plan.humanReadableName,
+                    accountType = AccountType.Unlimited
+                ) to false
+
+                is PlanType.Unknown -> PlanInfo.Hide to info.isUpgradeAvailable
+            }
+        }
+    }
+
+    internal fun onToggleAutofill(value: Boolean) {
+        if (!value) {
+            autofillManager.openAutofillSelector()
+        } else {
+            autofillManager.disableAutofill()
+        }
+    }
+
+    internal fun copyAppVersion(appVersion: String) {
+        clipboardManager.copyToClipboard(appVersion)
+
+        viewModelScope.launch {
+            snackbarDispatcher(AppVersionCopied)
+        }
+    }
+
+    internal fun onAppVersionLongClick() {
+        if (appConfig.flavor is BuildFlavor.Alpha) {
+            eventFlow.update { ProfileEvent.OpenFeatureFlags }
+        }
+    }
+
+    internal fun onEventConsumed(event: ProfileEvent) {
+        eventFlow.compareAndSet(event, ProfileEvent.Unknown)
+    }
+
+    internal fun onScreenResumed() {
+        systemLockRefreshTrigger.update { it + 1 }
+    }
+
+    internal fun onToggleBiometricSystemLock(value: Boolean) {
+        viewModelScope.launch {
+            val isBiometricLock =
+                userPreferencesRepository.getAppLockTypePreference().first() == AppLockTypePreference.Biometrics
+            if (!value && isBiometricLock && !biometryManager.canAuthenticateWithBiometricsOnly()) return@launch
+            applyBiometricSystemLockPreference(value)
+        }
+    }
+
+    private fun isSystemLockToggleLocked(preference: BiometricSystemLockPreference): Boolean =
+        preference.value() && !biometryManager.canAuthenticateWithBiometricsOnly()
+
+    private fun applyBiometricSystemLockPreference(value: Boolean) {
+        BiometricSystemLockPreference.from(value)
+            .also(userPreferencesRepository::setBiometricSystemLockPreference)
+    }
+
+    internal fun onPinSuccessfullyEntered() {
+        eventFlow.update { ProfileEvent.ConfigurePin }
+    }
+
+    internal fun onMasterPasswordVerifiedForLockChange() {
+        val target = pendingAppLockChangeHolder.consume() ?: return
+        viewModelScope.launch {
+            val currentType = userPreferencesRepository.getAppLockTypePreference().first()
+            if (currentType == AppLockTypePreference.None) {
+                disablePasswordOnlyLock(target)
+                return@launch
+            }
+            if (currentType != AppLockTypePreference.Biometrics) return@launch
+            when (target) {
+                AppLockTypePreference.None -> {
+                    val isEnforced = observeAnyAccountHasEnforcedLock().first()
+                        .let { it is Some && it.value.isEnforced() }
+                    val result = if (isEnforced) {
+                        setPasswordOnlyLock()
+                    } else {
+                        setAppLockType(AppLockTypePreference.None)
+                    }
+                    result
+                        .onSuccess {
+                            if (isEnforced) {
+                                userPreferencesRepository.setHasAuthenticated(HasAuthenticated.Authenticated)
+                            }
+                            snackbarDispatcher(ProfileSnackbarMessage.FingerprintLockDisabled)
+                        }
+                        .onFailure { error ->
+                            PassLogger.w(TAG, error, "Failed to update app lock type after password check")
+                            snackbarDispatcher(ProfileSnackbarMessage.AppLockUpdateError)
+                        }
+                }
+
+                AppLockTypePreference.Pin -> eventFlow.update { ProfileEvent.ConfigurePin }
+
+                AppLockTypePreference.Biometrics -> {}
+            }
+        }
+    }
+
+    private suspend fun disablePasswordOnlyLock(target: AppLockTypePreference) {
+        val isPasswordOnlyLock = userPreferencesRepository.getAppLockState().first() == AppLockState.Enabled
+        val isEnforced = observeAnyAccountHasEnforcedLock().first().let { it is Some && it.value.isEnforced() }
+        if (target != AppLockTypePreference.None || !isPasswordOnlyLock || isEnforced) return
+        setAppLockType(AppLockTypePreference.None)
+            .onSuccess { snackbarDispatcher(ProfileSnackbarMessage.AppLockDisabled) }
+            .onFailure { error ->
+                PassLogger.w(TAG, error, "Failed to disable password only lock after password check")
+                snackbarDispatcher(ProfileSnackbarMessage.AppLockUpdateError)
+            }
+    }
+
+    internal fun onNewAccountReady(newAccountReady: Set<UserId>) {
+        viewModelScope.launch {
+            newAccountReady.forEach {
+                refreshAccount(it)
+            }
+        }
+    }
+
+    private suspend fun ProfileViewModel.refreshAccount(userId: UserId) {
+        safeRunCatching { performSync(userId, forceSync = true, trigger = "account_ready").getOrThrow() }
+            .onSuccess {
+                PassLogger.i(TAG, "Sync completed")
+            }
+            .onFailure { error ->
+                PassLogger.w(TAG, "Error performing sync")
+                PassLogger.w(TAG, error)
+            }
+    }
+
+    private fun Account.getAccountItem(user: User?, planInfo: PlanInfo): AccountItem = AccountItem(
+        userId = userId,
+        initials = user?.getInitials(count = 1) ?: "?",
+        name = user?.displayName ?: this.username?.takeIfNotBlank() ?: "Unknown",
+        email = user?.email?.takeIfNotBlank(),
+        planInfo = planInfo,
+        state = state
+    )
+
+    private suspend fun selectFilters(filterType: SearchFilterType) {
+        searchOptionsRepository.setVaultSelectionOption(VaultSelectionOption.AllVaults)
+        searchOptionsRepository.setFilterOption(FilterOption(filterType))
+    }
+
+    fun onAliasCountClick() {
+        viewModelScope.launch {
+            selectFilters(SearchFilterType.Alias)
+            eventFlow.update { ProfileEvent.HomeAliases }
+            snackbarDispatcher(FilteredByAliases)
+        }
+    }
+
+    fun onCreditCardCountClick() {
+        viewModelScope.launch {
+            selectFilters(SearchFilterType.CreditCard)
+            eventFlow.update { ProfileEvent.HomeCreditCards }
+            snackbarDispatcher(FilteredByCreditCards)
+        }
+    }
+
+    fun onIdentityCountClick() {
+        viewModelScope.launch {
+            selectFilters(SearchFilterType.Identity)
+            eventFlow.update { ProfileEvent.HomeIdentities }
+            snackbarDispatcher(FilteredByIdentities)
+        }
+    }
+
+    fun onLoginCountClick() {
+        viewModelScope.launch {
+            selectFilters(SearchFilterType.Login)
+            eventFlow.update { ProfileEvent.HomeLogins }
+            snackbarDispatcher(FilteredByLogins)
+        }
+    }
+
+    fun onMFACountClick() {
+        viewModelScope.launch {
+            selectFilters(SearchFilterType.LoginMFA)
+            eventFlow.update { ProfileEvent.AllMFA }
+            snackbarDispatcher(FilteredByLoginsWithMFA)
+        }
+    }
+
+    fun onNoteCountClick() {
+        viewModelScope.launch {
+            selectFilters(SearchFilterType.Note)
+            eventFlow.update { ProfileEvent.HomeNotes }
+            snackbarDispatcher(FilteredByNote)
+        }
+    }
+
+    fun onCustomItemCountClick() {
+        viewModelScope.launch {
+            selectFilters(SearchFilterType.Custom)
+            eventFlow.update { ProfileEvent.HomeCustomItems }
+            snackbarDispatcher(FilteredByCustomItems)
+        }
+    }
+
+    private companion object {
+
+        private const val TAG = "ProfileViewModel"
+
+    }
+
+}

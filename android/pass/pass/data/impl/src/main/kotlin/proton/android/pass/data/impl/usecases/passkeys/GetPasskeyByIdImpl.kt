@@ -1,0 +1,67 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.usecases.passkeys
+
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.toOption
+import proton.android.pass.data.api.errors.UserIdNotAvailableError
+import proton.android.pass.data.api.repositories.ItemRepository
+import proton.android.pass.data.api.usecases.passkeys.GetPasskeyById
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ItemType
+import proton.android.pass.domain.Passkey
+import proton.android.pass.domain.PasskeyId
+import proton.android.pass.domain.ShareId
+import proton.android.pass.log.api.PassLogger
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class GetPasskeyByIdImpl @Inject constructor(
+    private val itemRepository: ItemRepository
+) : GetPasskeyById {
+    override suspend fun invoke(
+        shareId: ShareId,
+        itemId: ItemId,
+        passkeyId: PasskeyId
+    ): Option<Passkey> {
+        val userId = itemRepository.findUserId(shareId, itemId)
+            .value()
+            ?: throw UserIdNotAvailableError()
+        val item = itemRepository.getById(userId, shareId, itemId)
+        val passkeys = when (val itemType = item.itemType) {
+            is ItemType.Login -> itemType.passkeys
+            else -> {
+                PassLogger.w(TAG, "getPasskeyById: item type is ${item.itemType::class.simpleName}, not Login")
+                return None
+            }
+        }
+
+        return passkeys.find { it.id == passkeyId }.toOption().also { result ->
+            if (result is None) {
+                PassLogger.w(TAG, "getPasskeyById: passkeyId not found among ${passkeys.size} stored passkeys")
+            }
+        }
+    }
+
+    private companion object {
+        private const val TAG = "GetPasskeyByIdImpl"
+    }
+}

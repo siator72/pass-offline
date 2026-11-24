@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">Copia i tanca</string>
+  <string name="password_copied_to_clipboard">S\'ha copiat la contrasenya</string>
+  <string name="bottomsheet_generate_password_title">Genera la contrasenya</string>
+  <string name="password_type">Tipus</string>
+  <string name="special_characters">Caràcters especials (!&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="one">%s caràcter</item>
+    <item quantity="other">%s caràcters</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">Lletres majúscules (A-Z)</string>
+  <string name="bottomsheet_option_include_numbers">Incloeu números (0-9)</string>
+  <string name="regenerate_password_icon_content_description">Botó de regeneració de contrasenya</string>
+  <string name="password_mode_memorable">Contrasenya fàcil de recordar</string>
+  <string name="password_mode_random">Contrasenya aleatòria</string>
+  <string name="password_mode_icon">Icona de mode de contrasenya</string>
+  <string name="password_words_separator_icon">Separador de paraules de contrasenya</string>
+  <string name="password_history_title">Contrasenyes generades</string>
+  <string name="password_history_empty">Sense historial</string>
+  <string name="password_history_description">Les contrasenyes generades s\'emmagatzemaran durant un període de 2 setmanes.</string>
+  <string name="password_history_today">Avui, %s</string>
+  <string name="password_history_yesterday">Ahir, %s</string>
+  <string name="password_history_before_yesterday">Fa %d dies, %s</string>
+  <string name="password_history_clear_history">Neteja l\'historial</string>
+  <string name="password_history_remove_from_history">Esborra de l\'historial</string>
+</resources>

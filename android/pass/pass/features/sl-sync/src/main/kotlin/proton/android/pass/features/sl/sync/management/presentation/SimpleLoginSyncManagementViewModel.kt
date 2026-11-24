@@ -1,0 +1,176 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.sl.sync.management.presentation
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.some
+import proton.android.pass.data.api.usecases.GetUserPlan
+import proton.android.pass.data.api.usecases.ObserveVaults
+import proton.android.pass.data.api.usecases.simplelogin.ObserveSimpleLoginAliasDomains
+import proton.android.pass.data.api.usecases.simplelogin.ObserveSimpleLoginAliasMailboxes
+import proton.android.pass.data.api.usecases.simplelogin.ObserveSimpleLoginAliasSettings
+import proton.android.pass.data.api.usecases.simplelogin.ObserveSimpleLoginSyncStatus
+import proton.android.pass.domain.Vault
+import proton.android.pass.domain.canBeUsedForSimpleLogin
+import proton.android.pass.domain.hasUsableSimpleLoginVaults
+import proton.android.pass.domain.simplelogin.SimpleLoginSyncStatus
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import javax.inject.Inject
+
+@HiltViewModel
+class SimpleLoginSyncManagementViewModel @Inject constructor(
+    observeVaults: ObserveVaults,
+    observeSimpleLoginAliasDomains: ObserveSimpleLoginAliasDomains,
+    observeSimpleLoginAliasMailboxes: ObserveSimpleLoginAliasMailboxes,
+    observeSimpleLoginAliasSettings: ObserveSimpleLoginAliasSettings,
+    observeSimpleLoginSyncStatus: ObserveSimpleLoginSyncStatus,
+    getUserPlan: GetUserPlan,
+    private val snackbarDispatcher: SnackbarDispatcher
+) : ViewModel() {
+
+    private val aliasDomainsFlow = observeSimpleLoginAliasDomains()
+        .onStart { emit(emptyList()) }
+        .catch { error ->
+            PassLogger.w(TAG, "There was an error while observing SL alias domains")
+            PassLogger.w(TAG, error)
+            emit(emptyList())
+        }
+
+    private val aliasMailboxesFlow = observeSimpleLoginAliasMailboxes()
+        .onStart { emit(emptyList()) }
+        .catch { error ->
+            PassLogger.w(TAG, "There was an error while observing SL alias mailboxes")
+            PassLogger.w(TAG, error)
+            emit(emptyList())
+        }
+
+    private val aliasSettingsFlow = observeSimpleLoginAliasSettings()
+        .onStart { emit(SimpleLoginSyncManagementModel.DefaultAliasSettings) }
+        .catch { error ->
+            PassLogger.w(TAG, "There was an error while observing SL alias settings")
+            PassLogger.w(TAG, error)
+            emit(SimpleLoginSyncManagementModel.DefaultAliasSettings)
+        }
+
+    private val vaultsFlow = observeVaults(includeHidden = true)
+        .onStart { emit(emptyList()) }
+
+    private val syncStatusOptionFlow = vaultsFlow
+        .map { vaults ->
+            vaults
+                .filter(Vault::canBeUsedForSimpleLogin)
+                .map { vault -> vault.shareId.id }
+                .sorted()
+        }
+        .distinctUntilChanged()
+        .flatMapLatest { usableVaultShareIds ->
+            if (usableVaultShareIds.isEmpty()) {
+                return@flatMapLatest flowOf(None)
+            }
+
+            observeSimpleLoginSyncStatus(forceRefresh = true)
+                .map { syncStatus: SimpleLoginSyncStatus -> syncStatus.some() }
+                .onStart { emit(None) }
+                .catch { error ->
+                    PassLogger.w(TAG, "There was an error while observing SL sync status")
+                    PassLogger.w(TAG, error)
+                    emit(None)
+                }
+        }
+
+    private val modelOptionFlow = combine(
+        vaultsFlow,
+        aliasDomainsFlow,
+        aliasMailboxesFlow,
+        aliasSettingsFlow,
+        syncStatusOptionFlow
+    ) { vaults, aliasDomains, aliasMailboxes, aliasSettings, syncStatusOption ->
+        SimpleLoginSyncManagementModel(
+            vaults = vaults,
+            aliasDomains = aliasDomains,
+            aliasMailboxes = aliasMailboxes,
+            aliasSettings = aliasSettings,
+            syncStatusOption = syncStatusOption
+        ).some()
+    }.catch { error ->
+        PassLogger.w(TAG, "There was an unexpected error while observing SL alias details")
+        PassLogger.w(TAG, error)
+        snackbarDispatcher(SimpleLoginSyncManagementSnackBarMessage.FetchAliasDetailsError)
+        eventFlow.update { SimpleLoginSyncManagementEvent.OnFetchAliasManagementError }
+        emit(None)
+    }
+
+    private val hasVaultsFlow = vaultsFlow
+        .map { vaults -> vaults.hasUsableSimpleLoginVaults() }
+
+    private val canManageMailboxAliasesFlow = getUserPlan()
+        .map { userPlan -> userPlan.isPaidPlan }
+        .onStart { emit(false) }
+        .catch { error ->
+            PassLogger.w(TAG, "There was an error while observing the user plan")
+            PassLogger.w(TAG, error)
+            emit(false)
+        }
+
+    private val eventFlow = MutableStateFlow<SimpleLoginSyncManagementEvent>(
+        value = SimpleLoginSyncManagementEvent.Idle
+    )
+
+    private val isUpdatingFlow = MutableStateFlow(false)
+
+    internal val state: StateFlow<SimpleLoginSyncManagementState> = combine(
+        isUpdatingFlow,
+        eventFlow,
+        modelOptionFlow,
+        hasVaultsFlow,
+        canManageMailboxAliasesFlow,
+        ::SimpleLoginSyncManagementState
+    ).stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+        initialValue = SimpleLoginSyncManagementState.Initial
+    )
+
+    internal fun onConsumeEvent(event: SimpleLoginSyncManagementEvent) {
+        eventFlow.compareAndSet(event, SimpleLoginSyncManagementEvent.Idle)
+    }
+
+    private companion object {
+
+        private const val TAG = "SimpleLoginSyncDetailsViewModel"
+
+    }
+
+}

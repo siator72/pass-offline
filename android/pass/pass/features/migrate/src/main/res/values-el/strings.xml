@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">Μετακίνηση %d στοιχείου στην ακόλουθη κρύπτη;</item>
+    <item quantity="other">Μετακίνηση %d στοιχεία στην ακόλουθη κρύπτη;</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">Μετακίνηση %d στοιχείου στον ακόλουθο φάκελο;</item>
+    <item quantity="other">Μετακίνηση %d στοιχείων στον ακόλουθο φάκελο;</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Μεταφορά</string>
+  <string name="migrate_item_success_snackbar">Τα στοιχεία μετακινήθηκαν</string>
+  <string name="migrate_item_error_snackbar">Σφάλμα κατά τη μετακίνηση των στοιχείων</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Σφάλμα κατά τη μετακίνηση ορισμένων στοιχείων</string>
+  <string name="migrate_item_warning_history">Κατά τη μετακίνηση αντικειμένων μεταξύ κρυπτών, θα διατηρήσουμε έως και τις τελευταίες 50 τροποποιήσεις που πραγματοποιήθηκαν σε κάθε αντικείμενο</string>
+  <string name="migrate_item_warning_secure_link">Οι ασφαλείς συνδέσεις του στοιχείου θα καταργηθούν όταν μετακινηθεί σε άλλη κρύπτη</string>
+  <string name="migrate_all_items_success_snackbar">Όλα τα στοιχεία που μετακινήθηκαν</string>
+  <string name="migrate_all_items_error_snackbar">Σφάλμα κατά τη μετακίνηση όλων των στοιχείων κρύπτης</string>
+  <string name="migrate_init_error_snackbar">Δεν ήταν δυνατή η προετοιμασία της οθόνης μετεγκατάστασης</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Μετακίνηση φακέλου στην ακόλουθη κρύπτη;</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Μετακίνηση φακέλου στο ακόλουθο φάκελο;</string>
+  <string name="migrate_folder_success_snackbar">Ο φάκελος μετακινήθηκε</string>
+  <string name="migrate_folder_error_snackbar">Σφάλμα κατά τη μετακίνηση του φακέλου</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Ο φάκελος βρίσκεται ήδη σε αυτήν την τοποθεσία</string>
+  <string name="migrate_dissolve_folder_dialog_title">Μετακίνηση περιεχομένου φακέλου</string>
+  <string name="migrate_dissolve_folder_dialog_message">Αυτός ο φάκελος βρίσκεται ήδη στη ρίζα της κρύπτης. Τα αντικείμενα και οι υποφάκελοί του θα μετακινηθούν στη ρίζα της κρύπτης.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Μετακίνηση</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">Το στοιχείο υπάρχει ήδη σε αυτόν τον φάκελο</item>
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">Αυτός ο φάκελος βρίσκεται ήδη σε αυτήν την τοποθεσία</string>
+  <string name="migrate_disabled_folder_reason_being_moved">Αυτός ο φάκελος μετακινείται</string>
+  <string name="migrate_disabled_folder_reason_descendant">Αυτός ο φάκελος βρίσκεται μέσα στον φάκελο που μετακινείται</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Η μετακίνηση εδώ θα υπερέβαινε τα όρια φακέλων</string>
+  <string name="migrate_disabled_vault_reason_no_permission">Δεν μπορείτε να δημιουργήσετε στοιχεία σε αυτήν την κρύπτη</string>
+  <string name="migrate_disabled_vault_reason_same_vault">Δεν μπορείτε να μετακινήσετε ένα στοιχείο στην ίδια κρύπτη</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">Μετακίνηση στοιχείου σε άλλη κρύπτη;</item>
+    <item quantity="other">Μετακίνηση %d στοιχείων σε άλλη κρύπτη;</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Αυτό το στοιχείο είναι κοινόχρηστο. Αν μεταφερθεί σε άλλη κρύπτη, όλοι οι υπόλοιποι χρήστες θα χάσουν την πρόσβασή τους σε αυτό.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">%d στοιχείο είναι κοινόχρηστο. Αν μεταφερθεί σε άλλη κρύπτη, όλοι οι υπόλοιποι χρήστες θα χάσουν την πρόσβασή τους σε αυτό.</item>
+    <item quantity="other">%d στοιχεία είναι κοινόχρηστα. Αν μεταφερθούν σε άλλη κρύπτη, όλοι οι υπόλοιποι χρήστες θα χάσουν την πρόσβασή τους σε αυτά.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Επιλογή κρύπτης</string>
+  <string name="migrate_select_destination_for_source_title">Επιλέξτε τον προορισμό από τον οποίο θα μετακινηθούν όλα τα στοιχεία %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Τα στοιχεία μετακινήθηκαν</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Σφάλμα κατά τη μετακίνηση των στοιχείων</string>
+</resources>

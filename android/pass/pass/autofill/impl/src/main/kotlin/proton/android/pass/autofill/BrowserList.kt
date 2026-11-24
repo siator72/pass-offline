@@ -1,0 +1,118 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.autofill
+
+val BROWSERS = setOf(
+    "alook.browser",
+    "alook.browser.google",
+    "app.vanadium.browser",
+    "app.vanadium.webview",
+    "com.aloha.browser",
+    "com.alohamobile.browser",
+    "com.amazon.cloud9",
+    "com.android.browser",
+    "com.android.chrome",
+    "com.avast.android.secure.browser",
+    "com.avg.android.secure.browser",
+    "com.brave.browser",
+    "com.brave.browser_beta",
+    "com.brave.browser_default",
+    "com.chrome.beta",
+    "com.cookiegames.smartcookie",
+    "com.cookiejarapps.android.smartcookieweb",
+    "com.duckduckgo.mobile.android",
+    "com.ecosia.android",
+    "com.google.android.apps.chrome",
+    "com.google.android.captiveportallogin",
+    "com.iode.firefox",
+    "com.jamal2367.styx",
+    "com.kiwibrowser.browser",
+    "com.microsoft.emmx",
+    "com.microsoft.emmx.beta",
+    "com.mmbox.browser",
+    "com.mmbox.xbrowser",
+    "com.mycompany.app.soulbrowser",
+    "com.naver.whale",
+    "com.opera.browser",
+    "com.opera.browser.beta",
+    "com.opera.gx",
+    "com.opera.mini.native",
+    "com.opera.mini.native.beta",
+    "com.opera.touch",
+    "com.qflair.browserq",
+    "com.qwant.liberty",
+    "com.sec.android.app.sbrowser",
+    "com.sec.android.app.sbrowser.beta",
+    "com.startpage.app",
+    "com.stoutner.privacybrowser.free",
+    "com.stoutner.privacybrowser.standard",
+    "com.vivaldi.browser",
+    "com.vivaldi.browser.snapshot",
+    "com.vivaldi.browser.sopranos",
+    "com.yandex.browser",
+    "com.z28j.feel",
+    "idm.internet.download.manager",
+    "idm.internet.download.manager.adm.lite",
+    "idm.internet.download.manager.plus",
+    "io.github.forkmaintainers.iceraven",
+    "mark.via",
+    "mark.via.gp",
+    "net.quetta.browser",
+    "net.slions.fulguris.full.download",
+    "net.slions.fulguris.full.playstore",
+    "net.waterfox.android.release",
+    "org.adblockplus.browser",
+    "org.adblockplus.browser.beta",
+    "org.bromite.bromite",
+    "org.bromite.chromium",
+    "org.chromium.chrome",
+    "org.cromite.cromite",
+    "org.cromite.webview",
+    "org.codeaurora.swe.browser",
+    "org.gnu.icecat",
+    "org.ironfoxoss.ironfox",
+    "org.mozilla.fenix",
+    "org.mozilla.fennec_fdroid",
+    "org.mozilla.firefox",
+    "org.mozilla.firefox_beta",
+    "org.mozilla.focus",
+    "org.mozilla.reference.browser",
+    "org.mozilla.rocket",
+    "org.torproject.torbrowser",
+    "org.torproject.torbrowser_alpha",
+    "org.ungoogled.chromium.extensions.stable",
+    "org.ungoogled.chromium.stable",
+    "us.spotco.fennec_dos"
+)
+
+/**
+ * Gecko-based browsers that use Android's native autofill framework instead of
+ * exposing a third-party-mode ContentProvider. Consumed by autofill health
+ * coverage resolution to report them as ready.
+ */
+val NATIVE_AUTOFILL_BROWSERS = setOf(
+    "org.ironfoxoss.ironfox",
+    "org.mozilla.fenix",
+    "org.mozilla.fennec_fdroid",
+    "org.mozilla.firefox",
+    "org.mozilla.firefox_beta",
+    "org.mozilla.focus",
+    "org.torproject.torbrowser",
+    "org.torproject.torbrowser_alpha"
+)

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="on_boarding_autofill_content_v2">Дазвольце Proton Pass запаўняць запісы ўваходу за вас. Няма неабходнасці нічога ўводзіць або выконваць аперацыі капіявання і ўстаўкі.</string>
+  <string name="on_boarding_autofill_title_v2">Атрымлівайце асалоду ад магіі аўтазапаўнення</string>
+  <string name="on_boarding_autofill_button">Аўтазапаўняць з Proton Pass</string>
+  <string name="on_boarding_fingerprint_content">Наладзьце разблакіроўку Proton Pass з дапамогай адбітка, каб толькі ў вас быў доступ да яго.</string>
+  <string name="on_boarding_fingerprint_title">Абараняйце свае найбольш канфідэнцыяльныя даныя</string>
+  <string name="on_boarding_fingerprint_button">Уключыць блакіроўку па адбітку</string>
+  <string name="on_boarding_last_page_content">Больш няма неабходнасці паведамляць іншым свой сапраўдны адрас электроннай пошты. Замест гэтага схавайце яго з дапамогай псеўданімаў электроннай пошты. Дадзеная функцыя з\'яўляецца эксклюзіўнай у Proton Pass.</string>
+  <string name="on_boarding_last_page_title">Кантралюйце, што трапляе ў вашу паштовую скрыню</string>
+  <string name="on_boarding_last_page_button">Пачаць выкарыстоўваць Proton Pass</string>
+  <string name="on_boarding_skip">Не зараз</string>
+  <string name="on_boarding_tutorial_v2">Даведайцеся, як выкарыстоўваць Proton Pass</string>
+  <string name="on_boarding_pending_invite_content">У мэтах бяспекі вам неабходна пацвердзіць свой доступ.</string>
+  <string name="on_boarding_pending_invite_title">Чаканне доступу да абагуленых даных</string>
+  <string name="on_boarding_pending_invite_button">Даведацца больш аб Proton Pass</string>
+  <string name="error_biometry_failed_to_start">Немагчыма запусціць біяметрычную аўтэнтыфікацыю</string>
+  <string name="error_biometry_failed_to_authenticate">Не ўдалося аўтэнтыфікаваць</string>
+  <string name="settings_fingerprint_lock_enabled">Блакіроўка адбіткам пальца ўключана</string>
+  <string name="error_performing_operation">Памылка выканання аперацыі</string>
+  <string name="onboarding_slide_1_title">Усе вашы паролі.</string>
+  <string name="onboarding_slide_2_title">Абараніць сваю паштовую скрыню.</string>
+  <string name="onboarding_slide_3_title">Заставайцеся ў курсе.</string>
+  <string name="onboarding_slide_4_title">Бяспечнае абагульванне.</string>
+  <string name="onboarding_slide_1_subtitle">Бяспечна ў адным месцы і абаронены самай надзейнай кампаніяй у галіне прыватнасці.</string>
+  <string name="onboarding_slide_2_subtitle">Выкарыстоўвайце псеўданімы Hide-My-Email, каб абараніцца ад пагроз фішынгу.</string>
+  <string name="onboarding_slide_3_subtitle">Абагульвайце паролі і канфідэнцыяльныя звесткі бяспечна і без намаганняў.</string>
+  <string name="onboarding_slide_4_subtitle">Атрымлівайце абвесткі, калі ваша электронная пошта знойдзена ў Dark Web</string>
+  <string name="create_an_account_button">Стварыць уліковы запіс</string>
+  <string name="sign_in_button">Увайсці</string>
+</resources>

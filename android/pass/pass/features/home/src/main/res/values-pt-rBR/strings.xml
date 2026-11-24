@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Home -->
+  <string name="home_indexing_banner">Índice de busca de construção...</string>
+  <string name="home_indexing_banner_progress">Índice de pesquisa de construção… (%1$d/%2$d)</string>
+  <string name="home_empty_vault_title">Seu cofre está vazio</string>
+  <string name="home_empty_vault_subtitle">Comece criando seu primeiro item.</string>
+  <string name="home_empty_folder_title">Sua pasta está vazia</string>
+  <string name="home_empty_vault_login_title">Nenhum início de sessão foi encontrado</string>
+  <string name="home_empty_vault_login_subtitle">Comece criando seu primeiro item de início de sessão.</string>
+  <string name="home_empty_vault_aliases_title">Nenhum alias foi encontrado</string>
+  <string name="home_empty_vault_aliases_subtitle">Comece criando seu primeiro item de endereço alternativo.</string>
+  <string name="home_empty_vault_notes_title">Nenhuma nota encontrada</string>
+  <string name="home_empty_vault_notes_subtitle">Comece criando seu primeiro item de nota.</string>
+  <string name="home_empty_vault_logins_mfa_title">Nenhum login com TOTP encontrado</string>
+  <string name="home_empty_vault_logins_mfa_subtitle">Comece criando seu primeiro item de início de sessão com TOTP.</string>
+  <string name="home_empty_vault_identity_title">Nenhuma identidade encontrada</string>
+  <string name="home_empty_vault_identity_subtitle">Comece criando seu primeiro item de identidade.</string>
+  <string name="home_empty_vault_custom_item_title">Nenhum item personalizado encontrado</string>
+  <string name="home_empty_vault_custom_item_subtitle">Comece criando seu primeiro item personalizado.</string>
+  <string name="home_empty_vault_cc_title">Nenhum cartão de crédito foi encontrado</string>
+  <string name="home_empty_vault_cc_subtitle">Comece criando seu primeiro item de cartão de crédito.</string>
+  <string name="home_empty_shared_items_title">Nenhum item compartilhado encontrado</string>
+  <string name="home_empty_shared_items_with_me_subtitle">Nenhum item foi compartilhado com você.</string>
+  <string name="home_empty_shared_items_by_me_subtitle">Nenhuns itens foram compartilhados por você.</string>
+  <string name="home_empty_no_vaults_title">Você não tem nenhum cofre</string>
+  <string name="home_empty_no_vaults_subtitle">Entre em contato com seu administrador.</string>
+  <string name="home_empty_read_only_vault_title">O cofre está vazio</string>
+  <string name="home_empty_read_only_vault_subtitle">Você não pode adicionar itens em um cofre somente leitura.</string>
+  <string name="home_empty_folder_plan_restricted_title">Esta pasta está vazia</string>
+  <string name="home_empty_folder_plan_restricted_subtitle">Faça upgrade do seu plano para criar itens dentro das pastas.</string>
+  <string name="home_empty_vault_create_login">Criar um início de sessão</string>
+  <string name="home_empty_vault_create_alias">Crie um alias do Hide-my-email</string>
+  <string name="home_empty_vault_create_note">Criar uma nota</string>
+  <string name="home_empty_vault_create_credit_card">Criar um cartão de crédito</string>
+  <string name="home_empty_vault_create_identity">Criar uma identidade</string>
+  <string name="home_empty_vault_create_custom_item">Criar um item personalizado</string>
+  <string name="error_observing_items" comment="Error message shown whenever there is an error loading the items">Erro ao carregar itens</string>
+  <string name="error_refreshing">Erro ao realizar a atualização</string>
+  <string name="home_snackbar_login_moved_to_trash">Início de sessão movido para a lixeira</string>
+  <string name="home_snackbar_alias_moved_to_trash">Alias movido para a lixeira</string>
+  <string name="home_snackbar_note_moved_to_trash">Nota movida para a lixeira</string>
+  <string name="home_snackbar_credit_card_moved_to_trash">Cartão de crédito movido para a lixeira</string>
+  <string name="home_snackbar_identity_moved_to_trash">Identidade movida para a lixeira</string>
+  <string name="home_snackbar_custom_moved_to_trash">O item personalizado foi movido para a lixeira.</string>
+  <string name="home_snackbar_move_to_trash_error">Não foi possível mover o item para a lixeira</string>
+  <string name="home_snackbar_items_move_to_trash_success">Itens movidos para a lixeira</string>
+  <string name="home_snackbar_items_move_to_trash_error">Não foi possível mover os itens para a lixeira</string>
+  <string name="home_toast_items_selected_read_only">Itens somente-leitura não podem ser selecionados</string>
+  <string name="home_toast_items_selected_shared_with_me">Os itens compartilhados com você não poda ser selecionados.</string>
+  <string name="home_autofill_banner_title">Aproveite a mágica do preenchimento automático</string>
+  <string name="home_autofill_banner_text">Um toque e ⏤ pronto! ⏤ seu nome de usuário e senha são preenchidos instantaneamente.</string>
+  <string name="home_drawer_all_items">Todos os itens</string>
+  <string name="sl_sync_banner_title">Sincronize seus aliases do SimpleLogin</string>
+  <plurals name="sl_sync_banner_text">
+    <item quantity="one">Você tem %d alias que está presente no SimpleLogin, mas que está ausente no Proton Pass. Você gostaria de sincroniza-lo?</item>
+    <item quantity="other">Você tem %d aliases que estão presentes no SimpleLogin, mas que estão ausentes no Proton Pass. Você gostaria de sincroniza-los?</item>
+  </plurals>
+  <string name="home_notification_permission_banner_title">Obter atualizações importantes</string>
+  <string name="home_notification_permission_banner_text">Ative as notificações push para ser informado quando outros compartilharem um cofre com você</string>
+  <string name="home_item_invite_banner_title" comment="placeholder is replaced by an email address">%s deseja compartilhar um item com você.</string>
+  <string name="home_group_item_invite_banner_title" comment="%1$s = inviter email, %2$s = group name">%1$s deseja compartilhar um item com seu grupo %2$s.</string>
+  <string name="home_group_invite_banner_title" comment="%1$s = inviter email, %2$s = group name">%1$s deseja compartilhar um cofre com seu grupo %2$s.</string>
+  <string name="home_item_invite_card_title">Convite de item compartilhado</string>
+  <string name="home_vault_invite_card_title">Convite de cofre compartilhado</string>
+  <string name="home_vault_invite_banner_body" comment="placeholder is replaced by an email address">%s deseja compartilhar um cofre com você.</string>
+  <!-- Common bottomsheet -->
+  <string name="bottomsheet_copy_password">Copiar senha</string>
+  <string name="bottomsheet_copy_username">Copiar nome de usuário</string>
+  <string name="bottomsheet_copy_email">Copiar endereço de email</string>
+  <string name="bottomsheet_copy_number">Copiar número</string>
+  <string name="bottomsheet_copy_cvv">Copiar código de segurança</string>
+  <string name="bottomsheet_copy_note">Copiar nota</string>
+  <string name="bottomsheet_edit">Editar</string>
+  <string name="bottomsheet_copy_full_name">Copiar nome completo</string>
+  <!-- Clipboard -->
+  <string name="alias_copied_to_clipboard">Alias copiado</string>
+  <string name="note_copied_to_clipboard">Nota copiada</string>
+  <string name="full_name_copied_to_clipboard">Nome completo copiado</string>
+  <string name="email_copied_to_clipboard">Endereço de e-mail copiado</string>
+  <string name="username_copied_to_clipboard">Nome de usuário copiado</string>
+  <string name="password_copied_to_clipboard">Senha copiada</string>
+  <string name="credit_card_number_copied_to_clipboard">Número do cartão de crédito copiado</string>
+  <string name="credit_card_cvv_copied_to_clipboard">Código de segurança copiado</string>
+  <string name="item_too_long_copied_to_clipboard" comment="Snackbar message that's shown to the user whenever an action where the content that would be copied to the clipboard cannot be performed due to the size of the text">O conteúdo é muito longo, parcialmente copiado para a área de transferência</string>
+  <!-- Vault drawer -->
+  <plurals name="vault_drawer_vaults_item_count">
+    <item quantity="one">%d item</item>
+    <item quantity="other">%d itens</item>
+  </plurals>
+  <string name="vault_drawer_create_vault">Criar cofre</string>
+  <string name="vault_drawer_item_trash">Lixeira</string>
+  <!-- Vault management -->
+  <string name="vault_delete_dialog_title">Excluir cofre</string>
+  <string name="vault_delete_dialog_cancel_action">Cancelar</string>
+  <string name="vault_delete_dialog_delete_action">Excluir</string>
+  <string name="snackbar_delete_vault_success">Cofre excluído</string>
+  <string name="snackbar_delete_vault_error">Cofre não excluído</string>
+  <!-- Search top bar -->
+  <string name="search_topbar_placeholder_all_items">Pesquisar em todos os itens...</string>
+  <string name="search_topbar_placeholder_vault">Pesquisar em %s…</string>
+  <string name="search_topbar_placeholder_trash">Pesquisar na Lixeira...</string>
+  <string name="search_topbar_placeholder_pinning">Pesquisar em Fixados…</string>
+  <string name="search_topbar_placeholder_shared_by_me">Pesquisar em Compartilhado com…</string>
+  <string name="search_topbar_placeholder_shared_with_me">Pesquisar em Compartilhado comigo…</string>
+  <string name="search_topbar_placeholder_folder">Pesquisar em %s...</string>
+  <string name="search_topbar_placeholder_folder_fallback">Pesquisar na Pasta…</string>
+  <string name="home_topbar_title_folder_fallback">Pasta</string>
+  <string name="item_type_filter_list_icon_content_description">Ícone de tipo de item</string>
+  <string name="item_type_filter_all">Todos</string>
+  <string name="item_type_filter_login">Início de sessão</string>
+  <string name="item_type_filter_alias">Alias</string>
+  <string name="item_type_filter_note">Nota</string>
+  <string name="item_type_filter_credit_card">Cartão</string>
+  <string name="item_type_filter_identity">Identidade</string>
+  <string name="item_type_filter_custom_item">Personalizado</string>
+  <string name="item_type_filter_login_totp">Início de sessão com TOTP</string>
+  <string name="item_type_filter_items_shared_with_me">Compartilhado comigo</string>
+  <string name="item_type_filter_items_shared_by_me">Compartilhado por mim</string>
+  <!-- Trash -->
+  <string name="trash_empty_list_title">Lixeira vazia</string>
+  <string name="trash_empty_list_message">Itens movidos para a lixeira aparecem aqui.</string>
+  <string name="bottomsheet_trash_all_items_title">Lixeira</string>
+  <string name="bottomsheet_restore_all_items">Restaurar todos os itens</string>
+  <string name="bottomsheet_empty_trash">Esvaziar lixeira</string>
+  <string name="bottomsheet_select_items">Selecionar itens</string>
+  <string name="trash_error_clearing_trash">Erro ao esvaziar lixeira</string>
+  <string name="trash_success_restoring_items">Itens restaurados</string>
+  <string name="trash_error_restoring_items">Erro ao restaurar itens</string>
+  <string name="trash_error_deleting_item">Erro ao excluir item</string>
+  <string name="trash_success_deleting_item">Item excluído</string>
+  <string name="trash_deleting_items_error">Erro ao excluir itens</string>
+  <string name="trash_deleting_items_success">Itens excluídos</string>
+  <!-- Alerts -->
+  <string name="alert_confirm_clear_trash_title">Esvaziar lixeira?</string>
+  <string name="alert_confirm_clear_trash_message">Tem certeza de que deseja esvaziar a lixeira? Todos os seus itens na lixeira serão excluídos permanentemente</string>
+  <string name="alert_confirm_restore_all_title">Restaurar todos os itens?</string>
+  <string name="alert_confirm_restore_all_message">Tem certeza de que deseja restaurar todos os itens da lixeira?</string>
+  <plurals name="alert_confirm_restore_items_title">
+    <item quantity="one">Restaurar %d item?</item>
+    <item quantity="other">Restaurar%d itens?</item>
+  </plurals>
+  <plurals name="alert_confirm_restore_items_message">
+    <item quantity="one">Tem certeza de que deseja restaurar o item da lixeira?</item>
+    <item quantity="other">Tem certeza de que deseja restaurar os %d itens da lixeira?</item>
+  </plurals>
+  <plurals name="alert_confirm_trash_items_title">
+    <item quantity="one">Mover %d item para a lixeira?</item>
+    <item quantity="other">Mover %d itens para a lixeira?</item>
+  </plurals>
+  <plurals name="alert_confirm_trash_items_message">
+    <item quantity="one">Tem certeza de que deseja mover o item para a lixeira?</item>
+    <item quantity="other">Tem certeza de que deseja mover %d itens para a lixeira?</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_title">
+    <item quantity="one">Excluir permanentemente %d item?</item>
+    <item quantity="other">Excluir permanentemente %d itens?</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_message">
+    <item quantity="one">Tem certeza de que deseja excluir o item? Esta ação é irreversível</item>
+    <item quantity="other">Tem certeza de que deseja excluir os %d itens? Esta ação é irreversível</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_shared_warning_message">
+    <item quantity="one">%d item está atualmente compartilhado. Eliminá-lo removerá o acesso de todos os outros usuários.</item>
+    <item quantity="other">%d itens estão atualmente compartilhados. Eliminá-los removerá o acesso de todos os outros usuários.</item>
+  </plurals>
+  <!-- Recent search -->
+  <string name="recent_search_header_count">Pesquisas recentes</string>
+  <string name="recent_search_clear">Limpar</string>
+  <string name="recent_search_remove_item">Remover das pesquisas recentes</string>
+  <!-- Pinning -->
+  <string name="home_snackbar_items_pinned_success">Os itens foram fixados.</string>
+  <string name="home_snackbar_items_pinned_partial_success">Erro ao fixar alguns dos itens</string>
+  <string name="home_snackbar_items_pinned_error">Erro ao fixar os itens</string>
+  <string name="home_snackbar_items_unpinned_success">Os itens foram desafixados.</string>
+  <string name="home_snackbar_items_unpinned_partial_success">Erro ao desafixar alguns dos itens</string>
+  <string name="home_snackbar_items_unpinned_error">Erro ao desafixar os itens</string>
+  <string name="home_snackbar_items_alias_enabled_success">O alias foi ativado.</string>
+  <string name="home_snackbar_items_alias_enabled_partial_success">Erro ao ativar alguns dos alíases</string>
+  <string name="home_snackbar_items_alias_enabled_error">Erro na ativação dos alíases</string>
+  <string name="home_snackbar_items_alias_disabled_success">O alias foi desativado.</string>
+  <string name="home_snackbar_items_alias_disabled_partial_success">Erro ao desativar alguns dos alíases</string>
+  <string name="home_snackbar_items_alias_disabled_error">Erro ao desativar os alíases</string>
+  <string name="bulk_action_unpin">Desafixar</string>
+  <string name="bulk_action_pin">Fixar</string>
+  <string name="bulk_action_enable_alias">Ativar alias</string>
+  <string name="bulk_action_disable_alias">Desativar alias</string>
+  <string name="vault_drawer_organise_vaults">Organizar cofres</string>
+  <string name="sync_group_vault_warning">Alguns cofres estão atualmente indisponíveis devido a um problema no seu grupo.</string>
+  <string name="sync_inactive_vault_warning">Alguns cofres não estão mais acessíveis devido a uma redefinição de senha. Reative as chaves de sua conta para recuperar o acesso.</string>
+  <string name="sync_inactive_vault_warning_action">Saiba mais</string>
+</resources>

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">제목 (A-Z)</string>
+  <string name="sort_by_title_desc">제목 (Z-A)</string>
+  <string name="sort_by_creation_asc">오래된 항목 순</string>
+  <string name="sort_by_creation_desc">최신 항목 순</string>
+  <string name="sort_by_modification_date">최근에 사용됨</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">전체</string>
+  <string name="item_list_header_pinned_search_results">고정됨</string>
+  <string name="item_list_header_logins_type">로그인</string>
+  <string name="item_list_header_logins_totp_type">TOTP가 있는 로그인</string>
+  <string name="item_list_header_aliases_type">별칭</string>
+  <string name="item_list_header_notes_type">메모</string>
+  <string name="item_list_header_credit_cards_type">신용카드</string>
+  <plurals name="item_list_header_results">
+    <item quantity="other">결과</item>
+  </plurals>
+  <string name="item_list_header_identities_type">신원</string>
+  <string name="item_list_header_custom_type">사용지 지정 항목</string>
+  <string name="item_list_header_shared_with_me">나와 공유됨</string>
+  <string name="item_list_header_shared_by_me">내가 공유함</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">확인</string>
+  <string name="bottomsheet_cancel_button">취소</string>
+  <string name="bottomsheet_move_to_trash">휴지통으로 이동</string>
+  <string name="bottomsheet_pin_item">고정</string>
+  <string name="bottomsheet_unpin_item">고정 해제</string>
+  <string name="bottomsheet_view_item_history">기록 보기</string>
+  <string name="bottomsheet_monitor_exclude">감시에서 제외하기</string>
+  <string name="bottomsheet_monitor_include">모니터링에 포함</string>
+  <string name="bottomsheet_migrate_item_v2">이동</string>
+  <string name="bottomsheet_create_folder">폴더 만들기</string>
+  <string name="folder_tree_create_folder">폴더 만들기</string>
+  <string name="bottomsheet_rename_folder">이름 바꾸기</string>
+  <string name="bottomsheet_create_sub_folder">하위 폴더 만들기</string>
+  <string name="bottomsheet_move_folder">폴더 이동</string>
+  <string name="bottomsheet_move_all_items_in_folder">모든 항목 이동</string>
+  <string name="bottomsheet_copy_item_note">메모 복사</string>
+  <string name="bottomsheet_delete_permanently">영구적으로 삭제</string>
+  <string name="bottomsheet_restore">복원</string>
+  <string name="bottomsheet_leave">떠나기</string>
+  <string name="bottomsheet_duplicate">복제</string>
+  <string name="bottomsheet_no_actions">실행 가능한 작업 없음</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">항목을 액션 매뉴서 열기</string>
+  <string name="action_upgrade_now">지금 업그레이드</string>
+  <string name="action_not_now">다음에</string>
+  <string name="action_learn_more">더 알아보기</string>
+  <string name="action_enable">활성화</string>
+  <string name="action_view_details">자세히 보기</string>
+  <string name="action_see_all">모두 보기</string>
+  <string name="action_confirm">확인</string>
+  <string name="action_cancel">취소</string>
+  <string name="action_continue">계속하기</string>
+  <string name="action_retry">다시 시도하기</string>
+  <string name="action_edit">편집</string>
+  <string name="action_add">추가</string>
+  <string name="action_delete">삭제</string>
+  <string name="action_make_default">기본으로 설정</string>
+  <string name="action_verify">인증</string>
+  <string name="action_close">닫기</string>
+  <string name="action_update">업데이트</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">첫 번째 항목 추가</string>
+  <string name="empty_search_results_title">결과가 없습니다</string>
+  <string name="empty_list_open_extension">웹 확장 방문하기</string>
+  <string name="empty_list_create_item_button">새 항목 생성</string>
+  <!-- Field -->
+  <string name="field_title_title">제목</string>
+  <string name="field_title_hint">제목 없음</string>
+  <string name="field_title_required">제목이 필요합니다</string>
+  <string name="small_cross_icon_content_description">작은 십자가 아이콘</string>
+  <string name="field_note_title">메모</string>
+  <string name="field_note_hint">메모 추가</string>
+  <string name="linked_apps_title">연결된 앱</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">오프라인</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">앱 아이콘 없음</string>
+  <string name="add_item_icon_content_description">항목 아이콘 추가</string>
+  <string name="navigate_back_icon_content_description">뒤로 가기 아이콘 </string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">항목 목록</string>
+  <string name="bottom_bar_add_item_icon_content_description">항목 추가</string>
+  <string name="bottom_bar_profile_icon_content_description">프로필</string>
+  <string name="bottom_bar_security_center_icon_content_description">보안 센터</string>
+  <string name="bottom_bar_explore_icon_content_description">탐색</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">오늘</string>
+  <string name="most_recent_yesterday">어제</string>
+  <string name="most_recent_this_week">이번 주</string>
+  <string name="most_recent_last_two_weeks">지난 2주</string>
+  <string name="most_recent_last_30_days">지난 한 달</string>
+  <string name="most_recent_last_60_days">최근 60일</string>
+  <string name="most_recent_last_90_days">최근 90일</string>
+  <string name="most_recent_within_the_last_year">작년 이내</string>
+  <string name="most_recent_more_than_1_year">1년 이상</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">아이콘 검색</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="other">%d개 항목</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">변경 사항을 취소할까요?</string>
+  <string name="confirm_close_dialog_message">저장되지 않은 변경 사항이 있어요. 정말 나가시겠어요?</string>
+  <string name="confirm_close_dialog_close_button">저장 안 함</string>
+  <!-- Upgrade -->
+  <string name="upgrade">업그레이드</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">고급 옵션</string>
+  <string name="hide_advanced_options">고급 옵션 숨기기</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">강함</string>
+  <string name="label_password_strength_vulnerable">취약함</string>
+  <string name="label_password_strength_weak">약함</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">모두 보기</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">오늘 %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">어제 %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">LLLL dd HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">LLL dd HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">yyyy LLLL dd HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">yyyy LLLL dd HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">별칭 주소</string>
+  <string name="item_details_alias_section_alias_disabled_title">별칭 주소 (비활성화됨)</string>
+  <string name="item_details_alias_section_mailboxes_title">전달받는 주소</string>
+  <string name="item_details_credit_card_section_cardholder_title">카드 소유자명</string>
+  <string name="item_details_credit_card_section_card_number_title">카드 번호</string>
+  <string name="item_details_credit_card_section_expiration_date_title">유효기간 일자</string>
+  <string name="item_details_credit_card_section_cvv_title">보안 코드</string>
+  <string name="item_details_credit_card_section_pin_title">PIN 코드</string>
+  <string name="item_details_login_section_email_title">이메일 주소</string>
+  <string name="item_details_login_section_username_title">사용자 이름</string>
+  <string name="item_details_login_section_password_title">비밀번호</string>
+  <string name="item_details_login_section_primary_totp_title">2단계 인증 토큰 (TOTP)</string>
+  <string name="item_details_login_section_websites_title">웹사이트</string>
+  <string name="autofill_mode_label_default">상위 도메인 및 서브도메인</string>
+  <string name="autofill_mode_label_exact">정확한 (서브)도메인</string>
+  <string name="autofill_mode_label_never">이 웹사이트에서 자동 완성 안 함</string>
+  <string name="autofill_mode_label_start_with">시작:</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">정규 표현식</string>
+  <string name="autofill_mode_label_exact_path">정확한 URL 일치</string>
+  <string name="autofill_mode_label_unsupported">자동 완성이 이 URL에서 생략됩니다.</string>
+  <string name="login_item_view_alias_button">별칭 보기</string>
+  <string name="item_details_identity_section_personal_title">개인 정보</string>
+  <string name="item_details_identity_section_personal_first_name_title">이름</string>
+  <string name="item_details_identity_section_personal_middle_name_title">중간 이름</string>
+  <string name="item_details_identity_section_personal_last_name_title">성</string>
+  <string name="item_details_identity_section_personal_full_name_title">전체 이름</string>
+  <string name="item_details_identity_section_personal_email_title">이메일 주소</string>
+  <string name="item_details_identity_section_personal_gender_title">성별</string>
+  <string name="item_details_identity_section_personal_phone_title">전화번호</string>
+  <string name="item_details_identity_section_personal_birthday_title">생일</string>
+  <string name="item_details_identity_section_address_title">주소 상세정보</string>
+  <string name="item_details_identity_section_address_organization_title">조직</string>
+  <string name="item_details_identity_section_address_street_address_title">거리 주소 또는 사서함</string>
+  <string name="item_details_identity_section_address_floor_title">층</string>
+  <string name="item_details_identity_section_address_city_title">시/군/구</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">우편번호</string>
+  <string name="item_details_identity_section_address_state_or_province_title">시/도</string>
+  <string name="item_details_identity_section_address_county_title">구/군</string>
+  <string name="item_details_identity_section_address_country_or_region_title">국가 또는 지역</string>
+  <string name="item_details_identity_section_contact_title">연락처 정보</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">사회 보장 번호</string>
+  <string name="item_details_identity_section_contact_passport_number_title">여권 번호</string>
+  <string name="item_details_identity_section_contact_license_number_title">라이선스 번호</string>
+  <string name="item_details_identity_section_contact_website_title">웹 사이트</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X 핸들</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">보조 휴대폰 번호</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">직장 세부 정보</string>
+  <string name="item_details_identity_section_work_company_title">회사</string>
+  <string name="item_details_identity_section_work_occupation_title">직업</string>
+  <string name="item_details_identity_section_work_email_title">업무용 이메일 주소</string>
+  <string name="item_details_identity_section_work_phone_number_title">업무용 휴대폰 번호</string>
+  <string name="item_details_identity_section_work_personal_website_title">개인 웹사이트</string>
+  <string name="item_details_shared_section_note_title">메모</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">마지막 자동 완성</string>
+  <string name="item_details_shared_section_item_history_created_title">생성됨</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">수정됨 (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">항목 기록 보기</string>
+  <string name="item_details_shared_section_more_info_header_title">상세 정보</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">더 많은 항목 정보 아이콘</string>
+  <string name="item_details_shared_section_more_info_item_id">항목 ID</string>
+  <string name="item_details_shared_section_more_info_vault_id">금고 ID</string>
+  <string name="item_details_shared_section_more_info_share_id">ID 공유</string>
+  <string name="item_details_wifi_network_label_ssid_name">이름 (SSID)</string>
+  <string name="item_details_wifi_network_label_password">비밀번호</string>
+  <string name="item_details_wifi_network_label_security">보안</string>
+  <string name="item_details_ssh_key_label_public_key">공개 키</string>
+  <string name="item_details_ssh_key_label_private_key">개인 키</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">더 이상 지원하지 않는 앱 버전입니다. 앱을 업데이트하십시오.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">패스키</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">요금제를 업그레이드하시겠습니까?</string>
+  <string name="dialog_upgrade_plan_message">무료 플랜 사용자는 이용할 수 없는 기능입니다. 이 외에도 다른 멋진 기능들까지 즐겨보고 싶다면 요금제를 업그레이드하고 이용해보세요!</string>
+  <string name="dialog_upgrade_plan_action_confirm">업그레이드</string>
+  <string name="dialog_upgrade_plan_action_cancel">다음에</string>
+  <!-- Words -->
+  <string name="email_address">이메일 주소</string>
+  <string name="email_address_invalid">잘못된 이메일 주소</string>
+  <string name="password">비밀번호</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">이 말풍선을 무시하고 더 이상 보지 않기 위한 버튼</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="other">%d년</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="other">%d개월</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="other">%d주</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="other">%d일</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="other">%d시간</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="other">%d분</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="other">%d초</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="other">%d개의 별칭</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">메모 복사됨</string>
+  <string name="snack_bar_message_item_migration_error">이 항목을 이동하는데 오류가 발생했습니다.</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">항목이 모니터링에서 제외되었습니다</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">항목을 모니터링에서 제외하는 중 오류 발생</string>
+  <string name="snack_bar_message_item_monitor_included_success">항목이 모니터링에 포함되었습니다</string>
+  <string name="snack_bar_message_item_monitor_included_error">항목을 모니터링에서 포함하는 중 오류 발생</string>
+  <string name="snack_bar_message_item_pinned_success">항목을 성공적으로 고정했습니다.</string>
+  <string name="snack_bar_message_item_pinned_error">이 항목을 고정하는데 오류가 발생했습니다.</string>
+  <string name="snack_bar_message_item_unpinned_success">항목을 성공적으로 고정 해제했습니다.</string>
+  <string name="snack_bar_message_item_unpinned_error">이 항목을 고정 해제하는데 오류가 발생했습니다.</string>
+  <string name="snack_bar_message_item_trashed_success">항목을 성공적으로 휴지통에 이동했습니다.</string>
+  <string name="snack_bar_message_item_trashed_error">이 항목을 휴지통 이동하는데 오류가 발생했습니다.</string>
+  <string name="snack_bar_message_item_restore_success">항목이 성공적으로 복원되었습니다.</string>
+  <string name="snack_bar_message_item_restore_error">항목 복구 중 오류가 발생했습니다.</string>
+  <string name="snack_bar_message_item_delete_success">항목을 성공적으로 생성했습니다.</string>
+  <string name="snack_bar_message_item_delete_error">항목 삭제 중 오류가 발생했습니다.</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">SimpleLogin 동기화 활성화</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="other">SimpleLogin에 %d개의 별칭이 존재하지만 Proton Pass에는 누락된 별칭이 있음이 발견되었어요. 해당 별명을 불러오시겠어요?</item>
+  </plurals>
+  <string name="simple_login_widget_action">별칭 동기화</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">인증번호를 받지 못하셨나요?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">스팸함에 \"%s\" 로 된 이메일이 있는지 확인해주세요</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Proton Pass의 이메일 주소를 확인해주세요</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">메일함을 확인해 주세요</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">이메일을 찾지 못하셨다면, %s 가능합니다.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">새 코드 요청</string>
+  <string name="field_display_name_title">표시되는 이름</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="other">%1$s개 파일</item>
+  </plurals>
+  <string name="attachment_title">첨부파일</string>
+  <string name="attachment_no_files">회원님의 장치에서 파일을 업로드하세요</string>
+  <string name="attachment_add_file">파일 첨부</string>
+  <string name="attachment_row_upload_failed">업로드 실패</string>
+  <string name="attachment_row_retry">다시 시도</string>
+  <string name="options_menu_content_description">옵션 메뉴</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="other">공유된 항목 %d개</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="other">사용자 %d 명</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="other">%d명 구성원</item>
+  </plurals>
+  <string name="show_network_qr_code">네트워크 QR 코드 보이기</string>
+  <string name="expand_collpased_text">더 보기</string>
+  <string name="collapse_expanded_text">덜 보기</string>
+  <string name="login_item_monitor_widget_weak_pass_title">약한 비밀번호</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">이 계정은 취약합니다. 서비스를 방문하여 비밀번호를 변경하십시오.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">유출된 비밀번호</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">로그인 비밀번호가 데이터 보안 사고에서 나타납니다. 해당 서비스에 방문하여 비밀번호를 변경하시기 바랍니다.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="other">%d개의 다른 로그인이 같은 비밀번호를 사용하고 있습니다</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">더 나은 보안을 위해 2단계 인증 설정</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">이 서비스는 2단계 인증을 지원합니다. 향상된 계정 보안을 위해 활성화 해주세요.</string>
+  <string name="login_item_monitor_action_ignore">무시</string>
+  <string name="login_item_monitor_action_restore">경고 복원</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">약한 비밀번호</string>
+  <string name="login_item_monitor_label_compromised">유출된 비밀번호</string>
+  <string name="login_item_monitor_label_reused">재사용한 비밀번호</string>
+  <string name="login_item_monitor_label_missing_2fa">2단계 인증 없음</string>
+  <string name="login_item_reused_passwords_subtitle">이 비밀번호를 사용하는 금고 내 항목의 목록입니다.</string>
+  <string name="mfa_limit_reached">2단계 인증 제한 도달</string>
+  <string name="activity_in_last_two_weeks">지난 14일간 활동</string>
+  <string name="contacts">연락처</string>
+  <string name="contacts_section_description">개인 이메일을 비공개로 유지하려면 별칭 연락처를 만들어 보세요.</string>
+  <string name="field_detail_display_name_title">표시되는 이름</string>
+  <string name="display_name_section_description">이 별칭으로부터 이메일이 전송되면 표시되는 이름입니다.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="other">%1$s개 가져오기</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="other">%1$s개 답장</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="other">%1$s개 차단</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">로그인 생성</string>
+  <string name="banner_contacts_title">알고 계셨나요?</string>
+  <string name="banner_contacts_subtitle">별칭이 누군가로부터 이메일을 받을 때마다, 새로운 연락처가 자동으로 생성됩니다.</string>
+  <string name="action_reveal">표시</string>
+  <string name="action_conceal">가리기</string>
+  <string name="warning_dialog_item_shared_vault_title">공유된 금고 내의 항목</string>
+  <string name="warning_dialog_item_shared_title">공유된 항목</string>
+  <string name="warning_dialog_item_shared_vault_creating">공유된 금고 내에서 항목을 생성하고 있습니다. 구성원들이 이 항목에 즉시 접근할 수 있게 됩니다.</string>
+  <string name="warning_dialog_item_shared_vault_moving">공유된 금고 내에서 항목을 이동하고 있습니다. 구성원들이 이 항목에 즉시 접근할 수 있게 됩니다.</string>
+  <string name="warning_dialog_item_shared_vault_updating">공유된 금고 내에서 항목을 편집하고 있습니다. 구성원들이 이 항목에 즉시 접근할 수 있게 됩니다.</string>
+  <string name="warning_dialog_item_shared_updating">공유된 금고를 편집하고 있습니다. 변경 사항은 이 항목을 공유하는 모든 사용자에게 즉시 반영됩니다.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">다시 보지 않기</string>
+  <string name="upgrade_to_pass_plus">Pass Plus로 업그레이드</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">Proton 웹사이트로 이동합니다. 요금제를 구매하셨다면 앱을 다시 시작해주세요.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Word Separator</string>
+  <string name="bottomsheet_option_capitalise">대문자 포함</string>
+  <string name="bottomsheet_option_word_separator_hyphens">하이픈 ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">공백</string>
+  <string name="bottomsheet_option_word_separator_periods">구두점 ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">콤마 ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">밑줄 표시 (  _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">숫자</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">숫자 및 기호</string>
+  <plurals name="word_count">
+    <item quantity="other">%s단어</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">비밀번호 보안 강도</string>
+  <string name="password_check_min_length">비밀번호가 너무 짧습니다</string>
+  <string name="password_check_lowercase">소문자</string>
+  <string name="password_check_uppercase">대문자</string>
+  <string name="password_check_no_consecutive">반복되는 문자 없음</string>
+  <string name="password_check_no_common">보편적인 비밀번호 없음</string>
+</resources>

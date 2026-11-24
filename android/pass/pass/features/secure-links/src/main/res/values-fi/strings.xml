@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!--Create screen-->
+  <string name="secure_links_create_title">Jaa suojatulla linkillä</string>
+  <string name="secure_links_create_row_expiration_title">Linkki erääntyy</string>
+  <string name="secure_links_create_row_expiration_options_one_hour">Tunnin kuluttua</string>
+  <string name="secure_links_create_row_expiration_options_one_day">Vuorokauden kuluttua</string>
+  <string name="secure_links_create_row_expiration_options_seven_days">Viikon kuluttua</string>
+  <string name="secure_links_create_row_expiration_options_fourteen_days">Kahden viikon kuluttua</string>
+  <string name="secure_links_create_row_expiration_options_thirty_days">30 päivän kuluttua</string>
+  <string name="secure_links_create_row_max_views_title">Rajoita avausmäärää</string>
+  <string name="secure_links_create_row_max_views_subtitle">Avausten enimmäismäärä: %d</string>
+  <string name="secure_links_create_button_generate">Luo suojattu linkki</string>
+  <string name="secure_links_create_snackbar_message_error">Virhe luotaessa suojattua linkkiä</string>
+  <!--Overview screen-->
+  <string name="secure_links_overview_widget_expiration_title">Erääntymiseen:</string>
+  <string name="secure_links_overview_widget_max_views_title">Avattavissa:</string>
+  <string name="secure_links_overview_widget_open_times_title">Avaukset:</string>
+  <plurals name="secure_links_overview_widget_max_views_limited">
+    <item quantity="one">%d kerran</item>
+    <item quantity="other">%d kertaa</item>
+  </plurals>
+  <string name="secure_links_overview_widget_max_views_unlimited">ei rajoitusta</string>
+  <string name="secure_links_overview_button_view_all_links">Näytä kaikki suojatut linkkisi</string>
+  <!--List screen-->
+  <string name="secure_links_list_title">Suojatut linkit</string>
+  <string name="secure_links_list_empty_title">Suojattuja linkkejä ei ole</string>
+  <string name="secure_links_list_empty_subtitle">Voit luoda suojattuja linkkejä kohteiden jakovalinnoista.</string>
+  <string name="secure_links_list_expiration_description">Erääntymiseen: %s</string>
+  <string name="secure_links_list_expired_description">Erääntyneet</string>
+  <plurals name="secure_links_list_viewed_times_description">
+    <item quantity="one">%d avaus</item>
+    <item quantity="other">%d avausta</item>
+  </plurals>
+  <string name="secure_links_list_snackbar_message_links_fetch_error">Virhe noudettaessa suojattuja linkkejä</string>
+  <string name="secure_links_list_header_title_inactive">Käytöstä poistuneet linkit</string>
+  <!--Shared-->
+  <string name="secure_links_shared_action_copy_link">Kopioi linkki</string>
+  <string name="secure_links_shared_action_share_link">Jaa linkki</string>
+  <string name="secure_links_shared_action_delete_link">Poista linkki</string>
+  <string name="secure_links_shared_action_delete_link_inactive">Poista käytöstä poistunut linkki</string>
+  <string name="secure_links_shared_action_delete_links_inactive">Poista kaikki käytöstä poistuneet linkit</string>
+  <string name="secure_links_shared_snackbar_message_link_copied">Suojattu linkki kopioitiin</string>
+  <string name="secure_links_shared_snackbar_message_link_deletion_canceled">Suojatun linkin poisto peruttiin</string>
+  <string name="secure_links_shared_snackbar_message_link_deletion_error">Virhe poistettaessa suojattua linkkiä</string>
+  <string name="secure_links_shared_snackbar_message_inactive_links_deletion_canceled">Käytöstä poistuneiden suojattujen linkkien poisto peruttiin</string>
+  <string name="secure_links_shared_snackbar_message_inactive_links_deletion_error">Virhe poistettaessa käytöstä poistuneita suojattuja linkkejä</string>
+</resources>

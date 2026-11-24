@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="on_boarding_autofill_content_v2">Proton Pass täyttää kirjautumistiedot puolestasi. Naputtelua tai kopiointia ja liittämistä ei tarvita.</string>
+  <string name="on_boarding_autofill_title_v2">Nauti automaattitäytön taiasta</string>
+  <string name="on_boarding_autofill_button">Automaattitäytä Proton Passilla</string>
+  <string name="on_boarding_fingerprint_content">Aseta Proton Passin lukitus avautumaan sormenjäljelläsi, jotta vain sinä voit käyttää sitä.</string>
+  <string name="on_boarding_fingerprint_title">Suojaa arkaluonteisimmat tietosi</string>
+  <string name="on_boarding_fingerprint_button">Käytä sormenjälkilukitusta</string>
+  <string name="on_boarding_last_page_content">Lopeta todellisen sähköpostiosoitteesi jakaminen ja piilota se sen sijaan sähköpostialiaksilla — ainutlaatuinen Proton Pass -ominaisuus.</string>
+  <string name="on_boarding_last_page_title">Hallitse, mitä postilaatikkoosi päätyy</string>
+  <string name="on_boarding_last_page_button">Aloita Proton Passin käyttö</string>
+  <string name="on_boarding_skip">Ei nyt</string>
+  <string name="on_boarding_tutorial_v2">Opi käyttämään Proton Passia</string>
+  <string name="on_boarding_pending_invite_content">Turvallisuussyistä pääsysi on vahvistettava.</string>
+  <string name="on_boarding_pending_invite_title">Odotetaan jaettujen tietojen käyttöoikeutta</string>
+  <string name="on_boarding_pending_invite_button">Lue lisää Proton Passista</string>
+  <string name="error_biometry_failed_to_start">Biometristä todennusta ei voitu käynnistää</string>
+  <string name="error_biometry_failed_to_authenticate">Tunnistautuminen epäonnistui</string>
+  <string name="settings_fingerprint_lock_enabled">Sormenjälkilukitus otettiin käyttöön</string>
+  <string name="error_performing_operation">Virhe suoritettaessa toimintoa</string>
+  <string name="onboarding_slide_1_title">Kaikki salasanasi.</string>
+  <string name="onboarding_slide_2_title">Suojaa postilaatikkosi.</string>
+  <string name="onboarding_slide_3_title">Pysy ajan tasalla.</string>
+  <string name="onboarding_slide_4_title">Suojattu jakaminen.</string>
+  <string name="onboarding_slide_1_subtitle">Tallessa yhdessä paikassa, yksityisyyden luotetuimman nimen suojaamana.</string>
+  <string name="onboarding_slide_2_subtitle">Suojaudu tietojenkalastelulta Hide-My-Email-aliaksilla.</string>
+  <string name="onboarding_slide_3_subtitle">Jaa salasanoja ja muita arkaluonteisia tietoja turvallisesti ja vaivattomasti.</string>
+  <string name="onboarding_slide_4_subtitle">Saat hälytyksiä, jos sähköpostiosoitteesi löytyy pimeästä verkosta.</string>
+  <string name="create_an_account_button">Luo tili</string>
+  <string name="sign_in_button">Kirjaudu sisään</string>
+</resources>

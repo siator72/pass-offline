@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Aconseguiu el Proton Pass</string>
+  <string name="error_loading_items">No s\'han pogut carregar els elements.</string>
+  <string name="inline_suggestions_open_app">Obriu Proton Pass</string>
+  <string name="autofill_associate_web_app_name_dialog_title">Utilitza les dades d\'inici de sessió de \"%s\" en aquesta aplicació o lloc web.</string>
+  <string name="autofill_dialog_associate_and_autofill">Utilitza sempre</string>
+  <string name="autofill_dialog_just_autofill">Utilitza una vegada</string>
+  <string name="autofill_dialog_cancel">Cancel·la</string>
+  <string name="autofill_notification_copy_to_clipboard">S\'ha copiat el codi TOTP al porta-retalls.</string>
+  <string name="autofill_dialog_associate_title">Voleu utilitzar les dades d\'inici de sessió?</string>
+  <string name="autofill_user_logged_out">Se us ha tancat la sessió. Torneu a iniciar-la obrint l\'aplicació.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Confirmeu l\'acció</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Esteu a punt d\'emplenar automàticament les vostres credencials en un lloc web que ha obert l\'aplicació actual. L\'aplicació pot tenir accés a les credencials després de l\'emplenament automàtic. Feu-ho només si hi confieu.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">Emplenament automàtic</string>
+  <string name="autofill_confirm_unverified_browser_title">Aquesta aplicació afirma ser un navegador de confiança</string>
+  <string name="autofill_confirm_unverified_browser_body">Aquesta aplicació s\'identifica com un navegador conegut, però Pass no l\'ha pogut verificar. El seu certificat de signatura no coincideix amb el que esperàvem, cosa que pot passar si el navegador està configurat de manera inusual o si una altra aplicació s\'hi fa passar per interceptar les vostres credencials. Continueu només si esteu segur que aquesta aplicació és legítima.</string>
+  <string name="autofill_confirm_dont_ask_again">No m\'ho tornis a preguntar per aquesta aplicació</string>
+  <string name="autofill_troubleshooting_title">Resolució de problemes d\'emplenament automàtic</string>
+  <string name="autofill_troubleshooting_subtitle">Comproveu que el vostre dispositiu estigui configurat correctament per a l\'emplenament automàtic.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">L\'emplenament automàtic està totalment configurat</string>
+  <string name="autofill_troubleshooting_verdict_attention">Cal que reviseu algunes qüestions</string>
+  <string name="autofill_troubleshooting_service_ok">Proton Pass és el vostre servei d\'emplenament automàtic</string>
+  <string name="autofill_troubleshooting_service_current_other">Està definit actualment a %1$s.</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Proton Pass no és el vostre servei d\'emplenament automàtic</string>
+  <string name="autofill_troubleshooting_service_not_default_body">Establiu-lo per defecte per l\'emplenament automàtic a totes les vostres aplicacions.</string>
+  <string name="autofill_troubleshooting_service_enable_action">Habilitar l\'emplenament automàtic</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">Aquest dispositiu no admet l\'emplenament automàtic</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">S\'han detectat navegadors inactius</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Activeu l\'emplenament automàtic perquè Proton Pass pugui emplenar les vostres credencials.
+Toqueu a un navegador per obrir-ne les preferències.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">Els navegadors són compatibles</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">Els vostres navegadors estan connectats i preparats per a l\'emplenament automàtic.</string>
+  <string name="autofill_troubleshooting_browser_active">Actiu</string>
+  <string name="autofill_troubleshooting_inline_info">Els suggeriments en línia apareixen al teclat. Requereixen Android 11 o posterior i un teclat compatible com ara Gboard.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">Comparteix el diagnòstic</string>
+  <string name="autofill_troubleshooting_open_diagnostics">Diagnòstic avançat</string>
+  <string name="autofill_diagnostics_title">Diagnòstic avançat</string>
+  <string name="autofill_diagnostics_enable">Habilitar el diagnòstic d\'emplenament automàtic</string>
+  <string name="autofill_diagnostics_enable_description">Quan està activat, Proton Pass registra què passa durant l\'emplenament automàtic perquè pugueu veure per què no s\'ha omplert. Desactiveu-ho un cop hàgiu acabat.</string>
+  <string name="autofill_diagnostics_instructions">Reproduïu el problema d\'emplenament automàtic a l\'aplicació o al navegador i torneu a aquesta pantalla.</string>
+  <string name="autofill_diagnostics_last_attempt_title">Últim intent d\'emplenament automàtic</string>
+  <string name="autofill_diagnostics_no_attempts">Encara no s\'ha registrat cap intent d\'emplenament automàtic.</string>
+  <string name="autofill_diagnostics_reason_not_default">Proton Pass no és el vostre servei d\'emplenament automàtic, de manera que encara no pot omplir res.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass ha fet suggeriments a %1$s.</string>
+  <string name="autofill_diagnostics_outcome_nothing">S\'ha activat l\'emplenament automàtic a %1$s, però no s\'ha proporcionat cap inici de sessió coincident. La pàgina pot no tenir camps d\'inici de sessió detectables o no teniu cap element per a aquest lloc web.</string>
+  <string name="autofill_diagnostics_outcome_error">L\'emplenament automàtic ha trobat un error a %1$s.</string>
+  <string name="autofill_diagnostics_recent_title">Intents recents</string>
+  <string name="autofill_diagnostics_clear">Neteja</string>
+  <string name="autofill_diagnostics_share">Comparteix amb el suport</string>
+</resources>

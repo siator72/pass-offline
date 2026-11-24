@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">Copiar y cerrar</string>
+  <string name="password_copied_to_clipboard">Contraseña copiada</string>
+  <string name="bottomsheet_generate_password_title">Generar contraseña</string>
+  <string name="password_type">Tipo</string>
+  <string name="special_characters">Caracteres especiales (!&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="one">%s caracter</item>
+    <item quantity="other">%s caracteres</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">Letras mayúsculas (A–Z)</string>
+  <string name="bottomsheet_option_include_numbers">Incluir números (0–9)</string>
+  <string name="regenerate_password_icon_content_description">Botón de regenerar contraseña</string>
+  <string name="password_mode_memorable">Contraseña memorizable</string>
+  <string name="password_mode_random">Contraseña aleatoria</string>
+  <string name="password_mode_icon">Ícono de modo de contraseña</string>
+  <string name="password_words_separator_icon">Separador de palabras de contraseña</string>
+  <string name="password_history_title">Contraseñas generadas</string>
+  <string name="password_history_empty">Sin historial</string>
+  <string name="password_history_description">Las contraseñas generadas se almacenarán durante un periodo de 2 semanas.</string>
+  <string name="password_history_today">Hoy, %s</string>
+  <string name="password_history_yesterday">Ayer, %s</string>
+  <string name="password_history_before_yesterday">hace %d días, %s</string>
+  <string name="password_history_clear_history">Borrar historial</string>
+  <string name="password_history_remove_from_history">Eliminar del historial</string>
+</resources>

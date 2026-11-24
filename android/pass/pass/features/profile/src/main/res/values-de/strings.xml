@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Profil</string>
+  <string name="profile_option_settings">Einstellungen</string>
+  <string name="profile_option_account">Konto</string>
+  <string name="profile_help_center">Hilfecenter</string>
+  <string name="profile_security">Sicherheit</string>
+  <string name="profile_option_autofill_troubleshooting">Fehlerbehebung beim automatischen Ausfüllen</string>
+  <string name="profile_option_feedback">Feedback</string>
+  <string name="profile_option_import_export">Import/Export</string>
+  <string name="profile_option_tutorial">Wie man Proton Pass verwendet</string>
+  <string name="profile_option_rating">App bewerten</string>
+  <string name="profile_spread_the_word">Sag es weiter</string>
+  <string name="profile_option_tell_a_friend">Einem Freund weiterempfehlen</string>
+  <string name="profile_spread_the_word_share_message">Ich nutze Proton Pass, um meine Passwörter sicher aufzubewahren. Probier es aus: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">AutoFill</string>
+  <string name="profile_option_autofill_subtitle">Benutzernamen und Passwörter automatisch ausfüllen.</string>
+  <string name="profile_option_secure_links">Sichere Links</string>
+  <string name="profile_option_alias_management">Alias-Verwaltung</string>
+  <string name="profile_option_generated_passwords">Generierte Passwörter</string>
+  <string name="profile_error_biometry_failed_to_start">Biometrische Authentifizierung konnte nicht gestartet werden.</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Authentifizierung fehlgeschlagen.</string>
+  <string name="profile_error_app_lock_update_failed">Die App-Sperre konnte nicht aktualisiert werden. Bitte versuche es erneut.</string>
+  <string name="profile_fingerprint_lock_enabled">Fingerabdrucksperre aktiviert</string>
+  <string name="profile_fingerprint_lock_disabled">Fingerabdrucksperre deaktiviert</string>
+  <string name="profile_app_version_copied_to_clipboard">App-Version kopiert</string>
+  <string name="feedback_option_reddit">Besuche Proton auf Reddit</string>
+  <string name="feedback_option_mail">Sende uns eine Nachricht</string>
+  <string name="feedback_option_vote_new_features">Für neue Funktionen abstimmen</string>
+  <string name="app_lock_immediately">Sofort</string>
+  <string name="app_lock_one_minute">Nach 1 Minute</string>
+  <string name="app_lock_two_minutes">Nach 2 Minuten</string>
+  <string name="app_lock_five_minutes">Nach 5 Minuten</string>
+  <string name="app_lock_ten_minutes">Nach 10 Minuten</string>
+  <string name="app_lock_one_hour">Nach 1 Stunde</string>
+  <string name="app_lock_four_hours">Nach 4 Stunden</string>
+  <string name="app_lock_config_none">Keine</string>
+  <string name="app_lock_config_biometric">Biometrie</string>
+  <string name="app_lock_config_pin_code">PIN-Code</string>
+  <string name="app_lock_config_app_lock_time">Automatische Sperre</string>
+  <string name="app_lock_config_password">Passwort</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Systemsperre verwenden, wenn Biometrie fehlschlägt</string>
+  <string name="configure_pin_set_pin_code">PIN-Code festlegen</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Entsperre die App mit diesem Code</string>
+  <string name="configure_pin_enter_pin_code">PIN eingeben</string>
+  <string name="configure_pin_repeat_pin_code">PIN-Code erneut eingeben</string>
+  <string name="configure_pin_continue">Fortfahren</string>
+  <string name="configure_pin_pin_does_not_match">Der PIN-Code stimmt nicht überein.</string>
+  <string name="configure_pin_pin_too_short">Der PIN-Code ist zu kurz.</string>
+  <string name="configure_pin_pin_cannot_be_blank">Der PIN-Code darf nicht leer sein.</string>
+  <string name="configure_pin_pin_lock_enabled">PIN-Sperre aktiviert</string>
+  <string name="configure_pin_pin_lock_disabled">PIN-Sperre deaktiviert</string>
+  <string name="profile_option_lock_with">Sperren mit</string>
+  <string name="profile_option_unlock_with">Entsperren mit</string>
+  <string name="profile_option_change_pin_code">PIN-Code ändern</string>
+  <string name="profile_passkey_support_section_title">Passkeys</string>
+  <string name="profile_passkey_support_subtitle_supported">Passkeys werden auf diesem Gerät unterstützt</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Deine Android-Version unterstützt keine Passkeys.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Fehler beim Überprüfen der Passkey-Kompatibilität.</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">Nach %d Tag</item>
+    <item quantity="other">Nach %d Tagen</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">Nach %d Minute</item>
+    <item quantity="other">Nach %d Minuten</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">Nach %d Stunde</item>
+    <item quantity="other">Nach %d Stunden</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Weniger als eine Minute</string>
+  <string name="account_switcher_manage_account">Konto verwalten</string>
+  <string name="account_switcher_sign_in">Anmelden</string>
+  <string name="account_switcher_sign_out">Abmelden</string>
+  <string name="account_switcher_switch_to">Wechseln zu</string>
+  <string name="account_switcher_add_account">Konto hinzufügen</string>
+  <string name="account_switcher_remove">Entfernen</string>
+  <string name="filtered_by_logins">Nach Zugangsdaten gefiltert. Einträge im Papierkorb werden nicht angezeigt.</string>
+  <string name="filtered_by_logins_with_mfa">Nach Zugangsdaten mit Einmalpasswort gefiltert. Einträge im Papierkorb werden nicht angezeigt.</string>
+  <string name="filtered_by_aliases">Nach Aliassen gefiltert. Einträge im Papierkorb werden nicht angezeigt.</string>
+  <string name="filtered_by_notes">Nach Notizen gefiltert. Einträge im Papierkorb werden nicht angezeigt.</string>
+  <string name="filtered_by_credit_cards">Nach Kreditkarten gefiltert. Einträge im Papierkorb werden nicht angezeigt.</string>
+  <string name="filtered_by_identities">Nach Identitäten gefiltert. Einträge im Papierkorb werden nicht angezeigt.</string>
+  <string name="filtered_by_custom_items">Nach benutzerdefinierten Einträgen gefiltert. Einträge im Papierkorb werden nicht angezeigt.</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Du musst zu %1$s wechseln, um es zu verwalten.</string>
+  <string name="account_switch_confirmation_title">Konto verwalten</string>
+  <string name="account_switch_confirmation_confirm">Wechseln und verwalten</string>
+  <string name="profile_storage_data_title">Speicher</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s von %2$s</string>
+</resources>

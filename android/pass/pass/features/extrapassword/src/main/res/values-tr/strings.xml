@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="configure_extra_password_continue">İlerle</string>
+  <string name="configure_extra_password_title">Ek parolayı ayarla</string>
+  <string name="configure_extra_password_enter_extra_password">Ek parola</string>
+  <string name="configure_extra_password_repeat_extra_password">Parola onayı</string>
+  <string name="configure_extra_password_description">Oturum açarken ve başka bir Proton uygulamasından Proton Pass internet uygulamasına geçerken sizden bu parola istenir.</string>
+  <string name="configure_extra_password_warning">Dikkat: Bu parolayı kaybederseniz Pass hesabınıza erişemezsiniz.</string>
+  <string name="configure_extra_password_mismatch">Parola ile onayı aynı değil</string>
+  <string name="extra_password_options_remove">Kaldır</string>
+  <string name="info_extra_password_title">Ek parola</string>
+  <string name="info_extra_password_body">Proton Pass uygulamasını bir ek parola ile koruyun.</string>
+  <string name="info_extra_password_button">Ek parolayı ayarla</string>
+  <string name="configure_extra_password_cannot_be_blank">Parola boş olamaz</string>
+  <string name="configure_extra_password_password_too_short">Ek parola en az 8 karakter uzunluğunda olmalıdır</string>
+  <string name="confirm_extra_password_title">Ek parolayı ayarla</string>
+  <string name="confirm_extra_password_body">Oturumunuz kapatılacak ve diğer tüm aygıtlarınızda yeniden oturum açmanız gerekecek.</string>
+  <string name="confirm_extra_password_error">Ek parola ayarlanamadı</string>
+  <string name="confirm_extra_password_success">Ek parola ayarlandı</string>
+</resources>

@@ -1,0 +1,918 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.home
+
+import app.cash.turbine.test
+import com.google.common.truth.Truth.assertThat
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
+import kotlinx.datetime.Clock
+import kotlinx.datetime.toJavaInstant
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import proton.android.pass.appconfig.fakes.FakeAppConfig
+import proton.android.pass.clipboard.fakes.FakeClipboardManager
+import proton.android.pass.common.fakes.FakeAppDispatchers
+import proton.android.pass.commonui.api.DateFormatUtils
+import proton.android.pass.commonui.api.GroupedItemList
+import proton.android.pass.commonui.api.GroupingKeys
+import proton.android.pass.commonrust.fakes.FakeItemContentSerializer
+import proton.android.pass.commonui.api.toUiModel
+import proton.android.pass.composecomponents.impl.uievents.IsLoadingState
+import proton.android.pass.composecomponents.impl.uievents.IsRefreshingState
+import proton.android.pass.crypto.fakes.context.FakeEncryptionContextProvider
+import proton.android.pass.data.api.SearchEntry
+import proton.android.pass.data.fakes.repositories.FakeBulkMoveToVaultRepository
+import proton.android.pass.data.fakes.usecases.FakeChangeAliasStatus
+import proton.android.pass.data.fakes.usecases.FakeObserveEncryptedItems
+import proton.android.pass.data.fakes.usecases.FakePinItem
+import proton.android.pass.data.fakes.usecases.FakeUnpinItem
+import proton.android.pass.data.fakes.usecases.FakeAddSearchEntry
+import proton.android.pass.data.fakes.usecases.FakeCanCreateAlias
+import proton.android.pass.data.fakes.usecases.FakeCanCreateItemsInFolder
+import proton.android.pass.data.fakes.usecases.FakeClearTrash
+import proton.android.pass.data.fakes.usecases.FakeDeleteAllSearchEntry
+import proton.android.pass.data.fakes.usecases.FakeDeleteItems
+import proton.android.pass.data.fakes.usecases.FakeDeleteSearchEntry
+import proton.android.pass.data.fakes.usecases.FakeGetUserPlan
+import proton.android.pass.data.fakes.usecases.FakeObserveIndexingStatus
+import proton.android.pass.data.fakes.usecases.FakeObserveItemTypeCounts
+import proton.android.pass.data.fakes.usecases.FakeObservePagedItems
+import proton.android.pass.data.fakes.usecases.FakeItemSyncStatusRepository
+import proton.android.pass.data.fakes.usecases.FakeObserveAllShares
+import proton.android.pass.data.fakes.usecases.FakeObserveAppNeedsUpdate
+import proton.android.pass.data.fakes.usecases.FakeObserveCurrentUser
+import proton.android.pass.data.fakes.usecases.FakeObservePinnedItems
+import proton.android.pass.data.fakes.usecases.FakeObserveSearchEntry
+import proton.android.pass.data.fakes.usecases.FakeObserveUpgradeInfo
+import proton.android.pass.data.fakes.usecases.FakePerformSync
+import proton.android.pass.data.fakes.usecases.FakePinItems
+import proton.android.pass.data.fakes.usecases.FakeRestoreAllItems
+import proton.android.pass.data.fakes.usecases.FakeRestoreItems
+import proton.android.pass.data.fakes.usecases.FakeTrashItems
+import proton.android.pass.data.fakes.usecases.FakeUnpinItems
+import proton.android.pass.data.fakes.usecases.folders.FakeObserveFolder
+import proton.android.pass.data.fakes.usecases.inappmessages.FakeObserveDeliverableMinimizedPromoInAppMessage
+import proton.android.pass.data.fakes.usecases.items.FakeObserveCanCreateItems
+import proton.android.pass.data.fakes.usecases.shares.FakeObserveEncryptedSharedItems
+import proton.android.pass.data.fakes.usecases.shares.FakeObserveHasShares
+import proton.android.pass.data.fakes.usecases.FakeObserveRecentSearchItems
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.ItemEncrypted
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ItemState
+import proton.android.pass.domain.Share
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.ShareSelection
+import proton.android.pass.domain.UserId
+import proton.android.pass.notifications.fakes.FakeSnackbarDispatcher
+import proton.android.pass.notifications.fakes.FakeToastManager
+import proton.android.pass.preferences.FakeFeatureFlagsPreferenceRepository
+import proton.android.pass.preferences.FakePreferenceRepository
+import proton.android.pass.preferences.FeatureFlag
+import proton.android.pass.preferences.UseFaviconsPreference
+import proton.android.pass.searchoptions.api.VaultSelectionOption
+import proton.android.pass.searchoptions.fakes.FakeHomeSearchOptionsRepository
+import proton.android.pass.telemetry.fakes.FakeTelemetryManager
+import proton.android.pass.test.FixedClock
+import proton.android.pass.test.MainDispatcherRule
+import proton.android.pass.test.domain.FolderTestFactory
+import proton.android.pass.test.domain.ShareTestFactory
+import proton.android.pass.test.domain.UserTestFactory
+
+internal class HomeViewModelTest {
+
+    @get:Rule
+    internal val dispatcher = MainDispatcherRule()
+
+    private lateinit var instance: HomeViewModel
+
+    private val itemContentSerializer = FakeItemContentSerializer()
+
+    private lateinit var trashItems: FakeTrashItems
+    private lateinit var snackbarDispatcher: FakeSnackbarDispatcher
+    private lateinit var clipboardManager: FakeClipboardManager
+    private lateinit var performSync: FakePerformSync
+    private lateinit var encryptionContextProvider: FakeEncryptionContextProvider
+    private lateinit var restoreItems: FakeRestoreItems
+    private lateinit var restoreAllItems: FakeRestoreAllItems
+    private lateinit var deleteItems: FakeDeleteItems
+    private lateinit var clearTrash: FakeClearTrash
+    private lateinit var addSearchEntry: FakeAddSearchEntry
+    private lateinit var deleteSearchEntry: FakeDeleteSearchEntry
+    private lateinit var deleteAllSearchEntry: FakeDeleteAllSearchEntry
+    private lateinit var observeSearchEntry: FakeObserveSearchEntry
+    private lateinit var telemetryManager: FakeTelemetryManager
+    private lateinit var searchOptionsRepository: FakeHomeSearchOptionsRepository
+    private lateinit var observeAllShares: FakeObserveAllShares
+    private lateinit var clock: FixedClock
+    private lateinit var observeEncryptedItems: FakeObserveEncryptedItems
+    private lateinit var observePinnedItems: FakeObservePinnedItems
+    private lateinit var preferencesRepository: FakePreferenceRepository
+    private lateinit var getUserPlan: FakeGetUserPlan
+    private lateinit var bulkMoveToVaultRepository: FakeBulkMoveToVaultRepository
+    private lateinit var toastManager: FakeToastManager
+    private lateinit var observeCurrentUser: FakeObserveCurrentUser
+    private lateinit var observeCanCreateItems: FakeObserveCanCreateItems
+    private lateinit var observeHasShares: FakeObserveHasShares
+    private lateinit var observeUpgradeInfo: FakeObserveUpgradeInfo
+    private lateinit var appConfig: FakeAppConfig
+    private lateinit var featureFlags: FakeFeatureFlagsPreferenceRepository
+    private lateinit var observeFolder: FakeObserveFolder
+    private lateinit var observeRecentSearchItems: FakeObserveRecentSearchItems
+    private lateinit var observeEncryptedSharedItems: FakeObserveEncryptedSharedItems
+    private lateinit var observePagedItems: FakeObservePagedItems
+    private lateinit var observeIndexingStatus: FakeObserveIndexingStatus
+
+    @Before
+    internal fun setup() {
+        trashItems = FakeTrashItems()
+        snackbarDispatcher = FakeSnackbarDispatcher()
+        clipboardManager = FakeClipboardManager()
+        performSync = FakePerformSync()
+        encryptionContextProvider = FakeEncryptionContextProvider()
+        restoreItems = FakeRestoreItems()
+        restoreAllItems = FakeRestoreAllItems()
+        deleteItems = FakeDeleteItems()
+        clearTrash = FakeClearTrash()
+        addSearchEntry = FakeAddSearchEntry()
+        deleteSearchEntry = FakeDeleteSearchEntry()
+        deleteAllSearchEntry = FakeDeleteAllSearchEntry()
+        observeSearchEntry = FakeObserveSearchEntry()
+        telemetryManager = FakeTelemetryManager()
+        searchOptionsRepository = FakeHomeSearchOptionsRepository()
+        observeAllShares = FakeObserveAllShares()
+        clock = FixedClock(Clock.System.now())
+        observeEncryptedItems = FakeObserveEncryptedItems()
+        preferencesRepository = FakePreferenceRepository()
+        getUserPlan = FakeGetUserPlan()
+        bulkMoveToVaultRepository = FakeBulkMoveToVaultRepository()
+        toastManager = FakeToastManager()
+        observePinnedItems = FakeObservePinnedItems()
+        observeCurrentUser = FakeObserveCurrentUser().apply { sendUser(UserTestFactory.create()) }
+        observeCanCreateItems = FakeObserveCanCreateItems()
+        observeHasShares = FakeObserveHasShares()
+        observeUpgradeInfo = FakeObserveUpgradeInfo()
+        appConfig = FakeAppConfig()
+        featureFlags = FakeFeatureFlagsPreferenceRepository()
+        observeFolder = FakeObserveFolder()
+        observeRecentSearchItems = FakeObserveRecentSearchItems()
+        observeEncryptedSharedItems = FakeObserveEncryptedSharedItems()
+        observePagedItems = FakeObservePagedItems()
+        observeIndexingStatus = FakeObserveIndexingStatus()
+        createViewModel()
+    }
+
+    @Test
+    fun `emits Loading as initial state`() = runTest {
+        instance.homeUiState.test {
+            assertThat(awaitItem()).isEqualTo(HomeUiState.Loading)
+        }
+    }
+
+    @Test
+    fun `emits items`() = runTest {
+        val items = setupItems()
+
+        instance.homeUiState.test {
+            val state = awaitItem()
+            assertThat(state.homeListUiState.isLoading).isInstanceOf(IsLoadingState.NotLoading::class.java)
+            val expected = persistentListOf(
+                GroupedItemList(
+                    key = GroupingKeys.MostRecentKey(
+                        formatResultKey = DateFormatUtils.Format.Today,
+                        instant = clock.now()
+                    ),
+                    items = items.map {
+                        encryptionContextProvider.withEncryptionContext {
+                            it.toUiModel(this@withEncryptionContext, itemContentSerializer)
+                        }
+                    }
+                )
+            )
+            assertThat(state.homeListUiState.items).isEqualTo(expected)
+        }
+    }
+
+    @Test
+    fun `does not stay in loading if vault switched and has no contents`() = runTest {
+        // Emit initial items
+        setupItems()
+
+        // Change vault and emit empty
+        instance.setVaultSelection(VaultSelectionOption.Vault(ShareId("random")))
+        observeEncryptedItems.emitValue(emptyList())
+        observeEncryptedSharedItems.emitValue(emptyList())
+
+        instance.homeUiState.test {
+            val state = awaitItem()
+            assertThat(state.homeListUiState.isLoading).isInstanceOf(IsLoadingState.NotLoading::class.java)
+            assertThat(state.homeListUiState.items).isEmpty()
+        }
+    }
+
+    @Test
+    fun `resets to all vaults when the selected vault was deleted and another vault remains`() = runTest {
+        val userId = UserId("12345")
+        assertThat(selectionAfterStaleVaultSelection(userId, listOf(ShareTestFactory.Vault.create(userId = userId.id))))
+            .isEqualTo(VaultSelectionOption.AllVaults)
+    }
+
+    @Test
+    fun `resets to all vaults when the selected vault was deleted and only item shares remain`() = runTest {
+        val userId = UserId("12345")
+        assertThat(selectionAfterStaleVaultSelection(userId, listOf(ShareTestFactory.Item.create(userId = userId.id))))
+            .isEqualTo(VaultSelectionOption.AllVaults)
+    }
+
+    @Test
+    fun `keeps the stale vault selection while no shares are available`() = runTest {
+        val staleSelection = VaultSelectionOption.Vault(ShareId("deleted-vault"))
+        assertThat(selectionAfterStaleVaultSelection(UserId("12345"), emptyList()))
+            .isEqualTo(staleSelection)
+    }
+
+    private suspend fun selectionAfterStaleVaultSelection(userId: UserId, shares: List<Share>): VaultSelectionOption {
+        observeAllShares.sendResult(Result.success(shares))
+        observeCanCreateItems.emit(canCreateItems = true)
+        observeHasShares.emit(hasShares = shares.isNotEmpty())
+
+        searchOptionsRepository.setUserId(userId)
+        searchOptionsRepository.setVaultSelectionOption(VaultSelectionOption.Vault(ShareId("deleted-vault")))
+
+        instance.homeUiState.test {
+            awaitItem()
+            cancelAndIgnoreRemainingEvents()
+        }
+
+        return searchOptionsRepository.observeVaultSelectionOption().first()
+    }
+
+    private fun setupItems(): List<ItemEncrypted> {
+        val items = FakeObserveEncryptedItems.defaultValues
+            .asList()
+            .map {
+                it.copy(
+                    createTime = clock.now(),
+                    modificationTime = clock.now()
+                )
+            }
+
+        observeEncryptedItems.emitValue(items)
+
+        preferencesRepository.setUseFaviconsPreference(UseFaviconsPreference.Disabled)
+
+        val vaultShares = items
+            .map { it.shareId }
+            .distinct()
+            .map { shareId -> ShareTestFactory.Vault.create(id = shareId.id) }
+
+        val searchEntries = items.map {
+            SearchEntry(
+                itemId = it.id,
+                shareId = it.shareId,
+                userId = UserId("userid"),
+                createTime = Clock.System.now().toJavaInstant().epochSecond
+            )
+        }
+        observeAllShares.sendResult(Result.success(vaultShares))
+        observeEncryptedItems.emitValue(items)
+        observeEncryptedSharedItems.emitValue(emptyList())
+        observeSearchEntry.emit(searchEntries)
+        observeCanCreateItems.emit(canCreateItems = true)
+        observeHasShares.emit(hasShares = true)
+        observeRecentSearchItems.emit(emptyList())
+
+        return items
+    }
+
+    @Test
+    fun `folder selection shows items from that folder via encrypted items path`() = runTest {
+        val shareId = ShareId("share-folder-test")
+        val folderId = FolderId("folder-123")
+        val folderItem = FakeObserveEncryptedItems.createLogin(
+            shareId = shareId,
+            itemId = ItemId("item-in-folder"),
+            title = "Folder Item"
+        ).copy(
+            folderId = folderId,
+            createTime = clock.now(),
+            modificationTime = clock.now()
+        )
+
+        val folderParams = FakeObserveEncryptedItems.Params(
+            selection = ShareSelection.Folder(shareId, folderId),
+            itemState = ItemState.Active
+        )
+        observeEncryptedItems.emit(folderParams, listOf(folderItem))
+
+        preferencesRepository.setUseFaviconsPreference(UseFaviconsPreference.Disabled)
+        observeAllShares.sendResult(Result.success(emptyList()))
+        observeCanCreateItems.emit(canCreateItems = true)
+        observeHasShares.emit(hasShares = true)
+
+        instance.setVaultSelection(VaultSelectionOption.Folder(shareId, folderId))
+
+        instance.homeUiState.test {
+            val state = awaitItem()
+            assertThat(state.homeListUiState.isLoading).isInstanceOf(IsLoadingState.NotLoading::class.java)
+            val allItems = state.homeListUiState.items.flatMap { it.items }
+            assertThat(allItems).hasSize(1)
+            assertThat(allItems.first().id).isEqualTo(folderItem.id)
+        }
+    }
+
+    @Test
+    fun `paginated folder selection forwards folderId to paged items query`() = runTest {
+        val shareId = ShareId("share-folder-paged")
+        val folderId = FolderId("folder-paged-123")
+
+        // Pagination flag must be set before the VM is created: its initial value
+        // is read synchronously at construction time.
+        featureFlags.set(FeatureFlag.ENABLE_PAGINATION, true)
+        createViewModel()
+
+        observeAllShares.sendResult(Result.success(emptyList()))
+        observeIndexingStatus.emitReady()
+        observePagedItems.emitEmpty()
+
+        instance.setVaultSelection(VaultSelectionOption.Folder(shareId, folderId))
+
+        instance.homeListItemPagingFlow.test {
+            awaitItem()
+            cancelAndIgnoreRemainingEvents()
+        }
+
+        assertThat(observePagedItems.lastFolderId).isEqualTo(folderId)
+        assertThat(observePagedItems.lastShareIds).isEqualTo(listOf(shareId))
+        assertThat(observePagedItems.lastRestrictToRootFolder).isFalse()
+    }
+
+    @Test
+    fun `paginated vault selection restricts paged items to the root folder`() = runTest {
+        assertThat(pagedRestrictToRootFolderFor(VaultSelectionOption.Vault(ShareId("share-vault-paged"))))
+            .isTrue()
+    }
+
+    @Test
+    fun `paginated all vaults selection does not restrict paged items to the root folder`() = runTest {
+        assertThat(pagedRestrictToRootFolderFor(VaultSelectionOption.AllVaults)).isFalse()
+    }
+
+    private suspend fun pagedRestrictToRootFolderFor(selection: VaultSelectionOption): Boolean? {
+        featureFlags.set(FeatureFlag.ENABLE_PAGINATION, true)
+        createViewModel()
+
+        observeAllShares.sendResult(Result.success(emptyList()))
+        observeIndexingStatus.emitReady()
+        observePagedItems.emitEmpty()
+
+        instance.setVaultSelection(selection)
+
+        instance.homeListItemPagingFlow.test {
+            awaitItem()
+            cancelAndIgnoreRemainingEvents()
+        }
+
+        return observePagedItems.lastRestrictToRootFolder
+    }
+
+    @Test
+    fun `redirects to parent folder when currently selected folder is deleted`() = runTest {
+        val userId = UserId("12345")
+        val shareId = ShareId("share-folder-deleted")
+        val parentFolderId = FolderId("parent-folder")
+        val deletedFolderId = FolderId("deleted-folder")
+
+        observeAllShares.sendResult(Result.success(emptyList()))
+        observeCanCreateItems.emit(canCreateItems = true)
+        observeHasShares.emit(hasShares = true)
+
+        searchOptionsRepository.setUserId(userId)
+        observeFolder.sendResult(
+            userId = userId,
+            shareId = shareId,
+            folderId = deletedFolderId,
+            result = Result.success(
+                FolderTestFactory.create(
+                    userId = userId,
+                    shareId = shareId,
+                    folderId = deletedFolderId,
+                    parentFolderId = parentFolderId
+                )
+            )
+        )
+        observeFolder.sendResult(
+            userId = userId,
+            shareId = shareId,
+            folderId = parentFolderId,
+            result = Result.success(
+                FolderTestFactory.create(
+                    userId = userId,
+                    shareId = shareId,
+                    folderId = parentFolderId,
+                    parentFolderId = null
+                )
+            )
+        )
+
+        instance.setVaultSelection(VaultSelectionOption.Folder(shareId, deletedFolderId))
+        instance.homeUiState.test {
+            awaitItem()
+        }
+
+        observeFolder.sendResult(
+            userId = userId,
+            shareId = shareId,
+            folderId = deletedFolderId,
+            result = Result.success(null)
+        )
+
+        instance.homeUiState.test {
+            awaitItem()
+        }
+
+        assertThat(searchOptionsRepository.observeVaultSelectionOption().first())
+            .isEqualTo(VaultSelectionOption.Folder(shareId, parentFolderId))
+    }
+
+    @Test
+    fun `redirects to vault root when currently selected top-level folder is deleted`() = runTest {
+        val userId = UserId("12345")
+        val shareId = ShareId("share-folder-deleted-root")
+        val deletedFolderId = FolderId("deleted-root-folder")
+
+        observeAllShares.sendResult(Result.success(emptyList()))
+        observeCanCreateItems.emit(canCreateItems = true)
+        observeHasShares.emit(hasShares = true)
+
+        searchOptionsRepository.setUserId(userId)
+        observeFolder.sendResult(
+            userId = userId,
+            shareId = shareId,
+            folderId = deletedFolderId,
+            result = Result.success(
+                FolderTestFactory.create(
+                    userId = userId,
+                    shareId = shareId,
+                    folderId = deletedFolderId,
+                    parentFolderId = null
+                )
+            )
+        )
+
+        instance.setVaultSelection(VaultSelectionOption.Folder(shareId, deletedFolderId))
+        instance.homeUiState.test {
+            awaitItem()
+        }
+
+        observeFolder.sendResult(
+            userId = userId,
+            shareId = shareId,
+            folderId = deletedFolderId,
+            result = Result.success(null)
+        )
+
+        instance.homeUiState.test {
+            awaitItem()
+        }
+
+        assertThat(searchOptionsRepository.observeVaultSelectionOption().first())
+            .isEqualTo(VaultSelectionOption.Vault(shareId))
+    }
+
+    @Test
+    fun `redirects to vault root when the parent folder was cascade-deleted too`() = runTest {
+        val userId = UserId("12345")
+        val shareId = ShareId("share-folder-cascade-deleted")
+        val parentFolderId = FolderId("cascade-deleted-parent")
+        val childFolderId = FolderId("cascade-deleted-child")
+
+        observeAllShares.sendResult(Result.success(emptyList()))
+        observeCanCreateItems.emit(canCreateItems = true)
+        observeHasShares.emit(hasShares = true)
+
+        searchOptionsRepository.setUserId(userId)
+        observeFolder.sendResult(
+            userId = userId,
+            shareId = shareId,
+            folderId = childFolderId,
+            result = Result.success(
+                FolderTestFactory.create(
+                    userId = userId,
+                    shareId = shareId,
+                    folderId = childFolderId,
+                    parentFolderId = parentFolderId
+                )
+            )
+        )
+
+        instance.setVaultSelection(VaultSelectionOption.Folder(shareId, childFolderId))
+        instance.homeUiState.test {
+            awaitItem()
+        }
+
+        observeFolder.sendResult(
+            userId = userId,
+            shareId = shareId,
+            folderId = childFolderId,
+            result = Result.success(null)
+        )
+        instance.homeUiState.test {
+            awaitItem()
+        }
+        observeFolder.sendResult(
+            userId = userId,
+            shareId = shareId,
+            folderId = parentFolderId,
+            result = Result.success(null)
+        )
+        instance.homeUiState.test {
+            awaitItem()
+        }
+
+        assertThat(searchOptionsRepository.observeVaultSelectionOption().first())
+            .isEqualTo(VaultSelectionOption.Vault(shareId))
+    }
+
+    @Test
+    fun `does not redirect out of a persisted folder selection that has not synced yet`() = runTest {
+        val userId = UserId("12345")
+        val shareId = ShareId("share-folder-not-synced")
+        val folderId = FolderId("not-synced-folder")
+
+        observeAllShares.sendResult(Result.success(emptyList()))
+        observeCanCreateItems.emit(canCreateItems = true)
+        observeHasShares.emit(hasShares = true)
+
+        searchOptionsRepository.setUserId(userId)
+        searchOptionsRepository.setVaultSelectionOption(VaultSelectionOption.Folder(shareId, folderId))
+
+        instance.homeUiState.test {
+            awaitItem()
+        }
+
+        assertThat(searchOptionsRepository.observeVaultSelectionOption().first())
+            .isEqualTo(VaultSelectionOption.Folder(shareId, folderId))
+    }
+
+    @Test
+    fun `vault browse shows only root items (folderId == null)`() = runTest {
+        val shareId = ShareId("share-vault-browse")
+        val rootItem = FakeObserveEncryptedItems.createLogin(
+            shareId = shareId,
+            itemId = ItemId("root-item"),
+            title = "Root Item"
+        ).copy(createTime = clock.now(), modificationTime = clock.now())
+        val folderItem = FakeObserveEncryptedItems.createLogin(
+            shareId = shareId,
+            itemId = ItemId("folder-item"),
+            title = "Folder Item"
+        ).copy(
+            folderId = FolderId("some-folder"),
+            createTime = clock.now(),
+            modificationTime = clock.now()
+        )
+
+        val vaultParams = FakeObserveEncryptedItems.Params(
+            selection = ShareSelection.Share(shareId),
+            itemState = ItemState.Active
+        )
+        observeEncryptedItems.emit(vaultParams, listOf(rootItem, folderItem))
+
+        preferencesRepository.setUseFaviconsPreference(UseFaviconsPreference.Disabled)
+        observeAllShares.sendResult(Result.success(emptyList()))
+        observeCanCreateItems.emit(canCreateItems = true)
+        observeHasShares.emit(hasShares = true)
+
+        instance.setVaultSelection(VaultSelectionOption.Vault(shareId))
+
+        instance.homeUiState.test {
+            val state = awaitItem()
+            assertThat(state.homeListUiState.isLoading).isInstanceOf(IsLoadingState.NotLoading::class.java)
+            val allItems = state.homeListUiState.items.flatMap { it.items }
+            assertThat(allItems).hasSize(1)
+            assertThat(allItems.first().id).isEqualTo(rootItem.id)
+        }
+    }
+
+    @Test
+    fun `folder browse shows only direct items with matching folderId`() = runTest {
+        val shareId = ShareId("share-folder-browse")
+        val folderId = FolderId("folder-browse-id")
+        val directItem = FakeObserveEncryptedItems.createLogin(
+            shareId = shareId,
+            itemId = ItemId("direct-item"),
+            title = "Direct Item"
+        ).copy(
+            folderId = folderId,
+            createTime = clock.now(),
+            modificationTime = clock.now()
+        )
+        val subFolderItem = FakeObserveEncryptedItems.createLogin(
+            shareId = shareId,
+            itemId = ItemId("subfolder-item"),
+            title = "Sub-folder Item"
+        ).copy(
+            folderId = FolderId("nested-folder"),
+            createTime = clock.now(),
+            modificationTime = clock.now()
+        )
+
+        val folderParams = FakeObserveEncryptedItems.Params(
+            selection = ShareSelection.Folder(shareId, folderId),
+            itemState = ItemState.Active
+        )
+        observeEncryptedItems.emit(folderParams, listOf(directItem, subFolderItem))
+
+        preferencesRepository.setUseFaviconsPreference(UseFaviconsPreference.Disabled)
+        observeAllShares.sendResult(Result.success(emptyList()))
+        observeCanCreateItems.emit(canCreateItems = true)
+        observeHasShares.emit(hasShares = true)
+
+        instance.setVaultSelection(VaultSelectionOption.Folder(shareId, folderId))
+
+        instance.homeUiState.test {
+            val state = awaitItem()
+            assertThat(state.homeListUiState.isLoading).isInstanceOf(IsLoadingState.NotLoading::class.java)
+            val allItems = state.homeListUiState.items.flatMap { it.items }
+            assertThat(allItems).hasSize(1)
+            assertThat(allItems.first().id).isEqualTo(directItem.id)
+        }
+    }
+
+    @Test
+    fun `folder search includes descendant items (no folderId filter in search mode)`() = runTest {
+        val shareId = ShareId("share-folder-search")
+        val folderId = FolderId("folder-search-id")
+        val directItem = FakeObserveEncryptedItems.createLogin(
+            shareId = shareId,
+            itemId = ItemId("direct-search-item"),
+            title = "Matching Direct"
+        ).copy(
+            folderId = folderId,
+            createTime = clock.now(),
+            modificationTime = clock.now()
+        )
+        val descendantItem = FakeObserveEncryptedItems.createLogin(
+            shareId = shareId,
+            itemId = ItemId("descendant-search-item"),
+            title = "Matching Descendant"
+        ).copy(
+            folderId = FolderId("nested-folder"),
+            createTime = clock.now(),
+            modificationTime = clock.now()
+        )
+
+        val folderParams = FakeObserveEncryptedItems.Params(
+            selection = ShareSelection.Folder(shareId, folderId),
+            itemState = ItemState.Active
+        )
+        observeEncryptedItems.emit(folderParams, listOf(directItem, descendantItem))
+
+        preferencesRepository.setUseFaviconsPreference(UseFaviconsPreference.Disabled)
+        observeAllShares.sendResult(Result.success(emptyList()))
+        observeCanCreateItems.emit(canCreateItems = true)
+        observeHasShares.emit(hasShares = true)
+
+        instance.setVaultSelection(VaultSelectionOption.Folder(shareId, folderId))
+        instance.onEnterSearch()
+        instance.onSearchQueryChange("Matching")
+
+        instance.homeUiState.test {
+            // Advance past debounce
+            val state = awaitItem()
+            assertThat(state.homeListUiState.isLoading).isInstanceOf(IsLoadingState.NotLoading::class.java)
+            val allItems = state.homeListUiState.items.flatMap { it.items }
+            // Both the direct item and the descendant must appear in search results
+            assertThat(allItems).hasSize(2)
+            val ids = allItems.map { it.id }
+            assertThat(ids).contains(directItem.id)
+            assertThat(ids).contains(descendantItem.id)
+        }
+    }
+
+    @Test
+    fun `onSeeAllPinned sets pinning mode on the search options repository`() = runTest {
+        setupItems()
+        instance.onSeeAllPinned()
+        observePinnedItems.emitDefault()
+
+        instance.homeUiState.test {
+            val state = awaitItem()
+            assertThat(state.pinningUiState.inPinningMode).isTrue()
+        }
+        assertThat(searchOptionsRepository.getIsInSeeAllPinsMode()).isTrue()
+    }
+
+    @Test
+    fun `onStopSeeAllPinned clears pinning mode on the search options repository`() = runTest {
+        setupItems()
+        instance.onSeeAllPinned()
+        instance.onStopSeeAllPinned()
+        observePinnedItems.emitDefault()
+
+        instance.homeUiState.test {
+            val state = awaitItem()
+            assertThat(state.pinningUiState.inPinningMode).isFalse()
+        }
+        assertThat(searchOptionsRepository.getIsInSeeAllPinsMode()).isFalse()
+    }
+
+    @Test
+    fun `pinning mode reflects the repository as single source of truth`() = runTest {
+        setupItems()
+        // Set externally rather than through the ViewModel
+        searchOptionsRepository.setIsInSeeAllPinsMode(true)
+        observePinnedItems.emitDefault()
+
+        instance.homeUiState.test {
+            val state = awaitItem()
+            assertThat(state.pinningUiState.inPinningMode).isTrue()
+        }
+    }
+
+    @Test
+    internal fun `WHEN read only item is selected THEN show toast message`() {
+        instance.onReadOnlyItemSelected()
+
+        assertThat(toastManager.stringResourceMessage).isEqualTo(R.string.home_toast_items_selected_read_only)
+    }
+
+    @Test
+    internal fun `WHEN item shared with me is selected THEN show toast message`() {
+        instance.onSharedWithMeItemSelected()
+
+        assertThat(toastManager.stringResourceMessage).isEqualTo(R.string.home_toast_items_selected_shared_with_me)
+    }
+
+    @Test
+    fun `onRefresh shows RefreshError and stops refreshing when the sync fails`() = runTest {
+        performSync.setResult(Result.failure(IllegalStateException("sync failed")))
+
+        instance.homeUiState.test {
+            instance.onRefresh()
+            advanceUntilIdle()
+
+            assertThat(expectMostRecentItem().homeListUiState.isRefreshing)
+                .isEqualTo(IsRefreshingState.NotRefreshing)
+        }
+        assertThat(snackbarDispatcher.snackbarMessage.first().value())
+            .isEqualTo(HomeSnackbarMessage.RefreshError)
+    }
+
+    @Test
+    fun `onRefresh stops refreshing without an error when the sync is cancelled`() = runTest {
+        performSync.setResult(Result.failure(CancellationException("refresh cancelled")))
+
+        instance.homeUiState.test {
+            instance.onRefresh()
+            advanceUntilIdle()
+
+            assertThat(expectMostRecentItem().homeListUiState.isRefreshing)
+                .isEqualTo(IsRefreshingState.NotRefreshing)
+        }
+        assertThat(snackbarDispatcher.invocationCount).isEqualTo(0)
+    }
+
+    @Test
+    fun `onRefresh ignores calls while a refresh is in flight`() = runTest {
+        val gate = CompletableDeferred<Unit>()
+        performSync.gate = gate
+
+        repeat(7) { instance.onRefresh() }
+        gate.complete(Unit)
+        advanceUntilIdle()
+
+        assertThat(performSync.invokedUserIds).hasSize(1)
+    }
+
+    @Test
+    fun `onRefresh can run again once the previous refresh finished`() = runTest {
+        instance.onRefresh()
+        advanceUntilIdle()
+        instance.onRefresh()
+        advanceUntilIdle()
+
+        assertThat(performSync.invokedUserIds).hasSize(2)
+    }
+
+    private fun createViewModel() {
+        instance = HomeViewModel(
+            itemContentSerializer = itemContentSerializer,
+            trashItems = trashItems,
+            snackbarDispatcher = snackbarDispatcher,
+            clipboardManager = clipboardManager,
+            performSync = performSync,
+            encryptionContextProvider = encryptionContextProvider,
+            restoreItems = restoreItems,
+            restoreAllItems = restoreAllItems,
+            deleteItem = deleteItems,
+            clearTrash = clearTrash,
+            addSearchEntry = addSearchEntry,
+            deleteSearchEntry = deleteSearchEntry,
+            deleteAllSearchEntry = deleteAllSearchEntry,
+            observeSearchEntry = observeSearchEntry,
+            telemetryManager = telemetryManager,
+            homeSearchOptionsRepository = searchOptionsRepository,
+            bulkMoveToVaultRepository = bulkMoveToVaultRepository,
+            toastManager = toastManager,
+            pinItem = FakePinItem(),
+            unpinItem = FakeUnpinItem(),
+            pinItems = FakePinItems(),
+            unpinItems = FakeUnpinItems(),
+            changeAliasStatus = FakeChangeAliasStatus(),
+            observeCurrentUser = observeCurrentUser,
+            observeAllShares = observeAllShares,
+            clock = clock,
+            observeEncryptedItems = observeEncryptedItems,
+            observeEncryptedSharedItems = observeEncryptedSharedItems,
+            observePinnedItems = observePinnedItems,
+            preferencesRepository = preferencesRepository,
+            observeAppNeedsUpdate = FakeObserveAppNeedsUpdate(),
+            appDispatchers = FakeAppDispatchers(),
+            getUserPlan = getUserPlan,
+            observeCanCreateItems = observeCanCreateItems,
+            observeHasShares = observeHasShares,
+            observeDeliverableMinimizedPromoInAppMessages = FakeObserveDeliverableMinimizedPromoInAppMessage()
+                .apply { emitPromoMessage(null) },
+            observeUpgradeInfo = observeUpgradeInfo,
+            appConfig = appConfig,
+            syncStatusRepository = FakeItemSyncStatusRepository(),
+            featureFlagsPreferencesRepository = featureFlags,
+            observeFolder = observeFolder,
+            canCreateAlias = FakeCanCreateAlias(),
+            canCreateItemsInFolder = FakeCanCreateItemsInFolder(),
+            observePagedItems = observePagedItems,
+            observeIndexingStatus = observeIndexingStatus,
+            observeItemTypeCounts = FakeObserveItemTypeCounts(),
+            observeRecentSearchItems = observeRecentSearchItems
+        )
+    }
+}
+
+internal class FolderDeletionFallbackTest {
+
+    private val shareId = ShareId("share-id")
+    private val folderId = FolderId("folder-id")
+
+    @Test
+    fun `falls back to the vault root when the last known folder is not the currently selected one`() {
+        val lastKnownFolder = FolderTestFactory.create(folderId = FolderId("other-folder"))
+        val selection = VaultSelectionOption.Folder(shareId, folderId)
+
+        assertThat(folderDeletionFallback(lastKnownFolder, selection))
+            .isEqualTo(VaultSelectionOption.Vault(shareId))
+    }
+
+    @Test
+    fun `falls back to the vault root when there is no last known folder`() {
+        val selection = VaultSelectionOption.Folder(shareId, folderId)
+
+        assertThat(folderDeletionFallback(null, selection))
+            .isEqualTo(VaultSelectionOption.Vault(shareId))
+    }
+
+    @Test
+    fun `falls back to the parent folder when the deleted folder had one`() {
+        val parentFolderId = FolderId("parent-folder")
+        val lastKnownFolder = FolderTestFactory.create(
+            folderId = folderId,
+            parentFolderId = parentFolderId
+        )
+        val selection = VaultSelectionOption.Folder(shareId, folderId)
+
+        assertThat(folderDeletionFallback(lastKnownFolder, selection))
+            .isEqualTo(VaultSelectionOption.Folder(shareId, parentFolderId))
+    }
+
+    @Test
+    fun `falls back to the vault root when the deleted folder was top-level`() {
+        val lastKnownFolder = FolderTestFactory.create(folderId = folderId, parentFolderId = null)
+        val selection = VaultSelectionOption.Folder(shareId, folderId)
+
+        assertThat(folderDeletionFallback(lastKnownFolder, selection))
+            .isEqualTo(VaultSelectionOption.Vault(shareId))
+    }
+}

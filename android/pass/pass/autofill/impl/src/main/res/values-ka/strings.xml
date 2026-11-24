@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">მიიღეთ Proton Pass-დან</string>
+  <string name="error_loading_items">ელემენტების ჩატვირთვა შეუძლებელია</string>
+  <string name="inline_suggestions_open_app">Proton Pass-ის გახსნა</string>
+  <string name="autofill_associate_web_app_name_dialog_title">ამ აპზე ან ვებგვერდზე \"%s\"-ის შესვლის დეტალების გამოყენება.</string>
+  <string name="autofill_dialog_associate_and_autofill">ყოველთვის გამოყენება</string>
+  <string name="autofill_dialog_just_autofill">ერთხელ გამოყენება</string>
+  <string name="autofill_dialog_cancel">გაუქმება</string>
+  <string name="autofill_notification_copy_to_clipboard">TOTP-ი დაკოპირდა გაცვლის ბუფერში</string>
+  <string name="autofill_dialog_associate_title">გამოვიყენო შესვლის დეტალები?</string>
+  <string name="autofill_user_logged_out">თქვენ გახვედით. თავიდან შესასვლელად გახსენით აპი.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">მოქმედების დადასტურება</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">აპირებთ ავტომატურად შეავსოთ შესვლის დეტალები ვებგვერდზე, რომელიც თქვენს აპშია გახსნილი. აპს შეუძლია, შეყვანილ ავტორიზაციის დეტალებთან წვდომა ჰქონდეთ შევსების შემდეგაც - ქენით ეს, მხოლოდ, მაშინ, თუ აპს ენდობით.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">ავტოშევსება</string>
+  <string name="autofill_confirm_unverified_browser_title">ეს აპი ამტკიცებს, რომ სანდო ბრაუზერია</string>
+  <string name="autofill_confirm_unverified_browser_body">ეს აპი ამტკიცებს, რომ ის ცნობილი ბრაუზერია, მაგრამ Pass-მა ეს ვერ გადაამოწმა. მისი ხელმოწერის სერტიფიკატი არ ემთხვევა იმას, რასაც ველოდით, რაც შეიძლება, მოხდეს, თუ ბრაუზერი ჩვეულებრივ არაა მორგებული, ან სხვა აპი გაჩვენებთ მის მაგიერ თავს, რომ თქვენი ავტორიზაციის დეტალები მოიპაროს. გააგრძელეთ, მხოლოდ, მაშინ, თუ დარწმუნებული ბრძანდებით, რომ ეს აპი ნამდვილია.</string>
+  <string name="autofill_confirm_dont_ask_again">აღარ მკითხო ამ აპისთვის</string>
+  <string name="autofill_troubleshooting_title">ავტოშევსების პრობლემების გადაჭრა</string>
+  <string name="autofill_troubleshooting_subtitle">შეამოწმეთ, არის, თუ არა თქვენი მოწყობილობა სწორად მორგებული ავტოშევსებისთვის.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">ავტოშევსების მორგება დასრულდა</string>
+  <string name="autofill_troubleshooting_verdict_attention">თქვენი ყურადღება რამდენიმე რამეს სჭირდება</string>
+  <string name="autofill_troubleshooting_service_ok">Pron Pass თქვენი ავტოშევსების სერვისია</string>
+  <string name="autofill_troubleshooting_service_current_other">ამჟამად დაყენებულია %1$s-ზე.</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Pron Pass თქვენი ავტოშევსების სერვისი არაა</string>
+  <string name="autofill_troubleshooting_service_not_default_body">დააყენეთ ის, როგორც ნაგულისხმევი აპი თქვენს აპებში ავტოშევსებისთვის.</string>
+  <string name="autofill_troubleshooting_service_enable_action">ავტოშევსების ჩართვა</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">ამ მოწყობილობას ავტოშევსების მხარდაჭერა არ აქვს</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">აღმოჩენილია არააქტიური ბრაუზერები</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">ჩართეთ ავტოშევსება, რომ Proton Pass-მა თქვენი ავტორიზაციის დეტალები ავტომატურად შეავსოთ. დაატყაპუნეთ ბრაუზერზე მისი პარამეტრების გასახსნელად.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">ბრაუზერები თავსებადია</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">თქვენი ბრაუზერები დაკავშირებულია და მზადაა ავტოშევსებისთვის.</string>
+  <string name="autofill_troubleshooting_browser_active">აქტიური</string>
+  <string name="autofill_troubleshooting_inline_info">ხაზშივე რჩევები კლავიატურაზე გამოჩნდება. ამას Android 11, ან უფრო ახალი და Gboard-ის მსგავსი, თავსებადი კლავიატურა სჭირდება.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">დიაგნოსტიკის გაზიარება</string>
+  <string name="autofill_troubleshooting_open_diagnostics">დამატებითი დიაგნოსტიკა</string>
+  <string name="autofill_diagnostics_title">დამატებითი დიაგნოსტიკა</string>
+  <string name="autofill_diagnostics_enable">ავტოშევსების დიაგნოსტიკის ჩართვა</string>
+  <string name="autofill_diagnostics_enable_description">როცა ჩართულია, Proton Pass იწერს, რა ხდება ავტოშევსების დროს, რომ დაინახოთ, რატომ არ იმუშავა. გამორთეთ ის, როცა დაასრულებთ.</string>
+  <string name="autofill_diagnostics_instructions">გაიმეორეთ ავტოშევსების პრობლემა აპში, ან ბრაუზერში, შემდეგ კი დაბრუდით ამ ეკრანზე.</string>
+  <string name="autofill_diagnostics_last_attempt_title">ბოლო ავტოშევსების მცდელობა</string>
+  <string name="autofill_diagnostics_no_attempts">ჯერ ავტოშევსების მცდელობა არ ჩაწერილა.</string>
+  <string name="autofill_diagnostics_reason_not_default">Proton Pass თქვენი ავტოშევსების სერვისი არაა, ასე რომ მას, ჯერ, არაფრის შევსება შეუძლია.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass-მა შემოგთავაზათ მინიშნებები %1$s-ში.</string>
+  <string name="autofill_diagnostics_outcome_nothing">ავტოშევსება გამოძახებულია %1$s-ში, მაგრამ შესაბამისი შესვლის დეტალი შეთავაზებულიარ ყოფილა. შეიძლება, ამ გვერდს აღმოჩენადი შესვლის ველები არ აქვთ, ან ამ საიტისთვის ელემენტები არ გაგაჩნიათ.</string>
+  <string name="autofill_diagnostics_outcome_error">ავტოშევსებამ აღმოაჩინა შეცდომა %1$s-ში.</string>
+  <string name="autofill_diagnostics_recent_title">უახლესი მცდელობები</string>
+  <string name="autofill_diagnostics_clear">გასუფთავება</string>
+  <string name="autofill_diagnostics_share">გაზიარება მხარდაჭერის გუნდთან</string>
+</resources>

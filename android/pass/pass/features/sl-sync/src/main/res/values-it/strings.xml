@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">Gestione degli alias</string>
+  <string name="simple_login_sync_management_domain_label">Dominio</string>
+  <string name="simple_login_sync_management_domain_title">Dominio predefinito per gli alias</string>
+  <string name="simple_login_sync_management_domain_option_blank">Non selezionato</string>
+  <string name="simple_login_sync_management_mailboxes_label">Caselle email</string>
+  <string name="simple_login_sync_management_mailboxes_description">La casella di email è il luogo a cui vengono inoltrate le email inviate a un alias. È la tua solita casella di posta, ad es. Gmail, Outlook, Proton Mail, ecc.</string>
+  <string name="simple_login_sync_management_mailbox_default">Predefinito</string>
+  <string name="simple_login_sync_management_mailbox_unverified">Casella email non verificata</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">Modifica della casella di posta non verificata</string>
+  <string name="simple_login_sync_management_vault_title">Sincronizzazione SimpleLogin</string>
+  <string name="simple_login_sync_management_no_vault_description">Hai bisogno di almeno una cassaforte per gestire le impostazioni di sincronizzazione di SimpleLogin.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">Si è verificato un errore nel recuperare i dati dell\'alias SL</string>
+  <string name="simple_login_sync_management_mailboxes_title">Casella email predefinita per gli alias</string>
+  <string name="simple_login_sync_management_dialog_title_domains">Dominio predefinito per gli alias</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">Casella email predefinita per gli alias</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">Sincronizza gli alias</string>
+  <string name="simple_login_sync_enable_snackbar_error">Abilitazione della sincronizzazione degli alias non riuscita</string>
+  <string name="simple_login_sync_enable_snackbar_success">Sincronizzazione degli alias SimpleLogin abilitata</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">Aggiungi casella</string>
+  <string name="simple_login_sync_mailbox_create_message_error">Si è verificato un errore durante la creazione della casella</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">Cambia la casella email</string>
+  <string name="simple_login_sync_mailbox_change_message_error">Si è verificato un errore durante la modifica della casella di posta</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">L\'e-mail è già in uso.</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">Conferma la casella</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">Abbiamo inviato un codice di verifica a %s. Inseriscilo qui sotto:</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">la tua email</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">Codice di verifica casella email non valido</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">È stato raggiunto il limite del codice di verifica della casella di posta non valido, la casella di posta è stata eliminata</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">Si è verificato un errore durante la verifica della casella</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">Casella email verificata correttamente</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">Si è verificato un errore durante l\'invio del codice di verifica</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">Codice di verifica inviato correttamente</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">Elimina la casella email</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">Verranno eliminati anche tutti gli alias che utilizzano la casella email %s. Per continuare a ricevere email trasferisci questi alias in una casella email diversa:</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">Trasferisci alias</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">Alla casella email</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">Elimina la casella email</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">Trasferisci ed elimina la casella email</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">Si è verificato un errore nell\'eliminazione della casella</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">Casella email eliminata correttamente</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">Trasferisci alias a</string>
+  <string name="simple_login_sync_mailbox_delete_warning">Tieni presente che una volta eliminati, gli alias non possono essere ripristinati</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">Dominio predefinito</string>
+  <string name="simple_login_sync_domain_select_title_none">nessuno</string>
+  <string name="simple_login_sync_domain_select_description_none">Nessun dominio</string>
+  <string name="simple_login_sync_domain_select_description_custom">Il tuo dominio</string>
+  <string name="simple_login_sync_domain_select_description_free">Dominio pubblico</string>
+  <string name="simple_login_sync_domain_select_description_premium">Dominio Premium</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">Si è verificato un errore nel recuperare i domini degli alias SL</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">Si è verificato un errore nell\'aggiornare i domini degli alias SL</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">Dominio dell\'alias SL aggiornato correttamente</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">Impossibile mostrare le opzioni della casella email</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">Si è verificato un errore durante la modifica della casella predefinita</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">Casella email predefinita modificate correttamente</string>
+  <string name="simple_login_sync_mailbox_change_email_option">Cambia la casella email</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">Annulla la modifica della casella di posta</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">Si è verificato un errore durante l\'annullamento della modifica dell\'email della casella di posta</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">Modifica dell\'e-mail della casella di posta annullata</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">Cassaforte SL predefinita</string>
+  <string name="simple_login_sync_shared_default_vault_description">Gli alias SimpleLogin verranno importati in questa cassaforte.</string>
+</resources>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sharing_can_view">Lector</string>
+  <string name="sharing_can_edit">Editor</string>
+  <string name="sharing_can_manage">Administrador</string>
+  <string name="sharing_can_manage_v2">Gestor</string>
+  <string name="sharing_can_view_description">Permet veure els elements d\'aquesta caixa forte.</string>
+  <string name="sharing_can_edit_description">Permet crear, editar, eliminar i exportar elements en aquesta caixa forta.</string>
+  <string name="sharing_can_manage_description">Permet concedir i revocar accés a aquesta caixa forta.</string>
+  <plurals name="sharing_item_count">
+    <item quantity="one">%d element</item>
+    <item quantity="other">%d elements</item>
+  </plurals>
+  <plurals name="sharing_invite_item_count">
+    <item quantity="one">%d element (incloent-hi els que són a la paperera)</item>
+    <item quantity="other">%d elements (incloent-hi els que són a la paperera)</item>
+  </plurals>
+  <plurals name="sharing_member_count">
+    <item quantity="one">%d membre</item>
+    <item quantity="other">%d membres</item>
+  </plurals>
+  <string name="sharing_member_count_header">Membres</string>
+  <string name="shared_via_title">Compartit mitjançant</string>
+  <string name="shared_via_item_section_title" comment="The placeholder will be replaced by users count. E.g. 2 users">Compartició d\'elements: %s</string>
+  <string name="shared_via_vault_section_title" comment="The placeholder will be replaced by members count. E.g. 2 members">Compartició de caixes fortes: %s</string>
+  <string name="share_with_title">Comparteix amb</string>
+  <string name="share_with_email_hint">Adreça de correu electrònic</string>
+  <string name="share_with_email_error">L\'adreça de correu electrònic no és vàlida.</string>
+  <string name="share_with_email_cannot_invite_outside_org">No podeu convidar persones de fora de la vostra organització. Contacteu amb l\'administrador per a obtenir més informació</string>
+  <string name="share_with_email_email_already_added">Ja heu afegit aquesta adreça de correu electrònic</string>
+  <string name="share_permissions_title">Estableix el nivell d`accés</string>
+  <string name="sharing_reject_invitation">Rebutja la invitació</string>
+  <string name="sharing_vault_invitation_title">Invitació a una caixa forta compartida</string>
+  <string name="sharing_vault_invitation_subtitle" comment="placeholder is replaced by an email address">%s vol posar a la vostra disposició una caixa forta compartida.</string>
+  <string name="sharing_vault_invitation_accept">Uniu-vos a la caixa forta compartida</string>
+  <string name="sharing_item_invitation_title">Invitació a un element compartit</string>
+  <string name="sharing_item_invitation_subtitle" comment="placeholder is replaced by an email address">%s vol compartir un element amb vosaltres.</string>
+  <string name="sharing_item_invitation_accept">Accepta i mostra l\'element</string>
+  <string name="sharing_group_vault_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s vol compartir una caixa forta amb el vostre grup %2$s.</string>
+  <string name="sharing_group_item_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s vol compartir un element amb el vostre grup %2$s.</string>
+  <string name="sharing_group_invitation_accept">Accepta la invitació</string>
+  <string name="sharing_invite_more">Convideu més persones...</string>
+  <string name="sharing_snackbar_invite_accepted">Invitació acceptada</string>
+  <string name="sharing_snackbar_invite_accept_error">S\'ha produït un error en acceptar la invitació</string>
+  <string name="sharing_snackbar_invite_accept_error_cannot_create_more_vaults">No s\'ha pogut acceptar la invitació perquè heu arribat al límit de caixes fortes</string>
+  <string name="sharing_snackbar_invite_rejected">Invitació rebutjada</string>
+  <string name="sharing_snackbar_invite_reject_error">S\'ha produït un error en rebutjar la invitació.</string>
+  <string name="sharing_snackbar_invite_sent_success">S\'ha enviat la invitació.</string>
+  <string name="sharing_snackbar_invite_sent_error">No s’ha pogut enviar la invitació.</string>
+  <string name="sharing_snackbar_invite_new_users_error">No es poden enviar invitacions a nous usuaris.</string>
+  <string name="sharing_snackbar_invite_free_user_error">Les invitacions d\'elements només es poden enviar a usuaris de pagament.</string>
+  <string name="sharing_snackbar_cannot_create_invite_error">No es pot convidar l\'adreça</string>
+  <string name="sharing_snackbar_get_vault_members_error">No s\'han pogut obtenir els membres de la caixa forta</string>
+  <string name="sharing_snackbar_change_permission_success">S\'han canviat els permisos.</string>
+  <string name="sharing_snackbar_change_permission_error">No s\'han pogut canviar els permisos.</string>
+  <string name="sharing_snackbar_remove_member_success">S\'ha esborrat el membre de la caixa forta.</string>
+  <string name="sharing_snackbar_remove_member_error">No s\'ha pogut esborrar de la caixa forta.</string>
+  <string name="sharing_snackbar_fetch_member_error">S\'ha produït un error en obtenir els membres.</string>
+  <string name="sharing_snackbar_fetch_pending_invites_error">S\'ha produït un error en obtenir les invitacions pendents.</string>
+  <string name="share_summary_title">Reviseu i comparteu</string>
+  <string name="share_summary_share_vault">Comparteix la caixa forta</string>
+  <string name="share_summary_share_item">Comparteix l\'element</string>
+  <string name="share_summary_vault_title">Caixa forta</string>
+  <string name="share_summary_item_title">Element</string>
+  <string name="share_summary_access_level_title">Nivell d\'accés</string>
+  <string name="share_manage_vault_share_with_more_people">Comparteix amb més gent</string>
+  <plurals name="share_manage_vault_invites_remaining" comment="Text that will be shown in the vault member list, showing the user how many invites they have left for this vault">
+    <item quantity="one">Queda %d invitació</item>
+    <item quantity="other">Queden %d Invitacions</item>
+  </plurals>
+  <plurals name="share_manage_vault_item_count">
+    <item quantity="one">%d element</item>
+    <item quantity="other">%d elements</item>
+  </plurals>
+  <string name="share_manage_vault_invite_pending" comment="Text that will be shown in the vault member list, below the user email when the user has been invited but has not accepted the invitation yet">S\'ha enviat la invitació.</string>
+  <string name="share_manage_vault_invite_pending_user_creation" comment="Text that will be shown in the vault member list, below the user email when the user has not created the account yet">La creació del compte està pendent</string>
+  <string name="share_manage_vault_invite_confirm_access" comment="Text that will be shown in the vault member list, on a button, when the invited user has created the account and we want to grant him access to the vault">Confirma l\'accés</string>
+  <string name="share_manage_vault_invitations_title" comment="Text that will be used as the title of the list containing the invites for a vault">Invitacions</string>
+  <string name="share_manage_vault_members_title" comment="Text that will be used as the title of the list containing the members of a vault">Membres</string>
+  <string name="share_manage_vault_current_user_indicator">Vós</string>
+  <string name="share_manage_vault_members_error" comment="Shown when the vault member list fails to load">No s\'han pogut carregar els membres</string>
+  <string name="share_manage_vault_members_error_retry" comment="Button to retry loading the vault members">Torna-ho a provar</string>
+  <string name="share_role_viewer">Lector</string>
+  <string name="share_role_editor">Editor</string>
+  <string name="share_role_admin">Administrador</string>
+  <string name="share_role_manager">Gestor</string>
+  <string name="share_role_owner">Propietari</string>
+  <string name="sharing_bottomsheet_transfer_ownership">Transfereix la propietat</string>
+  <string name="sharing_bottomsheet_transfer_ownership_disabled_subtitle" comment="Appears as the subtitle of the sharing_bottomsheet_transfer_ownership when the user cannot transfer the ownership because they only own one vault">No podeu transferir l\'última caixa forta que posseïu.</string>
+  <string name="sharing_bottomsheet_remove_access">Revoca l\'accés</string>
+  <string name="sharing_bottomsheet_item_admin_subtitle">Pot concedir i revocar l\'accés a aquest element.</string>
+  <string name="sharing_bottomsheet_item_editor_subtitle">Pot editar i eliminar aquest element.</string>
+  <string name="sharing_bottomsheet_item_viewer_subtitle">Pot veure aquest element.</string>
+  <string name="sharing_bottomsheet_resend_invite">Reenvia la invitació</string>
+  <string name="sharing_bottomsheet_cancel_invite">Cancel·la la invitació</string>
+  <string name="sharing_transfer_ownership_confirm_title">Transfereix la propietat</string>
+  <string name="sharing_transfer_ownership_confirm_message">Voleu transferir la propietat d\'aquesta caixa forta a %s?</string>
+  <string name="sharing_snackbar_cancel_invite_success">S\'ha cancel·lat la invitació.</string>
+  <string name="sharing_snackbar_cancel_invite_error">S\'ha produït un error en cancel·lar la invitació.</string>
+  <string name="sharing_snackbar_resend_invite_success">S\'ha reenviat la invitació.</string>
+  <string name="sharing_snackbar_resend_invite_error">S\'ha produït un error en reenviar la invitació.</string>
+  <string name="sharing_snackbar_confirm_invite_success">S\'ha confirmat la invitació.</string>
+  <string name="sharing_snackbar_confirm_invite_error">S\'ha produït un error en confirmar la invitació.</string>
+  <string name="sharing_snackbar_too_many_invites_sent">S\'ha convidat aquesta adreça massa vegades.</string>
+  <string name="sharing_snackbar_transfer_ownership_success">S\'ha transferit la propietat.</string>
+  <string name="sharing_snackbar_transfer_ownership_error">S\'ha produït un error en transferir la propietat</string>
+  <string name="sharing_invites_info_dialog_title">Límit de nombre de membres</string>
+  <plurals name="sharing_invites_info_dialog_message" comment="Message that will appear when clicking the NUMBER invites left. Param 1: Max members of the vault (will always be greater than one). Param 2: Number of invites left.">
+    <item quantity="one">Aquesta caixa forta pot tenir fins a %1$d membres. Encara us queda %2$d invitació.</item>
+    <item quantity="other">Aquesta caixa forta pot tenir fins a %1$d membres. Encara us queden %2$d invitacions.</item>
+  </plurals>
+  <string name="sharing_limit_reached">Aquesta caixa forta ha arribat al límit de membres i invitacions.</string>
+  <string name="sharing_invites_info_upgrade_text">Milloreu el pla per a convidar més persones.</string>
+  <string name="sharing_from_item_title" comment="Title for the Share from item bottomsheet">Comparteix</string>
+  <string name="sharing_from_item_share_this_vault_action" comment="Button for sharing this vault">Comparteix aquesta caixa forta</string>
+  <string name="sharing_from_item_move_to_shared_vault_action" comment="Button for moving an item to a shared vault">Mou a una caixa forta compartida</string>
+  <string name="sharing_from_item_vault_limit_reached_upgrade">Milloreu el pla per a crear més caixes fortes</string>
+  <string name="sharing_from_item_vault_limit_reached">Heu arribat al límit de caixes fortes.</string>
+  <string name="share_with_suggestions_title">Suggeriments</string>
+  <string name="share_with_recents_title">Recents</string>
+  <string name="share_with_remove_email_content_description">Esborra el correu electrònic</string>
+  <string name="share_with_user_shared_title">Amb altres usuaris de Proton Pass</string>
+  <string name="share_with_user_shared_description">Útil per compartir permanentment.</string>
+  <string name="share_with_manage_shared_item_title">Gestiona l\'accés</string>
+  <string name="share_with_manage_shared_item_description">Consulteu tots els membres i els permisos.</string>
+  <string name="share_with_secure_link_shared_title">Mitjançant un enllaç segur</string>
+  <string name="share_with_secure_link_shared_description">Per a una compartició puntual.</string>
+  <string name="sharing_edit_permissions_set_access_level_all_members">Estableix el nivell d\'accés per a tots els membres</string>
+  <string name="sharing_edit_permissions_set_access_level_single_member">Definiu el nivell d\'accés per a %s</string>
+  <string name="sharing_edit_permissions_remove_user">Esborra l\'usuari</string>
+  <string name="sharing_edit_permissions_remove_group">Esborra el grup</string>
+  <string name="sharing_error_dialog_title">Error desconegut</string>
+  <string name="sharing_error_dialog_message">S\'ha produït un error en enviar una invitació per a aquesta caixa forta. Si el problema persisteix, poseu-vos en contacte amb el servei d\'atenció al client.</string>
+  <string name="sharing_with_no_addresses_can_be_invited">No es pot convidar cap adreça.</string>
+  <string name="sharing_with_some_addresses_cannot_be_invited">Algunes adreces no es poden convidar.</string>
+</resources>

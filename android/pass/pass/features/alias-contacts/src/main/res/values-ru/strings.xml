@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="create_contact_button">Создать контакт</string>
+  <string name="save_contact_alias">Сохранить</string>
+  <string name="snackbar_contact_create_success">Контакт успешно создан</string>
+  <string name="snackbar_contact_create_error">Не удалось создать контакт</string>
+  <string name="create_contact_title">Создать контакт</string>
+  <string name="detail_contact_title">Контакты</string>
+  <string name="email_input_error">Недействительный адрес электронной почты</string>
+  <string name="detail_contact_display_name" comment="sender email address">Контакт создан для каждого адреса электронной почты, который отправляет или получает письма от %1$s</string>
+  <string name="empty_alias_contacts_title">Контакты псевдонима</string>
+  <string name="empty_alias_contacts_body">Чтобы скрыть свой личный адрес электронной почты, вы можете создать контакт с псевдонимом, который будет маскировать ваш адрес.</string>
+  <string name="empty_alias_contacts_learn_more">Узнать больше</string>
+  <string name="unblock_button">Разблокировать контакт</string>
+  <string name="block_button">Заблокировать контакт</string>
+  <string name="contact_created_date" comment="date of creation">Создан %1$s назад</string>
+  <string name="no_activity_contact">Отсутствие активности за последние 14 дней.</string>
+  <string name="activity_summary" comment="%1$d forwarded, %2$d sent, %3$d blocked will prepend this">за последние 14 дней.</string>
+  <plurals name="forwarded_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="one">%1$dпересланы</item>
+    <item quantity="few">%1$dпересланы</item>
+    <item quantity="many">%1$dпересланы</item>
+    <item quantity="other">%1$dпересланы</item>
+  </plurals>
+  <plurals name="sent_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="one">%1$d отправлены</item>
+    <item quantity="few">%1$d отправлены</item>
+    <item quantity="many">%1$d отправлены</item>
+    <item quantity="other">%1$d отправлены</item>
+  </plurals>
+  <plurals name="blocked_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="one">%1$d заблокированы</item>
+    <item quantity="few">%1$d заблокированы</item>
+    <item quantity="many">%1$d заблокированы</item>
+    <item quantity="other">%1$d заблокированы</item>
+  </plurals>
+  <string name="blocked_addresses_subtitle">Заблокированные адреса</string>
+  <string name="forwarding_addresses_subtitle">Адреса для пересылки</string>
+  <string name="snackbar_contact_block_success">Контакт заблокирован</string>
+  <string name="snackbar_contact_block_error">Не удалось заблокировать контакт</string>
+  <string name="snackbar_contact_unblock_success">Контакт разблокирован</string>
+  <string name="snackbar_contact_unblock_error">Не удалось разблокировать контакт</string>
+  <string name="snackbar_delete_contact_success">Контакт удалён</string>
+  <string name="snackbar_delete_contact_error">Не удалось удалить контакт</string>
+  <string name="snackbar_email_copied_success">Эл. почта скопирована в буфер обмена</string>
+  <string name="contact_option_send_email">Отправить электронное письмо</string>
+  <string name="contact_option_copy_address">Копировать адрес пересылки</string>
+  <string name="contact_option_block_contact">Заблокировать контакт</string>
+  <string name="contact_option_unblock_contact">Разблокировать контакт</string>
+  <string name="contact_option_delete">Удалить</string>
+  <string name="alias_contacts_bottomsheet_title">Контакты 
+Псевдонима</string>
+  <string name="alias_contacts_bottomsheet_subtitle">Чтобы скрыть свой личный адрес электронной почты, вы можете создать контакт с псевдонимом, который будет маскировать ваш адрес.</string>
+  <string name="alias_contacts_explanation">Вот как это работает:</string>
+  <string name="alias_contacts_bottomsheet_section_1">Введите адрес, на который вы хотите отправить электронное письмо.</string>
+  <string name="alias_contacts_bottomsheet_section_2">Proton Pass сгенерирует адрес пересылки (также называемый обратным псевдонимом).</string>
+  <string name="alias_contacts_bottomsheet_section_3" comment="an email will follow this sentence">Отправьте электронное письмо на этот адрес, и будет казаться, что оно отправлено с него.</string>
+</resources>

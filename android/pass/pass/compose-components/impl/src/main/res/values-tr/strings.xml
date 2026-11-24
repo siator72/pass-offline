@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Başlığa göre (A-Z)</string>
+  <string name="sort_by_title_desc">Başlığa göre (Z-A)</string>
+  <string name="sort_by_creation_asc">Eskiden yeniye</string>
+  <string name="sort_by_creation_desc">Yeniden eskiye</string>
+  <string name="sort_by_modification_date">Son kullanılan</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Tümü</string>
+  <string name="item_list_header_pinned_search_results">Sabitlenmiş</string>
+  <string name="item_list_header_logins_type">Oturum açma kayıtları</string>
+  <string name="item_list_header_logins_totp_type">Tek kullanımlık parola kullanan oturum açma kayıtları</string>
+  <string name="item_list_header_aliases_type">Takma adlar</string>
+  <string name="item_list_header_notes_type">Notlar</string>
+  <string name="item_list_header_credit_cards_type">Kredi kartları</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">sonuç</item>
+    <item quantity="other">sonuç</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Kimlikler</string>
+  <string name="item_list_header_custom_type">Özel ögeler</string>
+  <string name="item_list_header_shared_with_me">Benimle paylaşılan</string>
+  <string name="item_list_header_shared_by_me">Benim paylaştıklarım</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Onayla</string>
+  <string name="bottomsheet_cancel_button">İptal</string>
+  <string name="bottomsheet_move_to_trash">Çöpe at</string>
+  <string name="bottomsheet_pin_item">Sabitle</string>
+  <string name="bottomsheet_unpin_item">Sabitlemeyi kaldır</string>
+  <string name="bottomsheet_view_item_history">Geçmişi görüntüle</string>
+  <string name="bottomsheet_monitor_exclude">İzlemeye katma</string>
+  <string name="bottomsheet_monitor_include">İzlemeye kat</string>
+  <string name="bottomsheet_migrate_item_v2">Taşı</string>
+  <string name="bottomsheet_create_folder">Klasör oluştur</string>
+  <string name="folder_tree_create_folder">Klasör oluştur</string>
+  <string name="bottomsheet_rename_folder">Yeniden adlandır</string>
+  <string name="bottomsheet_create_sub_folder">Alt klasör oluştur</string>
+  <string name="bottomsheet_move_folder">Klasörü taşı</string>
+  <string name="bottomsheet_move_all_items_in_folder">Tüm ögeleri taşı</string>
+  <string name="bottomsheet_copy_item_note">Notu kopyala</string>
+  <string name="bottomsheet_delete_permanently">Kalıcı olarak sil</string>
+  <string name="bottomsheet_restore">Geri yükle</string>
+  <string name="bottomsheet_leave">Bırak</string>
+  <string name="bottomsheet_duplicate">Çoğalt</string>
+  <string name="bottomsheet_no_actions">Kullanılabilecek bir işlem yok</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Öge işlem menüsünü aç</string>
+  <string name="action_upgrade_now">Şimdi yükselt</string>
+  <string name="action_not_now">Şimdi değil</string>
+  <string name="action_learn_more">Ayrıntılı bilgi alın</string>
+  <string name="action_enable">Kullanıma al</string>
+  <string name="action_view_details">Ayrıntıları görüntüle</string>
+  <string name="action_see_all">Tümünü görüntüle</string>
+  <string name="action_confirm">Onayla</string>
+  <string name="action_cancel">İptal</string>
+  <string name="action_continue">İlerle</string>
+  <string name="action_retry">Yeniden dene</string>
+  <string name="action_edit">Düzenle</string>
+  <string name="action_add">Ekle</string>
+  <string name="action_delete">Sil</string>
+  <string name="action_make_default">Varsayılan yap</string>
+  <string name="action_verify">Doğrula</string>
+  <string name="action_close">Kapat</string>
+  <string name="action_update">Güncelle</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">İlk ögenizi ekleyin</string>
+  <string name="empty_search_results_title">Herhangi bir sonuç bulunamadı</string>
+  <string name="empty_list_open_extension">İnternet eklentisine git</string>
+  <string name="empty_list_create_item_button">Yeni öge ekle</string>
+  <!-- Field -->
+  <string name="field_title_title">Başlık</string>
+  <string name="field_title_hint">Adsız</string>
+  <string name="field_title_required">Başlık gereklidir</string>
+  <string name="small_cross_icon_content_description">Küçük çarpı simgesi</string>
+  <string name="field_note_title">Not</string>
+  <string name="field_note_hint">Not ekle</string>
+  <string name="linked_apps_title">Bağlantılı uygulamalar</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Çevrim dışı</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Uygulama simgesi eksik</string>
+  <string name="add_item_icon_content_description">Öge simgesi ekle</string>
+  <string name="navigate_back_icon_content_description">Geri dön simgesi</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Ögeleri listele</string>
+  <string name="bottom_bar_add_item_icon_content_description">Öge ekle</string>
+  <string name="bottom_bar_profile_icon_content_description">Profil</string>
+  <string name="bottom_bar_security_center_icon_content_description">Güvenlik merkezi</string>
+  <string name="bottom_bar_explore_icon_content_description">Keşfet</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Bugün</string>
+  <string name="most_recent_yesterday">Dün</string>
+  <string name="most_recent_this_week">Bu hafta</string>
+  <string name="most_recent_last_two_weeks">Son iki hafta</string>
+  <string name="most_recent_last_30_days">Geçen ay</string>
+  <string name="most_recent_last_60_days">Son 60 gün</string>
+  <string name="most_recent_last_90_days">Son 90 gün</string>
+  <string name="most_recent_within_the_last_year">Son 1 yılda</string>
+  <string name="most_recent_more_than_1_year">1 yıldan daha eski</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Arama simgesi</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 öge</item>
+    <item quantity="other">%d öge</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Değişiklikler yok sayılsın mı?</string>
+  <string name="confirm_close_dialog_message">Kaydedilmemiş değişiklikleriniz var, bunları silmek istediğinize emin misiniz?</string>
+  <string name="confirm_close_dialog_close_button">Yok say</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Yükselt</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Gelişmiş seçenekler</string>
+  <string name="hide_advanced_options">Gelişmiş seçenekleri gizle</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Güçlü</string>
+  <string name="label_password_strength_vulnerable">Çok zayıf</string>
+  <string name="label_password_strength_weak">Zayıf</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Tümünü görüntüle</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Bugün %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Dün %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Takma ad adresi</string>
+  <string name="item_details_alias_section_alias_disabled_title">Takma adres (kullanımdan kaldırılmış)</string>
+  <string name="item_details_alias_section_mailboxes_title">Şuraya iletiliyor</string>
+  <string name="item_details_credit_card_section_cardholder_title">Kart üzerindeki isim</string>
+  <string name="item_details_credit_card_section_card_number_title">Kart numarası</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Geçerlilik tarihi</string>
+  <string name="item_details_credit_card_section_cvv_title">Güvenlik kodu</string>
+  <string name="item_details_credit_card_section_pin_title">PIN kodu</string>
+  <string name="item_details_login_section_email_title">E-posta adresi</string>
+  <string name="item_details_login_section_username_title">Kullanıcı adı</string>
+  <string name="item_details_login_section_password_title">Parola</string>
+  <string name="item_details_login_section_primary_totp_title">İki adımlı doğrulama kodu (tek kullanımlık)</string>
+  <string name="item_details_login_section_websites_title">Siteler</string>
+  <string name="autofill_mode_label_default">Ana etki alanı ve alt etki alanları</string>
+  <string name="autofill_mode_label_exact">Tam (alt) etki alanı</string>
+  <string name="autofill_mode_label_never">Bu sitede asla doldurulmasın</string>
+  <string name="autofill_mode_label_start_with">Şöyle başlayan:</string>
+  <string name="autofill_mode_label_pattern">Genel arama modeli</string>
+  <string name="autofill_mode_label_regular_expression">Kurallı ifade</string>
+  <string name="autofill_mode_label_exact_path">Tam adres eşleşmesi</string>
+  <string name="autofill_mode_label_unsupported">Bu adres otomatik doldurma sırasında atlanır</string>
+  <string name="login_item_view_alias_button">Takma adları görüntüle</string>
+  <string name="item_details_identity_section_personal_title">Kişisel bilgiler</string>
+  <string name="item_details_identity_section_personal_first_name_title">Ad</string>
+  <string name="item_details_identity_section_personal_middle_name_title">İkinci ad</string>
+  <string name="item_details_identity_section_personal_last_name_title">Soyad</string>
+  <string name="item_details_identity_section_personal_full_name_title">Tam ad</string>
+  <string name="item_details_identity_section_personal_email_title">E-posta adresi</string>
+  <string name="item_details_identity_section_personal_gender_title">Cinsiyet</string>
+  <string name="item_details_identity_section_personal_phone_title">Telefon numarası</string>
+  <string name="item_details_identity_section_personal_birthday_title">Doğum günü</string>
+  <string name="item_details_identity_section_address_title">Adres bilgileri</string>
+  <string name="item_details_identity_section_address_organization_title">Kuruluş</string>
+  <string name="item_details_identity_section_address_street_address_title">Sokak adresi, posta kutusu</string>
+  <string name="item_details_identity_section_address_floor_title">Kat</string>
+  <string name="item_details_identity_section_address_city_title">İl</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">Posta Kodu</string>
+  <string name="item_details_identity_section_address_state_or_province_title">İl ya da bölge</string>
+  <string name="item_details_identity_section_address_county_title">İlçe</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Ülke ya da bölge</string>
+  <string name="item_details_identity_section_contact_title">Kişi bilgileri</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Sosyal güvenlik numarası</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Pasaport numarası</string>
+  <string name="item_details_identity_section_contact_license_number_title">Ehliyet numarası</string>
+  <string name="item_details_identity_section_contact_website_title">Site</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X takma adı</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">İkinci telefon numarası</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">İş bilgileri</string>
+  <string name="item_details_identity_section_work_company_title">Kuruluş</string>
+  <string name="item_details_identity_section_work_occupation_title">Meslek</string>
+  <string name="item_details_identity_section_work_email_title">İş e-posta adresi</string>
+  <string name="item_details_identity_section_work_phone_number_title">İş telefonu</string>
+  <string name="item_details_identity_section_work_personal_website_title">Kişisel site</string>
+  <string name="item_details_shared_section_note_title">Not</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Son otomatik doldurma</string>
+  <string name="item_details_shared_section_item_history_created_title">Oluşturulma</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Değiştirilme (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Öge geçmişini görüntüle</string>
+  <string name="item_details_shared_section_more_info_header_title">Diğer bilgiler</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Diğer öge bilgileri simgesi</string>
+  <string name="item_details_shared_section_more_info_item_id">Öge kimliği</string>
+  <string name="item_details_shared_section_more_info_vault_id">Kasa kimliği</string>
+  <string name="item_details_shared_section_more_info_share_id">Paylaşım kimliği</string>
+  <string name="item_details_wifi_network_label_ssid_name">Ad (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Parola</string>
+  <string name="item_details_wifi_network_label_security">Güvenlik</string>
+  <string name="item_details_ssh_key_label_public_key">Herkese açık anahtar</string>
+  <string name="item_details_ssh_key_label_private_key">Kişisel anahtar</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Uygulamanın bu sürümü artık desteklenmiyor. Lütfen uygulamanızı güncelleyin.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Geçiş anahtarı</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Tarife yükseltilsin mi?</string>
+  <string name="dialog_upgrade_plan_message">Free tarifesi kullanıcıları bu özelliği kullanamaz. Diğer harika özelliklerle birlikte bunun da tadını çıkarmak istiyorsanız, tarifenizi yükseltin ve bir deneyin!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Yükselt</string>
+  <string name="dialog_upgrade_plan_action_cancel">Şimdi değil</string>
+  <!-- Words -->
+  <string name="email_address">E-posta adresi</string>
+  <string name="email_address_invalid">E-posta adresi geçersiz</string>
+  <string name="password">Parola</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Bu ipucunu yok sayıp bir daha görüntülenmemesini sağlayan düğme</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d yıl</item>
+    <item quantity="other">%d yıl</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d ay</item>
+    <item quantity="other">%d ay</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d hafta</item>
+    <item quantity="other">%d hafta</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d gün</item>
+    <item quantity="other">%d gün</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d saat</item>
+    <item quantity="other">%d saat</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d dakika</item>
+    <item quantity="other">%d dakika</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d saniye</item>
+    <item quantity="other">%d saniye</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d takma ad</item>
+    <item quantity="other">%d takma ad</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Not kopyalandı</string>
+  <string name="snack_bar_message_item_migration_error">Bu öge birleştirilirken bir sorun çıktı</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Öge izlemeye katılmayacak</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Öge izlemeye katılmayacak olarak ayarlanırken sorun çıktı</string>
+  <string name="snack_bar_message_item_monitor_included_success">Öge izlemeye katılacak</string>
+  <string name="snack_bar_message_item_monitor_included_error">Öge izlemeye katılacak olarak ayarlanırken sorun çıktı</string>
+  <string name="snack_bar_message_item_pinned_success">Öge sabitlendi</string>
+  <string name="snack_bar_message_item_pinned_error">Bu öge sabitllenirken bir sorun çıktı</string>
+  <string name="snack_bar_message_item_unpinned_success">Ögenin sabitlemesi kaldırıldı</string>
+  <string name="snack_bar_message_item_unpinned_error">Bu ögenin sabitlemesi kaldırılırken bir sorun çıktı</string>
+  <string name="snack_bar_message_item_trashed_success">Öge çöpe atıldı</string>
+  <string name="snack_bar_message_item_trashed_error">Bu öge çöpe atılırken bir sorun çıktı</string>
+  <string name="snack_bar_message_item_restore_success">Öge geri yüklendi</string>
+  <string name="snack_bar_message_item_restore_error">Bu öge geri yüklenirken bir sorun çıktı</string>
+  <string name="snack_bar_message_item_delete_success">Öge silindi</string>
+  <string name="snack_bar_message_item_delete_error">Bu öge silinirken bir sorun çıktı</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">SimpleLogin eşitlemesini aç</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">SimpleLogin üzerinde bulunan ancak Proton Pass üzerinde bulunmayan %d takma adınızın olduğunu gördük. Bunu içe aktarmak ister misiniz?</item>
+    <item quantity="other">SimpleLogin üzerinde bulunan ancak Proton Pass üzerinde bulunmayan %d takma adınızın olduğunu gördük. Bunları içe aktarmak ister misiniz?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Takma adları eşitle</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Kodu almadınız mı?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Lütfen istenmeyen klasörünüzde “%s“ konulu bir e-posta olup olmadığına bakın</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Lütfen Proton Pass ile kullanmak istediğiniz e-posta adresini doğrulayın</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Lütfen e-posta kutunuzu doğrulayın</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Böyle bir e-posta bulamıyorsanız, %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">yeni bir kod isteyin</string>
+  <string name="field_display_name_title">Görüntülenecek ad</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s dosya</item>
+    <item quantity="other">%1$s dosya</item>
+  </plurals>
+  <string name="attachment_title">Ek dosyalar</string>
+  <string name="attachment_no_files">Aygıtınızdaki dosyaları yükleyin</string>
+  <string name="attachment_add_file">Bir dosya ekle</string>
+  <string name="attachment_row_upload_failed">Yüklenemedi</string>
+  <string name="attachment_row_retry">Yeniden dene</string>
+  <string name="options_menu_content_description">Seçenekler menüsü</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d öge paylaşılmış</item>
+    <item quantity="other">%d öge paylaşılmış</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d kullanıcı</item>
+    <item quantity="other">%d kullanıcı</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d üye</item>
+    <item quantity="other">%d üye</item>
+  </plurals>
+  <string name="show_network_qr_code">Ağ kare kodunu görüntüle</string>
+  <string name="expand_collpased_text">daha fazla</string>
+  <string name="collapse_expanded_text">daha az</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Parola zayıf</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Bu hesap ele geçirilebilir. Hizmeti ziyaret edin ve parolanızı değiştirin.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Bilinen parola</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">Bu oturum açma parolası bir veri sızıntısında açığa çıkmış. Lütfen ilgili hizmete giderek parolanızı değiştirin.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d oturum açma kaydı aynı parolayı kullanıyor</item>
+    <item quantity="other">%d oturum açma kaydı aynı parolayı kullanıyor</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Güvenliği artırmak için iki adımlı doğrulamayı açın</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Bu hizmette iki adımlı doğrulama özelliği var. Hesap güvenliğini artırmak için bunu kullanın.</string>
+  <string name="login_item_monitor_action_ignore">Yok say</string>
+  <string name="login_item_monitor_action_restore">Uyarıyı geri yükle</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Parola zayıf</string>
+  <string name="login_item_monitor_label_compromised">Bilinen parola</string>
+  <string name="login_item_monitor_label_reused">Yeniden kullanılmış parola</string>
+  <string name="login_item_monitor_label_missing_2fa">İki adımlı doğrulama eksik</string>
+  <string name="login_item_reused_passwords_subtitle">Kasalarınızda bu parolayı kullanan ögeler.</string>
+  <string name="mfa_limit_reached">İki adımlı doğrulama sınırına ulaşıldı</string>
+  <string name="activity_in_last_two_weeks">Son 14 gündeki etkinlikler</string>
+  <string name="contacts">Kişiler</string>
+  <string name="contacts_section_description">Kişisel e-posta adresinizi gizli tutmak için bir takma ad kişisi oluşturarak adresinizi gizleyebilirsiniz.</string>
+  <string name="field_detail_display_name_title">Görüntülenecek ad</string>
+  <string name="display_name_section_description">Bu takma ad ile e-posta gönderilirken görüntülenecek ad.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s iletme</item>
+    <item quantity="other">%1$s iletme</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s yanıt</item>
+    <item quantity="other">%1$s yanıt</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s engelleme</item>
+    <item quantity="other">%1$s engelleme</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Oturum açma kaydı oluştur</string>
+  <string name="banner_contacts_title">Biliyor muydunuz?</string>
+  <string name="banner_contacts_subtitle">Takma adınız birinden bir e-posta aldığında otomatik olarak yeni bir kişi oluşturulur.</string>
+  <string name="action_reveal">Görüntüle</string>
+  <string name="action_conceal">Gizle</string>
+  <string name="warning_dialog_item_shared_vault_title">Paylaşılan kasanın içindeki öge</string>
+  <string name="warning_dialog_item_shared_title">Paylaşılmış öge</string>
+  <string name="warning_dialog_item_shared_vault_creating">Paylaşılmış bir kasada bir öge oluşturuyorsunuz ve üyeler bu ögeye hemen erişebilecekler.</string>
+  <string name="warning_dialog_item_shared_vault_moving">Bir ögeyi paylaşılan bir kasaya taşıyorsunuz ve üyeler bu ögeye hemen erişebilecekler.</string>
+  <string name="warning_dialog_item_shared_vault_updating">Paylaşılmış bir kasadaki bir ögeyi düzenliyorsunuz ve üyeler bu ögeye hemen erişebilecekler.</string>
+  <string name="warning_dialog_item_shared_updating">Paylaşılmış bir ögeyi düzenliyorsunuz. Yapılan değişiliklikler paylaşılan kişilere anınında görünecek.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Bir daha hatırlatma</string>
+  <string name="upgrade_to_pass_plus">Pass Plus tarifesine yükselt</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">Sitemize yönlendirilmek üzeresiniz. Bir tarife satın alırsanız lütfen uygulamayı yeniden başlatın.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Sözcük ayracı</string>
+  <string name="bottomsheet_option_capitalise">Harfleri büyüt</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Tire ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Boşluk</string>
+  <string name="bottomsheet_option_word_separator_periods">Nokta ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Virgül ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Alt çizgi ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Rakamlar</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Rakamlar ve simgeler</string>
+  <plurals name="word_count">
+    <item quantity="one">%s sözcük</item>
+    <item quantity="other">%s sözcük</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Parola zorluğu</string>
+  <string name="password_check_min_length">Parola çok kısa</string>
+  <string name="password_check_lowercase">Küçük harfler</string>
+  <string name="password_check_uppercase">Büyük harfler</string>
+  <string name="password_check_no_consecutive">Yinelenen karakterler bulunmamalı</string>
+  <string name="password_check_no_common">Yaygın parolalar kullanılmamalı</string>
+</resources>

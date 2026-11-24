@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">Voleu moure %d element a la caixa forta següent?</item>
+    <item quantity="other">Voleu moure %d elements a la caixa forta següent?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">Voleu moure l\'element %d a la carpeta següent?</item>
+    <item quantity="other">Voleu moure els %d elements a la carpeta següent?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Mou</string>
+  <string name="migrate_item_success_snackbar">S\'han mogut els elements.</string>
+  <string name="migrate_item_error_snackbar">S\'ha produït un error en moure els elements.</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">S\'ha produït un error en moure alguns elements.</string>
+  <string name="migrate_item_warning_history">En moure elements entre caixes fortes, conservarem fins a les últimes 50 modificacions realitzades a cada element</string>
+  <string name="migrate_item_warning_secure_link">Els enllaços segurs de l\'element s\'eliminaran quan es mogui a una altra caixa forta</string>
+  <string name="migrate_all_items_success_snackbar">S\'han mogut tots els elements</string>
+  <string name="migrate_all_items_error_snackbar">S\'ha produït un error en moure tots els elements de la caixa forta</string>
+  <string name="migrate_init_error_snackbar">No s\'ha pogut preparar la pantalla de migració</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Voleu moure la carpeta a la caixa forta següent?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Voleu moure la carpeta a la carpeta següent?</string>
+  <string name="migrate_folder_success_snackbar">S\'ha mogut la carpeta</string>
+  <string name="migrate_folder_error_snackbar">S\'ha produït un error en moure la carpeta</string>
+  <string name="migrate_folder_already_same_parent_snackbar">La carpeta ja és en aquesta ubicació</string>
+  <string name="migrate_dissolve_folder_dialog_title">Mou el contingut de la carpeta</string>
+  <string name="migrate_dissolve_folder_dialog_message">Aquesta carpeta ja es troba a l\'arrel de la caixa forta. Els seus elements i subcarpetes es mouran a l\'arrel de la caixa forta.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Mou</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">L\'element ja és en aquesta carpeta</item>
+    <item quantity="other">%d elements ja són en aquesta carpeta</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">Aquesta carpeta ja és en aquesta ubicació</string>
+  <string name="migrate_disabled_folder_reason_being_moved">Aquesta carpeta s\'està movent</string>
+  <string name="migrate_disabled_folder_reason_descendant">Aquesta carpeta és dins de la carpeta que s\'està movent</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Moure-ho aquí superaria els límits de la carpeta</string>
+  <string name="migrate_disabled_vault_reason_no_permission">No podeu crear elements en aquesta caixa forta</string>
+  <string name="migrate_disabled_vault_reason_same_vault">No podeu moure un element a la mateixa caixa forta</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">Voleu moure l\'element a una altra caixa forta?</item>
+    <item quantity="other">Mou %d elements a una altra caixa forta?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Aquest element està compartit actualment. Moure\'l a una altra caixa forta suprimirà l\'accés per a la resta d\'usuaris.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">%d element està compartit actualment. Moure\'l a una altra caixa forta suprimirà l\'accés per a la resta d\'usuaris.</item>
+    <item quantity="other">%d elements estan compartits actualment. Moure\'ls a una altra caixa forta suprimirà l\'accés per a la resta d\'usuaris.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Seleccioneu una caixa forta</string>
+  <string name="migrate_select_destination_for_source_title">Seleccioneu la destinació per moure tots els elements de %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">S\'han mogut els elements</string>
+  <string name="migrate_folder_items_moved_error_snackbar">S\'ha produït un error en moure els elements</string>
+</resources>

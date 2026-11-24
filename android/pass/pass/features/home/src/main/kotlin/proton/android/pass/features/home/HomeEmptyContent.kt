@@ -1,0 +1,103 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.home
+
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import proton.android.pass.common.api.Option
+import proton.android.pass.commonuimodels.api.ItemTypeUiState
+import proton.android.pass.composecomponents.impl.item.EmptySearchResults
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.items.ItemSharedType
+import proton.android.pass.features.home.empty.EmptyFolderPlanRestricted
+import proton.android.pass.features.home.empty.EmptyNoVaults
+import proton.android.pass.features.home.empty.EmptyReadOnly
+import proton.android.pass.features.home.empty.EmptySharedItems
+import proton.android.pass.features.home.empty.HomeEmptyList
+import proton.android.pass.features.home.trash.EmptyTrashContent
+import proton.android.pass.searchoptions.api.SearchFilterType
+import proton.android.pass.searchoptions.api.VaultSelectionOption
+
+@Composable
+internal fun HomeEmptyContent(
+    modifier: Modifier = Modifier,
+    hasShares: Boolean,
+    canCreateItems: Boolean,
+    canCreateAlias: Boolean,
+    canCreateVault: Boolean,
+    canCreateItemsInFolder: Boolean,
+    inSearchMode: Boolean,
+    readOnly: Boolean,
+    vaultSelectionOption: VaultSelectionOption,
+    filterType: SearchFilterType,
+    shareId: Option<ShareId>,
+    folderId: Option<FolderId>,
+    onEvent: (HomeUiEvent) -> Unit
+) {
+    when {
+        !hasShares -> EmptyNoVaults(
+            modifier = modifier,
+            onCreateVaultsClick = {
+                onEvent(HomeUiEvent.OnCreateVaultClick)
+            },
+            canCreateVault = canCreateVault
+        )
+        inSearchMode -> EmptySearchResults(modifier)
+        vaultSelectionOption is VaultSelectionOption.Trash -> EmptyTrashContent(modifier)
+        vaultSelectionOption is VaultSelectionOption.SharedByMe -> EmptySharedItems(
+            modifier = modifier,
+            itemSharedType = ItemSharedType.SharedByMe
+        )
+
+        vaultSelectionOption is VaultSelectionOption.SharedWithMe -> EmptySharedItems(
+            modifier = modifier,
+            itemSharedType = ItemSharedType.SharedWithMe
+        )
+        vaultSelectionOption is VaultSelectionOption.Folder && !canCreateItemsInFolder ->
+            EmptyFolderPlanRestricted(modifier)
+        readOnly -> EmptyReadOnly(modifier)
+        else -> HomeEmptyList(
+            modifier = modifier.fillMaxHeight(),
+            canCreateItems = canCreateItems,
+            canCreateAlias = canCreateAlias,
+            filterType = filterType,
+            isFolder = vaultSelectionOption is VaultSelectionOption.Folder,
+            onCreateLoginClick = {
+                onEvent(HomeUiEvent.AddItemClick(shareId, ItemTypeUiState.Login, folderId))
+            },
+            onCreateAliasClick = {
+                onEvent(HomeUiEvent.AddItemClick(shareId, ItemTypeUiState.Alias, folderId))
+            },
+            onCreateNoteClick = {
+                onEvent(HomeUiEvent.AddItemClick(shareId, ItemTypeUiState.Note, folderId))
+            },
+            onCreateCreditCardClick = {
+                onEvent(HomeUiEvent.AddItemClick(shareId, ItemTypeUiState.CreditCard, folderId))
+            },
+            onCreateIdentityClick = {
+                onEvent(HomeUiEvent.AddItemClick(shareId, ItemTypeUiState.Identity, folderId))
+            },
+            onCreateCustomItemClick = {
+                onEvent(HomeUiEvent.AddItemClick(shareId, ItemTypeUiState.Custom, folderId))
+            }
+        )
+    }
+}

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Actions -->
+  <string name="action_save">Opslaan</string>
+  <string name="action_remove">Verwijder</string>
+  <!-- Create item bottomsheet -->
+  <string name="action_login">Inloggen</string>
+  <string name="action_alias">Alias</string>
+  <string name="action_note">Notitie</string>
+  <string name="action_credit_card">Kredietkaart</string>
+  <string name="action_password">Wachtwoord</string>
+  <string name="action_identity">Identiteit</string>
+  <string name="action_more">Meer</string>
+  <string name="item_type_login_description" comment="Subtitle of the Item Type LOGIN in the Create new item bottomsheet">Voeg inloggegevens voor een app of site toe</string>
+  <string name="item_type_alias_description" comment="Subtitle of the Item Type ALIAS in the Create new item bottomsheet">Ontvang een e-mailalias voor gebruik in nieuwe apps</string>
+  <string name="item_type_note_description" comment="Subtitle of the Item Type NOTE in the Create new item bottomsheet">Noteer een pincode, code of notitie voor uzelf</string>
+  <string name="item_type_credit_card_description" comment="Subtitle of the Item Type CREDIT CARD in the Create new item bottomsheet">Bewaar veilig uw betalingsgegevens</string>
+  <string name="item_type_identity_description" comment="Subtitle of the Item Type IDENTITY in the Create new item bottomsheet">Vul uw persoonlijke gegevens in</string>
+  <string name="item_type_more_description" comment="Subtitle of the Item Type CUSTOM in the Create new item bottomsheet">Wifi, paspoort, SSH opslaan of aangepast instellen</string>
+  <string name="item_type_password_description" comment="Subtitle of the Item Type PASSWORD in the Create new item bottomsheet">Genereer een veilig wachtwoord</string>
+  <string name="sticky_button_generate_username">Genereer gebruikersnaam</string>
+  <!-- Create Login -->
+  <string name="field_email_title">E-mailadres</string>
+  <string name="field_email_hint">E-mailadres toevoegen</string>
+  <string name="field_email_error">Ongeldig e-mailadres</string>
+  <string name="field_email_tooltip_title">Veld gebruikersnaam toevoegen</string>
+  <string name="field_email_tooltip_description">Tik hier om een veld toe te voegen voor een gebruikersnaam.</string>
+  <string name="field_username_title">Gebruikersnaam</string>
+  <string name="field_username_hint">Voeg gebruikersnaam toe</string>
+  <string name="field_username_or_email_title">Gebruikersnaam of e-mailadres</string>
+  <string name="field_username_or_email_hint">Gebruikersnaam of e-mailadres toevoegen</string>
+  <string name="field_password_title">Wachtwoord</string>
+  <string name="field_password_hint">Wachtwoord toevoegen</string>
+  <string name="field_website_address_title">Website</string>
+  <string name="field_website_address_invalid">Ongeldige URL</string>
+  <string name="field_website_address_hint">https://</string>
+  <string name="field_website_add_another">Toevoegen</string>
+  <string name="sticky_button_generate_password" comment="Sticky button on the Create login screen. When tapped, the Generate password bottomsheet is shown">Genereer een nieuw wachtwoord</string>
+  <string name="sticky_button_create_alias" comment="Sticky button on the Create login screen. When tapped, the Create alias bottomsheet is shown">Hide-my-email</string>
+  <string name="sticky_button_use_account_email" comment="Sticky button on the Create login screen. When tapped, the current user email is autofilled">Gebruik %s</string>
+  <string name="create_login_item_creation_error">Kan login niet maken</string>
+  <string name="create_login_item_update_error">Kan login niet bijwerken</string>
+  <string name="create_login_init_error">Probleem bij het verkrijgen van inloggegevens</string>
+  <string name="create_login_invalid_totp">De 2FA-inhoud is niet geldig</string>
+  <string name="update_login_attachments_init_error">Probleem bij ophalen van bijlages login</string>
+  <string name="login_link_attachments_error">Fout bij het koppelen of ontkoppelen van bijlages</string>
+  <string name="login_rename_attachments_error">Fout bij het hernoemen van inlog bijlagen</string>
+  <string name="login_created">Login aangemaakt</string>
+  <string name="bottomsheet_modify_alias_title">Alias wijzigen</string>
+  <string name="bottomsheet_custom_field_type_text">Tekst</string>
+  <string name="bottomsheet_custom_field_type_hidden">Verborgen</string>
+  <string name="bottomsheet_custom_field_type_totp">2FA geheime sleutel (TOTP)</string>
+  <string name="bottomsheet_custom_field_type_date">Datum</string>
+  <string name="bottomsheet_custom_field_option_edit">Naam bewerken</string>
+  <string name="bottomsheet_custom_field_option_remove">Verwijder veld</string>
+  <string name="bottomsheet_custom_field_option_remove_content_description">Aangepast veld verwijderen</string>
+  <string name="bottomsheet_custom_section_option_remove">Sectie verwijderen</string>
+  <string name="custom_field_hidden_placeholder">Verborgen tekst toevoegen</string>
+  <string name="custom_field_hidden_icon_content_description">Verborgen aangepast veldpictogram</string>
+  <string name="custom_field_text_placeholder">Tekst toevoegen</string>
+  <string name="custom_field_date_placeholder">Datum toevoegen</string>
+  <string name="custom_field_dialog_title">Aangepaste veldnaam</string>
+  <string name="custom_field_dialog_body">Geef uw eigen veld een naam</string>
+  <string name="custom_field_dialog_placeholder">Bv. Gebruikers-ID, pincode</string>
+  <string name="custom_section_dialog_title">Voer een sectie-titel in</string>
+  <string name="custom_section_dialog_placeholder">Titel</string>
+  <string name="custom_field_options_content_description">Aangepaste veldopties</string>
+  <!-- Create Note -->
+  <string name="create_note_item_creation_error">Kan notitie niet maken</string>
+  <string name="create_note_item_update_error">Kan notitie niet bijwerken</string>
+  <string name="create_note_init_error">Probleem bij het verkrijgen van notitie gegevens</string>
+  <string name="update_note_attachments_init_error">Probleem bij het ophalen van bijlagen van notitie</string>
+  <string name="note_link_attachments_error">Fout bij het koppelen of ontkoppelen van de notitie bijlages</string>
+  <string name="note_rename_attachments_error">Fout bij het hernoemen van notitie bijlagen</string>
+  <string name="note_created">Notitie aangemaakt</string>
+  <!-- Create Alias -->
+  <string name="field_alias_title">Alias-adres</string>
+  <string name="field_mailboxes_creation_title">Doorsturen naar</string>
+  <string name="field_mailboxes_edit_title">Doorsturen naar</string>
+  <string name="field_alias_you_are_about_to_create">U staat op het punt volgende aan te maken</string>
+  <string name="field_alias_prefix">Prefix</string>
+  <string name="field_alias_suffix">Achtervoegsel</string>
+  <string name="alias_bottomsheet_alias_title">Alias</string>
+  <string name="alias_bottomsheet_suffix_title">Achtervoegsel</string>
+  <string name="create_alias_item_creation_error">Alias kan niet worden gemaakt</string>
+  <string name="create_alias_cannot_create_more_aliases_error">U kunt geen aliassen meer aanmaken</string>
+  <string name="create_alias_email_not_validated_error">U kunt geen aliassen maken zonder eerst uw e-mail te valideren</string>
+  <string name="alias_rate_limited">Er zijn recentelijk te veel aliassen gemaakt</string>
+  <string name="create_alias_item_update_error">Alias kan niet worden bijgewerkt</string>
+  <string name="create_alias_init_error">Probleem bij het verkrijgen van alias gegevens</string>
+  <string name="update_alias_attachments_init_error">Probleem bij het ophalen van de alias bijlages</string>
+  <string name="alias_link_attachments_error">Fout bij het koppelen of ontkoppelen van de alias bijlagen</string>
+  <string name="alias_rename_attachments_error">Fout bij het hernoemen van de bijlage alias</string>
+  <string name="alias_created">Alias gemaakt</string>
+  <string name="cannot_retrieve_alias_options">Kan aliasopties niet ophalen</string>
+  <string name="alias_mailbox_dialog_title">Doorsturen naar</string>
+  <string name="sl_note_info_title">Wat is een SimpleLogin notitie?</string>
+  <string name="sl_note_info_message_part1" comment="this is the first part of a text compose by this and the following part2 and part3">In Pass is een itemnotitie versleuteld met de itemversleutelingssleutel en alleen gebruikers die toegang hebben tot het item kunnen de notitie bekijken.</string>
+  <string name="sl_note_info_message_part2">Zelfs Proton of SimpleLogin kan het niet zien.</string>
+  <string name="sl_note_info_message_part3">SimpleLogin note wordt samen opgeslagen op dezelfde locatie met alias adres en terwijl het beschermd is door encryptie in de rest het is niet E2E-versleuteld wat betekent dat iedereen die toegang heeft tot SimpleLogin database dit kan lezen.</string>
+  <string name="sl_note_info_content_description">SL-notitie informatie dialoogvenster weergeven</string>
+  <!-- Create note -->
+  <string name="note_hint">Notitie</string>
+  <!-- Create Credit Card -->
+  <string name="field_cardholder_name_title">Naam op de kaart</string>
+  <string name="field_cardholder_name_hint">Volledige naam</string>
+  <string name="field_card_number_title">Kaartnummer</string>
+  <string name="field_card_number_hint">1234 1234 1234 1234</string>
+  <string name="field_card_cvv_title">Beveiligingscode</string>
+  <string name="field_card_cvv_hint">123</string>
+  <string name="field_card_pin_title">Pincode</string>
+  <string name="field_card_pin_hint">123456</string>
+  <string name="field_card_expiration_date_title">Verloopdatum</string>
+  <string name="field_card_expiration_date_hint">MM/JJ</string>
+  <string name="field_card_expiration_date_error">Voer een geldige datum in MM/YY formaat</string>
+  <string name="create_credit_card_item_creation_error">Kon kredietkaart niet aanmaken</string>
+  <string name="create_credit_card_item_creation_success">Kredietkaart aangemaakt</string>
+  <string name="credit_card_init_error">Probleem bij het verkrijgen kredietkaart gegevens</string>
+  <string name="update_credit_card_attachments_init_error">Probleem bij ophalen van bijlages creditcard</string>
+  <string name="credit_card_link_attachments_error">Fout bij het koppelen of ontkoppelen van de bijlagen aan de kredietkaart</string>
+  <string name="credit_card_rename_attachments_error">Fout bij het hernoemen van de kredietkaart bijlagen</string>
+  <string name="credit_card_item_update_error">Kon kredietkaart niet bijwerken</string>
+  <!-- Create Identity -->
+  <string name="identity_field_full_name_title">Volledige naam</string>
+  <string name="identity_field_email_title">E-mail</string>
+  <string name="identity_field_phone_number_title">Telefoonnummer</string>
+  <string name="identity_field_organization_title">Organisatie</string>
+  <string name="identity_field_street_address_title">Straatadres, postbus</string>
+  <string name="identity_field_zip_or_postal_code_title">Postcode</string>
+  <string name="identity_field_city_title">Plaats</string>
+  <string name="identity_field_state_or_province_title">Provincie</string>
+  <string name="identity_field_country_or_region_title">Land of regio</string>
+  <string name="identity_field_social_security_number_title">Burgerservicenummer (Rijksregisternummer)</string>
+  <string name="identity_field_passport_number_title">Paspoortnummer</string>
+  <string name="identity_field_license_number_title">Licentienummer</string>
+  <string name="identity_field_website_title">Website</string>
+  <string name="identity_field_xhandle_title">X-gebruikersnaam</string>
+  <string name="identity_field_company_title">Bedrijf</string>
+  <string name="identity_field_job_title_title">Functie</string>
+  <string name="identity_field_first_name_title">Voornaam</string>
+  <string name="identity_field_last_name_title">Achternaam</string>
+  <string name="identity_field_middle_name_title">Tussenvoegsel</string>
+  <string name="identity_field_birthdate_title">Geboortedatum</string>
+  <string name="identity_field_gender_title">Geslacht</string>
+  <string name="identity_field_floor_title">Verdieping</string>
+  <string name="identity_field_county_title">Provincie</string>
+  <string name="identity_field_linkedin_title">Linkedin</string>
+  <string name="identity_field_reddit_title">Reddit gebruikersnaam</string>
+  <string name="identity_field_facebook_title">Facebook-URL</string>
+  <string name="identity_field_yahoo_title">Yahoo-gebruikersnaam</string>
+  <string name="identity_field_instagram_title">Instagram-gebruikersnaam</string>
+  <string name="identity_field_personal_website_title">URL naar persoonlijke website</string>
+  <string name="identity_field_work_phone_number_title">Telefoonnummer werk</string>
+  <string name="identity_field_work_email_title">E-mailadres werk</string>
+  <string name="identity_add_field_first_name">Voornaam</string>
+  <string name="identity_add_field_middle_name">Tussenvoegsel</string>
+  <string name="identity_add_field_last_name">Achternaam</string>
+  <string name="identity_add_field_birthdate">Geboortedatum</string>
+  <string name="identity_add_field_gender">Geslacht</string>
+  <string name="identity_add_field_floor">Verdieping</string>
+  <string name="identity_add_field_county">Provincie</string>
+  <string name="identity_add_field_linkedin">Linkedin</string>
+  <string name="identity_add_field_reddit">Reddit gebruikersnaam</string>
+  <string name="identity_add_field_facebook">Facebook-URL</string>
+  <string name="identity_add_field_yahoo">Yahoo-gebruikersnaam</string>
+  <string name="identity_add_field_instagram">Instagram-gebruikersnaam</string>
+  <string name="identity_add_field_personal_website">URL naar persoonlijke website</string>
+  <string name="identity_add_field_work_phone_number">Telefoonnummer werk</string>
+  <string name="identity_add_field_work_email_address">E-mailadres werk</string>
+  <string name="identity_add_field_custom_field">Aangepast veld</string>
+  <string name="identity_section_personal_details">Persoonlijke gegevens</string>
+  <string name="identity_section_address_details">Adresgegevens</string>
+  <string name="identity_section_contact_details">Contactgegevens</string>
+  <string name="identity_section_work_details">Werk gegevens</string>
+  <string name="identity_bottomsheet_add_field">Veld toevoegen</string>
+  <string name="create_identity_init_error">Probleem bij verkrijgen identiteitsgegevens</string>
+  <string name="update_identity_attachments_init_error">Probleem bij ophalen van bijlages identiteit</string>
+  <string name="identity_link_attachments_error">Fout bij het koppelen of ontkoppelen van de bijlagen aan de identiteit</string>
+  <string name="identity_rename_attachments_error">Fout bij het hernoemen van identiteit bijlages</string>
+  <string name="create_identity_item_creation_error">Kan identiteit niet aanmaken</string>
+  <string name="create_identity_item_creation_success">Identiteit aangemaakt</string>
+  <string name="update_identity_item_creation_success">Identiteit bijgewerkt</string>
+  <string name="update_identity_item_creation_error">Kan identiteit niet bijwerken</string>
+  <!--  Common create items  -->
+  <string name="title_create">Aanmaken</string>
+  <string name="title_duplicate" comment="Default title when duplicating an item. Placeholder is the title of the item being duplicated.">%s (gekopieerd)</string>
+  <string name="changes_saved">Wijzigingen opgeslagen.</string>
+  <!--  TOTP  -->
+  <string name="totp_create_login_field_title">2FA geheime sleutel (TOTP)</string>
+  <string name="totp_create_login_field_invalid">Geheime 2FA sleutel onjuist (TOTP)</string>
+  <string name="totp_create_login_field_placeholder">Vul geheime 2FA sleutel in (TOTP)</string>
+  <string name="close_scree_icon_content_description">Sluit scherm knop</string>
+  <string name="totp_paste_code_action">Code plakken</string>
+  <string name="totp_scan_code_action">Scan code</string>
+  <string name="camera_permission_explanation">Cameratoestemming vereist om deze functie beschikbaar te maken.</string>
+  <string name="camera_permission_open_settings">Instellingen openen</string>
+  <!--  TOTP limit  -->
+  <string name="mfa_limit_reached">2FA-limiet bereikt</string>
+  <string name="upgrade">Upgraden</string>
+  <string name="mfa_icon_content_description">2FA-pictogram</string>
+  <string name="create_alias_content_limit_banner">U heeft de limiet bereikt van aliassen die u kunt maken. Maak een onbeperkt aantal aliassen aan wanneer u uw abonnement upgradet.</string>
+  <string name="snackbar_update_app_to_update_item" comment="This message will appear to users that try to update an item that needs a newer version of the app to do so">De app moet worden bijgewerkt om dit item te bewerken</string>
+  <string name="remove_passkey_dialog_title">Verwijder deze toegangssleutel?</string>
+  <string name="remove_passkey_dialog_body" comment="Body of the dialog that asks the user if they want to remove the passkey for an item. Placeholder 1 is the username (such as my_user). Placeholder 2 is the domain (such as google.com)">U staat op het punt om de toegangssleutel te verwijderen van gebruiker \'%1$s\' voor \'%2$s\'. Weet u het zeker?</string>
+  <!-- Attachments -->
+  <string name="banner_title_attachments">Bijlagen</string>
+  <string name="banner_body_attachments">U kunt bestanden bijvoegen aan items voor een betere organisatie</string>
+  <string name="open_with">Openen met</string>
+  <string name="banner_advanced_options_title">Wist u dat?</string>
+  <string name="banner_advanced_options_subtitle">Tik op het tandwielpictogram om de alias aan te passen.</string>
+  <string name="banner_custom_domain_title">Wist u dat?</string>
+  <string name="banner_custom_domain_subtitle">Door uw domein toe te voegen, kunt u aliassen zoals hoi@mijn-domein.com aanmaken.</string>
+  <string name="banner_custom_domain_button">Domein toevoegen</string>
+  <string name="banner_mailbox_title">Wist u dat?</string>
+  <string name="banner_mailbox_subtitle">Deel aliassen met anderen door hun inbox toe te voegen als extra mailbox.</string>
+  <string name="banner_mailbox_button">Mailbox toevoegen</string>
+  <!-- Suffix -->
+  <string name="suffix_subtitle_premium_domain">Premium domein</string>
+  <string name="suffix_subtitle_public_domain">Publiek domein</string>
+  <string name="suffix_subtitle_private_domain">Uw domein</string>
+  <!-- Templates -->
+  <string name="template_item_api_credential">API-referentiegegevens</string>
+  <string name="template_item_database">Database</string>
+  <string name="template_item_server">Server</string>
+  <string name="template_item_software_license">Software licentie</string>
+  <string name="template_item_ssh_key">SSH-sleutel</string>
+  <string name="template_item_wifi_network">WiFi-netwerk</string>
+  <string name="template_item_bank_account">Bankrekening</string>
+  <string name="template_item_crypto_wallet">Crypto Wallet</string>
+  <string name="template_item_driver_license">Rijbewijs</string>
+  <string name="template_item_medical_record">Medisch Gegeven</string>
+  <string name="template_item_membership">Lidmaatschap</string>
+  <string name="template_item_passport">Paspoort</string>
+  <string name="template_item_reward_program">Beloningsprogramma</string>
+  <string name="template_item_social_security_number">Burgerservicenummer(Rijksregisternummer)</string>
+  <!-- API Credential Fields -->
+  <string name="template_api_credential_field_api_key">API-sleutel</string>
+  <string name="template_api_credential_field_secret">Geheim</string>
+  <string name="template_api_credential_field_expiry_date">Vervaldatum</string>
+  <string name="template_api_credential_field_permissions">Machtigingen</string>
+  <!-- Database Fields -->
+  <string name="template_database_field_host">Host</string>
+  <string name="template_database_field_port">Poort</string>
+  <string name="template_database_field_username">Gebruikersnaam</string>
+  <string name="template_database_field_password">Wachtwoord</string>
+  <string name="template_database_field_database_type">Databasetype</string>
+  <!-- Server Fields -->
+  <string name="template_server_field_ip_address">IP-adres</string>
+  <string name="template_server_field_hostname">Hostnaam</string>
+  <string name="template_server_field_os">Besturingssysteem</string>
+  <string name="template_server_field_username">Gebruikersnaam</string>
+  <string name="template_server_field_password">Wachtwoord</string>
+  <!-- Software License Fields -->
+  <string name="template_software_license_field_license_key">Licentiecode</string>
+  <string name="template_software_license_field_product">Product</string>
+  <string name="template_software_license_field_expiry_date">Vervaldatum</string>
+  <string name="template_software_license_field_owner">Eigenaar</string>
+  <!-- SSH Key Fields -->
+  <string name="template_ssh_key_field_private_key">Private sleutel</string>
+  <string name="template_ssh_key_field_public_key">Publieke sleutel</string>
+  <string name="template_ssh_key_field_username">Gebruikersnaam</string>
+  <string name="template_ssh_key_field_host">Host</string>
+  <!-- SSH Key Generation -->
+  <string name="ssh_key_generate_button">Genereren</string>
+  <string name="ssh_key_type_ed25519">Ed25519</string>
+  <string name="ssh_key_type_rsa_2048">RSA-2048</string>
+  <string name="ssh_key_type_rsa_4096">RSA-4096</string>
+  <string name="ssh_key_generation_error">Het genereren van de SSH-sleutel is mislukt</string>
+  <!-- WiFi Network Fields -->
+  <string name="template_wifi_network_field_name">Naam (SSID)</string>
+  <!-- Bank Account Fields -->
+  <string name="template_bank_account_field_bank_name">Naam bank</string>
+  <string name="template_bank_account_field_account_number">Account Nummer</string>
+  <string name="template_bank_account_field_routing_number">Routeringsnummer</string>
+  <string name="template_bank_account_field_account_type">Accounttype</string>
+  <string name="template_bank_account_field_iban">IBAN</string>
+  <string name="template_bank_account_field_swift_bic">SWIFT/BIC</string>
+  <string name="template_bank_account_field_holder_name">Naam rekeninghouder</string>
+  <!-- Crypto Wallet Fields -->
+  <string name="template_crypto_wallet_field_wallet_name">Wallet Naam</string>
+  <string name="template_crypto_wallet_field_address">Adres</string>
+  <string name="template_crypto_wallet_field_private_key">Private sleutel</string>
+  <string name="template_crypto_wallet_field_seed_phrase">Seed Zin</string>
+  <string name="template_crypto_wallet_field_network">Netwerk</string>
+  <!-- Driver License Fields -->
+  <string name="template_driver_license_field_full_name">Volledige Naam</string>
+  <string name="template_driver_license_field_license_number">Nummer rijbewijs</string>
+  <string name="template_driver_license_field_issuing_state_country">Staat/Land van uitgifte</string>
+  <string name="template_driver_license_field_expiry_date">Vervaldatum</string>
+  <string name="template_driver_license_field_date_of_birth">Geboortedatum</string>
+  <string name="template_driver_license_field_class">Klasse</string>
+  <!-- Medical Record Fields -->
+  <string name="template_medical_record_field_patient_name">Naam patiënt</string>
+  <string name="template_medical_record_field_record_number">Recordnummer</string>
+  <string name="template_medical_record_field_medical_conditions">Medische Aandoeningen</string>
+  <string name="template_medical_record_field_medications">Geneesmiddelen</string>
+  <string name="template_medical_record_field_doctor">Dokter</string>
+  <string name="template_medical_record_field_hospital">Ziekenhuis</string>
+  <!-- Membership Fields -->
+  <string name="template_membership_field_organization_name">Bedrijfsnaam</string>
+  <string name="template_membership_field_membership_id">Lidmaatschap-ID</string>
+  <string name="template_membership_field_member_name">Lid Naam</string>
+  <string name="template_membership_field_expiry_date">Vervaldatum</string>
+  <string name="template_membership_field_tier_level">Niveau</string>
+  <!-- Passport Fields -->
+  <string name="template_passport_field_full_name">Volledige Naam</string>
+  <string name="template_passport_field_passport_number">Paspoortnummer</string>
+  <string name="template_passport_field_country">Land</string>
+  <string name="template_passport_field_expiry_date">Vervaldatum</string>
+  <string name="template_passport_field_date_of_birth">Geboortedatum</string>
+  <string name="template_passport_field_issuing_authority">Uitgevende autoriteit</string>
+  <!-- Reward Program Fields -->
+  <string name="template_reward_program_field_program_name">Programmanaam</string>
+  <string name="template_reward_program_field_member_id">Lid-ID</string>
+  <string name="template_reward_program_field_points_balance">Puntensaldo</string>
+  <string name="template_reward_program_field_expiry_date">Vervaldatum</string>
+  <string name="template_reward_program_field_tier_status">Rang/Status</string>
+  <!-- Social Security Number Fields -->
+  <string name="template_social_security_number_field_full_name">Volledige Naam</string>
+  <string name="template_social_security_number_field_ssn">Burgerservicenummer(Rijksregisternummer)</string>
+  <string name="template_social_security_number_field_issuing_country">Land van uitgifte</string>
+  <string name="template_header_technology">Technologie</string>
+  <string name="template_header_finance">Financieel</string>
+  <string name="template_header_title_personal">Persoonlijk</string>
+  <string name="button_start_from_scratch">Begin vanaf nul</string>
+  <string name="select_template_title">Aangepast item</string>
+  <!-- Custom item screen -->
+  <string name="add_custom_field_button">Veld toevoegen</string>
+  <string name="add_section_button">Sectie toevoegen</string>
+  <string name="add_public_key_placeholder">Voeg publieke sleutel toe</string>
+  <string name="add_private_key_placeholder">Voeg privé-sleutel toe</string>
+  <string name="add_ssid_name_placeholder">Naam toevoegen (SSID)</string>
+  <string name="create_custom_item_init_error">Probleem bij het opvragen details van aangepast item</string>
+  <string name="update_custom_item_attachments_init_error">Probleem bij het opvragen bijlagen van aangepast item</string>
+  <string name="custom_item_link_attachments_error">Fout bij het koppelen of ontkoppelen van de bijlagen met het aangepast item</string>
+  <string name="custom_item_rename_attachments_error">Fout bij het hernoemen van de bijlagen van het aangepast item</string>
+  <string name="create_custom_item_item_creation_error">Kan aangepast item niet maken</string>
+  <string name="create_custom_item_item_creation_success">Aangepast item gemaakt</string>
+  <string name="update_custom_item_item_creation_success">Aangepast item bijgewerkt</string>
+  <string name="update_custom_item_item_creation_error">Kan aangepast item niet bijwerken</string>
+  <!-- Cannot create items dialog -->
+  <string name="cannot_create_items_dialog_title">Kan geen items maken</string>
+  <string name="cannot_create_items_dialog_message">U heeft geen kluizen met editor of admin toegang. Probeer er één aan te maken in de hoofdapplicatie, of vraag de beheerder van uw organisatie om ondersteuning.</string>
+  <string name="wifi_security_type_field_label">Beveiligingstype</string>
+  <string name="functionality_not_available">Deze functionaliteit is niet beschikbaar voor uw apparaat.</string>
+  <!-- Autofill URL suggestions screen -->
+  <string name="autofill_suggestions_title">URL-vergelijking</string>
+  <string name="autofill_suggestions_description">Pas het gedrag van automatisch aanvullen aan om te wijzigen waar aanmeldingen worden voorgesteld en ingevuld voor %s.</string>
+  <string name="autofill_suggestions_tab_basic">Standaard</string>
+  <string name="autofill_suggestions_tab_advanced">Geavanceerd</string>
+  <string name="autofill_suggestions_mode_default">Bovenliggend domein en subdomeinen</string>
+  <string name="autofill_suggestions_mode_exact">Exact (sub)domein</string>
+  <string name="autofill_suggestions_mode_never">Vul dit op deze website nooit in</string>
+  <string name="autofill_suggestions_mode_start_with">Begint met</string>
+  <string name="autofill_suggestions_mode_pattern">Wildcard-patroon</string>
+  <string name="autofill_suggestions_mode_regular_expression">Reguliere expressie</string>
+  <string name="autofill_suggestions_mode_exact_path">Exacte URL-vergelijking</string>
+  <string name="autofill_suggestions_android_limitation">Geavanceerde regels zijn niet beschikbaar op Android vanwege beperkingen in de API\'s van het besturingssysteem.</string>
+  <string name="autofill_suggestions_mode_default_badge">STANDAARD</string>
+  <string name="autofill_suggestions_url_column">URL</string>
+  <string name="autofill_suggestions_suggested_column">Voorgesteld</string>
+  <string name="field_website_skipped_autofill">Deze URL wordt bij het automatisch invullen overgeslagen</string>
+</resources>

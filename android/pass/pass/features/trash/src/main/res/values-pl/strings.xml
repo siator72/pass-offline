@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="bottomsheet_delete_permanently">Usuń trwale</string>
+  <string name="alert_confirm_delete_item_dialog_title">Usunąć trwale?</string>
+  <string name="alert_confirm_delete_item_dialog_message">Ta akcja jest nieodwracalna.</string>
+  <string name="alert_confirm_delete_item_dialog_shared_warning_message">Element jest udostępniony. Usunięcie go spowoduje zatrzymanie udostępniania.</string>
+  <string name="alias_dialog_move_to_trash_title">Przenieść do kosza?</string>
+  <string name="alias_dialog_move_to_trash_content">Jeśli przeniesiesz alias do kosza, przekierowanie wiadomości zostanie zatrzymane.</string>
+  <string name="alias_dialog_move_to_trash_confirm">Potwierdź</string>
+  <string name="delete_alias_confirm">Usuń trwale</string>
+  <string name="delete_alias_title">Usuń %s</string>
+  <string name="delete_alias_enabled_subtitle">"Pamiętaj, że usuniętego aliasu nie można przywrócić. Czy chcesz, zamiast tego wyłączyć alias? "</string>
+  <string name="delete_alias_disabled_subtitle">Pamiętaj, że usuniętego aliasu nie można przywrócić. Alias jest wyłączony i nie przekierowuje wiadomości do skrzynki odbiorczej.</string>
+  <plurals name="bulk_delete_alias_title">
+    <item quantity="one">Zamierzasz trwale usunąć %d alias</item>
+    <item quantity="few">Zamierzasz trwale usunąć %d aliasy</item>
+    <item quantity="many">Zamierzasz trwale usunąć %d aliasów</item>
+    <item quantity="other">Zamierzasz trwale usunąć %d aliasów</item>
+  </plurals>
+  <string name="bulk_delete_alias_subtitle">Pamiętaj, że raz usunięte aliasy nie mogą zostać przywrócone</string>
+  <string name="bulk_delete_alias_confirm">Usuń trwale</string>
+  <string name="delete_alias_disable">Wyłącz alias</string>
+</resources>

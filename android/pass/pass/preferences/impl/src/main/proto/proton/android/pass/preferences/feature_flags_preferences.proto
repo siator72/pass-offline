@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+import "proton/android/pass/preferences/bool_flag_pref.proto";
+
+option java_package = "proton.android.pass.preferences";
+option java_multiple_files = true;
+
+message FeatureFlagsPreferences {
+  reserved 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+      26, 28, 29, 30, 31, 32, 33, 34, 35, 39, 40, 42, 43;
+  reserved "custom_fields_enabled", "credit_cards_enabled", "sharing_v1_enabled",
+      "remove_primary_vault_enabled", "sharing_new_users_enabled", "credit_card_autofill_enabled",
+      "pinning_v1_enabled", "history_v1_enabled", "security_center_v1_enabled",
+      "identity_item_type_enabled", "username_split_enabled", "access_key_v1_enabled",
+      "public_link_v1_enabled", "account_switch_v1_enabled", "simple_login_aliases_sync_enabled",
+      "digital_asset_link_enabled", "advance_alias_management_v1_enabled",
+      "item_sharing_v1_enabled", "extra_logging_enabled", "in_app_messages_v1_enabled",
+      "file_attachments_v1_enabled", "secure_link_new_crypto_v1_enabled", "new_login_flow_enabled",
+      "custom_type_v1_enabled", "file_attachment_encryption_v2_enabled",
+      "pass_hide_show_vault_enabled", "groups_enabled", "pass_mobile_on_boarding_V2_enabled",
+      "pass_allow_credit_card_free_users", "pass_user_events_v1_enabled",
+      "pass_allow_no_vault", "pass_folders_enabled", "pass_autofill_url_regex_enabled",
+      "pass_username_generator_enabled", "pass_compromised_passwords_enabled",
+      "pass_popular_services_enabled", "pass_autofill_health_enabled";
+
+  BoolFlagPrefProto autofill_debug_mode_enabled = 3;
+  BoolFlagPrefProto rename_admin_to_manager_enabled = 27;
+  BoolFlagPrefProto enable_pagination = 36;
+  BoolFlagPrefProto pass_explore_tab_enabled = 37;
+  BoolFlagPrefProto pass_password_checks_enabled = 38;
+  BoolFlagPrefProto pass_monitor_per_check_exclusion_enabled = 41;
+  BoolFlagPrefProto pass_offline_attachments_enabled = 44;
+  BoolFlagPrefProto pass_force_sync_folders_enabled = 45;
+  BoolFlagPrefProto pass_folder_navigation_enabled = 46;
+}

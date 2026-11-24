@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Tiêu đề (A-Z)</string>
+  <string name="sort_by_title_desc">Tiêu đề (Z-A)</string>
+  <string name="sort_by_creation_asc">Cũ nhất đến mới nhất</string>
+  <string name="sort_by_creation_desc">Mới nhất đến cũ nhất</string>
+  <string name="sort_by_modification_date">Đã dùng gần đây</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Tất cả</string>
+  <string name="item_list_header_pinned_search_results">Đã ghim</string>
+  <string name="item_list_header_logins_type">Đăng nhập</string>
+  <string name="item_list_header_logins_totp_type">Đăng nhập với TOTP</string>
+  <string name="item_list_header_aliases_type">Bí danh</string>
+  <string name="item_list_header_notes_type">Ghi chú</string>
+  <string name="item_list_header_credit_cards_type">Thẻ tín dụng</string>
+  <plurals name="item_list_header_results">
+    <item quantity="other">kết quả</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Danh tính</string>
+  <string name="item_list_header_custom_type">Mục tùy chỉnh</string>
+  <string name="item_list_header_shared_with_me">Đã chia sẻ với tôi</string>
+  <string name="item_list_header_shared_by_me">Đã chia sẻ bởi tôi</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Xác nhận</string>
+  <string name="bottomsheet_cancel_button">Hủy</string>
+  <string name="bottomsheet_move_to_trash">Chuyển tới thùng rác</string>
+  <string name="bottomsheet_pin_item">Ghim</string>
+  <string name="bottomsheet_unpin_item">Bỏ ghim</string>
+  <string name="bottomsheet_view_item_history">Xem lịch sử</string>
+  <string name="bottomsheet_monitor_exclude">Bỏ qua theo dõi</string>
+  <string name="bottomsheet_monitor_include">Thêm vào theo dõi</string>
+  <string name="bottomsheet_migrate_item_v2">Di chuyển</string>
+  <string name="bottomsheet_create_folder">Tạo thư mục</string>
+  <string name="folder_tree_create_folder">Tạo thư mục</string>
+  <string name="bottomsheet_rename_folder">Đổi tên</string>
+  <string name="bottomsheet_create_sub_folder">Create sub-folder</string>
+  <string name="bottomsheet_move_folder">Move folder</string>
+  <string name="bottomsheet_move_all_items_in_folder">Chuyển tất cả nội dung</string>
+  <string name="bottomsheet_copy_item_note">Sao chép ghi chú</string>
+  <string name="bottomsheet_delete_permanently">Xóa vĩnh viễn</string>
+  <string name="bottomsheet_restore">Khôi phục</string>
+  <string name="bottomsheet_leave">Thoát</string>
+  <string name="bottomsheet_duplicate">Nhân đôi</string>
+  <string name="bottomsheet_no_actions">Không có hành động nào khả dụng</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Mở menu hành động mục</string>
+  <string name="action_upgrade_now">Nâng cấp ngay</string>
+  <string name="action_not_now">Để sau</string>
+  <string name="action_learn_more">Tìm hiểu thêm</string>
+  <string name="action_enable">Bật</string>
+  <string name="action_view_details">Xem chi tiết</string>
+  <string name="action_see_all">Xem tất cả</string>
+  <string name="action_confirm">Xác nhận</string>
+  <string name="action_cancel">Hủy</string>
+  <string name="action_continue">Tiếp tục</string>
+  <string name="action_retry">Thử lại</string>
+  <string name="action_edit">Chỉnh sửa</string>
+  <string name="action_add">Thêm</string>
+  <string name="action_delete">Xóa</string>
+  <string name="action_make_default">Đặt làm mặc định</string>
+  <string name="action_verify">Xác thực</string>
+  <string name="action_close">Đóng</string>
+  <string name="action_update">Cập nhật</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Thêm mục đầu tiên của bạn</string>
+  <string name="empty_search_results_title">Không tìm thấy kết quả nào</string>
+  <string name="empty_list_open_extension">Truy cập tiện ích mở rộng web</string>
+  <string name="empty_list_create_item_button">Tạo mục mới</string>
+  <!-- Field -->
+  <string name="field_title_title">Tiêu đề</string>
+  <string name="field_title_hint">Không có tiêu đề</string>
+  <string name="field_title_required">Tiêu đề bắt buộc</string>
+  <string name="small_cross_icon_content_description">Biểu tượng dấu thập nhỏ</string>
+  <string name="field_note_title">Ghi chú</string>
+  <string name="field_note_hint">Thêm ghi chú</string>
+  <string name="linked_apps_title">Các ứng dụng liên kết</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Ngoại tuyến</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Thiếu biểu tượng ứng dụng</string>
+  <string name="add_item_icon_content_description">Thêm biểu tượng nội dung</string>
+  <string name="navigate_back_icon_content_description">Biểu tượng quay lại</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Liệt kê nội dung</string>
+  <string name="bottom_bar_add_item_icon_content_description">Thêm nội dung</string>
+  <string name="bottom_bar_profile_icon_content_description">Hồ sơ</string>
+  <string name="bottom_bar_security_center_icon_content_description">Trung tâm Bảo mật</string>
+  <string name="bottom_bar_explore_icon_content_description">Explore</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Hôm nay</string>
+  <string name="most_recent_yesterday">Hôm qua</string>
+  <string name="most_recent_this_week">Tuần này</string>
+  <string name="most_recent_last_two_weeks">Hai tuần gần đây</string>
+  <string name="most_recent_last_30_days">Tháng trước</string>
+  <string name="most_recent_last_60_days">60 ngày gần đây</string>
+  <string name="most_recent_last_90_days">90 ngày gần đây</string>
+  <string name="most_recent_within_the_last_year">Trong năm qua</string>
+  <string name="most_recent_more_than_1_year">Cũ hơn 1 năm</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Biểu tượng tìm kiếm</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="other">%d nội dung</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Hủy thay đổi?</string>
+  <string name="confirm_close_dialog_message">Bạn có các thay đổi chưa được lưu, bạn có muốn loại bỏ chúng không?</string>
+  <string name="confirm_close_dialog_close_button">Bỏ</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Nâng cấp</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Tùy chọn nâng cao</string>
+  <string name="hide_advanced_options">Ẩn tùy chọn nâng cao</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Mạnh</string>
+  <string name="label_password_strength_vulnerable">Nguy hiểm</string>
+  <string name="label_password_strength_weak">Yếu</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Xem tất cả</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Hôm nay %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Hôm qua %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Địa chỉ bí danh</string>
+  <string name="item_details_alias_section_alias_disabled_title">Địa chỉ bí danh (đã tắt)</string>
+  <string name="item_details_alias_section_mailboxes_title">Chuyển tiếp đến</string>
+  <string name="item_details_credit_card_section_cardholder_title">Tên trên thẻ</string>
+  <string name="item_details_credit_card_section_card_number_title">Số thẻ</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Hết hạn vào</string>
+  <string name="item_details_credit_card_section_cvv_title">Mã bảo mật</string>
+  <string name="item_details_credit_card_section_pin_title">Mã PIN</string>
+  <string name="item_details_login_section_email_title">Địa chỉ email</string>
+  <string name="item_details_login_section_username_title">Tên người dùng</string>
+  <string name="item_details_login_section_password_title">Mật khẩu</string>
+  <string name="item_details_login_section_primary_totp_title">Mã bảo mật 2FA (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Các trang web</string>
+  <string name="autofill_mode_label_default">Parent domain and subdomains</string>
+  <string name="autofill_mode_label_exact">Exact (sub)domain</string>
+  <string name="autofill_mode_label_never">Never fill on this website</string>
+  <string name="autofill_mode_label_start_with">Starts with</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">Regular expression</string>
+  <string name="autofill_mode_label_exact_path">Exact URL matching</string>
+  <string name="autofill_mode_label_unsupported">This url will be skipped for autofill</string>
+  <string name="login_item_view_alias_button">Xem bí danh</string>
+  <string name="item_details_identity_section_personal_title">Thông tin cá nhân</string>
+  <string name="item_details_identity_section_personal_first_name_title">Họ</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Tên đệm</string>
+  <string name="item_details_identity_section_personal_last_name_title">Tên</string>
+  <string name="item_details_identity_section_personal_full_name_title">Tên đầy đủ</string>
+  <string name="item_details_identity_section_personal_email_title">Địa chỉ email</string>
+  <string name="item_details_identity_section_personal_gender_title">Giới tính</string>
+  <string name="item_details_identity_section_personal_phone_title">Số điện thoại</string>
+  <string name="item_details_identity_section_personal_birthday_title">Ngày sinh</string>
+  <string name="item_details_identity_section_address_title">Thông tin địa chỉ</string>
+  <string name="item_details_identity_section_address_organization_title">Tổ chức</string>
+  <string name="item_details_identity_section_address_street_address_title">Tên đường, hộp thư thuê bao</string>
+  <string name="item_details_identity_section_address_floor_title">Tầng</string>
+  <string name="item_details_identity_section_address_city_title">Thành phố</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">Mã ZIP hoặc mã bưu chính</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Tỉnh thành</string>
+  <string name="item_details_identity_section_address_county_title">Quận hạt</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Quốc gia hoặc khu vực</string>
+  <string name="item_details_identity_section_contact_title">Thông tin liên lạc</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Số bảo hiểm xã hội</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Số hộ chiếu</string>
+  <string name="item_details_identity_section_contact_license_number_title">Số bằng lái</string>
+  <string name="item_details_identity_section_contact_website_title">Website</string>
+  <string name="item_details_identity_section_contact_x_handle_title">Tài khoản Twitter/X</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Số điện thoại phụ</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Thông tin công việc</string>
+  <string name="item_details_identity_section_work_company_title">Công ty</string>
+  <string name="item_details_identity_section_work_occupation_title">Nghề nghiệp</string>
+  <string name="item_details_identity_section_work_email_title">Địa chỉ email công việc</string>
+  <string name="item_details_identity_section_work_phone_number_title">Số điện thoại công việc</string>
+  <string name="item_details_identity_section_work_personal_website_title">Trang web cá nhân</string>
+  <string name="item_details_shared_section_note_title">Ghi chú</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Lần cuối tự động điền</string>
+  <string name="item_details_shared_section_item_history_created_title">Được tạo</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Sửa lúc (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Xem lịch sử nội dung</string>
+  <string name="item_details_shared_section_more_info_header_title">Thông tin thêm</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Thông tin thêm</string>
+  <string name="item_details_shared_section_more_info_item_id">Item ID</string>
+  <string name="item_details_shared_section_more_info_vault_id">Số ID két sắt</string>
+  <string name="item_details_shared_section_more_info_share_id">Số Share ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">Tên mạng (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Mật khẩu</string>
+  <string name="item_details_wifi_network_label_security">Bảo mật</string>
+  <string name="item_details_ssh_key_label_public_key">Chìa khóa công khai</string>
+  <string name="item_details_ssh_key_label_private_key">Chìa khóa riêng tư</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Phiên bản ứng dụng nay không còn được hỗ trợ, vui lòng cập nhật.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Chìa khóa truy cập</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Nâng cấp gói người dùng?</string>
+  <string name="dialog_upgrade_plan_message">Tính năng này không khả dụng với người dùng miễn phí. Nếu muốn sử dụng cùng các tính năng hữu ích khác, hãy nâng cấp gói người dùng và trải nghiệm thử.</string>
+  <string name="dialog_upgrade_plan_action_confirm">Nâng cấp</string>
+  <string name="dialog_upgrade_plan_action_cancel">Để sau</string>
+  <!-- Words -->
+  <string name="email_address">Địa chỉ email</string>
+  <string name="email_address_invalid">Địa chỉ email không hợp lệ</string>
+  <string name="password">Mật khẩu</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Nút để tắt đi hướng dẫn và không bao giờ hiện lại nó</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="other">%d năm</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="other">%d tháng</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="other">%d tuần</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="other">%d ngày</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="other">%d giờ</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="other">%d phút</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="other">%d giây</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="other">%d bí danh</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Đã copy</string>
+  <string name="snack_bar_message_item_migration_error">Đã xảy ra lỗi khi di chuyển mục này</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Nội dung được loại bỏ khỏi giám sát thành công</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Đã xảy ra lỗi khi tiến hành loại bỏ nội dung khỏi giám sát</string>
+  <string name="snack_bar_message_item_monitor_included_success">Nội dung được thêm vào giám sát thành công</string>
+  <string name="snack_bar_message_item_monitor_included_error">Đã xảy ra lỗi khi tiến hành thêm nội dung vào giám sát</string>
+  <string name="snack_bar_message_item_pinned_success">Đã ghim nội dung thành công</string>
+  <string name="snack_bar_message_item_pinned_error">Đã xảy ra lỗi khi ghim nội dung này</string>
+  <string name="snack_bar_message_item_unpinned_success">Đã bỏ ghim nội dung thành công</string>
+  <string name="snack_bar_message_item_unpinned_error">Đã xảy ra lỗi khi bỏ ghim nội dung này</string>
+  <string name="snack_bar_message_item_trashed_success">Đã xoá mục thành công</string>
+  <string name="snack_bar_message_item_trashed_error">Đã xảy ra lỗi khi chuyển mục này vào thùng rác</string>
+  <string name="snack_bar_message_item_restore_success">Đã khôi phục mục thành công</string>
+  <string name="snack_bar_message_item_restore_error">Đã xảy ra lỗi khi khôi phục mục này</string>
+  <string name="snack_bar_message_item_delete_success">Đã xoá mục thành công</string>
+  <string name="snack_bar_message_item_delete_error">Đã xảy ra lỗi khi xoá mục này</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Bật đồng bộ Simple Login</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="other">Chúng tôi nhận thấy bạn có %d bí danh trong SimpleLogin nhưng chưa có trong Proton Pass. Bạn muốn nhập chúng vào không?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Đồng bộ bí danh</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Chưa nhận được mã?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Vui lòng kiểm tra trong thư mục Spam của bạn để tìm email có tên “%s“</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Vui lòng xác minh địa chỉ email của bạn cho Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Vui lòng xác minh hộp thư của bạn</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Nếu bạn không thể tìm thấy email như vậy, bạn có thể %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">yêu cầu mã mới</string>
+  <string name="field_display_name_title">Tên hiển thị</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="other">%1$s tệp</item>
+  </plurals>
+  <string name="attachment_title">Tệp đính kèm</string>
+  <string name="attachment_no_files">Tải lên tệp từ thiết bị của bạn</string>
+  <string name="attachment_add_file">Đính kèm một tệp</string>
+  <string name="attachment_row_upload_failed">Upload failed</string>
+  <string name="attachment_row_retry">Thử lại</string>
+  <string name="options_menu_content_description">Options menu</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="other">%d shared items</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="other">%d người dùng</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="other">%d thành viên</item>
+  </plurals>
+  <string name="show_network_qr_code">Hiển Thị Mã QR Mạng</string>
+  <string name="expand_collpased_text">thêm</string>
+  <string name="collapse_expanded_text">bớt</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Mật khẩu yếu</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Tài khoản này không an toàn, hãy tới dịch vụ và thay đổi mật khẩu.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Compromised password</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">This login password appears in a data breach. Please visit the service and change the password.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="other">%d lần đăng nhập khác sử dụng cùng mật khẩu</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Thiết lập xác minh 2 bước để an toàn hơn</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Dịch vụ này hỗ trợ mã bí mật 2FA. Hãy khởi tạo nó để tăng cường bảo mật cho tài khoản của bạn.</string>
+  <string name="login_item_monitor_action_ignore">Bỏ qua</string>
+  <string name="login_item_monitor_action_restore">Restore alert</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Weak password</string>
+  <string name="login_item_monitor_label_compromised">Compromised password</string>
+  <string name="login_item_monitor_label_reused">Reused password</string>
+  <string name="login_item_monitor_label_missing_2fa">Missing 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">Các mục khác trong két sắt có sử dụng mật khẩu này.</string>
+  <string name="mfa_limit_reached">Đã dạt giới hạn 2FA</string>
+  <string name="activity_in_last_two_weeks">Hoạt động trong 14 ngày qua</string>
+  <string name="contacts">Danh bạ</string>
+  <string name="contacts_section_description">Để giữ địa chỉ email cá nhân của bạn ẩn, bạn có thể tạo một liên hệ bí danh che giấu địa chỉ của bạn.</string>
+  <string name="field_detail_display_name_title">Tên hiển thị</string>
+  <string name="display_name_section_description">Tên hiển thị khi gửi email từ bí danh này.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="other">%1$s chuyển tiếp</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="other">%1$s phản hồi</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="other">%1$s khối</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Tạo đăng nhập</string>
+  <string name="banner_contacts_title">Bạn có biết không?</string>
+  <string name="banner_contacts_subtitle">Mỗi khi bí danh của bạn nhận được một email từ ai đó, một liên hệ mới sẽ tự động được tạo.</string>
+  <string name="action_reveal">Hiển thị</string>
+  <string name="action_conceal">Ẩn</string>
+  <string name="warning_dialog_item_shared_vault_title">Nội dung trong một kho lưu trữ được chia sẽ</string>
+  <string name="warning_dialog_item_shared_title">Nội dung được chia sẻ</string>
+  <string name="warning_dialog_item_shared_vault_creating">Bạn đang tạo một mục trong một kho lưu trữ được chia sẽ và thành viên sẽ có quyền truy cập lập tức vào nó.</string>
+  <string name="warning_dialog_item_shared_vault_moving">You are moving an item to a shared vault and members will immediately gain access to this item.</string>
+  <string name="warning_dialog_item_shared_vault_updating">You are editing an item in a shared vault and members will immediately gain access to this item.</string>
+  <string name="warning_dialog_item_shared_updating">Bạn đang chỉnh sửa một mục trong mọt kho lưu trữ được chia sẽ. Các thay đổi sẽ được hiển thị lập tức với những người được chia sẽ.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Không nhắc lại nữa</string>
+  <string name="upgrade_to_pass_plus">Nâng cấp lên Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">You are about to be redirected to our website. If you purchase a plan, please restart the app.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Dấu tách từ</string>
+  <string name="bottomsheet_option_capitalise">Viết hoa</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Dấu gạch ngang ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Khoảng trắng</string>
+  <string name="bottomsheet_option_word_separator_periods">Dấu chấm ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Dấu phẩy ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Dấu gạch dưới ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Số</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Số và ký tự</string>
+  <plurals name="word_count">
+    <item quantity="other">%s từ</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Password strength</string>
+  <string name="password_check_min_length">Mật khẩu quá ngắn</string>
+  <string name="password_check_lowercase">Lowercase letters</string>
+  <string name="password_check_uppercase">Uppercase letters</string>
+  <string name="password_check_no_consecutive">No repeated characters</string>
+  <string name="password_check_no_common">No common password</string>
+</resources>

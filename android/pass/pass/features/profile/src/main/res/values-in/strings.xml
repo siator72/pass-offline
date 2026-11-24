@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Profil</string>
+  <string name="profile_option_settings">Pengaturan</string>
+  <string name="profile_option_account">Akun</string>
+  <string name="profile_help_center">Pusat bantuan</string>
+  <string name="profile_security">Keamanan</string>
+  <string name="profile_option_autofill_troubleshooting">Autofill troubleshooting</string>
+  <string name="profile_option_feedback">Masukan</string>
+  <string name="profile_option_import_export">Impor/ekspor</string>
+  <string name="profile_option_tutorial">Cara menggunakan Proton Pass</string>
+  <string name="profile_option_rating">Nilai aplikasi</string>
+  <string name="profile_spread_the_word">Spread the word</string>
+  <string name="profile_option_tell_a_friend">Tell a friend</string>
+  <string name="profile_spread_the_word_share_message">I\'m using Proton Pass to keep my passwords secure. Try it: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Isi otomatis</string>
+  <string name="profile_option_autofill_subtitle">Isi nama pengguna dan kata sandi Anda secara otomatis.</string>
+  <string name="profile_option_secure_links">Tautan aman</string>
+  <string name="profile_option_alias_management">Pengelolaan alias</string>
+  <string name="profile_option_generated_passwords">Kata sandi yang dihasilkan</string>
+  <string name="profile_error_biometry_failed_to_start">Autentikasi biometrik tidak dapat dimulai</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Gagal mengautentikasi</string>
+  <string name="profile_error_app_lock_update_failed">Could not update the app lock. Please try again.</string>
+  <string name="profile_fingerprint_lock_enabled">Kunci sidik jari diaktifkan</string>
+  <string name="profile_fingerprint_lock_disabled">Kunci sidik jari dinonaktifkan</string>
+  <string name="profile_app_version_copied_to_clipboard">Versi aplikasi disalin</string>
+  <string name="feedback_option_reddit">Kunjungi Proton di Reddit</string>
+  <string name="feedback_option_mail">Kirim pesan kepada kami</string>
+  <string name="feedback_option_vote_new_features">Berikan suara untuk fitur baru</string>
+  <string name="app_lock_immediately">Segera</string>
+  <string name="app_lock_one_minute">Setelah 1 menit</string>
+  <string name="app_lock_two_minutes">Setelah 2 menit</string>
+  <string name="app_lock_five_minutes">Setelah 5 menit</string>
+  <string name="app_lock_ten_minutes">Setelah 10 menit</string>
+  <string name="app_lock_one_hour">Setelah 1 jam</string>
+  <string name="app_lock_four_hours">Setelah 4 jam</string>
+  <string name="app_lock_config_none">Tidak ada</string>
+  <string name="app_lock_config_biometric">Biometrik</string>
+  <string name="app_lock_config_pin_code">Kode PIN</string>
+  <string name="app_lock_config_app_lock_time">Penguncian otomatis</string>
+  <string name="app_lock_config_password">Kata sandi</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Gunakan kunci sistem ketika verifikasi biometrik gagal</string>
+  <string name="configure_pin_set_pin_code">Tetapkan kode PIN</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Buka aplikasi dengan kode ini</string>
+  <string name="configure_pin_enter_pin_code">Masukkan kode PIN</string>
+  <string name="configure_pin_repeat_pin_code">Ulangi kode PIN</string>
+  <string name="configure_pin_continue">Lanjutkan</string>
+  <string name="configure_pin_pin_does_not_match">PIN tidak cocok</string>
+  <string name="configure_pin_pin_too_short">Kode PIN terlalu pendek</string>
+  <string name="configure_pin_pin_cannot_be_blank">PIN tidak boleh kosong</string>
+  <string name="configure_pin_pin_lock_enabled">Kunci PIN diaktifkan</string>
+  <string name="configure_pin_pin_lock_disabled">Kunci PIN dinonaktifkan</string>
+  <string name="profile_option_lock_with">Kunci dengan</string>
+  <string name="profile_option_unlock_with">Buka kunci dengan</string>
+  <string name="profile_option_change_pin_code">Ubah kode PIN</string>
+  <string name="profile_passkey_support_section_title">Passkey</string>
+  <string name="profile_passkey_support_subtitle_supported">Passkeys can be supported on this device</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Versi Android Anda tidak mendukung passkey.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Dukungan passkey tidak dapat diperiksa</string>
+  <plurals name="profile_after_days">
+    <item quantity="other">Setelah %d hari</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="other">Setelah %d menit</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="other">Setelah %d jam</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Kurang dari satu menit</string>
+  <string name="account_switcher_manage_account">Kelola akun</string>
+  <string name="account_switcher_sign_in">Masuk</string>
+  <string name="account_switcher_sign_out">Keluar</string>
+  <string name="account_switcher_switch_to">Ganti ke</string>
+  <string name="account_switcher_add_account">Tambahkan akun</string>
+  <string name="account_switcher_remove">Hapus</string>
+  <string name="filtered_by_logins">Difilter berdasarkan entri masuk. Item dalam sampah tidak ditampilkan</string>
+  <string name="filtered_by_logins_with_mfa">Difilter berdasarkan entri masuk dengan TOTP. Item dalam sampah tidak ditampilkan</string>
+  <string name="filtered_by_aliases">Difilter berdasarkan alias. Item dalam sampah tidak ditampilkan</string>
+  <string name="filtered_by_notes">Difilter berdasarkan catatan. Item dalam sampah tidak ditampilkan</string>
+  <string name="filtered_by_credit_cards">Difilter berdasarkan kartu kredit. Item dalam sampah tidak ditampilkan</string>
+  <string name="filtered_by_identities">Difilter berdasarkan identitas. Item dalam sampah tidak ditampilkan</string>
+  <string name="filtered_by_custom_items">Difilter berdasarkan item khusus. Item dalam sampah tidak ditampilkan</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Anda perlu beralih ke %1$s untuk mengelola</string>
+  <string name="account_switch_confirmation_title">Kelola akun</string>
+  <string name="account_switch_confirmation_confirm">Alihkan dan kelola</string>
+  <string name="profile_storage_data_title">Penyimpanan</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s dari %2$s</string>
+</resources>

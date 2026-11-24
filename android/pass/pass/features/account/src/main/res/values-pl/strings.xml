@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title">Konto</string>
+  <string name="account_recovery_title">Konto i odzyskiwanie</string>
+  <string name="account_username_label">Nazwa użytkownika</string>
+  <string name="account_subscription_label">Plan subskrypcji</string>
+  <string name="account_permanently_delete_warning">Ta czynność spowoduje trwałe usunięcie konta. Nie będziesz mógł reaktywować tego konta.</string>
+  <string name="account_delete_account">Usuń konto</string>
+  <string name="account_delete_account_icon_content_description">Przycisk usunięcia konta</string>
+  <string name="account_sign_out">Wyloguj</string>
+  <string name="account_sign_out_icon_content_description">Przycisk wylogowania</string>
+  <string name="account_manage_account">Zarządzaj kontem</string>
+  <string name="account_manage_account_icon_content_description">Przycisk zarządzania kontem</string>
+  <string name="account_manage_subscription">Zarządzaj subskrypcją</string>
+  <string name="account_get_user_info_error">Nie można pobrać informacji o użytkowniku</string>
+  <string name="manage_subscription_icon_content_description">Przycisk zarządzania subskrypcją</string>
+  <string name="account_settings_list_item_password_header">Zmień hasło</string>
+  <string name="account_settings_list_item_recovery_header">Adres pomocniczy</string>
+  <string name="account_settings_list_item_security_keys">Klucze bezpieczeństwa</string>
+  <string name="account_settings_list_item_recovery_hint_not_set">Nie ustawiono</string>
+  <string name="account_settings_list_item_password_hint_grace">Żądanie zresetowania hasła zostało wysłane</string>
+  <string name="account_settings_list_item_password_hint_insecure">Resetowanie hasła jest dostępne</string>
+  <string name="account_settings_list_item_extra_password_header">Dodatkowe hasło Proton Pass</string>
+  <string name="account_settings_list_item_extra_password_header_set">Ustaw dodatkowe hasło Proton Pass</string>
+  <string name="account_settings_list_item_extra_password_active">Aktywne</string>
+  <string name="account_settings_list_item_extra_password_description">Dodatkowe hasło będzie wymagane do korzystania z Proton Pass.</string>
+  <string name="account_settings_list_item_security_keys_hint_not_set">Nie ustawiono</string>
+  <string name="account_settings_list_item_security_keys_hint_single">%s</string>
+  <plurals name="account_settings_list_item_security_keys_hint_many">
+    <item quantity="one">Ustawiono %d klucz bezpieczeństwa</item>
+    <item quantity="few">Ustawiono %d klucze bezpieczeństwa</item>
+    <item quantity="many">Ustawiono %d kluczy bezpieczeństwa</item>
+    <item quantity="other">Ustawiono %d kluczy bezpieczeństwa</item>
+  </plurals>
+</resources>

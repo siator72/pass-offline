@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Profil</string>
+  <string name="profile_option_settings">Ustawienia</string>
+  <string name="profile_option_account">Konto</string>
+  <string name="profile_help_center">Centrum pomocy</string>
+  <string name="profile_security">Bezpieczeństwo</string>
+  <string name="profile_option_autofill_troubleshooting">Autofill troubleshooting</string>
+  <string name="profile_option_feedback">Opinia</string>
+  <string name="profile_option_import_export">Import / Eksport</string>
+  <string name="profile_option_tutorial">Jak używać Proton Pass</string>
+  <string name="profile_option_rating">Oceń aplikację</string>
+  <string name="profile_spread_the_word">Spread the word</string>
+  <string name="profile_option_tell_a_friend">Tell a friend</string>
+  <string name="profile_spread_the_word_share_message">I\'m using Proton Pass to keep my passwords secure. Try it: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Autouzupełnianie</string>
+  <string name="profile_option_autofill_subtitle">Automatycznie uzupełniaj nazwy użytkowników i hasła.</string>
+  <string name="profile_option_secure_links">Linki</string>
+  <string name="profile_option_alias_management">Zarządzanie aliasami</string>
+  <string name="profile_option_generated_passwords">Wygenerowane hasła</string>
+  <string name="profile_error_biometry_failed_to_start">Nie można rozpocząć uwierzytelniania biometrycznego</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Nie udało się uwierzytelnić</string>
+  <string name="profile_error_app_lock_update_failed">Could not update the app lock. Please try again.</string>
+  <string name="profile_fingerprint_lock_enabled">Blokada odciskiem palca została włączona</string>
+  <string name="profile_fingerprint_lock_disabled">Blokada odciskiem palca została wyłączona</string>
+  <string name="profile_app_version_copied_to_clipboard">Wersja aplikacji została skopiowana</string>
+  <string name="feedback_option_reddit">Sprawdź Proton na Reddicie</string>
+  <string name="feedback_option_mail">Wyślij nam wiadomość</string>
+  <string name="feedback_option_vote_new_features">Głosuj nad nowymi funkcjami</string>
+  <string name="app_lock_immediately">Natychmiast</string>
+  <string name="app_lock_one_minute">Po 1 minucie</string>
+  <string name="app_lock_two_minutes">Po 2 minutach</string>
+  <string name="app_lock_five_minutes">Po 5 minutach</string>
+  <string name="app_lock_ten_minutes">Po 10 minutach</string>
+  <string name="app_lock_one_hour">Po 1 godzinie</string>
+  <string name="app_lock_four_hours">Po 4 godzinach</string>
+  <string name="app_lock_config_none">Brak</string>
+  <string name="app_lock_config_biometric">Biometria</string>
+  <string name="app_lock_config_pin_code">Kod PIN</string>
+  <string name="app_lock_config_app_lock_time">Automatyczna blokada</string>
+  <string name="app_lock_config_password">Hasło</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Użyj blokady systemu, kiedy biometria nie działa</string>
+  <string name="configure_pin_set_pin_code">Ustaw kod PIN</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Odblokuj aplikację za pomocą tego kodu</string>
+  <string name="configure_pin_enter_pin_code">Wpisz kod PIN</string>
+  <string name="configure_pin_repeat_pin_code">Powtórz kod PIN</string>
+  <string name="configure_pin_continue">Kontynuuj</string>
+  <string name="configure_pin_pin_does_not_match">Kody PIN nie pasują do siebie</string>
+  <string name="configure_pin_pin_too_short">Kod PIN jest zbyt krótki</string>
+  <string name="configure_pin_pin_cannot_be_blank">Kod PIN nie może być pusty</string>
+  <string name="configure_pin_pin_lock_enabled">Blokada kodem PIN została włączona</string>
+  <string name="configure_pin_pin_lock_disabled">Blokada kodem PIN została wyłączona</string>
+  <string name="profile_option_lock_with">Zablokuj za pomocą</string>
+  <string name="profile_option_unlock_with">Odblokuj za pomocą</string>
+  <string name="profile_option_change_pin_code">Zmień kod PIN</string>
+  <string name="profile_passkey_support_section_title">Klucze dostępu</string>
+  <string name="profile_passkey_support_subtitle_supported">Passkeys can be supported on this device</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Ta wersja systemu Android nie obsługuje kluczy dostępu.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Nie można sprawdzić obsługi kluczy dostępu</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">Po %d dniu</item>
+    <item quantity="few">Po %d dniach</item>
+    <item quantity="many">Po %d dniach</item>
+    <item quantity="other">Po %d dniach</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">Po %d minucie</item>
+    <item quantity="few">Po %d minutach</item>
+    <item quantity="many">Po %d minuty</item>
+    <item quantity="other">Po %d minuty</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">Po %d godzinie</item>
+    <item quantity="few">Po %d godzinach</item>
+    <item quantity="many">Po %d godzinach</item>
+    <item quantity="other">Po %d godzinach</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Mniej niż minutę</string>
+  <string name="account_switcher_manage_account">Zarządzaj kontem</string>
+  <string name="account_switcher_sign_in">Zaloguj się</string>
+  <string name="account_switcher_sign_out">Wyloguj</string>
+  <string name="account_switcher_switch_to">Przełącz na konto</string>
+  <string name="account_switcher_add_account">Dodaj konto</string>
+  <string name="account_switcher_remove">Usuń</string>
+  <string name="filtered_by_logins">Filtrowane przez dane logowania. Usunięte elementy nie będą pokazywane</string>
+  <string name="filtered_by_logins_with_mfa">Filtrowane przez dane logowania z kodem TOTP. Usunięte elementy nie będą pokazywane</string>
+  <string name="filtered_by_aliases">Filtrowane przez aliasy. Usunięte elementy nie będą pokazywane</string>
+  <string name="filtered_by_notes">Filtrowane przez notatki. Usunięte elementy nie będą pokazywane</string>
+  <string name="filtered_by_credit_cards">Filtrowane przez karty płatnicze. Usunięte elementy nie będą pokazywane</string>
+  <string name="filtered_by_identities">Filtrowane przez tożsamości. Usunięte elementy nie będą pokazywane</string>
+  <string name="filtered_by_custom_items">Filtrowane przez niestandardowe elementy. Usunięte elementy nie będą pokazywane</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Przełącz na konto %1$s, aby tym zarządzać</string>
+  <string name="account_switch_confirmation_title">Zarządzaj kontem</string>
+  <string name="account_switch_confirmation_confirm">Przełącz i zarządzaj</string>
+  <string name="profile_storage_data_title">Przestrzeń dyskowa</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s z %2$s</string>
+</resources>

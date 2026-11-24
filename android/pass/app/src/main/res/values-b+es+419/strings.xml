@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="twenty_vaults">20 bóvedas</string>
+  <string name="unlimited_email_alias">Alias de correo electrónico ilimitados</string>
+  <string name="custom_fields">Campos personalizados</string>
+  <string name="restart_to_complete_the_update">Reiniciar para completar la actualización</string>
+  <string name="action_restart">Reiniciar</string>
+  <string name="shortcut_share_logs_title">Compartir registros</string>
+  <string name="shortcut_share_logs_confirmation_title">¿Compartir registros de diagnóstico?</string>
+  <string name="shortcut_share_logs_confirmation_message">Eso abrirá su aplicación de correo para enviar los registros de diagnóstico de Proton Pass. No se incluye ningún dato de bóvedas.</string>
+  <string name="no_account_found">No se ha encontrado ninguna cuenta.</string>
+  <string name="no_session_found">No se ha encontrado ninguna sesión.</string>
+  <string name="auth_with_extra_password_failed">Error de autenticación con la contraseña adicional</string>
+  <string name="auth_only_1_proton_account_failed">Solo se permite una cuenta gratuita de Proton.</string>
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="item_details_toolbar_content_description_menu_button">Knop voor het weergeven van menuopties</string>
+  <!-- Item details forbidden actions -->
+  <string name="item_details_forbidden_actions_edit_title">Kan niet bewerken</string>
+  <string name="item_details_forbidden_actions_edit_permission">U kunt dit item niet bewerken omdat u hiervoor onvoldoende machtigingen hebt.</string>
+  <string name="item_details_forbidden_actions_edit_trash">U kan dit item niet wijzigen omdat het in de prullenbak zit. Verplaats het uit de prullenbak voordat u het wijzigt.</string>
+  <string name="item_details_forbidden_actions_edit_upgrade">U kunt enkel items wijzigen in uw oudste kluizen. Upgrade uw huidige abonnement om dit item te wijzigen.</string>
+  <string name="item_details_forbidden_actions_share_title">Kan niet delen</string>
+  <string name="item_details_forbidden_actions_share_limit">U heeft de limiet van het delen van kluis bereikt. Upgrade uw huidige abonnement om meer kluizen te delen.</string>
+  <string name="item_details_forbidden_actions_sharing_permission">U heeft geen rechten om deze actie uit te voeren.</string>
+  <string name="item_details_forbidden_actions_share_trash">U kunt dit item niet delen omdat het in de prullenbak zit. Verplaats het uit de prullenbak voordat u het wijzigt.</string>
+  <!-- Item details leave item -->
+  <string name="item_details_leave_dialog_title">Dit item verlaten?</string>
+  <string name="item_details_leave_dialog_message">U zult toegang tot dit item en de bijbehorende gegevens verliezen. Wilt u doorgaan?</string>
+  <string name="item_details_leave_item_message_error">Er is een fout opgetreden bij het verlaten van dit item</string>
+  <string name="item_details_leave_item_message_success">Item succesvol verlaten</string>
+  <string name="item_details_monitor_check_update_error">Kan monitoring niet bijwerken. Probeer het opnieuw.</string>
+  <string name="item_details_snackbar_message_alias_copied">Alias gekopieerd</string>
+  <string name="item_details_snackbar_message_birthdate_copied">Geboortedatum gekopieerd</string>
+  <string name="item_details_snackbar_message_card_number_copied">Kaartnummer gekopieerd</string>
+  <string name="item_details_snackbar_message_city_copied">Stad gekopieerd</string>
+  <string name="item_details_snackbar_message_company_copied">Bedrijf gekopieerd</string>
+  <string name="item_details_snackbar_message_country_or_region_copied">Land of regio gekopieerd</string>
+  <string name="item_details_snackbar_message_county_copied">Provincie gekopieerd</string>
+  <string name="item_details_snackbar_message_custom_field_copied">Aangepast veld gekopieerd</string>
+  <string name="item_details_snackbar_message_cvv_copied">Beveiligingscode gekopieerd</string>
+  <string name="item_details_snackbar_message_email_copied">E-mailadres gekopieerd</string>
+  <string name="item_details_snackbar_message_facebook_copied">Facebook gekopieerd</string>
+  <string name="item_details_snackbar_message_first_name_copied">Voornaam gekopieerd</string>
+  <string name="item_details_snackbar_message_floor_copied">Verdieping gekopieerd</string>
+  <string name="item_details_snackbar_message_full_name_copied">Volledige naam gekopieerd</string>
+  <string name="item_details_snackbar_message_gender_copied">Geslacht gekopieerd</string>
+  <string name="item_details_snackbar_message_instagram_copied">Instagram gekopieerd</string>
+  <string name="item_details_snackbar_message_last_name_copied">Achternaam gekopieerd</string>
+  <string name="item_details_snackbar_message_license_number_copied">Licentienummer gekopieerd</string>
+  <string name="item_details_snackbar_message_linkedin_copied">LinkedIn gekopieerd</string>
+  <string name="item_details_snackbar_message_middle_name_copied">Tweede naam gekopieerd</string>
+  <string name="item_details_snackbar_message_occupation_copied">Bezetting gekopieerd</string>
+  <string name="item_details_snackbar_message_organization_copied">Organisatie gekopieerd</string>
+  <string name="item_details_snackbar_message_passport_number_copied">Paspoortnummer gekopieerd</string>
+  <string name="item_details_snackbar_message_password_copied">Wachtwoord gekopieerd</string>
+  <string name="item_details_snackbar_message_phone_number_copied">Telefoonnummer gekopieerd</string>
+  <string name="item_details_snackbar_message_pin_copied">Pincode gekopieerd</string>
+  <string name="item_details_snackbar_message_reddit_copied">Reddit gekopieerd</string>
+  <string name="item_details_snackbar_message_social_security_number_copied">Burgerservicenummer (rijksregisternummer) gekopieerd</string>
+  <string name="item_details_snackbar_message_state_or_province_copied">Staat of provincie gekopieerd</string>
+  <string name="item_details_snackbar_message_street_address_copied">Adres gekopieerd</string>
+  <string name="item_details_snackbar_message_totp_copied">TOTP gekopieerd</string>
+  <string name="item_details_snackbar_message_username_copied">Gebruikersnaam gekopieerd</string>
+  <string name="item_details_snackbar_message_website_copied">Website-URL gekopieerd</string>
+  <string name="item_details_snackbar_message_x_handle_copied">X-gebruikersnaam gekopieerd</string>
+  <string name="item_details_snackbar_message_yahoo_copied">Yahoo gekopieerd</string>
+  <string name="item_details_snackbar_message_zip_or_postal_code_copied">Zip of postcode gekopieerd</string>
+  <string name="item_details_snackbar_message_public_key_copied">Publieke sleutel gekopieerd</string>
+  <string name="item_details_snackbar_message_private_key_copied">Privé-sleutel gekopieerd</string>
+  <string name="item_details_snackbar_message_ssid_copied">SSID gekopieerd</string>
+  <string name="open_with">Openen met</string>
+  <string name="open_attachments_error">Kon bijlage niet openen</string>
+  <string name="passkey_detail_bottomsheet_title">Toegangssleutel</string>
+  <string name="passkey_detail_bottomsheet_username">Gebruikersnaam</string>
+  <string name="passkey_detail_bottomsheet_domain">Domein</string>
+  <string name="passkey_detail_bottomsheet_key">Sleutel</string>
+  <string name="passkey_detail_bottomsheet_created">Aangemaakt</string>
+  <string name="login_item_reused_passwords_subtitle">Items van uw kluis die dit wachtwoord gebruiken.</string>
+</resources>

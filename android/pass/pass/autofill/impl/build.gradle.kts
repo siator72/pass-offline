@@ -1,0 +1,158 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+plugins {
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
+    kotlin("plugin.serialization")
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.gradlePlugin.compose.compiler)
+}
+
+android {
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    namespace = "proton.android.pass.autofill.service"
+
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+
+        testInstrumentationRunner = "proton.android.pass.test.HiltRunner"
+    }
+    flavorDimensions += "version"
+    productFlavors {
+        maybeCreate("dev")
+        maybeCreate("alpha")
+        maybeCreate("play")
+        maybeCreate("fdroid")
+        maybeCreate("quest")
+        maybeCreate("nogms")
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    testOptions {
+        managedDevices {
+            allDevices {
+                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel2api30").apply {
+                    device = "Pixel 2"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                }
+            }
+        }
+    }
+}
+
+configurations {
+    // Remove duplicate classes (keep "org.jetbrains").
+    implementation.get().exclude(mapOf("group" to "com.intellij", "module" to "annotations"))
+    implementation.get().exclude(mapOf("group" to "org.intellij", "module" to "annotations"))
+}
+
+dependencies {
+    api(projects.pass.autofill.api)
+
+    implementation(libs.accompanist.navigation.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.autofill)
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.core.compose)
+
+    implementation(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.hilt.work)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.core.presentation)
+    implementation(libs.core.presentation.compose)
+    implementation(libs.core.utilKotlin)
+    implementation(libs.kotlinx.collections)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.android.compiler)
+    ksp(libs.androidx.hilt.compiler)
+
+    implementation(projects.pass.account.api)
+    implementation(projects.pass.biometry.api)
+    implementation(projects.pass.browserAllowlist.api)
+    implementation(projects.pass.clipboard.api)
+    implementation(projects.pass.common.api)
+    implementation(projects.pass.commonPresentation.api)
+    implementation(projects.pass.commonPresentation.impl)
+    implementation(projects.pass.commonUi.api)
+    implementation(projects.pass.commonUi.impl)
+    implementation(projects.pass.commonUiModels.api)
+    implementation(projects.pass.composeComponents.impl)
+    implementation(projects.pass.crypto.api)
+    implementation(projects.pass.data.api)
+    implementation(projects.pass.domain)
+    implementation(projects.pass.signingCertificates)
+    implementation(projects.pass.features.auth)
+    implementation(projects.pass.features.accountSelector)
+    implementation(projects.pass.features.upsell)
+    implementation(projects.pass.features.itemCreate)
+    implementation(projects.pass.searchOptions.api)
+    implementation(projects.pass.features.searchOptions)
+    implementation(projects.pass.features.password)
+    implementation(projects.pass.features.selectItem)
+    implementation(projects.pass.features.username)
+    implementation(projects.pass.features.vault)
+    implementation(projects.pass.inAppReview.api)
+    implementation(projects.pass.log.api)
+    implementation(projects.pass.navigation.api)
+    implementation(projects.pass.notifications.api)
+    implementation(projects.pass.preferences.api)
+    implementation(projects.pass.telemetry.api)
+    implementation(projects.pass.totp.api)
+    implementation(projects.pass.appConfig.api)
+
+    debugImplementation(libs.showkase)
+    kspDebug(libs.showkaseProcessor)
+
+    debugImplementation(libs.androidx.compose.uiTooling)
+    implementation(libs.androidx.compose.uiToolingPreview)
+
+    testImplementation(projects.pass.appConfig.fakes)
+    testImplementation(projects.pass.biometry.fakes)
+    testImplementation(projects.pass.common.fakes)
+    testImplementation(projects.pass.commonTest)
+    testImplementation(projects.pass.clipboard.fakes)
+    testImplementation(projects.pass.crypto.fakes)
+    testImplementation(projects.pass.data.fakes)
+    testImplementation(projects.pass.inAppReview.fakes)
+    testImplementation(projects.pass.notifications.fakes)
+    testImplementation(projects.pass.preferences.fakes)
+    testImplementation(projects.pass.telemetry.fakes)
+    testImplementation(projects.pass.totp.fakes)
+
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.junit)
+    testImplementation(libs.timber)
+    testImplementation(libs.truth)
+    testImplementation(libs.turbine)
+}

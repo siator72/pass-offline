@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="item_details_toolbar_content_description_menu_button">Tlačítko pro zobrazení možností nabídky</string>
+  <!-- Item details forbidden actions -->
+  <string name="item_details_forbidden_actions_edit_title">Nelze upravit</string>
+  <string name="item_details_forbidden_actions_edit_permission">Tuto položku nemůžete upravit, protože k tomu nemáte dostatečná oprávnění.</string>
+  <string name="item_details_forbidden_actions_edit_trash">Tuto položku nemůžete upravit, protože je v koši. Před úpravou ji prosím přesuňte z koše.</string>
+  <string name="item_details_forbidden_actions_edit_upgrade">Upravovat můžete pouze položky v nejstarších trezorech. Chcete-li tuto položku upravit, navyšte svůj aktuální tarif.</string>
+  <string name="item_details_forbidden_actions_share_title">Nelze sdílet</string>
+  <string name="item_details_forbidden_actions_share_limit">Dosáhli jste limitu pro sdílení trezoru. Chcete-li sdílet více trezorů, navyšte svůj stávající tarif.</string>
+  <string name="item_details_forbidden_actions_sharing_permission">K provedení této akce nemáte dostatečná oprávnění.</string>
+  <string name="item_details_forbidden_actions_share_trash">Tuto položku nemůžete sdílet, protože je v koši. Před editací ji prosím přesuňte z koše.</string>
+  <!-- Item details leave item -->
+  <string name="item_details_leave_dialog_title">Opustit tuto položku?</string>
+  <string name="item_details_leave_dialog_message">Ztratíte přístup k této položce a jejím detailům. Chcete pokračovat?</string>
+  <string name="item_details_leave_item_message_error">Došlo k chybě při opouštění položky</string>
+  <string name="item_details_leave_item_message_success">Položka úspěšně opuštěna</string>
+  <string name="item_details_monitor_check_update_error">Monitorování se nepodařilo aktualizovat. Zkuste to prosím znovu.</string>
+  <string name="item_details_snackbar_message_alias_copied">Alias zkopírován</string>
+  <string name="item_details_snackbar_message_birthdate_copied">Datum narození zkopírováno</string>
+  <string name="item_details_snackbar_message_card_number_copied">Číslo karty zkopírováno</string>
+  <string name="item_details_snackbar_message_city_copied">Město zkopírováno</string>
+  <string name="item_details_snackbar_message_company_copied">Společnost zkopírována</string>
+  <string name="item_details_snackbar_message_country_or_region_copied">Země nebo region zkopírován</string>
+  <string name="item_details_snackbar_message_county_copied">Okres zkopírován</string>
+  <string name="item_details_snackbar_message_custom_field_copied">Vlastní pole zkopírováno</string>
+  <string name="item_details_snackbar_message_cvv_copied">Bezpečnostní kód zkopírován</string>
+  <string name="item_details_snackbar_message_email_copied">E-mailová adresa zkopírována</string>
+  <string name="item_details_snackbar_message_facebook_copied">Facebook zkopírován</string>
+  <string name="item_details_snackbar_message_first_name_copied">Křestní jméno zkopírováno</string>
+  <string name="item_details_snackbar_message_floor_copied">Podlaží zkopírováno</string>
+  <string name="item_details_snackbar_message_full_name_copied">Celé jméno zkopírováno</string>
+  <string name="item_details_snackbar_message_gender_copied">Pohlaví zkopírováno</string>
+  <string name="item_details_snackbar_message_instagram_copied">Instagram zkopírován</string>
+  <string name="item_details_snackbar_message_last_name_copied">Příjmení zkopírováno</string>
+  <string name="item_details_snackbar_message_license_number_copied">Číslo licence zkopírováno</string>
+  <string name="item_details_snackbar_message_linkedin_copied">LinkedIn zkopírován</string>
+  <string name="item_details_snackbar_message_middle_name_copied">Druhé jméno zkopírováno</string>
+  <string name="item_details_snackbar_message_occupation_copied">Obsazenost zkopírována</string>
+  <string name="item_details_snackbar_message_organization_copied">Organizace zkopírována</string>
+  <string name="item_details_snackbar_message_passport_number_copied">Číslo pasu zkopírováno</string>
+  <string name="item_details_snackbar_message_password_copied">Heslo zkopírováno</string>
+  <string name="item_details_snackbar_message_phone_number_copied">Telefonní číslo zkopírováno</string>
+  <string name="item_details_snackbar_message_pin_copied">PIN kód zkopírován</string>
+  <string name="item_details_snackbar_message_reddit_copied">Reddit zkopírován</string>
+  <string name="item_details_snackbar_message_social_security_number_copied">Rodné číslo (číslo sociálního pojištění) zkopírováno</string>
+  <string name="item_details_snackbar_message_state_or_province_copied">Stát nebo provincie zkopírována</string>
+  <string name="item_details_snackbar_message_street_address_copied">Adresa ulice zkopírována</string>
+  <string name="item_details_snackbar_message_totp_copied">TOTP zkopírováno</string>
+  <string name="item_details_snackbar_message_username_copied">Uživatelské jméno zkopírováno</string>
+  <string name="item_details_snackbar_message_website_copied">URL webové stránky zkopírována</string>
+  <string name="item_details_snackbar_message_x_handle_copied">Uživatelské jméno X zkopírováno</string>
+  <string name="item_details_snackbar_message_yahoo_copied">Yahoo zkopírováno</string>
+  <string name="item_details_snackbar_message_zip_or_postal_code_copied">Poštovní směrovací číslo zkopírováno</string>
+  <string name="item_details_snackbar_message_public_key_copied">Veřejný klíč zkopírován</string>
+  <string name="item_details_snackbar_message_private_key_copied">Soukromý klíč zkopírován</string>
+  <string name="item_details_snackbar_message_ssid_copied">SSID zkopírováno</string>
+  <string name="open_with">Otevřít pomocí:</string>
+  <string name="open_attachments_error">Nepodařilo se otevřít přílohu</string>
+  <string name="passkey_detail_bottomsheet_title">Přístupový klíč</string>
+  <string name="passkey_detail_bottomsheet_username">Uživatelské jméno</string>
+  <string name="passkey_detail_bottomsheet_domain">Doména</string>
+  <string name="passkey_detail_bottomsheet_key">Klíč</string>
+  <string name="passkey_detail_bottomsheet_created">Vytvořeno</string>
+  <string name="login_item_reused_passwords_subtitle">Položky z vašich trezorů, které používají toto heslo.</string>
+</resources>

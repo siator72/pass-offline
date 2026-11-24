@@ -1,0 +1,79 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.usecases.items
+
+import kotlinx.coroutines.flow.first
+import proton.android.pass.crypto.api.context.EncryptionContext
+import proton.android.pass.crypto.api.usecases.OpenItem
+import proton.android.pass.data.api.errors.UserIdNotAvailableError
+import proton.android.pass.data.api.repositories.ItemRevision
+import proton.android.pass.data.api.repositories.ShareRepository
+import proton.android.pass.data.api.usecases.GetPrimaryUserId
+import proton.android.pass.data.api.usecases.items.OpenItemRevision
+import proton.android.pass.data.impl.crypto.GetUserAddressForShare
+import proton.android.pass.data.impl.extensions.toCrypto
+import proton.android.pass.data.impl.repositories.FolderKeyRepository
+import proton.android.pass.data.impl.repositories.ShareKeyRepository
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.Item
+import proton.android.pass.domain.ShareId
+import javax.inject.Inject
+
+class OpenItemRevisionImpl @Inject constructor(
+    private val getPrimaryUserId: GetPrimaryUserId,
+    private val shareRepository: ShareRepository,
+    private val getUserAddressForShare: GetUserAddressForShare,
+    private val shareKeyRepository: ShareKeyRepository,
+    private val folderKeyRepository: FolderKeyRepository,
+    private val openItem: OpenItem
+) : OpenItemRevision {
+
+    override suspend fun invoke(
+        shareId: ShareId,
+        itemRevision: ItemRevision,
+        encryptionContext: EncryptionContext
+    ): Item {
+        val userId = getPrimaryUserId() ?: throw UserIdNotAvailableError()
+        val addressId = getUserAddressForShare(userId, shareId).addressId
+        val share = shareRepository.getById(userId, shareId)
+        val shareKeys = shareKeyRepository.getShareKeys(
+            userId = userId,
+            addressId = addressId,
+            shareId = shareId,
+            groupEmail = share.groupEmail
+        ).first()
+
+        val folderKey = itemRevision.folderId?.let { folderId ->
+            folderKeyRepository.getFolderKey(
+                userId = userId,
+                shareId = shareId,
+                folderId = FolderId(folderId)
+            )
+        }
+
+        return openItem.open(
+            response = itemRevision.toCrypto(),
+            share = share,
+            shareKeys = shareKeys,
+            folderKey = folderKey,
+            encryptionContext = encryptionContext
+        ).item
+    }
+
+}

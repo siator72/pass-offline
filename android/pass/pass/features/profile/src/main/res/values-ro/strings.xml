@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Profil</string>
+  <string name="profile_option_settings">Setări</string>
+  <string name="profile_option_account">Cont</string>
+  <string name="profile_help_center">Centru de ajutor</string>
+  <string name="profile_security">Securitate</string>
+  <string name="profile_option_autofill_troubleshooting">Depanare completare automată</string>
+  <string name="profile_option_feedback">Feedback</string>
+  <string name="profile_option_import_export">Importare/Exportare</string>
+  <string name="profile_option_tutorial">Cum se folosește Proton Pass</string>
+  <string name="profile_option_rating">Evaluare aplicație</string>
+  <string name="profile_spread_the_word">Răspândiți vestea</string>
+  <string name="profile_option_tell_a_friend">Spuneți unui prieten</string>
+  <string name="profile_spread_the_word_share_message">Folosesc Proton Pass pentru a-mi păstra parolele în siguranță. Încearcă-l: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Autocompletare</string>
+  <string name="profile_option_autofill_subtitle">Completați automat numele de utilizator și parolele.</string>
+  <string name="profile_option_secure_links">Legături web securizate</string>
+  <string name="profile_option_alias_management">Gestionare aliasuri</string>
+  <string name="profile_option_generated_passwords">Parole generate</string>
+  <string name="profile_error_biometry_failed_to_start">Nu s-a putut porni autentificarea biometrică.</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Autentificare nereușită.</string>
+  <string name="profile_error_app_lock_update_failed">Nu s-a putut actualiza blocarea aplicației. Reîncercați.</string>
+  <string name="profile_fingerprint_lock_enabled">Blocarea cu amprentă este activată</string>
+  <string name="profile_fingerprint_lock_disabled">Blocarea cu amprentă este dezactivată</string>
+  <string name="profile_app_version_copied_to_clipboard">Versiune aplicație copiată.</string>
+  <string name="feedback_option_reddit">Accesați Proton pe Reddit</string>
+  <string name="feedback_option_mail">Trimiteți-ne un mesaj</string>
+  <string name="feedback_option_vote_new_features">Votați pentru funcții noi</string>
+  <string name="app_lock_immediately">Imediat</string>
+  <string name="app_lock_one_minute">După un minut</string>
+  <string name="app_lock_two_minutes">După două minute</string>
+  <string name="app_lock_five_minutes">Dupa 5 minute</string>
+  <string name="app_lock_ten_minutes">După 10 minute</string>
+  <string name="app_lock_one_hour">După o oră</string>
+  <string name="app_lock_four_hours">După 4 ore</string>
+  <string name="app_lock_config_none">Fără</string>
+  <string name="app_lock_config_biometric">Biometric</string>
+  <string name="app_lock_config_pin_code">Cod PIN</string>
+  <string name="app_lock_config_app_lock_time">Blocare automată</string>
+  <string name="app_lock_config_password">Parola</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Folosire blocare sistem când cel biometric eșuează</string>
+  <string name="configure_pin_set_pin_code">Setare cod PIN</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Deblocare aplicație cu acest cod</string>
+  <string name="configure_pin_enter_pin_code">Introduceți codul PIN</string>
+  <string name="configure_pin_repeat_pin_code">Repere cod PIN</string>
+  <string name="configure_pin_continue">Continuare</string>
+  <string name="configure_pin_pin_does_not_match">Codul PIN nu se potrivește.</string>
+  <string name="configure_pin_pin_too_short">Codul PIN este prea scurt.</string>
+  <string name="configure_pin_pin_cannot_be_blank">Codul PIN nu poate fi gol.</string>
+  <string name="configure_pin_pin_lock_enabled">Blocare cu PIN activată</string>
+  <string name="configure_pin_pin_lock_disabled">Blocare cu PIN dezactivată</string>
+  <string name="profile_option_lock_with">Blocare cu</string>
+  <string name="profile_option_unlock_with">Deblocare cu</string>
+  <string name="profile_option_change_pin_code">Schimbare cod PIN</string>
+  <string name="profile_passkey_support_section_title">Chei de acces</string>
+  <string name="profile_passkey_support_subtitle_supported">Cheile de acces pot fi acceptate pe acest dispozitiv</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Această versiune de Android nu suportă chei de acces.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Nu s-a putut verifica suportul pentru chei de acces</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">După %d zi</item>
+    <item quantity="few">După %d zile</item>
+    <item quantity="other">După %d de zile</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">După %d minut</item>
+    <item quantity="few">După %d minute</item>
+    <item quantity="other">După %d de minute</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">După %d oră</item>
+    <item quantity="few">După %d ore</item>
+    <item quantity="other">După %d de ore</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Mai puțin de un minut</string>
+  <string name="account_switcher_manage_account">Gestionare cont</string>
+  <string name="account_switcher_sign_in">Conectare</string>
+  <string name="account_switcher_sign_out">Deconectare</string>
+  <string name="account_switcher_switch_to">Comutare la</string>
+  <string name="account_switcher_add_account">Adăugare cont</string>
+  <string name="account_switcher_remove">Eliminare</string>
+  <string name="filtered_by_logins">Filtrate după date de conectare. Cele din gunoi nu sunt afișate.</string>
+  <string name="filtered_by_logins_with_mfa">Filtrate după date de conectare cu parolă unică (TOTP). Cele din gunoi nu sunt afișate.</string>
+  <string name="filtered_by_aliases">Filtrate după alias. Cele din gunoi nu sunt afișate.</string>
+  <string name="filtered_by_notes">Filtrate după notițe. Cele din gunoi nu sunt afișate.</string>
+  <string name="filtered_by_credit_cards">Filtrate după card de plată. Cele din gunoi nu sunt afișate.</string>
+  <string name="filtered_by_identities">Filtrate după identitate. Cele din gunoi nu sunt afișate.</string>
+  <string name="filtered_by_custom_items">Filtrate după articole personalizate. Cele din gunoi nu sunt afișate.</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Trebuie să comutați la %1$s pentru gestionare</string>
+  <string name="account_switch_confirmation_title">Gestionare cont</string>
+  <string name="account_switch_confirmation_confirm">Comutare și gestionare</string>
+  <string name="profile_storage_data_title">Spațiu de stocare</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s din %2$s</string>
+</resources>

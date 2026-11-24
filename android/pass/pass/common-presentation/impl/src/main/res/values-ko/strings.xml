@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2025 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="open_attachments_error">첨부파일을 열 수 없습니다</string>
+  <string name="download_attachments_error">첨부 파일 다운로드 실패</string>
+  <string name="share_attachments_error">첨부 파일 공유 실패</string>
+  <string name="upload_attachments_error">첨부 파일을 업로드할 수 없습니다</string>
+  <string name="attachment_not_available_offline">오프라인으로 사용 가능한 첨부 파일 없음</string>
+  <string name="attachment_download_timeout">첨부 파일 다운로드 시간 초과</string>
+  <string name="attachment_storage_full">첨부 파일을 다운로드할 충분한 공간이 없음</string>
+  <string name="attachment_size_exceeded_error">선택된 파일이 크기 제한을 초과합니다. 100 Mb 이하의 파일을 선택하세요.</string>
+  <string name="attachment_too_many_files_error">최근 생성된 파일이 너무 많습니다.</string>
+  <string name="open_with">열기:</string>
+  <string name="share_with">공유 대상:</string>
+</resources>

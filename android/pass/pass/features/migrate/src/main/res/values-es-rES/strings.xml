@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">¿Mover %d elemento a la caja fuerte siguiente?</item>
+    <item quantity="other">¿Mover %d elementos a la caja fuerte siguiente?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">¿Mover %d elemento a la siguiente carpeta?</item>
+    <item quantity="other">¿Mover %d elementos a la siguiente carpeta?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Mover</string>
+  <string name="migrate_item_success_snackbar">Se han movido los elementos.</string>
+  <string name="migrate_item_error_snackbar">Error al mover los elementos</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Error al mover algunos elementos</string>
+  <string name="migrate_item_warning_history">Al mover elementos entre cajas fuertes conservaremos hasta las últimas 50 modificaciones realizadas de cada elemento.</string>
+  <string name="migrate_item_warning_secure_link">Se eliminarán los enlaces seguros del elemento cuando se mueva a otra caja fuerte</string>
+  <string name="migrate_all_items_success_snackbar">Todos los elementos movidos</string>
+  <string name="migrate_all_items_error_snackbar">Error al mover todos los elementos de la caja fuerte</string>
+  <string name="migrate_init_error_snackbar">No se ha podido preparar la pantalla de migración.</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">¿Mover carpeta a la siguiente caja fuerte?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">¿Mover carpeta a la siguiente ubicación?</string>
+  <string name="migrate_folder_success_snackbar">Carpeta movida</string>
+  <string name="migrate_folder_error_snackbar">Error al mover la carpeta</string>
+  <string name="migrate_folder_already_same_parent_snackbar">La carpeta ya está en esta ubicación</string>
+  <string name="migrate_dissolve_folder_dialog_title">Mover el contenido de la carpeta.</string>
+  <string name="migrate_dissolve_folder_dialog_message">Esta carpeta ya se encuentra en la raíz de la caja fuerte. Sus elementos y subcarpetas se mueven a la raíz de la caja fuerte.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Mover</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">El elemento ya está en esta carpeta</item>
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">Esta carpeta ya se encuentra en esta ubicación.</string>
+  <string name="migrate_disabled_folder_reason_being_moved">Esta carpeta se está moviendo.</string>
+  <string name="migrate_disabled_folder_reason_descendant">Esta carpeta está dentro de la carpeta que se está moviendo.</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Mover aquí superaría los límites de la carpeta</string>
+  <string name="migrate_disabled_vault_reason_no_permission">No puedes crear elementos en esta caja fuerte.</string>
+  <string name="migrate_disabled_vault_reason_same_vault">No puedes mover un elemento a la misma caja fuerte.</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">¿Mover el elemento a otra caja fuerte?</item>
+    <item quantity="other">¿Mover %d elementos a otra caja fuerte?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Este elemento está compartido actualmente. Si lo mueves a otra caja fuerte, se eliminará el acceso para todos los demás usuarios.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">%d elemento está compartido actualmente. Si lo mueves a otra caja fuerte, se eliminará el acceso para todos los demás usuarios.</item>
+    <item quantity="other">%d elementos están compartidos actualmente. Si los mueves a otra caja fuerte, se eliminará el acceso para todos los demás usuarios.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Seleccionar una caja fuerte</string>
+  <string name="migrate_select_destination_for_source_title">Selecciona el destino para mover todos los elementos desde %s.</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Se han movido los elementos.</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Error al mover los elementos</string>
+</resources>

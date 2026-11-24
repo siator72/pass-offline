@@ -1,0 +1,49 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.common.api
+
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.cancellation.CancellationException
+
+@Suppress("TooGenericExceptionCaught")
+suspend inline fun <R> safeRunCatching(block: suspend () -> R): Result<R> = try {
+    Result.success(block())
+} catch (e: CancellationException) {
+    throw e // Re-throw cancellation to allow proper coroutine cancellation
+} catch (e: Throwable) {
+    Result.failure(e)
+}
+
+/**
+ * Like [safeRunCatching], but runs [onCancellation] before rethrowing when [block] is cancelled,
+ * so callers can settle state (e.g. reset a "in progress" flag) without swallowing cancellation.
+ * [onCancellation] runs under [NonCancellable], since the coroutine is already cancelled at that
+ * point and any unguarded suspending call inside it would throw immediately.
+ */
+suspend inline fun <R> safeRunCatchingWithCleanup(
+    crossinline onCancellation: suspend () -> Unit,
+    block: suspend () -> R
+): Result<R> = try {
+    safeRunCatching(block)
+} catch (e: CancellationException) {
+    withContext(NonCancellable) { onCancellation() }
+    throw e
+}
+

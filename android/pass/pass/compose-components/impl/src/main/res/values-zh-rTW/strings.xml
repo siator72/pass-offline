@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">標題 (A 到 Z)</string>
+  <string name="sort_by_title_desc">標題 (Z 到 A)</string>
+  <string name="sort_by_creation_asc">從最舊到最新</string>
+  <string name="sort_by_creation_desc">從最新到最舊</string>
+  <string name="sort_by_modification_date">最近使用</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">全部</string>
+  <string name="item_list_header_pinned_search_results">已釘選</string>
+  <string name="item_list_header_logins_type">登入</string>
+  <string name="item_list_header_logins_totp_type">使用 TOTP 登入</string>
+  <string name="item_list_header_aliases_type">別名</string>
+  <string name="item_list_header_notes_type">備註</string>
+  <string name="item_list_header_credit_cards_type">信用卡</string>
+  <plurals name="item_list_header_results">
+    <item quantity="other">結果</item>
+  </plurals>
+  <string name="item_list_header_identities_type">身份</string>
+  <string name="item_list_header_custom_type">自訂項目</string>
+  <string name="item_list_header_shared_with_me">與我共享</string>
+  <string name="item_list_header_shared_by_me">共享的項目</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">確認</string>
+  <string name="bottomsheet_cancel_button">取消</string>
+  <string name="bottomsheet_move_to_trash">移至垃圾桶</string>
+  <string name="bottomsheet_pin_item">釘選</string>
+  <string name="bottomsheet_unpin_item">取消釘選</string>
+  <string name="bottomsheet_view_item_history">查看歷史</string>
+  <string name="bottomsheet_monitor_exclude">排除監控</string>
+  <string name="bottomsheet_monitor_include">於監控名當中</string>
+  <string name="bottomsheet_migrate_item_v2">移動</string>
+  <string name="bottomsheet_create_folder">建立資料夾</string>
+  <string name="folder_tree_create_folder">建立資料夾</string>
+  <string name="bottomsheet_rename_folder">重新命名</string>
+  <string name="bottomsheet_create_sub_folder">Create sub-folder</string>
+  <string name="bottomsheet_move_folder">Move folder</string>
+  <string name="bottomsheet_move_all_items_in_folder">移動所有物品</string>
+  <string name="bottomsheet_copy_item_note">複製備註</string>
+  <string name="bottomsheet_delete_permanently">永久刪除</string>
+  <string name="bottomsheet_restore">還原</string>
+  <string name="bottomsheet_leave">退出</string>
+  <string name="bottomsheet_duplicate">複製</string>
+  <string name="bottomsheet_no_actions">沒有可用的操作</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">開啟項目行為清單</string>
+  <string name="action_upgrade_now">立即升級</string>
+  <string name="action_not_now">稍後再說</string>
+  <string name="action_learn_more">了解更多</string>
+  <string name="action_enable">啟用</string>
+  <string name="action_view_details">詳情查看</string>
+  <string name="action_see_all">查看全部</string>
+  <string name="action_confirm">確認</string>
+  <string name="action_cancel">取消</string>
+  <string name="action_continue">繼續</string>
+  <string name="action_retry">重試</string>
+  <string name="action_edit">編輯</string>
+  <string name="action_add">新增</string>
+  <string name="action_delete">刪除</string>
+  <string name="action_make_default">設為預設值</string>
+  <string name="action_verify">驗證</string>
+  <string name="action_close">關閉</string>
+  <string name="action_update">更新</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">加入您的第一個項目</string>
+  <string name="empty_search_results_title">查無結果</string>
+  <string name="empty_list_open_extension">參閱網頁擴充功能</string>
+  <string name="empty_list_create_item_button">創建新項目</string>
+  <!-- Field -->
+  <string name="field_title_title">標題</string>
+  <string name="field_title_hint">無標題</string>
+  <string name="field_title_required">需要標題</string>
+  <string name="small_cross_icon_content_description">小交叉圖示</string>
+  <string name="field_note_title">備註</string>
+  <string name="field_note_hint">新增備註</string>
+  <string name="linked_apps_title">連結應用程式</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">離線</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">缺少應用程式圖示</string>
+  <string name="add_item_icon_content_description">新增項目圖示</string>
+  <string name="navigate_back_icon_content_description">返回按鈕</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">列出項目</string>
+  <string name="bottom_bar_add_item_icon_content_description">新增項目</string>
+  <string name="bottom_bar_profile_icon_content_description">個人資料</string>
+  <string name="bottom_bar_security_center_icon_content_description">安全中心</string>
+  <string name="bottom_bar_explore_icon_content_description">Explore</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">今日</string>
+  <string name="most_recent_yesterday">昨天</string>
+  <string name="most_recent_this_week">本週</string>
+  <string name="most_recent_last_two_weeks">前兩週</string>
+  <string name="most_recent_last_30_days">上個月</string>
+  <string name="most_recent_last_60_days">過去 60 天</string>
+  <string name="most_recent_last_90_days">過去 90 天</string>
+  <string name="most_recent_within_the_last_year">上一年</string>
+  <string name="most_recent_more_than_1_year">超過1年</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">搜尋圖示</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="other">%d 個項目</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">放棄變更？</string>
+  <string name="confirm_close_dialog_message">你有未儲存的修改。你確定要捨棄它嗎？</string>
+  <string name="confirm_close_dialog_close_button">捨棄</string>
+  <!-- Upgrade -->
+  <string name="upgrade">升級</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">進階選項</string>
+  <string name="hide_advanced_options">隱藏進階選項</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">強</string>
+  <string name="label_password_strength_vulnerable">具有風險</string>
+  <string name="label_password_strength_weak">弱</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">查看全部</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">今天%s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">昨天%s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">yyyy LLL dd HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">別名地址</string>
+  <string name="item_details_alias_section_alias_disabled_title">別名位址 (已停用)</string>
+  <string name="item_details_alias_section_mailboxes_title">轉寄至</string>
+  <string name="item_details_credit_card_section_cardholder_title">持卡人姓名</string>
+  <string name="item_details_credit_card_section_card_number_title">信用卡號</string>
+  <string name="item_details_credit_card_section_expiration_date_title">到期日</string>
+  <string name="item_details_credit_card_section_cvv_title">安全碼</string>
+  <string name="item_details_credit_card_section_pin_title">PIN 碼</string>
+  <string name="item_details_login_section_email_title">電子郵件位址</string>
+  <string name="item_details_login_section_username_title">使用者名稱</string>
+  <string name="item_details_login_section_password_title">密碼</string>
+  <string name="item_details_login_section_primary_totp_title">雙重驗證憑證(TOTP) </string>
+  <string name="item_details_login_section_websites_title">網站</string>
+  <string name="autofill_mode_label_default">Parent domain and subdomains</string>
+  <string name="autofill_mode_label_exact">Exact (sub)domain</string>
+  <string name="autofill_mode_label_never">Never fill on this website</string>
+  <string name="autofill_mode_label_start_with">Starts with</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">Regular expression</string>
+  <string name="autofill_mode_label_exact_path">Exact URL matching</string>
+  <string name="autofill_mode_label_unsupported">This url will be skipped for autofill</string>
+  <string name="login_item_view_alias_button">檢視別名</string>
+  <string name="item_details_identity_section_personal_title">個人資訊</string>
+  <string name="item_details_identity_section_personal_first_name_title">名</string>
+  <string name="item_details_identity_section_personal_middle_name_title">中間名</string>
+  <string name="item_details_identity_section_personal_last_name_title">姓</string>
+  <string name="item_details_identity_section_personal_full_name_title">全名</string>
+  <string name="item_details_identity_section_personal_email_title">電子郵件位址</string>
+  <string name="item_details_identity_section_personal_gender_title">性別</string>
+  <string name="item_details_identity_section_personal_phone_title">電話號碼</string>
+  <string name="item_details_identity_section_personal_birthday_title">生日</string>
+  <string name="item_details_identity_section_address_title">位址詳細資料</string>
+  <string name="item_details_identity_section_address_organization_title">組織機構</string>
+  <string name="item_details_identity_section_address_street_address_title">街道地址、郵政信箱</string>
+  <string name="item_details_identity_section_address_floor_title">樓層</string>
+  <string name="item_details_identity_section_address_city_title">市</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">郵遞區號</string>
+  <string name="item_details_identity_section_address_state_or_province_title">州或省</string>
+  <string name="item_details_identity_section_address_county_title">縣/市</string>
+  <string name="item_details_identity_section_address_country_or_region_title">國家或地區</string>
+  <string name="item_details_identity_section_contact_title">聯絡人詳細資料</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">社會安全碼(SSN)</string>
+  <string name="item_details_identity_section_contact_passport_number_title">護照號碼</string>
+  <string name="item_details_identity_section_contact_license_number_title">許可證號碼</string>
+  <string name="item_details_identity_section_contact_website_title">網站</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X 帳號</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">次要電話號碼</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">工作詳細資料</string>
+  <string name="item_details_identity_section_work_company_title">公司</string>
+  <string name="item_details_identity_section_work_occupation_title">職業</string>
+  <string name="item_details_identity_section_work_email_title">工作電子郵件</string>
+  <string name="item_details_identity_section_work_phone_number_title">工作電話號碼</string>
+  <string name="item_details_identity_section_work_personal_website_title">個人網站</string>
+  <string name="item_details_shared_section_note_title">備注</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">上次自動填滿</string>
+  <string name="item_details_shared_section_item_history_created_title">創建日期</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Modified (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">歷史記錄</string>
+  <string name="item_details_shared_section_more_info_header_title">更多資訊</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">更多項目資訊圖示</string>
+  <string name="item_details_shared_section_more_info_item_id">項目 ID</string>
+  <string name="item_details_shared_section_more_info_vault_id">保管庫 ID</string>
+  <string name="item_details_shared_section_more_info_share_id">分享 ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">名稱 (SSID)</string>
+  <string name="item_details_wifi_network_label_password">密碼</string>
+  <string name="item_details_wifi_network_label_security">安全保護</string>
+  <string name="item_details_ssh_key_label_public_key">公開金鑰</string>
+  <string name="item_details_ssh_key_label_private_key">私有金鑰</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">應用程式版本不再支援，請更新您的應用程式。</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">密碼金鑰</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">升級方案?</string>
+  <string name="dialog_upgrade_plan_message">此功能不適用於免費層使用者。如果您想享受此功能以及其他酷炫功能，請升級您的方案並嘗試看看！</string>
+  <string name="dialog_upgrade_plan_action_confirm">升級</string>
+  <string name="dialog_upgrade_plan_action_cancel">現在不要</string>
+  <!-- Words -->
+  <string name="email_address">電子郵件位址</string>
+  <string name="email_address_invalid">無效的電子郵件位址</string>
+  <string name="password">密碼</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">關閉此工具提示且不再顯示的按鈕</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="other">%d 年</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="other">%d 月</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="other">%d 週</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="other">%d 天</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="other">%d 小時</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="other">%d 分鐘</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="other">%d 秒</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="other">%d 別名</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">已複製備註</string>
+  <string name="snack_bar_message_item_migration_error">遷移此項目時發生錯誤</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">項目已成功排除監控</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">排除項目監控時發生錯誤</string>
+  <string name="snack_bar_message_item_monitor_included_success">項目已成功包含在監控中</string>
+  <string name="snack_bar_message_item_monitor_included_error">包含項目在監控中時發生錯誤</string>
+  <string name="snack_bar_message_item_pinned_success">項目成功標記</string>
+  <string name="snack_bar_message_item_pinned_error">釘選此項目發生錯誤</string>
+  <string name="snack_bar_message_item_unpinned_success">項目成功取消標記</string>
+  <string name="snack_bar_message_item_unpinned_error">取消釘選此項目發生錯誤</string>
+  <string name="snack_bar_message_item_trashed_success">項目已成功移至垃圾桶</string>
+  <string name="snack_bar_message_item_trashed_error">將此項目移至垃圾桶時發生錯誤</string>
+  <string name="snack_bar_message_item_restore_success">項目已成功還原</string>
+  <string name="snack_bar_message_item_restore_error">還原此項目時發生錯誤</string>
+  <string name="snack_bar_message_item_delete_success">項目已成功刪除</string>
+  <string name="snack_bar_message_item_delete_error">刪除此項目時發生錯誤</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">啟用 SimpleLogin 同步</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="other">我們偵測到您有 %d 個別名存在於 SimpleLogin ，但未同步到 Proton Pass。是否要匯入？</item>
+  </plurals>
+  <string name="simple_login_widget_action">同步別名</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">沒收到驗證碼嗎？</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Please check in your Spam for an email called “%s“</string>
+  <string name="verification_code_suggestion_subject_new_email_address">請確認您的 Proton Pass 電郵位址</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">請確認您的電郵信箱</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">If you can\'t find such email, you can %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">要求新代碼</string>
+  <string name="field_display_name_title">顯示名稱</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="other">%1$s 個檔案</item>
+  </plurals>
+  <string name="attachment_title">附件</string>
+  <string name="attachment_no_files">從你的裝置上傳檔案</string>
+  <string name="attachment_add_file">附加檔案</string>
+  <string name="attachment_row_upload_failed">上傳失敗</string>
+  <string name="attachment_row_retry">再試一次</string>
+  <string name="options_menu_content_description">選項功能表</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="other">%d shared items</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="other">%d個使用者</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="other">%d 個成員</item>
+  </plurals>
+  <string name="show_network_qr_code">顯示網路 QR 碼</string>
+  <string name="expand_collpased_text">更多</string>
+  <string name="collapse_expanded_text">較少</string>
+  <string name="login_item_monitor_widget_weak_pass_title">弱密碼</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">這個帳號有風險，請造訪該服務並變更您的密碼字元.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Compromised password</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">This login password appears in a data breach. Please visit the service and change the password.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="other">%d other logins use the same password</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">為更好安全設定雙重驗證</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">此服務提供雙重驗證。啟用此功能以加強帳號安全。</string>
+  <string name="login_item_monitor_action_ignore">忽略</string>
+  <string name="login_item_monitor_action_restore">Restore alert</string>
+  <string name="login_item_monitor_header">Pass 監控</string>
+  <string name="login_item_monitor_label_weak">脆弱密碼</string>
+  <string name="login_item_monitor_label_compromised">Compromised password</string>
+  <string name="login_item_monitor_label_reused">Reused password</string>
+  <string name="login_item_monitor_label_missing_2fa">Missing 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">來自您保管庫中使用此密碼的項目。</string>
+  <string name="mfa_limit_reached">雙重驗證已達上限</string>
+  <string name="activity_in_last_two_weeks">最近 14 天內的活動</string>
+  <string name="contacts">通訊錄</string>
+  <string name="contacts_section_description">為了隱藏您的個人電郵位址，您可以建立一個別名聯絡人以遮罩您的位址。</string>
+  <string name="field_detail_display_name_title">顯示名稱</string>
+  <string name="display_name_section_description">從此別名傳送電子郵件時的顯示名稱。</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="other">%1$s 封已轉寄</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="other">%1$s 則回覆</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="other">%1$s 封已阻擋</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">創建登入</string>
+  <string name="banner_contacts_title">您知道嗎？</string>
+  <string name="banner_contacts_subtitle">每當您的別名從某人收到一封電子郵件時，就會自動建立一個新的聯絡人。</string>
+  <string name="action_reveal">顯示</string>
+  <string name="action_conceal">隱藏</string>
+  <string name="warning_dialog_item_shared_vault_title">Item in a shared vault</string>
+  <string name="warning_dialog_item_shared_title">Shared item</string>
+  <string name="warning_dialog_item_shared_vault_creating">You are creating an item in a shared vault and members will immediately gain access to this item.</string>
+  <string name="warning_dialog_item_shared_vault_moving">You are moving an item to a shared vault and members will immediately gain access to this item.</string>
+  <string name="warning_dialog_item_shared_vault_updating">You are editing an item in a shared vault and members will immediately gain access to this item.</string>
+  <string name="warning_dialog_item_shared_updating">You are editing a shared item. Changes will be visible to everyone it\'s shared with immediately.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">不要再提醒我</string>
+  <string name="upgrade_to_pass_plus">Upgrade to Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">You are about to be redirected to our website. If you purchase a plan, please restart the app.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">單字分隔字元</string>
+  <string name="bottomsheet_option_capitalise">大寫</string>
+  <string name="bottomsheet_option_word_separator_hyphens">連字號 ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">空格</string>
+  <string name="bottomsheet_option_word_separator_periods">句號 ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">逗號 ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">底線 ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">數字</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">數字和符號</string>
+  <plurals name="word_count">
+    <item quantity="other">%s 個字</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Password strength</string>
+  <string name="password_check_min_length">Password is too short</string>
+  <string name="password_check_lowercase">Lowercase letters</string>
+  <string name="password_check_uppercase">Uppercase letters</string>
+  <string name="password_check_no_consecutive">No repeated characters</string>
+  <string name="password_check_no_common">No common password</string>
+</resources>

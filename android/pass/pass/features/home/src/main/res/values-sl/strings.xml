@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Home -->
+  <string name="home_indexing_banner">Ustvarjanje iskalnega indeksa ...</string>
+  <string name="home_indexing_banner_progress">Building search index… (%1$d/%2$d)</string>
+  <string name="home_empty_vault_title">Vaš trezor je prazen</string>
+  <string name="home_empty_vault_subtitle">Začnite tako, da ustvarite svoj prvi predmet.</string>
+  <string name="home_empty_folder_title">Your folder is empty</string>
+  <string name="home_empty_vault_login_title">Ni najdenih prijav</string>
+  <string name="home_empty_vault_login_subtitle">Začnite z ustvarjanjem prvega prijavnega predmeta.</string>
+  <string name="home_empty_vault_aliases_title">Ni najdenih vzdevkov</string>
+  <string name="home_empty_vault_aliases_subtitle">Začnite tako, da ustvarite svoj prvi vzdevek.</string>
+  <string name="home_empty_vault_notes_title">Ni opomb</string>
+  <string name="home_empty_vault_notes_subtitle">Začnite tako, da ustvarite svojo prvo opombo.</string>
+  <string name="home_empty_vault_logins_mfa_title">Ni najdenih postopkov prijave s TOTP</string>
+  <string name="home_empty_vault_logins_mfa_subtitle">Začnite tako, da ustvarite svojo prvo prijavo s TOTP.</string>
+  <string name="home_empty_vault_identity_title">Ne najdem identitete</string>
+  <string name="home_empty_vault_identity_subtitle">Začnite tako, da ustvarite svoj prvi predmet identitete.</string>
+  <string name="home_empty_vault_custom_item_title">Ni predmeta po meri</string>
+  <string name="home_empty_vault_custom_item_subtitle">Začnite z ustvarjanjem svojega prvega predmeta po meri.</string>
+  <string name="home_empty_vault_cc_title">Kreditne kartice ni bilo mogoče najti</string>
+  <string name="home_empty_vault_cc_subtitle">Začnite z ustvarjanjem svojega prvega predmeta s kreditno kartico.</string>
+  <string name="home_empty_shared_items_title">Ni predmetov v skupni rabi</string>
+  <string name="home_empty_shared_items_with_me_subtitle">Noben predmet ni bil v skupni rabi z vami.</string>
+  <string name="home_empty_shared_items_by_me_subtitle">Nobenega predmeta niste dali v skupno rabo.</string>
+  <string name="home_empty_no_vaults_title">Nimate nobenih trezorjev</string>
+  <string name="home_empty_no_vaults_subtitle">Prosimo, obrnite se na skrbnika.</string>
+  <string name="home_empty_read_only_vault_title">Ta trezor je prazen</string>
+  <string name="home_empty_read_only_vault_subtitle">Predmetov ne morete dodati v trezor, ki je določen samo za branje.</string>
+  <string name="home_empty_folder_plan_restricted_title">Ta mapa je prazna</string>
+  <string name="home_empty_folder_plan_restricted_subtitle">Upgrade your plan to create items inside folders.</string>
+  <string name="home_empty_vault_create_login">Ustvarite prijavo</string>
+  <string name="home_empty_vault_create_alias">Ustvari vzdevek Hide-my-email</string>
+  <string name="home_empty_vault_create_note">Ustvari opombo</string>
+  <string name="home_empty_vault_create_credit_card">Ustvari plačilno kartico</string>
+  <string name="home_empty_vault_create_identity">Ustvari identiteto</string>
+  <string name="home_empty_vault_create_custom_item">Ustvari predmet po meri</string>
+  <string name="error_observing_items" comment="Error message shown whenever there is an error loading the items">Napaka pri nalaganju predmetov</string>
+  <string name="error_refreshing">Napaka pri izvajanju osvežitve</string>
+  <string name="home_snackbar_login_moved_to_trash">Prijava premaknjena v smetnjak</string>
+  <string name="home_snackbar_alias_moved_to_trash">Vzdevek premaknjen v smetnjak</string>
+  <string name="home_snackbar_note_moved_to_trash">Opomba premaknjena v smetnjak</string>
+  <string name="home_snackbar_credit_card_moved_to_trash">Plačilna kartica premaknjena v smetnjak</string>
+  <string name="home_snackbar_identity_moved_to_trash">Identiteta je premaknjena v smetnjak</string>
+  <string name="home_snackbar_custom_moved_to_trash">Predmet po meri premaknjen v smetnjak</string>
+  <string name="home_snackbar_move_to_trash_error">Predmeta ni bilo mogoče premakniti v smetnjak</string>
+  <string name="home_snackbar_items_move_to_trash_success">Predmeti premaknjeni v smetnjak</string>
+  <string name="home_snackbar_items_move_to_trash_error">Predmetov ni bilo mogoče premakniti v smetnjak</string>
+  <string name="home_toast_items_selected_read_only">Predmetov samo za branje ni mogoče izbrati</string>
+  <string name="home_toast_items_selected_shared_with_me">Predmetov, ki so v skupni rabi z vami, ni mogoče izbrati.</string>
+  <string name="home_autofill_banner_title">Uživajte v čarobnosti samodejnega izpolnjevanja</string>
+  <string name="home_autofill_banner_text">Samo en dotik in vaše uporabniško ime in geslo sta v trenutku izpolnjena.</string>
+  <string name="home_drawer_all_items">Vsi predmeti</string>
+  <string name="sl_sync_banner_title">Sinhronizirajte svoje vzdevke iz SimpleLogin</string>
+  <plurals name="sl_sync_banner_text">
+    <item quantity="one">Imate vzdevek %d, ki je prisoten v SimpleLogin, vendar manjka v Proton Pass. Ali ga želite sinhronizirati?</item>
+    <item quantity="two">Imate vzdevka %d, ki sta prisotna v SimpleLogin, vendar manjkata v Proton Pass. Ali ju želite sinhronizirati?</item>
+    <item quantity="few">Imate vzdevke %d, ki so prisotni v SimpleLogin, vendar manjkajo v Proton Pass. Ali jih želite sinhronizirati?</item>
+    <item quantity="other">Imate vzdevke %d, ki so prisotni v SimpleLogin, vendar manjkajo v Proton Pass. Ali jih želite sinhronizirati?</item>
+  </plurals>
+  <string name="home_notification_permission_banner_title">Pridobite pomembne posodobitve</string>
+  <string name="home_notification_permission_banner_text">Omogočite potisna obvestila, da boste obveščeni, ko drugi delijo trezor z vami.</string>
+  <string name="home_item_invite_banner_title" comment="placeholder is replaced by an email address">%s želi dati predmet v skupno rabo z vami.</string>
+  <string name="home_group_item_invite_banner_title" comment="%1$s = inviter email, %2$s = group name">%1$s želi deliti predmet z vašo skupino %2$s.</string>
+  <string name="home_group_invite_banner_title" comment="%1$s = inviter email, %2$s = group name">%1$s želi deliti trezor z vašo skupino %2$s.</string>
+  <string name="home_item_invite_card_title">Povabilo k skupnem predmetu</string>
+  <string name="home_vault_invite_card_title">Povabilo v skupni trezor</string>
+  <string name="home_vault_invite_banner_body" comment="placeholder is replaced by an email address">%s želi deliti trezor s tabo.</string>
+  <!-- Common bottomsheet -->
+  <string name="bottomsheet_copy_password">Kopiraj geslo</string>
+  <string name="bottomsheet_copy_username">Kopiraj uporabniško ime</string>
+  <string name="bottomsheet_copy_email">Kopiraj e-poštni naslov</string>
+  <string name="bottomsheet_copy_number">Kopiraj številko</string>
+  <string name="bottomsheet_copy_cvv">Kopiraj varnostno kodo</string>
+  <string name="bottomsheet_copy_note">Kopiraj opombo</string>
+  <string name="bottomsheet_edit">Uredi</string>
+  <string name="bottomsheet_copy_full_name">Kopiraj ime in priimek</string>
+  <!-- Clipboard -->
+  <string name="alias_copied_to_clipboard">Vzdevek je kopiran</string>
+  <string name="note_copied_to_clipboard">Opomba je kopirana</string>
+  <string name="full_name_copied_to_clipboard">Ime in priimek kopirana</string>
+  <string name="email_copied_to_clipboard">E-poštni naslov je kopiran</string>
+  <string name="username_copied_to_clipboard">Uporabniško ime je kopirano</string>
+  <string name="password_copied_to_clipboard">Geslo je bilo kopirano</string>
+  <string name="credit_card_number_copied_to_clipboard">Številka plačilne kartice je kopirana</string>
+  <string name="credit_card_cvv_copied_to_clipboard">Varnostna koda je kopirana</string>
+  <string name="item_too_long_copied_to_clipboard" comment="Snackbar message that's shown to the user whenever an action where the content that would be copied to the clipboard cannot be performed due to the size of the text">Vsebina je bila predolga, delno je kopirana v odložišče</string>
+  <!-- Vault drawer -->
+  <plurals name="vault_drawer_vaults_item_count">
+    <item quantity="one">%d predmet</item>
+    <item quantity="two">%d predmeta</item>
+    <item quantity="few">%d predmeti</item>
+    <item quantity="other">%d predmeti</item>
+  </plurals>
+  <string name="vault_drawer_create_vault">Ustvari nov trezor</string>
+  <string name="vault_drawer_item_trash">Smetnjak</string>
+  <!-- Vault management -->
+  <string name="vault_delete_dialog_title">Izbriši trezor</string>
+  <string name="vault_delete_dialog_cancel_action">Prekliči</string>
+  <string name="vault_delete_dialog_delete_action">Izbriši</string>
+  <string name="snackbar_delete_vault_success">Trezor je izbrisan</string>
+  <string name="snackbar_delete_vault_error">Trezor ni izbrisan</string>
+  <!-- Search top bar -->
+  <string name="search_topbar_placeholder_all_items">Išči v vseh predmetih…</string>
+  <string name="search_topbar_placeholder_vault">Iskanje v %s …</string>
+  <string name="search_topbar_placeholder_trash">Iskanje v smetnjaku …</string>
+  <string name="search_topbar_placeholder_pinning">Išči med pripetimi …</string>
+  <string name="search_topbar_placeholder_shared_by_me">Išči v moji skupni rabi…</string>
+  <string name="search_topbar_placeholder_shared_with_me">Išči v Skupna raba z mano …</string>
+  <string name="search_topbar_placeholder_folder">Iskanje v %s …</string>
+  <string name="search_topbar_placeholder_folder_fallback">Išči v mapi…</string>
+  <string name="home_topbar_title_folder_fallback">Mapa</string>
+  <string name="item_type_filter_list_icon_content_description">Ikona vrste predmeta</string>
+  <string name="item_type_filter_all">Vse</string>
+  <string name="item_type_filter_login">Prijava</string>
+  <string name="item_type_filter_alias">Vzdevek</string>
+  <string name="item_type_filter_note">Opomba</string>
+  <string name="item_type_filter_credit_card">Kartica</string>
+  <string name="item_type_filter_identity">Identiteta</string>
+  <string name="item_type_filter_custom_item">Po meri</string>
+  <string name="item_type_filter_login_totp">Prijava s TOTP</string>
+  <string name="item_type_filter_items_shared_with_me">Deljeno z mano</string>
+  <string name="item_type_filter_items_shared_by_me">Kaj delim z drugimi</string>
+  <!-- Trash -->
+  <string name="trash_empty_list_title">Smetnjak je prazen</string>
+  <string name="trash_empty_list_message">Tukaj so prikazani predmeti, premaknjeni v smetnjak.</string>
+  <string name="bottomsheet_trash_all_items_title">Smetnjak</string>
+  <string name="bottomsheet_restore_all_items">Obnovi vse predmete</string>
+  <string name="bottomsheet_empty_trash">Izprazni smetnjak</string>
+  <string name="bottomsheet_select_items">Izberite predmete</string>
+  <string name="trash_error_clearing_trash">Napaka pri čiščenju smetnjaka</string>
+  <string name="trash_success_restoring_items">Predmeti so obnovljeni</string>
+  <string name="trash_error_restoring_items">Napaka pri obnovitvi predmetov</string>
+  <string name="trash_error_deleting_item">Napaka pri brisanju predmeta</string>
+  <string name="trash_success_deleting_item">Predmet je izbrisan</string>
+  <string name="trash_deleting_items_error">Napaka pri brisanju predmeta</string>
+  <string name="trash_deleting_items_success">Predmeti so izbrisani</string>
+  <!-- Alerts -->
+  <string name="alert_confirm_clear_trash_title">Izpraznim smetnjak?</string>
+  <string name="alert_confirm_clear_trash_message">Ali ste prepričani, da želite počistiti smetnjak? Vsi vaši predmeti v smetnjaku bodo trajno izbrisani</string>
+  <string name="alert_confirm_restore_all_title">Obnovi vse predmete?</string>
+  <string name="alert_confirm_restore_all_message">Ali ste prepričani, da želite obnoviti vse predmete v smetnjaku?</string>
+  <plurals name="alert_confirm_restore_items_title">
+    <item quantity="one">Obnovim %d predmet</item>
+    <item quantity="two">Obnovim %d predmeta?</item>
+    <item quantity="few">Obnovim %d predmete?</item>
+    <item quantity="other">Obnovim %d predmetov?</item>
+  </plurals>
+  <plurals name="alert_confirm_restore_items_message">
+    <item quantity="one">Ali ste prepričani, da želite obnoviti predmet iz smetnjaka?</item>
+    <item quantity="two">Ali ste prepričani, da želite obnoviti %d predmeta iz smetnjaka?</item>
+    <item quantity="few">Ali ste prepričani, da želite obnoviti %d predmete iz smetnjaka?</item>
+    <item quantity="other">Ali ste prepričani, da želite obnoviti %d predmetov iz smetnjaka?</item>
+  </plurals>
+  <plurals name="alert_confirm_trash_items_title">
+    <item quantity="one">Premakni v smetnjak %d predmet?</item>
+    <item quantity="two">Premakni v smetnjak %d predmeta?</item>
+    <item quantity="few">Premakni v smetnjak %d predmete?</item>
+    <item quantity="other">Premakni v smetnjak %d predmetov?</item>
+  </plurals>
+  <plurals name="alert_confirm_trash_items_message">
+    <item quantity="one">Ali ste prepričani, da želite predmet premakniti v smetnjak?</item>
+    <item quantity="two">Ali ste prepričani, da želite %d predmeta premakniti v smetnjak?</item>
+    <item quantity="few">Ali ste prepričani, da želite %d predmete premakniti v smetnjak?</item>
+    <item quantity="other">Ali ste prepričani, da želite %d predmetov premakniti v smetnjak?</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_title">
+    <item quantity="one">Želite trajno izbrisati %d predmet?</item>
+    <item quantity="two">Želite trajno izbrisati %d predmeta?</item>
+    <item quantity="few">Želite trajno izbrisati %d predmete?</item>
+    <item quantity="other">Želite trajno izbrisati %d predmetov?</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_message">
+    <item quantity="one">Ali ste prepričani, da želite izbrisati predmet? Predmet bo izbrisan za vedno.</item>
+    <item quantity="two">Ali ste prepričani, da želite izbrisati %d predmeta? Predmeta bosta izbrisana za vedno.</item>
+    <item quantity="few">Ali ste prepričani, da želite izbrisati %d predmete? Predmeti bodo izbrisani za vedno.</item>
+    <item quantity="other">Ali ste prepričani, da želite izbrisati %d predmetov? Predmeti bodo izbrisani za vedno.</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_shared_warning_message">
+    <item quantity="one">%d predmet je trenutno v skupni rabi. Če ga izbrišete, boste vsem drugim uporabnikom onemogočili dostop.</item>
+    <item quantity="two">%d predmeta sta trenutno v skupni rabi. Če ju izbrišete, boste vsem drugim uporabnikom onemogočili dostop.</item>
+    <item quantity="few">%d predmeti so trenutno v skupni rabi. Če jih izbrišete, boste vsem drugim uporabnikom onemogočili dostop.</item>
+    <item quantity="other">%d predmeti so trenutno v skupni rabi. Če jih izbrišete, boste vsem drugim uporabnikom onemogočili dostop.</item>
+  </plurals>
+  <!-- Recent search -->
+  <string name="recent_search_header_count">Nedavna iskanja</string>
+  <string name="recent_search_clear">Počisti</string>
+  <string name="recent_search_remove_item">Odstrani iz nedavnih iskanj</string>
+  <!-- Pinning -->
+  <string name="home_snackbar_items_pinned_success">Predmeti so bili pripeti.</string>
+  <string name="home_snackbar_items_pinned_partial_success">Napaka pri pripenjanju nekaterih predmetov</string>
+  <string name="home_snackbar_items_pinned_error">Napaka pri pripenjanju predmetov</string>
+  <string name="home_snackbar_items_unpinned_success">Predmeti so bili odpeti.</string>
+  <string name="home_snackbar_items_unpinned_partial_success">Napaka pri odpenjanju nekaterih predmetov</string>
+  <string name="home_snackbar_items_unpinned_error">Napaka pri odpenjanju predmetov</string>
+  <string name="home_snackbar_items_alias_enabled_success">Vzdevek je uspešno omogočen</string>
+  <string name="home_snackbar_items_alias_enabled_partial_success">Napaka pri omogočanju nekaterih vzdevkov</string>
+  <string name="home_snackbar_items_alias_enabled_error">Napaka pri omogočanju vzdevkov</string>
+  <string name="home_snackbar_items_alias_disabled_success">Vzdevek je uspešno onemogočen</string>
+  <string name="home_snackbar_items_alias_disabled_partial_success">Napaka pri onemogočanju nekaterih vzdevkov</string>
+  <string name="home_snackbar_items_alias_disabled_error">Napaka pri onemogočanju vzdevkov</string>
+  <string name="bulk_action_unpin">Odpni</string>
+  <string name="bulk_action_pin">Pripni</string>
+  <string name="bulk_action_enable_alias">Omogoči vzdevek</string>
+  <string name="bulk_action_disable_alias">Onemogoči vzdevek</string>
+  <string name="vault_drawer_organise_vaults">Organizirajte trezorje</string>
+  <string name="sync_group_vault_warning">Nekateri trezorji trenutno niso na voljo zaradi težave s svojo skupino.</string>
+  <string name="sync_inactive_vault_warning">Nekateri trezorji niso več dostopni zaradi ponastavitve gesla. Ponovno aktivirajte ključe računa, da ponovno pridobite dostop.</string>
+  <string name="sync_inactive_vault_warning_action">Več o tem</string>
+</resources>

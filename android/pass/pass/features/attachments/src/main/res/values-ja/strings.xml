@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">写真撮影</string>
+  <string name="add_attachment_choose_a_photo_or_video">写真・動画を選択</string>
+  <string name="add_attachment_choose_a_file">ファイルを選択</string>
+  <string name="attachment_options_rename">名前を変更</string>
+  <string name="attachment_options_delete">削除</string>
+  <string name="attachment_options_download">ダウンロード</string>
+  <string name="attachment_options_share">共有</string>
+  <string name="file_picker_open_error">ファイルピッカーを開くことができませんでした</string>
+  <string name="media_picker_open_error">メディアピッカーを開くことができませんでした</string>
+  <string name="camera_open_error">カメラを開くことができませんでした</string>
+  <string name="camera_permission_explanation">この機能を利用するにはカメラへのアクセス許可が必要です。</string>
+  <string name="camera_permission_open_settings">設定を開く</string>
+  <string name="delete_all_attachments_title">すべての添付ファイルを削除しますか？</string>
+  <string name="delete_all_attachments_subtitle">この操作は取り消しできません</string>
+  <string name="delete_all_attachments_confirm">すべて削除</string>
+  <string name="rename_attachment_dialog_title">ファイル名の変更</string>
+  <string name="storage_full_title">ストレージがもうすぐいっぱいです。</string>
+  <string name="storage_full_body">アップグレードすると、ストレージ容量が増えます。</string>
+  <string name="storage_full_upgrade">アップグレード</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%2$s の中の%1$s</string>
+  <string name="attachments_saved_to_location_success">添付ファイルを場所に保存しました</string>
+  <string name="attachments_saved_to_location_error">場所に添付ファイルを保存できませんでした</string>
+  <string name="attachment_sync_dialog_title_waiting">Waiting for connection</string>
+  <string name="attachment_sync_dialog_title_downloading">Downloading attachments</string>
+  <string name="attachment_sync_dialog_title_done">ダウンロード完了</string>
+  <string name="attachment_sync_dialog_title_partial_failure">ダウンロード失敗</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">Waiting for network connection to download attachments.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">Downloading %1$d/%2$d attachments</string>
+  <string name="attachment_sync_dialog_subtitle_done">All attachments have been downloaded successfully.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">Some attachments could not be downloaded. You can retry the failed ones below.</string>
+  <string name="attachment_sync_dialog_retry_content_description">Retry download</string>
+  <string name="attachment_sync_vault_files_count">%1$d / %2$d files</string>
+</resources>

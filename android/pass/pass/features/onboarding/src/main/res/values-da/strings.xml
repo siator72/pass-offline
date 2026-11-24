@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="on_boarding_autofill_content_v2">Proton Pass udfylder loginoplysninger for dig. Ingen indtastning eller kopiering og indsættelse er nødvendig.</string>
+  <string name="on_boarding_autofill_title_v2">Nyd magien ved autofyld</string>
+  <string name="on_boarding_autofill_button">Autofyld med Proton Pass</string>
+  <string name="on_boarding_fingerprint_content">Indstil Proton Pass til at låse op med dit fingeraftryk, så kun du har adgang.</string>
+  <string name="on_boarding_fingerprint_title">Beskyt dine mest følsomme data</string>
+  <string name="on_boarding_fingerprint_button">Aktivér fingeraftrykslås</string>
+  <string name="on_boarding_last_page_content">Stop med at dele din rigtige e-mailadresse. Skjul den i stedet med e-mail-aliasser - en eksklusiv Proton Pass-løsning.</string>
+  <string name="on_boarding_last_page_title">Få kontrol over, hvad der lander i din indbakke</string>
+  <string name="on_boarding_last_page_button">Begynd at bruge Proton Pass</string>
+  <string name="on_boarding_skip">Ikke nu</string>
+  <string name="on_boarding_tutorial_v2">Lær, hvordan du bruger Proton Pass</string>
+  <string name="on_boarding_pending_invite_content">Af sikkerhedsmæssige årsager skal din adgang bekræftes.</string>
+  <string name="on_boarding_pending_invite_title">Afventer adgang til de delte data</string>
+  <string name="on_boarding_pending_invite_button">Lær mere om Proton Pass</string>
+  <string name="error_biometry_failed_to_start">Kunne ikke starte den biometriske godkendelse</string>
+  <string name="error_biometry_failed_to_authenticate">Kunne ikke godkende</string>
+  <string name="settings_fingerprint_lock_enabled">Fingeraftrykslås aktiveret</string>
+  <string name="error_performing_operation">Fejl ved udførelse af handling</string>
+  <string name="onboarding_slide_1_title">Alle dine adgangskoder</string>
+  <string name="onboarding_slide_2_title">Beskyt din indbakke.</string>
+  <string name="onboarding_slide_3_title">Hold dig orienteret.</string>
+  <string name="onboarding_slide_4_title">Sikker deling.</string>
+  <string name="onboarding_slide_1_subtitle">Sikkert ét sted og beskyttet af det mest betroede navn inden for privatlivsbeskyttelse.</string>
+  <string name="onboarding_slide_2_subtitle">Brug Hide-My-Email aliasser mod phishing-trusler.</string>
+  <string name="onboarding_slide_3_subtitle">Del adgangskoder og følsomme oplysninger sikkert og ubesværet.</string>
+  <string name="onboarding_slide_4_subtitle">Få advarsler, når din e-mail bliver fundet på det mørke net.</string>
+  <string name="create_an_account_button">Opret en konto</string>
+  <string name="sign_in_button">Log ind</string>
+</resources>

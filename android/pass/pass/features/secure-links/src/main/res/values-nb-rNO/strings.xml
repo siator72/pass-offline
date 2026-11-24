@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!--Create screen-->
+  <string name="secure_links_create_title">Del sikker kobling</string>
+  <string name="secure_links_create_row_expiration_title">Koblingen utløper etter</string>
+  <string name="secure_links_create_row_expiration_options_one_hour">1 time</string>
+  <string name="secure_links_create_row_expiration_options_one_day">1 dag</string>
+  <string name="secure_links_create_row_expiration_options_seven_days">7 dager</string>
+  <string name="secure_links_create_row_expiration_options_fourteen_days">14 dager</string>
+  <string name="secure_links_create_row_expiration_options_thirty_days">30 dager</string>
+  <string name="secure_links_create_row_max_views_title">Begrens antall visninger</string>
+  <string name="secure_links_create_row_max_views_subtitle">Maksimalt antall visninger: %d</string>
+  <string name="secure_links_create_button_generate">Generer sikker kobling</string>
+  <string name="secure_links_create_snackbar_message_error">Det oppsto en feil under generering av sikker kobling</string>
+  <!--Overview screen-->
+  <string name="secure_links_overview_widget_expiration_title">Utløper om:</string>
+  <string name="secure_links_overview_widget_max_views_title">Kan sees:</string>
+  <string name="secure_links_overview_widget_open_times_title">Åpnet:</string>
+  <plurals name="secure_links_overview_widget_max_views_limited">
+    <item quantity="one">%d gang</item>
+    <item quantity="other">%d ganger</item>
+  </plurals>
+  <string name="secure_links_overview_widget_max_views_unlimited">Ubegrenset</string>
+  <string name="secure_links_overview_button_view_all_links">Vis alle dine sikre koblinger</string>
+  <!--List screen-->
+  <string name="secure_links_list_title">Sikre koblinger</string>
+  <string name="secure_links_list_empty_title">Ingen sikre koblinger</string>
+  <string name="secure_links_list_empty_subtitle">Du kan begynne å opprette sikre koblinger fra delingsalternativer for elementdetaljer</string>
+  <string name="secure_links_list_expiration_description">Utløper om %s</string>
+  <string name="secure_links_list_expired_description">Utløpt</string>
+  <plurals name="secure_links_list_viewed_times_description">
+    <item quantity="one">%d visning</item>
+    <item quantity="other">%d visninger</item>
+  </plurals>
+  <string name="secure_links_list_snackbar_message_links_fetch_error">Det oppstod en feil under henting av sikre koblinger</string>
+  <string name="secure_links_list_header_title_inactive">Inaktive koblinger</string>
+  <!--Shared-->
+  <string name="secure_links_shared_action_copy_link">Kopier kobling</string>
+  <string name="secure_links_shared_action_share_link">Del kobling</string>
+  <string name="secure_links_shared_action_delete_link">Fjern kobling</string>
+  <string name="secure_links_shared_action_delete_link_inactive">Fjern inaktiv kobling</string>
+  <string name="secure_links_shared_action_delete_links_inactive">Fjern alle inaktive koblinger</string>
+  <string name="secure_links_shared_snackbar_message_link_copied">Sikker kobling kopiert</string>
+  <string name="secure_links_shared_snackbar_message_link_deletion_canceled">Sikker sletting av kobling ble avbrutt</string>
+  <string name="secure_links_shared_snackbar_message_link_deletion_error">Det oppstod en feil under sletting av sikker kobling</string>
+  <string name="secure_links_shared_snackbar_message_inactive_links_deletion_canceled">Sletting av inaktive sikre koblinger ble avbrutt</string>
+  <string name="secure_links_shared_snackbar_message_inactive_links_deletion_error">Det oppstod en feil under sletting av inaktive sikre koblinger</string>
+</resources>

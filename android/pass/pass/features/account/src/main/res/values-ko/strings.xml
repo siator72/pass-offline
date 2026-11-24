@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title">계정</string>
+  <string name="account_recovery_title">계정 및 복구</string>
+  <string name="account_username_label">사용자 이름</string>
+  <string name="account_subscription_label">구독 요금제</string>
+  <string name="account_permanently_delete_warning">회원님의 계정 및 계정에 연결된 모든 정보가 영구적으로 삭제되며, 계정을 복구할 수 없습니다.</string>
+  <string name="account_delete_account">계정 삭제</string>
+  <string name="account_delete_account_icon_content_description">계정 삭제 버튼</string>
+  <string name="account_sign_out">로그아웃</string>
+  <string name="account_sign_out_icon_content_description">로그아웃 버튼</string>
+  <string name="account_manage_account">계정 관리</string>
+  <string name="account_manage_account_icon_content_description">계정 관리 버튼</string>
+  <string name="account_manage_subscription">구독 관리</string>
+  <string name="account_get_user_info_error">사용자 정보를 가져올 수 없습니다</string>
+  <string name="manage_subscription_icon_content_description">구독 관리 버튼</string>
+  <string name="account_settings_list_item_password_header">비밀번호 변경</string>
+  <string name="account_settings_list_item_recovery_header">복구 이메일</string>
+  <string name="account_settings_list_item_security_keys">보안 키</string>
+  <string name="account_settings_list_item_recovery_hint_not_set">설정하지 않음</string>
+  <string name="account_settings_list_item_password_hint_grace">비밀번호 재설정 대기중</string>
+  <string name="account_settings_list_item_password_hint_insecure">비밀번호 재설정 준비됨</string>
+  <string name="account_settings_list_item_extra_password_header">Proton Pass의 추가 비밀번호</string>
+  <string name="account_settings_list_item_extra_password_header_set">Proton Pass 추가 비밀번호 설정</string>
+  <string name="account_settings_list_item_extra_password_active">활성</string>
+  <string name="account_settings_list_item_extra_password_description">추가 비밀번호가 Pass 사용에 필요해 집니다. 사용자의 Proton 비밀번호의 추가적인 비밀번호가 됩니다.</string>
+  <string name="account_settings_list_item_security_keys_hint_not_set">설정되지 않음</string>
+  <string name="account_settings_list_item_security_keys_hint_single">%s</string>
+  <plurals name="account_settings_list_item_security_keys_hint_many">
+    <item quantity="other">%d개 보안 키 설정됨</item>
+  </plurals>
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sync_channel">Đồng bộ</string>
+  <string name="sync_channel_description">Kênh thông báo đồng bộ hóa các nội dung</string>
+  <string name="syncing_vaults">Đang đồng bộ các két sắt và các mục</string>
+  <string name="logging_out_free_users">Đăng xuất các người dùng miễn phí thêm</string>
+  <string name="attachment_download_channel">Attachment downloads</string>
+  <string name="attachment_download_channel_description">Notifications channel for attachment downloads</string>
+  <string name="downloading_attachments">Downloading attachments</string>
+  <string name="downloading_attachments_progress" comment="%1$s is the download progress counter, e.g. 3 / 10">%1$s tệp</string>
+  <string name="plan_subscription_auto_renews_monthly">Gói đăng ký tự động gia hạn với mức phí %1$s/tháng</string>
+  <string name="plan_subscription_auto_renews_annual">Gói đăng ký tự động gia hạn với mức phí %1$s/năm</string>
+  <string name="plan_welcome_offer_auto_renews_monthly">Ưu đãi chào mừng. Tự động gia hạn với mức %1$s/tháng</string>
+  <string name="plan_welcome_offer_auto_renews_annual">Ưu đãi chào mừng. Tự động gia hạn ở mức %1$s/năm</string>
+</resources>

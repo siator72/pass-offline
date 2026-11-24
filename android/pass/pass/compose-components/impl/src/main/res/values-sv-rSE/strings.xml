@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Rubrik (A-Ö)</string>
+  <string name="sort_by_title_desc">Rubrik (Ö-A)</string>
+  <string name="sort_by_creation_asc">Äldsta till nyaste</string>
+  <string name="sort_by_creation_desc">Nyaste till äldsta</string>
+  <string name="sort_by_modification_date">Nyligen använd</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Alla</string>
+  <string name="item_list_header_pinned_search_results">Fäst</string>
+  <string name="item_list_header_logins_type">Inloggningar</string>
+  <string name="item_list_header_logins_totp_type">Inloggningar med TOTP</string>
+  <string name="item_list_header_aliases_type">Alias</string>
+  <string name="item_list_header_notes_type">Anteckningar</string>
+  <string name="item_list_header_credit_cards_type">Kreditkort</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">resultat</item>
+    <item quantity="other">resultat</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Identiteter</string>
+  <string name="item_list_header_custom_type">Anpassade objekt</string>
+  <string name="item_list_header_shared_with_me">Delat med mig</string>
+  <string name="item_list_header_shared_by_me">Delat av mig</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Bekräfta</string>
+  <string name="bottomsheet_cancel_button">Avbryt</string>
+  <string name="bottomsheet_move_to_trash">Flytta till papperskorg</string>
+  <string name="bottomsheet_pin_item">Fäst</string>
+  <string name="bottomsheet_unpin_item">Lossa</string>
+  <string name="bottomsheet_view_item_history">Visa historik</string>
+  <string name="bottomsheet_monitor_exclude">Exkludera från övervakning</string>
+  <string name="bottomsheet_monitor_include">Inkludera i övervakning</string>
+  <string name="bottomsheet_migrate_item_v2">Flytta</string>
+  <string name="bottomsheet_create_folder">Skapa mapp</string>
+  <string name="folder_tree_create_folder">Skapa mapp</string>
+  <string name="bottomsheet_rename_folder">Byt namn</string>
+  <string name="bottomsheet_create_sub_folder">Skapa undermapp</string>
+  <string name="bottomsheet_move_folder">Flytta mapp</string>
+  <string name="bottomsheet_move_all_items_in_folder">Flytta alla objekt</string>
+  <string name="bottomsheet_copy_item_note">Kopiera anteckning</string>
+  <string name="bottomsheet_delete_permanently">Ta bort permanent</string>
+  <string name="bottomsheet_restore">Återställ</string>
+  <string name="bottomsheet_leave">Lämna</string>
+  <string name="bottomsheet_duplicate">Duplicera</string>
+  <string name="bottomsheet_no_actions">Inga åtgärder tillgängliga</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Öppna åtgärdsmeny för objekt</string>
+  <string name="action_upgrade_now">Uppgradera nu</string>
+  <string name="action_not_now">Inte nu</string>
+  <string name="action_learn_more">Lär dig mer</string>
+  <string name="action_enable">Aktivera</string>
+  <string name="action_view_details">Visa detaljer</string>
+  <string name="action_see_all">Se alla</string>
+  <string name="action_confirm">Bekräfta</string>
+  <string name="action_cancel">Avbryt</string>
+  <string name="action_continue">Fortsätt</string>
+  <string name="action_retry">Försök igen</string>
+  <string name="action_edit">Redigera</string>
+  <string name="action_add">Lägg till</string>
+  <string name="action_delete">Ta bort</string>
+  <string name="action_make_default">Gör standard</string>
+  <string name="action_verify">Verifiera</string>
+  <string name="action_close">Stäng</string>
+  <string name="action_update">Uppdatera</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Lägg till ditt första objekt</string>
+  <string name="empty_search_results_title">Inga resultat hittades</string>
+  <string name="empty_list_open_extension">Besök webbtillägg</string>
+  <string name="empty_list_create_item_button">Skapa nytt objekt</string>
+  <!-- Field -->
+  <string name="field_title_title">Titel</string>
+  <string name="field_title_hint">Ingen rubrik</string>
+  <string name="field_title_required">Rubrik krävs</string>
+  <string name="small_cross_icon_content_description">Liten kryss-ikon</string>
+  <string name="field_note_title">Anteckning</string>
+  <string name="field_note_hint">Lägg till anteckning</string>
+  <string name="linked_apps_title">Länkade appar</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Offline</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Saknar appikon</string>
+  <string name="add_item_icon_content_description">Ikon för “Lägg till objekt“</string>
+  <string name="navigate_back_icon_content_description">Ikon för “Gå tillbaka“</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Objekt i listan</string>
+  <string name="bottom_bar_add_item_icon_content_description">Lägg till objekt</string>
+  <string name="bottom_bar_profile_icon_content_description">Profil</string>
+  <string name="bottom_bar_security_center_icon_content_description">Säkerhetscenter</string>
+  <string name="bottom_bar_explore_icon_content_description">Utforska</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Idag</string>
+  <string name="most_recent_yesterday">Igår</string>
+  <string name="most_recent_this_week">Denna vecka</string>
+  <string name="most_recent_last_two_weeks">Senaste två veckorna</string>
+  <string name="most_recent_last_30_days">Förra månaden</string>
+  <string name="most_recent_last_60_days">Senaste 60 dagarna</string>
+  <string name="most_recent_last_90_days">Senaste 90 dagarna</string>
+  <string name="most_recent_within_the_last_year">Under det senaste året</string>
+  <string name="most_recent_more_than_1_year">Äldre än 1 år</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Ikon för “Sök“</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 objekt</item>
+    <item quantity="other">%d objekt</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Kasta ändringar?</string>
+  <string name="confirm_close_dialog_message">Du har osparade ändringar. Är du säker på att du vill kasta dem?</string>
+  <string name="confirm_close_dialog_close_button">Kasta</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Uppgradera</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Avancerade alternativ</string>
+  <string name="hide_advanced_options">Dölj avancerade alternativ</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Starkt</string>
+  <string name="label_password_strength_vulnerable">Sårbar</string>
+  <string name="label_password_strength_weak">Svagt</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Se alla</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Idag %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Igår %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Alias-adress</string>
+  <string name="item_details_alias_section_alias_disabled_title">Alias-adress (inaktiverad)</string>
+  <string name="item_details_alias_section_mailboxes_title">Vidarebefordrad till</string>
+  <string name="item_details_credit_card_section_cardholder_title">Namn på kort</string>
+  <string name="item_details_credit_card_section_card_number_title">Kortnummer</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Utgångsdatum</string>
+  <string name="item_details_credit_card_section_cvv_title">Säkerhetskod</string>
+  <string name="item_details_credit_card_section_pin_title">PIN-kod</string>
+  <string name="item_details_login_section_email_title">E-postadress</string>
+  <string name="item_details_login_section_username_title">Användarnamn</string>
+  <string name="item_details_login_section_password_title">Lösenord</string>
+  <string name="item_details_login_section_primary_totp_title">2FA-token (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Webbplatser</string>
+  <string name="autofill_mode_label_default">Överordnad domän och underdomäner</string>
+  <string name="autofill_mode_label_exact">Exact (sub)domain</string>
+  <string name="autofill_mode_label_never">Fyll aldrig på denna webbplats</string>
+  <string name="autofill_mode_label_start_with">Börjar med</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">Vanligt uttryck</string>
+  <string name="autofill_mode_label_exact_path">Exakt URL-matchning</string>
+  <string name="autofill_mode_label_unsupported">Denna URL kommer att hoppas över för automatisk ifyllning</string>
+  <string name="login_item_view_alias_button">Visa alias</string>
+  <string name="item_details_identity_section_personal_title">Personliga detaljer</string>
+  <string name="item_details_identity_section_personal_first_name_title">Förnamn</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Mellannamn</string>
+  <string name="item_details_identity_section_personal_last_name_title">Efternamn</string>
+  <string name="item_details_identity_section_personal_full_name_title">Fullständigt namn</string>
+  <string name="item_details_identity_section_personal_email_title">E-postadress</string>
+  <string name="item_details_identity_section_personal_gender_title">Kön</string>
+  <string name="item_details_identity_section_personal_phone_title">Telefonnummer</string>
+  <string name="item_details_identity_section_personal_birthday_title">Födelsedag</string>
+  <string name="item_details_identity_section_address_title">Adressuppgifter</string>
+  <string name="item_details_identity_section_address_organization_title">Organisation</string>
+  <string name="item_details_identity_section_address_street_address_title">Gatuadress, postbox</string>
+  <string name="item_details_identity_section_address_floor_title">Våning</string>
+  <string name="item_details_identity_section_address_city_title">Ort</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">Postnummer</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Delstat eller provins</string>
+  <string name="item_details_identity_section_address_county_title">Län</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Land eller region</string>
+  <string name="item_details_identity_section_contact_title">Kontaktuppgifter</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Personnummer</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Passnummer</string>
+  <string name="item_details_identity_section_contact_license_number_title">Körkortsnummer</string>
+  <string name="item_details_identity_section_contact_website_title">Webbplats</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X-användarnamn</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Sekundärt telefonnummer</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Arbetsdetaljer</string>
+  <string name="item_details_identity_section_work_company_title">Företag</string>
+  <string name="item_details_identity_section_work_occupation_title">Yrke</string>
+  <string name="item_details_identity_section_work_email_title">E-postadress arbete</string>
+  <string name="item_details_identity_section_work_phone_number_title">Telefonnummer arbete</string>
+  <string name="item_details_identity_section_work_personal_website_title">Personlig webbplats</string>
+  <string name="item_details_shared_section_note_title">Anteckning</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Senaste autofyll</string>
+  <string name="item_details_shared_section_item_history_created_title">Skapad</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Ändrad (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Visa objekthistorik</string>
+  <string name="item_details_shared_section_more_info_header_title">Mer info</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Ikon för mer objektinformation</string>
+  <string name="item_details_shared_section_more_info_item_id">Objekt-ID</string>
+  <string name="item_details_shared_section_more_info_vault_id">Valv-ID</string>
+  <string name="item_details_shared_section_more_info_share_id">Delnings-ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">Namn (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Lösenord</string>
+  <string name="item_details_wifi_network_label_security">Säkerhet</string>
+  <string name="item_details_ssh_key_label_public_key">Offentlig nyckel</string>
+  <string name="item_details_ssh_key_label_private_key">Privat nyckel</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Appversionen stöds inte längre, uppdatera din app.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Passkey</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Uppgradera paket?</string>
+  <string name="dialog_upgrade_plan_message">Denna funktion är inte tillgänglig för gratisnivåanvändare. Om du vill njuta av detta tillsammans med andra coola funktioner, uppgradera ditt paket och prova!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Uppgradera</string>
+  <string name="dialog_upgrade_plan_action_cancel">Inte nu</string>
+  <!-- Words -->
+  <string name="email_address">E-postadress</string>
+  <string name="email_address_invalid">Ogiltig e-postadress</string>
+  <string name="password">Lösenord</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Knapp för att avfärda detta verktygstips och inte visa det igen</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d år</item>
+    <item quantity="other">%d år</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d månad</item>
+    <item quantity="other">%d månader</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d vecka</item>
+    <item quantity="other">%d veckor</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d dag</item>
+    <item quantity="other">%d dagar</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d timme</item>
+    <item quantity="other">%d timmar</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d minut</item>
+    <item quantity="other">%d minuter</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d sekund</item>
+    <item quantity="other">%d sekunder</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d alias</item>
+    <item quantity="other">%d alias</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Anteckning kopierad</string>
+  <string name="snack_bar_message_item_migration_error">Det gick inte migrera detta objekt</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Objekt exkluderat från övervakning</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Det uppstod ett fel när objekt skulle exkluderas från övervakning</string>
+  <string name="snack_bar_message_item_monitor_included_success">Objekt inkluderat i övervakning</string>
+  <string name="snack_bar_message_item_monitor_included_error">Det uppstod ett fel när objekt skulle inkluderas i övervakning</string>
+  <string name="snack_bar_message_item_pinned_success">Lyckades fästa objekt</string>
+  <string name="snack_bar_message_item_pinned_error">Det gick inte att fästa detta objekt</string>
+  <string name="snack_bar_message_item_unpinned_success">Objekt lossat</string>
+  <string name="snack_bar_message_item_unpinned_error">Det gick inte att lossa detta objekt</string>
+  <string name="snack_bar_message_item_trashed_success">Objektet har kastats</string>
+  <string name="snack_bar_message_item_trashed_error">Det gick inte kasta detta objekt</string>
+  <string name="snack_bar_message_item_restore_success">Objekt återställt</string>
+  <string name="snack_bar_message_item_restore_error">Det gick inte återställa detta objekt</string>
+  <string name="snack_bar_message_item_delete_success">Objekt borttaget</string>
+  <string name="snack_bar_message_item_delete_error">Det gick inte ta bort detta objekt</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Aktivera SimpleLogin-synkronisering</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">Vi upptäckte att du har %d alias som finns i SimpleLogin men saknas i Proton Pass. Vill du importera det?</item>
+    <item quantity="other">Vi upptäckte att du har %d alias som finns i SimpleLogin men saknas i Proton Pass. Vill du importera dem?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Synkronisera alias</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Har du inte fått koden?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Kolla i din skräppost efter ett e-postmeddelande som heter ”%s”</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Bekräfta din e-postadress för Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Bekräfta din brevlåda</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Om du inte kan hitta sådan e-post kan du %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">begära en ny kod</string>
+  <string name="field_display_name_title">Visningsnamn</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s fil</item>
+    <item quantity="other">%1$s filer</item>
+  </plurals>
+  <string name="attachment_title">Bilagor</string>
+  <string name="attachment_no_files">Ladda upp filer från din enhet</string>
+  <string name="attachment_add_file">Bifoga en fil</string>
+  <string name="attachment_row_upload_failed">Uppladdning misslyckades</string>
+  <string name="attachment_row_retry">Försök igen</string>
+  <string name="options_menu_content_description">Alternativmeny</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d delat objekt</item>
+    <item quantity="other">%d delade objekt</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d användare</item>
+    <item quantity="other">%d användare</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d medlem</item>
+    <item quantity="other">%d medlemmar</item>
+  </plurals>
+  <string name="show_network_qr_code">Visa nätverkets QR-kod</string>
+  <string name="expand_collpased_text">mer</string>
+  <string name="collapse_expanded_text">mindre</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Svagt lösenord</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Detta konto är sårbart, besök tjänsten och ändra ditt lösenord.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Komprometterade lösenord</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">Detta inloggningslösenord förekommer i ett dataintrång. Besök tjänsten och ändra lösenordet.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d annan inloggning använder samma lösenord</item>
+    <item quantity="other">%d andra inloggningar använder samma lösenord</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Ställ in 2FA för mer säkerhet</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Denna tjänst erbjuder 2FA. Aktivera det för extra kontosäkerhet.</string>
+  <string name="login_item_monitor_action_ignore">Ignorera</string>
+  <string name="login_item_monitor_action_restore">Återställ notis</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Svagt lösenord</string>
+  <string name="login_item_monitor_label_compromised">Komprometterat lösenord</string>
+  <string name="login_item_monitor_label_reused">Återanvänt lösenord</string>
+  <string name="login_item_monitor_label_missing_2fa">Saknar 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">Objekt från dina valv som använder detta lösenord.</string>
+  <string name="mfa_limit_reached">2FA-gränsen uppnådd</string>
+  <string name="activity_in_last_two_weeks">Aktivitet under de senaste 14 dagarna</string>
+  <string name="contacts">Kontakter</string>
+  <string name="contacts_section_description">För att hålla din personliga e-postadress dold kan du skapa en aliaskontakt som maskerar din adress.</string>
+  <string name="field_detail_display_name_title">Visningsnamn</string>
+  <string name="display_name_section_description">Visningsnamnet när du skickar ett e-postmeddelande från detta alias.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s vidarebefordrad</item>
+    <item quantity="other">%1$s vidarebefordrade</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s svar</item>
+    <item quantity="other">%1$s svar</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s blockering</item>
+    <item quantity="other">%1$s blockeringar</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Skapa inloggning</string>
+  <string name="banner_contacts_title">Visste du att?</string>
+  <string name="banner_contacts_subtitle">Varje gång ditt alias tar emot ett e-postmeddelande från någon så kommer en ny kontakt att skapas automatiskt.</string>
+  <string name="action_reveal">Avslöja</string>
+  <string name="action_conceal">Dölj</string>
+  <string name="warning_dialog_item_shared_vault_title">Objekt i ett delat valv</string>
+  <string name="warning_dialog_item_shared_title">Delat objekt</string>
+  <string name="warning_dialog_item_shared_vault_creating">Du skapar ett objekt i ett delat valv och medlemmar kommer omedelbart beviljas åtkomst till detta objekt.</string>
+  <string name="warning_dialog_item_shared_vault_moving">Du flyttar ett objekt till ett delat valv och medlemmar kommer omedelbart att beviljas åtkomst till detta objekt.</string>
+  <string name="warning_dialog_item_shared_vault_updating">Du redigerar ett objekt i ett delat valv och medlemmar kommer omedelbart att beviljas åtkomst till detta objekt.</string>
+  <string name="warning_dialog_item_shared_updating">Du redigerar ett delat objekt. Ändringar kommer vara synliga för alla som det delas med omedelbart.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Påminn mig inte igen</string>
+  <string name="upgrade_to_pass_plus">Uppgradera till Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">Du kommer att omdirigeras till vår webbplats. Om du köper ett paket, starta om appen.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Ordavgränsare</string>
+  <string name="bottomsheet_option_capitalise">Versaler</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Bindestreck (-)</string>
+  <string name="bottomsheet_option_word_separator_spaces">Mellanslag</string>
+  <string name="bottomsheet_option_word_separator_periods">Punkter (.)</string>
+  <string name="bottomsheet_option_word_separator_commas">Kommatecken (,)</string>
+  <string name="bottomsheet_option_word_separator_underscores">Understreck (_)</string>
+  <string name="bottomsheet_option_word_separator_numbers">Nummer</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Nummer och symboler</string>
+  <plurals name="word_count">
+    <item quantity="one">%s ord</item>
+    <item quantity="other">%s ord</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Lösenordsstyrka</string>
+  <string name="password_check_min_length">Lösenord är för kort</string>
+  <string name="password_check_lowercase">Lowercase letters</string>
+  <string name="password_check_uppercase">Uppercase letters</string>
+  <string name="password_check_no_consecutive">Inga upprepade tecken</string>
+  <string name="password_check_no_common">Inga vanliga lösenord</string>
+</resources>

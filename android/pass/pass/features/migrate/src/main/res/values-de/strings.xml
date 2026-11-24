@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">%d Eintrag in folgenden Tresor verschieben?</item>
+    <item quantity="other">%d Einträge in folgenden Tresor verschieben?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">Soll %d Eintrag in den folgenden Ordner verschoben werden?</item>
+    <item quantity="other">Sollen %d Einträge in den folgenden Ordner verschoben werden?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Verschieben</string>
+  <string name="migrate_item_success_snackbar">Einträge verschoben</string>
+  <string name="migrate_item_error_snackbar">Fehler beim Verschieben des Eintrags.</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Fehler beim Verschieben einiger Einträge.</string>
+  <string name="migrate_item_warning_history">Beim Verschieben von Einträgen zwischen Tresoren bewahren wir bis zu 50 der letzten Änderungen an jedes Eintrags auf.</string>
+  <string name="migrate_item_warning_secure_link">Die sicheren Links des Eintrags werden entfernt, wenn er in einen anderen Tresor verschoben wird.</string>
+  <string name="migrate_all_items_success_snackbar">Alle Einträge verschoben.</string>
+  <string name="migrate_all_items_error_snackbar">Fehler beim Verschieben aller Tresoreinträge.</string>
+  <string name="migrate_init_error_snackbar">Migrationsseite konnte nicht geladen werden.</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Ordner in den folgenden Tresor verschieben?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Ordner in den folgenden Ordner verschieben?</string>
+  <string name="migrate_folder_success_snackbar">Ordner verschoben</string>
+  <string name="migrate_folder_error_snackbar">Fehler beim Verschieben des Ordners</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Der Ordner befindet sich bereits in diesem Speicherort</string>
+  <string name="migrate_dissolve_folder_dialog_title">Ordnerinhalt verschieben</string>
+  <string name="migrate_dissolve_folder_dialog_message">Dieser Ordner befindet sich bereits im Stammverzeichnis des Tresors. Seine Einträge und Unterordner werden in das Stammverzeichnis des Tresors verschoben.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Verschieben</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">Eintrag befindet sich bereits in diesem Ordner</item>
+    <item quantity="other">%d Einträge befinden sich bereits in diesem Ordner</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">Der Ordner befindet sich bereits in diesem Speicherort</string>
+  <string name="migrate_disabled_folder_reason_being_moved">Dieser Ordner wird verschoben</string>
+  <string name="migrate_disabled_folder_reason_descendant">Dieser Ordner befindet sich in dem Ordner, der verschoben wird</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Ein Umzug hierhin würde die Ordnerbeschränkungen überschreiten</string>
+  <string name="migrate_disabled_vault_reason_no_permission">Du kannst in diesem Tresor keine Einträge erstellen.</string>
+  <string name="migrate_disabled_vault_reason_same_vault">Du kannst einen Eintrag nicht in denselben Tresor verschieben.</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">Eintrag in einen anderen Tresor verschieben?</item>
+    <item quantity="other">%d Einträge in einen anderen Tresor verschieben?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Dieser Eintrag wird derzeit geteilt. Wenn du ihn in einen anderen Tresor verschiebst, verlieren alle anderen Benutzer den Zugriff.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">%d Eintrag wird derzeit geteilt. Wenn du ihn in einen anderen Tresor verschiebst, verlieren alle anderen Benutzer den Zugriff.</item>
+    <item quantity="other">%d Einträge werden derzeit geteilt. Wenn du sie in einen anderen Tresor verschiebst, verlieren alle anderen Benutzer den Zugriff.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Tresor auswählen</string>
+  <string name="migrate_select_destination_for_source_title">Wähle den Zielort aus, an den alle Elemente aus %s verschoben werden sollen</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Einträge verschoben</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Fehler beim Verschieben der Einträge</string>
+</resources>

@@ -1,0 +1,251 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.db.dao
+
+import androidx.room.Dao
+import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+import me.proton.core.data.room.db.BaseDao
+import proton.android.pass.data.impl.db.entities.ShareEntity
+import proton.android.pass.data.impl.db.entities.ShareKeyView
+
+@Dao
+abstract class SharesDao : BaseDao<ShareEntity>() {
+
+    @Query(
+        """
+        SELECT * FROM ${ShareEntity.TABLE}
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.ID} = :shareId
+        LIMIT 1
+        """
+    )
+    abstract fun observeById(userId: String, shareId: String): Flow<ShareEntity?>
+
+    @Query(
+        """
+        SELECT ${ShareEntity.Columns.ID} FROM ${ShareEntity.TABLE} 
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.ID} IN (:shareIds)
+          AND (:shareType IS NULL OR ${ShareEntity.Columns.SHARE_TYPE} = :shareType)
+          AND (:shareRole IS NULL OR ${ShareEntity.Columns.SHARE_ROLE_ID} = :shareRole)
+          AND ${ShareEntity.Columns.IS_ACTIVE} = 1
+        """
+    )
+    abstract fun observeIds(
+        userId: String,
+        shareIds: List<String>,
+        shareType: Int?,
+        shareRole: String?
+    ): Flow<List<String>>
+
+    @Query(
+        """
+        SELECT * FROM ${ShareEntity.TABLE} 
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+        """
+    )
+    abstract fun observeAllIncludingInactive(userId: String): Flow<List<ShareEntity>>
+
+    @Query(
+        """
+        SELECT * FROM ${ShareEntity.TABLE} 
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.ID} IN (:shareIds)
+          AND (:shareType IS NULL OR ${ShareEntity.Columns.SHARE_TYPE} = :shareType)
+          AND (:shareRole IS NULL OR ${ShareEntity.Columns.SHARE_ROLE_ID} = :shareRole)
+          AND ${ShareEntity.Columns.IS_ACTIVE} = 1
+        """
+    )
+    abstract fun observeActive(
+        userId: String,
+        shareIds: List<String>,
+        shareType: Int?,
+        shareRole: String?
+    ): Flow<List<ShareEntity>>
+
+    @Query(
+        """
+        SELECT COUNT(*) FROM ${ShareEntity.TABLE} 
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.ID} IN (:shareIds)
+          AND (:shareType IS NULL OR ${ShareEntity.Columns.SHARE_TYPE} = :shareType)
+          AND ${ShareEntity.Columns.IS_ACTIVE} = 1
+        """
+    )
+    abstract fun observeCount(
+        userId: String,
+        shareIds: List<String>,
+        shareType: Int?
+    ): Flow<Int>
+
+    @Query(
+        """
+        SELECT
+            ${ShareEntity.Columns.ID},
+            ${ShareEntity.Columns.VAULT_ID},
+            ${ShareEntity.Columns.SHARE_TYPE},
+            ${ShareEntity.Columns.TARGET_ID},
+            ${ShareEntity.Columns.SHARE_ROLE_ID},
+            ${ShareEntity.Columns.PERMISSION},
+            ${ShareEntity.Columns.FLAGS},
+            ${ShareEntity.Columns.OWNER},
+            ${ShareEntity.Columns.GROUP_ID},
+            ${ShareEntity.Columns.CREATE_TIME}
+        FROM ${ShareEntity.TABLE}
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.IS_ACTIVE} = 1
+        """
+    )
+    abstract fun observeShareKeyView(userId: String): Flow<List<ShareKeyView>>
+
+    @Query(
+        """
+        DELETE FROM ${ShareEntity.TABLE}
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND (NOT :applyShareIds OR ${ShareEntity.Columns.ID} IN (:shareIds))
+        """
+    )
+    abstract suspend fun deleteShares(
+        userId: String,
+        shareIds: List<String>?,
+        applyShareIds: Boolean
+    ): Int
+
+    @Query(
+        """
+        UPDATE ${ShareEntity.TABLE}
+        SET ${ShareEntity.Columns.OWNER} = :isOwner
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.ID} = :shareId
+        """
+    )
+    abstract suspend fun updateOwnership(
+        userId: String,
+        shareId: String,
+        isOwner: Boolean
+    )
+
+    @Query(
+        """
+        SELECT EXISTS(
+            SELECT 1
+            FROM ${ShareEntity.TABLE}
+            WHERE ${ShareEntity.Columns.ID} = :shareId
+                AND ${ShareEntity.Columns.USER_ID} = :userId
+        )
+        """
+    )
+    abstract suspend fun checkIfShareExists(userId: String, shareId: String): Boolean
+
+    @Query(
+        """
+        SELECT ${ShareEntity.Columns.ID} FROM ${ShareEntity.TABLE}
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.ID} IN (:shareIds)
+          AND ${ShareEntity.Columns.SHARE_TYPE} = :shareType
+          AND ${ShareEntity.Columns.IS_ACTIVE} = 1
+        """
+    )
+    abstract suspend fun getIdsByType(
+        userId: String,
+        shareIds: List<String>,
+        shareType: Int
+    ): List<String>
+
+    @Query(
+        """
+        UPDATE ${ShareEntity.TABLE}
+        SET ${ShareEntity.Columns.TARGET_MEMBERS} = :count
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.ID} = :shareId
+        """
+    )
+    abstract suspend fun updateMembersCount(
+        userId: String,
+        shareId: String,
+        count: Int
+    )
+
+    @Query(
+        """
+        UPDATE ${ShareEntity.TABLE}
+        SET ${ShareEntity.Columns.OFFLINE_ATTACHMENTS} = :enabled
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.ID} = :shareId
+        """
+    )
+    abstract suspend fun setOfflineAttachments(
+        userId: String,
+        shareId: String,
+        enabled: Boolean
+    )
+
+    @Query(
+        """
+        SELECT ${ShareEntity.Columns.ID} FROM ${ShareEntity.TABLE}
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.OFFLINE_ATTACHMENTS} = 1
+          AND ${ShareEntity.Columns.ID} IN (:shareIds)
+        """
+    )
+    abstract suspend fun getOfflineEnabledShareIds(userId: String, shareIds: List<String>): List<String>
+
+    @Query(
+        """
+        SELECT ${ShareEntity.Columns.ID} FROM ${ShareEntity.TABLE}
+        WHERE ${ShareEntity.Columns.OFFLINE_ATTACHMENTS} = 1
+          AND ${ShareEntity.Columns.USER_ID} = :userId
+        """
+    )
+    abstract fun observeOfflineEnabledShareIds(userId: String): Flow<List<String>>
+
+    @Query(
+        """
+        UPDATE ${ShareEntity.TABLE}
+        SET ${ShareEntity.Columns.OFFLINE_ATTACHMENTS} = 1
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+        """
+    )
+    abstract suspend fun enableAllOfflineAttachments(userId: String)
+
+    @Query(
+        """
+        SELECT COUNT(*) > 0 FROM ${ShareEntity.TABLE}
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.SHARE_TYPE} = :itemType
+          AND ${ShareEntity.Columns.OFFLINE_ATTACHMENTS} = 1
+        """
+    )
+    abstract fun observeSharedItemsOfflineEnabled(userId: String, itemType: Int): Flow<Boolean>
+
+    @Query(
+        """
+        UPDATE ${ShareEntity.TABLE}
+        SET ${ShareEntity.Columns.OFFLINE_ATTACHMENTS} = :enabled
+        WHERE ${ShareEntity.Columns.USER_ID} = :userId
+          AND ${ShareEntity.Columns.SHARE_TYPE} = :itemType
+        """
+    )
+    abstract suspend fun setSharedItemsOfflineAttachments(
+        userId: String,
+        enabled: Boolean,
+        itemType: Int
+    )
+}

@@ -1,0 +1,848 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.repositories
+
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
+import me.proton.core.crypto.common.keystore.EncryptedByteArray
+import me.proton.core.user.domain.extension.primary
+import me.proton.core.user.domain.repository.UserAddressRepository
+import proton.android.pass.common.api.AppDispatchers
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.safeRunCatching
+import proton.android.pass.common.api.some
+import proton.android.pass.crypto.api.EncryptionKey
+import proton.android.pass.crypto.api.context.EncryptionContext
+import proton.android.pass.crypto.api.context.EncryptionContextProvider
+import proton.android.pass.crypto.api.usecases.CreateVault
+import proton.android.pass.crypto.api.usecases.GetUserKeys
+import proton.android.pass.crypto.api.usecases.UserKeys
+import proton.android.pass.crypto.api.usecases.UpdateVault
+import proton.android.pass.data.api.errors.ShareNotAvailableError
+import proton.android.pass.data.api.repositories.GroupRepository
+import proton.android.pass.data.api.repositories.RefreshSharesResult
+import proton.android.pass.data.api.repositories.SearchIndexRepository
+import proton.android.pass.data.api.repositories.ShareRepository
+import proton.android.pass.data.api.repositories.UpdateShareEvent
+import proton.android.pass.data.api.repositories.UserAccessDataRepository
+import proton.android.pass.data.impl.crypto.ReencryptShareContents
+import proton.android.pass.data.impl.db.PassDatabase
+import proton.android.pass.data.impl.db.entities.ShareEntity
+import proton.android.pass.data.impl.db.entities.ShareKeyEntity
+import proton.android.pass.data.impl.extensions.toEntity
+import proton.android.pass.data.impl.extensions.toRequest
+import proton.android.pass.data.impl.extensions.toResponse
+import proton.android.pass.data.impl.local.LocalShareDataSource
+import proton.android.pass.data.impl.remote.RemoteShareDataSource
+import proton.android.pass.data.impl.requests.CreateVaultRequest
+import proton.android.pass.data.impl.responses.ShareResponse
+import proton.android.pass.data.impl.util.TimeUtil.toDate
+import proton.android.pass.domain.AddressId
+import proton.android.pass.domain.GroupId
+import proton.android.pass.domain.Share
+import proton.android.pass.domain.ShareFlags
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.SharePermission
+import proton.android.pass.domain.ShareRole
+import proton.android.pass.domain.ShareType
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.VaultId
+import proton.android.pass.domain.VaultProperties
+import proton.android.pass.domain.entity.NewVault
+import proton.android.pass.domain.events.EventToken
+import proton.android.pass.domain.key.ShareKey
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.commonrust.api.ItemContentSerializer
+import java.sql.Date
+import javax.inject.Inject
+
+@Suppress("TooManyFunctions", "LargeClass")
+class ShareRepositoryImpl @Inject constructor(
+    private val itemContentSerializer: ItemContentSerializer,
+    private val database: PassDatabase,
+    private val getUserKeys: GetUserKeys,
+    private val userAddressRepository: UserAddressRepository,
+    private val remoteShareDataSource: RemoteShareDataSource,
+    private val localShareDataSource: LocalShareDataSource,
+    private val reencryptShareContents: ReencryptShareContents,
+    private val createVault: CreateVault,
+    private val updateVault: UpdateVault,
+    private val encryptionContextProvider: EncryptionContextProvider,
+    private val shareKeyRepository: ShareKeyRepository,
+    private val userAccessDataRepository: UserAccessDataRepository,
+    private val groupRepository: GroupRepository,
+    private val searchIndexRepository: SearchIndexRepository,
+    private val appDispatchers: AppDispatchers
+) : ShareRepository {
+
+    override suspend fun createVault(userId: UserId, vault: NewVault): Share {
+        val userAddress = requireNotNull(userAddressRepository.getAddresses(userId).primary())
+        val userKeys = getUserKeys(userId)
+        val userPrimaryKey = requireNotNull(userKeys.primaryKeyId())
+
+        val (request, shareKey) = safeRunCatching {
+            createVaultRequest(userKeys, vault, userAddress.addressId)
+        }.fold(
+            onSuccess = { it },
+            onFailure = {
+                PassLogger.w(TAG, "Error in CreateVaultRequest")
+                PassLogger.w(TAG, it)
+                throw it
+            }
+        )
+
+        val createVaultResponse = remoteShareDataSource.createVault(userAddress.userId, request)
+        val symmetricallyEncryptedKey = encryptionContextProvider.withEncryptionContextSuspendable {
+            encrypt(shareKey.value())
+        }
+        val groupEmail = createVaultResponse.groupId?.let {
+            groupRepository.retrieveGroup(userId, GroupId(it))
+                ?.groupEmail
+                ?: throw IllegalStateException("Group not found on vault create")
+        }
+        val encryptedContent = reencryptShareContents(createVaultResponse.content, shareKey)
+        val responseAsEntity = createVaultResponse.toEntity(
+            userId = userAddress.userId.id,
+            addressId = userAddress.addressId.id,
+            encryptedContent = encryptedContent,
+            isActive = true,
+            groupEmail = groupEmail
+        )
+
+        val shareKeyEntity = ShareKeyEntity(
+            rotation = 1,
+            userId = userId.id,
+            addressId = userAddress.addressId.id,
+            shareId = createVaultResponse.shareId,
+            key = request.encryptedVaultKey,
+            createTime = createVaultResponse.createTime,
+            symmetricallyEncryptedKey = symmetricallyEncryptedKey,
+            isActive = true,
+            userKeyId = userPrimaryKey
+        )
+        database.inTransaction("createVault") {
+            localShareDataSource.upsertShares(listOf(responseAsEntity))
+            shareKeyRepository.saveShareKeys(listOf(shareKeyEntity))
+        }
+
+        return encryptionContextProvider.withEncryptionContextSuspendable {
+            responseAsEntity.toDomain(this@withEncryptionContextSuspendable)
+        } ?: throw IllegalStateException("Failed to parse created vault share ${responseAsEntity.id}")
+    }
+
+    override suspend fun deleteVault(userId: UserId, shareId: ShareId) {
+        remoteShareDataSource.deleteVault(userId, shareId)
+        localShareDataSource.deleteShares(userId, setOf(shareId))
+        removeSharesFromSearchIndex(setOf(shareId))
+        refreshDefaultShareIfNeeded(userId, setOf(shareId))
+    }
+
+    private suspend fun removeSharesFromSearchIndex(shareIds: Collection<ShareId>) {
+        shareIds.forEach { shareId ->
+            safeRunCatching { searchIndexRepository.removeShareFromIndex(shareId) }
+                .onFailure {
+                    PassLogger.w(TAG, "Failed to remove share ${shareId.id} from search index")
+                    PassLogger.w(TAG, it)
+                }
+        }
+    }
+
+    override fun observeAllShares(userId: UserId, includeHidden: Boolean): Flow<List<Share>> =
+        localShareDataSource.observeAllActiveSharesForUser(userId, includeHidden)
+            .map { shares ->
+                encryptionContextProvider.withEncryptionContextSuspendable {
+                    shares.mapNotNull { share ->
+                        share.toDomain(this@withEncryptionContextSuspendable)
+                    }
+                }
+            }
+
+    override fun observeAllUsableShareIds(userId: UserId, includeHidden: Boolean): Flow<List<ShareId>> =
+        localShareDataSource.observeUsableShareIds(userId, includeHidden)
+
+    override fun observeSharesByType(
+        userId: UserId,
+        shareType: ShareType,
+        includeHidden: Boolean
+    ): Flow<List<Share>> = localShareDataSource.observeByType(userId, shareType, includeHidden)
+        .map { shares ->
+            encryptionContextProvider.withEncryptionContextSuspendable {
+                shares.mapNotNull { share ->
+                    share.toDomain(this@withEncryptionContextSuspendable)
+                }
+            }
+        }
+
+    @Suppress("LongMethod")
+    override suspend fun refreshShares(userId: UserId, eventToken: EventToken?): RefreshSharesResult = coroutineScope {
+        PassLogger.i(TAG, "Refreshing shares")
+
+        val localShares = localShareDataSource.observeAllIncludingInactive(userId).first()
+        val localSharesMap = localShares.associateBy { localShareEntity ->
+            ShareId(localShareEntity.id)
+        }
+        val hadLocalSharesOnStart = localShares.isNotEmpty()
+        val localInactiveShareIds = localShares.filterNot { it.isActive }.map { it.id }
+        if (localInactiveShareIds.isNotEmpty()) {
+            PassLogger.i(
+                TAG,
+                "Local shares include ${localInactiveShareIds.size} inactive share(s) hidden from the " +
+                    "vault list until their key becomes usable again: $localInactiveShareIds"
+            )
+        }
+
+        val remoteShares = remoteShareDataSource.retrieveShares(userId)
+        PassLogger.i(
+            TAG,
+            "Retrieved ${remoteShares.size} shares from remote: " +
+                remoteShares.map { "${it.shareId}(groupId=${it.groupId})" }
+        )
+        val remoteSharesMap = remoteShares.associateBy { remoteShareResponse ->
+            ShareId(remoteShareResponse.shareId)
+        }
+
+        // Update local share if needed
+        val sharesToUpdate = remoteSharesMap.mapNotNull { (_, remoteShare) ->
+            val localShare = localSharesMap[ShareId(remoteShare.shareId)]
+            if (localShare != null && localShareNeedsUpdate(localShare, remoteShare)) {
+                localShare to remoteShare
+            } else {
+                null
+            }
+        }.map { (localShare, remoteShare) ->
+            async {
+                val shareId = ShareId(remoteShare.shareId)
+                val (encryptedContent, isActive) = getEncryptedContentAndActiveStatus(
+                    localShare = localShare,
+                    remoteShare = remoteShare,
+                    shareId = shareId
+                )
+
+                remoteShare.toEntity(
+                    userId = localShare.userId,
+                    addressId = localShare.addressId,
+                    encryptedContent = encryptedContent,
+                    isActive = isActive,
+                    groupEmail = localShare.groupEmail
+                )
+            }
+        }.awaitAll()
+
+        // Delete from the local data source the shares that are not in remote response
+        val toDelete = localSharesMap.keys.subtract(remoteSharesMap.keys)
+
+        refreshDefaultShareIfNeeded(userId, toDelete)
+
+        if (sharesToUpdate.isNotEmpty() || toDelete.isNotEmpty()) {
+            database.inTransaction("refreshShares") {
+                if (sharesToUpdate.isNotEmpty()) {
+                    PassLogger.i(TAG, "Updating ${sharesToUpdate.size} shares")
+                    localShareDataSource.upsertShares(sharesToUpdate)
+                }
+                if (toDelete.isNotEmpty()) {
+                    PassLogger.i(TAG, "Deleting ${toDelete.size} shares")
+                    val deletedShareResult = localShareDataSource.deleteShares(userId, toDelete)
+                    PassLogger.i(TAG, "Deleted $deletedShareResult shares")
+                }
+            }
+            if (toDelete.isNotEmpty()) {
+                removeSharesFromSearchIndex(toDelete)
+            }
+        }
+
+        val sharesNotInLocal = remoteShares
+            // Filter out shares that are not in the local storage
+            .filterNot { localSharesMap.containsKey(ShareId(it.shareId)) }
+            .map { ShareId(it.shareId) }
+
+        val inactiveLocalShares = localShares.filter { !it.isActive }.map { ShareId(it.id) }
+        val remoteSharesToSave = remoteShares.filter {
+            sharesNotInLocal.contains(ShareId(it.shareId)) ||
+                inactiveLocalShares.contains(ShareId(it.shareId))
+        }
+        val remoteSharesSkipped = remoteShares.filterNot { remoteSharesToSave.contains(it) }
+        if (remoteSharesSkipped.isNotEmpty()) {
+            PassLogger.i(
+                TAG,
+                "Skipping ${remoteSharesSkipped.size} remote share(s) already stored and active: " +
+                    remoteSharesSkipped.map { it.shareId }
+            )
+        }
+
+        val (storedShares, skippedDueToGroupCount, skippedShareIds) =
+            storeShares(userId, remoteSharesToSave)
+        val inactiveNotInLocalShares = storedShares
+            .filter { !it.isActive }
+            .map { ShareId(it.id) }
+
+        val newShares = storedShares.filter {
+            it.isActive && sharesNotInLocal.contains(ShareId(it.id))
+        }
+
+        val allShareIds = remoteSharesMap.keys.filterNot {
+            inactiveLocalShares.contains(it) || inactiveNotInLocalShares.contains(it) || skippedShareIds.contains(it)
+        }.toSet()
+
+        val wasFirstSync = !hadLocalSharesOnStart && allShareIds.isNotEmpty()
+
+        PassLogger.i(TAG, "Refreshed shares")
+
+        RefreshSharesResult(
+            allShareIds = allShareIds,
+            newShareIds = newShares.map { ShareId(it.id) }.toSet(),
+            wasFirstSync = wasFirstSync,
+            hasInactiveShares = inactiveNotInLocalShares.isNotEmpty(),
+            hasInvalidGroupShares = skippedDueToGroupCount > 0
+        )
+    }
+
+    override suspend fun refreshShare(
+        userId: UserId,
+        shareId: ShareId,
+        eventToken: EventToken?
+    ) {
+        val shareResponse = remoteShareDataSource.retrieveShareById(userId, shareId)
+            ?: run {
+                PassLogger.w(TAG, "Error fetching share from remote [shareId=${shareId.id}]")
+                throw ShareNotAvailableError()
+            }
+        val localShare = localShareDataSource.getById(userId, shareId)
+            ?: run {
+                PassLogger.w(TAG, "Error fetching share from local [shareId=${shareId.id}]")
+                throw ShareNotAvailableError()
+            }
+
+        val (encryptedContent, isActive) = getEncryptedContentAndActiveStatus(
+            localShare = localShare,
+            remoteShare = shareResponse,
+            shareId = shareId
+        )
+        val updated = shareResponse.toEntity(
+            userId = localShare.userId,
+            addressId = localShare.addressId,
+            encryptedContent = encryptedContent,
+            isActive = isActive,
+            groupEmail = localShare.groupEmail
+        )
+        localShareDataSource.upsertShares(listOf(updated))
+    }
+
+    override suspend fun updateMembersCount(
+        userId: UserId,
+        shareId: ShareId,
+        count: Int
+    ) {
+        localShareDataSource.updateMembersCount(userId, shareId, count)
+    }
+
+    override suspend fun getById(userId: UserId, shareId: ShareId): Share =
+        localShareDataSource.getById(userId, shareId)?.let { entity ->
+            encryptionContextProvider.withEncryptionContextSuspendable {
+                entity.toDomain(this@withEncryptionContextSuspendable)
+            }
+        } ?: throw ShareNotAvailableError()
+
+    override fun observeById(userId: UserId, shareId: ShareId): Flow<Share> =
+        localShareDataSource.observeById(userId, shareId)
+            .map { shareEntity ->
+                if (shareEntity == null) {
+                    throw ShareNotAvailableError()
+                }
+
+                encryptionContextProvider.withEncryptionContextSuspendable {
+                    shareEntity.toDomain(this@withEncryptionContextSuspendable)
+                } ?: throw ShareNotAvailableError()
+            }
+
+    override suspend fun updateVault(
+        userId: UserId,
+        shareId: ShareId,
+        vault: NewVault
+    ): Share {
+        val userAddress = requireNotNull(userAddressRepository.getAddresses(userId).primary())
+        val shareKey = shareKeyRepository.getLatestKeyForShare(shareId).first()
+        val body = newVaultToBody(vault)
+        val share = localShareDataSource.getById(userId, shareId)
+        val originalContent = share?.encryptedContent?.let { encryptedContent ->
+            encryptionContextProvider.withEncryptionContextSuspendable {
+                decrypt(encryptedContent)
+            }
+        }
+        val request = try {
+            updateVault.createUpdateVaultRequest(shareKey, originalContent, body).toRequest()
+        } finally {
+            originalContent?.fill(0)
+        }
+        val response = safeRunCatching {
+            remoteShareDataSource.updateVault(userId, shareId, request)
+        }.fold(
+            onSuccess = { it },
+            onFailure = {
+                PassLogger.w(TAG, "Error in updateVault")
+                PassLogger.w(TAG, it)
+                throw it
+            }
+        )
+
+        val shareKeyAsEncryptionkey = encryptionContextProvider.withEncryptionContextSuspendable {
+            EncryptionKey(decrypt(shareKey.key))
+        }
+        val encryptedContent = reencryptShareContents(response.content, shareKeyAsEncryptionkey)
+        val shareEntity = response.toEntity(
+            userId = userAddress.userId.id,
+            addressId = userAddress.addressId.id,
+            encryptedContent = encryptedContent,
+            isActive = true,
+            groupEmail = share?.groupEmail
+        )
+        localShareDataSource.upsertShares(listOf(shareEntity))
+
+        return encryptionContextProvider.withEncryptionContextSuspendable {
+            shareEntity.toDomain(this@withEncryptionContextSuspendable)
+        } ?: throw IllegalStateException("Failed to parse updated vault share ${shareEntity.id}")
+    }
+
+    override suspend fun recreateShare(
+        userId: UserId,
+        shareId: ShareId,
+        eventToken: EventToken?
+    ) {
+        val shareResponse = remoteShareDataSource.retrieveShareById(userId, shareId)
+            ?: run {
+                PassLogger.w(TAG, "Error fetching share from remote [shareId=${shareId.id}]")
+                throw ShareNotAvailableError()
+            }
+        val (_, skippedCount) = storeShares(userId, listOf(shareResponse))
+        if (skippedCount > 0) {
+            PassLogger.w(TAG, "Skipped $skippedCount shares due to missing group information")
+        }
+    }
+
+    override suspend fun deleteLocalSharesForUser(userId: UserId) = withContext(appDispatchers.io) {
+        localShareDataSource.deleteSharesForUser(userId)
+    }
+
+    override suspend fun deleteLocalShares(userId: UserId, list: List<ShareId>): Boolean {
+        val deleted = localShareDataSource.deleteShares(userId, list.toSet())
+        removeSharesFromSearchIndex(list)
+        return deleted
+    }
+
+    override fun observeVaultCount(userId: UserId, includeHidden: Boolean): Flow<Int> =
+        localShareDataSource.observeActiveVaultCount(userId, includeHidden)
+
+    override suspend fun leaveVault(userId: UserId, shareId: ShareId) {
+        remoteShareDataSource.leaveVault(userId, shareId)
+        localShareDataSource.deleteShares(userId, setOf(shareId))
+        removeSharesFromSearchIndex(setOf(shareId))
+    }
+
+    override suspend fun applyPendingShareEvent(userId: UserId, event: UpdateShareEvent) {
+        onShareResponseEntity(userId, event) { (entity, _) ->
+            localShareDataSource.upsertShares(listOf(entity))
+        }
+    }
+
+    override suspend fun applyPendingShareEventKeys(userId: UserId, event: UpdateShareEvent) {
+        onShareResponseEntity(userId, event) { (_, keys) ->
+            shareKeyRepository.saveShareKeys(keys)
+        }
+    }
+
+    override suspend fun getAddressIdForShareId(userId: UserId, shareId: ShareId): AddressId {
+        val entity = localShareDataSource.getById(userId, shareId)
+            ?: throw ShareNotAvailableError()
+        return AddressId(entity.addressId)
+    }
+
+    override fun observeSharedWithMeIds(userId: UserId, includeHiddenVault: Boolean): Flow<List<ShareId>> =
+        localShareDataSource.observeSharedWithMeIds(userId, includeHiddenVault)
+
+    override fun observeSharedByMeIds(userId: UserId, includeHiddenVault: Boolean): Flow<List<ShareId>> =
+        localShareDataSource.observeSharedByMeIds(userId, includeHiddenVault)
+
+    override suspend fun batchChangeShareVisibility(userId: UserId, shareVisibilityChanges: Map<ShareId, Boolean>) {
+        val response = remoteShareDataSource.batchChangeShareVisibility(userId, shareVisibilityChanges)
+        val (_, skippedCount) = storeShares(userId, response)
+        if (skippedCount > 0) {
+            PassLogger.w(TAG, "Skipped $skippedCount shares due to missing group information")
+        }
+        shareVisibilityChanges.forEach { (shareId, visible) ->
+            safeRunCatching {
+                searchIndexRepository.updateShareHidden(shareId, isHidden = !visible)
+            }.onFailure {
+                PassLogger.w(TAG, "Failed to update search index visibility for share ${shareId.id}")
+                PassLogger.w(TAG, it)
+            }
+        }
+    }
+
+    override suspend fun setOfflineAttachments(
+        userId: UserId,
+        shareId: ShareId,
+        enabled: Boolean
+    ) {
+        localShareDataSource.setOfflineAttachments(userId, shareId, enabled)
+    }
+
+    override fun observeOfflineEnabledShareIds(userId: UserId): Flow<List<ShareId>> =
+        localShareDataSource.observeOfflineEnabledShareIds(userId)
+
+    override suspend fun enableAllOfflineAttachments(userId: UserId) {
+        localShareDataSource.enableAllOfflineAttachments(userId)
+    }
+
+    override fun observeSharedItemsOfflineEnabled(userId: UserId): Flow<Boolean> =
+        localShareDataSource.observeSharedItemsOfflineEnabled(userId)
+
+    override suspend fun setSharedItemsOfflineAttachments(userId: UserId, enabled: Boolean) {
+        localShareDataSource.setSharedItemsOfflineAttachments(userId, enabled)
+    }
+
+    override suspend fun filterShareIdsByType(
+        userId: UserId,
+        shareIds: Set<ShareId>,
+        shareType: ShareType
+    ): Set<ShareId> = localShareDataSource.getShareIdsByType(userId, shareIds, shareType)
+
+    private suspend fun onShareResponseEntity(
+        userId: UserId,
+        event: UpdateShareEvent,
+        block: suspend (Pair<ShareEntity, List<ShareKeyEntity>>) -> Unit
+    ) {
+        block(createShareResponseEntity(event.toResponse(), userId, event.groupEmail))
+    }
+
+    private suspend fun storeShares(userId: UserId, shares: List<ShareResponse>): StoreSharesResult = coroutineScope {
+        if (shares.isEmpty()) return@coroutineScope StoreSharesResult(emptyList(), 0)
+        PassLogger.i(TAG, "Fetching ShareKeys for ${shares.size} shares")
+        val groups = if (shares.any { it.groupId != null }) {
+            groupRepository.retrieveGroups(userId, forceRefresh = true)
+        } else null
+
+        var invalidGroupSharesCount = 0
+        val skippedShareIds = mutableSetOf<ShareId>()
+        val entities: List<Pair<ShareEntity, List<ShareKeyEntity>>> = shares
+            .mapNotNull { response ->
+                val groupEmail = if (response.groupId != null) {
+                    val resolvedGroup = groups?.find { it.id.id == response.groupId }
+                    PassLogger.i(
+                        TAG,
+                        "Share ${response.shareId} has groupId=${response.groupId}, " +
+                            "resolved to group=${resolvedGroup?.id?.id}, " +
+                            "hasGroupEmail=${resolvedGroup?.groupEmail != null}"
+                    )
+                    resolvedGroup?.groupEmail
+                        ?: run {
+                            PassLogger.w(
+                                TAG,
+                                "Skipping share ${response.shareId} - " +
+                                    "group ${response.groupId} not found"
+                            )
+                            invalidGroupSharesCount++
+                            skippedShareIds.add(ShareId(response.shareId))
+                            return@mapNotNull null
+                        }
+                } else {
+                    null
+                }
+                response to groupEmail
+            }
+            .map { (response, groupEmail) ->
+                async {
+                    safeRunCatching {
+                        createShareResponseEntity(response, userId, groupEmail)
+                    }.onFailure { e ->
+                        PassLogger.w(
+                            TAG,
+                            "Failed to process share ${response.shareId} (groupId=${response.groupId})"
+                        )
+                        PassLogger.w(TAG, e)
+                    }.getOrThrow()
+                }
+            }
+            .awaitAll()
+
+        val shareEntities = entities.map { (entity, _) -> entity }
+        val shareKeyEntities = entities.flatMap { (_, keys) -> keys }
+
+        persistShareEntities(shareEntities, shareKeyEntities)
+
+        StoreSharesResult(shareEntities, invalidGroupSharesCount, skippedShareIds)
+    }
+
+    private suspend fun persistShareEntities(shareEntities: List<ShareEntity>, shareKeyEntities: List<ShareKeyEntity>) {
+        if (shareEntities.isEmpty() && shareKeyEntities.isEmpty()) return
+        database.inTransaction("storeShares") {
+            if (shareEntities.isNotEmpty()) {
+                PassLogger.i(TAG, "Storing ${shareEntities.size} shares")
+                localShareDataSource.upsertShares(shareEntities)
+            }
+            if (shareKeyEntities.isNotEmpty()) {
+                PassLogger.i(TAG, "Storing ${shareKeyEntities.size} ShareKeys")
+                shareKeyRepository.saveShareKeys(shareKeyEntities)
+            }
+        }
+    }
+
+    private suspend fun createShareResponseEntity(
+        shareResponse: ShareResponse,
+        userId: UserId,
+        groupEmail: String?
+    ): Pair<ShareEntity, List<ShareKeyEntity>> {
+        val shareId = ShareId(shareResponse.shareId)
+
+        // First we fetch the shareKeys and not save them, in case the share has not been
+        // inserted yet, as it would cause a FK mismatch in the database
+        val shareKeys = shareKeyRepository.getShareKeys(
+            userId = userId,
+            addressId = AddressId(shareResponse.addressId),
+            shareId = shareId,
+            groupEmail = groupEmail,
+            forceRefresh = false,
+            shouldStoreLocally = false
+        ).first()
+
+        // Reencrypt the share contents
+        val encryptionKey =
+            getEncryptionKey(shareResponse.contentKeyRotation, shareKeys)
+        val (encryptedContent, isActive) = when (encryptionKey) {
+            EncryptionKeyStatus.NotFound -> null to true
+            is EncryptionKeyStatus.Found -> {
+                reencryptShareContents(shareResponse.content, encryptionKey.encryptionKey) to true
+            }
+            EncryptionKeyStatus.Inactive -> null to false
+        }
+        return shareResponse.toEntity(
+            userId = userId.id,
+            addressId = shareResponse.addressId,
+            encryptedContent = encryptedContent,
+            isActive = isActive,
+            groupEmail = groupEmail
+        ) to shareKeys.map { shareKey ->
+            ShareKeyEntity(
+                rotation = shareKey.rotation,
+                userId = userId.id,
+                addressId = shareResponse.addressId,
+                shareId = shareResponse.shareId,
+                key = shareKey.responseKey,
+                createTime = shareKey.createTime,
+                symmetricallyEncryptedKey = shareKey.key,
+                isActive = shareKey.isActive,
+                userKeyId = shareKey.userKeyId
+            )
+        }
+    }
+
+    private suspend fun getEncryptedContentAndActiveStatus(
+        localShare: ShareEntity,
+        remoteShare: ShareResponse,
+        shareId: ShareId
+    ): Pair<EncryptedByteArray?, Boolean> {
+        val contentChanged = localShare.content != remoteShare.content
+
+        return if (contentChanged) {
+            val shareKey = shareKeyRepository.getLatestKeyForShare(shareId).first()
+            val encryptionKey = encryptionContextProvider.withEncryptionContextSuspendable {
+                EncryptionKey(decrypt(shareKey.key))
+            }
+            when {
+                remoteShare.contentKeyRotation == null -> null to true
+                !shareKey.isActive -> null to false
+                else -> reencryptShareContents(remoteShare.content, encryptionKey) to true
+            }
+        } else {
+            localShare.encryptedContent to localShare.isActive
+        }
+    }
+
+    private suspend fun getEncryptionKey(keyRotation: Long?, keys: List<ShareKey>): EncryptionKeyStatus {
+        if (keyRotation == null) return EncryptionKeyStatus.NotFound
+
+        val encryptionKey =
+            keys.firstOrNull { it.rotation == keyRotation }
+                ?: return EncryptionKeyStatus.NotFound
+        if (!encryptionKey.isActive) {
+            PassLogger.d(TAG, "Found key but it is not active")
+            return EncryptionKeyStatus.Inactive
+        }
+
+        val decrypted =
+            encryptionContextProvider.withEncryptionContextSuspendable { decrypt(encryptionKey.key) }
+        return EncryptionKeyStatus.Found(EncryptionKey(decrypted))
+    }
+
+    private fun ShareEntity.toDomain(encryptionContext: EncryptionContext): Share? = when (ShareType.from(targetType)) {
+        ShareType.Item -> toItemShare()
+        ShareType.Vault -> toVaultShare(encryptionContext)
+    }
+
+    private fun ShareEntity.toItemShare(): Share.Item = Share.Item(
+        id = ShareId(id),
+        userId = UserId(userId),
+        addressId = AddressId(addressId),
+        targetId = targetId,
+        permission = SharePermission(permission),
+        vaultId = VaultId(vaultId),
+        groupId = groupId?.let(::GroupId),
+        expirationTime = expirationTime?.let { Date(it) },
+        createTime = createTime.toDate(),
+        shareRole = ShareRole.fromValue(shareRoleId),
+        isOwner = owner,
+        memberCount = targetMembers,
+        shared = shared,
+        pendingInvites = pendingInvites,
+        newUserInvitesReady = newUserInvitesReady,
+        maxMembers = targetMaxMembers,
+        canAutofill = canAutofill,
+        shareFlags = ShareFlags(flags),
+        groupEmail = groupEmail
+    )
+
+    private fun ShareEntity.toVaultShare(encryptionContext: EncryptionContext): Share.Vault? {
+        val vaultEncryptedContent = encryptedContent
+            ?: throw IllegalStateException("Vault share without encrypted content")
+        val vault = runCatching {
+            encryptionContext.decrypt(vaultEncryptedContent)
+                .let(itemContentSerializer::deserializeVault)
+        }.getOrElse { e ->
+            PassLogger.w(TAG, "Failed to parse vault proto for share $id, skipping")
+            PassLogger.w(TAG, e)
+            return null
+        }
+        return Share.Vault(
+            id = ShareId(id),
+            userId = UserId(userId),
+            addressId = AddressId(addressId),
+            targetId = targetId,
+            permission = SharePermission(permission),
+            vaultId = VaultId(vaultId),
+            groupId = groupId?.let(::GroupId),
+            groupEmail = groupEmail,
+            expirationTime = expirationTime?.let { Date(it) },
+            createTime = createTime.toDate(),
+            shareRole = ShareRole.fromValue(shareRoleId),
+            isOwner = owner,
+            memberCount = targetMembers,
+            shared = shared,
+            pendingInvites = pendingInvites,
+            newUserInvitesReady = newUserInvitesReady,
+            maxMembers = targetMaxMembers,
+            canAutofill = canAutofill,
+            name = vault.name,
+            color = vault.color,
+            icon = vault.icon,
+            shareFlags = ShareFlags(flags),
+            offlineAttachments = offlineAttachments
+        )
+    }
+
+    private suspend fun createVaultRequest(
+        userKeys: UserKeys,
+        vault: NewVault,
+        addressId: AddressId
+    ): Pair<CreateVaultRequest, EncryptionKey> {
+        val body = newVaultToBody(vault)
+        val (request, shareKey) = createVault.createVaultRequest(userKeys, addressId, body)
+        return request.toRequest() to shareKey
+    }
+
+    private suspend fun newVaultToBody(vault: NewVault): VaultProperties {
+        val (name, description) = encryptionContextProvider.withEncryptionContextSuspendable {
+            decrypt(vault.name) to decrypt(vault.description)
+        }
+
+        return VaultProperties(
+            name = name,
+            description = description,
+            icon = vault.icon,
+            color = vault.color
+        )
+    }
+
+    private fun localShareNeedsUpdate(localShare: ShareEntity, remoteShare: ShareResponse): Boolean = when {
+        localShare.vaultId != remoteShare.vaultId -> true
+        localShare.targetType != remoteShare.targetType -> true
+        localShare.targetId != remoteShare.targetId -> true
+        localShare.owner != remoteShare.owner -> true
+        localShare.groupId != remoteShare.groupId -> true
+        localShare.addressId != remoteShare.addressId -> true
+        localShare.shareRoleId != remoteShare.shareRoleId -> true
+        localShare.permission != remoteShare.permission -> true
+        localShare.targetMembers != remoteShare.targetMembers -> true
+        localShare.shared != remoteShare.shared -> true
+        localShare.targetMaxMembers != remoteShare.targetMaxMembers -> true
+        localShare.expirationTime != remoteShare.expirationTime -> true
+        localShare.pendingInvites != remoteShare.pendingInvites -> true
+        localShare.newUserInvitesReady != remoteShare.newUserInvitesReady -> true
+        localShare.canAutofill != remoteShare.canAutofill -> true
+        localShare.flags != remoteShare.flags -> true
+        localShare.content != remoteShare.content -> true
+        localShare.contentKeyRotation != remoteShare.contentKeyRotation -> true
+        localShare.contentFormatVersion != remoteShare.contentFormatVersion -> true
+        localShare.createTime != remoteShare.createTime -> true
+
+        else -> false
+    }
+
+    private suspend fun refreshDefaultShareIfNeeded(userId: UserId, toDelete: Set<ShareId>) {
+        if (toDelete.isEmpty()) return
+
+        val defaultShareId = getSlSyncDefaultShareId(userId).value() ?: return
+        if (toDelete.contains(defaultShareId)) {
+            PassLogger.i(TAG, "Detected removal of SLSync ShareID. Refreshing")
+            userAccessDataRepository.refresh(userId)
+        }
+    }
+
+    private suspend fun getSlSyncDefaultShareId(userId: UserId): Option<ShareId> {
+        val userData = userAccessDataRepository.observe(userId).firstOrNull()
+        return when {
+            userData == null -> None
+            userData.simpleLoginSyncDefaultShareId.isBlank() -> None
+            else -> ShareId(userData.simpleLoginSyncDefaultShareId).some()
+        }
+    }
+
+    internal sealed interface EncryptionKeyStatus {
+        data object NotFound : EncryptionKeyStatus
+        data class Found(val encryptionKey: EncryptionKey) : EncryptionKeyStatus
+        data object Inactive : EncryptionKeyStatus
+    }
+
+    private data class StoreSharesResult(
+        val shareEntities: List<ShareEntity>,
+        val invalidGroupSharesCount: Int,
+        val skippedShareIds: Set<ShareId> = emptySet()
+    )
+
+    private companion object {
+
+        private const val TAG = "ShareRepositoryImpl"
+
+    }
+
+}

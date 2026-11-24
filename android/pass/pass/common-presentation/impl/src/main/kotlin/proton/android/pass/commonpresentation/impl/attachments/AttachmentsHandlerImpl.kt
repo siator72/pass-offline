@@ -1,0 +1,304 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.commonpresentation.impl.attachments
+
+import android.content.Context
+import dagger.hilt.android.scopes.ViewModelScoped
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
+import proton.android.pass.biometry.AuthOverrideState
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.Some
+import proton.android.pass.common.api.safeRunCatching
+import proton.android.pass.common.api.toOption
+import proton.android.pass.commonpresentation.api.attachments.AttachmentsHandler
+import proton.android.pass.commonpresentation.impl.R
+import proton.android.pass.commonpresentation.impl.attachments.AttachmentSnackbarMessages.AttachmentSizeExceededError
+import proton.android.pass.commonpresentation.impl.attachments.AttachmentSnackbarMessages.AttachmentNotAvailableOffline
+import proton.android.pass.commonpresentation.impl.attachments.AttachmentSnackbarMessages.DownloadAttachmentsError
+import proton.android.pass.commonpresentation.impl.attachments.AttachmentSnackbarMessages.OpenAttachmentsError
+import proton.android.pass.commonpresentation.impl.attachments.AttachmentSnackbarMessages.ShareAttachmentsError
+import proton.android.pass.commonpresentation.impl.attachments.AttachmentSnackbarMessages.UploadAttachmentsError
+import proton.android.pass.commonui.api.ClassHolder
+import proton.android.pass.commonui.api.FileHandler
+import proton.android.pass.commonuimodels.api.attachments.AttachmentsState
+import proton.android.pass.data.api.errors.FileSizeExceededError
+import proton.android.pass.data.api.errors.ProtonCodeException
+import proton.android.pass.data.api.repositories.DraftAttachmentRepository
+import proton.android.pass.data.api.repositories.PendingAttachmentLinkRepository
+import proton.android.pass.data.api.repositories.PendingAttachmentUpdaterRepository
+import proton.android.pass.data.api.usecases.GetUserPlan
+import proton.android.pass.data.api.usecases.ObserveUserAccessData
+import proton.android.pass.data.api.usecases.attachments.ClearAttachments
+import proton.android.pass.data.api.usecases.attachments.DownloadAttachment
+import proton.android.pass.data.api.usecases.attachments.ObserveItemAttachments
+import proton.android.pass.data.api.usecases.attachments.ObserveUpdateItemAttachments
+import proton.android.pass.data.api.usecases.attachments.UploadAttachment
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.attachments.Attachment
+import proton.android.pass.domain.attachments.AttachmentDownloadStatus
+import proton.android.pass.domain.attachments.AttachmentId
+import proton.android.pass.domain.attachments.DraftAttachment
+import proton.android.pass.domain.attachments.FileMetadata
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.network.api.NetworkMonitor
+import proton.android.pass.network.api.NetworkStatus
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import java.net.URI
+import javax.inject.Inject
+
+@ViewModelScoped
+class AttachmentsHandlerImpl @Inject constructor(
+    private val draftAttachmentRepository: DraftAttachmentRepository,
+    private val pendingAttachmentLinkRepository: PendingAttachmentLinkRepository,
+    private val pendingAttachmentUpdaterRepository: PendingAttachmentUpdaterRepository,
+    private val uploadAttachment: UploadAttachment,
+    private val downloadAttachment: DownloadAttachment,
+    private val clearAttachments: ClearAttachments,
+    private val observeUpdateItemAttachments: ObserveUpdateItemAttachments,
+    private val observeItemAttachments: ObserveItemAttachments,
+    private val fileHandler: FileHandler,
+    private val snackbarDispatcher: SnackbarDispatcher,
+    private val authOverrideState: AuthOverrideState,
+    private val networkMonitor: NetworkMonitor,
+    observeUserAccessData: ObserveUserAccessData,
+    getUserPlan: GetUserPlan
+) : AttachmentsHandler {
+
+    private val shareIdState = MutableStateFlow<Option<ShareId>>(None)
+    private val itemIdState = MutableStateFlow<Option<ItemId>>(None)
+    private val loadingAttachments: MutableStateFlow<Set<AttachmentId>> =
+        MutableStateFlow(emptySet())
+
+    private val attachments = combine(
+        shareIdState,
+        itemIdState,
+        ::Pair
+    ).flatMapLatest { (shareId, itemId) ->
+        if (shareId is Some && itemId is Some) {
+            observeUpdateItemAttachments(shareId.value, itemId.value)
+        } else {
+            flowOf(emptyList())
+        }
+    }
+
+    override val attachmentState: Flow<AttachmentsState> = combine(
+        draftAttachmentRepository.observeAll(),
+        attachments,
+        loadingAttachments,
+        observeUserAccessData(),
+        getUserPlan()
+    ) { draftAttachments, attachments, loadingAttachments, userAccessData, plan ->
+        AttachmentsState(
+            draftAttachmentsList = draftAttachments,
+            attachmentsList = attachments,
+            loadingAttachments = loadingAttachments,
+            needsUpgrade = userAccessData?.storageAllowed?.let { !it }.toOption(),
+            canUpgrade = !plan.hideUpgrade
+        )
+    }.distinctUntilChanged()
+
+    override suspend fun openDraftAttachment(
+        contextHolder: ClassHolder<Context>,
+        uri: URI,
+        mimetype: String
+    ) {
+        authOverrideState.setAuthOverride(true)
+        safeRunCatching {
+            fileHandler.openFile(
+                contextHolder = contextHolder,
+                uri = uri,
+                mimeType = mimetype,
+                chooserTitle = contextHolder.get().value()?.getString(R.string.open_with) ?: ""
+            )
+        }.onFailure {
+            PassLogger.w(TAG, "Could not open draft attachment")
+            PassLogger.w(TAG, it)
+            snackbarDispatcher(OpenAttachmentsError)
+        }
+    }
+
+    override suspend fun openAttachment(contextHolder: ClassHolder<Context>, attachment: Attachment) {
+        loadingAttachments.update { it + attachment.id }
+        authOverrideState.setAuthOverride(true)
+
+        val isOffline = networkMonitor.connectivity.first() == NetworkStatus.Offline
+
+        if (isOffline && attachment.downloadStatus != AttachmentDownloadStatus.Downloaded) {
+            PassLogger.i(TAG, "Offline and attachment not downloaded")
+            snackbarDispatcher(AttachmentNotAvailableOffline)
+            loadingAttachments.update { it - attachment.id }
+            authOverrideState.setAuthOverride(false)
+            return
+        }
+
+        safeRunCatching {
+            val uri = downloadAttachment(attachment)
+            fileHandler.openFile(
+                contextHolder = contextHolder,
+                uri = uri,
+                mimeType = attachment.mimeType,
+                chooserTitle = contextHolder.get().value()?.getString(R.string.open_with) ?: ""
+            )
+        }.onSuccess {
+            PassLogger.i(TAG, "Attachment opened")
+        }.onFailure {
+            PassLogger.w(TAG, "Could not open attachment")
+            PassLogger.w(TAG, it)
+            snackbarDispatcher(OpenAttachmentsError)
+        }
+        loadingAttachments.update { it - attachment.id }
+    }
+
+    override suspend fun preloadAttachment(attachment: Attachment): Option<URI> {
+        loadingAttachments.update { it + attachment.id }
+        authOverrideState.setAuthOverride(true)
+        val result = safeRunCatching {
+            downloadAttachment(attachment)
+        }.onSuccess {
+            PassLogger.i(TAG, "Attachment downloaded")
+        }.onFailure {
+            PassLogger.w(TAG, "Could not download attachment")
+            PassLogger.w(TAG, it)
+            snackbarDispatcher(DownloadAttachmentsError)
+        }
+        loadingAttachments.update { it - attachment.id }
+        return result.getOrNull().toOption()
+    }
+
+    override suspend fun shareAttachment(contextHolder: ClassHolder<Context>, attachment: Attachment) {
+        loadingAttachments.update { it + attachment.id }
+        authOverrideState.setAuthOverride(true)
+        safeRunCatching {
+            val uri = downloadAttachment(attachment)
+            fileHandler.shareFile(
+                contextHolder = contextHolder,
+                fileTitle = attachment.name,
+                uri = uri,
+                mimeType = attachment.mimeType,
+                chooserTitle = contextHolder.get().value()?.getString(R.string.share_with) ?: ""
+            )
+        }.onSuccess {
+            PassLogger.i(TAG, "Attachment shared")
+        }.onFailure {
+            PassLogger.w(TAG, "Could not share attachment")
+            PassLogger.w(TAG, it)
+            snackbarDispatcher(ShareAttachmentsError)
+        }
+        loadingAttachments.update { it - attachment.id }
+    }
+
+    override suspend fun uploadNewAttachment(fileMetadata: FileMetadata) {
+        val uri = fileMetadata.uri
+        safeRunCatching { uploadAttachment(fileMetadata) }
+            .onSuccess {
+                PassLogger.i(TAG, "Attachment uploaded: $uri")
+            }
+            .onFailure {
+                when (it) {
+                    is FileSizeExceededError -> snackbarDispatcher(AttachmentSizeExceededError)
+                    is ProtonCodeException -> {
+                        val message = if (it.protonCode == PROTON_TOO_MANY_FILES_CREATED_CODE) {
+                            AttachmentSnackbarMessages.AttachmentTooManyFilesError
+                        } else {
+                            UploadAttachmentsError
+                        }
+                        snackbarDispatcher(message)
+                    }
+
+                    else -> snackbarDispatcher(UploadAttachmentsError)
+                }
+                PassLogger.w(TAG, "Could not upload attachment: $uri")
+                PassLogger.w(TAG, it)
+            }
+    }
+
+    override fun onClearAttachments() {
+        clearAttachments()
+    }
+
+    override fun observeNewAttachments(onNewAttachment: (DraftAttachment) -> Unit): Flow<DraftAttachment> =
+        draftAttachmentRepository.observeNew().onEach(onNewAttachment)
+
+    override fun observeHasDeletedAttachments(onAttachmentDeleted: () -> Unit): Flow<Unit> =
+        pendingAttachmentLinkRepository.observeAllToUnLink()
+            .filter { it.isNotEmpty() }
+            .distinctUntilChanged()
+            .onEach { onAttachmentDeleted() }
+            .map { }
+
+    override fun observeHasRenamedAttachments(onAttachmentRenamed: () -> Unit): Flow<Unit> =
+        pendingAttachmentUpdaterRepository.observeAllPendingRenames()
+            .filter { it.isNotEmpty() }
+            .distinctUntilChanged()
+            .onEach { onAttachmentRenamed() }
+            .map { }
+
+    override suspend fun getAttachmentsForItem(shareId: ShareId, itemId: ItemId) {
+        shareIdState.update { Some(shareId) }
+        itemIdState.update { Some(itemId) }
+    }
+
+    override suspend fun copyAttachmentsAsDraft(shareId: ShareId, itemId: ItemId) {
+        // Attachments are encrypted with the source item's key; the duplicate is a brand new item
+        // with its own key, so each file must be re-downloaded (decrypted) and re-uploaded as a
+        // draft (re-encrypted). Best effort: a failed download/upload surfaces the existing error
+        // snackbar, skips that file, and still creates the item.
+        val sourceAttachments = safeRunCatching {
+            observeItemAttachments(shareId, itemId).first()
+        }.getOrElse {
+            PassLogger.w(TAG, "Could not read source attachments to duplicate")
+            PassLogger.w(TAG, it)
+            emptyList()
+        }
+        sourceAttachments.forEach { attachment ->
+            when (val uri = preloadAttachment(attachment)) {
+                None -> Unit
+                is Some -> draftAttachmentRepository.add(
+                    DraftAttachment.Loading(
+                        FileMetadata(
+                            uri = uri.value,
+                            name = attachment.name,
+                            size = attachment.size,
+                            mimeType = attachment.mimeType,
+                            attachmentType = attachment.type,
+                            createTime = attachment.createTime
+                        )
+                    )
+                )
+            }
+        }
+    }
+
+    companion object {
+        private const val PROTON_TOO_MANY_FILES_CREATED_CODE = 2028
+        private const val TAG = "DefaultAttachmentsHandler"
+    }
+}

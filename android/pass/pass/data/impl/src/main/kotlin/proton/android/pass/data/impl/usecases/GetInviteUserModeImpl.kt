@@ -1,0 +1,59 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.usecases
+
+import proton.android.pass.data.api.usecases.GetAllKeysByAddress
+import proton.android.pass.data.api.usecases.GetInviteUserMode
+import proton.android.pass.data.api.usecases.InviteUserMode
+import proton.android.pass.data.impl.network.getProtonErrorCode
+import proton.android.pass.domain.UserId
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class GetInviteUserModeImpl @Inject constructor(
+    private val getAllKeysByAddress: GetAllKeysByAddress
+) : GetInviteUserMode {
+    override suspend fun invoke(userId: UserId, email: String): Result<InviteUserMode> =
+        getAllKeysByAddress(email = email)
+            .fold(
+                onSuccess = {
+                    if (it.isEmpty()) {
+                        Result.failure(IllegalStateException("User key list is empty"))
+                    } else {
+                        Result.success(InviteUserMode.ExistingUser)
+                    }
+                },
+                onFailure = {
+                    if (it.isAddressNotExistsError()) {
+                        Result.success(InviteUserMode.NewUser)
+                    } else {
+                        Result.failure(it)
+                    }
+                }
+            )
+
+    private fun Throwable.isAddressNotExistsError(): Boolean =
+        getProtonErrorCode() in setOf(ERROR_CODE_ADDRESS_NOT_EXIST, ERROR_CODE_ADDRESS_EXTERNAL)
+
+    companion object {
+        private const val ERROR_CODE_ADDRESS_NOT_EXIST = 33_102
+        private const val ERROR_CODE_ADDRESS_EXTERNAL = 33_103
+    }
+}

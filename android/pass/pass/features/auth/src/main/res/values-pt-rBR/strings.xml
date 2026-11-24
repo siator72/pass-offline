@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="enter_your_pin_code">Digite seu código PIN</string>
+  <string name="unlock">Desbloquear</string>
+  <plurals name="enter_your_pin_code_error">
+    <item quantity="one">O código PIN é incorreto. Resta %d tentativa.</item>
+    <item quantity="other">O código PIN é incorreto. Restam %d tentativas.</item>
+  </plurals>
+  <string name="auth_unlock_app_title">Desbloquear Proton Pass</string>
+  <string name="auth_unlock_app_subtitle">Insira a senha mestra para %s</string>
+  <string name="auth_unlock_app_extra_password_subtitle">Insira a senha adicional para %s</string>
+  <string name="auth_unlock_app_subtitle_account_switch">Insira a senha mestra para:</string>
+  <string name="auth_unlock_app_extra_password_subtitle_account_switch">Insira a senha adicional para:</string>
+  <string name="auth_master_password_label">Senha mestra</string>
+  <string name="auth_action_reveal_password">Exibir senha mestra</string>
+  <string name="auth_action_conceal_password">Ocultar senha mestra</string>
+  <string name="auth_action_enter_pin_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Insira o PIN em vez disso</string>
+  <string name="auth_action_enter_fingerprint_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Usar a impressão digital em vez disso</string>
+  <string name="auth_unlock_button">Desbloquear</string>
+  <string name="auth_error_empty_password">A senha não pode estar em branco</string>
+  <string name="auth_error_pin_cannot_be_empty">O código PIN não pode estar vazio</string>
+  <string name="auth_extra_password_label">Digite sua senha adicional</string>
+  <string name="auth_extra_password_error">Erro na autenticação com a senha adicional</string>
+  <string name="auth_extra_password_too_many_attempts">Muitas tentativas de início de sessão falhadas. A sua sessão foi desconectada.</string>
+  <string name="auth_biometric_enrollment_changed">Seus dados biométricos mudaram. Por favor, ative novamente o desbloqueio biométrico em Configurações.</string>
+  <string name="auth_error_wrong_password_no_attempts">A senha não é válida.</string>
+  <plurals name="auth_error_wrong_password">
+    <item quantity="one">A senha é incorreta. Resta %d tentativa.</item>
+    <item quantity="other">A senha é incorreta. Restam %d tentativas.</item>
+  </plurals>
+  <plurals name="auth_attempts_remaining">
+    <item quantity="one">%d tentativa restante</item>
+    <item quantity="other">%d tentativas restantes</item>
+  </plurals>
+  <string name="auth_pin_too_many_attempts">Muitas tentativas de acesso com PIN falharam. Todos os seus usuários estão sendo desconectados.</string>
+  <string name="auth_pin_too_many_attempts_dismiss">Muitas tentativas de código PIN com falha</string>
+</resources>

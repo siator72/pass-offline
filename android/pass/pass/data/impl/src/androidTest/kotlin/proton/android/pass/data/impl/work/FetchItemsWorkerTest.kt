@@ -1,0 +1,225 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.work
+
+import android.content.Context
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.work.Data
+import androidx.work.ListenableWorker
+import androidx.work.WorkerFactory
+import androidx.work.WorkerParameters
+import androidx.work.testing.TestListenableWorkerBuilder
+import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.test.runTest
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import proton.android.pass.data.api.usecases.sync.ForceSyncResult
+import proton.android.pass.data.fakes.usecases.FakeItemSyncStatusRepository
+import proton.android.pass.data.fakes.usecases.sync.FakeForceSyncItems
+import proton.android.pass.data.fakes.usecases.sync.FakeMarkFolderForceSyncCompleted
+import proton.android.pass.data.impl.fakes.FakeShareRepository
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.UserId
+
+@RunWith(AndroidJUnit4::class)
+class FetchItemsWorkerTest {
+
+    private val context = InstrumentationRegistry.getInstrumentation().targetContext
+
+    private lateinit var fakeForceSyncItems: FakeForceSyncItems
+    private lateinit var fakeShareRepository: FakeShareRepository
+    private lateinit var fakeMarkFolderForceSyncCompleted: FakeMarkFolderForceSyncCompleted
+    private lateinit var fakeItemSyncStatusRepository: FakeItemSyncStatusRepository
+
+    @Before
+    fun setup() {
+        fakeForceSyncItems = FakeForceSyncItems()
+        fakeShareRepository = FakeShareRepository()
+        fakeMarkFolderForceSyncCompleted = FakeMarkFolderForceSyncCompleted()
+        fakeItemSyncStatusRepository = FakeItemSyncStatusRepository()
+        fakeShareRepository.emitObserveShares(Result.success(emptyList()))
+    }
+
+    @Test
+    fun returnsSuccessOnSuccess() = runTest {
+        fakeForceSyncItems.setResult(ForceSyncResult.Success)
+
+        val result = buildWorker().doWork()
+
+        assertThat(result).isEqualTo(ListenableWorker.Result.success())
+    }
+
+    @Test
+    fun returnsSuccessOnPartialSuccess() = runTest {
+        fakeForceSyncItems.setResult(ForceSyncResult.PartialSuccess)
+
+        val result = buildWorker().doWork()
+
+        assertThat(result).isEqualTo(ListenableWorker.Result.success())
+    }
+
+    @Test
+    fun returnsRetryOnError() = runTest {
+        fakeForceSyncItems.setResult(ForceSyncResult.Error)
+
+        val result = buildWorker().doWork()
+
+        assertThat(result).isEqualTo(ListenableWorker.Result.retry())
+    }
+
+    @Test
+    fun returnsFailureWhenUserIdMissing() = runTest {
+        val result = buildWorker(includeUserId = false).doWork()
+
+        assertThat(result).isEqualTo(ListenableWorker.Result.failure())
+        assertThat(fakeForceSyncItems.invocations).isEmpty()
+    }
+
+    @Test
+    fun returnsFailureWhenFetchSourceMissing() = runTest {
+        val result = buildWorker(includeFetchSource = false).doWork()
+
+        assertThat(result).isEqualTo(ListenableWorker.Result.failure())
+        assertThat(fakeForceSyncItems.invocations).isEmpty()
+    }
+
+    @Test
+    fun passesCorrectParametersToUseCase() = runTest {
+        val shareId = ShareId("test-share-id")
+
+        buildWorker(
+            shareIds = setOf(shareId),
+            fetchSource = FetchItemsWorker.FetchSource.NewShare(setOf(shareId))
+        ).doWork()
+
+        assertThat(fakeForceSyncItems.invocations).hasSize(1)
+        assertThat(fakeForceSyncItems.invocations.first().userId).isEqualTo(USER_ID)
+        assertThat(fakeForceSyncItems.invocations.first().shareIds).containsExactly(shareId)
+    }
+
+    @Test
+    fun passesWarningFlagsToUseCase() = runTest {
+        buildWorker(
+            hasInactiveShares = true,
+            hasInvalidGroupShares = true
+        ).doWork()
+
+        assertThat(fakeForceSyncItems.invocations).hasSize(1)
+        assertThat(fakeForceSyncItems.invocations.first().hasInactiveShares).isTrue()
+        assertThat(fakeForceSyncItems.invocations.first().hasInvalidGroupShares).isTrue()
+    }
+
+    @Test
+    fun settlesFolderForceSyncOnSuccessfulForceSync() = runTest {
+        fakeForceSyncItems.setResult(ForceSyncResult.Success)
+
+        buildWorker(fetchSource = FetchItemsWorker.FetchSource.ForceSync).doWork()
+
+        assertThat(fakeMarkFolderForceSyncCompleted.invocations).containsExactly(USER_ID)
+    }
+
+    @Test
+    fun seedsFolderForceSyncOnFirstSync() = runTest {
+        fakeForceSyncItems.setResult(ForceSyncResult.Success)
+
+        buildWorker(fetchSource = FetchItemsWorker.FetchSource.FirstSync).doWork()
+
+        assertThat(fakeMarkFolderForceSyncCompleted.invocations).containsExactly(USER_ID)
+    }
+
+    @Test
+    fun settlesFolderForceSyncOnPartialSuccess() = runTest {
+        fakeForceSyncItems.setResult(ForceSyncResult.PartialSuccess)
+
+        buildWorker(fetchSource = FetchItemsWorker.FetchSource.ForceSync).doWork()
+
+        assertThat(fakeMarkFolderForceSyncCompleted.invocations).containsExactly(USER_ID)
+    }
+
+    @Test
+    fun doesNotSettleFolderForceSyncOnError() = runTest {
+        fakeForceSyncItems.setResult(ForceSyncResult.Error)
+
+        buildWorker(fetchSource = FetchItemsWorker.FetchSource.ForceSync).doWork()
+
+        assertThat(fakeMarkFolderForceSyncCompleted.invocations).isEmpty()
+    }
+
+    @Test
+    fun doesNotSettleFolderForceSyncOnNewShareFetch() = runTest {
+        val shareId = ShareId("test-share-id")
+        fakeForceSyncItems.setResult(ForceSyncResult.Success)
+
+        buildWorker(
+            shareIds = setOf(shareId),
+            fetchSource = FetchItemsWorker.FetchSource.NewShare(setOf(shareId))
+        ).doWork()
+
+        assertThat(fakeMarkFolderForceSyncCompleted.invocations).isEmpty()
+    }
+
+    private fun buildWorker(
+        userId: UserId = USER_ID,
+        shareIds: Set<ShareId> = emptySet(),
+        fetchSource: FetchItemsWorker.FetchSource = FetchItemsWorker.FetchSource.ForceSync,
+        hasInactiveShares: Boolean = false,
+        hasInvalidGroupShares: Boolean = false,
+        includeUserId: Boolean = true,
+        includeFetchSource: Boolean = true
+    ): FetchItemsWorker {
+        val inputData = Data.Builder()
+            .apply {
+                if (includeUserId) putString("user_id", userId.id)
+                if (includeFetchSource) putString("fetch_source", fetchSource.sourceName())
+                putStringArray("share_ids", shareIds.map { it.id }.toTypedArray())
+                putBoolean("inactive_shares", hasInactiveShares)
+                putBoolean("invalid_group_shares", hasInvalidGroupShares)
+            }
+            .build()
+        return TestListenableWorkerBuilder<FetchItemsWorker>(context)
+            .setInputData(inputData)
+            .setWorkerFactory(object : WorkerFactory() {
+                override fun createWorker(
+                    appContext: Context,
+                    workerClassName: String,
+                    workerParameters: WorkerParameters
+                ): ListenableWorker = FetchItemsWorker(
+                    context = appContext,
+                    workerParameters = workerParameters,
+                    forceSyncItems = fakeForceSyncItems,
+                    shareRepository = fakeShareRepository,
+                    itemSyncStatusRepository = fakeItemSyncStatusRepository,
+                    markFolderForceSyncCompleted = fakeMarkFolderForceSyncCompleted
+                )
+            })
+            .build()
+    }
+
+    private fun FetchItemsWorker.FetchSource.sourceName(): String = when (this) {
+        is FetchItemsWorker.FetchSource.ForceSync -> "ForceSync"
+        is FetchItemsWorker.FetchSource.FirstSync -> "FirstSync"
+        is FetchItemsWorker.FetchSource.NewShare -> "NewShare"
+    }
+
+    companion object {
+        private val USER_ID = UserId("test-user-id")
+    }
+}

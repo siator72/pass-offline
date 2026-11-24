@@ -1,0 +1,326 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/*
+ * Copyright (c) 2022 Proton Technologies AG
+ * This file is part of Proton Technologies AG and Proton Mail.
+ *
+ * Proton Mail is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Mail is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Mail. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.ui.launcher
+
+import androidx.activity.ComponentActivity
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import me.proton.core.accountmanager.domain.AccountManager
+import proton.android.pass.appconfig.api.AppConfig
+import proton.android.pass.appconfig.api.BuildFlavor.Companion.supportPayment
+import proton.android.pass.biometry.ResetAuthPreferences
+import proton.android.pass.common.api.AppDispatchers
+import proton.android.pass.common.api.safeRunCatching
+import proton.android.pass.commonrust.api.CommonLibraryVersionChecker
+import proton.android.pass.data.api.usecases.DisableAccount
+import proton.android.pass.data.api.usecases.GetPrimaryUserId
+import proton.android.pass.data.api.usecases.GetReadyAccounts
+import proton.android.pass.data.api.usecases.GetUserPlan
+import proton.android.pass.data.api.usecases.InitialWorkerLauncher
+import proton.android.pass.data.api.usecases.ObserveAccounts
+import proton.android.pass.data.api.usecases.RefreshUserAccess
+import proton.android.pass.data.api.usecases.SetAsPrimary
+import proton.android.pass.data.api.usecases.passwordHistoryEntry.DeletePasswordHistoryEntryForUser
+import proton.android.pass.domain.Plan
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.account.Account
+import proton.android.pass.domain.account.AccountState as PassAccountState
+import proton.android.pass.inappupdates.api.InAppUpdatesManager
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import proton.android.pass.preferences.InternalSettingsRepository
+import proton.android.pass.preferences.ThemePreference
+import proton.android.pass.preferences.UserPreferencesRepository
+import javax.inject.Inject
+import kotlin.time.Duration.Companion.seconds
+
+@HiltViewModel
+@SuppressWarnings("LongParameterList", "TooManyFunctions")
+class LauncherViewModel @Inject constructor(
+    private val accountManager: AccountManager,
+    private val observeAccounts: ObserveAccounts,
+    private val getReadyAccounts: GetReadyAccounts,
+    private val disableAccount: DisableAccount,
+    private val setAsPrimaryAccount: SetAsPrimary,
+    private val launcherFlows: LauncherFlows,
+    private val initialWorkerLauncher: InitialWorkerLauncher,
+    private val getUserPlan: GetUserPlan,
+    private val refreshUserAccess: RefreshUserAccess,
+    private val inAppUpdatesManager: InAppUpdatesManager,
+    private val resetUserPreferences: ResetAuthPreferences,
+    private val snackbarDispatcher: SnackbarDispatcher,
+    private val deletePasswordHistoryEntryForUser: DeletePasswordHistoryEntryForUser,
+    private val settingsRepository: InternalSettingsRepository,
+    userPreferencesRepository: UserPreferencesRepository,
+    commonLibraryVersionChecker: CommonLibraryVersionChecker,
+    private val appConfig: AppConfig,
+    private val appDispatchers: AppDispatchers,
+    private val getPrimaryUserId: GetPrimaryUserId
+) : ViewModel() {
+
+    init {
+        viewModelScope.launch {
+            withContext(appDispatchers.io) {
+                val version = runCatching { commonLibraryVersionChecker.getVersion() }
+                    .getOrElse { "Unknown" }
+                PassLogger.i(TAG, "Common library version: $version")
+            }
+        }
+    }
+
+    internal val state: StateFlow<LauncherState> = combine(
+        observeAccounts().map { accounts -> getState(accounts) },
+        userPreferencesRepository.getThemePreference(),
+        flowOf(appConfig.flavor.supportPayment()),
+        settingsRepository.hasShownReloadAppWarning()
+    ) { accountState, themePreference, supportPayment, hasShownReloadAppWarning ->
+        LauncherState(
+            accountState = accountState,
+            themePreference = themePreference,
+            isNewLoginFlowEnabled = false,
+            supportPayment = supportPayment,
+            canShowWarningReloadApp = !hasShownReloadAppWarning
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Lazily,
+        initialValue = runBlocking {
+            val themePreference = userPreferencesRepository.getThemePreference().firstOrNull()
+                ?: ThemePreference.System
+            LauncherState(
+                accountState = AccountState.Processing,
+                themePreference = themePreference,
+                isNewLoginFlowEnabled = false,
+                supportPayment = false,
+                canShowWarningReloadApp = false
+            )
+        }
+    )
+
+    internal fun register(context: ComponentActivity) {
+        launcherFlows.register(context, viewModelScope)
+    }
+
+    internal fun onAccountNeeded() = viewModelScope.launch {
+        resetUserPreferences()
+        initialWorkerLauncher.cancel()
+        addAccount()
+    }
+
+    internal fun onPrimaryExist(updateResultLauncher: ActivityResultLauncher<IntentSenderRequest>) {
+        initialWorkerLauncher.start()
+        inAppUpdatesManager.checkForUpdates(updateResultLauncher)
+    }
+
+    internal fun addAccount() = viewModelScope.launch {
+        launcherFlows.startAddAccount()
+    }
+
+    internal fun signUp() = viewModelScope.launch {
+        launcherFlows.startSignup()
+    }
+
+    internal fun signIn(userId: UserId? = null) = viewModelScope.launch {
+        val account = userId?.let { getAccountOrNull(it) }
+        PassLogger.i(
+            TAG,
+            if (userId == null) {
+                "Signing in without a specific userId"
+            } else {
+                "Signing in with userId: $userId "
+            }
+        )
+        launcherFlows.startLogin(account?.username)
+    }
+
+    internal fun disable(userId: UserId) = viewModelScope.launch {
+        PassLogger.i(TAG, "Disabling account: $userId")
+        snackbarDispatcher.reset()
+        disableAccount(userId)
+    }
+
+    internal fun disableAll() = viewModelScope.launch {
+        PassLogger.i(TAG, "Disabling all accounts")
+        snackbarDispatcher.reset()
+
+        getReadyAccounts().forEach { disableAccount(it.userId) }
+    }
+
+    internal fun remove(userId: UserId) = viewModelScope.launch {
+        PassLogger.i(TAG, "Removing account: $userId")
+        accountManager.removeAccount(userId)
+    }
+
+    internal fun switch(userId: UserId) = viewModelScope.launch {
+        val account = getAccountOrNull(userId) ?: return@launch
+
+        deletePasswordHistoryEntryForUser(userId)
+
+        when {
+            account.state == PassAccountState.Disabled -> signIn(userId)
+            account.state == PassAccountState.Ready -> setAsPrimary(userId)
+        }
+    }
+
+    private suspend fun setAsPrimary(userId: UserId) {
+        PassLogger.i(TAG, "Setting account as primary: $userId")
+        setAsPrimaryAccount(userId)
+    }
+
+    fun tryUpgrade(id: UserId? = null) {
+        viewModelScope.launch {
+            val internalUserId = id ?: getPrimaryUserIdOrNull()
+            if (internalUserId != null) {
+                safeRunCatching {
+                    /*
+             We need to add a delay to refresh the plan since the BE
+             doesn't have the updated plan yet.
+                     */
+                    val maxAttempts = 3
+                    val baseDelay = 2.seconds
+                    val previousPlan: Plan? = getUserPlan(internalUserId).firstOrNull()
+                    repeat(maxAttempts) { attempt ->
+                        delay(baseDelay * (attempt + 1))
+                        runCatching { refreshUserAccess(internalUserId) }
+                            .onSuccess { PassLogger.i(TAG, "Plan refreshed") }
+                            .onFailure {
+                                PassLogger.w(TAG, "Error refreshing plan")
+                                PassLogger.w(TAG, it)
+                            }
+                        val currentPlan: Plan? = getUserPlan(internalUserId).firstOrNull()
+                        if (previousPlan?.internalName != currentPlan?.internalName) {
+                            return@launch
+                        }
+                    }
+                }.onFailure { e ->
+                    PassLogger.w(TAG, "Failed refreshing plan for $internalUserId")
+                    PassLogger.w(TAG, e)
+                }
+            }
+        }
+    }
+
+    internal fun passwordManagement() = viewModelScope.launch {
+        getPrimaryUserIdOrNull()?.let {
+            launcherFlows.startPasswordManagement(it)
+        }
+    }
+
+    internal fun recoveryEmail() = viewModelScope.launch {
+        getPrimaryUserIdOrNull()?.let {
+            launcherFlows.startRecoveryEmail(it)
+        }
+    }
+
+    internal fun securityKeys() = viewModelScope.launch {
+        getPrimaryUserIdOrNull()?.let {
+            launcherFlows.startSecurityKeys(it)
+        }
+    }
+
+    internal fun doNotDisplayReloadAppWarningDialog() {
+        settingsRepository.setHasShownReloadAppWarning(true)
+    }
+
+    private fun getState(accounts: List<Account>): AccountState {
+        val accountState = accounts.toLauncherAccountState()
+        when (accountState) {
+            AccountState.AccountNeeded -> PassLogger.i(
+                TAG,
+                if (accounts.isEmpty()) "Account needed: no accounts found" else "Account needed: all disabled"
+            )
+
+            AccountState.PrimaryExist -> accounts.firstOrNull { it.state == PassAccountState.Ready }?.let {
+                PassLogger.i(TAG, "Primary exists: ${it.toLogString()}")
+            }
+
+            AccountState.StepNeeded -> PassLogger.i(TAG, "Step needed: ${accounts.toLogString()}")
+
+            AccountState.Processing -> PassLogger.i(TAG, "Processing accounts: ${accounts.toLogString()}")
+        }
+        return accountState
+    }
+
+    private fun Account.toLogString(): String = "UserId=$userId, State=$state"
+
+    private fun List<Account>.toLogString(): String =
+        groupBy { it.state }.entries.joinToString { (state, group) -> "$state=${group.size}" }
+
+    private suspend fun getAccountOrNull(userId: UserId): Account? =
+        observeAccounts().first().firstOrNull { it.userId == userId }
+
+    private suspend fun getPrimaryUserIdOrNull() = getPrimaryUserId()
+
+    internal fun cancelUpdateListener() {
+        inAppUpdatesManager.tearDown()
+    }
+
+    internal fun declineUpdate() {
+        inAppUpdatesManager.declineUpdate()
+    }
+
+    private companion object {
+
+        private const val TAG = "LauncherViewModel"
+
+    }
+
+}
+
+
+internal data class LauncherState(
+    val accountState: AccountState,
+    val themePreference: ThemePreference,
+    val isNewLoginFlowEnabled: Boolean,
+    val supportPayment: Boolean,
+    val canShowWarningReloadApp: Boolean
+)

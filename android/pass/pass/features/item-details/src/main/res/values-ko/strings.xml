@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="item_details_toolbar_content_description_menu_button">메뉴 옵션을 표시하는 버튼</string>
+  <!-- Item details forbidden actions -->
+  <string name="item_details_forbidden_actions_edit_title">편집 불가</string>
+  <string name="item_details_forbidden_actions_edit_permission">편집할 권한이 없어 이 항목 수정이 불가합니다.</string>
+  <string name="item_details_forbidden_actions_edit_trash">휴지통에 있어 항목 수정이 불가합니다. 수정 전 휴지통에서 일반 함으로 다시 복구하십시오.</string>
+  <string name="item_details_forbidden_actions_edit_upgrade">사용자의 이전 금고의 항목 편집만 허용됩니다. 이 항목을 수정하려면 플랜을 업그레이드 하세요.</string>
+  <string name="item_details_forbidden_actions_share_title">공유할 수 없음</string>
+  <string name="item_details_forbidden_actions_share_limit">금고 공유 수 제한에 도달했습니다. 금고를 더 공유하려면 현재 플랜에서 업그레이드 하세요.</string>
+  <string name="item_details_forbidden_actions_sharing_permission">이 작업을 수행할 권한이 없습니다.</string>
+  <string name="item_details_forbidden_actions_share_trash">휴지통에 있어 항목 공유가 불가합니다. 수정 전 휴지통에서 복구하십시오.</string>
+  <!-- Item details leave item -->
+  <string name="item_details_leave_dialog_title">이 항목에서 나갈까요?</string>
+  <string name="item_details_leave_dialog_message">이 항목과 상세 정보에 대한 접근 권한을 잃게 됩니다. 정말 계속하시겠어요?</string>
+  <string name="item_details_leave_item_message_error">항목에서 나가는데 오류가 생겼습니다.</string>
+  <string name="item_details_leave_item_message_success">항목에서 성공적으로 떠났습니다.</string>
+  <string name="item_details_monitor_check_update_error">모니터링을 업데이트할 수 없습니다. 다시 시도하세요.</string>
+  <string name="item_details_snackbar_message_alias_copied">별칭을 복사했습니다</string>
+  <string name="item_details_snackbar_message_birthdate_copied">생일 복사됨</string>
+  <string name="item_details_snackbar_message_card_number_copied">카드 번호를 복사했습니다</string>
+  <string name="item_details_snackbar_message_city_copied">도시 복사됨</string>
+  <string name="item_details_snackbar_message_company_copied">회사 복사됨</string>
+  <string name="item_details_snackbar_message_country_or_region_copied">국가 및 지역 복사됨</string>
+  <string name="item_details_snackbar_message_county_copied">국가 복사됨</string>
+  <string name="item_details_snackbar_message_custom_field_copied">사용자 지정 필드를 복사했습니다</string>
+  <string name="item_details_snackbar_message_cvv_copied">보안 코드를 복사했습니다</string>
+  <string name="item_details_snackbar_message_email_copied">이메일 주소 복사됨</string>
+  <string name="item_details_snackbar_message_facebook_copied">Facebook 복사됨</string>
+  <string name="item_details_snackbar_message_first_name_copied">성 복사됨</string>
+  <string name="item_details_snackbar_message_floor_copied">층 복사됨</string>
+  <string name="item_details_snackbar_message_full_name_copied">이름 복사됨</string>
+  <string name="item_details_snackbar_message_gender_copied">성별 복사됨</string>
+  <string name="item_details_snackbar_message_instagram_copied">Instargram 복사됨</string>
+  <string name="item_details_snackbar_message_last_name_copied">이름 복사됨</string>
+  <string name="item_details_snackbar_message_license_number_copied">라이선스 번호 복사됨</string>
+  <string name="item_details_snackbar_message_linkedin_copied">Linkedin 복사됨</string>
+  <string name="item_details_snackbar_message_middle_name_copied">중간 이름 복사됨</string>
+  <string name="item_details_snackbar_message_occupation_copied">직업 복사됨</string>
+  <string name="item_details_snackbar_message_organization_copied">조직 복사됨</string>
+  <string name="item_details_snackbar_message_passport_number_copied">여권 번호 복사됨</string>
+  <string name="item_details_snackbar_message_password_copied">비밀번호를 복사했습니다</string>
+  <string name="item_details_snackbar_message_phone_number_copied">휴대폰 번호 복사됨</string>
+  <string name="item_details_snackbar_message_pin_copied">PIN 코드를 복사했습니다</string>
+  <string name="item_details_snackbar_message_reddit_copied">Reddit 복사됨</string>
+  <string name="item_details_snackbar_message_social_security_number_copied">주민등록번호 복사됨</string>
+  <string name="item_details_snackbar_message_state_or_province_copied">시/도 복사됨</string>
+  <string name="item_details_snackbar_message_street_address_copied">도로명주소 복사됨</string>
+  <string name="item_details_snackbar_message_totp_copied">TOTP를 복사했습니다</string>
+  <string name="item_details_snackbar_message_username_copied">사용자 이름을 복사했습니다</string>
+  <string name="item_details_snackbar_message_website_copied">웹사이트 URL을 복사했습니다</string>
+  <string name="item_details_snackbar_message_x_handle_copied">X 핸들 복사됨</string>
+  <string name="item_details_snackbar_message_yahoo_copied">Yahoo 복사됨</string>
+  <string name="item_details_snackbar_message_zip_or_postal_code_copied">우편 번호 복사됨</string>
+  <string name="item_details_snackbar_message_public_key_copied">공개 키가 복사되었습니다</string>
+  <string name="item_details_snackbar_message_private_key_copied">비공개 키가 복사되었습니다</string>
+  <string name="item_details_snackbar_message_ssid_copied">SSID가 복사되었습니다</string>
+  <string name="open_with">열기:</string>
+  <string name="open_attachments_error">첨부파일을 열 수 없습니다</string>
+  <string name="passkey_detail_bottomsheet_title">패스키</string>
+  <string name="passkey_detail_bottomsheet_username">사용자 이름</string>
+  <string name="passkey_detail_bottomsheet_domain">도메인</string>
+  <string name="passkey_detail_bottomsheet_key">키</string>
+  <string name="passkey_detail_bottomsheet_created">생성함</string>
+  <string name="login_item_reused_passwords_subtitle">이 비밀번호를 사용하는 금고 내 항목의 목록입니다.</string>
+</resources>

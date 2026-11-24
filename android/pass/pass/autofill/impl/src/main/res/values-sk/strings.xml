@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Získať z Proton Pass</string>
+  <string name="error_loading_items">Položky sa nepodarilo načítať</string>
+  <string name="inline_suggestions_open_app">Otvoriť Proton Pass</string>
+  <string name="autofill_associate_web_app_name_dialog_title">Použite prihlasovacie údaje z \"%s\" v tejto aplikácii alebo na webovej stránke.</string>
+  <string name="autofill_dialog_associate_and_autofill">Použiť vždy</string>
+  <string name="autofill_dialog_just_autofill">Použiť raz</string>
+  <string name="autofill_dialog_cancel">Zrušiť</string>
+  <string name="autofill_notification_copy_to_clipboard">TOTP bol skopírovaný do schránky</string>
+  <string name="autofill_dialog_associate_title">Použiť prihlásenie?</string>
+  <string name="autofill_user_logged_out">Váš účet bol odhlásený. Prihláste sa znova otvorením aplikácie, prosím.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Potvrďte vašu akciu</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Chystáte sa automaticky vyplniť svoje prihlasovacie údaje na webovej lokalite, otvorenej vašou aktuálnou aplikáciou. Aplikácia môže mať po automatickom vyplnení prístup k prihlasovacím údajom - urobte to len vtedy, ak aplikácii dôverujete.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">Automatické vypĺňanie</string>
+  <string name="autofill_confirm_unverified_browser_title">Táto aplikácia sa prezentuje ako dôveryhodný prehliadač</string>
+  <string name="autofill_confirm_unverified_browser_body">Táto aplikácia sa identifikuje ako známy prehliadač, ale Pass ju nedokázal overiť. Jej podpisový certifikát nezodpovedá našim očakávaniam, čo sa môže stať, ak je prehliadač nastavený nezvyčajným spôsobom alebo ak sa za neho vydáva iná aplikácia s cieľom zachytiť vaše prihlasovacie údaje. Pokračujte len vtedy, ak s určitosťou viete, že táto aplikácia je dôveryhodná.</string>
+  <string name="autofill_confirm_dont_ask_again">Už sa opäť nepýtať na túto aplikáciu</string>
+  <string name="autofill_troubleshooting_title">Riešenie problémov s automatickým vypĺňaním</string>
+  <string name="autofill_troubleshooting_subtitle">Skontrolujte, či je vaše zariadenie správne nastavené na automatické vypĺňanie.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">Automatické vypĺňanie je nastavené v plnom rozsahu</string>
+  <string name="autofill_troubleshooting_verdict_attention">Je tu niekoľko vecí, ktorým by ste mali venovať pozornosť</string>
+  <string name="autofill_troubleshooting_service_ok">Proton Pass je vaša služba automatického vypĺňania</string>
+  <string name="autofill_troubleshooting_service_current_other">Momentálne je nastavené na %1$s.</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Proton Pass nie je vaša služba automatického vypĺňania</string>
+  <string name="autofill_troubleshooting_service_not_default_body">Nastavte ho ako predvolené, aby sa údaje automaticky vypĺňali vo všetkých vašich aplikáciách.</string>
+  <string name="autofill_troubleshooting_service_enable_action">Povoliť automatické vypĺňanie</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">Toto zariadenie nepodporuje automatické vypĺňanie</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">Boli zistené neaktívne prehliadače</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Zapnite automatické vypĺňanie, aby aplikácia Proton Pass mohla vyplniť vaše prihlasovacie údaje. Ťuknite na prehliadač, aby ste otvorili jeho nastavenia.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">Prehliadače sú kompatibilné</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">Vaše prehliadače sú pripojené a pripravené na automatické vypĺňanie.</string>
+  <string name="autofill_troubleshooting_browser_active">Aktívne</string>
+  <string name="autofill_troubleshooting_inline_info">Návrhy priamo v texte sa zobrazujú na klávesnici. Na ich fungovanie je potrebný systém Android 11 alebo novší a kompatibilná klávesnica, napríklad Gboard.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">Zdieľať diagnostiku</string>
+  <string name="autofill_troubleshooting_open_diagnostics">Pokročilá diagnostika</string>
+  <string name="autofill_diagnostics_title">Pokročilá diagnostika</string>
+  <string name="autofill_diagnostics_enable">Povoliť diagnostiku automatického vypĺňania</string>
+  <string name="autofill_diagnostics_enable_description">Keď je tento režim zapnutý, Proton Pass zaznamenáva, čo sa deje počas automatického vypĺňania, aby ste mohli zistiť, prečo sa údaje nevypĺňali. Po dokončení ho vypnite.</string>
+  <string name="autofill_diagnostics_instructions">V aplikácii alebo prehliadači napodobnite problém s automatickým vypĺňaním a potom sa vráťte na túto obrazovku.</string>
+  <string name="autofill_diagnostics_last_attempt_title">Posledný pokus o automatické vyplnenie</string>
+  <string name="autofill_diagnostics_no_attempts">Zatiaľ nebol zaznamenaný žiadny pokus o automatické vyplnenie.</string>
+  <string name="autofill_diagnostics_reason_not_default">Proton Pass nie je vaša služba automatického vypĺňania, takže zatiaľ nemôže vypĺňať údaje nikde.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass ponúkol návrhy v %1$s.</string>
+  <string name="autofill_diagnostics_outcome_nothing">V %1$s sa spustila funkcia automatického vypĺňania, ale nebolo ponúknuté žiadne zodpovedajúce prihlásenie. Je možné, že stránka neobsahuje žiadne rozpoznateľné prihlasovacie polia, alebo nemáte pre túto stránku žiadnu položku.</string>
+  <string name="autofill_diagnostics_outcome_error">Pri automatickom vypĺňaní došlo k chybe v %1$s.</string>
+  <string name="autofill_diagnostics_recent_title">Nedávne pokusy</string>
+  <string name="autofill_diagnostics_clear">Vyčistiť</string>
+  <string name="autofill_diagnostics_share">Zdieľať s podporou</string>
+</resources>

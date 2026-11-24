@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="create_contact_button">연락처 추가</string>
+  <string name="save_contact_alias">저장</string>
+  <string name="snackbar_contact_create_success">연락처가 성공적으로 생성 되었습니다</string>
+  <string name="snackbar_contact_create_error">연락처 생성 오류가 발생했습니다.</string>
+  <string name="create_contact_title">연락처 추가</string>
+  <string name="detail_contact_title">연락처</string>
+  <string name="email_input_error">유효하지 않은 이메일 주소</string>
+  <string name="detail_contact_display_name" comment="sender email address">%1$s (으)로/부터 이메일을 송/수신하는 모든 이메일 주소에 대해 연락처가 생성됩니다.</string>
+  <string name="empty_alias_contacts_title">별칭 연락처</string>
+  <string name="empty_alias_contacts_body">개인 이메일 주소를 숨기려면, 별칭 연락처를 생성하세요.</string>
+  <string name="empty_alias_contacts_learn_more">자세히 알아보기</string>
+  <string name="unblock_button">연락처 차단 해제</string>
+  <string name="block_button">연락처 차단</string>
+  <string name="contact_created_date" comment="date of creation">%1$s 전에 생성됨</string>
+  <string name="no_activity_contact">지난 14일간 활동이 없습니다.</string>
+  <string name="activity_summary" comment="%1$d forwarded, %2$d sent, %3$d blocked will prepend this">지난 14일 간</string>
+  <plurals name="forwarded_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="other">%1$d 전달됨</item>
+  </plurals>
+  <plurals name="sent_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="other">%1$d 전송됨</item>
+  </plurals>
+  <plurals name="blocked_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="other">%1$d 차단됨</item>
+  </plurals>
+  <string name="blocked_addresses_subtitle">차단된 주소</string>
+  <string name="forwarding_addresses_subtitle">포워딩 주소</string>
+  <string name="snackbar_contact_block_success">연락처 차단됨</string>
+  <string name="snackbar_contact_block_error">연락처를 차단하지 못했습니다</string>
+  <string name="snackbar_contact_unblock_success">연락처 차단 해제됨</string>
+  <string name="snackbar_contact_unblock_error">연락처 차단 해제 불가</string>
+  <string name="snackbar_delete_contact_success">연락처 삭제됨</string>
+  <string name="snackbar_delete_contact_error">연락처를 삭제하지 못했습니다</string>
+  <string name="snackbar_email_copied_success">이메일이 클립보드에 복사되었습니다</string>
+  <string name="contact_option_send_email">이메일 전송</string>
+  <string name="contact_option_copy_address">포워딩 주소 복사</string>
+  <string name="contact_option_block_contact">연락처 차단</string>
+  <string name="contact_option_unblock_contact">연락처 차단 해제</string>
+  <string name="contact_option_delete">삭제</string>
+  <string name="alias_contacts_bottomsheet_title">별칭 연락처</string>
+  <string name="alias_contacts_bottomsheet_subtitle">개인 이메일을 비공개로 유지하려면 별칭 연락처를 만들어 보세요.</string>
+  <string name="alias_contacts_explanation">이것이 작동하는 원리입니다:</string>
+  <string name="alias_contacts_bottomsheet_section_1">받을 사람의 이메일 주소를 입력하세요.</string>
+  <string name="alias_contacts_bottomsheet_section_2">Proton Pass가 (역 별칭으로도 불리는) 포워딩 주소를 만들어줍니다.</string>
+  <string name="alias_contacts_bottomsheet_section_3" comment="an email will follow this sentence">이 주소에 이메일을 보내면 다음에서 온 것으로 표기됩니다:</string>
+</resources>

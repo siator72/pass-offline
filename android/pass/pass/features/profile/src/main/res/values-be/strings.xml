@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Профіль</string>
+  <string name="profile_option_settings">Налады</string>
+  <string name="profile_option_account">Уліковы запіс</string>
+  <string name="profile_help_center">Цэнтр дапамогі</string>
+  <string name="profile_security">Бяспека</string>
+  <string name="profile_option_autofill_troubleshooting">Выпраўленне непаладак з аўтазапаўненнем</string>
+  <string name="profile_option_feedback">Зваротная сувязь</string>
+  <string name="profile_option_import_export">Імпарт/экспарт</string>
+  <string name="profile_option_tutorial">Як выкарыстоўваць Proton Pass</string>
+  <string name="profile_option_rating">Ацаніць праграму</string>
+  <string name="profile_spread_the_word">Распаўсюдзьце інфармацыю</string>
+  <string name="profile_option_tell_a_friend">Раскажыце сябрам</string>
+  <string name="profile_spread_the_word_share_message">Я выкарыстоўваю Proton Pass, каб захоўваць свае паролі ў бяспецы. Спампуйце праграму, каб паспрабаваць: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Аўтазапаўненне</string>
+  <string name="profile_option_autofill_subtitle">Аўтаматычна запаўняць імя карыстальніка і пароль.</string>
+  <string name="profile_option_secure_links">Бяспечныя спасылкі</string>
+  <string name="profile_option_alias_management">Кіраванне псеўданімамі</string>
+  <string name="profile_option_generated_passwords">Згенерыраваныя паролі</string>
+  <string name="profile_error_biometry_failed_to_start">Немагчыма запусціць біяметрычную аўтэнтыфікацыю</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Не ўдалося аўтэнтыфікаваць</string>
+  <string name="profile_error_app_lock_update_failed">Немагчыма абнавіць блакіроўку праграмы. Паўтарыце спробу.</string>
+  <string name="profile_fingerprint_lock_enabled">Блакіроўка адбіткам пальца ўключана</string>
+  <string name="profile_fingerprint_lock_disabled">Блакіроўка адбіткам пальца адключана</string>
+  <string name="profile_app_version_copied_to_clipboard">Версія праграмы скапіявана</string>
+  <string name="feedback_option_reddit">Паглядзець Proton на Reddit</string>
+  <string name="feedback_option_mail">Напісаць нам</string>
+  <string name="feedback_option_vote_new_features">Прагаласаваць за новыя функцыі</string>
+  <string name="app_lock_immediately">Неадкладна</string>
+  <string name="app_lock_one_minute">Праз 1 хвіліну</string>
+  <string name="app_lock_two_minutes">Праз 2 хвіліны</string>
+  <string name="app_lock_five_minutes">Праз 5 хвілін</string>
+  <string name="app_lock_ten_minutes">Праз 10 хвілін</string>
+  <string name="app_lock_one_hour">Праз 1 гадзіну</string>
+  <string name="app_lock_four_hours">Праз 4 гадзіны</string>
+  <string name="app_lock_config_none">Няма</string>
+  <string name="app_lock_config_biometric">Біяметрыі</string>
+  <string name="app_lock_config_pin_code">PIN-кода</string>
+  <string name="app_lock_config_app_lock_time">Аўтаматычная блакіроўка</string>
+  <string name="app_lock_config_password">Пароль</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Выкарыстоўваць сістэмную блакіроўку пры збоі біяметрыі</string>
+  <string name="configure_pin_set_pin_code">Задаць PIN-код</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Разблакіраваць праграму з дапамогай гэтага кода</string>
+  <string name="configure_pin_enter_pin_code">Увядзіце PIN-код</string>
+  <string name="configure_pin_repeat_pin_code">Паўтарыце PIN-код</string>
+  <string name="configure_pin_continue">Працягнуць</string>
+  <string name="configure_pin_pin_does_not_match">PIN-коды не супадаюць</string>
+  <string name="configure_pin_pin_too_short">Занадта кароткі PIN</string>
+  <string name="configure_pin_pin_cannot_be_blank">PIN не можа быць пустым</string>
+  <string name="configure_pin_pin_lock_enabled">Блакіроўка PIN уключана</string>
+  <string name="configure_pin_pin_lock_disabled">Блакіроўка PIN выключана</string>
+  <string name="profile_option_lock_with">Заблакіраваць з дапамогай</string>
+  <string name="profile_option_unlock_with">Разблакіраваць з дапамогай</string>
+  <string name="profile_option_change_pin_code">Змяніць PIN-код</string>
+  <string name="profile_passkey_support_section_title">Ключы доступу</string>
+  <string name="profile_passkey_support_subtitle_supported">На гэтай прыладзе падтрымліваюцца ключы доступу</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Ваша версія Android не падтрымлівае ключы доступу.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Немагчыма праверыць, ці падтрымліваюцца ключы доступу</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">Праз %d дзень</item>
+    <item quantity="few">Праз %d дні</item>
+    <item quantity="many">Праз %d дзён</item>
+    <item quantity="other">Праз %d дзён</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">Праз %d хвіліну</item>
+    <item quantity="few">Праз %d хвіліны</item>
+    <item quantity="many">Праз %d хвілін</item>
+    <item quantity="other">Праз %d хвілін</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">Праз %d гадзіну</item>
+    <item quantity="few">Праз %d гадзіны</item>
+    <item quantity="many">Праз %d гадзін</item>
+    <item quantity="other">Праз %d гадзін</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Менш за хвіліну</string>
+  <string name="account_switcher_manage_account">Кіраванне ўліковым запісам</string>
+  <string name="account_switcher_sign_in">Увайсці</string>
+  <string name="account_switcher_sign_out">Выйсці</string>
+  <string name="account_switcher_switch_to">Пераключыцца на</string>
+  <string name="account_switcher_add_account">Дадаць уліковы запіс</string>
+  <string name="account_switcher_remove">Выдаліць</string>
+  <string name="filtered_by_logins">Адфільтравана па запісах уваходу. Не паказаны элементы, якія знаходзяцца ў сметніцы</string>
+  <string name="filtered_by_logins_with_mfa">Адфільтравана па запісах уваходу з TOTP. Не паказаны элементы, якія знаходзяцца ў сметніцы</string>
+  <string name="filtered_by_aliases">Адфільтравана па псеўданімах. Не паказаны элементы, якія знаходзяцца ў сметніцы</string>
+  <string name="filtered_by_notes">Адфільтравана па нататках. Не паказаны элементы, якія знаходзяцца ў сметніцы</string>
+  <string name="filtered_by_credit_cards">Адфільтравана па крэдытных картках. Не паказаны элементы, якія знаходзяцца ў сметніцы</string>
+  <string name="filtered_by_identities">Адфільтравана па ідэнтычнасцях. Не паказаны элементы, якія знаходзяцца ў сметніцы</string>
+  <string name="filtered_by_custom_items">Адфільтравана па карыстальніцкіх элементах. Не паказаны элементы, якія знаходзяцца ў сметніцы</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Пераключыцеся на %1$s, каб кіраваць гэтым уліковым запісам</string>
+  <string name="account_switch_confirmation_title">Кіраванне ўліковым запісам</string>
+  <string name="account_switch_confirmation_confirm">Пераключыць і кіраваць</string>
+  <string name="profile_storage_data_title">Сховішча</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s з %2$s</string>
+</resources>

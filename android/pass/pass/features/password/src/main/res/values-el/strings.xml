@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">Αντιγραφή και κλείσιμο</string>
+  <string name="password_copied_to_clipboard">Ο κωδικός πρόσβασης αντιγράφηκε</string>
+  <string name="bottomsheet_generate_password_title">Παραγωγή τυχαίου κωδικού πρόσβασης</string>
+  <string name="password_type">Τύπος</string>
+  <string name="special_characters">Ειδικοί χαρακτήρες (!&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="one">%s χαρακτήρας</item>
+    <item quantity="other">%s χαρακτήρες</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">Κεφαλαία γράμματα (Α–Ζ)</string>
+  <string name="bottomsheet_option_include_numbers">Συμπερίληψη αριθμών (0–9)</string>
+  <string name="regenerate_password_icon_content_description">Κουμπί αναδημιουργίας κωδικού πρόσβασης</string>
+  <string name="password_mode_memorable">Αξιομνημόνευτος κωδικός πρόσβασης</string>
+  <string name="password_mode_random">Τυχαίος κωδικός πρόσβασης</string>
+  <string name="password_mode_icon">Εικονίδιο λειτουργίας κωδικού πρόσβασης</string>
+  <string name="password_words_separator_icon">Διαχωριστικό λέξεων κωδικού πρόσβασης</string>
+  <string name="password_history_title">Δημιουργημένοι κωδικοί πρόσβασης</string>
+  <string name="password_history_empty">Δεν υπάρχει ιστορικό</string>
+  <string name="password_history_description">Οι δημιουργημένοι κωδικοί θα αποθηκεύονται για μια περίοδο 2 εβδομάδων.</string>
+  <string name="password_history_today">Σήμερα, %s</string>
+  <string name="password_history_yesterday">Χθες, %s</string>
+  <string name="password_history_before_yesterday">%d ημέρες πριν, %s</string>
+  <string name="password_history_clear_history">Καθαρισμός ιστορικού</string>
+  <string name="password_history_remove_from_history">Αφαίρεση από το ιστορικό</string>
+</resources>

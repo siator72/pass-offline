@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">Flytta %d objekt till följande valv?</item>
+    <item quantity="other">Flytta %d objekt till följande valv?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">Flytta %d objekt till följande mapp?</item>
+    <item quantity="other">Flytta %d objekt till följande mapp?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Flytta</string>
+  <string name="migrate_item_success_snackbar">Objekt flyttades</string>
+  <string name="migrate_item_error_snackbar">Det gick inte flytta objekten</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Gick inte flytta några av objekten</string>
+  <string name="migrate_item_warning_history">Vid flyttning av objekt mellan valv kommer vi att bevara upp till de senaste 50 ändringarna som gjorts av varje objekt</string>
+  <string name="migrate_item_warning_secure_link">Objektets säkra länkar kommer att tas bort när det flyttas till ett annat valv</string>
+  <string name="migrate_all_items_success_snackbar">Alla objekt flyttade</string>
+  <string name="migrate_all_items_error_snackbar">Gick inte flytta alla valvobjekt</string>
+  <string name="migrate_init_error_snackbar">Kunde inte förbereda migreringsskärmen</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Flytta mapp till följande valv?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Flytta mapp till följande mapp?</string>
+  <string name="migrate_folder_success_snackbar">Mapp flyttad</string>
+  <string name="migrate_folder_error_snackbar">Fel vid flytt av mappen</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Mapp finns redan på denna plats</string>
+  <string name="migrate_dissolve_folder_dialog_title">Flytta mappinnehåll</string>
+  <string name="migrate_dissolve_folder_dialog_message">This folder is already at the vault root. Its items and subfolders will be moved to the vault root.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Flytta</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">Objekt är redan i denna mapp</item>
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">Denna mapp finns redan på denna plats</string>
+  <string name="migrate_disabled_folder_reason_being_moved">Denna mapp håller på att flyttas</string>
+  <string name="migrate_disabled_folder_reason_descendant">Denna mapp finns inuti mappen som flyttas</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Moving here would exceed the folder limits</string>
+  <string name="migrate_disabled_vault_reason_no_permission">Du kan inte skapa objekt i detta valv</string>
+  <string name="migrate_disabled_vault_reason_same_vault">Du kan inte flytta ett objekt till samma valv</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">Flytta objektet till annat valv?</item>
+    <item quantity="other">Flytta %d objekten till annat valv?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Detta objekt delas för närvarande. Att flytta det till annat valv kommer ta bort åtkomst för alla andra användare.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">%d objekt delas för närvarande. Att flytta det till annat valv kommer ta bort åtkomst för alla andra användare.</item>
+    <item quantity="other">%d objekt delas för närvarande. Att flytta dem till annat valv kommer ta bort åtkomst för alla andra användare.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Välj ett valv</string>
+  <string name="migrate_select_destination_for_source_title">Välj destinationen för att flytta alla objekt från %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Objekt flyttades</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Det gick inte flytta objekten</string>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">Flytte %d element til følgende hvelv?</item>
+    <item quantity="other">Flytte %d elementer til følgende hvelv?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">Flytte %d element til følgende mappe?</item>
+    <item quantity="other">Flytte %d elementer til følgende mappe?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Flytt</string>
+  <string name="migrate_item_success_snackbar">Elementer flyttet</string>
+  <string name="migrate_item_error_snackbar">Feil ved flytting av elementene</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Feil ved flytting av noen av elementene</string>
+  <string name="migrate_item_warning_history">Når du flytter elementer mellom hvelv, vil vi bevare opptil de siste 50 modifikasjonene som er utført på hvert element.</string>
+  <string name="migrate_item_warning_secure_link">Elementets sikre koblinger fjernes når det flyttes til et annet hvelv</string>
+  <string name="migrate_all_items_success_snackbar">Alle elementer flyttet</string>
+  <string name="migrate_all_items_error_snackbar">Feil ved flytting av alle elementer</string>
+  <string name="migrate_init_error_snackbar">Kunne ikke klargjøre overføringsskjermen</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Flytte mappen til følgende hvelv?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Flytte mappen til følgende mappe?</string>
+  <string name="migrate_folder_success_snackbar">Mappe flyttet</string>
+  <string name="migrate_folder_error_snackbar">Feil ved flytting av mappen</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Mappen finnes allerede på denne plasseringen</string>
+  <string name="migrate_dissolve_folder_dialog_title">Flytt mappeinnhold</string>
+  <string name="migrate_dissolve_folder_dialog_message">Denne mappen er allerede i hvelvroten. Elementene og undermappene vil bli flyttet til hvelvroten.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Flytt</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">Elementet finnes allerede i denne mappen</item>
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">Mappen finnes allerede på denne plasseringen</string>
+  <string name="migrate_disabled_folder_reason_being_moved">Denne mappen flyttes</string>
+  <string name="migrate_disabled_folder_reason_descendant">Denne mappen er inne i mappen som flyttes</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Flytting hit ville overskredet mappegrensene</string>
+  <string name="migrate_disabled_vault_reason_no_permission">Du kan ikke opprette elementer i dette hvelvet</string>
+  <string name="migrate_disabled_vault_reason_same_vault">Du kan ikke flytte et element til det samme hvelvet</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">Flytte elementet til et annet hvelv?</item>
+    <item quantity="other">Flytte %d elementer til et annet hvelv?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Dette elementet er for øyeblikket delt. Hvis du flytter det til et annet hvelv, fjernes tilgangen for alle andre brukere.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">%d element er for øyeblikket delt. Hvis du flytter det til et annet hvelv, fjernes tilgangen for alle andre brukere.</item>
+    <item quantity="other">%d elementer er for øyeblikket delt. Hvis du flytter dem til et annet hvelv, fjernes tilgangen for alle andre brukere.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Velg et hvelv</string>
+  <string name="migrate_select_destination_for_source_title">Velg destinasjonen du vil flytte alle elementene fra %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Elementer flyttet</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Feil ved flytting av elementene</string>
+</resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">Prendre une photo</string>
+  <string name="add_attachment_choose_a_photo_or_video">Choisir une photo ou vidéo</string>
+  <string name="add_attachment_choose_a_file">Choisir un fichier</string>
+  <string name="attachment_options_rename">Renommer</string>
+  <string name="attachment_options_delete">Supprimer</string>
+  <string name="attachment_options_download">Télécharger</string>
+  <string name="attachment_options_share">Partager</string>
+  <string name="file_picker_open_error">Le sélecteur de fichier n\'a pas pu être ouvert.</string>
+  <string name="media_picker_open_error">Le sélecteur de média n\'a pas pu être ouvert.</string>
+  <string name="camera_open_error">La caméra n\'a pas pu être ouverte.</string>
+  <string name="camera_permission_explanation">L\'autorisation de l\'appareil photo est nécessaire pour que cette fonction soit disponible.</string>
+  <string name="camera_permission_open_settings">Ouvrir les paramètres</string>
+  <string name="delete_all_attachments_title">Voulez-vous supprimer toutes les pièces jointes ?</string>
+  <string name="delete_all_attachments_subtitle">Cette action ne peut pas être annulée.</string>
+  <string name="delete_all_attachments_confirm">Tout supprimer</string>
+  <string name="rename_attachment_dialog_title">Renommer un fichier</string>
+  <string name="storage_full_title">Votre espace de stockage est presque plein.</string>
+  <string name="storage_full_body">Passez à un abonnement supérieur pour augmenter votre espace de stockage.</string>
+  <string name="storage_full_upgrade">Améliorer votre abonnement</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%1$s sur %2$s</string>
+  <string name="attachments_saved_to_location_success">Pièce jointe enregistrée à l\'emplacement</string>
+  <string name="attachments_saved_to_location_error">L\'enregistrement de la pièce jointe à l\'emplacement n\'a pas abouti.</string>
+  <string name="attachment_sync_dialog_title_waiting">En attente de connexion</string>
+  <string name="attachment_sync_dialog_title_downloading">Téléchargement des pièces jointes en cours</string>
+  <string name="attachment_sync_dialog_title_done">Le téléchargement est terminé.</string>
+  <string name="attachment_sync_dialog_title_partial_failure">Le téléchargement n\'a pas abouti.</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">En attente d\'une connexion réseau pour télécharger les pièces jointes.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">Téléchargement en cours des pièces jointes %1$d/%2$d</string>
+  <string name="attachment_sync_dialog_subtitle_done">Toutes les pièces jointes ont été téléchargées avec succès.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">Certaines pièces jointes n\'ont pas pu être téléchargées. Vous pouvez réessayer de télécharger celles qui ont échoué ci-dessous.</string>
+  <string name="attachment_sync_dialog_retry_content_description">Réessayer le téléchargement</string>
+  <string name="attachment_sync_vault_files_count">%1$d / %2$d fichiers</string>
+</resources>

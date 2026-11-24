@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="other">Pindahkan %d item ke brankas berikut?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="other">Move %d items to the following folder?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Pindahkan</string>
+  <string name="migrate_item_success_snackbar">Item dipindahkan</string>
+  <string name="migrate_item_error_snackbar">Terdapat kesalahan dalam memindahkan item</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Terdapat kesalahan dalam memindahkan sebagian item</string>
+  <string name="migrate_item_warning_history">Pada saat memindahkan item antar brankas, kami akan menyimpan hingga 50 perubahan terakhir yang diberlakukan kepada masing-masing item</string>
+  <string name="migrate_item_warning_secure_link">Tautan aman milik item ini akan dihapus pada saat item dipindahkan ke brankas lainnya</string>
+  <string name="migrate_all_items_success_snackbar">Seluruh item dipindahkan</string>
+  <string name="migrate_all_items_error_snackbar">Terdapat kesalahan dalam memindahkan seluruh item brankas</string>
+  <string name="migrate_init_error_snackbar">Layar migrasi tidak dapat dipersiapkan</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Move folder to the following vault?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Move folder to the following folder?</string>
+  <string name="migrate_folder_success_snackbar">Folder moved</string>
+  <string name="migrate_folder_error_snackbar">Error moving the folder</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Folder is already in this location</string>
+  <string name="migrate_dissolve_folder_dialog_title">Move folder contents</string>
+  <string name="migrate_dissolve_folder_dialog_message">This folder is already at the vault root. Its items and subfolders will be moved to the vault root.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Pindahkan</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">This folder is already in this location</string>
+  <string name="migrate_disabled_folder_reason_being_moved">This folder is being moved</string>
+  <string name="migrate_disabled_folder_reason_descendant">This folder is inside the folder being moved</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Moving here would exceed the folder limits</string>
+  <string name="migrate_disabled_vault_reason_no_permission">Anda tidak dapat membuat item pada brankas ini</string>
+  <string name="migrate_disabled_vault_reason_same_vault">Anda tidak dapat memindahkan item ke brankas yang sama</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="other">Pindahkan %d item ke brankas lainnya?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Item ini saat ini sedang dibagikan. Dengan memindahkan item ini ke brankas lain, izin akses bagi seluruh pengguna lainnya akan dihapus.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="other">%d item saat ini sedang dibagikan. Dengan memindahkan item ini ke brankas lain, izin akses bagi seluruh pengguna lainnya akan dihapus.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Pilih brankas</string>
+  <string name="migrate_select_destination_for_source_title">Select the destination to move all items from %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Item dipindahkan</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Terdapat kesalahan dalam memindahkan item</string>
+</resources>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sharing_can_view">Читатель</string>
+  <string name="sharing_can_edit">Редактор</string>
+  <string name="sharing_can_manage">Администратор</string>
+  <string name="sharing_can_manage_v2">Менеджер</string>
+  <string name="sharing_can_view_description">Может просматривать элементы в этом хранилище.</string>
+  <string name="sharing_can_edit_description">Может создавать, редактировать, удалять и экспортировать элементы этого хранилища.</string>
+  <string name="sharing_can_manage_description">Может представлять и отзывать доступ к этому хранилищу.</string>
+  <plurals name="sharing_item_count">
+    <item quantity="one">%d элемент</item>
+    <item quantity="few">%d элемента</item>
+    <item quantity="many">Элементов: %d</item>
+    <item quantity="other">Элементов: %d</item>
+  </plurals>
+  <plurals name="sharing_invite_item_count">
+    <item quantity="one">%d item (including trashed)</item>
+    <item quantity="few">%d items (including trashed)</item>
+    <item quantity="many">%d items (including trashed)</item>
+    <item quantity="other">%d items (including trashed)</item>
+  </plurals>
+  <plurals name="sharing_member_count">
+    <item quantity="one">%d участник</item>
+    <item quantity="few">%d участника</item>
+    <item quantity="many">%d участников</item>
+    <item quantity="other">%d участников</item>
+  </plurals>
+  <string name="sharing_member_count_header">Участники</string>
+  <string name="shared_via_title">Совместное использование через</string>
+  <string name="shared_via_item_section_title" comment="The placeholder will be replaced by users count. E.g. 2 users">Элементов в общем доступе: %s</string>
+  <string name="shared_via_vault_section_title" comment="The placeholder will be replaced by members count. E.g. 2 members">Хранилищ в общем доступе: %s</string>
+  <string name="share_with_title">Поделиться с</string>
+  <string name="share_with_email_hint">Адрес эл. почты</string>
+  <string name="share_with_email_error">Недействительный адрес электронной почты</string>
+  <string name="share_with_email_cannot_invite_outside_org">Вы не можете приглашать людей за пределами вашей организации, свяжитесь с администратором для получения дополнительной информации</string>
+  <string name="share_with_email_email_already_added">Вы уже добавили этот адрес электронной почты</string>
+  <string name="share_permissions_title">Установить уровень доступа</string>
+  <string name="sharing_reject_invitation">Отклонить приглашение</string>
+  <string name="sharing_vault_invitation_title">Приглашение в общее хранилище</string>
+  <string name="sharing_vault_invitation_subtitle" comment="placeholder is replaced by an email address">%s хочет поделиться с вами хранилищем.</string>
+  <string name="sharing_vault_invitation_accept">Присоединиться к общему хранилищу</string>
+  <string name="sharing_item_invitation_title">Приглашение для общего предмета</string>
+  <string name="sharing_item_invitation_subtitle" comment="placeholder is replaced by an email address">%s хочет поделиться с вами элементом.</string>
+  <string name="sharing_item_invitation_accept">Принять и просмотреть элемент</string>
+  <string name="sharing_group_vault_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s wants to share a vault with your group %2$s.</string>
+  <string name="sharing_group_item_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s wants to share an item with your group %2$s.</string>
+  <string name="sharing_group_invitation_accept">Принять приглашение</string>
+  <string name="sharing_invite_more">Пригласить ещё…</string>
+  <string name="sharing_snackbar_invite_accepted">Приглашение принято</string>
+  <string name="sharing_snackbar_invite_accept_error">Ошибка при принятии приглашения</string>
+  <string name="sharing_snackbar_invite_accept_error_cannot_create_more_vaults">Не удалось принять приглашение, так как вы достигли предела объема хранилища</string>
+  <string name="sharing_snackbar_invite_rejected">Приглашение отклонено</string>
+  <string name="sharing_snackbar_invite_reject_error">Ошибка при отклонении приглашения</string>
+  <string name="sharing_snackbar_invite_sent_success">Приглашение отправлено</string>
+  <string name="sharing_snackbar_invite_sent_error">Не могу отправить приглашение</string>
+  <string name="sharing_snackbar_invite_new_users_error">Не удается отправить приглашения новым пользователям</string>
+  <string name="sharing_snackbar_invite_free_user_error">Приглашения к элементам разрешено отправлять только платящим пользователям</string>
+  <string name="sharing_snackbar_cannot_create_invite_error">Address cannot be invited</string>
+  <string name="sharing_snackbar_get_vault_members_error">Не могу получить участников хранилища</string>
+  <string name="sharing_snackbar_change_permission_success">Разрешения изменены</string>
+  <string name="sharing_snackbar_change_permission_error">Не могу изменить разрешения</string>
+  <string name="sharing_snackbar_remove_member_success">Участник удалён из хранилища</string>
+  <string name="sharing_snackbar_remove_member_error">Не могу удалить из хранилища</string>
+  <string name="sharing_snackbar_fetch_member_error">Произошла ошибка при загрузке участников</string>
+  <string name="sharing_snackbar_fetch_pending_invites_error">Произошла ошибка при загрузке ожидающих приглашений</string>
+  <string name="share_summary_title">Проверить и поделиться</string>
+  <string name="share_summary_share_vault">Поделиться хранилищем</string>
+  <string name="share_summary_share_item">Поделиться элементом</string>
+  <string name="share_summary_vault_title">Хранилище</string>
+  <string name="share_summary_item_title">Элемент</string>
+  <string name="share_summary_access_level_title">Уровень доступа</string>
+  <string name="share_manage_vault_share_with_more_people">Делитесь с большим числом людей</string>
+  <plurals name="share_manage_vault_invites_remaining" comment="Text that will be shown in the vault member list, showing the user how many invites they have left for this vault">
+    <item quantity="one">Осталось %d приглашение</item>
+    <item quantity="few">Осталось %d приглашения</item>
+    <item quantity="many">Осталось %d приглашений</item>
+    <item quantity="other">Осталось %d приглашений</item>
+  </plurals>
+  <plurals name="share_manage_vault_item_count">
+    <item quantity="one">%d элемент</item>
+    <item quantity="few">%d элемента</item>
+    <item quantity="many">%d элементов</item>
+    <item quantity="other">%d элементов</item>
+  </plurals>
+  <string name="share_manage_vault_invite_pending" comment="Text that will be shown in the vault member list, below the user email when the user has been invited but has not accepted the invitation yet">Приглашение отправлено</string>
+  <string name="share_manage_vault_invite_pending_user_creation" comment="Text that will be shown in the vault member list, below the user email when the user has not created the account yet">Ожидание создания аккаунта</string>
+  <string name="share_manage_vault_invite_confirm_access" comment="Text that will be shown in the vault member list, on a button, when the invited user has created the account and we want to grant him access to the vault">Подтвердите доступ</string>
+  <string name="share_manage_vault_invitations_title" comment="Text that will be used as the title of the list containing the invites for a vault">Приглашения</string>
+  <string name="share_manage_vault_members_title" comment="Text that will be used as the title of the list containing the members of a vault">Участники</string>
+  <string name="share_manage_vault_current_user_indicator">Вы</string>
+  <string name="share_manage_vault_members_error" comment="Shown when the vault member list fails to load">Couldn\'t load members</string>
+  <string name="share_manage_vault_members_error_retry" comment="Button to retry loading the vault members">Повторить</string>
+  <string name="share_role_viewer">Только просмотр</string>
+  <string name="share_role_editor">Редактор</string>
+  <string name="share_role_admin">Администратор</string>
+  <string name="share_role_manager">Менеджер</string>
+  <string name="share_role_owner">Владелец</string>
+  <string name="sharing_bottomsheet_transfer_ownership">Передать права владельца</string>
+  <string name="sharing_bottomsheet_transfer_ownership_disabled_subtitle" comment="Appears as the subtitle of the sharing_bottomsheet_transfer_ownership when the user cannot transfer the ownership because they only own one vault">Вы не можете передать последнее принадлежащее вам хранилище.</string>
+  <string name="sharing_bottomsheet_remove_access">Отозвать доступ</string>
+  <string name="sharing_bottomsheet_item_admin_subtitle">Можно предоставить и отменить доступ к этому элементу.</string>
+  <string name="sharing_bottomsheet_item_editor_subtitle">Можно редактировать и удалять этот элемент.</string>
+  <string name="sharing_bottomsheet_item_viewer_subtitle">Можно просматривать этот элемент.</string>
+  <string name="sharing_bottomsheet_resend_invite">Отправить повторное приглашение</string>
+  <string name="sharing_bottomsheet_cancel_invite">Отменить приглашение</string>
+  <string name="sharing_transfer_ownership_confirm_title">Передать права владельца</string>
+  <string name="sharing_transfer_ownership_confirm_message">Transfer ownership of this vault to %s?</string>
+  <string name="sharing_snackbar_cancel_invite_success">Приглашение отменено</string>
+  <string name="sharing_snackbar_cancel_invite_error">Ошибка отмены приглашения</string>
+  <string name="sharing_snackbar_resend_invite_success">Приглашение отправлено повторно</string>
+  <string name="sharing_snackbar_resend_invite_error">Ошибка при повторной отправке приглашения</string>
+  <string name="sharing_snackbar_confirm_invite_success">Приглашение подтверждено</string>
+  <string name="sharing_snackbar_confirm_invite_error">Ошибка подтверждения приглашения</string>
+  <string name="sharing_snackbar_too_many_invites_sent">Адрес приглашался слишком много раз</string>
+  <string name="sharing_snackbar_transfer_ownership_success">Владение передано</string>
+  <string name="sharing_snackbar_transfer_ownership_error">Ошибка при передаче владения</string>
+  <string name="sharing_invites_info_dialog_title">Ограничение количества участников</string>
+  <plurals name="sharing_invites_info_dialog_message" comment="Message that will appear when clicking the NUMBER invites left. Param 1: Max members of the vault (will always be greater than one). Param 2: Number of invites left.">
+    <item quantity="one">В этом хранилище может быть до %1$d участников. У вас осталось %2$d приглашение.</item>
+    <item quantity="few">В этом хранилище может быть до %1$d участников. У вас осталось %2$d приглашения.</item>
+    <item quantity="many">В этом хранилище может быть до %1$d участников. У вас осталось %2$d приглашений.</item>
+    <item quantity="other">В этом хранилище может быть до %1$d участников. У вас осталось %2$d приглашений.</item>
+  </plurals>
+  <string name="sharing_limit_reached">Это хранилище достигло предела количества участников и приглашений.</string>
+  <string name="sharing_invites_info_upgrade_text">Улучшите сейчас, чтобы пригласить больше.</string>
+  <string name="sharing_from_item_title" comment="Title for the Share from item bottomsheet">Поделиться</string>
+  <string name="sharing_from_item_share_this_vault_action" comment="Button for sharing this vault">Поделиться этим хранилищем</string>
+  <string name="sharing_from_item_move_to_shared_vault_action" comment="Button for moving an item to a shared vault">Переместить в общее хранилище</string>
+  <string name="sharing_from_item_vault_limit_reached_upgrade">Улучшите для создания дополнительных хранилищ</string>
+  <string name="sharing_from_item_vault_limit_reached">You have reached the vault limit</string>
+  <string name="share_with_suggestions_title">Рекомендации</string>
+  <string name="share_with_recents_title">Недавние</string>
+  <string name="share_with_remove_email_content_description">Удалить адрес эл. почты</string>
+  <string name="share_with_user_shared_title">С другими пользователями Proton Pass</string>
+  <string name="share_with_user_shared_description">Полезно для постоянного обмена.</string>
+  <string name="share_with_manage_shared_item_title">Управлять доступом</string>
+  <string name="share_with_manage_shared_item_description">Просмотреть обзор участника и прав доступа.</string>
+  <string name="share_with_secure_link_shared_title">Через защищенную ссылку</string>
+  <string name="share_with_secure_link_shared_description">Для одноразового использования.</string>
+  <string name="sharing_edit_permissions_set_access_level_all_members">Установить уровень доступа для всех участников</string>
+  <string name="sharing_edit_permissions_set_access_level_single_member">Установить уровень доступа для %s</string>
+  <string name="sharing_edit_permissions_remove_user">Удалить пользователя</string>
+  <string name="sharing_edit_permissions_remove_group">Remove group</string>
+  <string name="sharing_error_dialog_title">Неизвестная ошибка</string>
+  <string name="sharing_error_dialog_message">При отправке приглашения для этого хранилища произошла ошибка. Если проблема сохранится, обратитесь в службу поддержки клиентов.</string>
+  <string name="sharing_with_no_addresses_can_be_invited">Никакие адреса не могут быть приглашены</string>
+  <string name="sharing_with_some_addresses_cannot_be_invited">Некоторые адреса не могут быть приглашены</string>
+</resources>

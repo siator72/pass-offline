@@ -1,0 +1,267 @@
+/*
+ * Copyright (c) 2025-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.composecomponents.impl.item.details.titles
+
+import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Surface
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
+import proton.android.pass.commonui.api.LocalDark
+import proton.android.pass.commonui.api.PassPalette
+import proton.android.pass.commonui.api.PassTheme
+import proton.android.pass.commonui.api.Spacing
+import proton.android.pass.commonui.api.ThemePreviewProvider
+import proton.android.pass.commonui.api.applyIf
+import proton.android.pass.commonui.api.body3Norm
+import proton.android.pass.composecomponents.impl.extension.toColor
+import proton.android.pass.composecomponents.impl.extension.toSmallResource
+import proton.android.pass.domain.ShareColor
+import proton.android.pass.domain.ShareIcon
+import me.proton.core.presentation.R as CoreR
+
+private const val ELLIPSIS = "..."
+
+private val BorderDarkColor = Color(color = 0xFF38384C)
+private val BorderLightColor = Color(color = 0xFFE3DFFA)
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun FolderPathComposable(
+    modifier: Modifier = Modifier,
+    vaultName: String,
+    vaultIcon: ShareIcon,
+    vaultColor: ShareColor,
+    forceExpand: Boolean = false,
+    folderPath: List<String>
+) {
+    if (folderPath.isEmpty()) return
+
+    val (isExpanded, onExpand) = rememberSaveable { mutableStateOf(forceExpand) }
+
+    FlowRow(
+        modifier = modifier
+            .border(
+                width = 1.dp,
+                color = when (LocalDark.current) {
+                    true -> BorderDarkColor
+                    false -> BorderLightColor
+                },
+                shape = RoundedCornerShape(size = 12.dp)
+            )
+            .clip(RoundedCornerShape(size = 12.dp))
+            .applyIf(
+                condition = folderPath.size > 1,
+                ifTrue = {
+                    clickable { onExpand(!isExpanded) }
+                }
+            )
+            .animateContentSize()
+            .padding(horizontal = Spacing.medium, vertical = Spacing.mediumSmall)
+            .padding(vertical = Spacing.extraSmall),
+        verticalArrangement = Arrangement.spacedBy(Spacing.small)
+    ) {
+        // Vault header — always the first item in the flow
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                modifier = Modifier
+                    .size(16.dp)
+                    .padding(end = Spacing.extraSmall),
+                painter = painterResource(vaultIcon.toSmallResource()),
+                contentDescription = null,
+                tint = vaultColor.toColor()
+            )
+            Text(
+                modifier = Modifier.weight(weight = 1f, fill = false),
+                text = vaultName,
+                style = PassTheme.typography.body3Norm(),
+                color = PassTheme.colors.textWeak,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+
+        when {
+            folderPath.size == 1 -> {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    ChevronIcon()
+                    FolderItem(
+                        name = folderPath.first(),
+                        isLast = true,
+                        textColor = PassTheme.colors.textNorm
+                    )
+                }
+            }
+
+            isExpanded -> {
+                folderPath.forEachIndexed { index, folderName ->
+                    val isLast = index == folderPath.lastIndex
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        ChevronIcon()
+                        FolderItem(
+                            name = folderName,
+                            isLast = isLast,
+                            textColor = if (isLast) PassTheme.colors.textNorm else PassTheme.colors.textWeak
+                        )
+                    }
+                }
+            }
+
+            else -> {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    ChevronIcon()
+                    Text(
+                        text = ELLIPSIS,
+                        style = PassTheme.typography.body3Norm(),
+                        color = PassTheme.colors.textWeak
+                    )
+                    ChevronIcon()
+                    FolderItem(
+                        name = folderPath.last(),
+                        isLast = true,
+                        textColor = PassTheme.colors.textNorm
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ChevronIcon() {
+    Icon(
+        modifier = Modifier.size(12.dp),
+        painter = painterResource(CoreR.drawable.ic_proton_chevron_tiny_right),
+        contentDescription = null,
+        tint = PassTheme.colors.textWeak
+    )
+}
+
+@Composable
+private fun RowScope.FolderItem(
+    name: String,
+    isLast: Boolean,
+    textColor: Color
+) {
+    Spacer(modifier = Modifier.width(4.dp))
+    Icon(
+        modifier = Modifier.size(12.dp),
+        painter = painterResource(
+            if (isLast) CoreR.drawable.ic_proton_folder_filled
+            else CoreR.drawable.ic_proton_folders_filled
+        ),
+        contentDescription = null,
+        tint = PassPalette.FolderYellow
+    )
+    Spacer(modifier = Modifier.width(6.dp))
+    Text(
+        modifier = Modifier.weight(weight = 1f, fill = false),
+        text = name,
+        style = PassTheme.typography.body3Norm(),
+        color = textColor,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
+    )
+}
+
+@[Preview Composable]
+internal fun FolderPathComposableSinglePreview(@PreviewParameter(ThemePreviewProvider::class) isDark: Boolean) {
+
+    PassTheme(isDark = isDark) {
+        Surface {
+            FolderPathComposable(
+                vaultName = "Work",
+                vaultIcon = ShareIcon.Icon2,
+                vaultColor = ShareColor.Color2,
+                folderPath = listOf("Folder1")
+            )
+        }
+    }
+}
+
+@[Preview Composable]
+internal fun FolderPathComposableCollapsedPreview(@PreviewParameter(ThemePreviewProvider::class) isDark: Boolean) {
+    PassTheme(isDark = isDark) {
+        Surface {
+            FolderPathComposable(
+                vaultName = "Work",
+                vaultIcon = ShareIcon.Icon2,
+                vaultColor = ShareColor.Color2,
+                folderPath = listOf("Folder1", "Folder2", "Folder3")
+            )
+        }
+    }
+}
+
+@[Preview Composable]
+internal fun FolderPathComposableExpandedPreview(@PreviewParameter(ThemePreviewProvider::class) isDark: Boolean) {
+    PassTheme(isDark = isDark) {
+        Surface {
+            FolderPathComposable(
+                vaultName = "Work",
+                vaultIcon = ShareIcon.Icon2,
+                vaultColor = ShareColor.Color2,
+                forceExpand = true,
+                folderPath = listOf("Folder1", "Folder2", "Folder3")
+            )
+        }
+    }
+}
+
+@[Preview Composable]
+internal fun FolderPathComposableLongNamesPreview(@PreviewParameter(ThemePreviewProvider::class) isDark: Boolean) {
+    PassTheme(isDark = isDark) {
+        Surface {
+            FolderPathComposable(
+                vaultName = "A very long vault name that should be truncated with an ellipsis",
+                vaultIcon = ShareIcon.Icon2,
+                vaultColor = ShareColor.Color2,
+                forceExpand = true,
+                folderPath = listOf(
+                    "A very long folder name that should be truncated with an ellipsis",
+                    "Another extremely long folder name that must not push other segments away",
+                    "The last folder name is also very long and must stay on a single line"
+                )
+            )
+        }
+    }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_username_title">მომხმარებლის სახელის გენერაცია</string>
+  <string name="generate_username_button_regenerate">რეგენერაცია</string>
+  <string name="generate_username_button_copy">კოპირება</string>
+  <string name="generate_username_label_include_numbers">რიცხვების ჩათვლით</string>
+  <string name="generate_username_label_leetspeak">Leetspeak</string>
+  <string name="generate_username_label_word_types">სიტყვის ტიპები</string>
+  <string name="generate_username_label_adjectives">ზედსართავი სახელები</string>
+  <string name="generate_username_label_nouns">არსებითი სახელები</string>
+  <string name="generate_username_label_verbs">ზმნები</string>
+  <string name="generate_username_snackbar_copied">მომხმარებელი დაკოპირებულია მიმოცვლის ბუფერში</string>
+  <string name="generate_username_snackbar_error">მომხმარებლის სახელის გენერაცია შეუძლებელია</string>
+</resources>

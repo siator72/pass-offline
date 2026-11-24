@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">复制并关闭</string>
+  <string name="password_copied_to_clipboard">密码已复制</string>
+  <string name="bottomsheet_generate_password_title">生成密码</string>
+  <string name="password_type">类型</string>
+  <string name="special_characters">特殊字符 (!&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="other">%s 个字符</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">大写字母（A–Z）</string>
+  <string name="bottomsheet_option_include_numbers">包括数字 (0–9)</string>
+  <string name="regenerate_password_icon_content_description">重新生成密码按钮</string>
+  <string name="password_mode_memorable">好记的密码</string>
+  <string name="password_mode_random">随机密码</string>
+  <string name="password_mode_icon">密码模式图标</string>
+  <string name="password_words_separator_icon">密码单词分隔符</string>
+  <string name="password_history_title">生成的密码</string>
+  <string name="password_history_empty">无历史记录</string>
+  <string name="password_history_description">生成的密码将保留2周。</string>
+  <string name="password_history_today">今天，%s</string>
+  <string name="password_history_yesterday">昨天，%s</string>
+  <string name="password_history_before_yesterday">%d 天前，%s</string>
+  <string name="password_history_clear_history">清除历史记录</string>
+  <string name="password_history_remove_from_history">从历史记录中移除</string>
+</resources>

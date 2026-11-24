@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="item_history_restore_action">復元</string>
+  <string name="item_history_restore_confirmation_dialog_title">このバージョンを復元しますか？</string>
+  <string name="item_history_restore_confirmation_dialog_message" comment="The item will be reverted to a version from an specific date, for instance: Your current item will revert to the version from 19 February 2024 at 09:30">現在のアイテムは %1$s のバージョンに戻ります</string>
+  <string name="item_history_restore_snackbar_message_open_error">There was an error opening item revision</string>
+  <string name="item_history_restore_snackbar_message_error">アイテムのリビジョンを復元中にエラーが発生しました</string>
+  <string name="item_history_restore_snackbar_message_success">アイテムのリビジョンが正常に復元されました</string>
+  <string name="item_history_restore_tab_title_current">現在</string>
+  <string name="item_history_timeline_title">履歴</string>
+  <string name="item_history_timeline_node_child_title">修正済み</string>
+  <string name="item_history_timeline_node_leaf_title">作成日時</string>
+  <string name="item_history_timeline_node_root_title">現在のバージョン</string>
+  <string name="item_history_timeline_snackbar_message_error">アイテムのリビジョンの取得中にエラーが発生しました</string>
+  <string name="reset_history_bottomsheet_option">履歴をリセット</string>
+  <string name="reset_history_dialog_title">このアイテムの履歴をリセットしますか？</string>
+  <string name="reset_history_dialog_body">履歴をリセットすると過去のバージョンが完全に削除され、元に戻すことはできません。</string>
+  <string name="reset_history_action">リセット</string>
+  <string name="reset_history_dialog_snackbar_message_error">リセット中にエラーが発生しました</string>
+  <string name="reset_history_dialog_snackbar_message_success">アイテムの履歴をリセット</string>
+</resources>

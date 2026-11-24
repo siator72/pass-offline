@@ -1,0 +1,44 @@
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:autoMirrored="true"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <path
+        android:fillColor="#0C0C14"
+        android:fillType="evenOdd"
+        android:pathData="M3.541,2.48a0.75,0.75 0,1 0,-1.082 1.04l18,18.75a0.75,0.75 0,1 0,1.082 -1.04l-1.458,-1.518a3.75,3.75 0,0 0,-5.172 -5.388l-1.507,-1.57h8.346a0.75,0.75 0,0 0,0 -1.5h-1.648l-1.485,-5.976a3,3 0,0 0,-4.1 -2.031l-1.626,0.701a2.25,2.25 0,0 1,-1.782 0l-1.626,-0.701a3.002,3.002 0,0 0,-3.865 1.397L3.54,2.48ZM6.784,5.86l5.123,5.336h6.634l-1.38,-5.555a1.5,1.5 0,0 0,-2.05 -1.016l-1.626,0.702a3.75,3.75 0,0 1,-2.97 0l-1.626,-0.702a1.5,1.5 0,0 0,-2.05 1.016l-0.055,0.219ZM15.957,15.415 L19.037,18.623a2.25,2.25 0,0 0,-3.08 -3.209Z" />
+
+    <path
+        android:fillColor="#0C0C14"
+        android:pathData="m9.365,12.755 l-1.498,-1.56H5.46l0.495,-1.993 -1.228,-1.28 -0.827,3.333H2.25a0.75,0.75 0,1 0,0 1.5h7.115Z" />
+
+    <path
+        android:fillColor="#0C0C14"
+        android:fillType="evenOdd"
+        android:pathData="m12.268,15.779 l-1.291,-1.345a3.002,3.002 0,0 0,-1.12 0.721,3.75 3.75,0 1,0 0.643,2.1 1.5,1.5 0,0 1,1.768 -1.476ZM9,17.255a2.25,2.25 0,1 1,-4.5 0,2.25 2.25,0 0,1 4.5,0Z" />
+
+    <path
+        android:fillColor="#0C0C14"
+        android:pathData="M13.486,17.047c0.01,0.068 0.014,0.137 0.014,0.208a3.75,3.75 0,0 0,3.75 3.75h0.035l-3.8,-3.958Z" />
+
+</vector>

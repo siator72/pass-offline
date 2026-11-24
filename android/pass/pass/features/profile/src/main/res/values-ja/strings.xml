@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">プロフィール</string>
+  <string name="profile_option_settings">設定</string>
+  <string name="profile_option_account">アカウント</string>
+  <string name="profile_help_center">ヘルプセンター</string>
+  <string name="profile_security">セキュリティ</string>
+  <string name="profile_option_autofill_troubleshooting">Autofill troubleshooting</string>
+  <string name="profile_option_feedback">フィードバック</string>
+  <string name="profile_option_import_export">インポート/エクスポート</string>
+  <string name="profile_option_tutorial">Proton Passの利用方法</string>
+  <string name="profile_option_rating">アプリを評価</string>
+  <string name="profile_spread_the_word">Spread the word</string>
+  <string name="profile_option_tell_a_friend">Tell a friend</string>
+  <string name="profile_spread_the_word_share_message">I\'m using Proton Pass to keep my passwords secure. Try it: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">自動入力</string>
+  <string name="profile_option_autofill_subtitle">ユーザー名とパスワードを自動的に入力します。</string>
+  <string name="profile_option_secure_links">セキュアリンク</string>
+  <string name="profile_option_alias_management">エイリアス管理</string>
+  <string name="profile_option_generated_passwords">生成されたパスワード</string>
+  <string name="profile_error_biometry_failed_to_start">生体認証を開始できませんでした</string>
+  <string name="profile_error_biometry_failed_to_authenticate">認証に失敗しました</string>
+  <string name="profile_error_app_lock_update_failed">Could not update the app lock. Please try again.</string>
+  <string name="profile_fingerprint_lock_enabled">指紋ロックが有効</string>
+  <string name="profile_fingerprint_lock_disabled">指紋ロックが無効です</string>
+  <string name="profile_app_version_copied_to_clipboard">アプリのバージョンをコピーしました</string>
+  <string name="feedback_option_reddit">RedditでProtonをチェック</string>
+  <string name="feedback_option_mail">メッセージを送る</string>
+  <string name="feedback_option_vote_new_features">新機能への投票</string>
+  <string name="app_lock_immediately">即時</string>
+  <string name="app_lock_one_minute">1 分後</string>
+  <string name="app_lock_two_minutes">2 分後</string>
+  <string name="app_lock_five_minutes">5 分後</string>
+  <string name="app_lock_ten_minutes">10 分後</string>
+  <string name="app_lock_one_hour">1 時間後</string>
+  <string name="app_lock_four_hours">4 時間後</string>
+  <string name="app_lock_config_none">なし</string>
+  <string name="app_lock_config_biometric">生体認証</string>
+  <string name="app_lock_config_pin_code">PIN コード</string>
+  <string name="app_lock_config_app_lock_time">自動ロック</string>
+  <string name="app_lock_config_password">パスワード</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">生体認証に失敗した場合、システムロックを使用する</string>
+  <string name="configure_pin_set_pin_code">PINコードの設定</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">このコードでアプリのロックを解除する</string>
+  <string name="configure_pin_enter_pin_code">PINコードの入力</string>
+  <string name="configure_pin_repeat_pin_code">PIN コードの確認</string>
+  <string name="configure_pin_continue">続ける</string>
+  <string name="configure_pin_pin_does_not_match">PINが一致しません</string>
+  <string name="configure_pin_pin_too_short">PINが短すぎます</string>
+  <string name="configure_pin_pin_cannot_be_blank">PINを空白にすることはできません。</string>
+  <string name="configure_pin_pin_lock_enabled">PINロック有効</string>
+  <string name="configure_pin_pin_lock_disabled">PINロック無効</string>
+  <string name="profile_option_lock_with">でロック</string>
+  <string name="profile_option_unlock_with">ロック解除</string>
+  <string name="profile_option_change_pin_code">PINコードの変更</string>
+  <string name="profile_passkey_support_section_title">パスキー</string>
+  <string name="profile_passkey_support_subtitle_supported">パスキーはこのデバイスでサポートされています</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">あなたのAndroidバージョンはパスキーをサポートしていません.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">パスキーのサポートを確認できませんでした</string>
+  <plurals name="profile_after_days">
+    <item quantity="other">%d 日後</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="other">%d 分後</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="other">%d 時間後</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">一分未満</string>
+  <string name="account_switcher_manage_account">アカウントを管理</string>
+  <string name="account_switcher_sign_in">サインイン</string>
+  <string name="account_switcher_sign_out">サインアウト</string>
+  <string name="account_switcher_switch_to">切り替え:</string>
+  <string name="account_switcher_add_account">アカウントを追加</string>
+  <string name="account_switcher_remove">削除</string>
+  <string name="filtered_by_logins">ログインでフィルタリングされています。ゴミ箱に入ったアイテムは表示されません。</string>
+  <string name="filtered_by_logins_with_mfa">TOTPによるログインでフィルタリングされています。ゴミ箱に入ったアイテムは表示されません。</string>
+  <string name="filtered_by_aliases">エイリアスでフィルタリングされています。ゴミ箱に入ったアイテムは表示されません。</string>
+  <string name="filtered_by_notes">メモでフィルターされています。ゴミ箱のアイテムは表示されません。</string>
+  <string name="filtered_by_credit_cards">クレジットカードでフィルタリングされています。ゴミ箱に入ったアイテムは表示されません。</string>
+  <string name="filtered_by_identities">ユーザー情報でフィルタリングされています。ゴミ箱に入ったアイテムは表示されません。</string>
+  <string name="filtered_by_custom_items">カスタムアイテムでフィルターされています。ゴミ箱にあるアイテムは表示されません。</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">管理するには%1$sに切り替える必要があります</string>
+  <string name="account_switch_confirmation_title">アカウントを管理</string>
+  <string name="account_switch_confirmation_confirm">切り替えて管理</string>
+  <string name="profile_storage_data_title">ストレージ容量</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%2$s の中の%1$s</string>
+</resources>

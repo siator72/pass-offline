@@ -1,0 +1,112 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.sync.presentation
+
+import androidx.compose.runtime.Stable
+import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toPersistentMap
+import proton.android.pass.common.api.LoadingResult
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.toOption
+import proton.android.pass.data.api.repositories.IndexingStatus
+import proton.android.pass.data.api.repositories.ItemSyncStatus
+import proton.android.pass.data.api.repositories.ItemSyncStatusPayload
+import proton.android.pass.data.api.repositories.SyncReason
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.Vault
+
+@Stable
+internal data class SyncDialogState(
+    private val itemSyncStatus: ItemSyncStatus,
+    private val downloadedItemsMap: Map<ShareId, ItemSyncStatusPayload>,
+    private val insertedItems: Option<ItemSyncStatusPayload>,
+    private val vaultsLoadingResult: LoadingResult<List<Vault>>,
+    internal val indexingStatus: IndexingStatus = IndexingStatus.Idle,
+    private val syncReason: SyncReason = SyncReason.Default
+) {
+
+    internal val isFolderRepair: Boolean = syncReason == SyncReason.FolderRepair
+
+    internal val hasSyncFailed: Boolean = itemSyncStatus is ItemSyncStatus.SyncError
+
+    internal val canRetry: Boolean = itemSyncStatus is ItemSyncStatus.SyncError.DownloadError
+
+    internal val hasSyncSucceeded: Boolean = itemSyncStatus is ItemSyncStatus.SyncSuccess
+
+    internal val hasInvalidGroupShares: Boolean =
+        (itemSyncStatus as? ItemSyncStatus.SyncSuccess)?.hasInvalidGroupShares ?: false
+
+    internal val isIndexing: Boolean =
+        indexingStatus == IndexingStatus.Indexing || indexingStatus is IndexingStatus.InProgress
+
+    internal val isIndexReady: Boolean = indexingStatus == IndexingStatus.Ready
+
+    // Sync is finished when: failed OR (succeeded AND index is ready)
+    internal val hasSyncFinished: Boolean =
+        hasSyncFailed || hasSyncSucceeded && isIndexReady
+
+    internal val isInserting: Boolean =
+        insertedItems.map { it.current > 0 && it.current != it.total }.value() ?: false
+
+    private val failedShareIds: Set<ShareId> = when (val status = itemSyncStatus) {
+        is ItemSyncStatus.SyncError -> status.failedShareIds
+        else -> emptySet()
+    }
+
+    internal val syncItemsMap: ImmutableMap<ShareId, SyncDialogItem> = when (vaultsLoadingResult) {
+        is LoadingResult.Error,
+        LoadingResult.Loading -> persistentMapOf()
+
+        is LoadingResult.Success ->
+            vaultsLoadingResult.data
+                .associateBy { vault -> vault.shareId }
+                .mapValues { (shareId, vault) ->
+                    val isFailedVault = when {
+                        !hasSyncFailed -> false
+                        // Empty failedShareIds with a SyncError means a global failure
+                        // (e.g. network error before any share was fetched) — mark all vaults as failed.
+                        failedShareIds.isEmpty() -> true
+                        else -> shareId in failedShareIds
+                    }
+                    SyncDialogItem(
+                        vault = vault,
+                        downloadedItemsCountOption = downloadedItemsMap[shareId]?.current.toOption(),
+                        totalDownloadedItemsCountOption = downloadedItemsMap[shareId]?.total.toOption(),
+                        hasSyncFailed = isFailedVault
+                    )
+                }
+                .toPersistentMap()
+    }
+
+    internal companion object {
+
+        internal val Initial: SyncDialogState = SyncDialogState(
+            itemSyncStatus = ItemSyncStatus.SyncNotStarted,
+            downloadedItemsMap = emptyMap(),
+            insertedItems = None,
+            vaultsLoadingResult = LoadingResult.Loading,
+            indexingStatus = IndexingStatus.Idle,
+            syncReason = SyncReason.Default
+        )
+
+    }
+
+}

@@ -1,0 +1,60 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.fakes.usecases
+
+import kotlinx.coroutines.CompletableDeferred
+import proton.android.pass.data.api.repositories.SyncReason
+import proton.android.pass.data.api.usecases.RefreshSharesAndEnqueueSync
+import proton.android.pass.data.api.usecases.RefreshSharesResult
+import proton.android.pass.domain.UserId
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class FakeRefreshSharesAndEnqueueSync @Inject constructor() : RefreshSharesAndEnqueueSync {
+
+    data class Invocation(
+        val userId: UserId,
+        val syncType: RefreshSharesAndEnqueueSync.SyncType,
+        val workerOrigin: String,
+        val syncReason: SyncReason,
+        val deferSuccess: Boolean
+    )
+
+    val invocations = mutableListOf<Invocation>()
+
+    private var result: RefreshSharesResult = RefreshSharesResult.NoSharesSkipped()
+    var gate: CompletableDeferred<Unit>? = null
+
+    fun setResult(value: RefreshSharesResult) {
+        result = value
+    }
+
+    override suspend fun invoke(
+        userId: UserId,
+        syncType: RefreshSharesAndEnqueueSync.SyncType,
+        workerOrigin: String,
+        syncReason: SyncReason,
+        deferSuccess: Boolean
+    ): RefreshSharesResult {
+        invocations += Invocation(userId, syncType, workerOrigin, syncReason, deferSuccess)
+        gate?.await()
+        return result
+    }
+}

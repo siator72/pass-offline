@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title">Обліковий запис</string>
+  <string name="account_recovery_title">Обліковий запис та відновлення</string>
+  <string name="account_username_label">Ім\'я користувача</string>
+  <string name="account_subscription_label">Тарифний план</string>
+  <string name="account_permanently_delete_warning">Ця дія остаточно видалить ваш обліковий запис та всі пов\'язані з ним дані. Ви не зможете відновити цей обліковий запис.</string>
+  <string name="account_delete_account">Видалити обліковий запис</string>
+  <string name="account_delete_account_icon_content_description">Кнопка видалення облікового запису</string>
+  <string name="account_sign_out">Вийти</string>
+  <string name="account_sign_out_icon_content_description">Кнопка виходу із системи</string>
+  <string name="account_manage_account">Керувати обліковим записом</string>
+  <string name="account_manage_account_icon_content_description">Кнопка керування обліковим записом</string>
+  <string name="account_manage_subscription">Керувати передплатою</string>
+  <string name="account_get_user_info_error">Не вдалося отримати інформацію про користувача</string>
+  <string name="manage_subscription_icon_content_description">Кнопка керування передплатою</string>
+  <string name="account_settings_list_item_password_header">Змінити пароль</string>
+  <string name="account_settings_list_item_recovery_header">Резервна е-пошта</string>
+  <string name="account_settings_list_item_security_keys">Ключі безпеки</string>
+  <string name="account_settings_list_item_recovery_hint_not_set">Не встановлено</string>
+  <string name="account_settings_list_item_password_hint_grace">Очікується скидання пароля</string>
+  <string name="account_settings_list_item_password_hint_insecure">Скидання пароля готове</string>
+  <string name="account_settings_list_item_extra_password_header">Додатковий пароль для Proton Pass</string>
+  <string name="account_settings_list_item_extra_password_header_set">Встановити додатковий пароль для Proton Pass</string>
+  <string name="account_settings_list_item_extra_password_active">Активні</string>
+  <string name="account_settings_list_item_extra_password_description">Додатковий пароль буде потрібен для використання Pass. Він діє як додатковий пароль до вашого пароля Proton.</string>
+  <string name="account_settings_list_item_security_keys_hint_not_set">Не встановлено</string>
+  <string name="account_settings_list_item_security_keys_hint_single">%s</string>
+  <plurals name="account_settings_list_item_security_keys_hint_many">
+    <item quantity="one">Встановлено %d ключ безпеки</item>
+    <item quantity="few">Встановлено %d ключі безпеки</item>
+    <item quantity="many">Встановлено %d ключів безпеки</item>
+    <item quantity="other">Встановлено %d ключів безпеки</item>
+  </plurals>
+</resources>

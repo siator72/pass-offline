@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">Aliashantering</string>
+  <string name="simple_login_sync_management_domain_label">Domän</string>
+  <string name="simple_login_sync_management_domain_title">Standarddomän för alias</string>
+  <string name="simple_login_sync_management_domain_option_blank">Inte vald</string>
+  <string name="simple_login_sync_management_mailboxes_label">Brevlådor</string>
+  <string name="simple_login_sync_management_mailboxes_description">Brevlåda är dit e-post som skickas till ett alias vidarebefordras till. Det är din vanliga brevlåda, t.ex. Gmail, Outlook, Proton Mail, etc.</string>
+  <string name="simple_login_sync_management_mailbox_default">Standard</string>
+  <string name="simple_login_sync_management_mailbox_unverified">Ej verifierad brevlåda</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">Ej verifierad ändring av brevlåda</string>
+  <string name="simple_login_sync_management_vault_title">SimpleLogin-synkronisering</string>
+  <string name="simple_login_sync_management_no_vault_description">Du behöver minst ett valv för att hantera synkroniseringsinställningar för SimpleLogin.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">Ett fel uppstod vid hämtning av uppgifter för SL-alias</string>
+  <string name="simple_login_sync_management_mailboxes_title">Standardbrevlåda för alias</string>
+  <string name="simple_login_sync_management_dialog_title_domains">Standarddomän för alias</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">Standardbrevlåda för alias</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">Synkronisera alias</string>
+  <string name="simple_login_sync_enable_snackbar_error">Det var ett fel när synkronisering av SimpleLogin-alias aktiverades</string>
+  <string name="simple_login_sync_enable_snackbar_success">Synkronisering av SimpleLogin-alias aktiverat</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">Lägg till brevlåda</string>
+  <string name="simple_login_sync_mailbox_create_message_error">Det gick inte lägga till brevlådan</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">Ändra brevlåda</string>
+  <string name="simple_login_sync_mailbox_change_message_error">Det var ett fel vid ändring av brevlådan</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">E-post används redan</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">Bekräfta din brevlåda</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">Vi skickade en verifieringskod till %s. Ange den nedan:</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">din e-postadress</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">Ogiltig verifieringskod för brevlåda</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">Gränsen för ogiltiga verifieringskoder för brevlåda nådd, brevlåda borttagen</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">Det uppstod ett fel vid verifiering av brevlådan</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">Brevlåda verifierad</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">Det gick inte skicka verifieringskod</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">Verifieringskod skickad</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">Ta bort brevlåda</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">Alla alias som använder brevlådan %s kommer också att tas bort. För att fortsätta ta emot e-post, överför dessa alias till en annan brevlåda:</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">Överför alias</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">Till brevlåda</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">Ta bort brevlåda</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">Överför och ta bort brevlåda</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">Det uppstod ett fel vid borttagning av brevlåda</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">Brevlåda borttagen</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">Överför alias till</string>
+  <string name="simple_login_sync_mailbox_delete_warning">Observera att när de har tagits bort kan alias inte återställas</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">Standarddomän</string>
+  <string name="simple_login_sync_domain_select_title_none">inget</string>
+  <string name="simple_login_sync_domain_select_description_none">Ingen domän</string>
+  <string name="simple_login_sync_domain_select_description_custom">Din domän</string>
+  <string name="simple_login_sync_domain_select_description_free">Offentlig domän</string>
+  <string name="simple_login_sync_domain_select_description_premium">Premiumdomän</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">Det uppstod ett fel vid hämtning av SL-aliasdomäner</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">Det uppstod ett fel vid uppdatering av SL-aliasdomän</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">SL-aliasdomän uppdaterad</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">Kan inte visa alternativ för brevlåda</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">Det uppstod ett fel vid uppdatering av standardbrevlåda</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">Standardbrevlåda uppdaterad</string>
+  <string name="simple_login_sync_mailbox_change_email_option">Ändra brevlåda</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">Avbryt ändring av brevlåda</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">There was an error cancelling mailbox email change</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">Avbryt ändring av e-post för brevlåda</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">Standard SL-valv</string>
+  <string name="simple_login_sync_shared_default_vault_description">SimpleLogin-alias kommer att importeras till detta valv.</string>
+</resources>

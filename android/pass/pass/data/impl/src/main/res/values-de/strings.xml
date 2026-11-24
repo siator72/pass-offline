@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sync_channel">Synchronisieren</string>
+  <string name="sync_channel_description">Benachrichtigungskanal für das Synchronisieren von Einträgen</string>
+  <string name="syncing_vaults">Tresore und Einträge werden synchronisiert</string>
+  <string name="logging_out_free_users">Zusätzliche kostenlose Benutzer werden abgemeldet</string>
+  <string name="attachment_download_channel">Anhang heruntergeladen</string>
+  <string name="attachment_download_channel_description">Benachrichtigungskanal für das Herunterladen von Anhängen</string>
+  <string name="downloading_attachments">Anhänge werden heruntergeladen</string>
+  <string name="downloading_attachments_progress" comment="%1$s is the download progress counter, e.g. 3 / 10">%1$s Dateien</string>
+  <string name="plan_subscription_auto_renews_monthly">Abonnement wird automatisch für %1$s/Monat verlängert.</string>
+  <string name="plan_subscription_auto_renews_annual">Abonnement wird automatisch für %1$s/Jahr verlängert.</string>
+  <string name="plan_welcome_offer_auto_renews_monthly">Willkommensangebot. Wird automatisch für %1$s/Monat verlängert.</string>
+  <string name="plan_welcome_offer_auto_renews_annual">Willkommensangebot. Wird automatisch für %1$s/Jahr verlängert.</string>
+</resources>

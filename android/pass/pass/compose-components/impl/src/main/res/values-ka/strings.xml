@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">სათაური (A-Z)</string>
+  <string name="sort_by_title_desc">სათაური (Z-A)</string>
+  <string name="sort_by_creation_asc">უძველესიდან ახლისკენ</string>
+  <string name="sort_by_creation_desc">უახლესიდან ძველისკენ</string>
+  <string name="sort_by_modification_date">ახლახანს გამოყენებული</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">ყველა</string>
+  <string name="item_list_header_pinned_search_results">მიმაგრებული</string>
+  <string name="item_list_header_logins_type">შესვლები</string>
+  <string name="item_list_header_logins_totp_type">TOTP-ით შესვლის დეტალები</string>
+  <string name="item_list_header_aliases_type">ფსევდონიმები</string>
+  <string name="item_list_header_notes_type">შენიშვნები</string>
+  <string name="item_list_header_credit_cards_type">საკრედიტო ბარათები</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">შედეგი</item>
+    <item quantity="other">შედეგები</item>
+  </plurals>
+  <string name="item_list_header_identities_type">იდენტიფიკატორები</string>
+  <string name="item_list_header_custom_type">მომხმარებლის ელემენტები</string>
+  <string name="item_list_header_shared_with_me">ჩემთან გაზიარებული</string>
+  <string name="item_list_header_shared_by_me">ჩემი გაზიარებული</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">დასტური</string>
+  <string name="bottomsheet_cancel_button">გაუქმება</string>
+  <string name="bottomsheet_move_to_trash">ნაგვის ყუთში გადატანა</string>
+  <string name="bottomsheet_pin_item">მიმაგრება</string>
+  <string name="bottomsheet_unpin_item">მოხსნა</string>
+  <string name="bottomsheet_view_item_history">ისტორიის ნახვა</string>
+  <string name="bottomsheet_monitor_exclude">მონიტორინგიდან ამოღება</string>
+  <string name="bottomsheet_monitor_include">მონიტორინგში ჩასმა</string>
+  <string name="bottomsheet_migrate_item_v2">გადატანა</string>
+  <string name="bottomsheet_create_folder">საქაღალდის შექმნა</string>
+  <string name="folder_tree_create_folder">საქაღალდის შექმნა</string>
+  <string name="bottomsheet_rename_folder">სახელის გადარქმევა</string>
+  <string name="bottomsheet_create_sub_folder">ქვესაქაღალდის შექმნა</string>
+  <string name="bottomsheet_move_folder">საქაღალდის გადატანა</string>
+  <string name="bottomsheet_move_all_items_in_folder">ყველა ელემენტის გადატანა</string>
+  <string name="bottomsheet_copy_item_note">შენიშვნის კოპირება</string>
+  <string name="bottomsheet_delete_permanently">სამუდამოდ წაშლა</string>
+  <string name="bottomsheet_restore">აღდგენა</string>
+  <string name="bottomsheet_leave">გასვლა</string>
+  <string name="bottomsheet_duplicate">დუბლირება</string>
+  <string name="bottomsheet_no_actions">ქმედებები ხელმისაწვდომი არაა</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">ელემენტის ქმედების მენიუს გახსნა</string>
+  <string name="action_upgrade_now">ტარიფის განახლება</string>
+  <string name="action_not_now">არა ახლა</string>
+  <string name="action_learn_more">გაიგეთ მეტი</string>
+  <string name="action_enable">ჩართვა</string>
+  <string name="action_view_details">დეტალების ხილვა</string>
+  <string name="action_see_all">ყველას ნახვა</string>
+  <string name="action_confirm">დასტური</string>
+  <string name="action_cancel">გაუქმება</string>
+  <string name="action_continue">გაგრძელება</string>
+  <string name="action_retry">თავიდან</string>
+  <string name="action_edit">ჩასწორება</string>
+  <string name="action_add">დამატება</string>
+  <string name="action_delete">წაშლა</string>
+  <string name="action_make_default">ნაგულისხმევად დაყენება</string>
+  <string name="action_verify">გადამოწმება</string>
+  <string name="action_close">დახურვა</string>
+  <string name="action_update">განახლება</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">დაამატეთ თქვენი პირველი ელემენტი</string>
+  <string name="empty_search_results_title">შედეგების გარეშე</string>
+  <string name="empty_list_open_extension">ვებ-გაფართოებაზე გადასვლა</string>
+  <string name="empty_list_create_item_button">ახალი ელემენტის შექმნა</string>
+  <!-- Field -->
+  <string name="field_title_title">სათაური</string>
+  <string name="field_title_hint">უსათაურო</string>
+  <string name="field_title_required">სათაური აუცილებელია</string>
+  <string name="small_cross_icon_content_description">პატარა ჯვრის ხატულა</string>
+  <string name="field_note_title">შენიშვნა</string>
+  <string name="field_note_hint">შენიშვნის დამატება</string>
+  <string name="linked_apps_title">მიბმული აპები</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">ოფლაინი</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">აპის ხატულა ვერ ვიპოვე</string>
+  <string name="add_item_icon_content_description">ელემენტის დამატების ხატულა</string>
+  <string name="navigate_back_icon_content_description">უკან დაბრუნების ხატულა</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">ელემენტების სია</string>
+  <string name="bottom_bar_add_item_icon_content_description">ელემენტის დამატება</string>
+  <string name="bottom_bar_profile_icon_content_description">პროფილი</string>
+  <string name="bottom_bar_security_center_icon_content_description">უსაფრთხოების ცენტრი</string>
+  <string name="bottom_bar_explore_icon_content_description">დათვალიერება</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">დღეს</string>
+  <string name="most_recent_yesterday">გუშინ</string>
+  <string name="most_recent_this_week">ამ კვირას</string>
+  <string name="most_recent_last_two_weeks">ბოლო ორი კვირის განმავლობაში</string>
+  <string name="most_recent_last_30_days">ბოლო თვის</string>
+  <string name="most_recent_last_60_days">ბოლო 60 დღე</string>
+  <string name="most_recent_last_90_days">ბოლო 90 დღე</string>
+  <string name="most_recent_within_the_last_year">ბოლო წელიწადში</string>
+  <string name="most_recent_more_than_1_year">1 წელიწადზე უფრო ძველი</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">ძებნის ხატულა</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 ელემენტი</item>
+    <item quantity="other">%d ელემენტი</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">გავაუქმო ცვლილებები?</string>
+  <string name="confirm_close_dialog_message">გაქვთ შეუნახავი ცვლილებები. დარწმუნებული ბრძანდებით, რომ გნებავთ, მოაცილოთ ისინი?</string>
+  <string name="confirm_close_dialog_close_button">მოცილება</string>
+  <!-- Upgrade -->
+  <string name="upgrade">გაუმჯობესება</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">დამატებითი პარამეტრები</string>
+  <string name="hide_advanced_options">დამატებითი პარამეტრების დამალვა</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">ძლიერი</string>
+  <string name="label_password_strength_vulnerable">მოწყვლადი</string>
+  <string name="label_password_strength_weak">სუსტი</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">ყველას ნახვა</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">დღეს %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">გუშინ %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">ფსევდონიმის მისამართი</string>
+  <string name="item_details_alias_section_alias_disabled_title">ფსევდონიმის მისამართი (გათიშულია)</string>
+  <string name="item_details_alias_section_mailboxes_title">გადამისამართება</string>
+  <string name="item_details_credit_card_section_cardholder_title">სრული სახელი</string>
+  <string name="item_details_credit_card_section_card_number_title">ბარათის ნომერი</string>
+  <string name="item_details_credit_card_section_expiration_date_title">ვადა იწურება</string>
+  <string name="item_details_credit_card_section_cvv_title">უსაფრთხოების კოდი</string>
+  <string name="item_details_credit_card_section_pin_title">PIN კოდი</string>
+  <string name="item_details_login_section_email_title">ელფოსტის მისამართი</string>
+  <string name="item_details_login_section_username_title">მომხმარებლის სახელი</string>
+  <string name="item_details_login_section_password_title">პაროლი</string>
+  <string name="item_details_login_section_primary_totp_title">2FA კოდი (TOTP)</string>
+  <string name="item_details_login_section_websites_title">ვებსაიტები</string>
+  <string name="autofill_mode_label_default">მშობელი დომენი და ქვედომენები</string>
+  <string name="autofill_mode_label_exact">ზუსტი (ქვე)დომენი</string>
+  <string name="autofill_mode_label_never">არასდროს შეავსო ამ ვებსაიტზე</string>
+  <string name="autofill_mode_label_start_with">იწყება რით</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">რეგულარული გამოსახულება</string>
+  <string name="autofill_mode_label_exact_path">ზუსტი URL-ის დამთხვევა</string>
+  <string name="autofill_mode_label_unsupported">ეს url ავტოშევსებისთვის გამოტოვებული იქნება</string>
+  <string name="login_item_view_alias_button">ფსევდონიმის ნახვა</string>
+  <string name="item_details_identity_section_personal_title">პირადი ინფორმაცია</string>
+  <string name="item_details_identity_section_personal_first_name_title">სახელი</string>
+  <string name="item_details_identity_section_personal_middle_name_title">მამის / მეორე სახელი</string>
+  <string name="item_details_identity_section_personal_last_name_title">გვარი</string>
+  <string name="item_details_identity_section_personal_full_name_title">სრული სახელი</string>
+  <string name="item_details_identity_section_personal_email_title">ელფოსტის მისამართი</string>
+  <string name="item_details_identity_section_personal_gender_title">სქესი</string>
+  <string name="item_details_identity_section_personal_phone_title">ტელეფონის ნომერი</string>
+  <string name="item_details_identity_section_personal_birthday_title">დაბადების დღე</string>
+  <string name="item_details_identity_section_address_title">მისამართის დეტალები</string>
+  <string name="item_details_identity_section_address_organization_title">ორგანიზაცია</string>
+  <string name="item_details_identity_section_address_street_address_title">მისამართი, საფოსტო ყუთი</string>
+  <string name="item_details_identity_section_address_floor_title">სართული</string>
+  <string name="item_details_identity_section_address_city_title">ქალაქი</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">Zip ან საფოსტო კოდი</string>
+  <string name="item_details_identity_section_address_state_or_province_title">შტატი ან პროვინცია</string>
+  <string name="item_details_identity_section_address_county_title">საგრაფო</string>
+  <string name="item_details_identity_section_address_country_or_region_title">ქვეყანა ან რეგიონი</string>
+  <string name="item_details_identity_section_contact_title">კონტაქტის დეტალები</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">სოციალური უსაფრთხოების ნომერი</string>
+  <string name="item_details_identity_section_contact_passport_number_title">პასპორტის ნომერი</string>
+  <string name="item_details_identity_section_contact_license_number_title">ლიცენზიის ნომერი</string>
+  <string name="item_details_identity_section_contact_website_title">საიტი</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X-ის პროფილი</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">მეორე ტელეფონის ნომერი</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">სამსახურის დეტალები</string>
+  <string name="item_details_identity_section_work_company_title">კომპანია</string>
+  <string name="item_details_identity_section_work_occupation_title">საქმიანობის სახეობა</string>
+  <string name="item_details_identity_section_work_email_title">სამსახურის ელფოსტის მისამართი</string>
+  <string name="item_details_identity_section_work_phone_number_title">სამსახურის ტელეფონის ნომერი</string>
+  <string name="item_details_identity_section_work_personal_website_title">პირადი ვებგვერდი</string>
+  <string name="item_details_shared_section_note_title">შენიშვნა</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">უკანასკნელი ავტომატური შევსება</string>
+  <string name="item_details_shared_section_item_history_created_title">შექმნილია</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">შეცვლილია (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">ელემენტის ისტორიის ნახვა</string>
+  <string name="item_details_shared_section_more_info_header_title">მეტი ინფორმაცია</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">ელემენტის დამატებითი ინფორმაციის ხატულა</string>
+  <string name="item_details_shared_section_more_info_item_id">ელემენტის ID</string>
+  <string name="item_details_shared_section_more_info_vault_id">საცავის ID</string>
+  <string name="item_details_shared_section_more_info_share_id">ID-ის გაზიარება</string>
+  <string name="item_details_wifi_network_label_ssid_name">სახელი (SSID)</string>
+  <string name="item_details_wifi_network_label_password">პაროლი</string>
+  <string name="item_details_wifi_network_label_security">უსაფრთხოება</string>
+  <string name="item_details_ssh_key_label_public_key">საჯარო გასაღები</string>
+  <string name="item_details_ssh_key_label_private_key">პირადი გასაღები</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">აპის ვერსია მხარდაჭერილი აღარაა. განაახლეთ თქვენი აპი.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">წვდომის გასაღები</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">ტარიფის გაუმჯობესება?</string>
+  <string name="dialog_upgrade_plan_message">ეს ფუნქცია ხელმიუწვდომელია უფასო სატარიფო გეგმისი მომხმარებლებისთვის. თუ გნებავთ, ისიამოვნოთ სხვა მრავალ მაგარ ფუნქციასთან ერთად, ასწიეთ სატარიფო გეგმა და სცადეთ ისინი!</string>
+  <string name="dialog_upgrade_plan_action_confirm">ტარიფის აწევა</string>
+  <string name="dialog_upgrade_plan_action_cancel">არა ახლა</string>
+  <!-- Words -->
+  <string name="email_address">ელფოსტის მისამართი</string>
+  <string name="email_address_invalid">არასწორი ელფოსტის მისამართი</string>
+  <string name="password">პაროლი</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">ღილაკი, რომ ეს მინიშნება მოაცილოთ და აღარასდროს გაჩვენოთ</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d წელი</item>
+    <item quantity="other">%d წელი</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d თვე</item>
+    <item quantity="other">%d თვე</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d კვირა</item>
+    <item quantity="other">%d კვირა</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d დღე</item>
+    <item quantity="other">%d დღე</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d სთ</item>
+    <item quantity="other">%d სთ</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d წუთი</item>
+    <item quantity="other">%d წუთი</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d წამი</item>
+    <item quantity="other">%d წამი</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d ფსევდონიმი</item>
+    <item quantity="other">%d ფსევდონიმი</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">შენიშვნა დაკოპირდა</string>
+  <string name="snack_bar_message_item_migration_error">შეცდომა ამ ელემენტის მიგრაციისას</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">ელემენტის მონიტორინგიდან ამოღება წარმატებულია</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">მონიტორინგიდან ელემენტის ამოღების შეცდომა</string>
+  <string name="snack_bar_message_item_monitor_included_success">ელემენტის მონიტორინგში ჩასმა წარმატებულია</string>
+  <string name="snack_bar_message_item_monitor_included_error">ელემენტის მონიტორინგში ჩასმის შეცდომა</string>
+  <string name="snack_bar_message_item_pinned_success">ელემენტი წარმატებით მიმაგრდა</string>
+  <string name="snack_bar_message_item_pinned_error">ელემენტის მიმაგრების შეცდომა</string>
+  <string name="snack_bar_message_item_unpinned_success">ელემენტის მოხსნა წარმატებულია</string>
+  <string name="snack_bar_message_item_unpinned_error">ელემენტის მოხსნის შეცდომა</string>
+  <string name="snack_bar_message_item_trashed_success">ელემენტის ნაგვის ყუთში გადატანა წარმატებულია</string>
+  <string name="snack_bar_message_item_trashed_error">ამ ელემენტის ნაგვის ყუთში გადატანის შეცდომა</string>
+  <string name="snack_bar_message_item_restore_success">ელემენტი წარმატებით აღდგა</string>
+  <string name="snack_bar_message_item_restore_error">შეცდომა ამ ელემენტის აღდგენისას</string>
+  <string name="snack_bar_message_item_delete_success">ელემენტი წარმატებით წაიშალა</string>
+  <string name="snack_bar_message_item_delete_error">შეცდომა ამ ელემენტი წაშლისას</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">SimpleLogin-ის სინქრონიზაციის ჩართვა</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">აღმოვაჩინეთ, რომ გაქვთ %d ფსევდონიმი, რომელიც არსებობს SimpleLogin-ში, მაგრამ არა Proton Pass-ში. გნებავთ მათი შემოტანა?</item>
+    <item quantity="other">აღმოვაჩინეთ, რომ გაქვთ %d ფსევდონიმი, რომელიც არსებობს SimpleLogin-ში, მაგრამ არა Proton Pass-ში. გნებავთ მათი შემოტანა?</item>
+  </plurals>
+  <string name="simple_login_widget_action">ფსევდონიმების სინქი</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">კოდი არ მიგიღიათ?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">მოძებნეთ თქვენი სპამის საქაღალდეში ელფოსტა სახელით \"%s\"</string>
+  <string name="verification_code_suggestion_subject_new_email_address">დაადასტურეთ თქვენი ელფოსტის მისამართი Proton Pass-სთვის</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">გთხოვთ, დაადასტუროთ საფოსტო ყუთი</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">თუ ასეთ ელფოსტას ვერ პოულობთ, შეგიძლიათ %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">ახალი კოდის გამოთხოვა</string>
+  <string name="field_display_name_title">საჩვენებელი სახელი</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s ფაილი</item>
+    <item quantity="other">%1$s ფაილი</item>
+  </plurals>
+  <string name="attachment_title">მიმაგრებული ფაილები</string>
+  <string name="attachment_no_files">ატვირთეთ ფაილები თქვენი მოწყობილობიდან</string>
+  <string name="attachment_add_file">ფაილის მიმაგრება</string>
+  <string name="attachment_row_upload_failed">ატვირთვა ჩავარდა</string>
+  <string name="attachment_row_retry">თავიდან</string>
+  <string name="options_menu_content_description">პარამეტრების მენიუ</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d გაზიარებული ელემენტი</item>
+    <item quantity="other">%d გაზიარებული ელემენტი</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d მომხმარებელი</item>
+    <item quantity="other">%d მომხმარებელი</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d წევრი</item>
+    <item quantity="other">%d წევრი</item>
+  </plurals>
+  <string name="show_network_qr_code">ქსელის QR კოდის ჩვენება</string>
+  <string name="expand_collpased_text">მეტი</string>
+  <string name="collapse_expanded_text">ნაკლები</string>
+  <string name="login_item_monitor_widget_weak_pass_title">პაროლი სუსტია</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">ეს ანგარიში მოწყვლადია. მიმართეთ სერვისს და შეცვალეთ თქვენი პაროლი.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">გატეხილი პაროლი</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">ეს პაროლი მონაცემთა გაჟონვებშია აღმოჩენილი. ეწვიეთ სერვისს და შეცვალეთ პაროლი.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d სხვა მომხმარებელი იყენებს ამ პაროლს</item>
+    <item quantity="other">%d სხვა მომხმარებელი იყენებს ამ პაროლს</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">მოირგეთ 2FA მეტი უსაფრთხოებისთვის</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">ეს სერვისი გთავაზობთ 2FA-ს. ჩართეთ ის დამატებითი ანგარიშის უსაფრთხოებისთვის.</string>
+  <string name="login_item_monitor_action_ignore">იგნორი</string>
+  <string name="login_item_monitor_action_restore">განგაშის აღდგენა</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">სუსტი პაროლი</string>
+  <string name="login_item_monitor_label_compromised">გატეხილი პაროლი</string>
+  <string name="login_item_monitor_label_reused">განმეორებით გამოყენებული პაროლი</string>
+  <string name="login_item_monitor_label_missing_2fa">აკლია 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">ელემენტები თქვენი საცავებიდან, რომლებიც ამ პაროლს იყენებს.</string>
+  <string name="mfa_limit_reached">მიღწეულია 2FA-ის ლიმიტი</string>
+  <string name="activity_in_last_two_weeks">აქტივობა ბოლო 14 დღეში</string>
+  <string name="contacts">კონტაქტები</string>
+  <string name="contacts_section_description">იმისათვის, რომ თქვენი პირადი ელფოსტის მისამართი დამალული დარჩეს, შეგიძლიათ, შექმნათ ფსევდონიმი კონტაქტი, რომელიც თქვენს მისამართს შენიღბავს.</string>
+  <string name="field_detail_display_name_title">საჩვენებელი სახელი</string>
+  <string name="display_name_section_description">საჩვენებელი სახელი, როცა ელფოსტას ამ ფსევდონიმიდან აგზავნით.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s გადაგზავნილი</item>
+    <item quantity="other">%1$s გადაგზავნილი</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s პასუხი</item>
+    <item quantity="other">%1$s პასუხი</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s დაბლოკილი</item>
+    <item quantity="other">%1$s დაბლოკილი</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">შესვლის შექმნა</string>
+  <string name="banner_contacts_title">იცოდით?</string>
+  <string name="banner_contacts_subtitle">ყოველთვის, როცა თქვენი ფსევდონიმი ელფოსტის მიიღებს, ახალი კონტაქტი ავტომატურად იქნება.</string>
+  <string name="action_reveal">გამოჩენა</string>
+  <string name="action_conceal">დამალვა</string>
+  <string name="warning_dialog_item_shared_vault_title">ელემენტი გაზიარებულ საცავში</string>
+  <string name="warning_dialog_item_shared_title">გაზიარებული ელემენტი</string>
+  <string name="warning_dialog_item_shared_vault_creating">თქვენ ქმნით ელემენტს გაზიარებულ საცავში. წევრები დაუყოვნებლივ მიიღებენ ამ ელემენტზე წვდომას.</string>
+  <string name="warning_dialog_item_shared_vault_moving">თქვენ გადააქვთ ელემენტი გაზიარებულ საცავში. წევრები დაუყოვნებლივ მიიღებენ წვდომას ამ ელემენტზე.</string>
+  <string name="warning_dialog_item_shared_vault_updating">თქვენ რედაქტირებთ გაზიარებულ საცავში არსებულ ელემენტს. წევრები დაუყოვნებლივ მიიღებენ წვდომას ამ ელემენტზე.</string>
+  <string name="warning_dialog_item_shared_updating">თქვენ რედაქტირებთ გაზიარებულ ელემენტს. ცვლილებები დაუყოვნებლივ იქნება ხილული ყველასთვის, ვისთანაც ის გაზიარებულია.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">აღარ შემახსენო</string>
+  <string name="upgrade_to_pass_plus">განახლება Pass Plus-ზე</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">თქვენ გადამისამართდებით ჩვენს ვებსაიტზე. თუ სატარიფო გეგმას შეიძენთ, გადატვირთეთ აპლიკაცია.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">სიტყვების განმაცალკევებელი</string>
+  <string name="bottomsheet_option_capitalise">მაღალ რეგისტრში</string>
+  <string name="bottomsheet_option_word_separator_hyphens">დეფისები ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">ადგილები</string>
+  <string name="bottomsheet_option_word_separator_periods">წერტილები ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">მძიმეები ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">ხაზგასმები ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">რიცხვები</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">ციფრები და სიმბოლოები</string>
+  <plurals name="word_count">
+    <item quantity="one">%s სიტყვა</item>
+    <item quantity="other">%s სიტყვა</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">პაროლის სიძლიერე</string>
+  <string name="password_check_min_length">პაროლი ძალიან მოკლეა</string>
+  <string name="password_check_lowercase">მხედრული ასოები</string>
+  <string name="password_check_uppercase">მთავრული ასოები</string>
+  <string name="password_check_no_consecutive">გამეორებული სიმბოლოების გარეშე</string>
+  <string name="password_check_no_common">საერთო პაროლების გარეშე</string>
+</resources>

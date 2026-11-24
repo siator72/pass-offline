@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Název (A-Z)</string>
+  <string name="sort_by_title_desc">Název (Z-A)</string>
+  <string name="sort_by_creation_asc">Od nejstarších k nejnovějším</string>
+  <string name="sort_by_creation_desc">Od nejnovějších k nejstarším</string>
+  <string name="sort_by_modification_date">Naposledy použito</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Vše</string>
+  <string name="item_list_header_pinned_search_results">Připnuto</string>
+  <string name="item_list_header_logins_type">Přihlášení</string>
+  <string name="item_list_header_logins_totp_type">Přihlášení pomocí TOTP</string>
+  <string name="item_list_header_aliases_type">Aliasy</string>
+  <string name="item_list_header_notes_type">Poznámky</string>
+  <string name="item_list_header_credit_cards_type">Platební karty</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">výsledek</item>
+    <item quantity="few">výsledky</item>
+    <item quantity="many">výsledky</item>
+    <item quantity="other">výsledky</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Identity</string>
+  <string name="item_list_header_custom_type">Vlastní položky</string>
+  <string name="item_list_header_shared_with_me">Sdíleno se mnou</string>
+  <string name="item_list_header_shared_by_me">Sdíleno mnou</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Potvrdit</string>
+  <string name="bottomsheet_cancel_button">Zrušit</string>
+  <string name="bottomsheet_move_to_trash">Přesunout do koše</string>
+  <string name="bottomsheet_pin_item">Připnout</string>
+  <string name="bottomsheet_unpin_item">Odepnout</string>
+  <string name="bottomsheet_view_item_history">Zobrazit historii</string>
+  <string name="bottomsheet_monitor_exclude">Vyloučit ze sledování</string>
+  <string name="bottomsheet_monitor_include">Zahrnout do sledování</string>
+  <string name="bottomsheet_migrate_item_v2">Přesunout</string>
+  <string name="bottomsheet_create_folder">Vytvořit složku</string>
+  <string name="folder_tree_create_folder">Vytvořit složku</string>
+  <string name="bottomsheet_rename_folder">Přejmenovat</string>
+  <string name="bottomsheet_create_sub_folder">Vytvořit podsložku</string>
+  <string name="bottomsheet_move_folder">Přesunout složku</string>
+  <string name="bottomsheet_move_all_items_in_folder">Přesunout všechny položky</string>
+  <string name="bottomsheet_copy_item_note">Kopírovat poznámku</string>
+  <string name="bottomsheet_delete_permanently">Trvale smazat</string>
+  <string name="bottomsheet_restore">Obnovit</string>
+  <string name="bottomsheet_leave">Opustit</string>
+  <string name="bottomsheet_duplicate">Duplikovat</string>
+  <string name="bottomsheet_no_actions">Nejsou dostupné žádné akce</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Otevřít nabídku akcí položky</string>
+  <string name="action_upgrade_now">Navýšit nyní</string>
+  <string name="action_not_now">Nyní ne</string>
+  <string name="action_learn_more">Více informací</string>
+  <string name="action_enable">Povolit</string>
+  <string name="action_view_details">Zobrazit podrobnosti</string>
+  <string name="action_see_all">Zobrazit vše</string>
+  <string name="action_confirm">Potvrdit</string>
+  <string name="action_cancel">Zrušit</string>
+  <string name="action_continue">Pokračovat</string>
+  <string name="action_retry">Zkusit znovu</string>
+  <string name="action_edit">Upravit</string>
+  <string name="action_add">Přidat</string>
+  <string name="action_delete">Smazat</string>
+  <string name="action_make_default">Nastavit jako výchozí</string>
+  <string name="action_verify">Ověřit</string>
+  <string name="action_close">Zavřít</string>
+  <string name="action_update">Aktualizovat</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Přidejte svou první položku</string>
+  <string name="empty_search_results_title">Nebyl nalezen žádný výsledek</string>
+  <string name="empty_list_open_extension">Navštivte webové rozšíření</string>
+  <string name="empty_list_create_item_button">Vytvořit novou položku</string>
+  <!-- Field -->
+  <string name="field_title_title">Název</string>
+  <string name="field_title_hint">Bez názvu</string>
+  <string name="field_title_required">Název je povinný</string>
+  <string name="small_cross_icon_content_description">Ikona malého kříže</string>
+  <string name="field_note_title">Poznámka</string>
+  <string name="field_note_hint">Přidat poznámku</string>
+  <string name="linked_apps_title">Propojené aplikace</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Offline</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Chybějící ikona aplikace</string>
+  <string name="add_item_icon_content_description">Ikona přidání položky</string>
+  <string name="navigate_back_icon_content_description">Ikona pro návrat zpět</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Seznam položek</string>
+  <string name="bottom_bar_add_item_icon_content_description">Přidat položku</string>
+  <string name="bottom_bar_profile_icon_content_description">Profil</string>
+  <string name="bottom_bar_security_center_icon_content_description">Bezpečnostní centrum</string>
+  <string name="bottom_bar_explore_icon_content_description">Prozkoumat</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Dnes</string>
+  <string name="most_recent_yesterday">Včera</string>
+  <string name="most_recent_this_week">Tento týden</string>
+  <string name="most_recent_last_two_weeks">Poslední dva týdny</string>
+  <string name="most_recent_last_30_days">Minulý měsíc</string>
+  <string name="most_recent_last_60_days">Posledních 60 dní</string>
+  <string name="most_recent_last_90_days">Posledních 90 dní</string>
+  <string name="most_recent_within_the_last_year">Minulý rok</string>
+  <string name="most_recent_more_than_1_year">Starší než 1 rok</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Ikona vyhledávání</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 položka</item>
+    <item quantity="few">%d položky</item>
+    <item quantity="many">%d položek</item>
+    <item quantity="other">%d položky/položek</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Zahodit změny?</string>
+  <string name="confirm_close_dialog_message">Máte neuložené změny, určitě je chcete zahodit?</string>
+  <string name="confirm_close_dialog_close_button">Zahodit</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Rozšířit</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Rozšířené možnosti</string>
+  <string name="hide_advanced_options">Skrýt rozšířené možnosti</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Silné</string>
+  <string name="label_password_strength_vulnerable">Zranitelné</string>
+  <string name="label_password_strength_weak">Slabé</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Zobrazit vše</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Dnes %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Včera %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL rrrr HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Alias adresa</string>
+  <string name="item_details_alias_section_alias_disabled_title">Alias adresa (deaktivovaná)</string>
+  <string name="item_details_alias_section_mailboxes_title">Přeposílání na</string>
+  <string name="item_details_credit_card_section_cardholder_title">Jméno držitele karty</string>
+  <string name="item_details_credit_card_section_card_number_title">Číslo karty</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Datum vypršení</string>
+  <string name="item_details_credit_card_section_cvv_title">Bezpečnostní kód</string>
+  <string name="item_details_credit_card_section_pin_title">PIN kód</string>
+  <string name="item_details_login_section_email_title">E-mailová adresa</string>
+  <string name="item_details_login_section_username_title">Uživatelské jméno</string>
+  <string name="item_details_login_section_password_title">Heslo</string>
+  <string name="item_details_login_section_primary_totp_title">2FA token (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Webové stránky</string>
+  <string name="autofill_mode_label_default">Nadřazená doména a subdomény</string>
+  <string name="autofill_mode_label_exact">Přesná (sub)doména</string>
+  <string name="autofill_mode_label_never">Nikdy nevyplňovat na tomto webu</string>
+  <string name="autofill_mode_label_start_with">Začíná</string>
+  <string name="autofill_mode_label_pattern">Vzor se zástupnými znaky</string>
+  <string name="autofill_mode_label_regular_expression">Regulární výraz</string>
+  <string name="autofill_mode_label_exact_path">Přesná shoda URL</string>
+  <string name="autofill_mode_label_unsupported">Tato URL bude při automatickém vyplňování přeskočena</string>
+  <string name="login_item_view_alias_button">Zobrazit alias</string>
+  <string name="item_details_identity_section_personal_title">Osobní údaje</string>
+  <string name="item_details_identity_section_personal_first_name_title">Křestní jméno</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Prostřední jméno</string>
+  <string name="item_details_identity_section_personal_last_name_title">Příjmení</string>
+  <string name="item_details_identity_section_personal_full_name_title">Jméno a příjmení</string>
+  <string name="item_details_identity_section_personal_email_title">E-mailová adresa</string>
+  <string name="item_details_identity_section_personal_gender_title">Pohlaví</string>
+  <string name="item_details_identity_section_personal_phone_title">Telefonní číslo</string>
+  <string name="item_details_identity_section_personal_birthday_title">Datum narození</string>
+  <string name="item_details_identity_section_address_title">Detaily adresy</string>
+  <string name="item_details_identity_section_address_organization_title">Organizace</string>
+  <string name="item_details_identity_section_address_street_address_title">Ulice a popisné číslo, P.O. box</string>
+  <string name="item_details_identity_section_address_floor_title">Podlaží</string>
+  <string name="item_details_identity_section_address_city_title">Město</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">PSČ</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Stát nebo provincie</string>
+  <string name="item_details_identity_section_address_county_title">Okres</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Země nebo region</string>
+  <string name="item_details_identity_section_contact_title">Detaily kontaktu</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Rodné číslo (číslo sociálního pojištění)</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Číslo cestovního pasu</string>
+  <string name="item_details_identity_section_contact_license_number_title">Licenční číslo</string>
+  <string name="item_details_identity_section_contact_website_title">Webová stránka</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X uživatelské jméno</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Sekundární telefonní číslo</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo!</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Detaily práce</string>
+  <string name="item_details_identity_section_work_company_title">Firma</string>
+  <string name="item_details_identity_section_work_occupation_title">Zaměstnání</string>
+  <string name="item_details_identity_section_work_email_title">Pracovní e‑mailová adresa</string>
+  <string name="item_details_identity_section_work_phone_number_title">Pracovní telefonní číslo</string>
+  <string name="item_details_identity_section_work_personal_website_title">Osobní web</string>
+  <string name="item_details_shared_section_note_title">Poznámka</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Poslední automatické vyplnění</string>
+  <string name="item_details_shared_section_item_history_created_title">Vytvořeno</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Změněno (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Zobrazit historii položky</string>
+  <string name="item_details_shared_section_more_info_header_title">Více informací</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Ikona více informací o položce</string>
+  <string name="item_details_shared_section_more_info_item_id">ID položky</string>
+  <string name="item_details_shared_section_more_info_vault_id">ID trezoru</string>
+  <string name="item_details_shared_section_more_info_share_id">ID sdílení</string>
+  <string name="item_details_wifi_network_label_ssid_name">Název (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Heslo</string>
+  <string name="item_details_wifi_network_label_security">Zabezpečení</string>
+  <string name="item_details_ssh_key_label_public_key">Veřejný klíč</string>
+  <string name="item_details_ssh_key_label_private_key">Soukromý klíč</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Verze aplikace již není podporována, aktualizujte prosím svou aplikaci.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Přístupový klíč</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Navýšit tarif?</string>
+  <string name="dialog_upgrade_plan_message">Tato funkce není dostupná pro neplatící uživatele. Pokud chcete tuto funkci využívat spolu s dalšími skvělými funkcemi, navyšte svůj tarif a vyzkoušejte ji!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Navýšení</string>
+  <string name="dialog_upgrade_plan_action_cancel">Nyní ne</string>
+  <!-- Words -->
+  <string name="email_address">E-mailová adresa</string>
+  <string name="email_address_invalid">Neplatná e-mailová adresa</string>
+  <string name="password">Heslo</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Tlačítko pro odmítnutí této nápovědy a zamezení jejímu opětovnému zobrazení</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d rok</item>
+    <item quantity="few">%d roky</item>
+    <item quantity="many">%d let</item>
+    <item quantity="other">%d let</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d měsíc</item>
+    <item quantity="few">%d měsíce</item>
+    <item quantity="many">%d měsíců</item>
+    <item quantity="other">%d měsíců</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d týden</item>
+    <item quantity="few">%d týdny</item>
+    <item quantity="many">%d týdnů</item>
+    <item quantity="other">%d týdnů</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d den</item>
+    <item quantity="few">%d dny</item>
+    <item quantity="many">%d dnů</item>
+    <item quantity="other">%d dnů</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d hodina</item>
+    <item quantity="few">%d hodiny</item>
+    <item quantity="many">%d hodin</item>
+    <item quantity="other">%d hodin</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d minuta</item>
+    <item quantity="few">%d minuty</item>
+    <item quantity="many">%d minut</item>
+    <item quantity="other">%d minut</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d sekunda</item>
+    <item quantity="few">%d sekundy</item>
+    <item quantity="many">%d sekund</item>
+    <item quantity="other">%d sekund</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d alias</item>
+    <item quantity="few">%d aliasy</item>
+    <item quantity="many">%d aliasů</item>
+    <item quantity="other">%d aliasů</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Poznámka zkopírována</string>
+  <string name="snack_bar_message_item_migration_error">Při převodu této položky došlo k chybě</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Položka úspěšně vyloučena ze sledování</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Při vyloučení položky ze sledování došlo k chybě</string>
+  <string name="snack_bar_message_item_monitor_included_success">Položka úspěšně zahrnuta do sledování</string>
+  <string name="snack_bar_message_item_monitor_included_error">Při zahrnutí položky do sledování došlo k chybě</string>
+  <string name="snack_bar_message_item_pinned_success">Položka úspěšně připnuta</string>
+  <string name="snack_bar_message_item_pinned_error">Při připínání této položky došlo k chybě</string>
+  <string name="snack_bar_message_item_unpinned_success">Položka úspěšně odepnuta</string>
+  <string name="snack_bar_message_item_unpinned_error">Při odepínání této položky došlo k chybě</string>
+  <string name="snack_bar_message_item_trashed_success">Položka úspěšně přesunuta do koše</string>
+  <string name="snack_bar_message_item_trashed_error">Došlo k chybě při přesunu položky do koše</string>
+  <string name="snack_bar_message_item_restore_success">Položka úspěšně obnovena</string>
+  <string name="snack_bar_message_item_restore_error">Došlo k chybě při obnově této položky</string>
+  <string name="snack_bar_message_item_delete_success">Položka úspěšně smazána</string>
+  <string name="snack_bar_message_item_delete_error">Došlo k chybě při smazání této položky</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Zapnout synchronizaci se SimpleLogin</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">Zjistili jsme, že máte %d alias, který je přítomen v SimpleLogin, ale chybí v Proton Pass. Chcete jej importovat?</item>
+    <item quantity="few">Zjistili jsme, že máte %d aliasy, které jsou přítomné v SimpleLogin, ale chybí v Proton Pass. Chcete je importovat?</item>
+    <item quantity="many">Zjistili jsme, že máte %d aliasů, které jsou přítomné v SimpleLogin, ale chybí v Proton Pass. Chcete je importovat?</item>
+    <item quantity="other">Zjistili jsme, že máte %d aliasů, které jsou přítomné v SimpleLogin, ale chybí v Proton Pass. Chcete je importovat?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Synchronizovat aliasy</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Neobdrželi jste kód?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Zkontrolujte, zda se ve spamu nenachází e-mail s názvem \"%s\"</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Potvrďte prosím svou e-mailovou adresu pro Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Potvrďte prosím svou e-mailovou schránku</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Pokud takový e-mail nelze najít, tak můžete %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">požádat o nový kód</string>
+  <string name="field_display_name_title">Zobrazované jméno</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s soubor</item>
+    <item quantity="few">%1$s soubory</item>
+    <item quantity="many">%1$s souborů</item>
+    <item quantity="other">%1$s souborů</item>
+  </plurals>
+  <string name="attachment_title">Přílohy</string>
+  <string name="attachment_no_files">Nahrajte soubory z vašeho zařízení</string>
+  <string name="attachment_add_file">Připojit soubor</string>
+  <string name="attachment_row_upload_failed">Nahrávání selhalo</string>
+  <string name="attachment_row_retry">Zkusit znovu</string>
+  <string name="options_menu_content_description">Nabídka možností</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d sdílená položka</item>
+    <item quantity="few">%d sdílené položky</item>
+    <item quantity="many">%d sdílených položek</item>
+    <item quantity="other">%d sdílených položek</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d uživatel</item>
+    <item quantity="few">%d uživatelé</item>
+    <item quantity="many">%d uživatelů</item>
+    <item quantity="other">%d uživatelů</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d člen</item>
+    <item quantity="few">%d členové</item>
+    <item quantity="many">%d členů</item>
+    <item quantity="other">%d členů</item>
+  </plurals>
+  <string name="show_network_qr_code">Zobrazit QR kód sítě</string>
+  <string name="expand_collpased_text">více</string>
+  <string name="collapse_expanded_text">méně</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Slabé heslo</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Tento účet je zranitelný, navštivte službu a změňte si heslo.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Kompromitované heslo</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">Toto přihlašovací heslo se objevilo v souvislosti s únikem informací. Navštivte prosím danou službu a změňte si heslo.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d jiné přihlášení používá stejné heslo</item>
+    <item quantity="few">%d jiná přihlášení používají stejné heslo</item>
+    <item quantity="many">%d jiných přihlášení používá stejné heslo</item>
+    <item quantity="other">%d jiných přihlášení používá stejné heslo</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Nastavte 2FA pro větší bezpečnost</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Tato služba nabízí 2FA. Povolte to pro zvýšení zabezpečení účtu.</string>
+  <string name="login_item_monitor_action_ignore">Ignorovat</string>
+  <string name="login_item_monitor_action_restore">Obnovit upozornění</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Slabé heslo</string>
+  <string name="login_item_monitor_label_compromised">Kompromitované heslo</string>
+  <string name="login_item_monitor_label_reused">Opakovaně použité heslo</string>
+  <string name="login_item_monitor_label_missing_2fa">Chybějící 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">Položky z vašich trezorů, které používají toto heslo.</string>
+  <string name="mfa_limit_reached">Dosažen limit 2FA</string>
+  <string name="activity_in_last_two_weeks">Aktivita za posledních 14 dní</string>
+  <string name="contacts">Kontakty</string>
+  <string name="contacts_section_description">Chcete-li uchovat vaši osobní e-mailovou adresu v soukromí, můžete pro ni vytvořit alias kontakt, který vaši adresu zamaskuje.</string>
+  <string name="field_detail_display_name_title">Zobrazované jméno</string>
+  <string name="display_name_section_description">Zobrazované jméno při odesílání e-mailu z tohoto aliasu.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s přeposlání</item>
+    <item quantity="few">%1$s přeposlání</item>
+    <item quantity="many">%1$s přeposlání</item>
+    <item quantity="other">%1$s přeposlání</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s odpověď</item>
+    <item quantity="few">%1$s odpovědi</item>
+    <item quantity="many">%1$s odpovědí</item>
+    <item quantity="other">%1$s odpovědí</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s blokování</item>
+    <item quantity="few">%1$s blokování</item>
+    <item quantity="many">%1$s blokování</item>
+    <item quantity="other">%1$s blokování</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Vytvořit přihlášení</string>
+  <string name="banner_contacts_title">Věděli jste?</string>
+  <string name="banner_contacts_subtitle">Pokaždé, když váš alias od někoho obdrží e-mail, automaticky se vytvoří nový kontakt.</string>
+  <string name="action_reveal">Odhalit</string>
+  <string name="action_conceal">Skrýt</string>
+  <string name="warning_dialog_item_shared_vault_title">Položka ve sdíleném trezoru</string>
+  <string name="warning_dialog_item_shared_title">Sdílená položka</string>
+  <string name="warning_dialog_item_shared_vault_creating">Vytváříte položku ve sdíleném trezoru a členové k ní okamžitě získají přístup.</string>
+  <string name="warning_dialog_item_shared_vault_moving">Přesouváte položku do sdíleného trezoru a členové k ní okamžitě získají přístup.</string>
+  <string name="warning_dialog_item_shared_vault_updating">Upravujete položku ve sdíleném trezoru a členové k ní okamžitě získají přístup.</string>
+  <string name="warning_dialog_item_shared_updating">Upravujete sdílenou položku. Změny budou okamžitě viditelné pro všechny, s nimiž je položka sdílena.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Znovu nepřipomínat</string>
+  <string name="upgrade_to_pass_plus">Navýšit na Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">Budete přesměrováni na náš web. Pokud si zakoupíte tarif, restartujte prosím aplikaci.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Oddělovač slov</string>
+  <string name="bottomsheet_option_capitalise">Velkými písmeny</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Pomlčky ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Mezery</string>
+  <string name="bottomsheet_option_word_separator_periods">Tečky ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Čárky ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Podtržítka ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Čísla</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Čísla a symboly</string>
+  <plurals name="word_count">
+    <item quantity="one">%s slovo</item>
+    <item quantity="few">%s slova</item>
+    <item quantity="many">%s slov</item>
+    <item quantity="other">%s slov</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Síla hesla</string>
+  <string name="password_check_min_length">Heslo je příliš krátké</string>
+  <string name="password_check_lowercase">Malá písmena</string>
+  <string name="password_check_uppercase">Velká písmena</string>
+  <string name="password_check_no_consecutive">Žádné opakující se znaky</string>
+  <string name="password_check_no_common">Žádné běžné heslo</string>
+</resources>

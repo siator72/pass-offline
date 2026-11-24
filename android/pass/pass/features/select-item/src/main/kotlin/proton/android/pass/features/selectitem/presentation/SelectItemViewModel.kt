@@ -1,0 +1,1057 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.selectitem.presentation
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.filter
+import androidx.paging.insertSeparators
+import androidx.paging.map
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.PersistentMap
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toPersistentList
+import kotlinx.collections.immutable.toPersistentMap
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.runBlocking
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toJavaLocalDateTime
+import kotlinx.datetime.toLocalDateTime
+import proton.android.pass.common.api.AppDispatchers
+import proton.android.pass.common.api.LoadingResult
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.Some
+import proton.android.pass.common.api.asLoadingResult
+import proton.android.pass.common.api.asResultWithoutLoading
+import proton.android.pass.common.api.combineN
+import proton.android.pass.common.api.getOrNull
+import proton.android.pass.common.api.map
+import proton.android.pass.common.api.toOption
+import proton.android.pass.commonui.api.DateFormatUtils
+import proton.android.pass.commonui.api.GroupedItemList
+import proton.android.pass.commonui.api.GroupingKeys
+import proton.android.pass.commonui.api.HomeListItem
+import proton.android.pass.commonui.api.ItemSorter.groupAndSortByCreationAsc
+import proton.android.pass.commonui.api.ItemSorter.groupAndSortByCreationDesc
+import proton.android.pass.commonui.api.ItemSorter.groupAndSortByMostRecent
+import proton.android.pass.commonui.api.ItemSorter.groupAndSortByTitleAsc
+import proton.android.pass.commonui.api.ItemSorter.groupAndSortByTitleDesc
+import proton.android.pass.commonui.api.ItemSorter.sortRecentPinTime
+import proton.android.pass.commonui.api.ItemSorter.sortSuggestionsByMostRecent
+import proton.android.pass.commonui.api.ItemUiFilter.filterByQuery
+import proton.android.pass.commonui.api.toUiModel
+import proton.android.pass.commonuimodels.api.ItemUiModel
+import proton.android.pass.composecomponents.impl.uievents.IsLoadingState
+import proton.android.pass.composecomponents.impl.uievents.IsProcessingSearchState
+import proton.android.pass.composecomponents.impl.uievents.IsRefreshingState
+import proton.android.pass.crypto.api.context.EncryptionContextProvider
+import proton.android.pass.data.api.ItemFilterProcessor
+import proton.android.pass.data.api.autosave.AutosaveLoginMatcher
+import proton.android.pass.data.api.repositories.IndexingStatus
+import proton.android.pass.data.api.repositories.SearchSortBy
+import proton.android.pass.data.api.usecases.GetSuggestedAutofillItems
+import proton.android.pass.data.api.usecases.GetUserPlan
+import proton.android.pass.data.api.usecases.ItemData
+import proton.android.pass.data.api.usecases.ItemTypeFilter
+import proton.android.pass.data.api.usecases.ObserveIndexingStatus
+import proton.android.pass.data.api.usecases.ObserveItemTypeCounts
+import proton.android.pass.data.api.usecases.ObserveItems
+import proton.android.pass.data.api.usecases.ObservePagedItems
+import proton.android.pass.data.api.usecases.ObservePinnedItems
+import proton.android.pass.data.api.usecases.ObserveReadyAccounts
+import proton.android.pass.data.api.usecases.ObserveUpgradeInfo
+import proton.android.pass.data.api.usecases.ObserveUser
+import proton.android.pass.data.api.usecases.SuggestedAutofillItemsResult
+import proton.android.pass.data.api.usecases.passkeys.ObserveItemsWithPasskeys
+import proton.android.pass.data.api.usecases.shares.ObserveAutofillShares
+import proton.android.pass.data.api.usecases.totalFor
+import proton.android.pass.domain.Item
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ItemState
+import proton.android.pass.domain.ItemType
+import proton.android.pass.domain.Plan
+import proton.android.pass.domain.PlanLimit
+import proton.android.pass.domain.PlanType
+import proton.android.pass.domain.Share
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.ShareSelection
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.account.User
+import proton.android.pass.features.selectitem.navigation.SelectItemState
+import proton.android.pass.features.selectitem.ui.AccountRowUIState
+import proton.android.pass.features.selectitem.ui.AccountSwitchUIState
+import proton.android.pass.features.selectitem.ui.AutofillItemClickedEvent
+import proton.android.pass.features.selectitem.ui.PinningUiState
+import proton.android.pass.features.selectitem.ui.SearchInMode
+import proton.android.pass.features.selectitem.ui.SearchUiState
+import proton.android.pass.features.selectitem.ui.SelectItemListItems
+import proton.android.pass.features.selectitem.ui.SelectItemListUiState
+import proton.android.pass.features.selectitem.ui.SelectItemSnackbarMessage
+import proton.android.pass.features.selectitem.ui.SelectItemUiState
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import proton.android.pass.preferences.FeatureFlag
+import proton.android.pass.preferences.FeatureFlagsPreferencesRepository
+import proton.android.pass.preferences.UserPreferencesRepository
+import proton.android.pass.preferences.value
+import proton.android.pass.searchoptions.api.AutofillSearchOptionsRepository
+import proton.android.pass.searchoptions.api.SearchSortingType
+import proton.android.pass.searchoptions.api.SortingOption
+import java.time.format.DateTimeFormatter
+import javax.inject.Inject
+
+@Suppress("LongParameterList", "LargeClass")
+@HiltViewModel
+class SelectItemViewModel @Inject constructor(
+    private val snackbarDispatcher: SnackbarDispatcher,
+    private val encryptionContextProvider: EncryptionContextProvider,
+    private val getSuggestedAutofillItems: GetSuggestedAutofillItems,
+    private val observeItemsWithPasskeys: ObserveItemsWithPasskeys,
+    private val clock: Clock,
+    observeReadyAccounts: ObserveReadyAccounts,
+    observeUser: ObserveUser,
+    preferenceRepository: UserPreferencesRepository,
+    observeItems: ObserveItems,
+    observePinnedItems: ObservePinnedItems,
+    autofillSearchOptionsRepository: AutofillSearchOptionsRepository,
+    observeAutofillShares: ObserveAutofillShares,
+    observeUpgradeInfo: ObserveUpgradeInfo,
+    getUserPlan: GetUserPlan,
+    private val observePagedItems: ObservePagedItems,
+    private val observeItemTypeCounts: ObserveItemTypeCounts,
+    private val observeIndexingStatus: ObserveIndexingStatus,
+    featureFlagsPreferencesRepository: FeatureFlagsPreferencesRepository,
+    private val appDispatchers: AppDispatchers
+) : ViewModel() {
+
+    private val selectItemStateFlow: MutableStateFlow<Option<SelectItemState>> =
+        MutableStateFlow(None)
+    private val selectedAccountFlow: MutableStateFlow<Option<UserId>> =
+        MutableStateFlow(None)
+
+    private val searchQueryState: MutableStateFlow<String> = MutableStateFlow("")
+
+    @OptIn(FlowPreview::class)
+    private val debouncedSearchQueryState = searchQueryState
+        .debounce(DEBOUNCE_TIMEOUT)
+        .onStart { emit("") }
+        .distinctUntilChanged()
+
+    private val isInSeeAllPinsModeState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    private val isInSearchModeState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    private val isProcessingSearchState: MutableStateFlow<IsProcessingSearchState> =
+        MutableStateFlow(IsProcessingSearchState.NotLoading)
+    private val shouldScrollToTopFlow: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    private val sortingOptionFlow = autofillSearchOptionsRepository.observeSortingOption()
+        .distinctUntilChanged()
+        .onEach { shouldScrollToTopFlow.update { true } }
+
+    // ========== Pagination Support ==========
+    private val isPaginationEnabledFlow: StateFlow<Boolean> = featureFlagsPreferencesRepository
+        .get<Boolean>(FeatureFlag.ENABLE_PAGINATION)
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = runBlocking {
+                featureFlagsPreferencesRepository
+                    .get<Boolean>(FeatureFlag.ENABLE_PAGINATION)
+                    .firstOrNull()
+                    ?: false
+            }
+        )
+
+    private val monthlyFormatter =
+        DateTimeFormatter.ofPattern("LLLL yyyy", java.util.Locale.ENGLISH)
+    // ========== Pagination Support ==========
+
+    private val searchWrapper = combine(
+        searchQueryState,
+        isInSearchModeState,
+        isProcessingSearchState,
+        ::SearchWrapper
+    )
+
+    private data class SearchWrapper(
+        val searchQuery: String,
+        val isInSearchMode: Boolean,
+        val isProcessingSearch: IsProcessingSearchState
+    )
+
+    private val usersAutofillSharesMapFlow: Flow<Map<UserId, List<Share>>> =
+        observeReadyAccounts()
+            .flatMapLatest { accounts ->
+                val flows = accounts.map { account ->
+                    observeAutofillShares(account.userId).map { account.userId to it }
+                }
+                combine(flows) { arrayOfPairs -> arrayOfPairs.toMap() }
+            }
+
+    private val shareIdToSharesFlow = usersAutofillSharesMapFlow
+        .mapLatest { usersAutofillSharesMap ->
+            usersAutofillSharesMap.mapValues { userAutofillSharesEntry ->
+                userAutofillSharesEntry.value
+                    .associateBy { autofillShare -> autofillShare.id }
+                    .toPersistentMap()
+            }
+        }
+        .distinctUntilChanged()
+
+    private val usersAndPlansFlow = observeReadyAccounts()
+        .flatMapLatest { accountList ->
+            val flows = accountList.map { account ->
+                combine(
+                    observeUser(account.userId).filterNotNull(),
+                    getUserPlan(account.userId),
+                    ::Pair
+                )
+            }
+            combine(flows) { it.toMap() }
+        }
+
+    private val itemUiModelFlow: Flow<LoadingResult<List<ItemUiModel>>> = isPaginationEnabledFlow
+        .flatMapLatest { isPaginationEnabled ->
+            if (isPaginationEnabled) {
+                flowOf(LoadingResult.Success(emptyList()))
+            } else {
+                itemUiModelFlowLegacy
+            }
+        }
+
+    private val itemUiModelFlowLegacy: Flow<LoadingResult<List<ItemUiModel>>> = combine(
+        selectItemStateFlow,
+        usersAutofillSharesMapFlow,
+        selectedAccountFlow
+    ) { selectItemState, usersAutofillShares, selectedAccount ->
+        when (val state = selectItemState.value()) {
+            is SelectItemState.Autofill,
+            is SelectItemState.Passkey.Register -> {
+                val flows = usersAutofillShares
+                    .filter { it.matchesSelectedAccount(selectedAccount) }
+                    .map { (userId, autofillShares) ->
+                        observeItems(
+                            userId = userId,
+                            filter = state.itemTypeFilter,
+                            selection = ShareSelection.Shares(autofillShares.map(Share::id)),
+                            itemState = ItemState.Active,
+                            includeHidden = false
+                        ).map { autofillShares to it.map(ItemData::DefaultItem) }
+                    }
+                combine(flows, ItemFilterProcessor::removeDuplicates)
+            }
+
+            is SelectItemState.Autosave -> {
+                val autosaveLogin = state as SelectItemState.Autosave.Login
+                val flows = usersAutofillShares
+                    .filter { it.matchesSelectedAccount(selectedAccount) }
+                    .map { (userId, autofillShares) ->
+                        val updatableShares = autofillShares.filter { it.canBeUpdated }
+                        observeItems(
+                            userId = userId,
+                            filter = state.itemTypeFilter,
+                            selection = ShareSelection.Shares(updatableShares.map(Share::id)),
+                            itemState = ItemState.Active,
+                            includeHidden = false
+                        ).map { items ->
+                            val matcher = AutosaveLoginMatcher(
+                                autosaveLogin.usernameFilter,
+                                autosaveLogin.websiteFilter,
+                                autosaveLogin.packageNameFilter
+                            )
+                            val filtered = items.filter { item ->
+                                val login = item.itemType as? ItemType.Login
+                                    ?: return@filter false
+
+                                if (!matcher.matchesUsername(login))
+                                    return@filter false
+
+                                matcher.matchesSource(login)
+                            }
+                            autofillShares to filtered.map(ItemData::DefaultItem)
+                        }
+                    }
+                combine(flows, ItemFilterProcessor::removeDuplicates)
+            }
+
+            is SelectItemState.Passkey.Select -> {
+                val flows = usersAutofillShares
+                    .filter { it.matchesSelectedAccount(selectedAccount) }
+                    .map { (userId, usableVaults) ->
+                        observeItemsWithPasskeys(
+                            userId = userId,
+                            shareSelection = ShareSelection.Shares(usableVaults.map(Share::id)),
+                            includeHiddenVault = false
+                        )
+                    }
+                combine(flows) { it.toList().flatten().map(ItemData::DefaultItem) }
+            }
+
+            is SelectItemState.Password.Select -> {
+                val flows = usersAutofillShares
+                    .filter { it.matchesSelectedAccount(selectedAccount) }
+                    .map { (userId, autofillShares) ->
+                        observeItems(
+                            userId = userId,
+                            filter = state.itemTypeFilter,
+                            selection = ShareSelection.Shares(autofillShares.map(Share::id)),
+                            itemState = ItemState.Active,
+                            includeHidden = false
+                        )
+                            .map { items ->
+                                encryptionContextProvider.withEncryptionContext {
+                                    items.filter { item ->
+                                        (item.itemType as? ItemType.Login)
+                                            ?.password
+                                            ?.let { encryptedPassword ->
+                                                decrypt(encryptedPassword).isNotEmpty()
+                                            } == true
+                                    }
+                                }
+                            }
+                            .map { autofillShares to it.map(ItemData::DefaultItem) }
+                    }
+                combine(flows, ItemFilterProcessor::removeDuplicates)
+            }
+
+            else -> flowOf(emptyList())
+        }
+    }
+        .flatMapLatest { itemResult ->
+            itemResult.map { list ->
+                encryptionContextProvider.withEncryptionContext {
+                    list.map { suggestedItem ->
+                        suggestedItem.item.toUiModel(this@withEncryptionContext)
+                    }
+                }
+            }
+        }
+        .asLoadingResult()
+        .distinctUntilChanged()
+
+    private val sortedListItemFlow: Flow<LoadingResult<List<GroupedItemList>>> = combine(
+        itemUiModelFlow,
+        sortingOptionFlow
+    ) { result, sortingOption ->
+        result.map { it.groupedItemLists(sortingOption, clock.now()) }
+    }.distinctUntilChanged()
+
+    private val textFilterListItemFlow: Flow<LoadingResult<List<GroupedItemList>>> = combine(
+        sortedListItemFlow,
+        debouncedSearchQueryState,
+        isInSearchModeState
+    ) { result, searchQuery, isInSearchMode ->
+        isProcessingSearchState.update { IsProcessingSearchState.NotLoading }
+        if (isInSearchMode && searchQuery.isNotBlank()) {
+            result.map { grouped ->
+                grouped.map {
+                    GroupedItemList(
+                        it.key,
+                        it.items.filterByQuery(searchQuery)
+                    )
+                }
+            }
+        } else {
+            result
+        }
+    }.flowOn(appDispatchers.default)
+
+    private val pinnedItemsFlow: Flow<LoadingResult<List<Item>>> = combine(
+        selectedAccountFlow,
+        usersAutofillSharesMapFlow,
+        selectItemStateFlow
+    ) { selectedAccount, vaultsByUserId, selectItemState: Option<SelectItemState> ->
+        when (selectItemState) {
+            None -> flowOf(emptyList())
+            is Some -> if (selectItemState.value.showPinnedItems) {
+                val vaults = if (selectedAccount is Some) {
+                    vaultsByUserId.filter { it.key == selectedAccount.value }
+                } else {
+                    vaultsByUserId
+                }
+                val flows = vaults.map { (userId, usableVaults) ->
+                    observePinnedItems(
+                        userId = userId,
+                        filter = selectItemState.value.itemTypeFilter,
+                        shareSelection = ShareSelection.Shares(usableVaults.map { it.id }),
+                        includeHidden = false
+                    )
+                }
+                combine(flows) { it.toList().flatten() }
+            } else {
+                // Do not show pinned items
+                flowOf(emptyList())
+            }
+        }
+    }.flatMapLatest { it }.asLoadingResult()
+
+    private val pinningUiStateFlow = combine(
+        pinnedItemsFlow,
+        sortingOptionFlow,
+        debouncedSearchQueryState,
+        isInSeeAllPinsModeState,
+        preferenceRepository.observeDisplayAutofillPinningPreference()
+    ) { pinnedItemsResult, sortingOption, searchQuery, isInSeeAllPinsMode, isPinningEnabled ->
+        val pinnedItems = pinnedItemsResult.getOrNull()?.let { list ->
+            encryptionContextProvider.withEncryptionContext {
+                list.map { it.toUiModel(this@withEncryptionContext) }
+            }
+        } ?: emptyList()
+        val unfilteredItems = pinnedItems
+            .sortRecentPinTime()
+            .toPersistentList()
+        val filteredItems = pinnedItems
+            .filterByQuery(searchQuery)
+            .groupedItemLists(sortingOption, clock.now())
+            .toPersistentList()
+        PinningUiState(
+            inPinningMode = isInSeeAllPinsMode,
+            filteredItems = filteredItems,
+            unFilteredItems = unfilteredItems,
+            showPinning = isPinningEnabled.value
+        )
+    }
+
+    private val suggestionsItemUIModelFlow: Flow<LoadingResult<List<ItemUiModel>>> =
+        selectItemStateFlow
+            .flatMapLatest { state ->
+                val stateValue = state.value() ?: return@flatMapLatest flowOf(LoadingResult.Loading)
+                getSuggestionsForState(stateValue)
+            }
+            .map { itemResult ->
+                itemResult.map { list ->
+                    encryptionContextProvider.withEncryptionContext {
+                        list.map { suggestedItem ->
+                            suggestedItem.item.toUiModel(this@withEncryptionContext)
+                        }
+                    }
+                }
+            }
+
+    private val suggestionIdsFlow: Flow<Set<ItemId>> = suggestionsItemUIModelFlow
+        .map { result -> result.getOrNull()?.map { it.id }?.toSet() ?: emptySet() }
+        .distinctUntilChanged()
+
+    private val resultsFlow: Flow<LoadingResult<SelectItemListItems>> = combine(
+        selectItemStateFlow,
+        textFilterListItemFlow,
+        suggestionsItemUIModelFlow,
+        isInSearchModeState
+    ) { selectItemState, result, suggestionsResult, isInSearchMode ->
+        result.map { grouped ->
+            if (isInSearchMode) {
+                SelectItemListItems(
+                    suggestions = persistentListOf(),
+                    items = grouped.map { GroupedItemList(it.key, it.items) }
+                        .filter { it.items.isNotEmpty() }
+                        .toImmutableList(),
+                    suggestionsForTitle = ""
+                )
+            } else {
+                val suggestions = suggestionsResult.getOrNull() ?: persistentListOf()
+                val suggestionIds = suggestions.map { it.id }.toSet()
+                SelectItemListItems(
+                    suggestions = suggestions
+                        .sortSuggestionsByMostRecent()
+                        .toImmutableList(),
+                    items = grouped
+                        .map {
+                            it.copy(
+                                items = it.items.filter { item -> !suggestionIds.contains(item.id) }
+                            )
+                        }
+                        .filter { it.items.isNotEmpty() }
+                        .toImmutableList(),
+                    suggestionsForTitle = selectItemState.value()?.suggestionsTitle ?: ""
+                )
+            }
+        }
+    }.flowOn(appDispatchers.default)
+
+    private val isRefreshing: MutableStateFlow<IsRefreshingState> =
+        MutableStateFlow(IsRefreshingState.NotRefreshing)
+    private val itemClickedFlow: MutableStateFlow<AutofillItemClickedEvent> =
+        MutableStateFlow(AutofillItemClickedEvent.None)
+
+    internal data class AccountsData(
+        val accountsMap: Map<User, Plan>,
+        val selectedAccount: Option<UserId>
+    ) {
+
+        fun displayOnlyPrimaryVaultMessage(allShares: Map<UserId, PersistentMap<ShareId, Share>>): Boolean {
+            if (accountsMap.size != 1) return false
+
+            val (user, plan) = accountsMap.entries.first()
+            return when (plan.planType) {
+                is PlanType.Free -> when (val limit = plan.vaultLimit) {
+                    PlanLimit.Unlimited -> false
+                    is PlanLimit.Limited -> allShares[user.userId]
+                        ?.values
+                        ?.filterIsInstance<Share.Vault>()
+                        ?.let { vaultShares -> vaultShares.size > limit.limit } == true
+                }
+
+                is PlanType.Paid,
+                is PlanType.Unknown -> false
+            }
+        }
+
+        fun toAccountSwitchUIState(): AccountSwitchUIState = AccountSwitchUIState(
+            selectedAccount,
+            accountsMap.map { AccountRowUIState(it.key.userId, it.key.email.orEmpty()) }
+        )
+    }
+
+    private val accountsDataFlow = combine(
+        usersAndPlansFlow,
+        selectedAccountFlow,
+        SelectItemViewModel::AccountsData
+    )
+
+    private val paginatedItemCountFlow: Flow<Int> = combineN(
+        selectItemStateFlow,
+        usersAutofillSharesMapFlow,
+        selectedAccountFlow,
+        searchQueryState,
+        isInSearchModeState,
+        isPaginationEnabledFlow
+    ) { selectItemState, usersAutofillShares, selectedAccount, query, isInSearchMode, isPaginationEnabled ->
+        val state = selectItemState.value()
+        if (!isPaginationEnabled || state == null || state is SelectItemState.Autosave) {
+            null
+        } else {
+            val shareIds = usersAutofillShares
+                .filter { it.matchesSelectedAccount(selectedAccount) }
+                .values
+                .flatten()
+                .map { it.id }
+                .ifEmpty { null }
+            ItemCountQuery(
+                userIds = usersAutofillShares.selectedUserIds(selectedAccount),
+                shareIds = shareIds,
+                itemTypeFilter = state.itemTypeFilter,
+                query = if (isInSearchMode) query.takeIf { q -> q.isNotBlank() } else null
+            )
+        }
+    }
+        .distinctUntilChanged()
+        .flatMapLatest { params ->
+            if (params == null || params.userIds.isEmpty()) {
+                flowOf(0)
+            } else {
+                observeItemTypeCounts(
+                    userIds = params.userIds,
+                    shareIds = params.shareIds,
+                    itemState = ItemState.Active,
+                    query = params.query
+                ).map { counts ->
+                    counts.totalFor(params.itemTypeFilter)
+                }
+            }
+        }
+
+    private val selectItemListUiStateFlow = combineN(
+        accountsDataFlow,
+        resultsFlow,
+        isRefreshing,
+        itemClickedFlow,
+        sortingOptionFlow,
+        shareIdToSharesFlow,
+        shouldScrollToTopFlow,
+        preferenceRepository.getUseFaviconsPreference(),
+        observeUpgradeInfo().asLoadingResult(),
+        selectItemStateFlow,
+        paginatedItemCountFlow
+    ) { accountData,
+        itemsResult,
+        isRefreshing,
+        itemClicked,
+        sortingSelection,
+        shares,
+        shouldScrollToTop,
+        useFavicons,
+        upgradeInfo,
+        selectItemState,
+        paginatedItemCount ->
+        val isLoading = IsLoadingState.from(itemsResult is LoadingResult.Loading)
+        val items = when (itemsResult) {
+            LoadingResult.Loading -> SelectItemListItems.Initial
+            is LoadingResult.Success -> itemsResult.data
+            is LoadingResult.Error -> {
+                PassLogger.i(
+                    TAG,
+                    itemsResult.exception,
+                    "Could not load autofill items"
+                )
+                snackbarDispatcher(SelectItemSnackbarMessage.LoadItemsError)
+                SelectItemListItems.Initial
+            }
+        }
+
+        val canUpgrade = upgradeInfo.getOrNull()?.isUpgradeAvailable == true
+        val hasVaults = shares.values.any { it.isNotEmpty() }
+        val showCreateButton = selectItemState.map { it.showCreateButton }.value() == true
+        val isPasswordCredential =
+            selectItemState.map { it.isPasswordCredentialCreation }.value() == true
+        val autosaveState = selectItemState.value() as? SelectItemState.Autosave
+        val autosaveLogin = autosaveState as? SelectItemState.Autosave.Login
+
+        SelectItemListUiState(
+            isLoading = isLoading,
+            isRefreshing = isRefreshing,
+            itemClickedEvent = itemClicked,
+            items = items,
+            shares = shares.values.reduce { acc, persistentMap -> acc.putAll(persistentMap) },
+            sortingType = sortingSelection.searchSortingType,
+            shouldScrollToTop = shouldScrollToTop,
+            canLoadExternalImages = useFavicons.value(),
+            displayOnlyPrimaryVaultMessage = accountData.displayOnlyPrimaryVaultMessage(shares),
+            canUpgrade = canUpgrade,
+            displayCreateButton = showCreateButton,
+            hasVaults = hasVaults,
+            accountSwitchState = accountData.toAccountSwitchUIState(),
+            isPasswordCredentialCreation = isPasswordCredential,
+            showAutosaveBanner = autosaveState != null,
+            autosaveMatchCount = autosaveLogin?.matchCount ?: 0,
+            paginatedItemCount = paginatedItemCount
+        )
+    }
+
+    internal val uiState: StateFlow<SelectItemUiState> = combineN(
+        selectItemListUiStateFlow,
+        searchWrapper,
+        pinningUiStateFlow,
+        getUserPlan().asLoadingResult(),
+        shareIdToSharesFlow,
+        isPaginationEnabledFlow
+    ) { selectItemListUiState,
+        search,
+        pinningUiState,
+        planRes,
+        shares,
+        isPaginationEnabled ->
+        val searchIn = planRes.getOrNull()?.run {
+            when (planType) {
+                is PlanType.Free -> {
+                    when (val limit = vaultLimit) {
+                        PlanLimit.Unlimited -> SearchInMode.AllVaults
+                        is PlanLimit.Limited -> if (shares.size > limit.limit) {
+                            SearchInMode.OldestVaults
+                        } else {
+                            SearchInMode.AllVaults
+                        }
+                    }
+                }
+
+                else -> SearchInMode.AllVaults
+            }
+        } ?: SearchInMode.OldestVaults
+
+        SelectItemUiState(
+            listUiState = selectItemListUiState,
+            searchUiState = SearchUiState(
+                searchQuery = search.searchQuery,
+                inSearchMode = search.isInSearchMode,
+                isProcessingSearch = search.isProcessingSearch,
+                searchInMode = searchIn
+            ),
+            pinningUiState = pinningUiState,
+            isPaginationEnabled = isPaginationEnabled
+        )
+    }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = SelectItemUiState.Loading
+        )
+
+    internal fun onItemClicked(item: ItemUiModel) {
+        itemClickedFlow.update { AutofillItemClickedEvent.ItemClicked(item) }
+    }
+
+    internal fun onSuggestionClicked(item: ItemUiModel) {
+        itemClickedFlow.update { AutofillItemClickedEvent.SuggestionClicked(item) }
+    }
+
+    internal fun onSearchQueryChange(query: String) {
+        if (query.contains("\n")) return
+
+        searchQueryState.update { query }
+        isProcessingSearchState.update { IsProcessingSearchState.Loading }
+    }
+
+    internal fun onStopSearching() {
+        searchQueryState.update { "" }
+        isInSearchModeState.update { false }
+    }
+
+    internal fun onEnterSearch() {
+        searchQueryState.update { "" }
+        isInSearchModeState.update { true }
+    }
+
+    internal fun setInitialState(state: SelectItemState) {
+        selectItemStateFlow.update { state.toOption() }
+    }
+
+    internal fun onScrolledToTop() {
+        shouldScrollToTopFlow.update { false }
+    }
+
+    internal fun onNoVaultsAvailable() {
+        viewModelScope.launch {
+            snackbarDispatcher(SelectItemSnackbarMessage.NoVaultsAvailable)
+        }
+    }
+
+    internal fun onEnterSeeAllPinsMode() {
+        isInSeeAllPinsModeState.update { true }
+    }
+
+    internal fun onStopPinningMode() {
+        isInSeeAllPinsModeState.update { false }
+    }
+
+    internal fun clearEvent() {
+        itemClickedFlow.update { AutofillItemClickedEvent.None }
+    }
+
+    private fun List<ItemUiModel>.groupedItemLists(sortingOption: SortingOption, instant: Instant) =
+        when (sortingOption.searchSortingType) {
+            SearchSortingType.MostRecent -> groupAndSortByMostRecent(instant)
+            SearchSortingType.TitleAsc -> groupAndSortByTitleAsc()
+            SearchSortingType.TitleDesc -> groupAndSortByTitleDesc()
+            SearchSortingType.CreationAsc -> groupAndSortByCreationAsc()
+            SearchSortingType.CreationDesc -> groupAndSortByCreationDesc()
+        }
+
+    private fun getSuggestionsForState(state: SelectItemState) = when (state) {
+        is SelectItemState.Autofill -> getSuggestionsForAutofill(state)
+        is SelectItemState.Autosave -> flowOf(LoadingResult.Success(emptyList()))
+        is SelectItemState.Passkey -> getSuggestionsForPasskey(state)
+        is SelectItemState.Password -> getSuggestionsForPassword(state)
+    }
+
+    private fun getSuggestionsForAutofill(state: SelectItemState.Autofill) = when (state) {
+        is SelectItemState.Autofill.Login -> {
+            selectedAccountFlow.flatMapLatest { userId ->
+                getSuggestedAutofillItems(
+                    itemTypeFilter = ItemTypeFilter.Logins,
+                    suggestion = state.suggestion,
+                    userId = userId
+                )
+            }
+                .filterIsInstance<SuggestedAutofillItemsResult.Items>()
+                .map { list -> list.suggestedItems }
+                .asResultWithoutLoading()
+        }
+
+        is SelectItemState.Autofill.CreditCard -> flowOf(LoadingResult.Success(emptyList()))
+        is SelectItemState.Autofill.Identity -> flowOf(LoadingResult.Success(emptyList()))
+    }
+
+    private fun getSuggestionsForPasskey(state: SelectItemState.Passkey) = when (state) {
+        is SelectItemState.Passkey.Register -> {
+            selectedAccountFlow.flatMapLatest { userId ->
+                getSuggestedAutofillItems(
+                    itemTypeFilter = ItemTypeFilter.Logins,
+                    suggestion = state.suggestion,
+                    userId = userId
+                )
+            }
+                .filterIsInstance<SuggestedAutofillItemsResult.Items>()
+                .map { list -> list.suggestedItems }
+                .asResultWithoutLoading()
+        }
+
+        // TBD: Implement getSuggestionsForPasskey
+        is SelectItemState.Passkey.Select -> flowOf(LoadingResult.Success(emptyList()))
+    }
+
+    private fun getSuggestionsForPassword(state: SelectItemState.Password) = when (state) {
+        is SelectItemState.Password.Register -> flowOf(LoadingResult.Success(emptyList()))
+
+        is SelectItemState.Password.Select -> selectedAccountFlow.flatMapLatest { userId ->
+            getSuggestedAutofillItems(
+                itemTypeFilter = ItemTypeFilter.Logins,
+                suggestion = state.suggestion,
+                userId = userId
+            )
+        }
+            .filterIsInstance<SuggestedAutofillItemsResult.Items>()
+            .map { list -> list.suggestedItems }
+            .asResultWithoutLoading()
+    }
+
+    internal fun onAccountSwitch(userId: Option<UserId>) {
+        selectedAccountFlow.update { userId }
+    }
+
+    private fun <K, V> Map.Entry<K, V>.matchesSelectedAccount(selectedAccount: Option<UserId>): Boolean =
+        if (selectedAccount is Some) {
+            this.key == selectedAccount.value
+        } else {
+            true
+        }
+
+    private fun <V> Map<UserId, V>.selectedUserIds(selectedAccount: Option<UserId>): List<UserId> =
+        if (selectedAccount is Some) listOf(selectedAccount.value) else keys.toList()
+
+    // ========== Pagination Support ==========
+    @SuppressWarnings("ClassOrdering")
+    internal val selectItemPagingFlow: Flow<PagingData<HomeListItem>> = combineN(
+        selectItemStateFlow,
+        usersAutofillSharesMapFlow,
+        selectedAccountFlow,
+        debouncedSearchQueryState,
+        sortingOptionFlow,
+        isInSearchModeState,
+        observeIndexingStatus(),
+        suggestionIdsFlow
+    ) { selectItemState, usersAutofillShares, selectedAccount, query, sortingOption,
+        isInSearchMode, indexingStatus, suggestionIds ->
+        val state = selectItemState.value()
+
+        val isAutosave = state is SelectItemState.Autosave
+        val shareIds = when (state) {
+            null -> null
+            else -> {
+                val filteredShares = usersAutofillShares
+                    .filter { it.matchesSelectedAccount(selectedAccount) }
+                    .values
+                    .flatten()
+                    .let { shares ->
+                        if (isAutosave) shares.filter { it.canBeUpdated } else shares
+                    }
+                    .map { it.id }
+                filteredShares.ifEmpty { null }
+            }
+        }
+
+        val autosaveFilter = (state as? SelectItemState.Autosave.Login)?.let {
+            AutosaveFilter(
+                usernameFilter = it.usernameFilter,
+                websiteFilter = it.websiteFilter,
+                packageNameFilter = it.packageNameFilter
+            )
+        }
+
+        val itemTypeFilter = state?.itemTypeFilter ?: ItemTypeFilter.All
+        PagingParams(
+            userIds = usersAutofillShares.selectedUserIds(selectedAccount),
+            query = if (isInSearchMode) query else null,
+            sortingType = sortingOption.searchSortingType,
+            shareIds = shareIds,
+            itemState = ItemState.Active,
+            itemTypeFilter = itemTypeFilter,
+            isIndexing = indexingStatus == IndexingStatus.Indexing,
+            autosaveFilter = autosaveFilter,
+            suggestionIds = if (isInSearchMode) emptySet() else suggestionIds
+        )
+    }
+        .distinctUntilChanged()
+        .flatMapLatest { params ->
+            if (params.isIndexing) {
+                return@flatMapLatest flowOf(PagingData.empty())
+            }
+            if (params.userIds.isEmpty()) {
+                return@flatMapLatest flowOf(PagingData.empty())
+            }
+            val sortBy = params.sortingType.toSearchSortBy()
+
+            observePagedItems(
+                userIds = params.userIds,
+                query = params.query,
+                sortBy = sortBy,
+                shareIds = params.shareIds,
+                itemState = params.itemState,
+                itemTypeFilter = params.itemTypeFilter
+            ).map { pagingData ->
+                val filtered = params.autosaveFilter?.let { filter ->
+                    val matcher = AutosaveLoginMatcher(
+                        username = filter.usernameFilter,
+                        website = filter.websiteFilter,
+                        packageName = filter.packageNameFilter
+                    )
+                    pagingData.filter { item ->
+                        val login = item.itemType as? ItemType.Login ?: return@filter false
+                        matcher.matchesUsername(login) && matcher.matchesSource(login)
+                    }
+                } ?: pagingData
+                val deduped = if (params.suggestionIds.isEmpty()) {
+                    filtered
+                } else {
+                    filtered.filter { item -> item.id !in params.suggestionIds }
+                }
+                encryptionContextProvider.withEncryptionContext {
+                    deduped.map { item ->
+                        item
+                            .toUiModel(context = this)
+                            .let {
+                                HomeListItem.Item(itemUiModel = it)
+                            }
+                    }
+                }
+            }.map { pagingData ->
+                pagingData.insertSeparators { before: HomeListItem.Item?, after: HomeListItem.Item? ->
+                    if (after == null) return@insertSeparators null
+
+                    val afterKey = getGroupingKey(after.itemUiModel, params.sortingType)
+                    val beforeKey =
+                        before?.let { getGroupingKey(it.itemUiModel, params.sortingType) }
+
+                    if (!isSameGroupingKey(beforeKey, afterKey)) {
+                        HomeListItem.Header(afterKey)
+                    } else {
+                        null
+                    }
+                }
+            }
+        }
+        .cachedIn(viewModelScope)
+
+    private fun getGroupingKey(item: ItemUiModel, sortingType: SearchSortingType): GroupingKeys {
+        val now = clock.now()
+        return when (sortingType) {
+            SearchSortingType.TitleAsc,
+            SearchSortingType.TitleDesc -> {
+                val firstChar = item.contents.title.firstOrNull()
+                    ?.takeIf { it.isLetter() }
+                    ?.uppercaseChar()
+                    ?: '#'
+                GroupingKeys.AlphabeticalKey(firstChar)
+            }
+
+            SearchSortingType.CreationAsc,
+            SearchSortingType.CreationDesc -> {
+                val monthKey = monthlyFormatter.format(
+                    item.createTime.toLocalDateTime(TimeZone.UTC).toJavaLocalDateTime()
+                )
+                GroupingKeys.MonthlyKey(monthKey, item.createTime)
+            }
+
+            SearchSortingType.MostRecent -> {
+                val recentTime = item.lastAutofillTime?.let { maxOf(it, item.modificationTime) }
+                    ?: item.modificationTime
+                val format = DateFormatUtils.getFormat(
+                    now = now,
+                    toFormat = recentTime,
+                    acceptedFormats = listOf(
+                        DateFormatUtils.Format.Today,
+                        DateFormatUtils.Format.Yesterday,
+                        DateFormatUtils.Format.ThisWeek,
+                        DateFormatUtils.Format.LastTwoWeeks,
+                        DateFormatUtils.Format.Last30Days,
+                        DateFormatUtils.Format.Last60Days,
+                        DateFormatUtils.Format.Last90Days,
+                        DateFormatUtils.Format.LastYear,
+                        DateFormatUtils.Format.MoreThan1Year
+                    )
+                )
+                GroupingKeys.MostRecentKey(format, recentTime)
+            }
+        }
+    }
+
+    private fun isSameGroupingKey(before: GroupingKeys?, after: GroupingKeys): Boolean {
+        if (before == null) return false
+        return when {
+            before is GroupingKeys.AlphabeticalKey && after is GroupingKeys.AlphabeticalKey ->
+                before.character == after.character
+
+            before is GroupingKeys.MonthlyKey && after is GroupingKeys.MonthlyKey ->
+                before.monthKey == after.monthKey
+
+            before is GroupingKeys.MostRecentKey && after is GroupingKeys.MostRecentKey ->
+                before.formatResultKey == after.formatResultKey
+
+            before is GroupingKeys.NoGrouping && after is GroupingKeys.NoGrouping ->
+                true
+
+            else -> false
+        }
+    }
+
+    private fun SearchSortingType.toSearchSortBy(): SearchSortBy = when (this) {
+        SearchSortingType.TitleAsc -> SearchSortBy.TITLE_ASC
+        SearchSortingType.TitleDesc -> SearchSortBy.TITLE_DESC
+        SearchSortingType.CreationAsc -> SearchSortBy.CREATION_DATE_ASC
+        SearchSortingType.CreationDesc -> SearchSortBy.CREATION_DATE_DESC
+        SearchSortingType.MostRecent -> SearchSortBy.MOST_RECENT
+    }
+
+    private data class AutosaveFilter(
+        val usernameFilter: String,
+        val websiteFilter: String?,
+        val packageNameFilter: String?
+    )
+
+    private data class PagingParams(
+        val userIds: List<UserId>,
+        val query: String?,
+        val sortingType: SearchSortingType,
+        val shareIds: List<ShareId>?,
+        val itemState: ItemState?,
+        val itemTypeFilter: ItemTypeFilter,
+        val isIndexing: Boolean = false,
+        val autosaveFilter: AutosaveFilter? = null,
+        val suggestionIds: Set<ItemId> = emptySet()
+    )
+
+    private data class ItemCountQuery(
+        val userIds: List<UserId>,
+        val shareIds: List<ShareId>?,
+        val itemTypeFilter: ItemTypeFilter,
+        val query: String?
+    )
+    // ========== Pagination Support ==========
+
+    private companion object {
+
+        private const val DEBOUNCE_TIMEOUT = 300L
+
+        private const val TAG = "SelectItemViewModel"
+
+    }
+
+}

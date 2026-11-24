@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/ProtonTheme"
+        tools:replace="android:theme">
+
+        <meta-data android:name="asset_statements" android:resource="@string/asset_statements" />
+
+        <activity
+            android:name="proton.android.pass.autofill.sample.simplefragment.SimpleFragmentLoginActivity"
+            android:exported="true"
+            android:label="@string/title_activity_simple_fragment_login" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.LoginResultActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.simplecompose.SimpleComposeLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.simpleactivity.SimpleLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.autofillmanageractivity.AutofillManagerLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.webview.WebViewLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.multistep.MultiStepFirstLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.multistep.MultiStepSecondLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.creditcardactivity.CreditCardActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.personalinfoactivity.PersonalInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.changepassword.ChangePasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.otp.OtpActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.passkeys.PasskeysActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.passwordcredentials.PasswordCredentialsActivity"
+            android:exported="true" />
+        <activity
+            android:name="proton.android.pass.autofill.sample.SampleSelectionActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,69 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.fakes.usecases
+
+import kotlinx.coroutines.CompletableDeferred
+import proton.android.pass.data.api.repositories.SyncMode
+import proton.android.pass.data.api.repositories.SyncReason
+import proton.android.pass.data.api.usecases.PerformSync
+import proton.android.pass.domain.UserId
+import javax.inject.Inject
+import javax.inject.Singleton
+import kotlin.coroutines.cancellation.CancellationException
+
+@Singleton
+class FakePerformSync @Inject constructor() : PerformSync {
+
+    data class Invocation(
+        val userId: UserId,
+        val forceSync: Boolean,
+        val trigger: String,
+        val syncReason: SyncReason,
+        val syncMode: SyncMode
+    )
+
+    val invokedUserIds = mutableListOf<UserId>()
+    val invocations = mutableListOf<Invocation>()
+    private var result: Result<Unit> = Result.success(Unit)
+    private val resultsByUser = mutableMapOf<UserId, Result<Unit>>()
+    var gate: CompletableDeferred<Unit>? = null
+
+    fun setResult(value: Result<Unit>) {
+        result = value
+    }
+
+    fun setResultFor(userId: UserId, value: Result<Unit>) {
+        resultsByUser[userId] = value
+    }
+
+    override suspend fun invoke(
+        userId: UserId,
+        forceSync: Boolean,
+        trigger: String,
+        syncReason: SyncReason,
+        syncMode: SyncMode
+    ): Result<Unit> {
+        invokedUserIds += userId
+        invocations += Invocation(userId, forceSync, trigger, syncReason, syncMode)
+        gate?.await()
+        val outcome = resultsByUser[userId] ?: result
+        outcome.exceptionOrNull()?.let { if (it is CancellationException) throw it }
+        return outcome
+    }
+}

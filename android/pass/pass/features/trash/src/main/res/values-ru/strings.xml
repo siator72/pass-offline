@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="bottomsheet_delete_permanently">Удалить безвозвратно</string>
+  <string name="alert_confirm_delete_item_dialog_title">Удалить безвозвратно?</string>
+  <string name="alert_confirm_delete_item_dialog_message">Это действие необратимо.</string>
+  <string name="alert_confirm_delete_item_dialog_shared_warning_message">В настоящее время этот элемент находится в общем доступе. При его удалении доступ к нему будет закрыт для всех остальных пользователей.</string>
+  <string name="alias_dialog_move_to_trash_title">Переместить в Корзину?</string>
+  <string name="alias_dialog_move_to_trash_content">Если вы переместите псевдоним в корзину, он перестанет пересылать письма на ваш почтовый ящик.</string>
+  <string name="alias_dialog_move_to_trash_confirm">Подтвердить</string>
+  <string name="delete_alias_confirm">Удалить его, он мне никогда не понадобится</string>
+  <string name="delete_alias_title">Удалить %s</string>
+  <string name="delete_alias_enabled_subtitle">"Обратите внимание: после удаления псевдоним невозможно будет восстановить. Может быть, вы захотите вместо этого отключить псевдоним? "</string>
+  <string name="delete_alias_disabled_subtitle">Обратите внимание: после удаления псевдоним невозможно будет восстановить. Псевдоним уже отключен и не будет пересылать электронные письма в ваш почтовый ящик.</string>
+  <plurals name="bulk_delete_alias_title">
+    <item quantity="one">Вы собираетесь навсегда удалить %d псевдоним</item>
+    <item quantity="few">Вы собираетесь навсегда удалить %d псевдонима</item>
+    <item quantity="many">Вы собираетесь навсегда удалить %d псевдонимов</item>
+    <item quantity="other">Вы собираетесь навсегда удалить %d псевдонимов</item>
+  </plurals>
+  <string name="bulk_delete_alias_subtitle">Обратите внимание: после удаления псевдонимы невозможно будет восстановить.</string>
+  <string name="bulk_delete_alias_confirm">Понятно, они мне никогда не понадобятся</string>
+  <string name="delete_alias_disable">Отключить псевдоним</string>
+</resources>

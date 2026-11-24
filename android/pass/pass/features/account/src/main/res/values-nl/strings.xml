@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title">Account</string>
+  <string name="account_recovery_title">Account en Herstel</string>
+  <string name="account_username_label">Gebruikersnaam</string>
+  <string name="account_subscription_label">Abonnement</string>
+  <string name="account_permanently_delete_warning">Dit zal uw account en alle bijbehorende gegevens permanent verwijderen. U zult dit account niet kunnen heractiveren.</string>
+  <string name="account_delete_account">Account verwijderen</string>
+  <string name="account_delete_account_icon_content_description">Account verwijderen knop</string>
+  <string name="account_sign_out">Uitloggen</string>
+  <string name="account_sign_out_icon_content_description">Afmelden knop</string>
+  <string name="account_manage_account">Account beheren</string>
+  <string name="account_manage_account_icon_content_description">Accountknop beheren</string>
+  <string name="account_manage_subscription">Abonnement beheren</string>
+  <string name="account_get_user_info_error">Kan de gebruikersgegevens niet ophalen</string>
+  <string name="manage_subscription_icon_content_description">Abonnement beheren knop</string>
+  <string name="account_settings_list_item_password_header">Wachtwoord wijzigen</string>
+  <string name="account_settings_list_item_recovery_header">Herstel e-mailadres</string>
+  <string name="account_settings_list_item_security_keys">Beveiligingssleutels</string>
+  <string name="account_settings_list_item_recovery_hint_not_set">Niet ingesteld</string>
+  <string name="account_settings_list_item_password_hint_grace">Wachtwoord opnieuw instellen aangevraagd</string>
+  <string name="account_settings_list_item_password_hint_insecure">Nieuw wachtwoord aanvragen klaar</string>
+  <string name="account_settings_list_item_extra_password_header">Extra wachtwoord voor Proton Pass</string>
+  <string name="account_settings_list_item_extra_password_header_set">Stel extra wachtwoord voor Proton Pass in</string>
+  <string name="account_settings_list_item_extra_password_active">Actief</string>
+  <string name="account_settings_list_item_extra_password_description">Het extra wachtwoord is vereist om Pass te gebruiken. Het werkt als een extra wachtwoord bovenop uw Proton wachtwoord.</string>
+  <string name="account_settings_list_item_security_keys_hint_not_set">Niet ingesteld</string>
+  <string name="account_settings_list_item_security_keys_hint_single">%s</string>
+  <plurals name="account_settings_list_item_security_keys_hint_many">
+    <item quantity="one">%d beveiligingssleutel ingesteld</item>
+    <item quantity="other">%d beveiligingssleutels ingesteld</item>
+  </plurals>
+</resources>

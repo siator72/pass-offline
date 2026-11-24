@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">Ali želite %d predmet premakniti v naslednji trezor?</item>
+    <item quantity="two">Ali želite %d predmeta premakniti v naslednji trezor?</item>
+    <item quantity="few">Ali želite %d predmete premakniti v naslednji trezor?</item>
+    <item quantity="other">Ali želite %d predmetov premakniti v naslednji trezor?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">Ali želite %d predmet premakniti v naslednjo mapo?</item>
+    <item quantity="two">Ali želite %d predmeta premakniti v naslednjo mapo?</item>
+    <item quantity="few">Ali želite %d predmete premakniti v naslednjo mapo?</item>
+    <item quantity="other">Ali želite %d predmetov premakniti v naslednjo mapo?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Premakni</string>
+  <string name="migrate_item_success_snackbar">Predmeti premaknjeni</string>
+  <string name="migrate_item_error_snackbar">Napaka pri premikanju predmetov</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Napaka pri premikanju nekaterih predmetov</string>
+  <string name="migrate_item_warning_history">Pri premikanju predmetov med trezorji bomo ohranili do zadnjih 50 sprememb, izvedenih na vsakem predmetu</string>
+  <string name="migrate_item_warning_secure_link">Varne povezave predmeta bodo odstranjene, ko ga premaknete v drug trezor</string>
+  <string name="migrate_all_items_success_snackbar">Vsi predmeti so premaknjeni</string>
+  <string name="migrate_all_items_error_snackbar">Napaka pri premikanju vseh predmetov v trezorju</string>
+  <string name="migrate_init_error_snackbar">Ni bilo mogoče pripraviti zaslona za selitev</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Premakni mapo v naslednji trezor?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Premakni mapo v naslednjo mapo?</string>
+  <string name="migrate_folder_success_snackbar">Mapa je premaknjena</string>
+  <string name="migrate_folder_error_snackbar">Napaka pri premikanju mape</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Mapa je že na tej lokaciji</string>
+  <string name="migrate_dissolve_folder_dialog_title">Premakni vsebino mape</string>
+  <string name="migrate_dissolve_folder_dialog_message">This folder is already at the vault root. Its items and subfolders will be moved to the vault root.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Premakni</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">Predmet je že v tej mapi</item>
+    <item quantity="two">%d items are already in this folder</item>
+    <item quantity="few">%d items are already in this folder</item>
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">Mapa je že na tej lokaciji</string>
+  <string name="migrate_disabled_folder_reason_being_moved">Ta mapa je bila premaknjena</string>
+  <string name="migrate_disabled_folder_reason_descendant">This folder is inside the folder being moved</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Moving here would exceed the folder limits</string>
+  <string name="migrate_disabled_vault_reason_no_permission">V tem trezorju ne morete ustvarjati predmetov</string>
+  <string name="migrate_disabled_vault_reason_same_vault">Predmeta ne morete premakniti v isti trezor</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">Premaknite predmet v drug trezor?</item>
+    <item quantity="two">Move %d items to another vault?</item>
+    <item quantity="few">Move %d items to another vault?</item>
+    <item quantity="other">Move %d items to another vault?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">[%i] predmet je trenutno v skupni rabi. Premik v drug trezor bo odstranil dostop za vse druge uporabnike.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">%d predmet je trenutno v skupni rabi. Premik v drug trezor bo odstranil dostop za vse druge uporabnike.</item>
+    <item quantity="two">%d predmeta sta trenutno v skupni rabi. Premestitev v drug trezor bo odstranila dostop za vse druge uporabnike.</item>
+    <item quantity="few">%d predmeti so trenutno v skupni rabi. Če jih premaknete v drug trezor, boste odvzeli dostop vsem drugim uporabnikom.</item>
+    <item quantity="other">%d predmetov je trenutno v skupni rabi. Če jih premaknete v drug trezor, boste odvzeli dostop vsem drugim uporabnikom.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Izberi trezor</string>
+  <string name="migrate_select_destination_for_source_title">Izberite cilj, kamor želite premakniti vse elemente iz %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Predmeti premaknjeni</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Napaka pri premikanju predmetov</string>
+</resources>

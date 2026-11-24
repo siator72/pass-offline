@@ -1,0 +1,62 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.usecases
+
+import proton.android.pass.data.api.errors.UserIdNotAvailableError
+import proton.android.pass.data.api.repositories.AliasItemsChangeStatusResult
+import proton.android.pass.data.api.repositories.AliasRepository
+import proton.android.pass.data.api.repositories.ItemRepository
+import proton.android.pass.data.api.usecases.ChangeAliasStatus
+import proton.android.pass.data.api.usecases.GetPrimaryUserId
+import proton.android.pass.domain.ItemFlag
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ShareId
+import javax.inject.Inject
+
+class ChangeAliasStatusImpl @Inject constructor(
+    private val getPrimaryUserId: GetPrimaryUserId,
+    private val aliasRepository: AliasRepository,
+    private val itemRepository: ItemRepository
+) : ChangeAliasStatus {
+
+    override suspend fun invoke(
+        shareId: ShareId,
+        itemId: ItemId,
+        enabled: Boolean
+    ) {
+        val userId = getPrimaryUserId()
+            ?: throw UserIdNotAvailableError()
+        aliasRepository.changeAliasStatus(userId, shareId, itemId, enabled)
+        itemRepository.updateLocalItemFlags(userId, shareId, itemId, ItemFlag.AliasDisabled, !enabled)
+    }
+
+    override suspend fun invoke(items: List<Pair<ShareId, ItemId>>, enabled: Boolean): AliasItemsChangeStatusResult {
+        val userId = getPrimaryUserId()
+            ?: throw UserIdNotAvailableError()
+        val result = aliasRepository.changeAliasStatus(userId, items, enabled)
+        when (result) {
+            is AliasItemsChangeStatusResult.AllChanged ->
+                itemRepository.updateLocalItemsFlags(userId, result.items, ItemFlag.AliasDisabled, enabled)
+            is AliasItemsChangeStatusResult.SomeChanged ->
+                itemRepository.updateLocalItemsFlags(userId, result.items, ItemFlag.AliasDisabled, enabled)
+            is AliasItemsChangeStatusResult.NoneChanged -> {}
+        }
+        return result
+    }
+}

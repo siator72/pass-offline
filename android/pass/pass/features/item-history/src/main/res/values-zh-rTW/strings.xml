@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="item_history_restore_action">還原</string>
+  <string name="item_history_restore_confirmation_dialog_title">還原此版本?</string>
+  <string name="item_history_restore_confirmation_dialog_message" comment="The item will be reverted to a version from an specific date, for instance: Your current item will revert to the version from 19 February 2024 at 09:30">您目前的項目將還原為 %1$s 的版本</string>
+  <string name="item_history_restore_snackbar_message_open_error">There was an error opening item revision</string>
+  <string name="item_history_restore_snackbar_message_error">還原項目修訂時發生錯誤</string>
+  <string name="item_history_restore_snackbar_message_success">項目修訂已成功還原</string>
+  <string name="item_history_restore_tab_title_current">目前</string>
+  <string name="item_history_timeline_title">歷程記錄</string>
+  <string name="item_history_timeline_node_child_title">已修改</string>
+  <string name="item_history_timeline_node_leaf_title">創建日期</string>
+  <string name="item_history_timeline_node_root_title">目前版本</string>
+  <string name="item_history_timeline_snackbar_message_error">擷取項目修訂時發生錯誤</string>
+  <string name="reset_history_bottomsheet_option">重設歷史記錄</string>
+  <string name="reset_history_dialog_title">重設此項目的歷史紀錄？</string>
+  <string name="reset_history_dialog_body">重設歷史記錄將永久刪除所有過去的版本且無法復原。</string>
+  <string name="reset_history_action">重設</string>
+  <string name="reset_history_dialog_snackbar_message_error">重設時發生錯誤</string>
+  <string name="reset_history_dialog_snackbar_message_success">項目歷史紀錄已重設</string>
+</resources>

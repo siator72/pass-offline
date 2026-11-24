@@ -1,0 +1,310 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.preferences
+
+import androidx.datastore.core.DataStore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import me.proton.android.pass.preferences.BoolFlagPrefProto
+import me.proton.android.pass.preferences.BooleanPrefProto
+import me.proton.core.featureflag.domain.entity.FeatureId
+import me.proton.core.featureflag.domain.repository.FeatureFlagRepository
+import proton.android.pass.common.api.AppDispatchers
+import proton.android.pass.common.api.safeRunCatching
+import proton.android.pass.data.api.usecases.ObserveAccounts
+import proton.android.pass.data.api.usecases.ObservePrimaryUserId
+import proton.android.pass.data.api.usecases.ObserveRemovedAccounts
+import proton.android.pass.domain.UserId
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.preferences.FeatureFlag.AUTOFILL_DEBUG_MODE
+import proton.android.pass.preferences.FeatureFlag.RENAME_ADMIN_TO_MANAGER
+import proton.android.pass.preferences.FeatureFlag.ENABLE_PAGINATION
+import proton.android.pass.preferences.FeatureFlag.PASS_EXPLORE_TAB
+import proton.android.pass.preferences.FeatureFlag.PASS_PASSWORD_CHECKS
+import proton.android.pass.preferences.FeatureFlag.PASS_MONITOR_PER_CHECK_EXCLUSION
+import proton.android.pass.preferences.FeatureFlag.PASS_OFFLINE_ATTACHMENTS
+import proton.android.pass.preferences.FeatureFlag.PASS_FOLDER_NAVIGATION
+import proton.android.pass.preferences.FeatureFlag.PASS_FORCE_SYNC_FOLDERS
+import java.io.IOException
+import java.util.concurrent.ConcurrentHashMap
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Suppress("UNCHECKED_CAST")
+@Singleton
+class FeatureFlagsPreferencesRepositoryImpl @Inject constructor(
+    private val observeRemovedAccounts: ObserveRemovedAccounts,
+    private val observeAccounts: ObserveAccounts,
+    private val observePrimaryUserId: ObservePrimaryUserId,
+    private val featureFlagManager: FeatureFlagRepository,
+    private val dataStore: DataStore<FeatureFlagsPreferences>,
+    appDispatchers: AppDispatchers
+) : FeatureFlagsPreferencesRepository {
+
+    private val scope = CoroutineScope(SupervisorJob() + appDispatchers.io)
+    private val hasFetchedOnce = ConcurrentHashMap<UserId, Boolean>()
+    private val fetchMutexes = ConcurrentHashMap<UserId, Mutex>()
+
+    init {
+        scope.launch {
+            observeRemovedAccounts().collect { accounts ->
+                val removedUserIds = accounts.map { it.userId }.toSet()
+                hasFetchedOnce.keys.retainAll { it !in removedUserIds }
+                fetchMutexes.keys.retainAll { it !in removedUserIds }
+            }
+        }
+    }
+
+    @Suppress("LongMethod")
+    override fun <T> get(featureFlag: FeatureFlag): Flow<T> = when (featureFlag) {
+        AUTOFILL_DEBUG_MODE -> getFeatureFlag(
+            key = featureFlag.key,
+            defaultValue = featureFlag.isEnabledDefault
+        ) { autofillDebugModeEnabled.value }
+
+        RENAME_ADMIN_TO_MANAGER -> getFeatureFlag(
+            key = featureFlag.key,
+            defaultValue = featureFlag.isEnabledDefault
+        ) { renameAdminToManagerEnabled.value }
+
+        ENABLE_PAGINATION -> getFeatureFlag(
+            key = featureFlag.key,
+            defaultValue = featureFlag.isEnabledDefault
+        ) { enablePagination.value }
+
+        PASS_EXPLORE_TAB -> getFeatureFlag(
+            key = featureFlag.key,
+            defaultValue = featureFlag.isEnabledDefault
+        ) { passExploreTabEnabled.value }
+
+        PASS_PASSWORD_CHECKS -> getFeatureFlag(
+            key = featureFlag.key,
+            defaultValue = featureFlag.isEnabledDefault
+        ) { passPasswordChecksEnabled.value }
+
+        PASS_MONITOR_PER_CHECK_EXCLUSION -> getFeatureFlag(
+            key = featureFlag.key,
+            defaultValue = featureFlag.isEnabledDefault
+        ) { passMonitorPerCheckExclusionEnabled.value }
+
+        PASS_OFFLINE_ATTACHMENTS -> getFeatureFlag(
+            key = featureFlag.key,
+            defaultValue = featureFlag.isEnabledDefault
+        ) { passOfflineAttachmentsEnabled.value }
+
+        PASS_FORCE_SYNC_FOLDERS -> getFeatureFlag(
+            key = featureFlag.key,
+            defaultValue = featureFlag.isEnabledDefault
+        ) { passForceSyncFoldersEnabled.value }
+
+        PASS_FOLDER_NAVIGATION -> getFeatureFlag(
+            key = featureFlag.key,
+            defaultValue = featureFlag.isEnabledDefault
+        ) { passFolderNavigationEnabled.value }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <T> get(featureFlag: FeatureFlag, userId: UserId): Flow<T> =
+        observeIsFeatureEnabled(featureFlag, userId).map { it as T }
+
+    override suspend fun awaitResolved(featureFlag: FeatureFlag, userId: UserId): Boolean {
+        val override = dataStore.data
+            .catch { exception -> handleExceptions(exception) }
+            .first()
+            .getOverride(featureFlag)
+        if (override != null) return override
+
+        val remoteValue = featureFlag.key?.let { key ->
+            val featureId = FeatureId(id = key)
+            featureFlagManager.getValue(userId = userId, featureId = featureId)
+                ?: run {
+                    if (hasFetchedOnce[userId] != true) {
+                        fetchMutexes.computeIfAbsent(userId) { Mutex() }.withLock {
+                            if (hasFetchedOnce[userId] != true) {
+                                val result = safeRunCatching { refreshRemote(userId) }
+                                if (result.isSuccess) hasFetchedOnce[userId] = true
+                            }
+                        }
+                    }
+                    featureFlagManager.getValue(userId = userId, featureId = featureId)
+                }
+        }
+        return remoteValue ?: featureFlag.isEnabledDefault
+    }
+
+    override suspend fun refreshRemote(userId: UserId) {
+        featureFlagManager.getAll(userId = userId)
+    }
+
+    override fun <T> set(featureFlag: FeatureFlag, value: T?): Result<Unit> = when (featureFlag) {
+        AUTOFILL_DEBUG_MODE -> setFeatureFlag {
+            autofillDebugModeEnabled = boolFlagPrefProto(value)
+        }
+
+        RENAME_ADMIN_TO_MANAGER -> setFeatureFlag {
+            renameAdminToManagerEnabled = boolFlagPrefProto(value)
+        }
+
+        ENABLE_PAGINATION -> setFeatureFlag {
+            enablePagination = boolFlagPrefProto(value)
+        }
+
+        PASS_EXPLORE_TAB -> setFeatureFlag {
+            passExploreTabEnabled = boolFlagPrefProto(value)
+        }
+
+        PASS_PASSWORD_CHECKS -> setFeatureFlag {
+            passPasswordChecksEnabled = boolFlagPrefProto(value)
+        }
+
+        PASS_MONITOR_PER_CHECK_EXCLUSION -> setFeatureFlag {
+            passMonitorPerCheckExclusionEnabled = boolFlagPrefProto(value)
+        }
+
+        PASS_OFFLINE_ATTACHMENTS -> setFeatureFlag {
+            passOfflineAttachmentsEnabled = boolFlagPrefProto(value)
+        }
+
+        PASS_FORCE_SYNC_FOLDERS -> setFeatureFlag {
+            passForceSyncFoldersEnabled = boolFlagPrefProto(value)
+        }
+
+        PASS_FOLDER_NAVIGATION -> setFeatureFlag {
+            passFolderNavigationEnabled = boolFlagPrefProto(value)
+        }
+    }
+
+    private fun <T> getFeatureFlag(
+        key: String?,
+        defaultValue: Boolean,
+        prefGetter: FeatureFlagsPreferences.() -> BooleanPrefProto
+    ): Flow<T> = if (key != null) {
+        observePrimaryUserId()
+            .flatMapLatest { userId ->
+                featureFlagManager.observe(
+                    userId = userId,
+                    featureId = FeatureId(id = key)
+                )
+            }
+            .flatMapLatest { featureFlag ->
+                dataStore.data
+                    .catch { exception -> handleExceptions(exception) }
+                    .map { preferences ->
+                        fromBooleanPrefProto(
+                            pref = prefGetter(preferences),
+                            default = featureFlag?.value ?: defaultValue
+                        ) as T
+                    }
+            }
+    } else {
+        dataStore.data
+            .catch { exception -> handleExceptions(exception) }
+            .map {
+                fromBooleanPrefProto(prefGetter(it)) as T
+            }
+    }
+
+    private fun setFeatureFlag(setter: FeatureFlagsPreferences.Builder.() -> Unit) = runCatching {
+        runBlocking {
+            dataStore.updateData { prefs ->
+                val a = prefs.toBuilder()
+                setter(a)
+                a.build()
+            }
+        }
+        return@runCatching
+    }
+
+    private fun <T> boolFlagPrefProto(value: T?): BoolFlagPrefProto {
+        val builder = BoolFlagPrefProto.newBuilder()
+        value?.let { builder.value = (it as Boolean).toBooleanPrefProto() }
+        return builder.build()
+    }
+
+    private suspend fun FlowCollector<FeatureFlagsPreferences>.handleExceptions(exception: Throwable) {
+        if (exception is IOException) {
+            PassLogger.e("Cannot read preferences.", exception)
+            emit(FeatureFlagsPreferences.getDefaultInstance())
+        } else {
+            throw exception
+        }
+    }
+
+    override fun observeForAllUsers(featureFlag: FeatureFlag): Flow<Boolean> = observeAccounts()
+        .flatMapLatest { accounts ->
+            combine(
+                accounts.map { account ->
+                    observeIsFeatureEnabled(featureFlag, account.userId)
+                }
+            ) { areFeaturesEnabled ->
+                areFeaturesEnabled.any { it }
+            }
+        }
+
+    private fun observeIsFeatureEnabled(featureFlag: FeatureFlag, userId: UserId?): Flow<Boolean> =
+        featureFlag.key?.let { featureFlagKey ->
+            featureFlagManager.observe(
+                userId = userId,
+                featureId = FeatureId(id = featureFlagKey)
+            ).flatMapLatest { remoteFeatureFlag ->
+                dataStore.data
+                    .catch { exception -> handleExceptions(exception) }
+                    .map { preferences ->
+                        fromBooleanPrefProto(
+                            pref = getPrefProto(featureFlag, preferences),
+                            default = remoteFeatureFlag?.value ?: featureFlag.isEnabledDefault
+                        )
+                    }
+            }
+        } ?: dataStore.data
+            .catch { exception -> handleExceptions(exception) }
+            .map { preferences -> fromBooleanPrefProto(getPrefProto(featureFlag, preferences)) }
+
+    private fun getPrefProto(featureFlag: FeatureFlag, preferences: FeatureFlagsPreferences) = with(preferences) {
+        when (featureFlag) {
+            AUTOFILL_DEBUG_MODE -> autofillDebugModeEnabled
+            RENAME_ADMIN_TO_MANAGER -> renameAdminToManagerEnabled
+            ENABLE_PAGINATION -> enablePagination
+            PASS_EXPLORE_TAB -> passExploreTabEnabled
+            PASS_PASSWORD_CHECKS -> passPasswordChecksEnabled
+            PASS_MONITOR_PER_CHECK_EXCLUSION -> passMonitorPerCheckExclusionEnabled
+            PASS_OFFLINE_ATTACHMENTS -> passOfflineAttachmentsEnabled
+            PASS_FORCE_SYNC_FOLDERS -> passForceSyncFoldersEnabled
+            PASS_FOLDER_NAVIGATION -> passFolderNavigationEnabled
+        }.value
+    }
+
+    private fun FeatureFlagsPreferences.getOverride(featureFlag: FeatureFlag): Boolean? =
+        when (getPrefProto(featureFlag, this)) {
+            BooleanPrefProto.BOOLEAN_PREFERENCE_TRUE -> true
+            BooleanPrefProto.BOOLEAN_PREFERENCE_FALSE -> false
+            else -> null
+        }
+}

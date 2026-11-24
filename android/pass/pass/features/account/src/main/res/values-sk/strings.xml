@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title">Účet</string>
+  <string name="account_recovery_title">Účet a obnova</string>
+  <string name="account_username_label">Používateľské meno</string>
+  <string name="account_subscription_label">Predplatné</string>
+  <string name="account_permanently_delete_warning">Týmto sa natrvalo vymaže váš účet a všetky jeho údaje. Tento účet už nebude možné znovu aktivovať.</string>
+  <string name="account_delete_account">Odstrániť účet</string>
+  <string name="account_delete_account_icon_content_description">Tlačidlo odstránenia účtu</string>
+  <string name="account_sign_out">Odhlásiť sa</string>
+  <string name="account_sign_out_icon_content_description">Tlačidlo odhlásenia</string>
+  <string name="account_manage_account">Spravovať účet</string>
+  <string name="account_manage_account_icon_content_description">Tlačidlo Spravovať účet</string>
+  <string name="account_manage_subscription">Spravovať predplatné</string>
+  <string name="account_get_user_info_error">Nepodarilo sa získať informácie o používateľovi</string>
+  <string name="manage_subscription_icon_content_description">Tlačidlo správy predplatného</string>
+  <string name="account_settings_list_item_password_header">Zmeniť heslo</string>
+  <string name="account_settings_list_item_recovery_header">Email na obnovenie</string>
+  <string name="account_settings_list_item_security_keys">Bezpečnostné kľúče</string>
+  <string name="account_settings_list_item_recovery_hint_not_set">Nenastavené</string>
+  <string name="account_settings_list_item_password_hint_grace">Čaká sa na obnovenie hesla</string>
+  <string name="account_settings_list_item_password_hint_insecure">Obnovenie hesla pripravené</string>
+  <string name="account_settings_list_item_extra_password_header">Dodatočné heslo pre Proton Pass</string>
+  <string name="account_settings_list_item_extra_password_header_set">Nastavte ďalšie heslo pre službu Proton Pass</string>
+  <string name="account_settings_list_item_extra_password_active">Aktívne</string>
+  <string name="account_settings_list_item_extra_password_description">Na používanie Pass bude vyžadované ďalšie heslo. Slúži ako dodatočné heslo k vášmu Proton heslu.</string>
+  <string name="account_settings_list_item_security_keys_hint_not_set">Nenastavené</string>
+  <string name="account_settings_list_item_security_keys_hint_single">%s</string>
+  <plurals name="account_settings_list_item_security_keys_hint_many">
+    <item quantity="one">%d bezpečnostný kľúč nastavený</item>
+    <item quantity="few">%d bezpečnostné kľúče nastavené</item>
+    <item quantity="many">%d bezpečnostných kľúčov nastavených</item>
+    <item quantity="other">%d bezpečnostných kľúčov nastavených</item>
+  </plurals>
+</resources>

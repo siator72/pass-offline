@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Profil</string>
+  <string name="profile_option_settings">Nastavitve</string>
+  <string name="profile_option_account">Račun</string>
+  <string name="profile_help_center">Center za pomoč</string>
+  <string name="profile_security">Varnost</string>
+  <string name="profile_option_autofill_troubleshooting">Autofill troubleshooting</string>
+  <string name="profile_option_feedback">Povratne informacije</string>
+  <string name="profile_option_import_export">Uvoz/izvoz</string>
+  <string name="profile_option_tutorial">Kako uporabljati Proton Pass</string>
+  <string name="profile_option_rating">Oceni aplikacijo</string>
+  <string name="profile_spread_the_word">Spread the word</string>
+  <string name="profile_option_tell_a_friend">Tell a friend</string>
+  <string name="profile_spread_the_word_share_message">I\'m using Proton Pass to keep my passwords secure. Try it: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Samodejno izpolnjevanje</string>
+  <string name="profile_option_autofill_subtitle">Samodejno izpolnite svoja uporabniška imena in gesla.</string>
+  <string name="profile_option_secure_links">Varne povezave</string>
+  <string name="profile_option_alias_management">Upravljanje vzdevkov</string>
+  <string name="profile_option_generated_passwords">Generirana gesla</string>
+  <string name="profile_error_biometry_failed_to_start">Biometrične avtentikacije ni bilo mogoče začeti</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Preverjanje pristnosti ni uspelo</string>
+  <string name="profile_error_app_lock_update_failed">Could not update the app lock. Please try again.</string>
+  <string name="profile_fingerprint_lock_enabled">Omogočeno zaklepanje s prstnim odtisom</string>
+  <string name="profile_fingerprint_lock_disabled">Zaklepanje s prstnim odtisom onemogočeno</string>
+  <string name="profile_app_version_copied_to_clipboard">Različica aplikacije je kopirana</string>
+  <string name="feedback_option_reddit">Oglejte si Proton na spletišču Reddit</string>
+  <string name="feedback_option_mail">Pošlji nam sporočilo</string>
+  <string name="feedback_option_vote_new_features">Glasujte za nove funkcije</string>
+  <string name="app_lock_immediately">Takoj</string>
+  <string name="app_lock_one_minute">Po 1 minuti</string>
+  <string name="app_lock_two_minutes">Po 2 minutah</string>
+  <string name="app_lock_five_minutes">Čez 5 minut</string>
+  <string name="app_lock_ten_minutes">Čez 10 minut</string>
+  <string name="app_lock_one_hour">Po 1 uri</string>
+  <string name="app_lock_four_hours">Po 4 urah</string>
+  <string name="app_lock_config_none">Brez</string>
+  <string name="app_lock_config_biometric">Biometrični</string>
+  <string name="app_lock_config_pin_code">PIN koda</string>
+  <string name="app_lock_config_app_lock_time">Samodejno zaklepanje</string>
+  <string name="app_lock_config_password">Geslo</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Uporabite zaklepanje sistema, ko biometrija ne deluje</string>
+  <string name="configure_pin_set_pin_code">Nastavi kodo PIN</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Odklenite aplikacijo s to kodo</string>
+  <string name="configure_pin_enter_pin_code">Vnesite kodo PIN</string>
+  <string name="configure_pin_repeat_pin_code">Ponovite kodo PIN</string>
+  <string name="configure_pin_continue">Nadaljuj</string>
+  <string name="configure_pin_pin_does_not_match">PIN se ne ujema</string>
+  <string name="configure_pin_pin_too_short">PIN je prekratek.</string>
+  <string name="configure_pin_pin_cannot_be_blank">PIN ne sme biti prazen</string>
+  <string name="configure_pin_pin_lock_enabled">Omogočeno zaklepanje PIN</string>
+  <string name="configure_pin_pin_lock_disabled">Zaklepanje kode PIN onemogočeno</string>
+  <string name="profile_option_lock_with">Zakleni z</string>
+  <string name="profile_option_unlock_with">Odkleni z</string>
+  <string name="profile_option_change_pin_code">Spremeni kodo PIN</string>
+  <string name="profile_passkey_support_section_title">Identifikacijski ključ</string>
+  <string name="profile_passkey_support_subtitle_supported">Na tej napravi je mogoča podpora za identifikacijske ključe.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Vaša različica Androida ne podpira identifikacijskega ključa.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Ni bilo mogoče preveriti podpore za identifikacijski ključ</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">Po %d dnevu</item>
+    <item quantity="two">Po %d dneh</item>
+    <item quantity="few">Po %d dneh</item>
+    <item quantity="other">Po %d dneh</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">Po %d minuti</item>
+    <item quantity="two">Po %d minutah</item>
+    <item quantity="few">Čez %d minute</item>
+    <item quantity="other">Čez %d minute</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">Po %d uri</item>
+    <item quantity="two">Po %d urah</item>
+    <item quantity="few">Čez %d ure</item>
+    <item quantity="other">Čez %d ur</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Manj kot minuto</string>
+  <string name="account_switcher_manage_account">Upravljajte račun</string>
+  <string name="account_switcher_sign_in">Prijava</string>
+  <string name="account_switcher_sign_out">Odjavi se</string>
+  <string name="account_switcher_switch_to">Preklopite na</string>
+  <string name="account_switcher_add_account">Dodaj račun</string>
+  <string name="account_switcher_remove">Odstrani</string>
+  <string name="filtered_by_logins">Filtrirano po prijavah. Predmeti v smetnjaku niso prikazni</string>
+  <string name="filtered_by_logins_with_mfa">Filtrirano po prijavah s TOTP. Predmeti v smetnjaku niso prikazani</string>
+  <string name="filtered_by_aliases">Filtrirano po vzdevkih. Predmeti v smetnjaku niso prikazani</string>
+  <string name="filtered_by_notes">Filtrirano po opombah. Predmeti v smetnjaku niso prikazani</string>
+  <string name="filtered_by_credit_cards">Filtrirano po kreditnih karticah. Predmeti v smetnjaku niso prikazani</string>
+  <string name="filtered_by_identities">Filtrirano po identitetah. Predmeti v smetnjaku niso prikazani</string>
+  <string name="filtered_by_custom_items">Filtrirano po predmetih po meri. Elementi v smetnjaku niso prikazani</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Za upravljanje morate preklopiti na %1$s</string>
+  <string name="account_switch_confirmation_title">Upravljajte račun</string>
+  <string name="account_switch_confirmation_confirm">Preklopi in upravljaj</string>
+  <string name="profile_storage_data_title">Shramba</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s od %2$s</string>
+</resources>

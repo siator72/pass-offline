@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Titel (A-Z)</string>
+  <string name="sort_by_title_desc">Titel (Z-A)</string>
+  <string name="sort_by_creation_asc">Van oud naar nieuw</string>
+  <string name="sort_by_creation_desc">Van nieuw naar oud</string>
+  <string name="sort_by_modification_date">Onlangs gebruikt</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Alle</string>
+  <string name="item_list_header_pinned_search_results">Vastgemaakt</string>
+  <string name="item_list_header_logins_type">Logins</string>
+  <string name="item_list_header_logins_totp_type">Aanmeldingen met TOTP</string>
+  <string name="item_list_header_aliases_type">Aliassen</string>
+  <string name="item_list_header_notes_type">Notities</string>
+  <string name="item_list_header_credit_cards_type">Kredietkaarten</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">resultaat</item>
+    <item quantity="other">resultaten</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Identiteiten</string>
+  <string name="item_list_header_custom_type">Aangepaste items</string>
+  <string name="item_list_header_shared_with_me">Gedeeld met mij</string>
+  <string name="item_list_header_shared_by_me">Gedeeld door mij</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Bevestigen</string>
+  <string name="bottomsheet_cancel_button">Annuleer</string>
+  <string name="bottomsheet_move_to_trash">Verplaats naar prullenbak</string>
+  <string name="bottomsheet_pin_item">Vastpinnen</string>
+  <string name="bottomsheet_unpin_item">Losmaken</string>
+  <string name="bottomsheet_view_item_history">Geschiedenis bekijken</string>
+  <string name="bottomsheet_monitor_exclude">Uitsluiten van controle</string>
+  <string name="bottomsheet_monitor_include">Opnemen in monitoring</string>
+  <string name="bottomsheet_migrate_item_v2">Verplaatsen</string>
+  <string name="bottomsheet_create_folder">Map aanmaken</string>
+  <string name="folder_tree_create_folder">Map aanmaken</string>
+  <string name="bottomsheet_rename_folder">Hernoemen</string>
+  <string name="bottomsheet_create_sub_folder">Maak submap</string>
+  <string name="bottomsheet_move_folder">Verplaats map</string>
+  <string name="bottomsheet_move_all_items_in_folder">Alle items verplaatsen</string>
+  <string name="bottomsheet_copy_item_note">Notitie kopiëren</string>
+  <string name="bottomsheet_delete_permanently">Permanent verwijderen</string>
+  <string name="bottomsheet_restore">Herstel</string>
+  <string name="bottomsheet_leave">Afsluiten</string>
+  <string name="bottomsheet_duplicate">Dupliceer</string>
+  <string name="bottomsheet_no_actions">Geen acties beschikbaar</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Actiemenu item openen</string>
+  <string name="action_upgrade_now">Nu upgraden</string>
+  <string name="action_not_now">Niet nu</string>
+  <string name="action_learn_more">Lees meer</string>
+  <string name="action_enable">Inschakelen</string>
+  <string name="action_view_details">Details weergeven</string>
+  <string name="action_see_all">Alles weergeven</string>
+  <string name="action_confirm">Bevestigen</string>
+  <string name="action_cancel">Annuleren</string>
+  <string name="action_continue">Doorgaan</string>
+  <string name="action_retry">Opnieuw proberen</string>
+  <string name="action_edit">Bewerk</string>
+  <string name="action_add">Toevoegen</string>
+  <string name="action_delete">Verwijder</string>
+  <string name="action_make_default">Standaard maken</string>
+  <string name="action_verify">Verifiëren</string>
+  <string name="action_close">Sluiten</string>
+  <string name="action_update">Bijwerken</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Voeg uw eerste item toe</string>
+  <string name="empty_search_results_title">Geen resultaten gevonden</string>
+  <string name="empty_list_open_extension">Bezoek webextensie</string>
+  <string name="empty_list_create_item_button">Maak nieuw item</string>
+  <!-- Field -->
+  <string name="field_title_title">Titel</string>
+  <string name="field_title_hint">Naamloos</string>
+  <string name="field_title_required">Titel vereist</string>
+  <string name="small_cross_icon_content_description">Klein kruis icoon</string>
+  <string name="field_note_title">Notitie</string>
+  <string name="field_note_hint">Notitie toevoegen</string>
+  <string name="linked_apps_title">Verbonden apps</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Offline</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Ontbrekend app-pictogram</string>
+  <string name="add_item_icon_content_description">Itempictogram toevoegen</string>
+  <string name="navigate_back_icon_content_description">Navigeer terug pictogram</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Lijst items</string>
+  <string name="bottom_bar_add_item_icon_content_description">Item toevoegen</string>
+  <string name="bottom_bar_profile_icon_content_description">Profiel</string>
+  <string name="bottom_bar_security_center_icon_content_description">Beveiligingscentrum</string>
+  <string name="bottom_bar_explore_icon_content_description">Ontdek</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Vandaag</string>
+  <string name="most_recent_yesterday">Gisteren</string>
+  <string name="most_recent_this_week">Deze week</string>
+  <string name="most_recent_last_two_weeks">Afgelopen twee weken</string>
+  <string name="most_recent_last_30_days">Afgelopen maand</string>
+  <string name="most_recent_last_60_days">Afgelopen 60 dagen</string>
+  <string name="most_recent_last_90_days">Afgelopen 90 dagen</string>
+  <string name="most_recent_within_the_last_year">In het afgelopen jaar</string>
+  <string name="most_recent_more_than_1_year">Ouder dan 1 jaar</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Zoekpictogram</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 item</item>
+    <item quantity="other">%d items</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Wijzigingen weggooien?</string>
+  <string name="confirm_close_dialog_message">U heeft niet-opgeslagen wijzigingen. Weet u zeker dat u ze wilt weggooien?</string>
+  <string name="confirm_close_dialog_close_button">Weggooien</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Upgraden</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Geavanceerde instellingen</string>
+  <string name="hide_advanced_options">Verberg geavanceerde opties</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Sterk</string>
+  <string name="label_password_strength_vulnerable">Kwetsbaar</string>
+  <string name="label_password_strength_weak">Zwak</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Alles weergeven</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Vandaag %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Gisteren %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Alias adres</string>
+  <string name="item_details_alias_section_alias_disabled_title">Alias adres (uitgeschakeld)</string>
+  <string name="item_details_alias_section_mailboxes_title">Doorsturen naar</string>
+  <string name="item_details_credit_card_section_cardholder_title">Naam op de kaart</string>
+  <string name="item_details_credit_card_section_card_number_title">Kaartnummer</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Verloopdatum</string>
+  <string name="item_details_credit_card_section_cvv_title">Beveiligingscode</string>
+  <string name="item_details_credit_card_section_pin_title">Pincode</string>
+  <string name="item_details_login_section_email_title">E-mailadres</string>
+  <string name="item_details_login_section_username_title">Gebruikersnaam</string>
+  <string name="item_details_login_section_password_title">Wachtwoord</string>
+  <string name="item_details_login_section_primary_totp_title">2FA-token (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Websites</string>
+  <string name="autofill_mode_label_default">Bovenliggend domein en subdomeinen</string>
+  <string name="autofill_mode_label_exact">Exact (sub)domein</string>
+  <string name="autofill_mode_label_never">Vul dit op deze website nooit in</string>
+  <string name="autofill_mode_label_start_with">Begint met</string>
+  <string name="autofill_mode_label_pattern">Wildcard-patroon</string>
+  <string name="autofill_mode_label_regular_expression">Reguliere expressie</string>
+  <string name="autofill_mode_label_exact_path">Exacte URL-vergelijking</string>
+  <string name="autofill_mode_label_unsupported">Deze URL wordt bij het automatisch invullen overgeslagen</string>
+  <string name="login_item_view_alias_button">Alias bekijken</string>
+  <string name="item_details_identity_section_personal_title">Persoonlijke gegevens</string>
+  <string name="item_details_identity_section_personal_first_name_title">Voornaam</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Tussenvoegsel</string>
+  <string name="item_details_identity_section_personal_last_name_title">Achternaam</string>
+  <string name="item_details_identity_section_personal_full_name_title">Volledige naam</string>
+  <string name="item_details_identity_section_personal_email_title">E-mailadres</string>
+  <string name="item_details_identity_section_personal_gender_title">Geslacht</string>
+  <string name="item_details_identity_section_personal_phone_title">Telefoonnummer</string>
+  <string name="item_details_identity_section_personal_birthday_title">Geboortedatum</string>
+  <string name="item_details_identity_section_address_title">Adresgegevens</string>
+  <string name="item_details_identity_section_address_organization_title">Bedrijf</string>
+  <string name="item_details_identity_section_address_street_address_title">Straatadres, postbus</string>
+  <string name="item_details_identity_section_address_floor_title">Verdieping</string>
+  <string name="item_details_identity_section_address_city_title">Stad</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">Postcode</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Provincie</string>
+  <string name="item_details_identity_section_address_county_title">Provincie</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Land of regio</string>
+  <string name="item_details_identity_section_contact_title">Contactgegevens</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Burgerservicenummer (Rijksregisternummer)</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Paspoortnummer</string>
+  <string name="item_details_identity_section_contact_license_number_title">Licentienummer</string>
+  <string name="item_details_identity_section_contact_website_title">Website</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X-gebruikersnaam</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Tweede telefoonnummer</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Werk gegevens</string>
+  <string name="item_details_identity_section_work_company_title">Bedrijf</string>
+  <string name="item_details_identity_section_work_occupation_title">Beroep</string>
+  <string name="item_details_identity_section_work_email_title">E-mailadres werk</string>
+  <string name="item_details_identity_section_work_phone_number_title">Telefoonnummer werk</string>
+  <string name="item_details_identity_section_work_personal_website_title">Persoonlijke website</string>
+  <string name="item_details_shared_section_note_title">Notitie</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Laatste automatische aanvulling</string>
+  <string name="item_details_shared_section_item_history_created_title">Aangemaakt</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Gewijzigd: (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Bekijk item geschiedenis</string>
+  <string name="item_details_shared_section_more_info_header_title">Meer informatie</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Meer item informatie icoon</string>
+  <string name="item_details_shared_section_more_info_item_id">Item-ID</string>
+  <string name="item_details_shared_section_more_info_vault_id">Kluis-ID</string>
+  <string name="item_details_shared_section_more_info_share_id">Deel-ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">Naam (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Wachtwoord</string>
+  <string name="item_details_wifi_network_label_security">Beveiliging</string>
+  <string name="item_details_ssh_key_label_public_key">Publieke sleutel</string>
+  <string name="item_details_ssh_key_label_private_key">Privé-sleutel</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">De app versie wordt niet meer ondersteund. Update uw app alstublieft.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Toegangssleutel</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Abonnement upgraden?</string>
+  <string name="dialog_upgrade_plan_message">Deze functie is niet beschikbaar voor gebruikers van de gratis versie. Upgrade uw abonnement wanneer u hiervan gebruik van wilt maken, samen met andere handige functies.</string>
+  <string name="dialog_upgrade_plan_action_confirm">Upgrade</string>
+  <string name="dialog_upgrade_plan_action_cancel">Niet nu</string>
+  <!-- Words -->
+  <string name="email_address">E-mailadres</string>
+  <string name="email_address_invalid">Ongeldig e-mailadres</string>
+  <string name="password">Wachtwoord</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Knop om deze tooltip te sluiten en niet meer te tonen</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d jaar</item>
+    <item quantity="other">%d jaren</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d maand</item>
+    <item quantity="other">%d maanden</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d week</item>
+    <item quantity="other">%d weken</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d dag</item>
+    <item quantity="other">%d dagen</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d uur</item>
+    <item quantity="other">%d uren</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d minuut</item>
+    <item quantity="other">%d minuten</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d seconde</item>
+    <item quantity="other">%d seconden</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d alias</item>
+    <item quantity="other">%d aliassen</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Notitie gekopieerd</string>
+  <string name="snack_bar_message_item_migration_error">Er is een fout opgetreden bij het migreren van dit item</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Item succesvol uitgesloten van monitoring</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Er is een fout opgetreden bij het uitsluiten van het item van de monitoring</string>
+  <string name="snack_bar_message_item_monitor_included_success">Item succesvol opgenomen in monitoring</string>
+  <string name="snack_bar_message_item_monitor_included_error">Er is een fout opgetreden bij het opnemen van het item in de monitoring</string>
+  <string name="snack_bar_message_item_pinned_success">Item succesvol vastgezet</string>
+  <string name="snack_bar_message_item_pinned_error">Fout bij het vastmaken van dit item</string>
+  <string name="snack_bar_message_item_unpinned_success">Item succesvol losgemaakt</string>
+  <string name="snack_bar_message_item_unpinned_error">Er is een fout opgetreden bij het losmaken van dit item</string>
+  <string name="snack_bar_message_item_trashed_success">Item succesvol verwijderd</string>
+  <string name="snack_bar_message_item_trashed_error">Er is een fout opgetreden bij het verwijderen van dit item</string>
+  <string name="snack_bar_message_item_restore_success">Item succesvol hersteld</string>
+  <string name="snack_bar_message_item_restore_error">Er is een fout opgetreden bij het herstellen van dit item</string>
+  <string name="snack_bar_message_item_delete_success">Item succesvol verwijderd</string>
+  <string name="snack_bar_message_item_delete_error">Er is een fout opgetreden bij het verwijderen van dit item</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Schakel SimpleLogin synchronisatie in</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">We hebben gedetecteerd dat u %d alias hebt die aanwezig is in SimpleLogin, maar ontbreekt in Proton Pass. Wilt u deze importeren?</item>
+    <item quantity="other">We hebben gedetecteerd dat u %d aliassen hebt die aanwezig zijn in SimpleLogin, maar ontbreken in Proton Pass. Wilt u deze importeren?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Synchroniseer aliassen</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Code niet ontvangen?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Controleer in uw spam voor een e-mail met onderwerp \"%s\"</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Bevestig uw e-mailadres voor Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Bevestig uw mailbox</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Als u dergelijke e-mail niet kan vinden, kunt u %s gebruiken.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">nieuwe code aanvragen</string>
+  <string name="field_display_name_title">Weergavenaam</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s bestand</item>
+    <item quantity="other">%1$s bestanden</item>
+  </plurals>
+  <string name="attachment_title">Bijlagen</string>
+  <string name="attachment_no_files">Bestanden uploaden van uw computer</string>
+  <string name="attachment_add_file">Bestand toevoegen</string>
+  <string name="attachment_row_upload_failed">Opladen mislukt</string>
+  <string name="attachment_row_retry">Probeer opnieuw</string>
+  <string name="options_menu_content_description">Opties-menu</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d gedeeld item</item>
+    <item quantity="other">%d gedeelde items</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d gebruiker</item>
+    <item quantity="other">%d gebruikers</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d lid</item>
+    <item quantity="other">%d leden</item>
+  </plurals>
+  <string name="show_network_qr_code">Toon Netwerk QR-Code</string>
+  <string name="expand_collpased_text">meer</string>
+  <string name="collapse_expanded_text">minder</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Zwak wachtwoord</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Dit account is kwetsbaar, bezoek de service en wijzig uw wachtwoord.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Gecompromitteerde wachtwoorden</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">Dit aanmeldwachtwoord verschijnt bij een datalek. Bezoek de service en wijzig het wachtwoord.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d andere login gebruikt hetzelfde wachtwoord</item>
+    <item quantity="other">%d andere logins gebruiken hetzelfde wachtwoord</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">2FA instellen voor meer beveiliging</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Deze service biedt 2FA aan. Schakel het in voor extra accountveiligheid.</string>
+  <string name="login_item_monitor_action_ignore">Negeren</string>
+  <string name="login_item_monitor_action_restore">Herstel waarschuwing</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Zwak wachtwoord</string>
+  <string name="login_item_monitor_label_compromised">Gecompromitteerd wachtwoord</string>
+  <string name="login_item_monitor_label_reused">Hergebruikt Wachtwoord</string>
+  <string name="login_item_monitor_label_missing_2fa">2FA ontbreekt</string>
+  <string name="login_item_reused_passwords_subtitle">Items van uw kluis die dit wachtwoord gebruiken.</string>
+  <string name="mfa_limit_reached">2FA-limiet bereikt</string>
+  <string name="activity_in_last_two_weeks">Activiteiten tijdens de voorbije 14 dagen</string>
+  <string name="contacts">Contacten</string>
+  <string name="contacts_section_description">Om uw persoonlijke e-mailadres verborgen te houden, kunt u een alias-contactpersoon maken die uw adres maskert.</string>
+  <string name="field_detail_display_name_title">Weergavenaam</string>
+  <string name="display_name_section_description">De weergavenaam bij het verzenden van een e-mail van deze alias.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s doorgestuurd</item>
+    <item quantity="other">%1$s doorgestuurd</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s antwoord</item>
+    <item quantity="other">%1$s antwoorden</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s blok</item>
+    <item quantity="other">%1$s blokken</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Login aanmaken</string>
+  <string name="banner_contacts_title">Wist u dat?</string>
+  <string name="banner_contacts_subtitle">Elke keer dat uw alias een e-mail van iemand ontvangt, wordt een nieuwe contactpersoon automatisch aangemaakt.</string>
+  <string name="action_reveal">Toon</string>
+  <string name="action_conceal">Verbergen</string>
+  <string name="warning_dialog_item_shared_vault_title">Item in een gedeelde kluis</string>
+  <string name="warning_dialog_item_shared_title">Gedeeld item</string>
+  <string name="warning_dialog_item_shared_vault_creating">U maakt een item aan in een gedeelde kluis en gebruikers krijgen er direct toegang toe.</string>
+  <string name="warning_dialog_item_shared_vault_moving">U verplaatst een item naar een gedeelde kluis en leden krijgen onmiddellijk toegang tot dit item.</string>
+  <string name="warning_dialog_item_shared_vault_updating">U bewerkt een item in een gedeelde kluis en leden krijgen direct toegang tot dit item.</string>
+  <string name="warning_dialog_item_shared_updating">U bent een gedeeld item aan het bewerken. Wijzigingen zullen onmiddellijk zichtbaar zijn voor iedereen waarmee het gedeeld is.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Niet opnieuw herinneren</string>
+  <string name="upgrade_to_pass_plus">Opwaarderen naar Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">U wordt doorgestuurd naar onze website. Als u een abonnement aanschaft, herstart dan de app.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Woordscheidingsteken</string>
+  <string name="bottomsheet_option_capitalise">Hoofdletters</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Koppeltekens ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Spaties</string>
+  <string name="bottomsheet_option_word_separator_periods">Punten ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Komma\'s ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Onderstrepingstekens ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Nummers</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Nummers en symbolen</string>
+  <plurals name="word_count">
+    <item quantity="one">%s woord</item>
+    <item quantity="other">%s woorden</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Wachtwoordsterkte</string>
+  <string name="password_check_min_length">Wachtwoord is te kort</string>
+  <string name="password_check_lowercase">Kleine letters</string>
+  <string name="password_check_uppercase">Hoofdletters</string>
+  <string name="password_check_no_consecutive">Geen herhaalde karakters</string>
+  <string name="password_check_no_common">No common password</string>
+</resources>

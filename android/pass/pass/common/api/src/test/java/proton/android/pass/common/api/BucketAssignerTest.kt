@@ -1,0 +1,85 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.common.api
+
+import com.google.common.truth.Truth.assertThat
+import org.junit.Test
+import java.util.UUID
+
+class BucketAssignerTest {
+
+    @Test
+    fun `same UUID should always return the same bucket`() {
+        val numBuckets = 2
+        val uuid = UUID.fromString("123e4567-e89b-12d3-a456-426614174000")
+
+        val bucket1 = BucketAssigner.getBucket(numBuckets, uuid)
+        val bucket2 = BucketAssigner.getBucket(numBuckets, uuid)
+
+        assertThat(bucket1).isEqualTo(bucket2)
+    }
+
+    @Test
+    fun `different UUIDs should distribute across buckets`() {
+        val numBuckets = 2
+        val iterations = 100
+        val seenBuckets = mutableSetOf<Int>()
+
+        repeat(iterations) {
+            val uuid = UUID.randomUUID()
+            seenBuckets.add(BucketAssigner.getBucket(numBuckets, uuid))
+        }
+
+        assertThat(seenBuckets.size).isGreaterThan(1)
+    }
+
+    @Test
+    fun `should always return a valid bucket within range`() {
+        val numBuckets = 10
+
+        repeat(100) {
+            val uuid = UUID.randomUUID()
+            val bucket = BucketAssigner.getBucket(numBuckets, uuid)
+            assertThat(bucket).isAtLeast(0)
+            assertThat(bucket).isLessThan(numBuckets)
+        }
+    }
+
+    @Test
+    fun `should handle single bucket case correctly`() {
+        val uuid = UUID.randomUUID()
+
+        val bucket = BucketAssigner.getBucket(1, uuid)
+
+        assertThat(bucket).isEqualTo(0)
+    }
+
+    @Test
+    fun `should handle a large number of buckets`() {
+        val numBuckets = 1000
+
+        repeat(100) {
+            val uuid = UUID.randomUUID()
+            val bucket = BucketAssigner.getBucket(numBuckets, uuid)
+            assertThat(bucket).isAtLeast(0)
+            assertThat(bucket).isLessThan(numBuckets)
+        }
+    }
+
+}

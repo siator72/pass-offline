@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">Kopiuj i zamknij</string>
+  <string name="password_copied_to_clipboard">Hasło zostało skopiowane</string>
+  <string name="bottomsheet_generate_password_title">Generuj hasło</string>
+  <string name="password_type">Typ</string>
+  <string name="special_characters">Znaki specjalne (!&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="one">%s znak</item>
+    <item quantity="few">%s znaki</item>
+    <item quantity="many">%s znaków</item>
+    <item quantity="other">%s znaków</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">Wielkie litery (A-Z)</string>
+  <string name="bottomsheet_option_include_numbers">Cyfry (0-9)</string>
+  <string name="regenerate_password_icon_content_description">Przycisk wygenerowania hasła ponownie</string>
+  <string name="password_mode_memorable">Hasło wyrazowe</string>
+  <string name="password_mode_random">Hasło losowe</string>
+  <string name="password_mode_icon">Ikona trybu hasła</string>
+  <string name="password_words_separator_icon">Separator słów</string>
+  <string name="password_history_title">Wygenerowane hasła</string>
+  <string name="password_history_empty">Brak historii</string>
+  <string name="password_history_description">Wygenerowane hasła będą przechowywane przez 2 tygodnie.</string>
+  <string name="password_history_today">Dzisiaj, %s</string>
+  <string name="password_history_yesterday">Wczoraj, %s</string>
+  <string name="password_history_before_yesterday">%d days ago, %s</string>
+  <string name="password_history_clear_history">Wyczyść historię</string>
+  <string name="password_history_remove_from_history">Usuń z historii</string>
+</resources>

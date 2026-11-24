@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="configure_extra_password_continue">Lanjutkan</string>
+  <string name="configure_extra_password_title">Tetapkan sandi tambahan</string>
+  <string name="configure_extra_password_enter_extra_password">Kata sandi tambahan</string>
+  <string name="configure_extra_password_repeat_extra_password">Ulangi kata sandi</string>
+  <string name="configure_extra_password_description">Kamu akan diminta kata sandi ini saat masuk dan saat berpindah dari Proton app lain ke Proton Pass di web.</string>
+  <string name="configure_extra_password_warning">Perhatian: Anda tidak akan dapat mengakses akun pass Anda apabla Anda kehilangan kata sandi ini.</string>
+  <string name="configure_extra_password_mismatch">Kata sandi tidak sesuai</string>
+  <string name="extra_password_options_remove">Hapus</string>
+  <string name="info_extra_password_title">Kata sandi tambahan</string>
+  <string name="info_extra_password_body">Lindungi Proton Pass dengan kata sandi tambahan.</string>
+  <string name="info_extra_password_button">Tetapkan kata sandi tambahan</string>
+  <string name="configure_extra_password_cannot_be_blank">Kata sandi tidak boleh kosong</string>
+  <string name="configure_extra_password_password_too_short">Kata sandi tambahan harus mengandung setidaknya 8 karakter</string>
+  <string name="confirm_extra_password_title">Tetapkan kata sandi tambahan</string>
+  <string name="confirm_extra_password_body">Anda akan dikeluarkan dari akun dan perlu untuk masuk kembali pada seluruh perangkat lainnya yang Anda miliki</string>
+  <string name="confirm_extra_password_error">Kata sandi tambahan tidak dapat ditetapkan</string>
+  <string name="confirm_extra_password_success">Kata sandi tambahan ditetapkan</string>
+</resources>

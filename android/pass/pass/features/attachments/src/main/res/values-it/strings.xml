@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">Scatta una foto</string>
+  <string name="add_attachment_choose_a_photo_or_video">Scegli una foto o un video</string>
+  <string name="add_attachment_choose_a_file">Scegli un file</string>
+  <string name="attachment_options_rename">Rinomina</string>
+  <string name="attachment_options_delete">Elimina</string>
+  <string name="attachment_options_download">Scarica</string>
+  <string name="attachment_options_share">Condividi</string>
+  <string name="file_picker_open_error">Caricamento del selettore file non riuscito</string>
+  <string name="media_picker_open_error">Caricamento del selettore media non riuscito</string>
+  <string name="camera_open_error">Apertura della fotocamera non riuscita</string>
+  <string name="camera_permission_explanation">Consenti l\'accesso alla fotocamera per usare questa funzionalità.</string>
+  <string name="camera_permission_open_settings">Apri le impostazioni</string>
+  <string name="delete_all_attachments_title">Elimina tutti gli allegati</string>
+  <string name="delete_all_attachments_subtitle">Sei sicuro di voler eliminare definitivamente tutti i file allegati?</string>
+  <string name="delete_all_attachments_confirm">Elimina tutto</string>
+  <string name="rename_attachment_dialog_title">Rinomina il file</string>
+  <string name="storage_full_title">Spazio di archiviazione quasi pieno</string>
+  <string name="storage_full_body">Passa a un piano a pagamento per aumentare lo spazio di archiviazione</string>
+  <string name="storage_full_upgrade">Effettua l\'upgrade</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%1$s / %2$s</string>
+  <string name="attachments_saved_to_location_success">Allegato salvato</string>
+  <string name="attachments_saved_to_location_error">Salvataggio dell\'allegato non riuscito</string>
+  <string name="attachment_sync_dialog_title_waiting">In attesa di connessione</string>
+  <string name="attachment_sync_dialog_title_downloading">Download degli allegati</string>
+  <string name="attachment_sync_dialog_title_done">Download completato</string>
+  <string name="attachment_sync_dialog_title_partial_failure">Download non riuscito</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">In attesa di connessione di rete per scaricare gli allegati.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">Download degli allegati %1$d/%2$d in corso</string>
+  <string name="attachment_sync_dialog_subtitle_done">Tutti gli allegati sono stati scaricati correttamente.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">Alcuni allegati non sono stati scaricati. Puoi riprovare a scaricarli qui sotto.</string>
+  <string name="attachment_sync_dialog_retry_content_description">Riavvia il download</string>
+  <string name="attachment_sync_vault_files_count">%1$d / %2$d file</string>
+</resources>

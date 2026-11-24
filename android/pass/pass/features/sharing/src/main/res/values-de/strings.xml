@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sharing_can_view">Betrachter</string>
+  <string name="sharing_can_edit">Bearbeiter</string>
+  <string name="sharing_can_manage">Administrator</string>
+  <string name="sharing_can_manage_v2">Verwaltung</string>
+  <string name="sharing_can_view_description">Darf Einträge in diesem Tresor anzeigen.</string>
+  <string name="sharing_can_edit_description">Darf Einträge in diesem Tresor erstellen, bearbeiten, löschen und exportieren.</string>
+  <string name="sharing_can_manage_description">Darf Zugriff auf diesen Tresor gewähren oder widerrufen.</string>
+  <plurals name="sharing_item_count">
+    <item quantity="one">%d Eintrag</item>
+    <item quantity="other">%d Einträge</item>
+  </plurals>
+  <plurals name="sharing_invite_item_count">
+    <item quantity="one">%d Eintrag (einschließlich der im Papierkorb)</item>
+    <item quantity="other">%d Einträge (einschließlich der im Papierkorb)</item>
+  </plurals>
+  <plurals name="sharing_member_count">
+    <item quantity="one">%d Mitglied</item>
+    <item quantity="other">%d Mitglieder</item>
+  </plurals>
+  <string name="sharing_member_count_header">Mitglieder</string>
+  <string name="shared_via_title">Geteilt über</string>
+  <string name="shared_via_item_section_title" comment="The placeholder will be replaced by users count. E.g. 2 users">Einträge teilen: %s</string>
+  <string name="shared_via_vault_section_title" comment="The placeholder will be replaced by members count. E.g. 2 members">Tresore teilen: %s</string>
+  <string name="share_with_title">Teilen mit</string>
+  <string name="share_with_email_hint">E‐Mail‐Adresse</string>
+  <string name="share_with_email_error">Ungültige E-Mail-Adresse</string>
+  <string name="share_with_email_cannot_invite_outside_org">Du kannst keine Personen außerhalb deiner Organisation einladen, kontaktiere den Administrator für weitere Informationen</string>
+  <string name="share_with_email_email_already_added">Du hast diese E-Mail-Adresse bereits hinzugefügt.</string>
+  <string name="share_permissions_title">Zugriffsstufe festlegen</string>
+  <string name="sharing_reject_invitation">Einladung ablehnen</string>
+  <string name="sharing_vault_invitation_title">Geteilte Tresoreinladung</string>
+  <string name="sharing_vault_invitation_subtitle" comment="placeholder is replaced by an email address">%s möchte einen Tresor mit dir teilen.</string>
+  <string name="sharing_vault_invitation_accept">Freigegebenem Tresor beitreten</string>
+  <string name="sharing_item_invitation_title">Geteilte Eintrageinladung</string>
+  <string name="sharing_item_invitation_subtitle" comment="placeholder is replaced by an email address">%s möchte einen Eintrag mit dir teilen</string>
+  <string name="sharing_item_invitation_accept">Annehmen und das Element anzeigen</string>
+  <string name="sharing_group_vault_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s möchte einen Tresor mit deiner Gruppe %2$s teilen.</string>
+  <string name="sharing_group_item_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s möchte einen Eintrag mit deiner Gruppe %2$s teilen.</string>
+  <string name="sharing_group_invitation_accept">Einladung annehmen</string>
+  <string name="sharing_invite_more">Weitere einladen…</string>
+  <string name="sharing_snackbar_invite_accepted">Einladung angenommen</string>
+  <string name="sharing_snackbar_invite_accept_error">Fehler beim Annehmen der Einladung.</string>
+  <string name="sharing_snackbar_invite_accept_error_cannot_create_more_vaults">Die Einladung konnte nicht angenommen werden, da du bereits die zulässige Anzahl an Tresoren erreicht hast.</string>
+  <string name="sharing_snackbar_invite_rejected">Einladung abgelehnt</string>
+  <string name="sharing_snackbar_invite_reject_error">Fehler beim Ablehnen der Einladung.</string>
+  <string name="sharing_snackbar_invite_sent_success">Einladung gesendet</string>
+  <string name="sharing_snackbar_invite_sent_error">Fehler beim Senden der Einladung.</string>
+  <string name="sharing_snackbar_invite_new_users_error">Kann keine neuen Benutzer einladen</string>
+  <string name="sharing_snackbar_invite_free_user_error">Einladungen zu Einträgen dürfen nur an zahlende Benutzer gesendet werden.</string>
+  <string name="sharing_snackbar_cannot_create_invite_error">Adresse kann nicht eingeladen werden</string>
+  <string name="sharing_snackbar_get_vault_members_error">Fehler beim Abrufen der Tresormitglieder.</string>
+  <string name="sharing_snackbar_change_permission_success">Berechtigungen geändert.</string>
+  <string name="sharing_snackbar_change_permission_error">Fehler beim Ändern der Berechtigungen.</string>
+  <string name="sharing_snackbar_remove_member_success">Mitglied aus dem Tresor entfernt.</string>
+  <string name="sharing_snackbar_remove_member_error">Fehler beim Entfernen aus dem Tresor.</string>
+  <string name="sharing_snackbar_fetch_member_error">Fehler beim Abrufen der Mitglieder.</string>
+  <string name="sharing_snackbar_fetch_pending_invites_error">Fehler beim Abrufen der ausstehenden Einladungen.</string>
+  <string name="share_summary_title">Überprüfen und teilen</string>
+  <string name="share_summary_share_vault">Tresor teilen</string>
+  <string name="share_summary_share_item">Element teilen</string>
+  <string name="share_summary_vault_title">Tresor</string>
+  <string name="share_summary_item_title">Element</string>
+  <string name="share_summary_access_level_title">Berechtigungsstufe</string>
+  <string name="share_manage_vault_share_with_more_people">Mit weiteren Personen teilen</string>
+  <plurals name="share_manage_vault_invites_remaining" comment="Text that will be shown in the vault member list, showing the user how many invites they have left for this vault">
+    <item quantity="one">%d Einladung verbleibend</item>
+    <item quantity="other">%d Einladungen verbleibend</item>
+  </plurals>
+  <plurals name="share_manage_vault_item_count">
+    <item quantity="one">%d Eintrag</item>
+    <item quantity="other">%d Einträge</item>
+  </plurals>
+  <string name="share_manage_vault_invite_pending" comment="Text that will be shown in the vault member list, below the user email when the user has been invited but has not accepted the invitation yet">Einladung gesendet</string>
+  <string name="share_manage_vault_invite_pending_user_creation" comment="Text that will be shown in the vault member list, below the user email when the user has not created the account yet">﻿Ausstehende Kontoerstellung</string>
+  <string name="share_manage_vault_invite_confirm_access" comment="Text that will be shown in the vault member list, on a button, when the invited user has created the account and we want to grant him access to the vault">Zugriff bestätigen</string>
+  <string name="share_manage_vault_invitations_title" comment="Text that will be used as the title of the list containing the invites for a vault">Einladungen</string>
+  <string name="share_manage_vault_members_title" comment="Text that will be used as the title of the list containing the members of a vault">Mitglieder</string>
+  <string name="share_manage_vault_current_user_indicator">Du</string>
+  <string name="share_manage_vault_members_error" comment="Shown when the vault member list fails to load">Mitglieder konnten nicht geladen werden</string>
+  <string name="share_manage_vault_members_error_retry" comment="Button to retry loading the vault members">Wiederholen</string>
+  <string name="share_role_viewer">Leseberechtigter</string>
+  <string name="share_role_editor">Bearbeiter</string>
+  <string name="share_role_admin">Administrator</string>
+  <string name="share_role_manager">Verwaltung</string>
+  <string name="share_role_owner">Besitzer</string>
+  <string name="sharing_bottomsheet_transfer_ownership">Inhaberschaft übertragen</string>
+  <string name="sharing_bottomsheet_transfer_ownership_disabled_subtitle" comment="Appears as the subtitle of the sharing_bottomsheet_transfer_ownership when the user cannot transfer the ownership because they only own one vault">Du kannst deinen letzten Tresor nicht übertragen.</string>
+  <string name="sharing_bottomsheet_remove_access">Zugriff entfernen</string>
+  <string name="sharing_bottomsheet_item_admin_subtitle">Darf Zugriff auf dieses Element gewähren oder widerrufen.</string>
+  <string name="sharing_bottomsheet_item_editor_subtitle">Darf dieses Element bearbeiten und löschen.</string>
+  <string name="sharing_bottomsheet_item_viewer_subtitle">Darf dieses Element anzeigen.</string>
+  <string name="sharing_bottomsheet_resend_invite">Einladung erneut senden</string>
+  <string name="sharing_bottomsheet_cancel_invite">Einladung verwerfen</string>
+  <string name="sharing_transfer_ownership_confirm_title">Inhaberschaft übertragen</string>
+  <string name="sharing_transfer_ownership_confirm_message">Eigentumsrechte dieses Tresors auf %s übertragen?</string>
+  <string name="sharing_snackbar_cancel_invite_success">Einladung verworfen</string>
+  <string name="sharing_snackbar_cancel_invite_error">Fehler beim Abbrechen der Einladung.</string>
+  <string name="sharing_snackbar_resend_invite_success">Einladung erneut gesendet</string>
+  <string name="sharing_snackbar_resend_invite_error">Fehler beim erneuten Senden der Einladung.</string>
+  <string name="sharing_snackbar_confirm_invite_success">Einladung bestätigt</string>
+  <string name="sharing_snackbar_confirm_invite_error">Fehler beim Bestätigen der Einladung.</string>
+  <string name="sharing_snackbar_too_many_invites_sent">Diese E-Mail-Adresse wurde zu oft eingeladen.</string>
+  <string name="sharing_snackbar_transfer_ownership_success">Besitzer geändert</string>
+  <string name="sharing_snackbar_transfer_ownership_error">Fehler beim Ändern des Besitzers.</string>
+  <string name="sharing_invites_info_dialog_title">Mitgliederlimit</string>
+  <plurals name="sharing_invites_info_dialog_message" comment="Message that will appear when clicking the NUMBER invites left. Param 1: Max members of the vault (will always be greater than one). Param 2: Number of invites left.">
+    <item quantity="one">Dieser Tresor kann bis zu %1$d Mitglied haben. Du hast noch %2$d Einladung übrig.</item>
+    <item quantity="other">Dieser Tresor kann bis zu %1$d Mitglieder haben. Du hast noch %2$d Einladungen übrig.</item>
+  </plurals>
+  <string name="sharing_limit_reached">Dieser Tresor hat das Mitglieder- und Einladungslimit erreicht.</string>
+  <string name="sharing_invites_info_upgrade_text">Upgrade jetzt, um weitere einzuladen.</string>
+  <string name="sharing_from_item_title" comment="Title for the Share from item bottomsheet">Teilen</string>
+  <string name="sharing_from_item_share_this_vault_action" comment="Button for sharing this vault">Diesen Tresor teilen</string>
+  <string name="sharing_from_item_move_to_shared_vault_action" comment="Button for moving an item to a shared vault">In einen geteilten Tresor verschieben</string>
+  <string name="sharing_from_item_vault_limit_reached_upgrade">Upgrade um weitere Tresore zu erstellen.</string>
+  <string name="sharing_from_item_vault_limit_reached">Du hast das Tresor-Limit erreicht</string>
+  <string name="share_with_suggestions_title">Vorschläge</string>
+  <string name="share_with_recents_title">Kürzlich</string>
+  <string name="share_with_remove_email_content_description">E-Mail entfernen</string>
+  <string name="share_with_user_shared_title">Mit anderen Proton Pass-Benutzern</string>
+  <string name="share_with_user_shared_description">Nützlich für permanentes Teilen.</string>
+  <string name="share_with_manage_shared_item_title">Zugriff verwalten</string>
+  <string name="share_with_manage_shared_item_description">Übersicht über Mitglieder und Berechtigungen anzeigen.</string>
+  <string name="share_with_secure_link_shared_title">Über einen sicheren Link</string>
+  <string name="share_with_secure_link_shared_description">Für einmaliges Teilen.</string>
+  <string name="sharing_edit_permissions_set_access_level_all_members">Zugriffsstufe für alle Mitglieder festlegen</string>
+  <string name="sharing_edit_permissions_set_access_level_single_member">Zugriffsstufe für %s festlegen</string>
+  <string name="sharing_edit_permissions_remove_user">Benutzer entfernen</string>
+  <string name="sharing_edit_permissions_remove_group">Gruppe entfernen</string>
+  <string name="sharing_error_dialog_title">Unbekannter Fehler</string>
+  <string name="sharing_error_dialog_message">Es ist ein Fehler beim Senden einer Einladung für diesen Tresor aufgetreten. Wenn das Problem weiterhin besteht, wende dich bitte an den Kundensupport.</string>
+  <string name="sharing_with_no_addresses_can_be_invited">Es können keine Adressen eingeladen werden</string>
+  <string name="sharing_with_some_addresses_cannot_be_invited">Manche Adressen können nicht eingeladen werden</string>
+</resources>

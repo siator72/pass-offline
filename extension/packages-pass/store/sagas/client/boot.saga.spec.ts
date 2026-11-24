@@ -1,0 +1,146 @@
+import { runSaga } from 'redux-saga';
+
+import { exposeApi } from '../../../lib/api/api';
+import { AppStatus } from '../../../types/worker/state';
+import { sagaSetup } from '../../../utils/tests/saga';
+import { bootFailure, bootIntent, cacheConflict, stateDestroy } from '../../actions/creators/client';
+import { itemsUpdated } from '../../actions/creators/item';
+import type { RootSagaOptions } from '../../types';
+import watcher from './boot.saga';
+import * as hydrateSaga from './hydrate.saga';
+
+vi.mock('./hydrate.saga', async () => ({
+    ...(await vi.importActual('./hydrate.saga')),
+    hydrate: vi.fn(),
+}));
+
+const setResumeLock = vi.fn();
+const setAppStatus = vi.fn();
+const onBoot = vi.fn();
+
+const options = {
+    getSettings: () => Promise.resolve({}),
+    getAuthStore: () => ({ getUserID: () => 'user-id' }),
+    setAppStatus,
+    onBoot,
+} as unknown as RootSagaOptions;
+
+exposeApi({ setResumeLock } as any);
+
+describe('Boot saga', () => {
+    describe('Resume lock', () => {
+        beforeEach(() => setResumeLock.mockClear());
+
+        test('`bootIntent({ offline: true })` should lock the api', async () => {
+            const saga = sagaSetup();
+            const task = runSaga(saga.options, watcher, options);
+            saga.options.dispatch(bootIntent({ offline: true }));
+            await saga.nextTick();
+
+            expect(setResumeLock).toHaveBeenCalledWith(true);
+            task.cancel();
+            await task.toPromise();
+        });
+
+        test('`bootIntent({ offline: false })` should unlock the api', async () => {
+            const saga = sagaSetup();
+            const task = runSaga(saga.options, watcher, options);
+            saga.options.dispatch(bootIntent({ offline: false }));
+            await saga.nextTick();
+
+            expect(setResumeLock).toHaveBeenCalledWith(false);
+            task.cancel();
+            await task.toPromise();
+        });
+
+        test('`bootFailure` should unlock the api', async () => {
+            const saga = sagaSetup();
+            const task = runSaga(saga.options, watcher, options);
+            saga.options.dispatch(bootFailure(new Error()));
+            await saga.nextTick();
+
+            expect(setResumeLock).toHaveBeenCalledWith(false);
+            task.cancel();
+            await task.toPromise();
+        });
+    });
+
+    describe('Offline boot gate', () => {
+        const bootOffline = async (hasOfflinePassword: boolean) => {
+            const saga = sagaSetup();
+            const authStore = { getUserID: () => 'user-id', hasOfflinePassword: () => hasOfflinePassword };
+            const task = runSaga(saga.options, watcher, { ...options, getAuthStore: () => authStore } as any);
+            saga.options.dispatch(bootIntent({ offline: true }));
+            await saga.nextTick();
+            task.cancel();
+            await task.toPromise();
+            return saga;
+        };
+
+        beforeEach(() => setAppStatus.mockClear());
+
+        test('booting offline without the password-derived `offlineKD` is refused', async () => {
+            const saga = await bootOffline(false);
+
+            expect(setAppStatus).not.toHaveBeenCalledWith(AppStatus.BOOTING);
+            expect(saga.dispatched).toContainEqual(bootFailure(new Error('Unauthorized offline boot')));
+        });
+
+        test('booting offline with the password-derived `offlineKD` proceeds', async () => {
+            await bootOffline(true);
+            expect(setAppStatus).toHaveBeenCalledWith(AppStatus.BOOTING);
+        });
+    });
+
+    describe('Cancellation', () => {
+        beforeEach(() => {
+            setAppStatus.mockClear();
+            onBoot.mockClear();
+
+            vi.mocked(hydrateSaga.hydrate).mockImplementation(function* () {
+                /** Stall `hydrate` so the boot is suspended mid-hydration:
+                 * the exact window a cross-tab `cacheConflict` targets, leaving
+                 * only the watcher's race able to resolve the boot. */
+                yield new Promise(() => {});
+            } as any);
+        });
+
+        const startBoot = async () => {
+            const saga = sagaSetup();
+            const task = runSaga(saga.options, watcher, options);
+            saga.options.dispatch(bootIntent({}));
+            await saga.nextTick();
+            return { saga, task };
+        };
+
+        test('a local caching action during boot does not cancel the boot', async () => {
+            const { saga, task } = await startBoot();
+            saga.options.dispatch(itemsUpdated([]));
+            await saga.nextTick();
+
+            expect(setAppStatus).not.toHaveBeenCalledWith(AppStatus.ERROR);
+            task.cancel();
+            await task.toPromise();
+        });
+
+        test('`cacheConflict` (another tab cached mid-boot) cancels the boot', async () => {
+            const { saga, task } = await startBoot();
+            saga.options.dispatch(cacheConflict());
+            await saga.nextTick();
+
+            expect(setAppStatus).toHaveBeenCalledWith(AppStatus.ERROR);
+            task.cancel();
+            await task.toPromise();
+        });
+
+        test('`stateDestroy` cancels the boot', async () => {
+            const { saga, task } = await startBoot();
+            saga.options.dispatch(stateDestroy());
+            await saga.nextTick();
+
+            expect(setAppStatus).toHaveBeenCalledWith(AppStatus.ERROR);
+            task.cancel();
+            await task.toPromise();
+        });
+    });
+});

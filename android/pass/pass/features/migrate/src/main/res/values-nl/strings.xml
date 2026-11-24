@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">%d item naar de volgende kluis verplaatsen?</item>
+    <item quantity="other">%d items naar de volgende kluis verplaatsen?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">%d item naar de volgende map verplaatsen?</item>
+    <item quantity="other">%d items naar de volgende map verplaatsen?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Verplaatsen</string>
+  <string name="migrate_item_success_snackbar">Items verplaatst</string>
+  <string name="migrate_item_error_snackbar">Fout bij het verplaatsen van de items</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Fout bij het verplaatsen van sommige items</string>
+  <string name="migrate_item_warning_history">Bij het verplaatsen van items tussen kluizen bewaren we maximum de laatste 50 wijzigingen voor elk item</string>
+  <string name="migrate_item_warning_secure_link">De beveiligde links van het item worden verwijderd wanneer het naar een andere kluis wordt verplaatst</string>
+  <string name="migrate_all_items_success_snackbar">Alle items zijn verplaatst</string>
+  <string name="migrate_all_items_error_snackbar">Fout bij het verplaatsen van alle kluisitems</string>
+  <string name="migrate_init_error_snackbar">Kan migratiescherm niet voorbereiden</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Map verplaatsen naar de volgende kluis?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Map verplaatsen naar de volgende map?</string>
+  <string name="migrate_folder_success_snackbar">Map verplaatst</string>
+  <string name="migrate_folder_error_snackbar">Fout bij het verplaatsen van de map</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Map bevindt zich al op deze locatie</string>
+  <string name="migrate_dissolve_folder_dialog_title">Verplaats map inhoud</string>
+  <string name="migrate_dissolve_folder_dialog_message">Deze map bevindt zich al in de hoofdmap van de kluis. De items en submappen hierin worden naar de hoofdmap van de kluis verplaatst.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Verplaatsen</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">Item bevindt zich al in deze map</item>
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">Deze map bevindt zich al op deze locatie</string>
+  <string name="migrate_disabled_folder_reason_being_moved">Deze map wordt verplaatst</string>
+  <string name="migrate_disabled_folder_reason_descendant">Deze map staat in de map die verplaatst wordt</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Moving here would exceed the folder limits</string>
+  <string name="migrate_disabled_vault_reason_no_permission">U kunt geen items aanmaken in deze kluis</string>
+  <string name="migrate_disabled_vault_reason_same_vault">U kunt een item niet naar dezelfde kluis verplaatsen</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">Verplaats het item naar een andere kluis?</item>
+    <item quantity="other">Verplaats %d items naar een andere kluis?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Dit item wordt momenteel gedeeld. Als u het naar een andere kluis verplaatst, wordt de toegang voor alle andere gebruikers verwijderd.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">%d item wordt momenteel gedeeld. Als u het naar de prullenbak verplaatst, wordt de toegang voor alle andere gebruikers verwijderd.</item>
+    <item quantity="other">%d items worden momenteel gedeeld. Als u deze naar de prullenbak verplaatst, wordt de toegang voor alle andere gebruikers verwijderd.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Selecteer een kluis</string>
+  <string name="migrate_select_destination_for_source_title">Selecteer de bestemming voor het verplaatsen van alle items van %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Items verplaatst</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Fout bij het verplaatsen van de items</string>
+</resources>

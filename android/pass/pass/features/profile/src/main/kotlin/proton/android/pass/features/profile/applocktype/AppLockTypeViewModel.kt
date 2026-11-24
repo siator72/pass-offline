@@ -1,0 +1,297 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.profile.applocktype
+
+import android.content.Context
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import proton.android.pass.appconfig.api.AppConfig
+import proton.android.pass.appconfig.api.BuildFlavor.Companion.isQuest
+import proton.android.pass.biometry.BiometryAuthError
+import proton.android.pass.biometry.BiometryManager
+import proton.android.pass.biometry.BiometryResult
+import proton.android.pass.biometry.BiometryStatus
+import proton.android.pass.biometry.BiometryStartupError
+import proton.android.pass.biometry.BiometryType
+import proton.android.pass.biometry.StoreAuthSuccessful
+import proton.android.pass.biometry.UnlockMethod
+import proton.android.pass.common.api.Some
+import proton.android.pass.commonui.api.ClassHolder
+import proton.android.pass.data.api.usecases.SetAppLockType
+import proton.android.pass.data.api.usecases.SetPasswordOnlyLock
+import proton.android.pass.data.api.usecases.organization.ObserveAnyAccountHasEnforcedLock
+import proton.android.pass.features.profile.ProfileSnackbarMessage
+import proton.android.pass.features.profile.ProfileSnackbarMessage.BiometryFailedToAuthenticateError
+import proton.android.pass.features.profile.ProfileSnackbarMessage.BiometryFailedToStartError
+import proton.android.pass.features.profile.ProfileSnackbarMessage.FingerprintLockEnabled
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import proton.android.pass.preferences.AppLockState
+import proton.android.pass.preferences.AppLockTypePreference
+import proton.android.pass.preferences.AppLockTypePreference.Biometrics
+import proton.android.pass.preferences.AppLockTypePreference.None
+import proton.android.pass.preferences.AppLockTypePreference.Pin
+import proton.android.pass.preferences.HasAuthenticated
+import proton.android.pass.preferences.UserPreferencesRepository
+import javax.inject.Inject
+
+@HiltViewModel
+class AppLockTypeViewModel @Inject constructor(
+    private val userPreferencesRepository: UserPreferencesRepository,
+    private val biometryManager: BiometryManager,
+    private val snackbarDispatcher: SnackbarDispatcher,
+    private val setAppLockType: SetAppLockType,
+    private val setPasswordOnlyLock: SetPasswordOnlyLock,
+    private val pendingAppLockChangeHolder: PendingAppLockChangeHolder,
+    private val storeAuthSuccessful: StoreAuthSuccessful,
+    observeAnyAccountHasEnforcedLock: ObserveAnyAccountHasEnforcedLock,
+    private val appConfig: AppConfig
+) : ViewModel() {
+    private val eventState: MutableStateFlow<AppLockTypeEvent> =
+        MutableStateFlow(AppLockTypeEvent.Unknown)
+    private val newPreferenceState: MutableStateFlow<AppLockTypePreference?> =
+        MutableStateFlow(null)
+
+    val state: StateFlow<AppLockTypeUiState> = combine(
+        flow { emit(biometryManager.getBiometryStatus()) },
+        userPreferencesRepository.getAppLockTypePreference(),
+        userPreferencesRepository.getAppLockState(),
+        observeAnyAccountHasEnforcedLock().map { if (it is Some) it.value.isEnforced() else false },
+        eventState
+    ) { biometryStatus, appLockTypePreference, appLockState, isForceLockMandatory, event ->
+        val isAlreadyPasswordOnlyLock = appLockTypePreference == None && appLockState == AppLockState.Enabled
+        AppLockTypeUiState(
+            items = appLockTypePreferences(biometryStatus),
+            selected = appLockTypePreference,
+            isPasswordOption = isAlreadyPasswordOnlyLock || isForceLockMandatory,
+            isForceLockMandatory = isForceLockMandatory,
+            canDisableLock = isAlreadyPasswordOnlyLock && !isForceLockMandatory,
+            event = event
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = run {
+            val biometryStatus = biometryManager.getBiometryStatus()
+            AppLockTypeUiState.default(appLockTypePreferences(biometryStatus))
+        }
+    )
+
+    private fun appLockTypePreferences(biometryStatus: BiometryStatus): MutableList<AppLockTypePreference> {
+        val preferences = mutableListOf(None, Pin)
+        if (biometryStatus is BiometryStatus.CanAuthenticate && !appConfig.flavor.isQuest()) {
+            preferences.add(Biometrics)
+        }
+        return preferences
+    }
+
+    fun onChanged(newPreference: AppLockTypePreference, contextHolder: ClassHolder<Context>) = viewModelScope.launch {
+        val oldPreference = state.value.selected
+        if (oldPreference == newPreference) {
+            eventState.update { AppLockTypeEvent.Dismiss }
+        } else {
+            newPreferenceState.update { newPreference }
+            when (oldPreference) {
+                Biometrics -> when (newPreference) {
+                    None -> openBiometrics(
+                        contextHolder = contextHolder,
+                        onSuccess = {
+                            if (state.value.isPasswordOption) {
+                                onBiometryAuthToPassword()
+                            } else {
+                                onBiometryAuthUnSet()
+                            }
+                        },
+                        onError = ::onBiometryError
+                    )
+
+                    Pin -> openBiometrics(
+                        contextHolder = contextHolder,
+                        onSuccess = { eventState.update { AppLockTypeEvent.ConfigurePin } },
+                        onError = ::onBiometryError
+                    )
+
+                    else -> {}
+                }
+
+                None -> when (newPreference) {
+                    Biometrics -> openBiometrics(
+                        contextHolder = contextHolder,
+                        onSuccess = ::onBiometryAuthSet,
+                        onError = ::onBiometryError
+                    )
+
+                    Pin -> eventState.update { AppLockTypeEvent.ConfigurePin }
+                    else -> {}
+                }
+
+                Pin -> when (newPreference) {
+                    Biometrics -> eventState.update { AppLockTypeEvent.EnterPin }
+                    None -> eventState.update { AppLockTypeEvent.EnterPin }
+                    else -> {}
+                }
+            }
+        }
+    }
+
+    fun onDisableLockSelected() {
+        if (!state.value.canDisableLock) return
+        pendingAppLockChangeHolder.pendingTarget = None
+        eventState.update { AppLockTypeEvent.ConfirmMasterPassword }
+    }
+
+    fun onPinSuccessfullyEntered(contextHolder: ClassHolder<Context>) {
+        val newPreference = newPreferenceState.value ?: return
+        when (newPreference) {
+            None -> if (state.value.isPasswordOption) {
+                onPinAuthToPassword()
+            } else {
+                onPinAuthUnSet()
+            }
+            Biometrics -> openBiometrics(
+                contextHolder = contextHolder,
+                onSuccess = ::onBiometryAuthSet,
+                onError = ::onBiometryError
+            )
+
+            Pin -> {
+                // Cannot happen
+            }
+        }
+    }
+
+    fun clearEvents() = viewModelScope.launch {
+        eventState.update { AppLockTypeEvent.Unknown }
+    }
+
+    private fun openBiometrics(
+        contextHolder: ClassHolder<Context>,
+        onSuccess: suspend () -> Unit,
+        onError: suspend (BiometryResult.Error) -> Unit
+    ) = viewModelScope.launch {
+        biometryManager.launch(contextHolder, BiometryType.CONFIGURE)
+            .collect { result ->
+                when (result) {
+                    BiometryResult.Success -> onSuccess()
+                    is BiometryResult.Error -> onError(result)
+                    // User can retry
+                    BiometryResult.Failed -> {}
+                    is BiometryResult.FailedToStart -> onBiometryFailedToStart(result)
+                }
+                PassLogger.i(TAG, "Biometry result: $result")
+            }
+    }
+
+    private suspend fun onBiometryFailedToStart(result: BiometryResult.FailedToStart) {
+        val biometryIsUnrecoverable = result.cause == BiometryStartupError.NoneEnrolled ||
+            result.cause == BiometryStartupError.NoHardware
+        val leavingBiometrics = state.value.selected == Biometrics
+        if (biometryIsUnrecoverable && leavingBiometrics) {
+            pendingAppLockChangeHolder.pendingTarget = newPreferenceState.value
+            eventState.update { AppLockTypeEvent.ConfirmMasterPassword }
+        } else {
+            snackbarDispatcher(BiometryFailedToStartError)
+        }
+    }
+
+    private suspend fun onBiometryError(result: BiometryResult.Error) {
+        when (result.cause) {
+            // If the user has cancelled it, do nothing
+            BiometryAuthError.Canceled -> {}
+            BiometryAuthError.UserCanceled -> {}
+
+            else -> snackbarDispatcher(BiometryFailedToAuthenticateError)
+        }
+    }
+
+    private fun onBiometryAuthSet() {
+        viewModelScope.launch {
+            if (!biometryManager.resetEnrollmentGuard().canEnableBiometricLock()) {
+                snackbarDispatcher(BiometryFailedToStartError)
+                return@launch
+            }
+            storeAuthSuccessful(UnlockMethod.PinOrBiometrics)
+            setAppLockType(Biometrics)
+                .onSuccess { onLockUpdated(FingerprintLockEnabled) }
+                .onFailure { onLockUpdateFailed(it) }
+        }
+    }
+
+    private fun onBiometryAuthUnSet() {
+        viewModelScope.launch {
+            setAppLockType(None)
+                .onSuccess { onLockUpdated(ProfileSnackbarMessage.FingerprintLockDisabled) }
+                .onFailure { onLockUpdateFailed(it) }
+        }
+    }
+
+    private fun onBiometryAuthToPassword() {
+        viewModelScope.launch {
+            setPasswordOnlyLock()
+                .onSuccess {
+                    userPreferencesRepository.setHasAuthenticated(HasAuthenticated.Authenticated)
+                    onLockUpdated(ProfileSnackbarMessage.FingerprintLockDisabled)
+                }
+                .onFailure { onLockUpdateFailed(it) }
+        }
+    }
+
+    private fun onPinAuthUnSet() {
+        viewModelScope.launch {
+            setAppLockType(None)
+                .onSuccess { onLockUpdated(ProfileSnackbarMessage.PinLockDisabled) }
+                .onFailure { onLockUpdateFailed(it) }
+        }
+    }
+
+    private fun onPinAuthToPassword() {
+        viewModelScope.launch {
+            setPasswordOnlyLock()
+                .onSuccess {
+                    userPreferencesRepository.setHasAuthenticated(HasAuthenticated.Authenticated)
+                    onLockUpdated(ProfileSnackbarMessage.PinLockDisabled)
+                }
+                .onFailure { onLockUpdateFailed(it) }
+        }
+    }
+
+    private suspend fun onLockUpdated(message: ProfileSnackbarMessage) {
+        snackbarDispatcher(message)
+        eventState.update { AppLockTypeEvent.Dismiss }
+    }
+
+    private suspend fun onLockUpdateFailed(error: Throwable) {
+        PassLogger.w(TAG, error, "Failed to update app lock type")
+        snackbarDispatcher(ProfileSnackbarMessage.AppLockUpdateError)
+    }
+
+    companion object {
+        private const val TAG = "AppLockTypeViewModel"
+    }
+}

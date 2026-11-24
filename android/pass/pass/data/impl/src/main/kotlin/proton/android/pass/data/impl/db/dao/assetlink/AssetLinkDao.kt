@@ -1,0 +1,72 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.db.dao.assetlink
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
+import kotlinx.coroutines.flow.Flow
+import kotlinx.datetime.Instant
+import me.proton.core.data.room.db.BaseDao
+import proton.android.pass.data.impl.db.entities.AssetLinkEntity
+import proton.android.pass.data.impl.db.entities.IgnoredAssetLinkEntity
+
+@Dao
+abstract class AssetLinkDao : BaseDao<AssetLinkEntity>() {
+
+    @Query("DELETE FROM ${AssetLinkEntity.TABLE}")
+    abstract suspend fun purge()
+
+    @Query("DELETE FROM ${AssetLinkEntity.TABLE} WHERE ${AssetLinkEntity.Columns.CREATED_AT} < :date")
+    abstract suspend fun purgeOlderThan(date: Instant)
+
+    @Query("DELETE FROM ${AssetLinkEntity.TABLE} WHERE ${AssetLinkEntity.Columns.WEBSITE} = :website")
+    abstract suspend fun deleteByWebsite(website: String)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun insertOrIgnore(entity: AssetLinkEntity)
+
+    @Transaction
+    open suspend fun insertAssetLinks(list: List<AssetLinkEntity>) {
+        list.forEach { entity ->
+            insertOrIgnore(entity)
+        }
+    }
+
+    @Transaction
+    open suspend fun replaceAssetLinks(website: String, list: List<AssetLinkEntity>) {
+        deleteByWebsite(website)
+        insertAssetLinks(list)
+    }
+
+    @Query(
+        """
+        SELECT * FROM ${AssetLinkEntity.TABLE} AS assetLink
+        WHERE assetLink.${AssetLinkEntity.Columns.PACKAGE_NAME} = :packageName
+          AND NOT EXISTS (
+            SELECT 1 FROM ${IgnoredAssetLinkEntity.TABLE} AS ignoredLink
+            WHERE assetLink.${AssetLinkEntity.Columns.WEBSITE} = ignoredLink.${IgnoredAssetLinkEntity.Columns.WEBSITE}
+               OR assetLink.${AssetLinkEntity.Columns.WEBSITE} LIKE '%.' || ignoredLink.${IgnoredAssetLinkEntity.Columns.WEBSITE}
+          )
+        """
+    )
+    abstract fun observeByPackageName(packageName: String): Flow<List<AssetLinkEntity>>
+}

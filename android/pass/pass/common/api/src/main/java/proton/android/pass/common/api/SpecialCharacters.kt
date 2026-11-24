@@ -1,0 +1,33 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.common.api
+
+object SpecialCharacters {
+
+    const val AMPERSAND = '&'
+    const val AT_SIGN = '@'
+    const val COLON = ':'
+    const val DOT_SEPARATOR = '•'
+    const val LTR_ISOLATE = '\u2066'
+    const val POP_DIRECTIONAL_ISOLATE = '\u2069'
+    const val QUESTION_MARK = '?'
+    const val SLASH = '/'
+    const val SPACE = ' '
+
+}

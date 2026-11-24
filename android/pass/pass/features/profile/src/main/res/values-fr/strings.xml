@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Profil</string>
+  <string name="profile_option_settings">Paramètres</string>
+  <string name="profile_option_account">Compte</string>
+  <string name="profile_help_center">Aide &amp; Support</string>
+  <string name="profile_security">Sécurité</string>
+  <string name="profile_option_autofill_troubleshooting">Dépannage du remplissage automatique</string>
+  <string name="profile_option_feedback">Commentaires</string>
+  <string name="profile_option_import_export">Importation/exportation</string>
+  <string name="profile_option_tutorial">Comment utiliser Proton Pass</string>
+  <string name="profile_option_rating">Évaluer l\'application</string>
+  <string name="profile_spread_the_word">Faites passer le mot</string>
+  <string name="profile_option_tell_a_friend">Parlez-en à un ami</string>
+  <string name="profile_spread_the_word_share_message">J\'utilise Proton Pass pour protéger mes mots de passe. Essayez-le : https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Remplissage automatique</string>
+  <string name="profile_option_autofill_subtitle">Vos noms d\'utilisateur et vos mots de passe sont automatiquement complétés.</string>
+  <string name="profile_option_secure_links">Liens sécurisés</string>
+  <string name="profile_option_alias_management">Gestion des alias</string>
+  <string name="profile_option_generated_passwords">Mots de passe générés</string>
+  <string name="profile_error_biometry_failed_to_start">Impossible de lancer l\'authentification biométrique</string>
+  <string name="profile_error_biometry_failed_to_authenticate">L\'authentification n\'a pas abouti.</string>
+  <string name="profile_error_app_lock_update_failed">Impossible de mettre à jour le verrouillage de l\'application. Veuillez réessayer.</string>
+  <string name="profile_fingerprint_lock_enabled">Le verrouillage biométrique est activé.</string>
+  <string name="profile_fingerprint_lock_disabled">Le verrouillage biométrique est désactivé.</string>
+  <string name="profile_app_version_copied_to_clipboard">La version de l\'application a été copiée.</string>
+  <string name="feedback_option_reddit">Découvrez Proton sur Reddit</string>
+  <string name="feedback_option_mail">Envoyez-nous un message</string>
+  <string name="feedback_option_vote_new_features">Votez pour les nouvelles fonctionnalités</string>
+  <string name="app_lock_immediately">Immédiatement</string>
+  <string name="app_lock_one_minute">Après 1 minute</string>
+  <string name="app_lock_two_minutes">Après 2 minutes</string>
+  <string name="app_lock_five_minutes">Après 5 minutes</string>
+  <string name="app_lock_ten_minutes">Après 10 minutes</string>
+  <string name="app_lock_one_hour">Après 1 heure</string>
+  <string name="app_lock_four_hours">Après 4 heures</string>
+  <string name="app_lock_config_none">Aucun verrouillage</string>
+  <string name="app_lock_config_biometric">Biométrie</string>
+  <string name="app_lock_config_pin_code">Code PIN</string>
+  <string name="app_lock_config_app_lock_time">Verrouillage automatique</string>
+  <string name="app_lock_config_password">Mot de passe</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Utiliser le verrouillage du système quand la biométrie ne fonctionne pas.</string>
+  <string name="configure_pin_set_pin_code">Définir le code PIN</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Déverrouillez l\'application avec ce code.</string>
+  <string name="configure_pin_enter_pin_code">Saisissez le code PIN</string>
+  <string name="configure_pin_repeat_pin_code">Confirmez le code PIN</string>
+  <string name="configure_pin_continue">Continuer</string>
+  <string name="configure_pin_pin_does_not_match">Le code PIN ne correspond pas.</string>
+  <string name="configure_pin_pin_too_short">Le code PIN est trop court.</string>
+  <string name="configure_pin_pin_cannot_be_blank">Le code PIN ne peut pas être vide.</string>
+  <string name="configure_pin_pin_lock_enabled">Verrouillage par code PIN activé</string>
+  <string name="configure_pin_pin_lock_disabled">Verrouillage par code PIN désactivé</string>
+  <string name="profile_option_lock_with">Verrouiller avec</string>
+  <string name="profile_option_unlock_with">Déverrouiller avec</string>
+  <string name="profile_option_change_pin_code">Modifier le code PIN</string>
+  <string name="profile_passkey_support_section_title">Clés d\'accès</string>
+  <string name="profile_passkey_support_subtitle_supported">Les clés d\'accès peuvent être prises en charge sur cet appareil</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Votre version d\'Android ne prend pas en charge les clés d\'accès.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">La prise en charge des clés d\'accès n\'a pas pu être vérifiée.</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">Après %d jour</item>
+    <item quantity="other">Après %d jours</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">Après %d minute</item>
+    <item quantity="other">Après %d minutes</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">Après %d heure</item>
+    <item quantity="other">Après %d heures</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Moins de 1 minute</string>
+  <string name="account_switcher_manage_account">Gérer le compte</string>
+  <string name="account_switcher_sign_in">Se connecter</string>
+  <string name="account_switcher_sign_out">Se déconnecter</string>
+  <string name="account_switcher_switch_to">Basculer vers</string>
+  <string name="account_switcher_add_account">Ajouter un compte</string>
+  <string name="account_switcher_remove">Retirer</string>
+  <string name="filtered_by_logins">La liste est filtrée par identifiants. Les éléments dans la corbeille ne s\'affichent pas.</string>
+  <string name="filtered_by_logins_with_mfa">La liste est filtrée par identifiants avec code TOTP. Les éléments dans la corbeille ne s\'affichent pas.</string>
+  <string name="filtered_by_aliases">La liste est filtrée par alias. Les éléments dans la corbeille ne s\'affichent pas.</string>
+  <string name="filtered_by_notes">La liste est filtrée par notes. Les éléments dans la corbeille ne s\'affichent pas.</string>
+  <string name="filtered_by_credit_cards">La liste est filtrée par cartes de paiement. Les éléments dans la corbeille ne s\'affichent pas.</string>
+  <string name="filtered_by_identities">La liste est filtrée par identités. Les éléments dans la corbeille ne s\'affichent pas</string>
+  <string name="filtered_by_custom_items">La liste est filtrée par éléments personnalisés. Les éléments dans la corbeille ne s\'affichent pas.</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Vous devez basculer vers %1$s pour le gérer.</string>
+  <string name="account_switch_confirmation_title">Gérer le compte</string>
+  <string name="account_switch_confirmation_confirm">Changer de compte et le gérer</string>
+  <string name="profile_storage_data_title">Espace de stockage</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s sur %2$s</string>
+</resources>

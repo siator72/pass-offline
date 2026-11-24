@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="select_item_only_searching_in_oldest_vaults">Ваш тариф позволяет использовать элементы только в самых старых хранилищах.</string>
+  <string name="error_credentials_not_found">Совпадающих учётных данных не найдено</string>
+  <!-- Placeholder will contain the domain / app name we are trying to autofill -->
+  <string name="select_item_suggestions_for_placeholder">Предложения для %s</string>
+  <string name="error_loading_items">Не могу загрузить элементы</string>
+  <string name="error_no_vaults_available">У вас нет хранилищ с доступом редактора или администратора. Попробуйте создать его в главном приложении или обратитесь за поддержкой к администратору вашей организации.</string>
+  <string name="topbar_search_query">Поиск во всех хранилищах…</string>
+  <string name="topbar_search_pinned_items">Поиск в закрепленных…</string>
+  <string name="topbar_search_query_oldest_vaults">Поищите в своих старых хранилищах...</string>
+  <string name="topbar_search_query_uninitialized" comment="Placeholder string before we know where we're searching (all vaults, oldest vaults, etc.)">Поиск…</string>
+  <string name="all_accounts_item" comment="The placeholder argument will have the count of how many accounts the user has added">Все аккаунты (%1$s)</string>
+  <plurals name="select_item_autosave_banner">
+    <item quantity="one">An item with the same name already exists.\nSelect it to update or create a new item.</item>
+    <item quantity="few">Items with the same name already exist.\nSelect one to update or create a new item.</item>
+    <item quantity="many">Items with the same name already exist.\nSelect one to update or create a new item.</item>
+    <item quantity="other">Items with the same name already exist.\nSelect one to update or create a new item.</item>
+  </plurals>
+  <string name="select_item_autosave_no_match">No matching items found.\nCreate a new one to save these credentials.</string>
+  <string name="select_item_save_credential_title">Save password credential</string>
+  <string name="select_item_save_credential_subtitle">Select an account to save credential in.</string>
+  <string name="select_item_save_credential_button">Выбрать аккаунт</string>
+</resources>

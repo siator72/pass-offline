@@ -1,0 +1,627 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.repository
+
+import kotlinx.coroutines.test.runTest
+import com.google.common.truth.Truth.assertThat
+import me.proton.core.crypto.common.keystore.EncryptedByteArray
+import org.junit.Assert.assertThrows
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import proton.android.pass.account.fakes.FakeKeyStoreCrypto
+import proton.android.pass.data.fakes.usecases.FakeGetPrimaryUserId
+import proton.android.pass.data.fakes.usecases.FakeGetReadyAccounts
+import proton.android.pass.account.fakes.FakeUserAddressRepository
+import proton.android.pass.crypto.api.usecases.EncryptedUpdateItemRequest
+import proton.android.pass.crypto.api.usecases.OpenItemOutput
+import proton.android.pass.crypto.fakes.context.FakeEncryptionContext
+import proton.android.pass.crypto.fakes.context.FakeEncryptionContextProvider
+import proton.android.pass.crypto.fakes.usecases.FakeCreateItem
+import proton.android.pass.crypto.api.usecases.ItemKeyWithRotation
+import proton.android.pass.crypto.fakes.usecases.FakeMigrateItem
+import proton.android.pass.crypto.fakes.usecases.FakeOpenItem
+import proton.android.pass.crypto.fakes.usecases.FakeUpdateItem
+import proton.android.pass.data.fakes.crypto.FakeGetShareAndItemKey
+import proton.android.pass.data.impl.fakes.FakeFolderKeyRepository
+import proton.android.pass.data.impl.fakes.FakeGetUserAddressForShare
+import proton.android.pass.data.fakes.repositories.FakeSearchIndexRepository
+import proton.android.pass.data.impl.fakes.FakeItemKeyRepository
+import proton.android.pass.common.fakes.FakeAppDispatchers
+import proton.android.pass.data.impl.fakes.FakeLocalItemDataSource
+import proton.android.pass.data.impl.fakes.FakePassDatabase
+import proton.android.pass.data.impl.fakes.FakeRemoteItemDataSource
+import proton.android.pass.data.impl.fakes.FakeShareKeyRepository
+import proton.android.pass.data.impl.fakes.FakeShareRepository
+import proton.android.pass.data.impl.fakes.mother.ItemEntityTestFactory
+import proton.android.pass.data.impl.generator.TestProtoItemGenerator
+import proton.android.pass.data.impl.repositories.ItemRepositoryImpl
+import proton.android.pass.domain.UserId
+import proton.android.pass.data.api.ItemPendingEvent
+import proton.android.pass.data.api.PendingEventItemRevision
+import proton.android.pass.data.api.PendingEventList
+import proton.android.pass.data.api.repositories.VaultProgress
+import proton.android.pass.data.impl.responses.CreateItemAliasBundle
+import proton.android.pass.data.impl.responses.ItemRevisionApiModel
+import proton.android.pass.data.impl.util.TimeUtil
+import proton.android.pass.domain.AliasMailbox
+import proton.android.pass.domain.AliasSuffix
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.HiddenState
+import proton.android.pass.domain.ItemContents
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ItemStateValues
+import proton.android.pass.domain.Share
+import proton.android.pass.domain.entity.NewAlias
+import proton.android.pass.domain.key.FolderKey
+import proton.android.pass.domain.key.ItemKey
+import proton.android.pass.test.MainDispatcherRule
+import proton.android.pass.test.domain.AccountTestFactory
+import proton.android.pass.test.domain.ItemTestFactory
+import proton.android.pass.test.domain.ShareKeyTestFactory
+import proton.android.pass.test.domain.ShareTestFactory
+import kotlin.test.assertEquals
+
+class ItemRepositoryImplTest {
+
+    @get:Rule
+    val mainDispatcher = MainDispatcherRule()
+
+    private lateinit var repository: ItemRepositoryImpl
+    private lateinit var createItem: FakeCreateItem
+    private lateinit var updateItem: FakeUpdateItem
+    private lateinit var openItem: FakeOpenItem
+    private lateinit var localItemDataSource: FakeLocalItemDataSource
+    private lateinit var remoteItemDataSource: FakeRemoteItemDataSource
+    private lateinit var shareKeyRepository: FakeShareKeyRepository
+    private lateinit var itemKeyRepository: FakeItemKeyRepository
+    private lateinit var shareRepository: FakeShareRepository
+    private lateinit var userAddressRepository: FakeUserAddressRepository
+    private lateinit var getShareAndItemKey: FakeGetShareAndItemKey
+    private lateinit var folderKeyRepository: FakeFolderKeyRepository
+    private lateinit var encryptionContextProvider: FakeEncryptionContextProvider
+    private lateinit var migrateItem: FakeMigrateItem
+    private lateinit var searchIndexRepository: FakeSearchIndexRepository
+    private lateinit var userAddress: me.proton.core.user.domain.entity.UserAddress
+
+    private val userId = UserId("test-123")
+    private lateinit var share: Share
+
+    @Before
+    fun setUp() {
+        createItem = FakeCreateItem()
+        updateItem = FakeUpdateItem()
+        openItem = FakeOpenItem()
+        localItemDataSource = FakeLocalItemDataSource()
+        remoteItemDataSource = FakeRemoteItemDataSource()
+        shareKeyRepository = FakeShareKeyRepository()
+        itemKeyRepository = FakeItemKeyRepository()
+        shareRepository = FakeShareRepository()
+        userAddressRepository = FakeUserAddressRepository()
+        getShareAndItemKey = FakeGetShareAndItemKey()
+        folderKeyRepository = FakeFolderKeyRepository()
+        encryptionContextProvider = FakeEncryptionContextProvider()
+        migrateItem = FakeMigrateItem()
+        searchIndexRepository = FakeSearchIndexRepository()
+
+        share = ShareTestFactory.random()
+        userAddress = userAddressRepository.generateAddress("test1", userId)
+        shareRepository.setGetByIdResult(Result.success(share))
+        shareKeyRepository.emitGetShareKeys(listOf(ShareKeyTestFactory.createPrivate()))
+
+        repository = ItemRepositoryImpl(
+            itemContentSerializer = proton.android.pass.commonrust.fakes.FakeItemContentSerializer(),
+            database = FakePassDatabase(),
+            getPrimaryUserId = FakeGetPrimaryUserId(),
+            userAddressRepository = userAddressRepository.apply {
+                setAddresses(listOf(userAddress))
+            },
+            shareRepository = shareRepository,
+            createItem = createItem,
+            updateItem = updateItem,
+            localItemDataSource = localItemDataSource,
+            remoteItemDataSource = remoteItemDataSource,
+            openItem = openItem,
+            encryptionContextProvider = encryptionContextProvider,
+            shareKeyRepository = shareKeyRepository,
+            migrateItem = migrateItem,
+            getShareAndItemKey = getShareAndItemKey,
+            getUserAddressForShare = FakeGetUserAddressForShare().apply { setResult(Result.success(userAddress)) },
+            folderKeyRepository = folderKeyRepository,
+            appDispatchers = FakeAppDispatchers(),
+            searchIndexRepository = searchIndexRepository,
+            getReadyAccounts = FakeGetReadyAccounts().apply {
+                setResult(listOf(AccountTestFactory.DEFAULT_ACCOUNT))
+            }
+        )
+    }
+
+    @Test
+    fun `createItem stores into remote and local datasource`() = runTest {
+        shareKeyRepository.emitGetLatestKeyForShare(ShareKeyTestFactory.createPrivate())
+        createItem.setPayload(FakeCreateItem.createPayload())
+
+        val name = "title"
+        val note = "note"
+        val itemContents = TestProtoItemGenerator.generate(name, note)
+        val serializer = proton.android.pass.commonrust.fakes.FakeItemContentSerializer()
+        val item = ItemTestFactory.random(content = serializer.serializeItem(itemContents, FakeEncryptionContext))
+        remoteItemDataSource.setCreateItemResponse {
+            FakeRemoteItemDataSource.createItemRevision(item)
+        }
+        openItem.setOutput(OpenItemOutput(item = item, itemKey = null))
+
+        repository.createItem(
+            userId = userId,
+            share = share,
+            contents = ItemContents.Note(name, note, emptyList())
+        )
+
+        val remoteMemory = remoteItemDataSource.getCreateItemMemory()
+        assertEquals(1, remoteMemory.size)
+
+        val remoteItem = remoteMemory.first()
+        assertEquals(remoteItem.userId, userId)
+        assertEquals(remoteItem.shareId, share.id)
+
+        val localMemory = localItemDataSource.getMemory()
+        assertEquals(1, localMemory.size)
+
+        val localItem = localMemory.first()
+        assertEquals(localItem.userId, userId.id)
+        assertEquals(localItem.aliasEmail, null)
+    }
+
+    @Test
+    fun `createLoginAndAlias creates both items inside the selected folder`() = runTest {
+        val folderId = FolderId("folder-1")
+        val folderKey = FolderKey(
+            rotation = 1L,
+            key = EncryptedByteArray(byteArrayOf(1, 2, 3)),
+            responseKey = "folder-key"
+        )
+        folderKeyRepository.setGetFolderKeyResult(Result.success(folderKey))
+        shareKeyRepository.emitGetLatestKeyForShare(ShareKeyTestFactory.createPrivate())
+        createItem.setPayload(FakeCreateItem.createPayload())
+
+        val itemContents = TestProtoItemGenerator.generate("title", "note")
+        val serializer = proton.android.pass.commonrust.fakes.FakeItemContentSerializer()
+        val item = ItemTestFactory.random(content = serializer.serializeItem(itemContents, FakeEncryptionContext))
+        openItem.setOutput(OpenItemOutput(item = item, itemKey = null))
+
+        remoteItemDataSource.setCreateItemAndAliasResponse {
+            CreateItemAliasBundle(
+                alias = createItemRevisionApiModel(item),
+                item = createItemRevisionApiModel(item)
+            )
+        }
+
+        val loginContents = ItemContents.Login.create(
+            password = HiddenState.Empty(""),
+            primaryTotp = HiddenState.Empty("")
+        )
+        val newAlias = NewAlias(
+            contents = ItemContents.Alias(
+                title = "alias",
+                note = "",
+                customFields = emptyList(),
+                aliasEmail = ""
+            ),
+            prefix = "prefix",
+            aliasName = null,
+            suffix = AliasSuffix(
+                suffix = ".suffix@proton.me",
+                signedSuffix = "signed-suffix",
+                isCustom = false,
+                isPremium = false,
+                domain = "proton.me"
+            ),
+            mailboxes = listOf(AliasMailbox(id = 1, email = "mailbox@proton.me"))
+        )
+
+        repository.createLoginAndAlias(
+            userId = userId,
+            shareId = share.id,
+            folderId = folderId,
+            contents = loginContents,
+            newAlias = newAlias
+        )
+
+        val memory = remoteItemDataSource.getCreateItemAndAliasMemory()
+        assertEquals(1, memory.size)
+
+        val request = memory.first().body
+        assertEquals(folderId.id, request.item.folderId)
+        assertEquals(folderId.id, request.alias.item.folderId)
+    }
+
+    private fun createItemRevisionApiModel(item: proton.android.pass.domain.Item): ItemRevisionApiModel {
+        val now = TimeUtil.getNowUtc()
+        return ItemRevisionApiModel(
+            itemId = item.id.id,
+            revision = item.revision,
+            contentFormatVersion = 1,
+            keyRotation = 1,
+            content = FakeKeyStoreCrypto.encrypt("content"),
+            itemKey = null,
+            state = ItemStateValues.ACTIVE,
+            aliasEmail = null,
+            createTime = now,
+            modifyTime = now,
+            lastUseTime = now,
+            revisionTime = now,
+            isPinned = false,
+            pinTime = now,
+            flags = 0,
+            shareCount = 0
+        )
+    }
+
+    @Test
+    fun `setShareItems skips failing revision and upserts remaining items`() = runTest {
+        val goodItemId = ItemId("good-item-id")
+        val badItemId = ItemId("bad-item-id")
+
+        val itemContents = TestProtoItemGenerator.generate(name = "title", note = "note")
+        val serializer = proton.android.pass.commonrust.fakes.FakeItemContentSerializer()
+        val openOutputItem = ItemTestFactory.random(
+            content = serializer.serializeItem(itemContents, FakeEncryptionContext)
+        )
+        openItem.setOpenBlock { encryptedRevision ->
+            if (encryptedRevision.itemId == badItemId.id) {
+                throw IllegalStateException("Bad decrypt")
+            }
+            OpenItemOutput(item = openOutputItem, itemKey = null)
+        }
+
+        val goodRevision = FakeRemoteItemDataSource.createItemRevision(
+            ItemTestFactory.create(itemId = goodItemId, shareId = share.id)
+        )
+        val badRevision = FakeRemoteItemDataSource.createItemRevision(
+            ItemTestFactory.create(itemId = badItemId, shareId = share.id)
+        )
+
+        val result = repository.setShareItems(
+            userId = userId,
+            items = mapOf(share.id to listOf(goodRevision, badRevision)),
+            onProgress = { _: VaultProgress -> }
+        )
+
+        val upserted = localItemDataSource.getMemory()
+        assertEquals(1, upserted.size)
+        assertEquals(goodItemId.id, upserted.first().id)
+        assertEquals(setOf(share.id), result.failedShareIds)
+    }
+
+    @Test
+    fun `moveItemsInsideShare fails when source folder key is missing`() = runTest {
+        val item = ItemTestFactory.create(
+            itemId = ItemId("item-in-folder"),
+            shareId = share.id,
+            folderId = FolderId("folder-1")
+        )
+        localItemDataSource.upsertItem(
+            ItemEntityTestFactory.create(
+                id = item.id.id,
+                userId = userId.id,
+                addressId = userAddress.addressId.id,
+                shareId = share.id.id,
+                folderId = item.folderId?.id
+            )
+        )
+        shareKeyRepository.emitGetLatestKeyForShare(ShareKeyTestFactory.createPrivate())
+
+        val error = assertThrows(IllegalStateException::class.java) {
+            kotlinx.coroutines.runBlocking {
+                repository.moveItemsInsideShare(
+                    userId = userId,
+                    shareId = share.id,
+                    folderId = null,
+                    itemIds = listOf(item.id)
+                )
+            }
+        }
+
+        assertEquals("FolderKey not found for source folderId=folder-1", error.message)
+        assertEquals(0, getShareAndItemKey.callCount)
+    }
+
+    @Test
+    fun `moveItemsInsideShare reindexes moved items so they appear in paginated results`() = runTest {
+        val itemId = ItemId("item-to-move")
+        val destFolderId = FolderId("dest-folder")
+        val folderKey = FolderKey(
+            rotation = 1L,
+            key = EncryptedByteArray(byteArrayOf(1, 2, 3)),
+            responseKey = "folder-key"
+        )
+        val itemKey = ItemKey(
+            rotation = 1L,
+            key = EncryptedByteArray(byteArrayOf(1, 2, 3)),
+            responseKey = "item-key"
+        )
+
+        // Item currently at the vault root (no folder)
+        localItemDataSource.upsertItem(
+            ItemEntityTestFactory.create(
+                id = itemId.id,
+                userId = userId.id,
+                addressId = userAddress.addressId.id,
+                shareId = share.id.id,
+                folderId = null
+            )
+        )
+        folderKeyRepository.setGetFolderKeyResult(Result.success(folderKey))
+        getShareAndItemKey.setItemKeys(ShareKeyTestFactory.createPrivate() to itemKey)
+        migrateItem.setOutput(
+            listOf(ItemKeyWithRotation(EncryptedByteArray(byteArrayOf(9, 9, 9)), 1L))
+        )
+
+        repository.moveItemsInsideShare(
+            userId = userId,
+            shareId = share.id,
+            folderId = destFolderId,
+            itemIds = listOf(itemId)
+        )
+
+        assertThat(searchIndexRepository.isItemIndexed(share.id, itemId)).isTrue()
+    }
+
+    @Test
+    fun `updateItem passes folder key override for folder item`() = runTest {
+        val folderId = FolderId("folder-1")
+        val folderKey = FolderKey(
+            rotation = 7L,
+            key = EncryptedByteArray(byteArrayOf(7, 7, 7)),
+            responseKey = "folder-response"
+        )
+        val item = ItemTestFactory.create(
+            shareId = share.id,
+            itemId = ItemId("folder-item"),
+            itemContents = ItemContents.Note(title = "title", note = "note", emptyList())
+        ).copy(folderId = folderId)
+        val localEntity = ItemEntityTestFactory.create(
+            id = item.id.id,
+            userId = userId.id,
+            addressId = userAddress.addressId.id,
+            shareId = share.id.id,
+            folderId = folderId.id,
+            encryptedContent = item.content
+        )
+        val shareKey = ShareKeyTestFactory.createPrivate()
+        val itemKey = ItemKey(
+            rotation = 1L,
+            key = EncryptedByteArray(byteArrayOf(1, 2, 3)),
+            responseKey = "item-key"
+        )
+
+        localItemDataSource.upsertItem(localEntity)
+        folderKeyRepository.setGetFolderKeyResult(Result.success(folderKey))
+        getShareAndItemKey.setItemKeys(shareKey to itemKey)
+        updateItem.setRequest(
+            EncryptedUpdateItemRequest(
+                keyRotation = 1L,
+                lastRevision = item.revision,
+                contentFormatVersion = 1,
+                content = "updated-content"
+            )
+        )
+        remoteItemDataSource.setUpdateItemResponse {
+            FakeRemoteItemDataSource.createItemRevision(item).copy(folderId = folderId.id)
+        }
+        openItem.setOutput(OpenItemOutput(item = item, itemKey = null))
+
+        repository.updateItem(
+            userId = userId,
+            share = share,
+            item = item,
+            contents = ItemContents.Note(title = "title", note = "updated", emptyList())
+        )
+
+        assertEquals(folderKey, getShareAndItemKey.lastDecryptionKeyOverride)
+        assertEquals(1, remoteItemDataSource.getUpdateItemMemory().size)
+    }
+
+    // migrateAllVaultItems routing
+
+    @Test
+    fun `migrateAllVaultItems routes to moveItemsToFolder when source equals destination with folder`() = runTest {
+        val folderId = FolderId("dest-folder")
+        val folderKey = FolderKey(
+            rotation = 1L,
+            key = EncryptedByteArray(byteArrayOf(1, 2, 3)),
+            responseKey = "folder-key"
+        )
+        folderKeyRepository.setGetFolderKeyResult(Result.success(folderKey))
+        shareKeyRepository.emitGetLatestKeyForShare(ShareKeyTestFactory.createPrivate())
+
+        repository.migrateAllVaultItems(
+            userId = userId,
+            source = share.id,
+            destination = share.id,
+            destinationFolderId = folderId
+        )
+
+        assertThat(remoteItemDataSource.getMoveItemsToFolderCallCount()).isEqualTo(1)
+        assertThat(remoteItemDataSource.getMigrateItemsCallCount()).isEqualTo(0)
+    }
+
+    @Test
+    fun `migrateAllVaultItems does not call moveItemsToFolder when source differs from destination`() = runTest {
+        val otherShareId = proton.android.pass.domain.ShareId("other-share")
+        shareKeyRepository.emitGetLatestKeyForShare(ShareKeyTestFactory.createPrivate())
+
+        repository.migrateAllVaultItems(
+            userId = userId,
+            source = share.id,
+            destination = otherShareId,
+            destinationFolderId = null
+        )
+
+        assertThat(remoteItemDataSource.getMoveItemsToFolderCallCount()).isEqualTo(0)
+    }
+
+    @Test
+    fun `migrateAllVaultItems routes to moveItemsToFolder when source equals destination without folder`() = runTest {
+        shareKeyRepository.emitGetLatestKeyForShare(ShareKeyTestFactory.createPrivate())
+
+        repository.migrateAllVaultItems(
+            userId = userId,
+            source = share.id,
+            destination = share.id,
+            destinationFolderId = null
+        )
+
+        assertThat(remoteItemDataSource.getMoveItemsToFolderCallCount()).isEqualTo(1)
+        assertThat(remoteItemDataSource.getMigrateItemsCallCount()).isEqualTo(0)
+    }
+
+    @Test
+    fun `migrateAllVaultItems only migrates items outside any folder, not items inside folders`() = runTest {
+        val rootItemId = ItemId("vault-root-item")
+        val folderItemId = ItemId("vault-folder-item")
+        val itemKey = ItemKey(
+            rotation = 1L,
+            key = EncryptedByteArray(byteArrayOf(1, 2, 3)),
+            responseKey = "item-key"
+        )
+
+        localItemDataSource.upsertItem(
+            ItemEntityTestFactory.create(
+                id = rootItemId.id,
+                userId = userId.id,
+                addressId = userAddress.addressId.id,
+                shareId = share.id.id,
+                folderId = null
+            )
+        )
+        localItemDataSource.upsertItem(
+            ItemEntityTestFactory.create(
+                id = folderItemId.id,
+                userId = userId.id,
+                addressId = userAddress.addressId.id,
+                shareId = share.id.id,
+                folderId = FolderId("folder-1").id
+            )
+        )
+        getShareAndItemKey.setItemKeys(ShareKeyTestFactory.createPrivate() to itemKey)
+        migrateItem.setOutput(
+            listOf(ItemKeyWithRotation(EncryptedByteArray(byteArrayOf(9, 9, 9)), 1L))
+        )
+        shareKeyRepository.emitGetLatestKeyForShare(ShareKeyTestFactory.createPrivate())
+
+        repository.migrateAllVaultItems(
+            userId = userId,
+            source = share.id,
+            destination = share.id,
+            destinationFolderId = null
+        )
+
+        val movedItemIds = remoteItemDataSource.getMoveItemsToFolderMemory()
+            .flatMap { it.items }
+            .map { it.itemId }
+        assertThat(movedItemIds).containsExactly(rootItemId.id)
+    }
+
+    @Test
+    fun `applyPendingEvent upserts synced items without indexing them`() = runTest {
+        val itemId = ItemId("synced-not-indexed")
+        val itemContents = TestProtoItemGenerator.generate(name = "title", note = "note")
+        val serializer = proton.android.pass.commonrust.fakes.FakeItemContentSerializer()
+        val openOutputItem = ItemTestFactory.random(
+            content = serializer.serializeItem(itemContents, FakeEncryptionContext)
+        )
+        openItem.setOpenBlock { OpenItemOutput(item = openOutputItem, itemKey = null) }
+
+        val event = itemPendingEvent(
+            updatedItemIds = listOf(itemId.id),
+            deletedItemIds = emptyList()
+        )
+
+        repository.applyPendingEvent(event)
+
+        assertThat(localItemDataSource.getMemory().map { it.id }).contains(itemId.id)
+        assertThat(searchIndexRepository.isItemIndexed(share.id, itemId)).isFalse()
+    }
+
+    @Test
+    fun `indexPendingEvent indexes updated items from a synced event`() = runTest {
+        val itemId = ItemId("synced-item")
+        val event = itemPendingEvent(
+            updatedItemIds = listOf(itemId.id),
+            deletedItemIds = emptyList()
+        )
+
+        repository.indexPendingEvent(event)
+
+        assertThat(searchIndexRepository.isItemIndexed(share.id, itemId)).isTrue()
+    }
+
+    @Test
+    fun `indexPendingEvent removes deleted items from the search index`() = runTest {
+        val itemId = ItemId("deleted-item")
+        searchIndexRepository.indexItem(userId, share.id, itemId)
+        assertThat(searchIndexRepository.isItemIndexed(share.id, itemId)).isTrue()
+
+        val event = itemPendingEvent(
+            updatedItemIds = emptyList(),
+            deletedItemIds = listOf(itemId.id)
+        )
+
+        repository.indexPendingEvent(event)
+
+        assertThat(searchIndexRepository.isItemIndexed(share.id, itemId)).isFalse()
+    }
+
+    private fun itemPendingEvent(updatedItemIds: List<String>, deletedItemIds: List<String>): ItemPendingEvent =
+        ItemPendingEvent(
+            userId = userId,
+            shareId = share.id,
+            addressId = userAddress.addressId,
+            lastEventId = "last-event",
+            updateShareEvent = null,
+            pendingEventLists = setOf(
+                PendingEventList(
+                    updatedItems = updatedItemIds.map(::pendingEventItemRevision),
+                    deletedItemIds = deletedItemIds
+                )
+            )
+        )
+
+    private fun pendingEventItemRevision(itemId: String): PendingEventItemRevision = PendingEventItemRevision(
+        itemId = itemId,
+        revision = 1L,
+        contentFormatVersion = 1,
+        keyRotation = 1L,
+        content = "",
+        key = null,
+        state = 1,
+        aliasEmail = null,
+        createTime = 0L,
+        modifyTime = 0L,
+        lastUseTime = null,
+        revisionTime = 0L,
+        isPinned = false,
+        pinTime = null,
+        flags = 0,
+        shareCount = 0,
+        folderId = null
+    )
+
+}

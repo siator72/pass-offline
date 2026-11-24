@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sharing_can_view">Kijker</string>
+  <string name="sharing_can_edit">Bewerker</string>
+  <string name="sharing_can_manage">Beheerder</string>
+  <string name="sharing_can_manage_v2">Beheer</string>
+  <string name="sharing_can_view_description">Kan items bekijken in deze kluis.</string>
+  <string name="sharing_can_edit_description">Kan items aanmaken, bewerken, verwijderen en exporteren in deze kluis.</string>
+  <string name="sharing_can_manage_description">Kan toegang tot deze kluis verlenen en intrekken.</string>
+  <plurals name="sharing_item_count">
+    <item quantity="one">%d item</item>
+    <item quantity="other">%d items</item>
+  </plurals>
+  <plurals name="sharing_invite_item_count">
+    <item quantity="one">%d item (inclusief verwijderde)</item>
+    <item quantity="other">%d items (inclusief verwijderde)</item>
+  </plurals>
+  <plurals name="sharing_member_count">
+    <item quantity="one">%d lid</item>
+    <item quantity="other">%d leden</item>
+  </plurals>
+  <string name="sharing_member_count_header">Leden</string>
+  <string name="shared_via_title">Gedeeld via</string>
+  <string name="shared_via_item_section_title" comment="The placeholder will be replaced by users count. E.g. 2 users">Item delen: %s</string>
+  <string name="shared_via_vault_section_title" comment="The placeholder will be replaced by members count. E.g. 2 members">Kluis delen: %s</string>
+  <string name="share_with_title">Deel met</string>
+  <string name="share_with_email_hint">E-mailadres</string>
+  <string name="share_with_email_error">Ongeldig e-mailadres</string>
+  <string name="share_with_email_cannot_invite_outside_org">U kunt geen mensen buiten uw organisatie uitnodigen, neem contact op met de beheerder voor meer informatie</string>
+  <string name="share_with_email_email_already_added">U hebt dit e-mailadres al toegevoegd</string>
+  <string name="share_permissions_title">Stel toegangsniveau in</string>
+  <string name="sharing_reject_invitation">Uitnodiging afwijzen</string>
+  <string name="sharing_vault_invitation_title">Gedeelde kluis uitnodiging</string>
+  <string name="sharing_vault_invitation_subtitle" comment="placeholder is replaced by an email address">%s wil een kluis delen met u.</string>
+  <string name="sharing_vault_invitation_accept">Deelnemen aan gedeelde kluis</string>
+  <string name="sharing_item_invitation_title">Gedeelde item uitnodiging</string>
+  <string name="sharing_item_invitation_subtitle" comment="placeholder is replaced by an email address">%s wil een kluis delen met u.</string>
+  <string name="sharing_item_invitation_accept">Accepteer en bekijk het item</string>
+  <string name="sharing_group_vault_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s wil een kluis delen met uw groep %2$s.</string>
+  <string name="sharing_group_item_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s wil een item delen met uw groep %2$s.</string>
+  <string name="sharing_group_invitation_accept">Accepteer uitnodiging</string>
+  <string name="sharing_invite_more">Meer uitnodigen…</string>
+  <string name="sharing_snackbar_invite_accepted">Uitnodiging geaccepteerd</string>
+  <string name="sharing_snackbar_invite_accept_error">Fout bij het accepteren van de uitnodiging</string>
+  <string name="sharing_snackbar_invite_accept_error_cannot_create_more_vaults">Kan de uitnodiging niet accepteren omdat u uw kluislimiet heeft bereikt</string>
+  <string name="sharing_snackbar_invite_rejected">Uitnodiging afgewezen</string>
+  <string name="sharing_snackbar_invite_reject_error">Fout bij het weigeren van de uitnodiging</string>
+  <string name="sharing_snackbar_invite_sent_success">Uitnodiging verzonden</string>
+  <string name="sharing_snackbar_invite_sent_error">Kan de uitnodiging niet verzenden</string>
+  <string name="sharing_snackbar_invite_new_users_error">Kan geen uitnodigingen versturen naar nieuwe gebruikers</string>
+  <string name="sharing_snackbar_invite_free_user_error">Item uitnodigingen mogen alleen verzonden worden naar betaalde gebruikers</string>
+  <string name="sharing_snackbar_cannot_create_invite_error">Adres kan niet worden uitgenodigd</string>
+  <string name="sharing_snackbar_get_vault_members_error">Kon geen kluisleden krijgen</string>
+  <string name="sharing_snackbar_change_permission_success">Machtigingen gewijzigd</string>
+  <string name="sharing_snackbar_change_permission_error">Kon machtigingen niet wijzigen</string>
+  <string name="sharing_snackbar_remove_member_success">Lid verwijderd van de kluis</string>
+  <string name="sharing_snackbar_remove_member_error">Kon niet verwijderen van de kluis</string>
+  <string name="sharing_snackbar_fetch_member_error">Er is een fout opgetreden bij het ophalen van de leden</string>
+  <string name="sharing_snackbar_fetch_pending_invites_error">Er is een fout opgetreden bij het ophalen van opstaande uitnodigingen</string>
+  <string name="share_summary_title">Beoordelen en delen</string>
+  <string name="share_summary_share_vault">Kluis delen</string>
+  <string name="share_summary_share_item">Deel item</string>
+  <string name="share_summary_vault_title">Kluis</string>
+  <string name="share_summary_item_title">Item</string>
+  <string name="share_summary_access_level_title">Toegangsniveau</string>
+  <string name="share_manage_vault_share_with_more_people">Deel met meer mensen</string>
+  <plurals name="share_manage_vault_invites_remaining" comment="Text that will be shown in the vault member list, showing the user how many invites they have left for this vault">
+    <item quantity="one">%d uitnodiging over</item>
+    <item quantity="other">%d uitnodigingen over</item>
+  </plurals>
+  <plurals name="share_manage_vault_item_count">
+    <item quantity="one">%d item</item>
+    <item quantity="other">%d items</item>
+  </plurals>
+  <string name="share_manage_vault_invite_pending" comment="Text that will be shown in the vault member list, below the user email when the user has been invited but has not accepted the invitation yet">Uitnodiging verzonden</string>
+  <string name="share_manage_vault_invite_pending_user_creation" comment="Text that will be shown in the vault member list, below the user email when the user has not created the account yet">In afwachting van het aanmaken van het account</string>
+  <string name="share_manage_vault_invite_confirm_access" comment="Text that will be shown in the vault member list, on a button, when the invited user has created the account and we want to grant him access to the vault">Bevestig toegang</string>
+  <string name="share_manage_vault_invitations_title" comment="Text that will be used as the title of the list containing the invites for a vault">Uitnodigingen</string>
+  <string name="share_manage_vault_members_title" comment="Text that will be used as the title of the list containing the members of a vault">Leden</string>
+  <string name="share_manage_vault_current_user_indicator">U</string>
+  <string name="share_manage_vault_members_error" comment="Shown when the vault member list fails to load">Couldn\'t load members</string>
+  <string name="share_manage_vault_members_error_retry" comment="Button to retry loading the vault members">Probeer opnieuw</string>
+  <string name="share_role_viewer">Lezer</string>
+  <string name="share_role_editor">Bewerker</string>
+  <string name="share_role_admin">Beheerder</string>
+  <string name="share_role_manager">Beheerder</string>
+  <string name="share_role_owner">Eigenaar</string>
+  <string name="sharing_bottomsheet_transfer_ownership">Eigendom overdragen</string>
+  <string name="sharing_bottomsheet_transfer_ownership_disabled_subtitle" comment="Appears as the subtitle of the sharing_bottomsheet_transfer_ownership when the user cannot transfer the ownership because they only own one vault">U mag uw laatste eigen kluis niet overdragen.</string>
+  <string name="sharing_bottomsheet_remove_access">Toegang ontzeggen</string>
+  <string name="sharing_bottomsheet_item_admin_subtitle">Kan toegang tot dit item verlenen en intrekken.</string>
+  <string name="sharing_bottomsheet_item_editor_subtitle">Dit item kan worden bewerkt en verwijderd.</string>
+  <string name="sharing_bottomsheet_item_viewer_subtitle">Kan dit item bekijken</string>
+  <string name="sharing_bottomsheet_resend_invite">Uitnodiging opnieuw verzenden</string>
+  <string name="sharing_bottomsheet_cancel_invite">Uitnodiging annuleren</string>
+  <string name="sharing_transfer_ownership_confirm_title">Eigendom overdragen</string>
+  <string name="sharing_transfer_ownership_confirm_message">Wilt u het eigendom van deze kluis overdragen aan %s?</string>
+  <string name="sharing_snackbar_cancel_invite_success">Uitnodiging geannuleerd.</string>
+  <string name="sharing_snackbar_cancel_invite_error">Error bij het annuleren van de uitnodiging</string>
+  <string name="sharing_snackbar_resend_invite_success">Uitnodiging opnieuw verzonden</string>
+  <string name="sharing_snackbar_resend_invite_error">Error bij het opnieuw versturen van de uitnodiging</string>
+  <string name="sharing_snackbar_confirm_invite_success">Uitnodiging bevestigd</string>
+  <string name="sharing_snackbar_confirm_invite_error">Error bij het bevestigen van de uitnodiging</string>
+  <string name="sharing_snackbar_too_many_invites_sent">Adres werd te vaak uitgenodigd</string>
+  <string name="sharing_snackbar_transfer_ownership_success">Eigendom overgedragen</string>
+  <string name="sharing_snackbar_transfer_ownership_error">Error bij het overdragen van eigendom</string>
+  <string name="sharing_invites_info_dialog_title">Limiet aantal leden</string>
+  <plurals name="sharing_invites_info_dialog_message" comment="Message that will appear when clicking the NUMBER invites left. Param 1: Max members of the vault (will always be greater than one). Param 2: Number of invites left.">
+    <item quantity="one">Deze kluis kan tot %1$d leden hebben. U hebt nog %2$d uitnodigingen over.</item>
+    <item quantity="other">Deze kluis kan tot %1$d leden hebben. U hebt nog %2$d uitnodigingen over.</item>
+  </plurals>
+  <string name="sharing_limit_reached">Deze kluis heeft de limiet van aantal leden en uitnodigingen bereikt.</string>
+  <string name="sharing_invites_info_upgrade_text">Nu upgraden om meer uit te nodigen.</string>
+  <string name="sharing_from_item_title" comment="Title for the Share from item bottomsheet">Delen</string>
+  <string name="sharing_from_item_share_this_vault_action" comment="Button for sharing this vault">Deel deze kluis</string>
+  <string name="sharing_from_item_move_to_shared_vault_action" comment="Button for moving an item to a shared vault">Verplaatsen naar een gedeelde kluis</string>
+  <string name="sharing_from_item_vault_limit_reached_upgrade">Upgrade om meer kluizen aan te maken</string>
+  <string name="sharing_from_item_vault_limit_reached">U heeft de kluislimiet bereikt.</string>
+  <string name="share_with_suggestions_title">Suggesties</string>
+  <string name="share_with_recents_title">Recent</string>
+  <string name="share_with_remove_email_content_description">E-mailadres verwijderen</string>
+  <string name="share_with_user_shared_title">Met andere Proton Pass gebruikers</string>
+  <string name="share_with_user_shared_description">Nuttig voor permanent delen</string>
+  <string name="share_with_manage_shared_item_title">Beheer toegang</string>
+  <string name="share_with_manage_shared_item_description">Zie leden en overzicht toelatingen.</string>
+  <string name="share_with_secure_link_shared_title">Via een veilige link</string>
+  <string name="share_with_secure_link_shared_description">Voor eenmalige delen.</string>
+  <string name="sharing_edit_permissions_set_access_level_all_members">Stel toegangsniveau in voor alle leden</string>
+  <string name="sharing_edit_permissions_set_access_level_single_member">Stel toegangsniveau in voor %s</string>
+  <string name="sharing_edit_permissions_remove_user">Gebruiker verwijderen</string>
+  <string name="sharing_edit_permissions_remove_group">Groep verwijderen</string>
+  <string name="sharing_error_dialog_title">Onbekende fout</string>
+  <string name="sharing_error_dialog_message">Er is een fout opgetreden bij het verzenden van een uitnodiging voor deze kluis. Als het probleem zich blijft voordoen, neem dan contact op met de klantenservice.</string>
+  <string name="sharing_with_no_addresses_can_be_invited">Adressen kunnen niet worden uitgenodigd</string>
+  <string name="sharing_with_some_addresses_cannot_be_invited">Sommige adressen kunnen niet worden uitgenodigd</string>
+</resources>

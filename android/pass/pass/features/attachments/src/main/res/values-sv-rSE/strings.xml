@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">Ta ett foto</string>
+  <string name="add_attachment_choose_a_photo_or_video">Välj ett foto eller video</string>
+  <string name="add_attachment_choose_a_file">Välj en fil</string>
+  <string name="attachment_options_rename">Byt namn</string>
+  <string name="attachment_options_delete">Ta bort</string>
+  <string name="attachment_options_download">Ladda ner</string>
+  <string name="attachment_options_share">Dela</string>
+  <string name="file_picker_open_error">Kunde inte öppna filväljare</string>
+  <string name="media_picker_open_error">Kunde inte öppna mediaväljare</string>
+  <string name="camera_open_error">Kunde inte öppna kamera</string>
+  <string name="camera_permission_explanation">Tillåtelse för kamera krävs för att denna funktion ska vara tillgänglig.</string>
+  <string name="camera_permission_open_settings">Öppna inställningar</string>
+  <string name="delete_all_attachments_title">Ta bort alla bilagor?</string>
+  <string name="delete_all_attachments_subtitle">Denna åtgärd kan inte ångras</string>
+  <string name="delete_all_attachments_confirm">Ta bort alla</string>
+  <string name="rename_attachment_dialog_title">Byt namn på fil</string>
+  <string name="storage_full_title">Ditt lagringsutrymme är nästan fullt.</string>
+  <string name="storage_full_body">Uppgradera för att öka din lagringskapacitet.</string>
+  <string name="storage_full_upgrade">Uppgradera</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%1$s av %2$s</string>
+  <string name="attachments_saved_to_location_success">Bilaga sparad till plats</string>
+  <string name="attachments_saved_to_location_error">Kunde inte spara bilaga till plats</string>
+  <string name="attachment_sync_dialog_title_waiting">Väntar på anslutning</string>
+  <string name="attachment_sync_dialog_title_downloading">Laddar ner bilagor</string>
+  <string name="attachment_sync_dialog_title_done">Nedladdning slutförd</string>
+  <string name="attachment_sync_dialog_title_partial_failure">Nedladdning misslyckades</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">Waiting for network connection to download attachments.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">Laddar ner %1$d/%2$d bilagor</string>
+  <string name="attachment_sync_dialog_subtitle_done">Alla bilagor har laddats ner.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">Some attachments could not be downloaded. You can retry the failed ones below.</string>
+  <string name="attachment_sync_dialog_retry_content_description">Retry download</string>
+  <string name="attachment_sync_vault_files_count">%1$d/%2$d filer</string>
+</resources>

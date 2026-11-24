@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">Alias-Verwaltung</string>
+  <string name="simple_login_sync_management_domain_label">Domain</string>
+  <string name="simple_login_sync_management_domain_title">Standard-Domain für Aliasse</string>
+  <string name="simple_login_sync_management_domain_option_blank">Nicht ausgewählt</string>
+  <string name="simple_login_sync_management_mailboxes_label">Postfächer</string>
+  <string name="simple_login_sync_management_mailboxes_description">Das Postfach ist der Ort, an den die an einen Alias gesendeten E-Mails weitergeleitet werden. Es ist dein übliches Postfach, z.B. Gmail, Outlook, Proton Mail, etc.</string>
+  <string name="simple_login_sync_management_mailbox_default">Standard</string>
+  <string name="simple_login_sync_management_mailbox_unverified">Nicht verifiziertes Postfach</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">Ungeprüfte Änderung des Postfachs</string>
+  <string name="simple_login_sync_management_vault_title">SimpleLogin-Synchronisierung</string>
+  <string name="simple_login_sync_management_no_vault_description">Es wird mindestens ein Tresor benötigt, um die Synchronisierungseinstellungen von SimpleLogin verwalten zu können.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">Fehler beim Abrufen der SimpleLogin-Aliasdetails.</string>
+  <string name="simple_login_sync_management_mailboxes_title">Standardpostfach für Aliasse</string>
+  <string name="simple_login_sync_management_dialog_title_domains">Standard-Domain für Aliasse</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">Standardpostfach für Aliasse</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">Aliasse synchronisieren</string>
+  <string name="simple_login_sync_enable_snackbar_error">Es gab einen Fehler bei der Aktivierung der SimpleLogin-Alias- Synchronisierung</string>
+  <string name="simple_login_sync_enable_snackbar_success">SimpleLogin-Alias-Synchronisierung erfolgreich aktiviert</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">Postfach hinzufügen</string>
+  <string name="simple_login_sync_mailbox_create_message_error">Fehler beim Hinzufügen des Postfachs</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">Postfach ändern</string>
+  <string name="simple_login_sync_mailbox_change_message_error">Es ist ein Fehler beim Ändern des Postfachs aufgetreten</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">E-Mail-Adresse bereits vergeben</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">Postfach bestätigen</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">Es wurde ein Bestätigungscode an %s gesendet. Bitte gib ihn unten ein:</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">deine E-Mail-Adresse</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">Ungültiger Postfach-Verifizierungscode</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">Das Limit für ungültige Verifizierungscodes des Postfachs wurde erreicht. Das Postfach wurde gelöscht.</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">Fehler beim Verifizieren des Postfachs</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">Postfach erfolgreich verifiziert</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">Fehler beim Senden des Verifizierungscodes</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">Verifizierungscode erfolgreich gesendet</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">Postfach löschen</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">Alle Aliase, die das Postfach %s verwenden, werden ebenfalls gelöscht. Um weiterhin E-Mails zu empfangen, übertrage diese Aliase in ein anderes Postfach:</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">Aliasse übertragen</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">Zum Postfach</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">Postfach löschen</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">Postfach übertragen und löschen</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">Fehler beim Löschen des Postfachs</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">Postfach erfolgreich gelöscht</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">Aliasse übertragen zu</string>
+  <string name="simple_login_sync_mailbox_delete_warning">Bitte beachte, dass einmal gelöschte Aliasnamen nicht wiederhergestellt werden können</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">Standard-Domain</string>
+  <string name="simple_login_sync_domain_select_title_none">keine</string>
+  <string name="simple_login_sync_domain_select_description_none">Keine Domain</string>
+  <string name="simple_login_sync_domain_select_description_custom">Deine Domain</string>
+  <string name="simple_login_sync_domain_select_description_free">Öffentliche Domain</string>
+  <string name="simple_login_sync_domain_select_description_premium">Premium-Domain</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">Fehler beim Abrufen von SimpleLogin-Alias-Domains</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">Fehler beim Aktualisieren der SimpleLogin-Alias-Domain</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">SimpleLogin-Alias-Domain erfolgreich aktualisiert</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">Postfach-Optionen können nicht angezeigt werden</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">Fehler beim Aktualisieren des Standard-Postfachs</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">Standard-Postfach erfolgreich aktualisiert</string>
+  <string name="simple_login_sync_mailbox_change_email_option">Postfach ändern</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">Änderung des Postfachs abbrechen</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">Es gab einen Fehler beim Abbrechen der E-Mail-Änderung des Postfachs</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">E-Mail-Änderung des Postfachs abgebrochen</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">Standard-SL-Tresor</string>
+  <string name="simple_login_sync_shared_default_vault_description">SimpleLogin-Aliasse werden in diesen Tresor importiert.</string>
+</resources>

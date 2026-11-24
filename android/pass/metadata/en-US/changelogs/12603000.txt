@@ -1,0 +1,5 @@
+## 1.26.3 (2024-11-06)
+
+### Other
+
+- Add SL aliases permanent removal warning.

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="upsell_monitor_title">Izboljšajte svojo spletno varnost</string>
+  <string name="upsell_dark_web_monitoring_subtitle">Spremljanje temnega spleta je na voljo v plačljivem paketu. Nadgradite za takojšen dostop.</string>
+  <string name="upsell_missing_2fa_subtitle">Oglejte si seznam spletnih mest, kjer lahko dodate drugi faktor avtentikacije za zaščito vaše spletne prisotnosti. Nadgradite za takojšen dostop.</string>
+  <string name="upsell_sentinel_subtitle">Odklenite napredne varnostne funkcije in podrobne dnevnike, da zaščitite svojo spletno prisotnost.</string>
+  <string name="upsell_compromised_passwords_subtitle">Check if your passwords have been exposed in data breaches. Upgrade for immediate access.</string>
+  <string name="upsell_paid_feature_file_attachments">Datotečne priponke</string>
+  <string name="upsell_paid_feature_dark_web_monitoring">Spremljanje temnega spleta</string>
+  <string name="upsell_paid_feature_sentinel">Proton Sentinel</string>
+  <string name="upsell_paid_feature_authenticator">Vgrajen modul za preverjanje pristnosti 2FA</string>
+  <string name="upsell_paid_feature_unlimited_aliases">Neomejeno število vzdevkov hide-my-email</string>
+  <string name="upsell_paid_feature_vault_sharing">Deljenje trezorjev (do 10 oseb)</string>
+  <string name="upsell_paid_feature_secure_links">Varne povezave</string>
+  <string name="upsell_paid_feature_advance_alias_management">Napredno upravljanje z vzdevki</string>
+  <string name="upsell_paid_feature_authenticator_essential">Za organizacijo zahtevajte 2FA</string>
+  <string name="upsell_paid_feature_sso_essential">Integracija SSO (kmalu na voljo)</string>
+  <string name="upsell_paid_feature_advance_alias_management_title">Upravljajte svoje vzdevke</string>
+  <string name="upsell_paid_feature_advance_alias_management_subtitle">Napredno upravljanje vzdevkov je na voljo s plačljivim paketom. Nadgradite za takojšen dostop.</string>
+  <string name="upsell_paid_feature_item_sharing_title">Hitro dajanje elementa v skupno rabo</string>
+  <string name="upsell_paid_feature_item_sharing_subtitle">Nadgradite še danes, da boste lahko delili predmet s katerim koli uporabnikom Passa. In uživajte v drugih vrhunskih funkcijah:</string>
+  <string name="upsell_paid_feature_file_attachments_title">Datotečne priponke</string>
+  <string name="upsell_button_upgrade">Pridobite Pass Plus</string>
+  <string name="upsell_button_upgrade_unlimited">Pridobite Proton Unlimited</string>
+  <string name="upsell_button_upgrade_essentials">Pridobite Pass Business</string>
+  <string name="price_per_month_type1">%s/mesec</string>
+  <string name="upsell_skip">Ne zdaj</string>
+  <string name="upsell_no_plan">Na voljo ni nobenega paketa</string>
+  <string name="upsell_plan_title">Odklenite premijske funkcije.</string>
+  <string name="upsell_plan_unlimited_title">Najboljše od Protona z eno naročnino.</string>
+  <string name="upsell_plan_what_included">Kaj je vključeno</string>
+  <string name="upsell_plan_plus_1">Vzdevki hide-my-email</string>
+  <string name="upsell_plan_plus_2">Vgrajena 2FA</string>
+  <string name="upsell_plan_plus_3">Dajane v skupno rabo, trezor, predmete in povezave</string>
+  <string name="upsell_plan_plus_4">Mape</string>
+  <string name="upsell_plan_plus_5">Spremljanje temnega spleta</string>
+  <string name="upsell_plan_plus_6">Datotečne priponke</string>
+  <string name="upsell_plan_unlimited_1">Shramba</string>
+  <string name="upsell_plan_unlimited_2">Dodatni e-poštni naslovi</string>
+  <string name="upsell_plan_unlimited_3">Naprave VPN</string>
+  <string name="upsell_plan_unlimited_4">Hitrost VPN</string>
+  <string name="upsell_plan_unlimited_4_col1">Srednja</string>
+  <string name="upsell_plan_unlimited_4_col2">Najvišja</string>
+  <string name="upsell_plan_plus_welcome_1">Neomejeno število vzdevkov Hide-my-email</string>
+  <string name="upsell_plan_plus_welcome_2">Vgrajen modul za preverjanje pristnosti 2FA</string>
+  <string name="upsell_plan_plus_welcome_3">Varna skupna raba trezorja, predmeta in povezave</string>
+  <string name="upsell_plan_plus_welcome_4">Mape</string>
+  <string name="upsell_plan_plus_welcome_5">Spremljanje temnega spleta</string>
+  <string name="upsell_plan_plus_welcome_6">Datotečne priponke</string>
+  <string name="upsell_limited_time_offer">Časovno omejena ponudba</string>
+  <string name="upsell_try_pass_plus">Preizkusite Pass Plus že za</string>
+  <string name="upsell_pass_plus_welcome_offer">Ponudba dobrodošlice Pass Plus</string>
+  <string name="upsell_pass_plus_first_year">Prvo leto</string>
+  <string name="upsell_get_the_best_of_pass">Zagotovite najboljše od storitve Pass s to časovno omejeno ponudbo.</string>
+  <string name="upsell_get_one_month">Zagotovite si 1 mesec za %s</string>
+  <string name="upsell_get_the_deal">Izkoristite posebno ponudbo</string>
+  <string name="upsell_whats_included">Kaj je vključeno</string>
+  <string name="upsell_error_google_prices">Trenutno so težave s pridobivanjem cen v trgovini Google Play.</string>
+  <string name="upsell_error_general">Prišlo je do napake.</string>
+</resources>

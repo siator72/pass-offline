@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="enter_your_pin_code">Введите PIN-код</string>
+  <string name="unlock">Разблокировать</string>
+  <plurals name="enter_your_pin_code_error">
+    <item quantity="one">Неправильный PIN-код. Осталась %d попытка.</item>
+    <item quantity="few">Неправильный PIN-код. Осталось %d попытки.</item>
+    <item quantity="many">Неправильный PIN-код. Осталось %d попыток.</item>
+    <item quantity="other">Неправильный PIN-код. Осталось %d попыток.</item>
+  </plurals>
+  <string name="auth_unlock_app_title">Разблокировать Proton Pass</string>
+  <string name="auth_unlock_app_subtitle">Введите мастер-пароль для %s</string>
+  <string name="auth_unlock_app_extra_password_subtitle">Введите дополнительный пароль для %s</string>
+  <string name="auth_unlock_app_subtitle_account_switch">Введите мастер-пароль для:</string>
+  <string name="auth_unlock_app_extra_password_subtitle_account_switch">Введите дополнительный пароль для:</string>
+  <string name="auth_master_password_label">Мастер-пароль</string>
+  <string name="auth_action_reveal_password">Показать мастер-пароль</string>
+  <string name="auth_action_conceal_password">Скрыть мастер-пароль</string>
+  <string name="auth_action_enter_pin_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Вместо этого ввести PIN-код</string>
+  <string name="auth_action_enter_fingerprint_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Использовать отпечаток пальца</string>
+  <string name="auth_unlock_button">Разблокировать</string>
+  <string name="auth_error_empty_password">Пароль не может быть пустым</string>
+  <string name="auth_error_pin_cannot_be_empty">PIN-код не может быть пустым</string>
+  <string name="auth_extra_password_label">Введите дополнительный пароль</string>
+  <string name="auth_extra_password_error">Ошибка аутентификации с дополнительным паролем</string>
+  <string name="auth_extra_password_too_many_attempts">Слишком много неудачных попыток входа. Вы вышли из системы.</string>
+  <string name="auth_biometric_enrollment_changed">Your biometric data has changed. Please re-enable biometric unlock in Settings.</string>
+  <string name="auth_error_wrong_password_no_attempts">Неверный пароль</string>
+  <plurals name="auth_error_wrong_password">
+    <item quantity="one">Неправильный пароль. Осталась %d попытка</item>
+    <item quantity="few">Неправильный пароль. Осталось %d попытки</item>
+    <item quantity="many">Неправильный пароль. Осталось %d попыток</item>
+    <item quantity="other">Неправильный пароль. Осталось %d попыток</item>
+  </plurals>
+  <plurals name="auth_attempts_remaining">
+    <item quantity="one">Осталась %d попытка</item>
+    <item quantity="few">Осталось %d попытки</item>
+    <item quantity="many">Осталось %d попыток</item>
+    <item quantity="other">Осталось %d попыток</item>
+  </plurals>
+  <string name="auth_pin_too_many_attempts">Слишком много попыток ввести PIN-код. Все пользователи вышли из системы.</string>
+  <string name="auth_pin_too_many_attempts_dismiss">Слишком много неудачных попыток ввода PIN</string>
+</resources>

@@ -1,0 +1,289 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.repositories
+
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import proton.android.pass.common.api.AppDispatchers
+import proton.android.pass.common.api.FlowUtils.oneShot
+import proton.android.pass.common.api.firstError
+import proton.android.pass.common.api.safeRunCatching
+import proton.android.pass.crypto.api.context.EncryptionContextProvider
+import proton.android.pass.data.api.repositories.AliasItemsChangeStatusResult
+import proton.android.pass.data.api.repositories.AliasRepository
+import proton.android.pass.data.api.repositories.SearchIndexRepository
+import proton.android.pass.data.impl.db.entities.ItemEntity
+import proton.android.pass.data.impl.extensions.toDomain
+import proton.android.pass.data.impl.local.LocalItemDataSource
+import proton.android.pass.data.impl.local.SlNoteUpdate
+import proton.android.pass.data.impl.remote.RemoteAliasDataSource
+import proton.android.pass.data.impl.requests.ChangeAliasStatusRequest
+import proton.android.pass.data.impl.requests.UpdateAliasMailboxesRequest
+import proton.android.pass.data.impl.requests.alias.UpdateAliasNameRequest
+import proton.android.pass.data.impl.requests.alias.UpdateAliasNoteRequest
+import proton.android.pass.data.impl.responses.AliasMailboxResponse
+import proton.android.pass.domain.AliasDetails
+import proton.android.pass.domain.AliasMailbox
+import proton.android.pass.domain.AliasOptions
+import proton.android.pass.domain.AliasStats
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.events.EventToken
+import javax.inject.Inject
+
+class AliasRepositoryImpl @Inject constructor(
+    private val remoteDataSource: RemoteAliasDataSource,
+    private val localItemDataSource: LocalItemDataSource,
+    private val searchIndexRepository: SearchIndexRepository,
+    private val encryptionContextProvider: EncryptionContextProvider,
+    private val appDispatchers: AppDispatchers
+) : AliasRepository {
+
+    override fun getAliasOptions(userId: UserId, shareId: ShareId): Flow<AliasOptions> =
+        remoteDataSource.getAliasOptions(userId, shareId)
+            .map { it.toDomain() }
+            .flowOn(appDispatchers.io)
+
+    override fun observeAliasDetails(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        eventToken: EventToken?
+    ): Flow<AliasDetails> = oneShot {
+        val response = remoteDataSource.fetchAliasDetails(userId, shareId, itemId)
+        AliasDetails(
+            email = response.email,
+            canModify = response.modify,
+            mailboxes = mapMailboxes(response.mailboxes),
+            availableMailboxes = mapMailboxes(response.availableMailboxes),
+            displayName = response.displayName,
+            name = response.name,
+            stats = AliasStats(
+                forwardedEmails = response.stats.forwardedEmails,
+                repliedEmails = response.stats.repliedEmails,
+                blockedEmails = response.stats.blockedEmails
+            ),
+            slNote = response.note.orEmpty()
+        )
+    }
+
+    override fun updateAliasMailboxes(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        mailboxes: List<AliasMailbox>
+    ): Flow<Unit> {
+        val request = UpdateAliasMailboxesRequest(
+            mailboxIds = mailboxes.map { it.id }
+        )
+        return remoteDataSource.updateAliasMailboxes(userId, shareId, itemId, request)
+            .map { }
+            .flowOn(appDispatchers.io)
+    }
+
+    override suspend fun changeAliasStatus(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        enable: Boolean
+    ) {
+        val request = ChangeAliasStatusRequest(enable)
+        remoteDataSource.changeAliasStatus(userId, shareId, itemId, request)
+    }
+
+    override suspend fun changeAliasStatus(
+        userId: UserId,
+        items: List<Pair<ShareId, ItemId>>,
+        enabled: Boolean
+    ): AliasItemsChangeStatusResult = coroutineScope {
+        val results: List<Result<Pair<ShareId, ItemId>>> = items.map { (shareId, itemId) ->
+            async {
+                safeRunCatching {
+                    changeAliasStatus(userId, shareId, itemId, enabled)
+                        .let { shareId to itemId }
+                }
+            }
+        }.awaitAll().toList()
+        val (successes, failures) = results.partition { it.isSuccess }
+        when {
+            failures.isEmpty() && successes.isNotEmpty() -> AliasItemsChangeStatusResult.AllChanged(
+                items = successes.map { it.getOrThrow() }
+            )
+
+            successes.isEmpty() -> AliasItemsChangeStatusResult.NoneChanged(
+                exception = failures.firstError() ?: IllegalStateException("No results")
+            )
+
+            else -> AliasItemsChangeStatusResult.SomeChanged(
+                items = successes.map { it.getOrThrow() }
+            )
+        }
+    }
+
+    override suspend fun updateAliasName(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        name: String
+    ) {
+        val request = UpdateAliasNameRequest(name)
+        remoteDataSource.updateAliasName(userId, shareId, itemId, request)
+    }
+
+    override suspend fun updateAliasNote(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId,
+        slNote: String
+    ) {
+        remoteDataSource.updateAliasNote(
+            userId = userId,
+            shareId = shareId,
+            itemId = itemId,
+            request = UpdateAliasNoteRequest(slNote)
+        )
+        val encryptedSlNote = encryptionContextProvider.withEncryptionContext {
+            encrypt(slNote)
+        }
+        localItemDataSource.updateSlNote(userId, shareId, itemId, encryptedSlNote)
+        searchIndexRepository.indexItem(userId, shareId, itemId)
+    }
+
+    override suspend fun refreshAliasSlNote(
+        userId: UserId,
+        shareId: ShareId,
+        itemId: ItemId
+    ) {
+        val response = remoteDataSource.fetchAliasDetails(userId, shareId, itemId)
+        val encryptedSlNote = response.note?.let {
+            encryptionContextProvider.withEncryptionContext {
+                encrypt(it)
+            }
+        }
+        localItemDataSource.updateSlNote(userId, shareId, itemId, encryptedSlNote)
+        searchIndexRepository.indexItem(userId, shareId, itemId)
+    }
+
+    override suspend fun refreshBulkAliasSlNotes(userId: UserId, shareIds: List<ShareId>) {
+        val pendingUpdates = mutableListOf<SlNoteUpdate>()
+        shareIds.forEach { shareId ->
+            var afterRowId = 0L
+            while (true) {
+                currentCoroutineContext().ensureActive()
+                val page = localItemDataSource.getActiveAliasItemsPage(
+                    userId = userId,
+                    shareId = shareId,
+                    afterRowId = afterRowId,
+                    limit = MAX_BULK_SIZE
+                )
+                if (page.isEmpty()) break
+
+                pendingUpdates += fetchSlNoteUpdates(
+                    userId = userId,
+                    entities = page.map { it.item }
+                )
+                flushFullSlNoteUpdateBatches(
+                    userId = userId,
+                    pendingUpdates = pendingUpdates
+                )
+                if (page.size < MAX_BULK_SIZE) break
+                afterRowId = page.last().rowId
+            }
+        }
+        if (pendingUpdates.isNotEmpty()) {
+            persistSlNoteUpdates(
+                userId = userId,
+                updates = pendingUpdates
+            )
+        }
+    }
+
+    override suspend fun refreshAliasSlNotesForItems(userId: UserId, items: List<Pair<ShareId, ItemId>>) {
+        if (items.isEmpty()) return
+
+        val entities = localItemDataSource.getByShareItemPairs(userId, items)
+
+        fetchSlNoteUpdates(
+            userId = userId,
+            entities = entities
+        ).chunked(MAX_BULK_SIZE).forEach { updates ->
+            persistSlNoteUpdates(
+                userId = userId,
+                updates = updates
+            )
+        }
+    }
+
+    private suspend fun fetchSlNoteUpdates(userId: UserId, entities: List<ItemEntity>): List<SlNoteUpdate> {
+        val aliasEntities = entities.filter { it.aliasEmail != null }
+        if (aliasEntities.isEmpty()) return emptyList()
+
+        val emailToItemId = aliasEntities.associate { it.aliasEmail to ItemId(it.id) }
+        val updates = mutableListOf<SlNoteUpdate>()
+
+        aliasEntities.groupBy { ShareId(it.shareId) }.forEach { (shareId, shareItems) ->
+            val itemIds = shareItems.map { ItemId(it.id) }
+            itemIds.chunked(MAX_BULK_SIZE).forEach { chunk ->
+                val responses = remoteDataSource.fetchBulkAliasDetails(userId, shareId, chunk)
+                val chunkUpdates = mutableListOf<SlNoteUpdate>()
+                encryptionContextProvider.withEncryptionContextSuspendable {
+                    responses.forEach { aliasResponse ->
+                        val itemId = emailToItemId[aliasResponse.email] ?: return@forEach
+                        val encryptedSlNote = aliasResponse.note?.let { encrypt(it) }
+                        chunkUpdates.add(SlNoteUpdate(shareId, itemId, encryptedSlNote))
+                    }
+                }
+                updates.addAll(chunkUpdates)
+            }
+        }
+        return updates
+    }
+
+    private suspend fun flushFullSlNoteUpdateBatches(userId: UserId, pendingUpdates: MutableList<SlNoteUpdate>) {
+        while (pendingUpdates.size >= MAX_BULK_SIZE) {
+            val updates = pendingUpdates.take(MAX_BULK_SIZE)
+            persistSlNoteUpdates(
+                userId = userId,
+                updates = updates
+            )
+            pendingUpdates.subList(0, MAX_BULK_SIZE).clear()
+        }
+    }
+
+    private suspend fun persistSlNoteUpdates(userId: UserId, updates: List<SlNoteUpdate>) {
+        if (updates.isEmpty()) return
+
+        val committedItemIds = localItemDataSource.updateSlNotes(userId, updates)
+        searchIndexRepository.indexItems(userId, committedItemIds)
+    }
+
+    private fun mapMailboxes(input: List<AliasMailboxResponse>): List<AliasMailbox> =
+        input.map { AliasMailbox(id = it.id, email = it.email) }
+
+    private companion object {
+        private const val MAX_BULK_SIZE = 100
+    }
+}

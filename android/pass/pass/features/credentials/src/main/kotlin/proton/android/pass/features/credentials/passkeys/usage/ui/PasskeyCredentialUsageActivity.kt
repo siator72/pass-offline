@@ -1,0 +1,223 @@
+/*
+ * Copyright (c) 2025-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.credentials.passkeys.usage.ui
+
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
+import androidx.credentials.GetCredentialResponse
+import androidx.credentials.GetPublicKeyCredentialOption
+import androidx.credentials.PublicKeyCredential
+import androidx.credentials.provider.PendingIntentHandler
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.PasskeyId
+import proton.android.pass.domain.PasskeyItem
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.UserId
+import proton.android.pass.features.credentials.R
+import proton.android.pass.features.credentials.passkeys.usage.presentation.PasskeyCredentialUsageRequest
+import proton.android.pass.features.credentials.passkeys.usage.presentation.PasskeyCredentialUsageState
+import proton.android.pass.features.credentials.passkeys.usage.presentation.PasskeyCredentialUsageViewModel
+import proton.android.pass.features.credentials.shared.passkeys.search.PasskeyActivityOriginResolver
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.notifications.api.ToastManager
+import javax.inject.Inject
+
+@[AndroidEntryPoint RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)]
+internal class PasskeyCredentialUsageActivity : FragmentActivity() {
+
+    @Inject
+    internal lateinit var passkeyActivityOriginResolver: PasskeyActivityOriginResolver
+
+    @Inject
+    internal lateinit var toastManager: ToastManager
+
+    private val viewModel: PasskeyCredentialUsageViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        lifecycleScope.launch {
+            PassLogger.i(TAG, "Resolving passkey usage request")
+
+            try {
+                viewModel.onUpdateRequest(getPasskeyUsageRequest())
+            } catch (cancellation: CancellationException) {
+                PassLogger.w(TAG, "Passkey usage request resolution was cancelled")
+                throw cancellation
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.stateFlow.collectLatest { state ->
+                    when (state) {
+                        PasskeyCredentialUsageState.NotReady -> Unit
+                        PasskeyCredentialUsageState.Cancel -> {
+                            onCancelAuthRequest()
+                        }
+
+                        is PasskeyCredentialUsageState.Ready -> {
+                            onProceedAuthRequest(authResponseJson = state.authResponseJson)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onPause() {
+        PassLogger.i(TAG, "onPause isFinishing=$isFinishing isChangingConfigurations=$isChangingConfigurations")
+
+        super.onPause()
+    }
+
+    override fun onStop() {
+        PassLogger.i(TAG, "onStop isFinishing=$isFinishing isChangingConfigurations=$isChangingConfigurations")
+
+        viewModel.onStop()
+
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        PassLogger.i(TAG, "onDestroy isFinishing=$isFinishing isChangingConfigurations=$isChangingConfigurations")
+
+        super.onDestroy()
+    }
+
+    @Suppress("ReturnCount")
+    private suspend fun getPasskeyUsageRequest(): PasskeyCredentialUsageRequest? {
+        val providerRequest = PendingIntentHandler.retrieveProviderGetCredentialRequest(intent)
+            ?: run {
+                PassLogger.w(TAG, "Passkey usage request does not contain ProviderGetCredentialRequest")
+                return null
+            }
+
+        val passkeyCredentialOptions = providerRequest
+            .credentialOptions
+            .firstOrNull { it is GetPublicKeyCredentialOption }
+            ?.let { it as GetPublicKeyCredentialOption }
+            ?: run {
+                PassLogger.w(TAG, "Passkey usage request does not contain GetPublicKeyCredentialOption")
+                return null
+            }
+
+        val requestJson = passkeyCredentialOptions.requestJson
+
+        val clientDataHash = passkeyCredentialOptions.clientDataHash
+
+        val requestOrigin = passkeyActivityOriginResolver.resolve(
+            callingAppInfo = providerRequest.callingAppInfo,
+            requestJson = requestJson
+        ) ?: run {
+            PassLogger.w(TAG, "Passkey usage request: origin validation failed")
+            toastManager.showToast(R.string.passkey_credential_usage_toast_origin_validation_failed)
+            return null
+        }
+
+        val userId = intent.getStringExtra(EXTRAS_USER_ID)?.let(::UserId) ?: run {
+            PassLogger.w(TAG, "Could not get UserId")
+            return null
+        }
+
+        val shareId = intent.getStringExtra(EXTRAS_SHARE_ID)?.let(::ShareId) ?: run {
+            PassLogger.w(TAG, "Could not get ShareId")
+            return null
+        }
+
+        val itemId = intent.getStringExtra(EXTRAS_ITEM_ID)?.let(::ItemId) ?: run {
+            PassLogger.w(TAG, "Could not get ItemId")
+            return null
+        }
+
+        val passkeyId = intent.getStringExtra(EXTRAS_PASSKEY_ID)?.let(::PasskeyId) ?: run {
+            PassLogger.w(TAG, "Could not get PasskeyId")
+            return null
+        }
+
+        return PasskeyCredentialUsageRequest(
+            requestJson = requestJson,
+            requestOrigin = requestOrigin,
+            clientDataHash = clientDataHash,
+            userId = userId,
+            shareId = shareId,
+            itemId = itemId,
+            passkeyId = passkeyId
+        )
+    }
+
+    private fun onCancelAuthRequest() {
+        setResult(RESULT_CANCELED)
+
+        finish()
+    }
+
+    private fun onProceedAuthRequest(authResponseJson: String) {
+        PublicKeyCredential(authenticationResponseJson = authResponseJson)
+            .let(::GetCredentialResponse)
+            .also { getCredentialResponse ->
+                val responseIntent = Intent()
+
+                PendingIntentHandler.setGetCredentialResponse(
+                    intent = responseIntent,
+                    response = getCredentialResponse
+                )
+
+                setResult(RESULT_OK, responseIntent)
+
+                finish()
+            }
+    }
+
+    internal companion object {
+
+        private const val TAG = "PasskeyCredentialUsageActivity"
+
+        private const val EXTRAS_USER_ID = "USER_ID"
+        private const val EXTRAS_SHARE_ID = "SHARE_ID"
+        private const val EXTRAS_ITEM_ID = "ITEM_ID_ID"
+        private const val EXTRAS_PASSKEY_ID = "PASSKEY_ID"
+
+        internal fun createPasskeyCredentialIntent(context: Context, passkeyItem: PasskeyItem): Intent = Intent(
+            context,
+            PasskeyCredentialUsageActivity::class.java
+        ).apply {
+            setPackage(context.packageName)
+
+            putExtra(EXTRAS_USER_ID, passkeyItem.userId.id)
+            putExtra(EXTRAS_SHARE_ID, passkeyItem.shareId.id)
+            putExtra(EXTRAS_ITEM_ID, passkeyItem.itemId.id)
+            putExtra(EXTRAS_PASSKEY_ID, passkeyItem.passkey.id.value)
+        }
+
+    }
+
+}

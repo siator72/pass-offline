@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="twenty_vaults">20 sejfów</string>
+  <string name="unlimited_email_alias">Nieograniczona liczba aliasów</string>
+  <string name="custom_fields">Pola niestandardowe</string>
+  <string name="restart_to_complete_the_update">Uruchom ponownie, aby zakończyć aktualizację</string>
+  <string name="action_restart">Uruchom ponownie</string>
+  <string name="shortcut_share_logs_title">Udostępnij logi</string>
+  <string name="shortcut_share_logs_confirmation_title">Share diagnostic logs?</string>
+  <string name="shortcut_share_logs_confirmation_message">This opens your email app to send Proton Pass diagnostic logs. No vault data is included.</string>
+  <string name="no_account_found">Nie znaleziono konta</string>
+  <string name="no_session_found">Nie znaleziono sesji</string>
+  <string name="auth_with_extra_password_failed">Uwierzytelnianie za pomocą dodatkowego hasła nie powiodło się</string>
+  <string name="auth_only_1_proton_account_failed">Możesz dodać tylko 1 darmowe konto Proton.</string>
+</resources>

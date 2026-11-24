@@ -1,0 +1,182 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.composecomponents.impl.item
+
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toPersistentList
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.commonui.api.PassTheme
+import proton.android.pass.commonui.api.StringUtils.maskCreditCardNumber
+import proton.android.pass.commonui.api.ThemePairPreviewProvider
+import proton.android.pass.commonuimodels.api.ItemUiModel
+import proton.android.pass.composecomponents.impl.badge.CircledBadge
+import proton.android.pass.composecomponents.impl.badge.OverlayBadge
+import proton.android.pass.composecomponents.impl.item.icon.CreditCardIcon
+import proton.android.pass.domain.ItemContents
+import proton.android.pass.domain.highlightableBodyFields
+
+private const val MAX_PREVIEW_LENGTH = 128
+
+@Composable
+fun CreditCardRow(
+    modifier: Modifier = Modifier,
+    item: ItemUiModel,
+    highlight: String = "",
+    vaultIcon: Int? = null,
+    selection: ItemSelectionModeState = ItemSelectionModeState.NotInSelectionMode,
+    titleSuffix: Option<String> = None
+) {
+    val content = item.contents as ItemContents.CreditCard
+    val maskedNumber = remember(content.number) {
+        if (content.number.isBlank()) {
+            null
+        } else {
+            AnnotatedString(maskCreditCardNumber(content.number))
+        }
+    }
+
+    val highlightColor = PassTheme.colors.interactionNorm
+    val fields =
+        remember(content.title, content.note, content.cardHolder, content.customFields, highlight, maskedNumber) {
+            getHighlightedFields(
+                title = content.title,
+                note = content.note,
+                cardHolder = content.cardHolder,
+                bodyFields = content.highlightableBodyFields(),
+                highlight = highlight,
+                highlightColor = highlightColor,
+                maskedNumber = maskedNumber
+            )
+        }
+
+    ItemRow(
+        modifier = modifier,
+        icon = {
+            when (selection) {
+                ItemSelectionModeState.NotInSelectionMode -> OverlayBadge(
+                    isShown = item.isPinned,
+                    badge = {
+                        CircledBadge(
+                            ratio = 0.8f,
+                            backgroundColor = PassTheme.colors.cardInteractionNormMajor1
+                        )
+                    },
+                    content = { CreditCardIcon() }
+                )
+
+                is ItemSelectionModeState.InSelectionMode -> {
+                    if (selection.state == ItemSelectionModeState.ItemSelectionState.Selected) {
+                        ItemSelectedIcon(Modifier.padding(end = 6.dp))
+                    } else {
+                        val isEnabled =
+                            selection.state != ItemSelectionModeState.ItemSelectionState.NotSelectable
+                        OverlayBadge(
+                            isShown = item.isPinned,
+                            badge = {
+                                CircledBadge(
+                                    ratio = 0.8f,
+                                    backgroundColor = PassTheme.colors.cardInteractionNormMajor1
+                                )
+                            },
+                            content = { CreditCardIcon(enabled = isEnabled) }
+                        )
+                    }
+                }
+            }
+        },
+        title = fields.title,
+        titleSuffix = titleSuffix,
+        subtitles = fields.subtitles,
+        vaultIcon = vaultIcon,
+        enabled = selection.isSelectable(),
+        isShared = item.isShared
+    )
+}
+
+@Suppress("LongParameterList")
+private fun getHighlightedFields(
+    title: String,
+    note: String,
+    cardHolder: String,
+    bodyFields: List<String>,
+    highlight: String,
+    highlightColor: Color,
+    maskedNumber: AnnotatedString?
+): CreditCardHighlightFields {
+    var annotatedTitle = AnnotatedString(title.take(MAX_PREVIEW_LENGTH))
+    var annotatedNote: AnnotatedString? = null
+    var annotatedCardHolder: AnnotatedString? = null
+    val annotatedBodyFields: MutableList<AnnotatedString> = mutableListOf()
+    if (highlight.isNotBlank()) {
+        title.highlight(highlight, highlightColor)?.let { annotatedTitle = it }
+        note.replace("\n", " ").highlight(highlight, highlightColor)?.let { annotatedNote = it }
+        cardHolder.highlight(highlight, highlightColor)?.let { annotatedCardHolder = it }
+        bodyFields.forEach { field ->
+            field.highlight(highlight, highlightColor)?.let { annotatedBodyFields.add(it) }
+        }
+    }
+
+    return CreditCardHighlightFields(
+        title = annotatedTitle,
+        note = annotatedNote,
+        cardHolder = annotatedCardHolder,
+        subtitles = (listOfNotNull(maskedNumber, annotatedNote, annotatedCardHolder) + annotatedBodyFields)
+            .toPersistentList()
+    )
+}
+
+@Stable
+private data class CreditCardHighlightFields(
+    val title: AnnotatedString,
+    val note: AnnotatedString?,
+    val cardHolder: AnnotatedString?,
+    val subtitles: ImmutableList<AnnotatedString>
+)
+
+class ThemedCreditCardPreviewProvider : ThemePairPreviewProvider<CreditCardRowParameter>(
+    CreditCardRowPreviewProvider()
+)
+
+@Preview
+@Composable
+fun CreditCardRowPreview(
+    @PreviewParameter(ThemedCreditCardPreviewProvider::class) input: Pair<Boolean, CreditCardRowParameter>
+) {
+    PassTheme(isDark = input.first) {
+        Surface {
+            CreditCardRow(
+                item = input.second.model,
+                highlight = input.second.highlight,
+                titleSuffix = None
+            )
+        }
+    }
+}

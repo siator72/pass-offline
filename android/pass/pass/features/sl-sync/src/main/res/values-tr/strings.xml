@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">Takma ad yönetimi</string>
+  <string name="simple_login_sync_management_domain_label">Etki alanı</string>
+  <string name="simple_login_sync_management_domain_title">Takma adların varsayılan etki alanı</string>
+  <string name="simple_login_sync_management_domain_option_blank">Seçilmemiş</string>
+  <string name="simple_login_sync_management_mailboxes_label">E-posta kutuları</string>
+  <string name="simple_login_sync_management_mailboxes_description">E-posta kutusu, bir takma ada gönderilen e-postaların iletildiği yerdir. Gmail, Outlook, Proton Mail gibi normal e-posta kutunuzdur.</string>
+  <string name="simple_login_sync_management_mailbox_default">Varsayılan</string>
+  <string name="simple_login_sync_management_mailbox_unverified">E-posta kutusu doğrulanmamış</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">E-posta kutusu değişikliği doğrulanmamış</string>
+  <string name="simple_login_sync_management_vault_title">SimpleLogin eşitleme</string>
+  <string name="simple_login_sync_management_no_vault_description">SimpleLogin eşitleme ayarlarını yönetmek için en az bir kasanız olmalı.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">SimpleLogin takma adı bilgileri alınırken sorun çıktı</string>
+  <string name="simple_login_sync_management_mailboxes_title">Takma adların varsayılan e-posta kutusu</string>
+  <string name="simple_login_sync_management_dialog_title_domains">Takma adların varsayılan etki alanı</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">Takma adların varsayılan e-posta kutusu</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">Takma adları eşitle</string>
+  <string name="simple_login_sync_enable_snackbar_error">SimpleLogin takma adları eşitlemesi açılırken bir sorun çıktı</string>
+  <string name="simple_login_sync_enable_snackbar_success">SimpleLogin takma adları eşitlemesi açıldı</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">E-posta kutusu ekle</string>
+  <string name="simple_login_sync_mailbox_create_message_error">E-posta kutusu eklenirken bir sorun çıktı</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">E-posta kutusunu değiştir</string>
+  <string name="simple_login_sync_mailbox_change_message_error">E-posta kutusu değiştirilirken bir sorun çıktı</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">E-posta zaten kullanılıyor</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">E-posta kutunuzu onaylayın</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">%s adresine bir doğrulama kodu gönderdik. Kodu aşağıya yazın:</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">e-posta adresiniz</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">E-posta kutusu doğrulama kodu geçersiz</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">Geçersiz e-posta kutusu doğrulama kodu sayısı sınırına ulaşıldı. E-posta kutusu silindi</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">E-posta kutusu doğrulanırken bir sorun çıktı</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">E-posta kutusu doğrulandı</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">Doğrulama kodu gönderilirken bir sorun çıktı</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">Doğrulama kodu gönderildi</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">E-posta kutusunu sil</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">%s e-posta kutusunu kullanan tüm takma adlar da silinecek. E-postaları almaya devam etmek için bu takma adları farklı bir e-posta kutusuna aktarın:</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">Takma adları aktar</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">E-posta kutusuna</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">E-posta kutusunu sil</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">Aktar ve e-posta kutusunu sil</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">E-posta kutusu silinirken bir sorun çıktı</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">E-posta kutusu silindi</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">Takma adları şuraya aktar</string>
+  <string name="simple_login_sync_mailbox_delete_warning">Takma adların silindikten sonra geri alınamayacağını unutmayın</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">Varsayılan etki alanı</string>
+  <string name="simple_login_sync_domain_select_title_none">yok</string>
+  <string name="simple_login_sync_domain_select_description_none">Etki alanı yok</string>
+  <string name="simple_login_sync_domain_select_description_custom">Etki alanınız</string>
+  <string name="simple_login_sync_domain_select_description_free">Herkese açık etki alanı</string>
+  <string name="simple_login_sync_domain_select_description_premium">Ücretli etki alanı</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">SimpleLogin takma adı etki alanları alınırken sorun çıktı</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">SimpleLogin takma adı etki alanı güncellenirken sorun çıktı</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">SimpleLogin takma adı etki alanı güncellendi</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">E-posta kutusu seçenekleri görüntülenemiyor</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">Varsayılan e-posta kutusu güncellenirken sorun çıktı</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">Varsayılan e-posta kutusu güncellendi</string>
+  <string name="simple_login_sync_mailbox_change_email_option">E-posta kutusunu değiştir</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">E-posta kutusu değişikliğini iptal et</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">E-posta kutusu değişikliği iptal edilirken bir sorun çıktı</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">E-posta kutusu değişikliği iptal edildi</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">Varsayılan SimpleLogin kasası</string>
+  <string name="simple_login_sync_shared_default_vault_description">SimpleLogin takma adlarının içe aktarılacağı kasa.</string>
+</resources>

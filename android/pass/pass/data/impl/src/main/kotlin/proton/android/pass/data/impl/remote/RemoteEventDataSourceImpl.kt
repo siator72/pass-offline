@@ -1,0 +1,68 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.remote
+
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import proton.android.pass.data.api.errors.ShareNotAvailableError
+import proton.android.pass.data.impl.api.PasswordManagerApi
+import proton.android.pass.data.impl.network.RemoteApiGateway
+import proton.android.pass.data.impl.network.RemoteResult
+import proton.android.pass.data.impl.network.get
+import proton.android.pass.data.impl.network.valueOrThrow
+import proton.android.pass.data.impl.responses.EventList
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.UserId
+import proton.android.pass.log.api.PassLogger
+import javax.inject.Inject
+
+class RemoteEventDataSourceImpl @Inject constructor(
+    private val api: RemoteApiGateway
+) : RemoteEventDataSource {
+    override fun getLatestEventId(userId: UserId, shareId: ShareId): Flow<String> = flow {
+        val eventId = api.get<PasswordManagerApi>(userId).invoke {
+            getLastEventId(shareId.id)
+        }.valueOrThrow.eventId
+        emit(eventId)
+    }
+
+    override fun getEvents(
+        userId: UserId,
+        shareId: ShareId,
+        since: String
+    ): Flow<EventList> = flow {
+        val apiResult = api.get<PasswordManagerApi>(userId).invoke {
+            getEvents(shareId.id, since)
+        }
+        if (apiResult is RemoteResult.Error.Http && apiResult.protonCode == DELETED_SHARE_CODE) {
+            PassLogger.w(TAG, "Received DELETED_SHARE_CODE for ShareId: ${shareId.id}")
+            throw ShareNotAvailableError()
+        }
+        emit(apiResult.valueOrThrow.events)
+    }
+
+    private companion object {
+
+        private const val TAG = "RemoteEventDataSourceImpl"
+
+        private const val DELETED_SHARE_CODE = 300_004
+
+    }
+
+}

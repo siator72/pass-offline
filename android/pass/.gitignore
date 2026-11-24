@@ -1,0 +1,90 @@
+# Mac OS
+.DS_Store
+
+# Built application files
+*.apk
+*.ap_
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+releases/
+config/detekt/reports/
+/new_releases.tmp
+
+# Gradle files
+.gradle/
+build/
+gradlew
+gradlew.bat
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log Files
+*.log
+
+# Remote Detek config
+config/detekt
+
+# Fastlane
+
+# Keystore
+keystore/*
+
+# Private properties
+private.properties
+
+# Sentry properties
+sentry.properties
+
+# Test users credentials
+**/users.json
+**/internal_api.json
+
+# # # # # # # # #
+# IDEA SETTINGS #
+# # # # # # # # #
+
+# Ignore all IntelliJ/Android Studio project metadata by default.
+/.idea/*
+
+# Keep only stable, team-shared IDE settings.
+!/.idea/codeStyles/
+!/.idea/codeStyles/Project.xml
+!/.idea/codeStyles/codeStyleConfig.xml
+!/.idea/copyright/
+/.idea/copyright/*
+!/.idea/copyright/proton_pass.xml
+!/.idea/icon.svg
+
+*.iml
+*.ipr
+
+# Android studio 3.1+ serialized cache file
+.idea/caches/build_file_checksums.ser
+
+# Git Toolbox plugin
+.idea/git_toolbox_prj.xml
+
+# Gradle profiler
+gradle-user-home/
+profile-out*/
+
+# pass protobuf repo (handled by gradle plugin)
+pass/protos/contents-proto-definition
+
+# native libraries
+libs/*.aar
+pass/**/*.aar
+
+.kotlin/
+.claude/settings.local.json
+.claude/agents/
+.worktrees/

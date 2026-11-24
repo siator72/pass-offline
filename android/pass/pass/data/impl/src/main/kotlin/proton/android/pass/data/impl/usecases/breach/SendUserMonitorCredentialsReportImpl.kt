@@ -1,0 +1,122 @@
+/*
+ * Copyright (c) 2025-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.usecases.breach
+
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
+import proton.android.pass.common.api.AppDispatchers
+import proton.android.pass.data.api.usecases.GetReadyAccounts
+import proton.android.pass.data.api.usecases.GetUserPlan
+import proton.android.pass.data.api.usecases.ItemTypeFilter
+import proton.android.pass.data.api.usecases.ObserveAllShares
+import proton.android.pass.data.api.usecases.ObserveItems
+import proton.android.pass.data.api.usecases.breach.SendUserMonitorCredentialsReport
+import proton.android.pass.data.api.usecases.compromisedpassword.ObserveCompromisedPasswords
+import proton.android.pass.data.api.usecases.compromisedpassword.RefreshCompromisedPasswords
+import proton.android.pass.data.impl.remote.RemoteOrganizationReportDataSource
+import proton.android.pass.data.impl.requests.SendUserMonitorCredentialsRequest
+import proton.android.pass.data.impl.util.runConcurrently
+import proton.android.pass.domain.Item
+import proton.android.pass.domain.ItemFlag
+import proton.android.pass.domain.ItemState
+import proton.android.pass.domain.Share
+import proton.android.pass.domain.ShareSelection
+import proton.android.pass.domain.UserId
+import proton.android.pass.securitycenter.api.SecurityCheck
+import proton.android.pass.securitycenter.api.isCheckExcluded
+import proton.android.pass.securitycenter.api.passwords.InsecurePasswordChecker
+import proton.android.pass.securitycenter.api.passwords.MissingTfaChecker
+import proton.android.pass.securitycenter.api.passwords.RepeatedPasswordChecker
+import javax.inject.Inject
+
+class SendUserMonitorCredentialsReportImpl @Inject constructor(
+    private val getReadyAccounts: GetReadyAccounts,
+    private val getUserPlan: GetUserPlan,
+    private val remoteOrganizationReportDataSource: RemoteOrganizationReportDataSource,
+    private val repeatedPasswordChecker: RepeatedPasswordChecker,
+    private val insecurePasswordChecker: InsecurePasswordChecker,
+    private val missing2faChecker: MissingTfaChecker,
+    private val refreshCompromisedPasswords: RefreshCompromisedPasswords,
+    private val observeCompromisedPasswords: ObserveCompromisedPasswords,
+    private val observeItems: ObserveItems,
+    private val observeAllShares: ObserveAllShares,
+    private val dispatchers: AppDispatchers
+) : SendUserMonitorCredentialsReport {
+    override suspend fun invoke() {
+        val accounts = getReadyAccounts()
+        val reports = accounts
+            .map { account ->
+                account.userId to getUserPlan(account.userId).first()
+            }
+            .filter { (_, plan) -> plan.isBusinessPlan }
+            .associate { (userId, _) ->
+                val shares = observeAllShares(userId, includeHidden = false)
+                    .map { it.filter(Share::isOwner).map(Share::id) }
+                    .firstOrNull()
+                    .orEmpty()
+                val monitoredItems = observeItems(
+                    userId = userId,
+                    selection = ShareSelection.Shares(shares),
+                    filter = ItemTypeFilter.Logins,
+                    itemState = ItemState.Active,
+                    itemFlags = mapOf(ItemFlag.SkipHealthCheck to false),
+                    includeHidden = false
+                ).first()
+                val excludedItems = observeItems(
+                    userId = userId,
+                    selection = ShareSelection.Shares(shares),
+                    filter = ItemTypeFilter.Logins,
+                    itemState = ItemState.Active,
+                    itemFlags = mapOf(ItemFlag.SkipHealthCheck to true),
+                    includeHidden = false
+                ).first()
+                refreshCompromisedPasswords(userId, monitoredItems)
+                val compromisedPasswords = countCompromisedPasswords(userId, monitoredItems)
+                val report = withContext(dispatchers.default) {
+                    SendUserMonitorCredentialsRequest(
+                        reusedPasswords = repeatedPasswordChecker(monitoredItems).repeatedPasswordsCount,
+                        inactive2FA = missing2faChecker(monitoredItems).missing2faCount,
+                        excludedItems = excludedItems.count(),
+                        weakPasswords = insecurePasswordChecker(monitoredItems).insecurePasswordsCount,
+                        compromisedPasswords = compromisedPasswords
+                    )
+                }
+                userId to report
+            }
+        runConcurrently(
+            items = reports.entries,
+            block = { (userId, report) ->
+                remoteOrganizationReportDataSource.request(userId = userId, report = report)
+            }
+        )
+    }
+
+    private suspend fun countCompromisedPasswords(userId: UserId, monitoredItems: List<Item>): Int {
+        val compromisedItems = observeCompromisedPasswords(userId).first()
+
+        return withContext(dispatchers.default) {
+            val monitoredKeys = monitoredItems
+                .filterNot { it.isCheckExcluded(SecurityCheck.CompromisedPassword) }
+                .mapTo(mutableSetOf()) { it.shareId to it.id }
+            compromisedItems.count { it.shareId to it.itemId in monitoredKeys }
+        }
+    }
+}

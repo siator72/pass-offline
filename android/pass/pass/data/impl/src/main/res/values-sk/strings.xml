@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sync_channel">Synchronizovať</string>
+  <string name="sync_channel_description">Kanál upozornení pre synchronizáciu položiek</string>
+  <string name="syncing_vaults">Synchronizácia trezorov a položiek</string>
+  <string name="logging_out_free_users">Odhlasovanie ďalších bezplatných používateľov</string>
+  <string name="attachment_download_channel">Prílohy na stiahnutie</string>
+  <string name="attachment_download_channel_description">Kanál s notifikáciami o stiahnutí príloh</string>
+  <string name="downloading_attachments">Sťahovanie príloh</string>
+  <string name="downloading_attachments_progress" comment="%1$s is the download progress counter, e.g. 3 / 10">%1$s súborov</string>
+  <string name="plan_subscription_auto_renews_monthly">Predplatné sa automaticky obnovuje za %1$s/mesiac</string>
+  <string name="plan_subscription_auto_renews_annual">Predplatné sa automaticky obnovuje za %1$s/rok</string>
+  <string name="plan_welcome_offer_auto_renews_monthly">Uvítacia ponuka. Automatické obnovenie za %1$s/mesiac</string>
+  <string name="plan_welcome_offer_auto_renews_annual">Uvítacia ponuka. Automatické obnovenie za %1$s/rok</string>
+</resources>

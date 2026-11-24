@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="enter_your_pin_code">Skriv inn din PIN-kode</string>
+  <string name="unlock">Lås opp</string>
+  <plurals name="enter_your_pin_code_error">
+    <item quantity="one">Feil PIN-kode. %d forsøk gjenstår.</item>
+    <item quantity="other">Feil PIN-kode. %d forsøk gjenstår.</item>
+  </plurals>
+  <string name="auth_unlock_app_title">Lås opp Proton Pass</string>
+  <string name="auth_unlock_app_subtitle">Skriv inn hovedpassordet for %s</string>
+  <string name="auth_unlock_app_extra_password_subtitle">Angi det ekstra passordet for %s</string>
+  <string name="auth_unlock_app_subtitle_account_switch">Skriv inn hovedpassordet for:</string>
+  <string name="auth_unlock_app_extra_password_subtitle_account_switch">Angi det ekstra passordet for:</string>
+  <string name="auth_master_password_label">Hovedpassord</string>
+  <string name="auth_action_reveal_password">Avslør hovedpassord</string>
+  <string name="auth_action_conceal_password">Skjul hovedpassord</string>
+  <string name="auth_action_enter_pin_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Angi PIN-kode istedenfor</string>
+  <string name="auth_action_enter_fingerprint_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Bruk fingeravtrykk istedenfor</string>
+  <string name="auth_unlock_button">Lås opp</string>
+  <string name="auth_error_empty_password">Passord kan ikke være tomt</string>
+  <string name="auth_error_pin_cannot_be_empty">PIN-kode kan ikke være tom</string>
+  <string name="auth_extra_password_label">Angi det ekstra passordet ditt</string>
+  <string name="auth_extra_password_error">Feil ved autentisering med ekstra passord</string>
+  <string name="auth_extra_password_too_many_attempts">For mange mislykkede påloggingsforsøk. Du har blitt logget av.</string>
+  <string name="auth_biometric_enrollment_changed">Dine biometriske data er endret. Aktiver biometrisk opplåsing på nytt i Innstillinger.</string>
+  <string name="auth_error_wrong_password_no_attempts">Feil passord</string>
+  <plurals name="auth_error_wrong_password">
+    <item quantity="one">Feil passord. %d forsøk gjenstår</item>
+    <item quantity="other">Feil passord. %d forsøk gjenstår</item>
+  </plurals>
+  <plurals name="auth_attempts_remaining">
+    <item quantity="one">%d forsøk igjen</item>
+    <item quantity="other">%d forsøk igjen</item>
+  </plurals>
+  <string name="auth_pin_too_many_attempts">For mange mislykkede PIN-forsøk. Alle brukerne dine blir logget av.</string>
+  <string name="auth_pin_too_many_attempts_dismiss">For mange mislykkede pin-forsøk.</string>
+</resources>

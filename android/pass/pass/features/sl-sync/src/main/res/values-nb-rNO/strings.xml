@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">Aliasadministrasjon</string>
+  <string name="simple_login_sync_management_domain_label">Domene</string>
+  <string name="simple_login_sync_management_domain_title">Standard domene for aliaser</string>
+  <string name="simple_login_sync_management_domain_option_blank">Ikke valgt</string>
+  <string name="simple_login_sync_management_mailboxes_label">Postbokser</string>
+  <string name="simple_login_sync_management_mailboxes_description">Postboks er der e-poster sendt til et alias videresendes til. Det er din vanlige postboks, for eksempel Gmail, Outlook, Proton Mail, osv.</string>
+  <string name="simple_login_sync_management_mailbox_default">Standard</string>
+  <string name="simple_login_sync_management_mailbox_unverified">Ubekreftet postboks</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">Ubekreftet postboksendring</string>
+  <string name="simple_login_sync_management_vault_title">SimpleLogin synkronisering</string>
+  <string name="simple_login_sync_management_no_vault_description">Du trenger minst ett hvelv for å administrere SimpleLogin-synkroniseringsinnstillinger.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">Det oppstod en feil under henting av SL-aliasdetaljer</string>
+  <string name="simple_login_sync_management_mailboxes_title">Standard postboks for aliaser</string>
+  <string name="simple_login_sync_management_dialog_title_domains">Standard domene for aliaser</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">Standard postboks for aliaser</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">Synkroniser aliaser</string>
+  <string name="simple_login_sync_enable_snackbar_error">Det oppstod en feil ved aktivering av synkronisering av SimpleLogin-aliaser</string>
+  <string name="simple_login_sync_enable_snackbar_success">Synkronisering av SimpleLogin-aliaser er aktivert</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">Legg til postboks</string>
+  <string name="simple_login_sync_mailbox_create_message_error">Det oppstod en feil under å legge til postboksen</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">Endre postboks</string>
+  <string name="simple_login_sync_mailbox_change_message_error">Det oppstod en feil ved endring av postboksen</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">E-post allerede i bruk</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">Bekreft postboksen din</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">Vi har sendt en verifiseringskode til %s. Angi den nedenfor:</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">din e-postadresse</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">Ugyldig verifiseringskode for postboks</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">Ugyldig grense for postboksverifiseringskode nådd, postboks ble slettet</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">Det oppstod en feil under bekreftelse av postboksen</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">Postboks verifisert</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">Det oppstod en feil under sending av verifiseringskode</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">Verifiseringskode ble sendt</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">Slett postboks</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">Alle aliaser som bruker postboksen %s vil også bli slettet. For å fortsette å motta e-post, overfør disse aliasene til en annen postboks:</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">Overfør aliaser</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">Til postboks</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">Slett postboks</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">Overfør og slett postboks</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">Det oppstod en feil under sletting av postboks</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">Postboks ble slettet</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">Overfør aliaser til</string>
+  <string name="simple_login_sync_mailbox_delete_warning">Vær oppmerksom på at aliasene ikke kan gjenopprettes når de er slettet</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">Standard domene</string>
+  <string name="simple_login_sync_domain_select_title_none">ingen</string>
+  <string name="simple_login_sync_domain_select_description_none">Ingen domene</string>
+  <string name="simple_login_sync_domain_select_description_custom">Ditt domene</string>
+  <string name="simple_login_sync_domain_select_description_free">Offentlig domene</string>
+  <string name="simple_login_sync_domain_select_description_premium">Premium-domene</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">Det oppstod en feil under henting av SL-aliasdomener</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">Det oppstod en feil under oppdatering av SL-aliasdomene</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">SL-aliasdomene er oppdatert</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">Kan ikke vise alternativer for postboks</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">Det oppstod en feil under oppdatering av standard postboks</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">Standard postboks ble oppdatert</string>
+  <string name="simple_login_sync_mailbox_change_email_option">Endre postboks</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">Avbryt postboksendring</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">Det oppstod en feil under avbryting av endring av postboks-e-post</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">Kansellert endring av postboks-e-post</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">Standard SimpleLogin-hvelv</string>
+  <string name="simple_login_sync_shared_default_vault_description">SimpleLogin-aliaser vil bli importert til dette hvelvet.</string>
+</resources>

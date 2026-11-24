@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">Aliashallinta</string>
+  <string name="simple_login_sync_management_domain_label">Verkkotunnus</string>
+  <string name="simple_login_sync_management_domain_title">Aliasten oletusverkkotunnus</string>
+  <string name="simple_login_sync_management_domain_option_blank">Ei valittu</string>
+  <string name="simple_login_sync_management_mailboxes_label">Postilaatikot</string>
+  <string name="simple_login_sync_management_mailboxes_description">Postilaatikko on aliakseen lähetettyjen viestien ohjauskohde. Se on normaalistikäyttämäsi postilaatikko, eli esim. Gmail, Outlook tai Proton Mail.</string>
+  <string name="simple_login_sync_management_mailbox_default">Oletus</string>
+  <string name="simple_login_sync_management_mailbox_unverified">Vahvistamaton postilaatikko</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">Vahvistamaton postilaatikon vaihto</string>
+  <string name="simple_login_sync_management_vault_title">SimpleLogin-synkronointi</string>
+  <string name="simple_login_sync_management_no_vault_description">Tarvitset vähintään yhden holvin hallitaksesi SimpleLogin-synkronointiasetuksia.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">Virhe noutaessa SL-aliasten tietoja</string>
+  <string name="simple_login_sync_management_mailboxes_title">Aliasten oletuspostilaatikko</string>
+  <string name="simple_login_sync_management_dialog_title_domains">Aliasten oletusverkkotunnus</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">Aliasten oletuspostilaatikko</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">Synkronoi aliakset</string>
+  <string name="simple_login_sync_enable_snackbar_error">Virhe SimpleLogin-aliasten synkronoinnin käyttöönotossa</string>
+  <string name="simple_login_sync_enable_snackbar_success">SimpleLogin-aliasten synkronointi otettiin käyttöön</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">Lisää postilaatikko</string>
+  <string name="simple_login_sync_mailbox_create_message_error">Virhe lisättäessä postilaatikkoa</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">Vaihda postilaatikkoa</string>
+  <string name="simple_login_sync_mailbox_change_message_error">Virhe vaihdettaessa postilaatikkoa</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">Osoite on jo käytössä</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">Vahvista postilaatikkosi</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">Vahvistuskoodi lähetettiin osoitteeseen: %s. Syötä se alle:</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">sähköpostiosoitteesi</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">Virheellinen postilaatikon vahvistuskoodi</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">Virheellisten postilaatikon vahvistuskoodien rajoitus saavutettiin ja postilaatikko poistettiin</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">Virhe vahvistettaessa postilaatikkoa</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">Postilaatikko vahvistettiin</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">Virhe lähetettäessä vahvistuskoodia</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">Vahvistuskoodi lähetettiin</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">Poista postilaatikko</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">Myös kaikki postilaatikkoa %s käyttävät aliakset poistetaan. Jos haluat edelleen vastaanottaa viestejä, siirrä nämä aliakset toiseen postilaatikkoon:</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">Siirrä aliaksia</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">Postilaatikkoon</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">Poista postilaatikko</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">Siirrä ja poista postilaatikko</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">Virhe poistettaessa postilaatikkoa</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">Postilaatikko poistettiin</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">Siirrä aliakset kohteeseen</string>
+  <string name="simple_login_sync_mailbox_delete_warning">Huomioi, että poistettuja aliaksia ei ole mahdollista palauttaa</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">Oletusverkkotunnus</string>
+  <string name="simple_login_sync_domain_select_title_none">ei määritetty</string>
+  <string name="simple_login_sync_domain_select_description_none">Verkkotunnusta ei ole</string>
+  <string name="simple_login_sync_domain_select_description_custom">Oman verkkotunnuksesi</string>
+  <string name="simple_login_sync_domain_select_description_free">Julkinen verkkotunnus</string>
+  <string name="simple_login_sync_domain_select_description_premium">Premium-verkkotunnus</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">Virhe noutaessa SimpleLogin-aliasten verkkotunnuksia</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">Virhe noutaessa SimpleLogin-aliaksen verkkotunnusta</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">SL-aliasverkkotunnus muutettiin</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">Postilaatikkovalintoja ei voi näyttää</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">Virhe muuttaessa oletuspostilaatikkoa</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">Oletuspostilaatikko muutetiin</string>
+  <string name="simple_login_sync_mailbox_change_email_option">Vaihda postilaatikkoa</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">Peru postilaatikon muutos</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">Virhe peruttaessa postilaatikon osoitteen muutosta</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">Postilaatikon osoitteenmuutos peruttiin</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">Oletusarvoinen SL-holvi</string>
+  <string name="simple_login_sync_shared_default_vault_description">SiSimpleLogin-aliakset tuodaan tähän holviin.</string>
+</resources>

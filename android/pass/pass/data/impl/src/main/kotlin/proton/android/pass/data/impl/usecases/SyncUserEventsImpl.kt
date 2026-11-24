@@ -1,0 +1,456 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.usecases
+
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import proton.android.pass.common.api.safeRunCatchingWithCleanup
+import proton.android.pass.data.api.repositories.AliasRepository
+import proton.android.pass.data.api.repositories.IndexingStatus
+import proton.android.pass.data.api.repositories.ItemRepository
+import proton.android.pass.data.api.repositories.ItemSyncStatus
+import proton.android.pass.data.api.repositories.ItemSyncStatusRepository
+import proton.android.pass.data.api.repositories.SearchIndexRepository
+import proton.android.pass.data.api.repositories.ShareRepository
+import proton.android.pass.data.api.usecases.PromoteNewInviteToInvite
+import proton.android.pass.data.api.usecases.RefreshBreaches
+import proton.android.pass.data.api.usecases.RefreshGroupInvites
+import proton.android.pass.data.api.usecases.RefreshUserAccess
+import proton.android.pass.data.api.usecases.RefreshSharesAndEnqueueSync
+import proton.android.pass.data.api.usecases.RefreshSharesResult
+import proton.android.pass.data.api.usecases.RefreshUserInvites
+import proton.android.pass.data.api.usecases.SyncUserEvents
+import proton.android.pass.data.api.usecases.RefreshAliasSlNotes
+import proton.android.pass.data.api.usecases.folders.DeleteFoldersLocally
+import proton.android.pass.data.api.usecases.folders.RefreshFolders
+import proton.android.pass.data.api.usecases.organization.RefreshOrganizationSettings
+import proton.android.pass.data.api.usecases.simplelogin.SyncSimpleLoginPendingAliases
+import proton.android.pass.data.api.work.FetchItemsState
+import proton.android.pass.data.api.work.UniqueWorkRequest
+import proton.android.pass.data.api.work.WorkManagerFacade
+import proton.android.pass.data.impl.work.FetchItemsWorker
+import proton.android.pass.data.impl.repositories.EventRepository
+import proton.android.pass.data.impl.repositories.UserEventRepository
+import proton.android.pass.domain.UserEventId
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.events.SyncEventInvitesChanged
+import proton.android.pass.domain.events.SyncEventShare
+import proton.android.pass.domain.events.SyncEventShareFolder
+import proton.android.pass.domain.events.SyncEventShareItem
+import proton.android.pass.domain.events.UserEventList
+import proton.android.pass.data.api.repositories.SyncMode
+import proton.android.pass.data.api.repositories.SyncReason
+import proton.android.pass.log.api.PassLogger
+import java.util.concurrent.ConcurrentHashMap
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Suppress("LongParameterList")
+@Singleton
+class SyncUserEventsImpl @Inject constructor(
+    private val userEventRepository: UserEventRepository,
+    private val shareRepository: ShareRepository,
+    private val itemRepository: ItemRepository,
+    private val deleteFoldersLocally: DeleteFoldersLocally,
+    private val refreshFolders: RefreshFolders,
+    private val refreshSharesAndEnqueueSync: RefreshSharesAndEnqueueSync,
+    private val workManagerFacade: WorkManagerFacade,
+    private val refreshUserAccess: RefreshUserAccess,
+    private val refreshUserInvites: RefreshUserInvites,
+    private val refreshGroupInvites: RefreshGroupInvites,
+    private val syncPendingAliases: SyncSimpleLoginPendingAliases,
+    private val promoteNewInviteToInvite: PromoteNewInviteToInvite,
+    private val refreshBreaches: RefreshBreaches,
+    private val refreshOrganizationSettings: RefreshOrganizationSettings,
+    private val itemSyncStatusRepository: ItemSyncStatusRepository,
+    private val eventRepository: EventRepository,
+    private val aliasRepository: AliasRepository,
+    private val refreshAliasSlNotes: RefreshAliasSlNotes,
+    private val searchIndexRepository: SearchIndexRepository
+) : SyncUserEvents {
+
+    private val userLocks = ConcurrentHashMap<UserId, Mutex>()
+
+    override suspend fun invoke(
+        userId: UserId,
+        forceSync: Boolean,
+        trigger: String,
+        syncReason: SyncReason,
+        syncMode: SyncMode
+    ) {
+        val lock = userLocks.getOrPut(userId) { Mutex() }
+        if (forceSync) {
+            lock.withLock { sync(userId, forceSync, trigger, syncReason, syncMode) }
+            return
+        }
+        if (!lock.tryLock()) {
+            PassLogger.i(TAG, "Sync in progress, skipping")
+            return
+        }
+        val result = safeRunCatchingWithCleanup(onCancellation = { lock.unlock() }) {
+            sync(userId, forceSync, trigger, syncReason, syncMode)
+        }
+        lock.unlock()
+        result.getOrThrow()
+    }
+
+    private suspend fun sync(
+        userId: UserId,
+        forceSync: Boolean,
+        trigger: String,
+        syncReason: SyncReason,
+        syncMode: SyncMode
+    ) {
+        if (!forceSync && itemSyncStatusRepository.observeSyncState().first().isSyncing) {
+            PassLogger.i(TAG, "Sync in progress, skipping")
+            return
+        }
+
+        if (forceSync) {
+            userEventRepository.deleteLatestEventId(userId)
+            eventRepository.deleteAllLatestEventIds(userId)
+        }
+
+        val localEventId = getLocalEventId(userId, forceSync, trigger, syncReason, syncMode)
+        val remoteLatestEventId = userEventRepository.fetchLatestEventId(userId)
+
+        if (localEventId == remoteLatestEventId && !forceSync) {
+            return
+        }
+
+        processUserEvents(userId, localEventId ?: remoteLatestEventId, trigger)
+
+    }
+
+    private suspend fun getLocalEventId(
+        userId: UserId,
+        forceSync: Boolean,
+        trigger: String,
+        syncReason: SyncReason,
+        syncMode: SyncMode
+    ): UserEventId? {
+        val localEventId = userEventRepository.getLatestEventId(userId).first()
+        if (localEventId != null) return localEventId
+        val reason = if (forceSync) {
+            FullRefreshReason.ExplicitForceSync
+        } else {
+            FullRefreshReason.MissingLocalEventCursor
+        }
+        PassLogger.i(TAG, "Starting full refresh (reason=$reason, trigger=$trigger)")
+        fullRefresh(userId, forceSync, reason, trigger, syncReason, syncMode)
+        return null
+    }
+
+    private suspend fun processUserEvents(
+        userId: UserId,
+        initialEventId: UserEventId,
+        trigger: String
+    ) {
+        var currentEventId = initialEventId
+
+        do {
+            val eventList = userEventRepository.getUserEvents(userId, currentEventId)
+            if (eventList.fullRefresh) {
+                // Server-triggered full refresh (e.g. share rotation): always run silently
+                // in the background, regardless of the outer forceSync flag. Showing the
+                // sync dialog here would be unexpected during a routine background sync.
+                val reason = FullRefreshReason.ServerRequested
+                PassLogger.i(TAG, "Starting full refresh (reason=$reason, trigger=$trigger)")
+                fullRefresh(userId, forceSync = false, reason, trigger, SyncReason.Default, SyncMode.Background)
+            } else {
+                processIncrementalEvents(userId, eventList)
+            }
+
+            userEventRepository.storeLatestEventId(userId, eventList.lastEventId)
+            PassLogger.i(TAG, "Fetched user events, eventsPending: ${eventList.eventsPending}")
+            currentEventId = eventList.lastEventId
+        } while (eventList.eventsPending)
+    }
+
+    private suspend fun processIncrementalEvents(userId: UserId, eventList: UserEventList) {
+        if (eventList.refreshUser) {
+            refreshUserAccess(userId)
+        }
+
+        processSharesCreated(userId, eventList.sharesCreated)
+        processSharesUpdated(userId, eventList.sharesUpdated)
+        processSharesDeleted(userId, eventList.sharesDeleted)
+        processFoldersUpdated(userId, eventList.foldersUpdated)
+        processFoldersDeleted(userId, eventList.foldersDeleted)
+        processItemsUpdated(userId, eventList.itemsUpdated)
+        processItemsDeleted(userId, eventList.itemsDeleted)
+        processInvitesChanged(userId, eventList.invitesChanged)
+        processGroupInvitesChanged(userId, eventList.groupInvitesChanged)
+        processPendingAliasToCreateChanged(userId, eventList.pendingAliasToCreateChanged)
+        processBreachUpdateChanged(userId, eventList.breachUpdate)
+        processOrganizationUpdateChanged(userId, eventList.organizationInfoChanged)
+        processNewUserInvitesChanged(userId, eventList.sharesWithInvitesToCreate)
+        processAliasNoteChanged(userId, eventList.aliasNoteChanged)
+    }
+
+    private suspend fun processSharesCreated(userId: UserId, sharesCreated: List<SyncEventShare>) {
+        if (sharesCreated.isEmpty()) return
+        PassLogger.i(TAG, "processSharesCreated: ${sharesCreated.size} new shares")
+        sharesCreated.forEach { (shareId, token) ->
+            shareRepository.recreateShare(userId, shareId, token)
+        }
+        val shareIds = sharesCreated.map { it.shareId }.toSet()
+        workManagerFacade.enqueueUniqueWork(
+            FetchItemsWorker.getOneTimeUniqueWorkName(userId),
+            UniqueWorkRequest.FetchItems(userId = userId, shareIds = shareIds)
+        )
+        waitForFetchItemsWorker(userId)
+    }
+
+    private suspend fun processSharesUpdated(userId: UserId, sharesUpdated: List<SyncEventShare>) {
+        sharesUpdated.forEach { (shareId, token) ->
+            shareRepository.refreshShare(userId, shareId, token)
+        }
+    }
+
+    private suspend fun processItemsUpdated(userId: UserId, itemsUpdated: List<SyncEventShareItem>) {
+        if (itemsUpdated.isEmpty()) return
+        PassLogger.i(TAG, "Refreshing ${itemsUpdated.size} updated items")
+        itemRepository.refreshItems(userId, itemsUpdated)
+        aliasRepository.refreshAliasSlNotesForItems(
+            userId = userId,
+            items = itemsUpdated.map { it.shareId to it.itemId }
+        )
+    }
+
+    private suspend fun processSharesDeleted(userId: UserId, sharesDeleted: List<SyncEventShare>) {
+        if (sharesDeleted.isNotEmpty()) {
+            val sharesToDelete = sharesDeleted.map(SyncEventShare::shareId)
+            shareRepository.deleteLocalShares(userId, sharesToDelete)
+        }
+    }
+
+    private suspend fun processItemsDeleted(userId: UserId, itemsDeleted: List<SyncEventShareItem>) {
+        if (itemsDeleted.isNotEmpty()) {
+            val itemsToDelete = itemsDeleted
+                .groupBy { it.shareId }
+                .mapValues { values -> values.value.map(SyncEventShareItem::itemId) }
+            itemRepository.deleteLocalItems(userId, itemsToDelete)
+        }
+    }
+
+    private suspend fun processFoldersUpdated(userId: UserId, foldersUpdated: List<SyncEventShareFolder>) {
+        if (foldersUpdated.isNotEmpty()) {
+            val sharesToRefresh = foldersUpdated.map(SyncEventShareFolder::shareId).toSet()
+            refreshFolders(userId, sharesToRefresh)
+        }
+    }
+
+    private suspend fun processFoldersDeleted(userId: UserId, foldersDeleted: List<SyncEventShareFolder>) {
+        if (foldersDeleted.isNotEmpty()) {
+            val foldersToDeleteByShare = foldersDeleted.groupBy(SyncEventShareFolder::shareId)
+                .mapValues { (_, events) -> events.map(SyncEventShareFolder::folderId).distinct() }
+            foldersToDeleteByShare.forEach { (shareId, folderIds) ->
+                deleteFoldersLocally(userId, shareId, folderIds)
+            }
+        }
+    }
+
+    private suspend fun processInvitesChanged(userId: UserId, invitesChanged: SyncEventInvitesChanged?) {
+        invitesChanged?.let { refreshUserInvites(userId, it.eventToken) }
+    }
+
+    private suspend fun processGroupInvitesChanged(userId: UserId, invitesChanged: SyncEventInvitesChanged?) {
+        invitesChanged?.let { refreshGroupInvites(userId, it.eventToken) }
+    }
+
+    private suspend fun processPendingAliasToCreateChanged(userId: UserId, changed: SyncEventInvitesChanged?) {
+        changed?.let { syncPendingAliases(userId, false) }
+    }
+
+    private suspend fun processBreachUpdateChanged(userId: UserId, changed: SyncEventInvitesChanged?) {
+        changed?.let { refreshBreaches(userId) }
+    }
+
+    private suspend fun processOrganizationUpdateChanged(userId: UserId, changed: SyncEventInvitesChanged?) {
+        changed?.let { refreshOrganizationSettings(userId) }
+    }
+
+    private suspend fun processNewUserInvitesChanged(userId: UserId, sharesWithInvitesToCreate: List<SyncEventShare>) {
+        sharesWithInvitesToCreate.forEach { (shareId, _) ->
+            promoteNewInviteToInvite(userId, shareId)
+        }
+    }
+
+    private suspend fun fullRefresh(
+        userId: UserId,
+        forceSync: Boolean,
+        reason: FullRefreshReason,
+        trigger: String,
+        syncReason: SyncReason,
+        syncMode: SyncMode
+    ) {
+        val isDeferred = forceSync && syncMode == SyncMode.ShownToUser
+        var isDialogSettled = false
+        val settleOnError: suspend () -> Unit = {
+            if (isDeferred && !isDialogSettled) {
+                if (itemSyncStatusRepository.observeSyncStatus().first() !is ItemSyncStatus.SyncError) {
+                    itemSyncStatusRepository.emit(ItemSyncStatus.SyncError.DownloadError())
+                }
+                itemSyncStatusRepository.setMode(SyncMode.Background)
+            }
+        }
+        safeRunCatchingWithCleanup(onCancellation = settleOnError) {
+            coroutineScope {
+                PassLogger.i(TAG, "start full refresh (forceSync=$forceSync)")
+
+                refreshUserAccess(userId)
+
+                val syncType = if (isDeferred) {
+                    RefreshSharesAndEnqueueSync.SyncType.FULL
+                } else {
+                    RefreshSharesAndEnqueueSync.SyncType.FULL_BACKGROUND
+                }
+                val refreshShares = refreshSharesAndEnqueueSync(
+                    userId = userId,
+                    syncType = syncType,
+                    workerOrigin = "trigger=$trigger reason=$reason",
+                    syncReason = syncReason,
+                    deferSuccess = isDeferred
+                )
+
+                val didCompleteItemWorker =
+                    refreshShares is RefreshSharesResult.SharesFound && refreshShares.isWorkerEnqueued
+                if (didCompleteItemWorker) {
+                    PassLogger.i(TAG, "waiting worker")
+                    waitForFetchItemsWorker(userId)
+                    PassLogger.i(TAG, "worker finished")
+                }
+
+                if (isDeferred) {
+                    completeDeferredSync(refreshShares, didCompleteItemWorker)
+                    isDialogSettled = true
+                }
+
+                refreshRemainingData(userId)
+            }
+        }.onFailure { settleOnError() }.getOrThrow()
+    }
+
+    private suspend fun completeDeferredSync(refreshShares: RefreshSharesResult, workerRan: Boolean) {
+        val syncState = itemSyncStatusRepository.observeSyncState().first()
+        if (!syncState.isSyncing) {
+            itemSyncStatusRepository.setMode(SyncMode.Background)
+            return
+        }
+        itemSyncStatusRepository.emit(
+            ItemSyncStatus.SyncSuccess(
+                hasInactiveShares = refreshShares.hasInactiveShares(),
+                hasInvalidGroupShares = refreshShares.hasInvalidGroupShares()
+            )
+        )
+        val isIndexReady = searchIndexRepository.observeIndexingStatus().first() == IndexingStatus.Ready
+        val keepDialogOpen = workerRan && isIndexReady
+        if (!keepDialogOpen) {
+            itemSyncStatusRepository.setMode(SyncMode.Background)
+        }
+    }
+
+    private suspend fun refreshRemainingData(userId: UserId) = coroutineScope {
+        val userInvitesDeferred = async {
+            val result = refreshUserInvites(userId)
+            PassLogger.i(TAG, "finished refreshUserInvites")
+            result
+        }
+
+        val groupInvitesDeferred = async {
+            val result = refreshGroupInvites(userId)
+            PassLogger.i(TAG, "finished refreshGroupInvites")
+            result
+        }
+
+        val syncPendingAliasesDeferred = async {
+            val result = syncPendingAliases(userId, false)
+            PassLogger.i(TAG, "finished syncPendingAliases")
+            result
+        }
+
+        val refreshBreachesDeferred = async {
+            val result = refreshBreaches(userId)
+            PassLogger.i(TAG, "finished refreshBreaches")
+            result
+        }
+
+        val refreshOrganizationSettingsDeferred = async {
+            val result = refreshOrganizationSettings(userId)
+            PassLogger.i(TAG, "finished refreshOrganizationSettings")
+            result
+        }
+
+        val refreshAliasSlNotesDeferred = async {
+            refreshAliasSlNotes(userId)
+            PassLogger.i(TAG, "finished refreshAliasSlNotes")
+        }
+
+        awaitAll(
+            userInvitesDeferred,
+            groupInvitesDeferred,
+            syncPendingAliasesDeferred,
+            refreshBreachesDeferred,
+            refreshOrganizationSettingsDeferred,
+            refreshAliasSlNotesDeferred
+        )
+    }
+
+    private suspend fun processAliasNoteChanged(userId: UserId, events: List<SyncEventShareItem>) {
+        events.forEach { (shareId, itemId, _) ->
+            aliasRepository.refreshAliasSlNote(userId, shareId, itemId)
+        }
+    }
+
+    private fun RefreshSharesResult.hasInactiveShares(): Boolean = when (this) {
+        is RefreshSharesResult.SharesFound -> hasInactiveShares
+        is RefreshSharesResult.NoSharesSkipped -> hasInactiveShares
+        is RefreshSharesResult.NoSharesVaultCreated -> hasInactiveShares
+    }
+
+    private fun RefreshSharesResult.hasInvalidGroupShares(): Boolean = when (this) {
+        is RefreshSharesResult.SharesFound -> hasInvalidGroupShares
+        is RefreshSharesResult.NoSharesSkipped -> hasInvalidGroupShares
+        is RefreshSharesResult.NoSharesVaultCreated -> hasInvalidGroupShares
+    }
+
+    private suspend fun waitForFetchItemsWorker(userId: UserId) {
+        val uniqueName = FetchItemsWorker.getOneTimeUniqueWorkName(userId)
+        when (workManagerFacade.awaitUniqueWorkFinished(uniqueName)) {
+            FetchItemsState.Success -> Unit
+            FetchItemsState.Failure,
+            FetchItemsState.Cancelled -> error("$uniqueName did not succeed")
+        }
+    }
+
+    private enum class FullRefreshReason {
+        ExplicitForceSync,
+        MissingLocalEventCursor,
+        ServerRequested
+    }
+
+    private companion object {
+        private const val TAG = "SyncUserEventsImpl"
+    }
+}

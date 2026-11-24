@@ -1,0 +1,359 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.db
+
+import android.content.Context
+import androidx.room.AutoMigration
+import androidx.room.Database
+import androidx.room.TypeConverters
+import androidx.room.migration.Migration
+import me.proton.core.account.data.db.AccountConverters
+import me.proton.core.account.data.db.AccountDatabase
+import me.proton.core.account.data.entity.AccountEntity
+import me.proton.core.account.data.entity.AccountMetadataEntity
+import me.proton.core.account.data.entity.SessionDetailsEntity
+import me.proton.core.account.data.entity.SessionEntity
+import me.proton.core.auth.data.db.AuthConverters
+import me.proton.core.auth.data.db.AuthDatabase
+import me.proton.core.auth.data.entity.AuthDeviceEntity
+import me.proton.core.auth.data.entity.DeviceSecretEntity
+import me.proton.core.auth.data.entity.MemberDeviceEntity
+import me.proton.core.challenge.data.db.ChallengeConverters
+import me.proton.core.challenge.data.db.ChallengeDatabase
+import me.proton.core.challenge.data.entity.ChallengeFrameEntity
+import me.proton.core.crypto.android.keystore.CryptoConverters
+import me.proton.core.data.room.db.BaseDatabase
+import me.proton.core.data.room.db.CommonConverters
+import me.proton.core.eventmanager.data.db.EventManagerConverters
+import me.proton.core.eventmanager.data.db.EventMetadataDatabase
+import me.proton.core.eventmanager.data.entity.EventMetadataEntity
+import me.proton.core.featureflag.data.db.FeatureFlagDatabase
+import me.proton.core.featureflag.data.entity.FeatureFlagEntity
+import me.proton.core.humanverification.data.db.HumanVerificationConverters
+import me.proton.core.humanverification.data.db.HumanVerificationDatabase
+import me.proton.core.humanverification.data.entity.HumanVerificationEntity
+import me.proton.core.key.data.db.KeySaltDatabase
+import me.proton.core.key.data.db.PublicAddressDatabase
+import me.proton.core.key.data.entity.KeySaltEntity
+import me.proton.core.key.data.entity.PublicAddressEntity
+import me.proton.core.key.data.entity.PublicAddressInfoEntity
+import me.proton.core.key.data.entity.PublicAddressKeyDataEntity
+import me.proton.core.key.data.entity.PublicAddressKeyEntity
+import me.proton.core.keytransparency.data.local.KeyTransparencyDatabase
+import me.proton.core.keytransparency.data.local.entity.AddressChangeEntity
+import me.proton.core.keytransparency.data.local.entity.SelfAuditResultEntity
+import me.proton.core.notification.data.local.db.NotificationConverters
+import me.proton.core.notification.data.local.db.NotificationDatabase
+import me.proton.core.notification.data.local.db.NotificationEntity
+import me.proton.core.observability.data.db.ObservabilityDatabase
+import me.proton.core.observability.data.entity.ObservabilityEventEntity
+import me.proton.core.payment.data.local.db.PaymentDatabase
+import me.proton.core.payment.data.local.entity.GooglePurchaseEntity
+import me.proton.core.payment.data.local.entity.PurchaseEntity
+import me.proton.core.push.data.local.db.PushConverters
+import me.proton.core.push.data.local.db.PushDatabase
+import me.proton.core.push.data.local.db.PushEntity
+import me.proton.core.telemetry.data.db.TelemetryDatabase
+import me.proton.core.telemetry.data.entity.TelemetryEventEntity
+import me.proton.core.user.data.db.AddressDatabase
+import me.proton.core.user.data.db.UserConverters
+import me.proton.core.user.data.db.UserDatabase
+import me.proton.core.user.data.entity.AddressEntity
+import me.proton.core.user.data.entity.AddressKeyEntity
+import me.proton.core.user.data.entity.UserEntity
+import me.proton.core.user.data.entity.UserKeyEntity
+import me.proton.core.userrecovery.data.db.DeviceRecoveryDatabase
+import me.proton.core.userrecovery.data.entity.RecoveryFileEntity
+import me.proton.core.usersettings.data.db.OrganizationDatabase
+import me.proton.core.usersettings.data.db.UserSettingsConverters
+import me.proton.core.usersettings.data.db.UserSettingsDatabase
+import me.proton.core.usersettings.data.entity.OrganizationEntity
+import me.proton.core.usersettings.data.entity.OrganizationKeysEntity
+import me.proton.core.usersettings.data.entity.UserSettingsEntity
+import proton.android.pass.common.api.onError
+import proton.android.pass.common.api.runCatching
+import proton.android.pass.data.impl.db.entities.AssetLinkEntity
+import proton.android.pass.data.impl.db.entities.BreachCustomEmailEntity
+import proton.android.pass.data.impl.db.entities.BreachDomainPeekEntity
+import proton.android.pass.data.impl.db.entities.CompromisedPasswordEntity
+import proton.android.pass.data.impl.db.entities.BreachEmailEntity
+import proton.android.pass.data.impl.db.entities.BreachProtonEmailEntity
+import proton.android.pass.data.impl.db.entities.FolderEntity
+import proton.android.pass.data.impl.db.entities.FolderKeyEntity
+import proton.android.pass.data.impl.db.entities.GroupInviteEntity
+import proton.android.pass.data.impl.db.entities.GroupInviteKeyEntity
+import proton.android.pass.data.impl.db.entities.IgnoredAssetLinkEntity
+import proton.android.pass.data.impl.db.entities.InAppMessageEntity
+import proton.android.pass.data.impl.db.entities.InstantConverter
+import proton.android.pass.data.impl.db.entities.ItemEntity
+import proton.android.pass.data.impl.db.entities.LiveTelemetryEntity
+import proton.android.pass.data.impl.db.entities.LiveTelemetryGrowthEntity
+import proton.android.pass.data.impl.db.entities.PassDataMigrationEntity
+import proton.android.pass.data.impl.db.entities.PassEventEntity
+import proton.android.pass.data.impl.db.entities.PassOrganizationSettingsEntity
+import proton.android.pass.data.impl.db.entities.PasswordHistoryEntity
+import proton.android.pass.data.impl.db.entities.PlanEntity
+import proton.android.pass.data.impl.db.entities.SearchEntryEntity
+import proton.android.pass.data.impl.db.entities.ShareEntity
+import proton.android.pass.data.impl.db.entities.ShareKeyEntity
+import proton.android.pass.data.impl.db.entities.TelemetryEntity
+import proton.android.pass.data.impl.db.entities.TelemetryGrowthEntity
+import proton.android.pass.data.impl.db.entities.UserAccessDataEntity
+import proton.android.pass.data.impl.db.entities.UserEventEntity
+import proton.android.pass.data.impl.db.entities.UserInviteEntity
+import proton.android.pass.data.impl.db.entities.UserInviteKeyEntity
+import proton.android.pass.data.impl.db.entities.attachments.AttachmentEntity
+import proton.android.pass.data.impl.db.entities.attachments.ChunkEntity
+import proton.android.pass.data.impl.db.entities.securelinks.SecureLinkEntity
+import proton.android.pass.log.api.PassLogger
+
+@Database(
+    entities = [
+        // Core
+        AccountEntity::class,
+        AccountMetadataEntity::class,
+        AddressChangeEntity::class,
+        AddressEntity::class,
+        AddressKeyEntity::class,
+        ChallengeFrameEntity::class,
+        EventMetadataEntity::class,
+        FeatureFlagEntity::class,
+        GooglePurchaseEntity::class,
+        PurchaseEntity::class,
+        HumanVerificationEntity::class,
+        KeySaltEntity::class,
+        OrganizationEntity::class,
+        OrganizationKeysEntity::class,
+        ObservabilityEventEntity::class,
+        PublicAddressEntity::class,
+        PublicAddressKeyEntity::class,
+        PublicAddressInfoEntity::class,
+        PublicAddressKeyDataEntity::class,
+        SelfAuditResultEntity::class,
+        SessionDetailsEntity::class,
+        SessionEntity::class,
+        UserEntity::class,
+        UserKeyEntity::class,
+        UserSettingsEntity::class,
+        NotificationEntity::class,
+        PushEntity::class,
+        TelemetryEventEntity::class,
+        RecoveryFileEntity::class,
+        DeviceSecretEntity::class,
+        AuthDeviceEntity::class,
+        MemberDeviceEntity::class,
+        // Pass
+        ItemEntity::class,
+        ShareEntity::class,
+        FolderEntity::class,
+        FolderKeyEntity::class,
+        ShareKeyEntity::class,
+        PassEventEntity::class,
+        UserEventEntity::class,
+        TelemetryEntity::class,
+        TelemetryGrowthEntity::class,
+        SearchEntryEntity::class,
+        PlanEntity::class,
+        PassDataMigrationEntity::class,
+        UserInviteEntity::class,
+        UserInviteKeyEntity::class,
+        GroupInviteEntity::class,
+        GroupInviteKeyEntity::class,
+        UserAccessDataEntity::class,
+        PassOrganizationSettingsEntity::class,
+        SecureLinkEntity::class,
+        LiveTelemetryEntity::class,
+        LiveTelemetryGrowthEntity::class,
+        AssetLinkEntity::class,
+        IgnoredAssetLinkEntity::class,
+        InAppMessageEntity::class,
+        AttachmentEntity::class,
+        ChunkEntity::class,
+        PasswordHistoryEntity::class,
+        BreachCustomEmailEntity::class,
+        BreachProtonEmailEntity::class,
+        BreachEmailEntity::class,
+        BreachDomainPeekEntity::class,
+        CompromisedPasswordEntity::class
+    ],
+    autoMigrations = [
+        AutoMigration(from = 2, to = 3, spec = AppDatabaseMigrations.MIGRATION_2_3::class),
+        AutoMigration(from = 3, to = 4),
+        AutoMigration(from = 4, to = 5),
+        AutoMigration(from = 5, to = 6),
+        AutoMigration(from = 10, to = 11),
+        AutoMigration(from = 11, to = 12, spec = AppDatabaseMigrations.MIGRATION_11_12::class),
+        AutoMigration(from = 12, to = 13),
+        AutoMigration(from = 13, to = 14),
+        AutoMigration(from = 15, to = 16),
+        AutoMigration(from = 19, to = 20),
+        AutoMigration(from = 20, to = 21),
+        AutoMigration(from = 21, to = 22),
+        AutoMigration(from = 23, to = 24),
+        AutoMigration(from = 24, to = 25),
+        AutoMigration(from = 25, to = 26),
+        AutoMigration(from = 28, to = 29),
+        AutoMigration(from = 29, to = 30),
+        AutoMigration(from = 30, to = 31),
+        AutoMigration(from = 31, to = 32),
+        AutoMigration(from = 32, to = 33),
+        AutoMigration(from = 33, to = 34),
+        AutoMigration(from = 34, to = 35, spec = AppDatabaseMigrations.MIGRATION_34_35::class),
+        AutoMigration(from = 37, to = 38),
+        AutoMigration(from = 38, to = 39, spec = AppDatabaseMigrations.MIGRATION_38_39::class),
+        AutoMigration(from = 39, to = 40),
+        AutoMigration(from = 41, to = 42),
+        AutoMigration(from = 45, to = 46),
+        AutoMigration(from = 47, to = 48),
+        AutoMigration(from = 49, to = 50),
+        AutoMigration(from = 50, to = 51),
+        AutoMigration(from = 52, to = 53, spec = AppDatabaseMigrations.MIGRATION_52_53::class),
+        AutoMigration(from = 53, to = 54),
+        AutoMigration(from = 55, to = 56),
+        AutoMigration(from = 57, to = 58),
+        AutoMigration(from = 59, to = 60),
+        AutoMigration(from = 60, to = 61),
+        AutoMigration(from = 61, to = 62),
+        AutoMigration(from = 62, to = 63),
+        AutoMigration(from = 63, to = 64),
+        AutoMigration(from = 64, to = 65),
+        AutoMigration(from = 65, to = 66),
+        AutoMigration(from = 66, to = 67),
+        AutoMigration(from = 67, to = 68),
+        AutoMigration(from = 68, to = 69),
+        AutoMigration(from = 69, to = 70),
+        AutoMigration(from = 70, to = 71),
+        AutoMigration(from = 71, to = 72),
+        AutoMigration(from = 72, to = 73),
+        AutoMigration(from = 73, to = 74),
+        AutoMigration(from = 77, to = 78),
+        AutoMigration(from = 78, to = 79),
+        AutoMigration(from = 79, to = 80),
+        AutoMigration(from = 80, to = 81),
+        AutoMigration(from = 81, to = 82),
+        AutoMigration(from = 82, to = 83),
+        AutoMigration(from = 83, to = 84),
+        AutoMigration(from = 84, to = 85),
+        AutoMigration(from = 85, to = 86),
+        AutoMigration(from = 86, to = 87),
+        AutoMigration(from = 87, to = 88),
+        AutoMigration(from = 88, to = 89),
+        AutoMigration(from = 89, to = 90),
+        AutoMigration(from = 90, to = 91),
+        AutoMigration(from = 91, to = 92),
+        AutoMigration(from = 92, to = 93),
+        AutoMigration(from = 94, to = 95)
+    ],
+    version = AppDatabase.VERSION,
+    exportSchema = true
+)
+@TypeConverters(
+    // Core
+    CommonConverters::class,
+    AccountConverters::class,
+    UserConverters::class,
+    CryptoConverters::class,
+    HumanVerificationConverters::class,
+    UserSettingsConverters::class,
+    EventManagerConverters::class,
+    ChallengeConverters::class,
+    NotificationConverters::class,
+    PushConverters::class,
+    AuthConverters::class,
+    InstantConverter::class,
+    BreachTypeConverters::class,
+    AttachmentDownloadStatusConverter::class
+)
+abstract class AppDatabase :
+    BaseDatabase(),
+    AccountDatabase,
+    AddressDatabase,
+    ChallengeDatabase,
+    EventMetadataDatabase,
+    FeatureFlagDatabase,
+    HumanVerificationDatabase,
+    KeySaltDatabase,
+    KeyTransparencyDatabase,
+    OrganizationDatabase,
+    ObservabilityDatabase,
+    PassDatabase,
+    PaymentDatabase,
+    PublicAddressDatabase,
+    UserDatabase,
+    UserSettingsDatabase,
+    NotificationDatabase,
+    PushDatabase,
+    TelemetryDatabase,
+    DeviceRecoveryDatabase,
+    AuthDatabase {
+
+    companion object {
+        private const val TAG = "AppDatabase"
+        const val VERSION = 95
+
+        const val DB_NAME = "db-passkey"
+
+        val migrations: List<Migration> = listOf(
+            AppDatabaseMigrations.MIGRATION_1_2,
+            AppDatabaseMigrations.MIGRATION_6_7,
+            AppDatabaseMigrations.MIGRATION_7_8,
+            AppDatabaseMigrations.MIGRATION_8_9,
+            AppDatabaseMigrations.MIGRATION_9_10,
+            AppDatabaseMigrations.MIGRATION_14_15,
+            AppDatabaseMigrations.MIGRATION_16_17,
+            AppDatabaseMigrations.MIGRATION_17_18,
+            AppDatabaseMigrations.MIGRATION_18_19,
+            AppDatabaseMigrations.MIGRATION_22_23,
+            AppDatabaseMigrations.MIGRATION_26_27,
+            AppDatabaseMigrations.MIGRATION_27_28,
+            AppDatabaseMigrations.MIGRATION_35_36,
+            AppDatabaseMigrations.MIGRATION_36_37,
+            AppDatabaseMigrations.MIGRATION_40_41,
+            AppDatabaseMigrations.MIGRATION_42_43,
+            AppDatabaseMigrations.MIGRATION_43_44,
+            AppDatabaseMigrations.MIGRATION_44_45,
+            AppDatabaseMigrations.MIGRATION_46_47,
+            AppDatabaseMigrations.MIGRATION_48_49,
+            AppDatabaseMigrations.MIGRATION_51_52,
+            AppDatabaseMigrations.MIGRATION_54_55,
+            AppDatabaseMigrations.MIGRATION_56_57,
+            AppDatabaseMigrations.MIGRATION_58_59,
+            AppDatabaseMigrations.MIGRATION_74_75,
+            AppDatabaseMigrations.MIGRATION_75_76,
+            AppDatabaseMigrations.MIGRATION_76_77,
+            AppDatabaseMigrations.MIGRATION_93_94
+        )
+
+        fun buildDatabase(context: Context): AppDatabase = databaseBuilder<AppDatabase>(context, DB_NAME)
+            .apply { migrations.forEach { addMigrations(it) } }
+            .fallbackToDestructiveMigration()
+            .addCallback(object : Callback() {
+                override fun onOpen(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                    super.onOpen(db)
+                    runCatching {
+                        db.query("PRAGMA secure_delete = ON").close()
+                    }.onError { e ->
+                        PassLogger.w(TAG, "Failed to enable secure_delete")
+                        PassLogger.w(TAG, e)
+                    }
+                }
+            })
+            .build()
+    }
+}

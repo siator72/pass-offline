@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">Mutați %d articol în seiful următor?</item>
+    <item quantity="few">Mutați %d articole în seiful următor?</item>
+    <item quantity="other">Mutați %d de articole în seiful următor?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">Mutați %d articol în folderul următor?</item>
+    <item quantity="few">Mutați %d articole în folderul următor?</item>
+    <item quantity="other">Mutați %d de articole în folderul următor?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Mutare</string>
+  <string name="migrate_item_success_snackbar">Articole au fost mutate.</string>
+  <string name="migrate_item_error_snackbar">Eroare la mutarea articolelor.</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Eroare la mutarea unor articole.</string>
+  <string name="migrate_item_warning_history">La mutarea articolelor între seifuri, vom păstra până la ultimele 50 de modificări efectuate fiecărui articol.</string>
+  <string name="migrate_item_warning_secure_link">Legăturile web securizate ale articolului vor fi eliminate atunci când este mutat într-un alt seif.</string>
+  <string name="migrate_all_items_success_snackbar">S-au mutat toate articolele.</string>
+  <string name="migrate_all_items_error_snackbar">Eroare la mutarea tuturor articolelor din seif.</string>
+  <string name="migrate_init_error_snackbar">Nu s-a putut pregăti ecranul de migrare.</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Mutați folderul în următorul seif?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Mutați folderul în următorul folder?</string>
+  <string name="migrate_folder_success_snackbar">Folderul s-a mutat.</string>
+  <string name="migrate_folder_error_snackbar">Eroare la mutarea folderului.</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Folderul există deja în acest loc.</string>
+  <string name="migrate_dissolve_folder_dialog_title">Mutare conținut folder</string>
+  <string name="migrate_dissolve_folder_dialog_message">Acest folder se află deja la rădăcina seifului. Articolele și subfolderele sale vor fi mutate la rădăcina seifului.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Mutare</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">Articolul există deja în acest folder.</item>
+    <item quantity="few">În acest folder există deja %d articole.</item>
+    <item quantity="other">În acest folder există deja %d de articole.</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">Acest folder există deja în acest loc.</string>
+  <string name="migrate_disabled_folder_reason_being_moved">Acest folder este mutat.</string>
+  <string name="migrate_disabled_folder_reason_descendant">Acest folder se află în folderul care este mutat.</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Mutarea aici va depăși limita folderului.</string>
+  <string name="migrate_disabled_vault_reason_no_permission">Nu puteți crea articole în acest seif.</string>
+  <string name="migrate_disabled_vault_reason_same_vault">Nu puteți muta un articol în același seif.</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">Mutați articolul în alt seif?</item>
+    <item quantity="few">Mutați %d articole în alt seif?</item>
+    <item quantity="other">Mutați %d de articole în alt seif?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Articolul este partajat. Dacă îl mutați în alt seif, ceilalți utilizatori nu-l vor mai putea accesa.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">Este partajat %d articol. Dacă îl mutați în alt seif, ceilalți utilizatori nu-l vor mai putea accesa.</item>
+    <item quantity="few">Sunt partajate %d articole. Dacă le mutați în alt seif, ceilalți utilizatori nu le vor mai putea accesa.</item>
+    <item quantity="other">Sunt partajate %d de articole. Dacă le mutați în alt seif, ceilalți utilizatori nu le vor mai putea accesa.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Selectare seif</string>
+  <string name="migrate_select_destination_for_source_title">Selectați destinația unde să fie mutate articolele din %s.</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Articole au fost mutate.</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Eroare la mutarea articolelor.</string>
+</resources>

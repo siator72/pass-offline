@@ -1,0 +1,87 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.vault
+
+import androidx.navigation.NavGraphBuilder
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.ShareId
+import proton.android.pass.features.vault.folders.addFolderVaultDialogGraph
+import proton.android.pass.features.vault.folders.renameFolderVaultDialogGraph
+import proton.android.pass.features.vault.bottomsheet.createVaultGraph
+import proton.android.pass.features.vault.bottomsheet.editVaultGraph
+import proton.android.pass.features.vault.bottomsheet.folders.bottomSheetFolderOptionsGraph
+import proton.android.pass.features.vault.bottomsheet.folders.deleteFolderDialogGraph
+import proton.android.pass.features.vault.bottomsheet.options.bottomSheetVaultOptionsGraph
+import proton.android.pass.features.vault.bottomsheet.select.selectVaultBottomsheetGraph
+import proton.android.pass.features.vault.delete.deleteVaultDialogGraph
+import proton.android.pass.features.vault.leave.leaveVaultDialogGraph
+import proton.android.pass.features.vault.organise.organiseVaultsGraph
+
+sealed interface VaultNavigation {
+    data object Upgrade : VaultNavigation
+    data object CloseScreen : VaultNavigation
+    data object DismissBottomsheet : VaultNavigation
+
+    @JvmInline
+    value class VaultSelected(val shareId: ShareId) : VaultNavigation
+
+    @JvmInline
+    value class VaultMigrate(val shareId: ShareId) : VaultNavigation
+
+    @JvmInline
+    value class VaultMigrateSharedWarning(val shareId: ShareId) : VaultNavigation
+
+    @JvmInline
+    value class VaultEdit(val shareId: ShareId) : VaultNavigation
+
+    data class VaultRemove(val shareId: ShareId, val isLastVault: Boolean) : VaultNavigation
+    data class VaultShare(
+        val shareId: ShareId,
+        val showEditVault: Boolean
+    ) : VaultNavigation
+
+    @JvmInline
+    value class VaultLeave(val shareId: ShareId) : VaultNavigation
+
+    @JvmInline
+    value class VaultAccess(val shareId: ShareId) : VaultNavigation
+
+    data class AddFolder(val shareId: ShareId, val folderId: FolderId? = null) : VaultNavigation
+
+    data class RemoveFolder(val shareId: ShareId, val folderId: FolderId) : VaultNavigation
+    data class MoveFolder(val shareId: ShareId, val folderId: FolderId) : VaultNavigation
+    data class MoveAllItemsInFolder(val shareId: ShareId, val folderId: FolderId) : VaultNavigation
+    data class RenameFolder(val shareId: ShareId, val folderId: FolderId) : VaultNavigation
+
+    data class VaultAndFolderSelected(val shareId: ShareId, val folderId: FolderId) : VaultNavigation
+}
+
+fun NavGraphBuilder.vaultGraph(onNavigate: (VaultNavigation) -> Unit) {
+    createVaultGraph(onNavigate)
+    editVaultGraph(onNavigate)
+    deleteVaultDialogGraph(onNavigate)
+    leaveVaultDialogGraph(onNavigate)
+    selectVaultBottomsheetGraph(onNavigate)
+    bottomSheetVaultOptionsGraph(onNavigate)
+    organiseVaultsGraph(onNavigate)
+    addFolderVaultDialogGraph(onNavigate)
+    renameFolderVaultDialogGraph(onNavigate)
+    deleteFolderDialogGraph(onNavigate)
+    bottomSheetFolderOptionsGraph(onNavigate)
+}

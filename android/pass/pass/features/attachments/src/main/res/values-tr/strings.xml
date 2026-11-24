@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">Bir fotoğraf çekin</string>
+  <string name="add_attachment_choose_a_photo_or_video">Bir fotoğraf ya da video seçin</string>
+  <string name="add_attachment_choose_a_file">Bir dosya seçin</string>
+  <string name="attachment_options_rename">Yeniden adlandır</string>
+  <string name="attachment_options_delete">Sil</string>
+  <string name="attachment_options_download">İndir</string>
+  <string name="attachment_options_share">Paylaş</string>
+  <string name="file_picker_open_error">Dosya seçici açılamadı</string>
+  <string name="media_picker_open_error">Ortam seçici açılamadı</string>
+  <string name="camera_open_error">Kamera açılamadı</string>
+  <string name="camera_permission_explanation">Bu özelliği kullanabilmek için kameraya erişme izni verilmelidir.</string>
+  <string name="camera_permission_open_settings">Ayarları aç</string>
+  <string name="delete_all_attachments_title">Tüm ek dosyalar silinsin mi?</string>
+  <string name="delete_all_attachments_subtitle">Bu işlem geri alınamaz</string>
+  <string name="delete_all_attachments_confirm">Tümünü sil</string>
+  <string name="rename_attachment_dialog_title">Dosyayı yeniden adlandır</string>
+  <string name="storage_full_title">Depolama alanınız dolmak üzere.</string>
+  <string name="storage_full_body">Depolama alanınızı artırmak için tarifenizi yükseltin.</string>
+  <string name="storage_full_upgrade">Yükselt</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%1$s / %2$s</string>
+  <string name="attachments_saved_to_location_success">Ek dosya konuma kaydedildi</string>
+  <string name="attachments_saved_to_location_error">Ek dosya konuma kaydedilemedi</string>
+  <string name="attachment_sync_dialog_title_waiting">Bağlantı kurulması bekleniyor</string>
+  <string name="attachment_sync_dialog_title_downloading">Ek dosyalar indirliyor</string>
+  <string name="attachment_sync_dialog_title_done">İndirme tamamlandı</string>
+  <string name="attachment_sync_dialog_title_partial_failure">İndirme tamamlanamadı</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">Ek dosyaları indirmek için ağ bağlantısı bekleniyor.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">%1$d/%2$d ek dosya indiriliyor</string>
+  <string name="attachment_sync_dialog_subtitle_done">Tüm ek dosyaları indirildi.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">Bazı ek dosyalar indirilemedi. Aşağıdaki başarısız olanları yeniden deneyebilirsiniz.</string>
+  <string name="attachment_sync_dialog_retry_content_description">Yeniden indir</string>
+  <string name="attachment_sync_vault_files_count">%1$d / %2$d dosya</string>
+</resources>

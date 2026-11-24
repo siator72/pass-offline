@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">複製並關閉</string>
+  <string name="password_copied_to_clipboard">已複製密碼</string>
+  <string name="bottomsheet_generate_password_title">生成密碼</string>
+  <string name="password_type">類型</string>
+  <string name="special_characters">特殊字元 (!&amp;&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="other">%s 個字元</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">大寫字母(A–Z)</string>
+  <string name="bottomsheet_option_include_numbers">包含數字(0–9)</string>
+  <string name="regenerate_password_icon_content_description">重新產生密碼按鈕</string>
+  <string name="password_mode_memorable">可記得的密碼</string>
+  <string name="password_mode_random">隨機生成密碼</string>
+  <string name="password_mode_icon">密碼模式圖示</string>
+  <string name="password_words_separator_icon">密碼單字分隔字元</string>
+  <string name="password_history_title">已生成的密碼</string>
+  <string name="password_history_empty">無歷史紀錄</string>
+  <string name="password_history_description">Generated passwords will be stored for a period of 2 weeks.</string>
+  <string name="password_history_today">今天，於 %s</string>
+  <string name="password_history_yesterday">Yesterday, %s</string>
+  <string name="password_history_before_yesterday">%d days ago, %s</string>
+  <string name="password_history_clear_history">清除歷程紀錄</string>
+  <string name="password_history_remove_from_history">Remove from history</string>
+</resources>

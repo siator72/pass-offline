@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Titlu (A-Z)</string>
+  <string name="sort_by_title_desc">Titlu (Z-A)</string>
+  <string name="sort_by_creation_asc">De la vechi la noi</string>
+  <string name="sort_by_creation_desc">De la noi la vechi</string>
+  <string name="sort_by_modification_date">Utilizate recent</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Toate</string>
+  <string name="item_list_header_pinned_search_results">Fixate</string>
+  <string name="item_list_header_logins_type">Conectări</string>
+  <string name="item_list_header_logins_totp_type">Conectări cu parolă unică (TOTP)</string>
+  <string name="item_list_header_aliases_type">Aliasuri</string>
+  <string name="item_list_header_notes_type">Note</string>
+  <string name="item_list_header_credit_cards_type">Carduri de plată</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">rezultat</item>
+    <item quantity="few">rezultate</item>
+    <item quantity="other">de rezultate</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Identități</string>
+  <string name="item_list_header_custom_type">Articole personalizate</string>
+  <string name="item_list_header_shared_with_me">Partajate cu mine</string>
+  <string name="item_list_header_shared_by_me">Partajate de mine</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Confirmare</string>
+  <string name="bottomsheet_cancel_button">Anulare</string>
+  <string name="bottomsheet_move_to_trash">Mutare în gunoi</string>
+  <string name="bottomsheet_pin_item">Fixare</string>
+  <string name="bottomsheet_unpin_item">Anulare fixare</string>
+  <string name="bottomsheet_view_item_history">Afișare istoric</string>
+  <string name="bottomsheet_monitor_exclude">Excludere din monitorizare</string>
+  <string name="bottomsheet_monitor_include">Includere în monitorizare</string>
+  <string name="bottomsheet_migrate_item_v2">Mutare</string>
+  <string name="bottomsheet_create_folder">Creare folder</string>
+  <string name="folder_tree_create_folder">Creare folder</string>
+  <string name="bottomsheet_rename_folder">Redenumire</string>
+  <string name="bottomsheet_create_sub_folder">Creare subfolder</string>
+  <string name="bottomsheet_move_folder">Mutare folder</string>
+  <string name="bottomsheet_move_all_items_in_folder">Mutare toate articolele</string>
+  <string name="bottomsheet_copy_item_note">Copiere notiță</string>
+  <string name="bottomsheet_delete_permanently">Ștergere permanentă</string>
+  <string name="bottomsheet_restore">Restaurare</string>
+  <string name="bottomsheet_leave">Părăsire</string>
+  <string name="bottomsheet_duplicate">Duplicare</string>
+  <string name="bottomsheet_no_actions">Nu există acțiuni disponibile</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Meniu acțiune deschidere articol</string>
+  <string name="action_upgrade_now">Modificare</string>
+  <string name="action_not_now">Nu acum</string>
+  <string name="action_learn_more">Detalii</string>
+  <string name="action_enable">Activare</string>
+  <string name="action_view_details">Afișare detalii</string>
+  <string name="action_see_all">Afișare toate</string>
+  <string name="action_confirm">Confirmare</string>
+  <string name="action_cancel">Anulare</string>
+  <string name="action_continue">Continuare</string>
+  <string name="action_retry">Reîncercare</string>
+  <string name="action_edit">Editare</string>
+  <string name="action_add">Adăugare</string>
+  <string name="action_delete">Ștergere</string>
+  <string name="action_make_default">Setare ca implicită</string>
+  <string name="action_verify">Verificare</string>
+  <string name="action_close">Închidere</string>
+  <string name="action_update">Actualizare</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Adăugați primul articol</string>
+  <string name="empty_search_results_title">Nu s-au găsit rezultate</string>
+  <string name="empty_list_open_extension">Accesare extensie web</string>
+  <string name="empty_list_create_item_button">Creare articol</string>
+  <!-- Field -->
+  <string name="field_title_title">Titlu</string>
+  <string name="field_title_hint">Nedenumit</string>
+  <string name="field_title_required">Titlul este obligatoriu</string>
+  <string name="small_cross_icon_content_description">Pictogramă cruce mică</string>
+  <string name="field_note_title">Notiță</string>
+  <string name="field_note_hint">Adăugare notiță</string>
+  <string name="linked_apps_title">Aplicații legate</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Deconectat</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Pictogramă aplicație lipsă</string>
+  <string name="add_item_icon_content_description">Pictogramă adăugare articol</string>
+  <string name="navigate_back_icon_content_description">Pictogramă navigare înapoi</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Articole listă</string>
+  <string name="bottom_bar_add_item_icon_content_description">Adăugare articol</string>
+  <string name="bottom_bar_profile_icon_content_description">Profil</string>
+  <string name="bottom_bar_security_center_icon_content_description">Centru de securitate</string>
+  <string name="bottom_bar_explore_icon_content_description">Explorare</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Astăzi</string>
+  <string name="most_recent_yesterday">Ieri</string>
+  <string name="most_recent_this_week">Săptămâna asta</string>
+  <string name="most_recent_last_two_weeks">Ultimele două săptămâni</string>
+  <string name="most_recent_last_30_days">Luna trecută</string>
+  <string name="most_recent_last_60_days">Ultimele 60 de zile</string>
+  <string name="most_recent_last_90_days">Ultimele 90 de zile</string>
+  <string name="most_recent_within_the_last_year">În ultimul an</string>
+  <string name="most_recent_more_than_1_year">Mai vechi de un an</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Pictogramă căutare</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">Un articol</item>
+    <item quantity="few">%d articole</item>
+    <item quantity="other">%d de articole</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Renunți la modificări?</string>
+  <string name="confirm_close_dialog_message">Aveți modificări nesalvate. Sigur nu le salvați?</string>
+  <string name="confirm_close_dialog_close_button">Renunțare</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Modificare</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Opțiuni avansate</string>
+  <string name="hide_advanced_options">Ascundere opțiuni avansate</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Puternică</string>
+  <string name="label_password_strength_vulnerable">Vulnerabilă</string>
+  <string name="label_password_strength_weak">Slabă</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Afișare toate</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Astăzi %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Ieri %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">zz LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">zz LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">zz LLL aaaa HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Adresă alias</string>
+  <string name="item_details_alias_section_alias_disabled_title">Adresă alias (dezactivată)</string>
+  <string name="item_details_alias_section_mailboxes_title">Transferare către</string>
+  <string name="item_details_credit_card_section_cardholder_title">Titular card</string>
+  <string name="item_details_credit_card_section_card_number_title">Număr card</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Expiră la</string>
+  <string name="item_details_credit_card_section_cvv_title">Cod de securitate</string>
+  <string name="item_details_credit_card_section_pin_title">Cod PIN</string>
+  <string name="item_details_login_section_email_title">Adresa de e-mail</string>
+  <string name="item_details_login_section_username_title">Nume utilizator</string>
+  <string name="item_details_login_section_password_title">Parola</string>
+  <string name="item_details_login_section_primary_totp_title">Cod A2F (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Pagini web</string>
+  <string name="autofill_mode_label_default">Domeniu părinte și subdomenii</string>
+  <string name="autofill_mode_label_exact">(Sub)domeniu exact</string>
+  <string name="autofill_mode_label_never">Niciodată pe acest site</string>
+  <string name="autofill_mode_label_start_with">Începe cu</string>
+  <string name="autofill_mode_label_pattern">Model general de căutare</string>
+  <string name="autofill_mode_label_regular_expression">Expresie regulată</string>
+  <string name="autofill_mode_label_exact_path">Potrivire exactă URL</string>
+  <string name="autofill_mode_label_unsupported">Acest URL va fi ignorat la autocompletare</string>
+  <string name="login_item_view_alias_button">Afișare alias</string>
+  <string name="item_details_identity_section_personal_title">Detalii personale</string>
+  <string name="item_details_identity_section_personal_first_name_title">Prenume</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Nume mijlociu</string>
+  <string name="item_details_identity_section_personal_last_name_title">Nume</string>
+  <string name="item_details_identity_section_personal_full_name_title">Numele complet</string>
+  <string name="item_details_identity_section_personal_email_title">Adresa de e-mail</string>
+  <string name="item_details_identity_section_personal_gender_title">Gen</string>
+  <string name="item_details_identity_section_personal_phone_title">Număr de telefon</string>
+  <string name="item_details_identity_section_personal_birthday_title">Data nașterii</string>
+  <string name="item_details_identity_section_address_title">Detalii adresă</string>
+  <string name="item_details_identity_section_address_organization_title">Organizația</string>
+  <string name="item_details_identity_section_address_street_address_title">Strada sau căsuța poștală</string>
+  <string name="item_details_identity_section_address_floor_title">Etaj</string>
+  <string name="item_details_identity_section_address_city_title">Oraș</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">Cod poștal</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Județul</string>
+  <string name="item_details_identity_section_address_county_title">Județ</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Țara sau regiunea</string>
+  <string name="item_details_identity_section_contact_title">Detalii contact</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Cod numeric personal</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Număr pașaport</string>
+  <string name="item_details_identity_section_contact_license_number_title">Permis de conducere</string>
+  <string name="item_details_identity_section_contact_website_title">Site web</string>
+  <string name="item_details_identity_section_contact_x_handle_title">Adresa X</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Număr de telefon secundar</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Detalii loc de muncă</string>
+  <string name="item_details_identity_section_work_company_title">Compania</string>
+  <string name="item_details_identity_section_work_occupation_title">Ocupația</string>
+  <string name="item_details_identity_section_work_email_title">Adresă de e-mail serviciu</string>
+  <string name="item_details_identity_section_work_phone_number_title">Telefon serviciu</string>
+  <string name="item_details_identity_section_work_personal_website_title">Site web personal</string>
+  <string name="item_details_shared_section_note_title">Notiță</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Ultima autocompletare</string>
+  <string name="item_details_shared_section_item_history_created_title">Creată la</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Modificat: (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Afișare istoric articol</string>
+  <string name="item_details_shared_section_more_info_header_title">Detalii</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Pictogramă detalii articol</string>
+  <string name="item_details_shared_section_more_info_item_id">ID articol</string>
+  <string name="item_details_shared_section_more_info_vault_id">ID seif</string>
+  <string name="item_details_shared_section_more_info_share_id">ID partajare</string>
+  <string name="item_details_wifi_network_label_ssid_name">Nume (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Parola</string>
+  <string name="item_details_wifi_network_label_security">Securitate</string>
+  <string name="item_details_ssh_key_label_public_key">Cheia publică</string>
+  <string name="item_details_ssh_key_label_private_key">Cheia privată</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Versiunea actuală a aplicației nu mai e suportată. Actualizați aplicația.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Cheie de acces</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Modificați planul?</string>
+  <string name="dialog_upgrade_plan_message">Această funcție nu este disponibilă pentru utilizatorii de nivel gratuit. Dacă doriți să vă bucurați de acest lucru împreună cu alte funcții interesante, modificați-vă planul și încercați-l!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Modificare</string>
+  <string name="dialog_upgrade_plan_action_cancel">Nu acum</string>
+  <!-- Words -->
+  <string name="email_address">Adresa de e-mail</string>
+  <string name="email_address_invalid">Adresă de e-mail nevalidă.</string>
+  <string name="password">Parolă</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Buton pentru a respinge acest sfat și pentru a nu-l mai afișa.</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d an</item>
+    <item quantity="few">%d ani</item>
+    <item quantity="other">%d de ani</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d lună</item>
+    <item quantity="few">%d luni</item>
+    <item quantity="other">%d de luni</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d săptămână</item>
+    <item quantity="few">%d săptămâni</item>
+    <item quantity="other">%d de săptămâni</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d zi</item>
+    <item quantity="few">%d zile</item>
+    <item quantity="other">%d de zile</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d oră</item>
+    <item quantity="few">%d ore</item>
+    <item quantity="other">%d de ore</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d minut</item>
+    <item quantity="few">%d minute</item>
+    <item quantity="other">%d de minute</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d secundă</item>
+    <item quantity="few">%d secunde</item>
+    <item quantity="other">%d de secunde</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d alias</item>
+    <item quantity="few">%d aliasuri</item>
+    <item quantity="other">%d de aliasuri</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Notița a fost copiată.</string>
+  <string name="snack_bar_message_item_migration_error">A apărut o eroare la migrarea acestui articol.</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Articolul a fost exclus din monitorizare.</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">A apărut o eroare la excluderea articolului din monitorizare.</string>
+  <string name="snack_bar_message_item_monitor_included_success">Articolul a fost inclus în monitorizare.</string>
+  <string name="snack_bar_message_item_monitor_included_error">A apărut o eroare la includerea articolului în monitorizare.</string>
+  <string name="snack_bar_message_item_pinned_success">Elementul a fost fixat.</string>
+  <string name="snack_bar_message_item_pinned_error">A apărut o eroare la fixarea acestui element.</string>
+  <string name="snack_bar_message_item_unpinned_success">Elementul nu mai este fixat.</string>
+  <string name="snack_bar_message_item_unpinned_error">A apărut o eroare la anularea fixării acestui element.</string>
+  <string name="snack_bar_message_item_trashed_success">Articolul a fost mutat în gunoi.</string>
+  <string name="snack_bar_message_item_trashed_error">A apărut o eroare la mutarea în gunoi a acestui articol.</string>
+  <string name="snack_bar_message_item_restore_success">Articolul a fost restaurat.</string>
+  <string name="snack_bar_message_item_restore_error">A apărut o eroare la restaurarea acestui articol.</string>
+  <string name="snack_bar_message_item_delete_success">Articolul a fost șters.</string>
+  <string name="snack_bar_message_item_delete_error">A apărut o eroare la ștergerea acestui articol.</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Activare sincronizare SimpleLogin</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">Am detectat că aveți %d alias care există în SimpleLogin, dar lipsește în Proton Pass. Doriți să-l importați?</item>
+    <item quantity="few">Am detectat că aveți %d aliasuri care există în SimpleLogin, dar lipsesc în Proton Pass. Doriți să le importați?</item>
+    <item quantity="other">Am detectat că aveți %d de aliasuri care există în SimpleLogin, dar lipsesc în Proton Pass. Doriți să le importați?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Sincronizare aliasuri</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Nu ați primit codul?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Verificați în folderul de mesaje nedorite un e-mail cu subiectul „%s”.</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Confirmați adresa de e-mail pentru Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Confirmați adresa de e-mail</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Dacă nu găsiți un astfel de e-mail, puteți să %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">solicitați un cod nou</string>
+  <string name="field_display_name_title">Nume afișat</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s fișier</item>
+    <item quantity="few">%1$s fișiere</item>
+    <item quantity="other">%1$s de fișiere</item>
+  </plurals>
+  <string name="attachment_title">Atașamente</string>
+  <string name="attachment_no_files">Încărcare fișiere din dispozitiv</string>
+  <string name="attachment_add_file">Atașare fișier</string>
+  <string name="attachment_row_upload_failed">Încărcare eșuată</string>
+  <string name="attachment_row_retry">Reîncercare</string>
+  <string name="options_menu_content_description">Meniu opțiuni</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d articol partajat</item>
+    <item quantity="few">%d articole partajate</item>
+    <item quantity="other">%d de articole partajate</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d utilizator</item>
+    <item quantity="few">%d utilizatori</item>
+    <item quantity="other">%d de utilizatori</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d membru</item>
+    <item quantity="few">%d membri</item>
+    <item quantity="other">%d de membri</item>
+  </plurals>
+  <string name="show_network_qr_code">Afișare cod QR rețea</string>
+  <string name="expand_collpased_text">mai mult</string>
+  <string name="collapse_expanded_text">mai puțin</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Parolă slabă</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Acest cont este vulnerabil, accesați serviciul și schimbați-vă parola.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Parolă compromisă</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">Această parolă de conectare apare într-o breșă de securitate a datelor. Accesați serviciul și schimbați parola.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">Alte autentificări care folosesc aceeași parolă: %d</item>
+    <item quantity="few">Alte autentificări care folosesc aceeași parolă: %d</item>
+    <item quantity="other">Alte autentificări care folosesc aceeași parolă: %d</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Setați A2F pentru mai multă securitate</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Acest serviciu oferă A2A. Activați-l pentru securitate suplimentară a contului.</string>
+  <string name="login_item_monitor_action_ignore">Ignorare</string>
+  <string name="login_item_monitor_action_restore">Restaurare alertă</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Parolă slabă</string>
+  <string name="login_item_monitor_label_compromised">Parolă compromisă</string>
+  <string name="login_item_monitor_label_reused">Parolă refolosită</string>
+  <string name="login_item_monitor_label_missing_2fa">Lipsește A2F</string>
+  <string name="login_item_reused_passwords_subtitle">Articole din seifuri care folosesc această parolă.</string>
+  <string name="mfa_limit_reached">Limită A2F atinsă.</string>
+  <string name="activity_in_last_two_weeks">Activitate în ultimele 14 zile</string>
+  <string name="contacts">Contacte</string>
+  <string name="contacts_section_description">Pentru a vă păstra adresa de e-mail personală ascunsă, puteți crea un alias de contact care vă maschează adresa.</string>
+  <string name="field_detail_display_name_title">Nume afișat</string>
+  <string name="display_name_section_description">Numele afișat când se trimite un mesaj de la acest alias.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">Redirecționări: %1$s</item>
+    <item quantity="few">Redirecționări: %1$s</item>
+    <item quantity="other">Redirecționări: %1$s</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">Răspunsuri: %1$s</item>
+    <item quantity="few">Răspunsuri: %1$s</item>
+    <item quantity="other">Răspunsuri: %1$s</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">Blocări: %1$s</item>
+    <item quantity="few">Blocări: %1$s</item>
+    <item quantity="other">Blocări: %1$s</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Creare autentificare</string>
+  <string name="banner_contacts_title">Știați că?</string>
+  <string name="banner_contacts_subtitle">De fiecare dată când aliasul primește un mesaj de la cineva, este creat automat un contact.</string>
+  <string name="action_reveal">Dezvăluire</string>
+  <string name="action_conceal">Ascundere</string>
+  <string name="warning_dialog_item_shared_vault_title">Articol într-un seif partajat</string>
+  <string name="warning_dialog_item_shared_title">Articol partajat</string>
+  <string name="warning_dialog_item_shared_vault_creating">Creați un articol într-un seif partajat, iar membri vor obține imediat acces la acesta.</string>
+  <string name="warning_dialog_item_shared_vault_moving">Mutați un element într-un seif partajat, iar membri vor obține imediat acces la acesta.</string>
+  <string name="warning_dialog_item_shared_vault_updating">Editați un articol într-un seif partajat, iar membri vor obține imediat acces la acesta.</string>
+  <string name="warning_dialog_item_shared_updating">Editați un articol partajat. Modificările vor fi vizibile imediat pentru toți cei cu care este partajat.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Nu-mi mai reaminti</string>
+  <string name="upgrade_to_pass_plus">Treceți la Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">Urmează să se deschidă pagina site-ului nostru. Dacă achiziționați un plan, reporniți aplicația.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Separator cuvinte</string>
+  <string name="bottomsheet_option_capitalise">Litere mari</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Cratimă ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Spații</string>
+  <string name="bottomsheet_option_word_separator_periods">Punct ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Virgulă ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Subliniere ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Cifre</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Cifre și simboluri</string>
+  <plurals name="word_count">
+    <item quantity="one">%s cuvânt</item>
+    <item quantity="few">%s cuvinte</item>
+    <item quantity="other">%s de cuvinte</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Dificultate parolă</string>
+  <string name="password_check_min_length">Parola este prea scurtă</string>
+  <string name="password_check_lowercase">Litere mici</string>
+  <string name="password_check_uppercase">Litere mari</string>
+  <string name="password_check_no_consecutive">Fără caractere repetate</string>
+  <string name="password_check_no_common">Fără parole comune</string>
+</resources>

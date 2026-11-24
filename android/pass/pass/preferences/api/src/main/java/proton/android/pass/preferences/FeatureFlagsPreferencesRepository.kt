@@ -1,0 +1,42 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.preferences
+
+import proton.android.pass.domain.UserId
+import kotlinx.coroutines.flow.Flow
+
+interface FeatureFlagsPreferencesRepository {
+
+    operator fun <T> get(featureFlag: FeatureFlag): Flow<T>
+
+    operator fun <T> get(featureFlag: FeatureFlag, userId: UserId): Flow<T>
+
+    /**
+     * Resolves a feature flag for a decision that must not use an unresolved default value.
+     * An explicit local override takes precedence over the remote value.
+     */
+    suspend fun awaitResolved(featureFlag: FeatureFlag, userId: UserId): Boolean
+
+    suspend fun refreshRemote(userId: UserId)
+
+    fun <T> set(featureFlag: FeatureFlag, value: T? = null): Result<Unit>
+
+    fun observeForAllUsers(featureFlag: FeatureFlag): Flow<Boolean>
+
+}

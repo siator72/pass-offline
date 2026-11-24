@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">Kopírovať a zatvoriť</string>
+  <string name="password_copied_to_clipboard">Heslo skopírované</string>
+  <string name="bottomsheet_generate_password_title">Vygenerovať heslo</string>
+  <string name="password_type">Typ</string>
+  <string name="special_characters">Špeciálne znaky (!&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="one">%s znak</item>
+    <item quantity="few">%s znaky</item>
+    <item quantity="many">%s znakov</item>
+    <item quantity="other">%s znakov</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">Veľké písmená (A-Z)</string>
+  <string name="bottomsheet_option_include_numbers">Vrátane čísiel (0-9)</string>
+  <string name="regenerate_password_icon_content_description">Tlačidlo na obnovenie hesla</string>
+  <string name="password_mode_memorable">Zapamätateľné heslo</string>
+  <string name="password_mode_random">Náhodné heslo</string>
+  <string name="password_mode_icon">Ikona režimu hesla</string>
+  <string name="password_words_separator_icon">Oddeľovač slov hesla</string>
+  <string name="password_history_title">Vygenerované heslá</string>
+  <string name="password_history_empty">Žiadna história</string>
+  <string name="password_history_description">Vygenerované heslá budú uložené po dobu 2 týždňov.</string>
+  <string name="password_history_today">Dnes %s</string>
+  <string name="password_history_yesterday">Včera %s</string>
+  <string name="password_history_before_yesterday">pred %d dňami, %s</string>
+  <string name="password_history_clear_history">Vymazať históriu</string>
+  <string name="password_history_remove_from_history">Odstrániť z histórie</string>
+</resources>

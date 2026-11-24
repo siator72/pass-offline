@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="upsell_monitor_title">Заставайцеся абароненымі ў інтэрнэце</string>
+  <string name="upsell_dark_web_monitoring_subtitle">Функцыя Dark Web Monitoring даступна з платным тарыфным планам. Палепшыце сваю падпіску, каб неадкладна атрымаць доступ да гэтай функцыі.</string>
+  <string name="upsell_missing_2fa_subtitle">Паглядзець спіс сайтаў, дзе вы можаце дадаць другі фактар аўтэнтыфікацыі для абароны сваёй прысутнасці ў інтэрнэце. Палепшыце сваю падпіску, каб неадкладна атрымаць доступ да гэтай функцыі.</string>
+  <string name="upsell_sentinel_subtitle">Разблакіруйце дадатковыя функцыі бяспекі і падрабязныя журналы для абароны сваёй прысутнасці ў інтэрнэце.</string>
+  <string name="upsell_compromised_passwords_subtitle">Праверце, ці былі раскрытыя вашы паролі ў парушэннях даных. Палепшыце для неадкладнага доступу.</string>
+  <string name="upsell_paid_feature_file_attachments">Файлы з далучэннямі</string>
+  <string name="upsell_paid_feature_dark_web_monitoring">Dark Web Monitoring</string>
+  <string name="upsell_paid_feature_sentinel">Proton Sentinel</string>
+  <string name="upsell_paid_feature_authenticator">Інтэграваная аўтэнтыфікацыя 2ФА</string>
+  <string name="upsell_paid_feature_unlimited_aliases">Неабмежаваная колькасць псеўданімаў Hide-my-email</string>
+  <string name="upsell_paid_feature_vault_sharing">Абагуленне сховішча (да 10 карыстальнікаў)</string>
+  <string name="upsell_paid_feature_secure_links">Бяспечныя спасылкі</string>
+  <string name="upsell_paid_feature_advance_alias_management">Пашыранае кіраванне псеўданімамі</string>
+  <string name="upsell_paid_feature_authenticator_essential">Патрабаванне 2ФА для арганізацыі</string>
+  <string name="upsell_paid_feature_sso_essential">Інтэграцыя SSO (неўзабаве з\'явіцца)</string>
+  <string name="upsell_paid_feature_advance_alias_management_title">Кіраванне вашымі псеўданімамі</string>
+  <string name="upsell_paid_feature_advance_alias_management_subtitle">Пашыранае кіраванне псеўданімамі даступна з платным тарыфным планам. Палепшыце, каб атрымаць доступ да гэтай функцыі.</string>
+  <string name="upsell_paid_feature_item_sharing_title">Хуткае абагульванне элемента</string>
+  <string name="upsell_paid_feature_item_sharing_subtitle">Палепшыце сёння, каб мець магчымасць абагульваць элементы з любым карыстальнікам Pass. Вы таксама атрымаеце перавагі іншых прэміяльных функцый:</string>
+  <string name="upsell_paid_feature_file_attachments_title">Файлы з далучэннямі</string>
+  <string name="upsell_button_upgrade">Атрымаць Pass Plus</string>
+  <string name="upsell_button_upgrade_unlimited">Атрымаць Proton Unlimited</string>
+  <string name="upsell_button_upgrade_essentials">Атрымаць Pass Business</string>
+  <string name="price_per_month_type1">%s/месяц</string>
+  <string name="upsell_skip">Не цяпер</string>
+  <string name="upsell_no_plan">Тарыфны план недаступны</string>
+  <string name="upsell_plan_title">Разблакіруйце прэміяльныя функцыі.</string>
+  <string name="upsell_plan_unlimited_title">Усё найлепшае ад Proton у адной падпісцы.</string>
+  <string name="upsell_plan_what_included">Што ўключана</string>
+  <string name="upsell_plan_plus_1">Псеўданімы hide-my-email</string>
+  <string name="upsell_plan_plus_2">Убудаваны 2ФА</string>
+  <string name="upsell_plan_plus_3">Сховішча, элементы і абагульванне спасылак</string>
+  <string name="upsell_plan_plus_4">Папкі</string>
+  <string name="upsell_plan_plus_5">Dark Web Monitoring</string>
+  <string name="upsell_plan_plus_6">Файлы з далучэннямі</string>
+  <string name="upsell_plan_unlimited_1">Сховішча</string>
+  <string name="upsell_plan_unlimited_2">Дадатковыя адрасы электроннай пошты</string>
+  <string name="upsell_plan_unlimited_3">Прылады VPN</string>
+  <string name="upsell_plan_unlimited_4">Хуткасць VPN</string>
+  <string name="upsell_plan_unlimited_4_col1">Сярэдняя</string>
+  <string name="upsell_plan_unlimited_4_col2">Найвышэйшая</string>
+  <string name="upsell_plan_plus_welcome_1">Неабмежаваная колькасць псеўданімаў hide-my-email</string>
+  <string name="upsell_plan_plus_welcome_2">Інтэграваная аўтэнтыфікацыя 2ФА</string>
+  <string name="upsell_plan_plus_welcome_3">Бяспечнае сховішча, элементы і абагульванне спасылак</string>
+  <string name="upsell_plan_plus_welcome_4">Папкі</string>
+  <string name="upsell_plan_plus_welcome_5">Dark Web Monitoring</string>
+  <string name="upsell_plan_plus_welcome_6">Файлы з далучэннямі</string>
+  <string name="upsell_limited_time_offer">Прапанова абмежаваная па часе</string>
+  <string name="upsell_try_pass_plus">Паспрабуйце Pass Plus усяго за</string>
+  <string name="upsell_pass_plus_welcome_offer">Вітальная прапанова Pass Plus</string>
+  <string name="upsell_pass_plus_first_year">Першы год</string>
+  <string name="upsell_get_the_best_of_pass">Атрымайце лепшае ад Pass з гэтай абмежаванай па часе прапановай.</string>
+  <string name="upsell_get_one_month">Атрымайце 1 месяц за %s</string>
+  <string name="upsell_get_the_deal">Атрымаць прапанову</string>
+  <string name="upsell_whats_included">Што ўключана</string>
+  <string name="upsell_error_google_prices">Праблема атрымання цэн з Google Play Store</string>
+  <string name="upsell_error_general">Адбылася памылка.</string>
+</resources>

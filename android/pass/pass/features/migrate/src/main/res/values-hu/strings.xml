@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">%d elem áthelyezése a következő tárolóba?</item>
+    <item quantity="other">%d elem áthelyezése a következő tárolóba?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">Move %d item to the following folder?</item>
+    <item quantity="other">Move %d items to the following folder?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Áthelyezés</string>
+  <string name="migrate_item_success_snackbar">Elemek áthelyezve</string>
+  <string name="migrate_item_error_snackbar">Hiba az elemek áthelyezésekor</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Hiba néhány elem áthelyezésekor</string>
+  <string name="migrate_item_warning_history">Az elemek tárolók közti mozgatásakor minden elem legutóbbi 50 módosítása tekinthető meg.</string>
+  <string name="migrate_item_warning_secure_link">Ennek az elemnek a biztonságos hivatkozásai el lesznek távolítva, ha egy másik tárolóba lesznek át helyezve.</string>
+  <string name="migrate_all_items_success_snackbar">Minden elem áthelyezve</string>
+  <string name="migrate_all_items_error_snackbar">Hiba az összes elem áthelyezésekor</string>
+  <string name="migrate_init_error_snackbar">Nem sikerült a költöztetési képernyő előkészítése</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Move folder to the following vault?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Move folder to the following folder?</string>
+  <string name="migrate_folder_success_snackbar">Folder moved</string>
+  <string name="migrate_folder_error_snackbar">Error moving the folder</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Folder is already in this location</string>
+  <string name="migrate_dissolve_folder_dialog_title">Move folder contents</string>
+  <string name="migrate_dissolve_folder_dialog_message">This folder is already at the vault root. Its items and subfolders will be moved to the vault root.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Áthelyezés</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">Item is already in this folder</item>
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">This folder is already in this location</string>
+  <string name="migrate_disabled_folder_reason_being_moved">This folder is being moved</string>
+  <string name="migrate_disabled_folder_reason_descendant">This folder is inside the folder being moved</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Moving here would exceed the folder limits</string>
+  <string name="migrate_disabled_vault_reason_no_permission">Nem hozhat létre elemeket ebben a tárolóban</string>
+  <string name="migrate_disabled_vault_reason_same_vault">Nem helyezhet át elemet ugyanabba a tárolóba</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">Áthelyezi az elemet egy másik tárolóba?</item>
+    <item quantity="other">Áthelyez %d elemet egy másik tárolóba?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Ez a elem jelenleg meg van osztva. Ha áthelyezi egy másik tárolóba, az összes többi felhasználó számára megszűnik a hozzáférés.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">%d elem jelenleg meg van osztva. Ha áthelyezi egy másik tárolóba, az összes többi felhasználó számára megszűnik a hozzáférés.</item>
+    <item quantity="other">%d elem jelenleg meg van osztva. Ha áthelyezi egy másik tárolóba, az összes többi felhasználó számára megszűnik a hozzáférés.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Válasszon tárolót</string>
+  <string name="migrate_select_destination_for_source_title">Select the destination to move all items from %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Elemek áthelyezve</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Hiba az elemek áthelyezésekor</string>
+</resources>

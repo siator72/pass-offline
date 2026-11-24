@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Home -->
+  <string name="home_indexing_banner">Se creează indexul de căutare…</string>
+  <string name="home_indexing_banner_progress">Se creează indexul de căutare… (%1$d/%2$d)</string>
+  <string name="home_empty_vault_title">Seiful este gol</string>
+  <string name="home_empty_vault_subtitle">Începeți prin crearea primului articol.</string>
+  <string name="home_empty_folder_title">Folderul este gol</string>
+  <string name="home_empty_vault_login_title">Nu există date de conectare</string>
+  <string name="home_empty_vault_login_subtitle">Începeți prin crearea primelor date de conectare.</string>
+  <string name="home_empty_vault_aliases_title">Nu există aliasuri</string>
+  <string name="home_empty_vault_aliases_subtitle">Începeți prin crearea primului alias.</string>
+  <string name="home_empty_vault_notes_title">Nu există notițe</string>
+  <string name="home_empty_vault_notes_subtitle">Începeți prin crearea primei notițe.</string>
+  <string name="home_empty_vault_logins_mfa_title">Nu există conectări cu pară unică (TOTP)</string>
+  <string name="home_empty_vault_logins_mfa_subtitle">Începeți prin crearea primelor date de conectare cu parolă unică (TOTP).</string>
+  <string name="home_empty_vault_identity_title">Nu există identități</string>
+  <string name="home_empty_vault_identity_subtitle">Începeți prin crearea primei identități.</string>
+  <string name="home_empty_vault_custom_item_title">Nu s-au găsit articole personalizate</string>
+  <string name="home_empty_vault_custom_item_subtitle">Începeți prin crearea primului articol personalizat.</string>
+  <string name="home_empty_vault_cc_title">Nu există carduri de plată</string>
+  <string name="home_empty_vault_cc_subtitle">Începeți prin crearea primului card de plăți.</string>
+  <string name="home_empty_shared_items_title">Nu s-au găsit articole partajate</string>
+  <string name="home_empty_shared_items_with_me_subtitle">Nu vi s-a partajat niciun articol.</string>
+  <string name="home_empty_shared_items_by_me_subtitle">Nu ați partajat niciun articol.</string>
+  <string name="home_empty_no_vaults_title">Nu aveți seifuri</string>
+  <string name="home_empty_no_vaults_subtitle">Trebuie să vă contactați administratorul.</string>
+  <string name="home_empty_read_only_vault_title">Acest seif este gol</string>
+  <string name="home_empty_read_only_vault_subtitle">Nu puteți adăuga articole într-un seif în mod doar citire.</string>
+  <string name="home_empty_folder_plan_restricted_title">Acest folder este gol</string>
+  <string name="home_empty_folder_plan_restricted_subtitle">Modificați-vă planul pentru a putea crea articole în interiorul folderelor.</string>
+  <string name="home_empty_vault_create_login">Creare autentificare</string>
+  <string name="home_empty_vault_create_alias">Creare alias hide-my-email</string>
+  <string name="home_empty_vault_create_note">Creare notiță</string>
+  <string name="home_empty_vault_create_credit_card">Creare card de credit</string>
+  <string name="home_empty_vault_create_identity">Creare identitate</string>
+  <string name="home_empty_vault_create_custom_item">Creare articol personal</string>
+  <string name="error_observing_items" comment="Error message shown whenever there is an error loading the items">Eroare la încărcarea articolelor.</string>
+  <string name="error_refreshing">Eroare executare împrospătare.</string>
+  <string name="home_snackbar_login_moved_to_trash">Autentificarea s-a mutat în gunoi.</string>
+  <string name="home_snackbar_alias_moved_to_trash">Aliasul s-a mutat în gunoi.</string>
+  <string name="home_snackbar_note_moved_to_trash">Notița s-a mutat în gunoi.</string>
+  <string name="home_snackbar_credit_card_moved_to_trash">Cardul de plată s-a mutat în gunoi.</string>
+  <string name="home_snackbar_identity_moved_to_trash">Identitatea fost mutată în gunoi.</string>
+  <string name="home_snackbar_custom_moved_to_trash">Articolul personal a fost mutat în gunoi.</string>
+  <string name="home_snackbar_move_to_trash_error">Articolul nu s-a putut muta în gunoi.</string>
+  <string name="home_snackbar_items_move_to_trash_success">Articolele s-au mutat în gunoi.</string>
+  <string name="home_snackbar_items_move_to_trash_error">Articolele nu s-au putut muta în gunoi.</string>
+  <string name="home_toast_items_selected_read_only">Articolele în mod doar citire nu pot fi selectate</string>
+  <string name="home_toast_items_selected_shared_with_me">Articolele care vi s-au partajat nu pot fi selectate.</string>
+  <string name="home_autofill_banner_title">Bucurați-vă de magia autocompletării</string>
+  <string name="home_autofill_banner_text">O apăsare și gata - numele de utilizator și parola sunt completate instant.</string>
+  <string name="home_drawer_all_items">Toate articolele</string>
+  <string name="sl_sync_banner_title">Sincronizați-vă aliasurile din SimpleLogin</string>
+  <plurals name="sl_sync_banner_text">
+    <item quantity="one">Aveți %d alias care există în SimpleLogin, dar lipsește în Proton Pass. Doriți să-l sincronizați?</item>
+    <item quantity="few">Aveți %d aliasuri care există în SimpleLogin, dar lipsesc în Proton Pass. Doriți să le sincronizați?</item>
+    <item quantity="other">Aveți %d de aliasuri care există în SimpleLogin, dar lipsesc în Proton Pass. Doriți să le sincronizați?</item>
+  </plurals>
+  <string name="home_notification_permission_banner_title">Obțineți actualizări importante</string>
+  <string name="home_notification_permission_banner_text">Activați notificările instante pentru a vă informa când alții vă partajează un seif.</string>
+  <string name="home_item_invite_banner_title" comment="placeholder is replaced by an email address">%s dorește să vă partajeze un articol.</string>
+  <string name="home_group_item_invite_banner_title" comment="%1$s = inviter email, %2$s = group name">%1$s dorește să partajeze un articol cu grupul %2$s de care aparțineți.</string>
+  <string name="home_group_invite_banner_title" comment="%1$s = inviter email, %2$s = group name">%1$s dorește să partajeze un seif cu grupul %2$s de care aparțineți.</string>
+  <string name="home_item_invite_card_title">Invitație articol partajat</string>
+  <string name="home_vault_invite_card_title">Invitație seif partajat</string>
+  <string name="home_vault_invite_banner_body" comment="placeholder is replaced by an email address">%s dorește să vă partajeze un seif.</string>
+  <!-- Common bottomsheet -->
+  <string name="bottomsheet_copy_password">Copiere parolă</string>
+  <string name="bottomsheet_copy_username">Copiere nume utilizator</string>
+  <string name="bottomsheet_copy_email">Copiere adresă de e-mail</string>
+  <string name="bottomsheet_copy_number">Copiere număr</string>
+  <string name="bottomsheet_copy_cvv">Copiere cod de securitate</string>
+  <string name="bottomsheet_copy_note">Copiere notiță</string>
+  <string name="bottomsheet_edit">Editare</string>
+  <string name="bottomsheet_copy_full_name">Copiere nume complet</string>
+  <!-- Clipboard -->
+  <string name="alias_copied_to_clipboard">Alias copiat</string>
+  <string name="note_copied_to_clipboard">Notița a fost copiată.</string>
+  <string name="full_name_copied_to_clipboard">Numele complet s-a copiat.</string>
+  <string name="email_copied_to_clipboard">Adresa de e-mail a fost copiată</string>
+  <string name="username_copied_to_clipboard">Nume de utilizator copiat</string>
+  <string name="password_copied_to_clipboard">Parola s-a copiat</string>
+  <string name="credit_card_number_copied_to_clipboard">Numărul cardul de plată s-a copiat.</string>
+  <string name="credit_card_cvv_copied_to_clipboard">Codul de securitate s-a copiat.</string>
+  <string name="item_too_long_copied_to_clipboard" comment="Snackbar message that's shown to the user whenever an action where the content that would be copied to the clipboard cannot be performed due to the size of the text">Conținutul a fost prea lung, s-a copiat parțial în memorie.</string>
+  <!-- Vault drawer -->
+  <plurals name="vault_drawer_vaults_item_count">
+    <item quantity="one">%d articol</item>
+    <item quantity="few">%d articole</item>
+    <item quantity="other">%d de articole</item>
+  </plurals>
+  <string name="vault_drawer_create_vault">Creare seif</string>
+  <string name="vault_drawer_item_trash">Gunoi</string>
+  <!-- Vault management -->
+  <string name="vault_delete_dialog_title">Ștergere seif</string>
+  <string name="vault_delete_dialog_cancel_action">Anulare</string>
+  <string name="vault_delete_dialog_delete_action">Ștergere</string>
+  <string name="snackbar_delete_vault_success">Seif deleted</string>
+  <string name="snackbar_delete_vault_error">Seiful nu s-a șters.</string>
+  <!-- Search top bar -->
+  <string name="search_topbar_placeholder_all_items">Căutare în toate articolele…</string>
+  <string name="search_topbar_placeholder_vault">Căutare în %s…</string>
+  <string name="search_topbar_placeholder_trash">Căutare în gunoi…</string>
+  <string name="search_topbar_placeholder_pinning">Căutare în fixate…</string>
+  <string name="search_topbar_placeholder_shared_by_me">Căutare în partajate de mine…</string>
+  <string name="search_topbar_placeholder_shared_with_me">Căutare în partajate cu mine…</string>
+  <string name="search_topbar_placeholder_folder">Căutare în %s…</string>
+  <string name="search_topbar_placeholder_folder_fallback">Căutare în folder…</string>
+  <string name="home_topbar_title_folder_fallback">Folder</string>
+  <string name="item_type_filter_list_icon_content_description">Pictogramă tip articol</string>
+  <string name="item_type_filter_all">Toate</string>
+  <string name="item_type_filter_login">Autentificare</string>
+  <string name="item_type_filter_alias">Alias</string>
+  <string name="item_type_filter_note">Notiță</string>
+  <string name="item_type_filter_credit_card">Card</string>
+  <string name="item_type_filter_identity">Identitate</string>
+  <string name="item_type_filter_custom_item">Personal</string>
+  <string name="item_type_filter_login_totp">Conectare cu parolă unică (TOTP)</string>
+  <string name="item_type_filter_items_shared_with_me">Partajate cu mine</string>
+  <string name="item_type_filter_items_shared_by_me">Partajate de mine</string>
+  <!-- Trash -->
+  <string name="trash_empty_list_title">Gunoiul este gol</string>
+  <string name="trash_empty_list_message">Articolele mutate în gunoi apar aici.</string>
+  <string name="bottomsheet_trash_all_items_title">Gunoi</string>
+  <string name="bottomsheet_restore_all_items">Restaurare toate articolele</string>
+  <string name="bottomsheet_empty_trash">Golire gunoi</string>
+  <string name="bottomsheet_select_items">Selectare articole</string>
+  <string name="trash_error_clearing_trash">Eroare la golirea gunoiului.</string>
+  <string name="trash_success_restoring_items">Articolele s-au restaurat.</string>
+  <string name="trash_error_restoring_items">Eroare restaurare articole.</string>
+  <string name="trash_error_deleting_item">Eroare ștergere articol.</string>
+  <string name="trash_success_deleting_item">Articolele au fost șterse.</string>
+  <string name="trash_deleting_items_error">Eroare ștergere articole.</string>
+  <string name="trash_deleting_items_success">Articolele au fost șterse.</string>
+  <!-- Alerts -->
+  <string name="alert_confirm_clear_trash_title">Goliți gunoiul?</string>
+  <string name="alert_confirm_clear_trash_message">Goliți gunoiul? Toate articolele din gunoi vor fi șterse definitiv.</string>
+  <string name="alert_confirm_restore_all_title">Restaurați toate articolele?</string>
+  <string name="alert_confirm_restore_all_message">Ștergeți toate articolele selectate?</string>
+  <plurals name="alert_confirm_restore_items_title">
+    <item quantity="one">Restaurați %d articol?</item>
+    <item quantity="few">Restaurați %d articole?</item>
+    <item quantity="other">Restaurați %d de articole?</item>
+  </plurals>
+  <plurals name="alert_confirm_restore_items_message">
+    <item quantity="one">Sigur doriți să restaurați articolul din gunoi?</item>
+    <item quantity="few">Sigur doriți să restaurați %d articole din gunoi?</item>
+    <item quantity="other">Sigur doriți să restaurați %d de articole din gunoi?</item>
+  </plurals>
+  <plurals name="alert_confirm_trash_items_title">
+    <item quantity="one">Mutați %d articol în gunoi?</item>
+    <item quantity="few">Mutați %d articole în gunoi?</item>
+    <item quantity="other">Mutați %d de articole în gunoi?</item>
+  </plurals>
+  <plurals name="alert_confirm_trash_items_message">
+    <item quantity="one">Sigur doriți să mutați articolul în gunoi?</item>
+    <item quantity="few">Sigur doriți să mutați %d articole în gunoi?</item>
+    <item quantity="other">Sigur doriți să mutați %d de articole în gunoi?</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_title">
+    <item quantity="one">Ștergeți permanent %d articol?</item>
+    <item quantity="few">Ștergeți permanent %d articole?</item>
+    <item quantity="other">Ștergeți permanent %d de articole?</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_message">
+    <item quantity="one">Sigur doriți să ștergeți acest articol? Această acțiune nu e reversibilă.</item>
+    <item quantity="few">Sigur doriți să ștergeți %d articole? Această acțiune nu e reversibilă.</item>
+    <item quantity="other">Sigur doriți să ștergeți %d de articole? Această acțiune nu e reversibilă.</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_shared_warning_message">
+    <item quantity="one">Este partajat %d articol. Dacă îl ștergeți, ceilalți utilizatori nu-l vor mai putea accesa.</item>
+    <item quantity="few">Sunt partajate %d articole. Dacă le ștergeți, ceilalți utilizatori nu le vor mai putea accesa.</item>
+    <item quantity="other">Sunt partajate %d de articole. Dacă le ștergeți, ceilalți utilizatori nu le vor mai putea accesa.</item>
+  </plurals>
+  <!-- Recent search -->
+  <string name="recent_search_header_count">Căutări recente</string>
+  <string name="recent_search_clear">Golire</string>
+  <string name="recent_search_remove_item">Eliminare din căutări recente</string>
+  <!-- Pinning -->
+  <string name="home_snackbar_items_pinned_success">Articolele au fost fixate.</string>
+  <string name="home_snackbar_items_pinned_partial_success">Eroare la fixarea unor articole.</string>
+  <string name="home_snackbar_items_pinned_error">Eroare la fixarea articolelor.</string>
+  <string name="home_snackbar_items_unpinned_success">S-a anulat fixarea articolelor.</string>
+  <string name="home_snackbar_items_unpinned_partial_success">Eroare la anularea fixării unor articole.</string>
+  <string name="home_snackbar_items_unpinned_error">Eroare la anularea fixării articolelor.</string>
+  <string name="home_snackbar_items_alias_enabled_success">Aliasul s-a activat</string>
+  <string name="home_snackbar_items_alias_enabled_partial_success">Eroare la activarea unor aliasuri</string>
+  <string name="home_snackbar_items_alias_enabled_error">Eroare activare aliasuri</string>
+  <string name="home_snackbar_items_alias_disabled_success">Aliasul s-a dezactivat</string>
+  <string name="home_snackbar_items_alias_disabled_partial_success">Eroare la dezactivarea unor aliasuri</string>
+  <string name="home_snackbar_items_alias_disabled_error">Eroare dezactivare aliasuri</string>
+  <string name="bulk_action_unpin">Anulare fixare</string>
+  <string name="bulk_action_pin">Fixare</string>
+  <string name="bulk_action_enable_alias">Activare alias</string>
+  <string name="bulk_action_disable_alias">Dezactivare alias</string>
+  <string name="vault_drawer_organise_vaults">Organizare seifuri</string>
+  <string name="sync_group_vault_warning">Unele seifuri nu sunt momentan disponibile din cauza unei probleme legate de grupul lor.</string>
+  <string name="sync_inactive_vault_warning">Unele seifuri nu mai sunt accesibile din cauza resetării parolei. Reactivați cheile contului pentru a redobândi accesul.</string>
+  <string name="sync_inactive_vault_warning_action">Detalii</string>
+</resources>

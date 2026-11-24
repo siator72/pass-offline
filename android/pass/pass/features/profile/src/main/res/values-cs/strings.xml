@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Profil</string>
+  <string name="profile_option_settings">Nastavení</string>
+  <string name="profile_option_account">Účet</string>
+  <string name="profile_help_center">Centrum nápovědy</string>
+  <string name="profile_security">Zabezpečení</string>
+  <string name="profile_option_autofill_troubleshooting">Řešení problémů s automatickým vyplňováním</string>
+  <string name="profile_option_feedback">Zpětná vazba</string>
+  <string name="profile_option_import_export">Import/export</string>
+  <string name="profile_option_tutorial">Jak používat Proton Pass</string>
+  <string name="profile_option_rating">Ohodnotit aplikaci</string>
+  <string name="profile_spread_the_word">Propagujte nás</string>
+  <string name="profile_option_tell_a_friend">Doporučte příteli</string>
+  <string name="profile_spread_the_word_share_message">Pro bezpečné ukládání hesel používám Proton Pass. Vyzkoušejte to: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Automatické vyplňování</string>
+  <string name="profile_option_autofill_subtitle">Automatické vyplňování uživatelských jmen a hesel.</string>
+  <string name="profile_option_secure_links">Bezpečné odkazy</string>
+  <string name="profile_option_alias_management">Správa aliasů</string>
+  <string name="profile_option_generated_passwords">Generovaná hesla</string>
+  <string name="profile_error_biometry_failed_to_start">Nelze spustit biometrické ověřování</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Ověření selhalo</string>
+  <string name="profile_error_app_lock_update_failed">Zámek aplikace se nepodařilo aktualizovat. Zkuste to prosím znovu.</string>
+  <string name="profile_fingerprint_lock_enabled">Zamykání otiskem prstu povoleno</string>
+  <string name="profile_fingerprint_lock_disabled">Zamykání otiskem prstu zakázáno</string>
+  <string name="profile_app_version_copied_to_clipboard">Verze aplikace zkopírována</string>
+  <string name="feedback_option_reddit">Podívejte se na Proton na Redditu</string>
+  <string name="feedback_option_mail">Pošlete nám zprávu</string>
+  <string name="feedback_option_vote_new_features">Hlasujte pro nové funkce</string>
+  <string name="app_lock_immediately">Okamžitě</string>
+  <string name="app_lock_one_minute">Po 1 minutě</string>
+  <string name="app_lock_two_minutes">Po 2 minutách</string>
+  <string name="app_lock_five_minutes">Po 5 minutách</string>
+  <string name="app_lock_ten_minutes">Po 10 minutách</string>
+  <string name="app_lock_one_hour">Po 1 hodině</string>
+  <string name="app_lock_four_hours">Po 4 hodinách</string>
+  <string name="app_lock_config_none">Nic</string>
+  <string name="app_lock_config_biometric">Biometrie</string>
+  <string name="app_lock_config_pin_code">PIN kód</string>
+  <string name="app_lock_config_app_lock_time">Automatický zámek</string>
+  <string name="app_lock_config_password">Heslo</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Použít systémové uzamčení při selhání biometrie</string>
+  <string name="configure_pin_set_pin_code">Nastavit PIN kód</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Odemkněte aplikaci pomocí tohoto kódu</string>
+  <string name="configure_pin_enter_pin_code">Zadejte PIN kód</string>
+  <string name="configure_pin_repeat_pin_code">Opakovat PIN kód</string>
+  <string name="configure_pin_continue">Pokračovat</string>
+  <string name="configure_pin_pin_does_not_match">PIN kódy se neshodují</string>
+  <string name="configure_pin_pin_too_short">PIN kód je příliš krátký</string>
+  <string name="configure_pin_pin_cannot_be_blank">PIN kód nemůže být prázdný</string>
+  <string name="configure_pin_pin_lock_enabled">Zámek PIN kódem povolen</string>
+  <string name="configure_pin_pin_lock_disabled">Zamykání PIN kódem deaktivováno</string>
+  <string name="profile_option_lock_with">Zamknout pomocí</string>
+  <string name="profile_option_unlock_with">Odemknout pomocí</string>
+  <string name="profile_option_change_pin_code">Změnit PIN kód</string>
+  <string name="profile_passkey_support_section_title">Přístupové klíče</string>
+  <string name="profile_passkey_support_subtitle_supported">Toto zařízení podporuje přístupové klíče</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Vaše verze systému Android nepodporuje přístupové klíče.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Nepodařilo se ověřit podporu přístupových klíčů</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">Po %d dnu</item>
+    <item quantity="few">Po %d dnech</item>
+    <item quantity="many">Po %d dnech</item>
+    <item quantity="other">Po %d dnech</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">Po %d minutě</item>
+    <item quantity="few">Po %d minutách</item>
+    <item quantity="many">Po %d minutách</item>
+    <item quantity="other">Po %d minutách</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">Po %d hodině</item>
+    <item quantity="few">Po %d hodinách</item>
+    <item quantity="many">Po %d hodinách</item>
+    <item quantity="other">Po %d hodinách</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Méně než minutu</string>
+  <string name="account_switcher_manage_account">Spravovat účet</string>
+  <string name="account_switcher_sign_in">Přihlásit se</string>
+  <string name="account_switcher_sign_out">Odhlásit se</string>
+  <string name="account_switcher_switch_to">Přepnout na</string>
+  <string name="account_switcher_add_account">Přidat účet</string>
+  <string name="account_switcher_remove">Odebrat</string>
+  <string name="filtered_by_logins">Filtrováno podle přihlášení. Položky z koše nejsou zobrazeny</string>
+  <string name="filtered_by_logins_with_mfa">Filtrováno podle přihlášení pomocí TOTP. Položky z koše nejsou zobrazeny</string>
+  <string name="filtered_by_aliases">Filtrováno podle aliasů. Položky z koše nejsou zobrazeny</string>
+  <string name="filtered_by_notes">Filtrováno podle poznámek. Položky z koše nejsou zobrazeny</string>
+  <string name="filtered_by_credit_cards">Filtrováno podle platebních karet. Položky z koše nejsou zobrazeny</string>
+  <string name="filtered_by_identities">Filtrováno podle identit. Položky z koše nejsou zobrazeny</string>
+  <string name="filtered_by_custom_items">Filtrováno podle vlastních položek. Položky z koše nejsou zobrazeny</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Pro správu přepněte na %1$s</string>
+  <string name="account_switch_confirmation_title">Spravovat účet</string>
+  <string name="account_switch_confirmation_confirm">Přepnout a spravovat</string>
+  <string name="profile_storage_data_title">Úložiště</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s z %2$s</string>
+</resources>

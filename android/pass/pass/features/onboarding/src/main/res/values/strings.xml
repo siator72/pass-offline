@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="on_boarding_autofill_content_v2">Proton pass fill in login details for you. No typing or copy paste required.</string>
+    <string name="on_boarding_autofill_title_v2">Enjoy the magic of AutoFill</string>
+    <string name="on_boarding_autofill_button">Autofill with Proton Pass</string>
+    <string name="on_boarding_fingerprint_content">Set Proton Pass to unlock with your fingerprint so only you have access.</string>
+    <string name="on_boarding_fingerprint_title">Protect your most sensitive data</string>
+    <string name="on_boarding_fingerprint_button">Enable fingerprint lock</string>
+    <string name="on_boarding_last_page_content">Stop sharing your real email address. Instead, hide it with email aliases—a Proton Pass exclusive.</string>
+    <string name="on_boarding_last_page_title">Control what lands in your inbox</string>
+    <string name="on_boarding_last_page_button">Start using Proton Pass</string>
+    <string name="on_boarding_skip">Not now</string>
+    <string name="on_boarding_tutorial_v2">Learn how to use Proton Pass</string>
+    <string name="on_boarding_pending_invite_content">For security reasons, your access needs to be confirmed.</string>
+    <string name="on_boarding_pending_invite_title">Pending access to the shared data</string>
+    <string name="on_boarding_pending_invite_button">Learn more about Proton Pass</string>
+
+    <string name="error_biometry_failed_to_start">Could not start the biometric authentication</string>
+    <string name="error_biometry_failed_to_authenticate">Failed to authenticate</string>
+    <string name="settings_fingerprint_lock_enabled">Fingerprint lock enabled</string>
+    <string name="error_performing_operation">Error performing operation</string>
+
+    <string name="onboarding_slide_1_title">All your passwords.</string>
+    <string name="onboarding_slide_2_title">Protect your inbox.</string>
+    <string name="onboarding_slide_3_title">Stay Informed.</string>
+    <string name="onboarding_slide_4_title">Secure sharing.</string>
+    <string name="onboarding_slide_1_subtitle">Securely in one place and protected by the most trusted name in privacy.</string>
+    <string name="onboarding_slide_2_subtitle">Use Hide-My-Email aliases against phishing threats.</string>
+    <string name="onboarding_slide_3_subtitle">Share passwords and sensitive information securely and effortlessly.</string>
+    <string name="onboarding_slide_4_subtitle">Get alerts when your email is found on the Dark web.</string>
+    <string name="create_an_account_button">Create an account</string>
+    <string name="sign_in_button">Sign in</string>
+</resources>

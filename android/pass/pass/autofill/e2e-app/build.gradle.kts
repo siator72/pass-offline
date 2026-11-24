@@ -1,0 +1,119 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.gradlePlugin.compose.compiler)
+}
+
+val appVersionName: String = "1.41.5"
+val appVersionCode: Int = versionCode(appVersionName)
+val archivesBaseName = "AutofillE2EApp-$appVersionName"
+
+fun versionCode(versionName: String): Int {
+    val segment = versionName.split('.').map { it.toInt() }
+    return (segment[0] * 10000000) + (segment[1] * 100000) + (segment[2] * 1000)
+}
+
+android {
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    namespace = "proton.android.pass.autofill.e2e"
+
+    defaultConfig {
+        applicationId = "proton.android.pass.autofill.e2e"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = appVersionCode
+        versionName = appVersionName
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildFeatures {
+            buildConfig = true
+        }
+    }
+
+    flavorDimensions += "version"
+    productFlavors {
+        maybeCreate("dev")
+        maybeCreate("alpha")
+        maybeCreate("play")
+    }
+
+    buildFeatures {
+        compose = true
+    }
+}
+
+dependencies {
+    implementation(libs.accompanist.navigation.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.annotation)
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.core.compose)
+
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.startup.runtime)
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.kotlinx.collections)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.timber)
+
+    implementation(libs.core.presentation)
+    implementation(libs.core.presentation.compose)
+    implementation(libs.core.userSettings.domain)
+    implementation(libs.core.utilAndroidSentry)
+
+    implementation(projects.pass.account.fakes)
+    implementation(projects.pass.appConfig.fakes)
+    implementation(projects.pass.autofill.impl) {
+        exclude(module = "upsell")
+    }
+    implementation(projects.pass.biometry.fakes)
+    implementation(projects.pass.browserAllowlist.impl)
+    implementation(projects.pass.clipboard.fakes)
+    implementation(projects.pass.common.fakes)
+    implementation(projects.pass.commonRust.fakes)
+    implementation(projects.pass.commonTest)
+    implementation(projects.pass.commonUi.api)
+    implementation(projects.pass.commonUi.impl)
+    implementation(projects.pass.composeComponents.impl)
+    implementation(projects.pass.crypto.fakes)
+    implementation(projects.pass.data.api)
+    implementation(projects.pass.data.fakes)
+    implementation(projects.pass.domain)
+    implementation(projects.pass.inAppReview.fakes)
+    implementation(projects.pass.navigation.api)
+    implementation(projects.pass.notifications.fakes)
+    implementation(projects.pass.telemetry.fakes)
+    implementation(projects.pass.totp.fakes)
+    implementation(projects.pass.passkeys.fakes)
+    implementation(projects.pass.preferences.api)
+    implementation(projects.pass.preferences.impl)
+    implementation(projects.pass.securityCenter.fakes)
+    implementation(projects.pass.features.upsell.fakes)
+
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.android.compiler)
+    ksp(libs.androidx.hilt.compiler)
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">Salin dan tutup</string>
+  <string name="password_copied_to_clipboard">Kata sandi disalin</string>
+  <string name="bottomsheet_generate_password_title">Hasilkan kata sandi</string>
+  <string name="password_type">Karakter pemisah</string>
+  <string name="special_characters">Karakter khusus (!&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="other">%s karakter</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">Huruf kapital (A–Z)</string>
+  <string name="bottomsheet_option_include_numbers">Sertakan angka (0–9)</string>
+  <string name="regenerate_password_icon_content_description">Tombol pembuatan ulang kata sandi</string>
+  <string name="password_mode_memorable">Kata sandi yang mudah diingat</string>
+  <string name="password_mode_random">Kata sandi acak</string>
+  <string name="password_mode_icon">Ikon mode kata sandi</string>
+  <string name="password_words_separator_icon">Pemisah kata pada kata sandi</string>
+  <string name="password_history_title">Kata sandi yang dihasilkan</string>
+  <string name="password_history_empty">TIdak ada riwayat</string>
+  <string name="password_history_description">Kata sandi yang dihasilkan akan disimpan selama 2 minggu.</string>
+  <string name="password_history_today">Hari ini, %s</string>
+  <string name="password_history_yesterday">Kemarin, %s</string>
+  <string name="password_history_before_yesterday">%d days ago, %s</string>
+  <string name="password_history_clear_history">Hapus riwayat</string>
+  <string name="password_history_remove_from_history">Hapus dari riwayat</string>
+</resources>

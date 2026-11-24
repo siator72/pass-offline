@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="bottomsheet_delete_permanently">Видалити остаточно</string>
+  <string name="alert_confirm_delete_item_dialog_title">Видалити остаточно?</string>
+  <string name="alert_confirm_delete_item_dialog_message">Це незворотна дія.</string>
+  <string name="alert_confirm_delete_item_dialog_shared_warning_message">Наразі цей елемент у спільному доступі. Видаливши його, ви вилучите доступ у всіх інших користувачів.</string>
+  <string name="alias_dialog_move_to_trash_title">Перемістити до смітника?</string>
+  <string name="alias_dialog_move_to_trash_content">Якщо ви перемістите псевдонім до смітника, він перестане пересилати листи на вашу пошту.</string>
+  <string name="alias_dialog_move_to_trash_confirm">Підтвердити</string>
+  <string name="delete_alias_confirm">Видалити це, мені це ніколи не знадобиться</string>
+  <string name="delete_alias_title">Видалити %s</string>
+  <string name="delete_alias_enabled_subtitle">"Зверніть увагу, що після видалення псевдонім не можна відновити. Можливо, ви хочете вимкнути псевдонім? "</string>
+  <string name="delete_alias_disabled_subtitle">Зверніть увагу, що після видалення псевдонім не можна відновити. Псевдонім вже вимкнено, і він не буде пересилати листи на вашу поштову скриньку.</string>
+  <plurals name="bulk_delete_alias_title">
+    <item quantity="one">Ви збираєтеся назавжди видалити псевдонім %d</item>
+    <item quantity="few">Ви збираєтеся назавжди видалити псевдоніми %d</item>
+    <item quantity="many">Ви збираєтеся назавжди видалити псевдонімів %d</item>
+    <item quantity="other">Ви збираєтеся назавжди видалити псевдонімів %d</item>
+  </plurals>
+  <string name="bulk_delete_alias_subtitle">Зверніть увагу, що після видалення псевдоніми не можна відновити</string>
+  <string name="bulk_delete_alias_confirm">Зрозуміло, вони мені ніколи не знадобляться</string>
+  <string name="delete_alias_disable">Вимкнути псевдонім</string>
+</resources>

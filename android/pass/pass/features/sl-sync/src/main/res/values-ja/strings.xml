@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">エイリアス管理</string>
+  <string name="simple_login_sync_management_domain_label">ドメイン</string>
+  <string name="simple_login_sync_management_domain_title">エイリアスのデフォルトドメイン</string>
+  <string name="simple_login_sync_management_domain_option_blank">未選択</string>
+  <string name="simple_login_sync_management_mailboxes_label">メールボックス</string>
+  <string name="simple_login_sync_management_mailboxes_description">メールボックスは、エイリアスに送信されたメールが転送される場所です。通常のメールボックス、例えばGmail、Outlook、Proton Mailなどです。</string>
+  <string name="simple_login_sync_management_mailbox_default">既定</string>
+  <string name="simple_login_sync_management_mailbox_unverified">認証されていないメールボックス</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">未確認メールボックスの変更</string>
+  <string name="simple_login_sync_management_vault_title">SimpleLogin 同期</string>
+  <string name="simple_login_sync_management_no_vault_description">SimpleLoginの同期設定を管理するには少なくとも1つ以上の保管庫が必要です。</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">SLエイリアスの詳細を取得中にエラーが発生しました</string>
+  <string name="simple_login_sync_management_mailboxes_title">エイリアスのデフォルトメールボックス</string>
+  <string name="simple_login_sync_management_dialog_title_domains">エイリアスのデフォルトドメイン</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">エイリアスのデフォルトメールボックス</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">エイリアスを同期する</string>
+  <string name="simple_login_sync_enable_snackbar_error">SimpleLogin エイリアスの同期を有効にする際にエラーが発生しました</string>
+  <string name="simple_login_sync_enable_snackbar_success">SimpleLogin エイリアスの同期が正常に有効になりました</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">メールボックスを追加</string>
+  <string name="simple_login_sync_mailbox_create_message_error">メールボックスの追加中にエラーが発生しました</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">メールボックスを変更</string>
+  <string name="simple_login_sync_mailbox_change_message_error">メールボックスの変更中にエラーが発生しました</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">メールアドレスはすでに使用されています</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">メールボックスを確認する</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">確認コードを %s に送信しました。以下に入力してください。</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">あなたのメールアドレス</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">無効なメールボックス認証コードです</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">無効なメールボックス認証コードが制限に達しました、メールボックスは削除されました</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">メールボックスの認証中にエラーが発生しました</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">メールボックスは正しく認証されました</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">認証コードの送信中にエラーが発生しました</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">認証コードは正しく送信されました</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">メールボックスを削除</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">%sのメールボックスを使っている全てのエイリアスも削除されます。これらのエイリアスを別のメールボックスに転送して、メールを受信し続けてください：</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">エイリアスを転送</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">メールボックスへ</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">メールボックスを削除</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">メールボックスの転送と削除</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">メールボックスの削除中にエラーが発生しました</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">メールボックスは正常に削除されました</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">にエイリアスを転送</string>
+  <string name="simple_login_sync_mailbox_delete_warning">一度削除すると、エイリアスを復元することはできないことにご注意ください。</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">デフォルトドメイン</string>
+  <string name="simple_login_sync_domain_select_title_none">なし</string>
+  <string name="simple_login_sync_domain_select_description_none">ドメインがありません</string>
+  <string name="simple_login_sync_domain_select_description_custom">あなたのドメイン</string>
+  <string name="simple_login_sync_domain_select_description_free">公開ドメイン</string>
+  <string name="simple_login_sync_domain_select_description_premium">プレミアムドメイン</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">SLエイリアスドメインの取得中にエラーが発生しました</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">SLエイリアスドメインの更新中にエラーが発生しました</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">SLエイリアスドメインは正常に更新されました</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">メールボックスのオプションを表示することができません</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">デフォルトのメールボックスの更新中にエラーが発生しました</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">デフォルトのメールボックスは正しく更新されました</string>
+  <string name="simple_login_sync_mailbox_change_email_option">メールボックスを変更</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">メールボックスの変更をキャンセル</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">メールボックスの変更をキャンセル中にエラーが発生しました</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">メールボックスの変更をキャンセルしました</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">デフォルトSL保管庫</string>
+  <string name="simple_login_sync_shared_default_vault_description">SimpleLogin エイリアスは、この保管庫にインポートされます。</string>
+</resources>

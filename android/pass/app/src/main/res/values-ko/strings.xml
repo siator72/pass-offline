@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="twenty_vaults">20개 금고</string>
+  <string name="unlimited_email_alias">무제한 나의 이메일 별칭</string>
+  <string name="custom_fields">사용자 지정 필드</string>
+  <string name="restart_to_complete_the_update">이 업데이트를 완료하려면 재시작 하십시오</string>
+  <string name="action_restart">재시작</string>
+  <string name="shortcut_share_logs_title">로그 공유</string>
+  <string name="shortcut_share_logs_confirmation_title">분석 로그를 공유합니까?</string>
+  <string name="shortcut_share_logs_confirmation_message">Proton Pass 분석 로그를 전송하기 위해 이메일 앱이 열립니다. 어떠한 금고 내 데이터도 포함되지 않습니다.</string>
+  <string name="no_account_found">계정을 찾을 수 없습니다.</string>
+  <string name="no_session_found">다음 세션을 찾을 수 없음</string>
+  <string name="auth_with_extra_password_failed">추가 비밀번호 인증 실패</string>
+  <string name="auth_only_1_proton_account_failed">하나의 무료 Proton 계정만 사용할 수 있습니다.</string>
+</resources>

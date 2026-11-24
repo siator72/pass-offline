@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="on_boarding_autofill_content_v2">Consenti a Proton Pass di inserire le credenziali al posto tuo. Scriverle o copiarle e incollarle manualmente non sarà più necessario.</string>
+  <string name="on_boarding_autofill_title_v2">Approfitta della magia della compilazione automatica</string>
+  <string name="on_boarding_autofill_button">Compilazione automatica con Proton Pass</string>
+  <string name="on_boarding_fingerprint_content">Imposta lo sblocco con l\'impronta, così solamente tu potrai accedere a Proton Pass.</string>
+  <string name="on_boarding_fingerprint_title">Proteggi i dati più sensibili</string>
+  <string name="on_boarding_fingerprint_button">Abilita il blocco con impronta</string>
+  <string name="on_boarding_last_page_content">Non condividere più il tuo vero indirizzo email. Nascondilo invece con gli alias email - un\'esclusiva di Proton Pass.</string>
+  <string name="on_boarding_last_page_title">Controlla quello che ricevi nella tua casella di posta</string>
+  <string name="on_boarding_last_page_button">Inizia a usare Proton Pass</string>
+  <string name="on_boarding_skip">Non adesso</string>
+  <string name="on_boarding_tutorial_v2">Scopri come usare Proton Pass</string>
+  <string name="on_boarding_pending_invite_content">Per motivi di sicurezza, il tuo accesso deve essere confermato.</string>
+  <string name="on_boarding_pending_invite_title">In attesa dell\'accesso ai dati condivisi</string>
+  <string name="on_boarding_pending_invite_button">Scopri di più su Proton Pass</string>
+  <string name="error_biometry_failed_to_start">Avvio dell\'autenticazione biometrica non riuscito</string>
+  <string name="error_biometry_failed_to_authenticate">Autenticazione non riuscita</string>
+  <string name="settings_fingerprint_lock_enabled">Blocco con impronta abilitato</string>
+  <string name="error_performing_operation">Esecuzione dell\'operazione non riuscita</string>
+  <string name="onboarding_slide_1_title">Tutte le tue password.</string>
+  <string name="onboarding_slide_2_title">Proteggi la tua casella di posta.</string>
+  <string name="onboarding_slide_3_title">Rimani informato.</string>
+  <string name="onboarding_slide_4_title">Condivisione sicura.</string>
+  <string name="onboarding_slide_1_subtitle">Al sicuro in un unico posto e protetto dal nome più attendibile nella privacy.</string>
+  <string name="onboarding_slide_2_subtitle">Utilizza gli alias Hide-My-Email contro le minacce di phishing.</string>
+  <string name="onboarding_slide_3_subtitle">Condividi password e informazioni sensibili in modo sicuro e semplice.</string>
+  <string name="onboarding_slide_4_subtitle">Ricevi avvisi quando la tua email viene trovata nel Dark Web.</string>
+  <string name="create_an_account_button">Crea un account</string>
+  <string name="sign_in_button">Accedi</string>
+</resources>

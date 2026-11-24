@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Hent fra Proton Pass</string>
+  <string name="error_loading_items">Kunne ikke indlæse elementerne</string>
+  <string name="inline_suggestions_open_app">Åbn Proton Pass</string>
+  <string name="autofill_associate_web_app_name_dialog_title">Brug loginoplysninger fra \"%s\" på denne app eller hjemmeside.</string>
+  <string name="autofill_dialog_associate_and_autofill">Brug altid</string>
+  <string name="autofill_dialog_just_autofill">Brug én gang</string>
+  <string name="autofill_dialog_cancel">Annullér</string>
+  <string name="autofill_notification_copy_to_clipboard">TOTP er kopieret til udklipsholder</string>
+  <string name="autofill_dialog_associate_title">Brug login?</string>
+  <string name="autofill_user_logged_out">Du er blevet logget ud. Log ind igen ved at åbne appen.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Bekræft din handling</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Du er ved at autofylde dine legitimationsoplysninger på en hjemmeside, der er åbnet af din nuværende app. Appen kan have adgang til legitimationsoplysningerne efter autofyldning - gør det kun, hvis du stoler på appen.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">Autofyld</string>
+  <string name="autofill_confirm_unverified_browser_title">Denne app påstår at være en betroet browser</string>
+  <string name="autofill_confirm_unverified_browser_body">Denne app identificerer sig selv som en kendt browser, men Pass kunne ikke bekræfte det. Dens signeringscertifikat matcher ikke, hvad vi forventer, hvilket kan ske, hvis browseren er usædvanligt konfigureret, eller hvis en anden app efterligner den for at opsnappe dine legitimationsoplysninger. Fortsæt kun, hvis du er sikker på, at denne app er legitim.</string>
+  <string name="autofill_confirm_dont_ask_again">Spørg ikke igen for denne app</string>
+  <string name="autofill_troubleshooting_title">Fejlfinding til autofyld</string>
+  <string name="autofill_troubleshooting_subtitle">Tjek om din enhed er konfigureret korrekt til autofyld.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">Autofyld er helt sat op</string>
+  <string name="autofill_troubleshooting_verdict_attention">Nogle ting kræver din opmærksomhed</string>
+  <string name="autofill_troubleshooting_service_ok">Proton Pass er din tjeneste til autofyld</string>
+  <string name="autofill_troubleshooting_service_current_other">Sat til %1$s lige nu.</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Proton Pass er ikke din tjeneste til autofyld</string>
+  <string name="autofill_troubleshooting_service_not_default_body">Sæt den som standard for at autofylde på tværs af dine apps.</string>
+  <string name="autofill_troubleshooting_service_enable_action">Aktivér autofyld</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">Denne enhed understøtter ikke autofyld</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">Passive browsere registreret</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Slå autofyld til, så Proton Pass kan udfylde dine legitimationsoplysninger. Klik på en browser for at åbne dens indstillinger.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">Browsere er kompatible</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">Dine browsere er forbundet og klar til autofyld.</string>
+  <string name="autofill_troubleshooting_browser_active">Aktiv</string>
+  <string name="autofill_troubleshooting_inline_info">Inline-forslag vises på dit tastatur. De skal bruge Android 11 eller senere, og et kompatibelt tastatur såsom Gboard.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">Del diagnostik</string>
+  <string name="autofill_troubleshooting_open_diagnostics">Avanceret diagnostik</string>
+  <string name="autofill_diagnostics_title">Avanceret diagnostik</string>
+  <string name="autofill_diagnostics_enable">Aktivér autofyld diagnostik</string>
+  <string name="autofill_diagnostics_enable_description">Proton Pass optager hvad der sker under autofyld, så du kan se hvorfor det ikke blev udfyldt, når dette er slået til. Slå det fra når du er færdig.</string>
+  <string name="autofill_diagnostics_instructions">Demonstrer problemet med autofyld i din app eller browser, og kom derefter tilbage til denne side.</string>
+  <string name="autofill_diagnostics_last_attempt_title">Side autofyld-forsøg</string>
+  <string name="autofill_diagnostics_no_attempts">Intet autofyld-forsøg optaget endnu.</string>
+  <string name="autofill_diagnostics_reason_not_default">Proton Pass er ikke din tjeneste til autofyld, så den kan ikke udfylde noget endnu.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass gav forslag i %1$s.</string>
+  <string name="autofill_diagnostics_outcome_nothing">Autofyld blev udløst i %1$s, men intet matchende login blev forslået. Siden har måske ingen login-felter, der kan registreres, eller du har ingen elementer til denne side.</string>
+  <string name="autofill_diagnostics_outcome_error">Autofyld stødte på en fejl i %1$s.</string>
+  <string name="autofill_diagnostics_recent_title">Seneste forsøg</string>
+  <string name="autofill_diagnostics_clear">Ryd</string>
+  <string name="autofill_diagnostics_share">Del med support</string>
+</resources>

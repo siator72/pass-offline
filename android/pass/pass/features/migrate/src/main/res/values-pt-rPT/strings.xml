@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">Mover %d item para o seguinte cofre?</item>
+    <item quantity="other">Mover %d itens para o seguinte cofre?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">Move %d item to the following folder?</item>
+    <item quantity="other">Move %d items to the following folder?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">Mover</string>
+  <string name="migrate_item_success_snackbar">Itens movidos</string>
+  <string name="migrate_item_error_snackbar">Erro ao mover os itens</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">Erro ao mover alguns dos itens</string>
+  <string name="migrate_item_warning_history">Ao mover itens entre cofres, manteremos até as últimas 50 modificações realizadas em cada item.</string>
+  <string name="migrate_item_warning_secure_link">As ligações seguras do item serão removidas quando ele for movido para outro cofre.</string>
+  <string name="migrate_all_items_success_snackbar">Todos os itens foram movidos.</string>
+  <string name="migrate_all_items_error_snackbar">Erro ao mover todos os itens do cofre</string>
+  <string name="migrate_init_error_snackbar">Não foi possível preparar o ecrã de migração.</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">Move folder to the following vault?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">Move folder to the following folder?</string>
+  <string name="migrate_folder_success_snackbar">Folder moved</string>
+  <string name="migrate_folder_error_snackbar">Error moving the folder</string>
+  <string name="migrate_folder_already_same_parent_snackbar">Folder is already in this location</string>
+  <string name="migrate_dissolve_folder_dialog_title">Move folder contents</string>
+  <string name="migrate_dissolve_folder_dialog_message">This folder is already at the vault root. Its items and subfolders will be moved to the vault root.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">Mover</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">Item is already in this folder</item>
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">This folder is already in this location</string>
+  <string name="migrate_disabled_folder_reason_being_moved">This folder is being moved</string>
+  <string name="migrate_disabled_folder_reason_descendant">This folder is inside the folder being moved</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Moving here would exceed the folder limits</string>
+  <string name="migrate_disabled_vault_reason_no_permission">Não pode criar itens neste cofre.</string>
+  <string name="migrate_disabled_vault_reason_same_vault">Não pode mover um item para o mesmo cofre.</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">Mover o item para outro cofre?</item>
+    <item quantity="other">Mover %d itens para outro cofre?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">Este item está atualmente partilhado. Movê-lo para outro cofre removerá o acesso de todos os outros utilizadores.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">%d item está atualmente partilhado. Movê-lo para outro cofre removerá o acesso de todos os outros utilizadores.</item>
+    <item quantity="other">%d itens são atualmente partilhados. Movê-los para outro cofre removerá o acesso de todos os outros utilizadores.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">Selecione um cofre</string>
+  <string name="migrate_select_destination_for_source_title">Select the destination to move all items from %s</string>
+  <string name="migrate_folder_items_moved_success_snackbar">Itens movidos</string>
+  <string name="migrate_folder_items_moved_error_snackbar">Erro ao mover os itens</string>
+</resources>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">Gestió dels àlies</string>
+  <string name="simple_login_sync_management_domain_label">Domini</string>
+  <string name="simple_login_sync_management_domain_title">Domini per defecte per als àlies</string>
+  <string name="simple_login_sync_management_domain_option_blank">No seleccionat</string>
+  <string name="simple_login_sync_management_mailboxes_label">Bústies de correu</string>
+  <string name="simple_login_sync_management_mailboxes_description">La bústia de correu és on es reenvien els correus electrònics enviats a un àlies. És la vostra bústia habitual, per exemple Gmail, Outlook, Proton Mail, etc.</string>
+  <string name="simple_login_sync_management_mailbox_default">Per defecte</string>
+  <string name="simple_login_sync_management_mailbox_unverified">No s\'ha verificat la bústia de correu.</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">No s\'ha verificat el canvi de bústia.</string>
+  <string name="simple_login_sync_management_vault_title">Sincronització amb SimpleLogin</string>
+  <string name="simple_login_sync_management_no_vault_description">Necessiteu almenys una caixa forta per a gestionar les preferències de sincronització de SimpleLogin.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">S\'ha produït un error en obtenir els detalls de l\'àlies SL.</string>
+  <string name="simple_login_sync_management_mailboxes_title">Bústia de correu predeterminada per als àlies</string>
+  <string name="simple_login_sync_management_dialog_title_domains">Domini per defecte per als àlies</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">Bústia de correu per defecte per als àlies</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">Sincronitza els àlies</string>
+  <string name="simple_login_sync_enable_snackbar_error">S\'ha produït un error en activar la sincronització d\'àlies de SimpleLogin.</string>
+  <string name="simple_login_sync_enable_snackbar_success">S\'ha habilitat la sincronització dels àlies de SimpleLogin.</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">Afegeix una bústia de correu</string>
+  <string name="simple_login_sync_mailbox_create_message_error">S\'ha produït un error en afegir la bústia de correu.</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">Canvia la bústia de correu</string>
+  <string name="simple_login_sync_mailbox_change_message_error">S\'ha produït un error en canviar la bústia de correu.</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">El correu electrònic ja està en ús.</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">Confirmeu la vostra bústia de correu</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">Hem enviat un codi de verificació a %s. Introduïu-lo a continuació:</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">la vostra adreça de correu electrònic</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">El codi de verificació de la bústia de correu no és vàlid.</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">S\'ha assolit el límit de codis de verificació no vàlids. S\'ha eliminat la bústia de correu.</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">S\'ha produït un error en verificar la bústia de correu.</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">S\'ha verificat la bústia de correu.</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">S\'ha produït un error en enviar el codi de verificació.</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">S\'ha enviat el codi de verificació.</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">Elimina la bústia de correu</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">Tots els àlies que utilitzen la bústia de correu %s també s\'eliminaran. Per continuar rebent correus electrònics, transferiu aquests àlies a una bústia de correu diferent:</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">Transfereix els àlies</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">A la bústia de correu</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">Elimina la bústia de correu</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">Transfereix i elimina la bústia de correu</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">S\'ha produït un error en eliminar la bústia de correu.</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">S\'ha eliminat la bústia de correu.</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">Transfereix els àlies a</string>
+  <string name="simple_login_sync_mailbox_delete_warning">Recordeu que un cop eliminats, els àlies no es poden recuperar.</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">Domini per defecte</string>
+  <string name="simple_login_sync_domain_select_title_none">cap</string>
+  <string name="simple_login_sync_domain_select_description_none">Sense domini</string>
+  <string name="simple_login_sync_domain_select_description_custom">El vostre domini</string>
+  <string name="simple_login_sync_domain_select_description_free">Domini públic</string>
+  <string name="simple_login_sync_domain_select_description_premium">Domini prèmium</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">S\'ha produït un error en obtenir els dominis dels àlies SL.</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">S\'ha produït un error en actualitzar el domini de l\'àlies SL.</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">S\'ha actualitzat el domini dels àlies SL.</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">No es poden mostrar les opcions de la bústia de correu.</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">S\'ha produït un error en actualitzar la bústia de correu per defecte.</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">S\'ha actualitzat la bústia de correu per defecte.</string>
+  <string name="simple_login_sync_mailbox_change_email_option">Canvia la bústia de correu</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">Cancel·la el canvi de bústia</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">S\'ha produït un error en cancel·lar el canvi de correu electrònic de la bústia.</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">S\'ha cancel·lat el canvi de correu electrònic de la bústia.</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">Caixa forta SL per defecte</string>
+  <string name="simple_login_sync_shared_default_vault_description">Els àlies de SimpleLogin s\'importaran a aquesta caixa forta.</string>
+</resources>

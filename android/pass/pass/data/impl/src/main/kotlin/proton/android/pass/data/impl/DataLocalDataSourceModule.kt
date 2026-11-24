@@ -1,0 +1,200 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl
+
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import proton.android.pass.data.api.core.datasources.LocalSentinelDataSource
+import proton.android.pass.data.impl.core.datasources.LocalSentinelDataSourceImpl
+import proton.android.pass.data.impl.local.LocalAppLockTypeDataSource
+import proton.android.pass.data.impl.local.LocalAppLockTypeDataSourceImpl
+import proton.android.pass.data.impl.local.LocalBreachDataSource
+import proton.android.pass.data.impl.local.LocalBreachDataSourceImpl
+import proton.android.pass.data.impl.local.LocalCompromisedPasswordDataSource
+import proton.android.pass.data.impl.local.LocalCompromisedPasswordDataSourceImpl
+import proton.android.pass.data.impl.local.LocalDataMigrationDataSource
+import proton.android.pass.data.impl.local.LocalDataMigrationDataSourceImpl
+import proton.android.pass.data.impl.local.LocalEventDataSource
+import proton.android.pass.data.impl.local.LocalEventDataSourceImpl
+import proton.android.pass.data.impl.local.LocalFolderDataSource
+import proton.android.pass.data.impl.local.LocalFolderDataSourceImpl
+import proton.android.pass.data.impl.local.LocalFolderKeyDataSource
+import proton.android.pass.data.impl.local.LocalFolderKeyDataSourceImpl
+import proton.android.pass.data.impl.local.LocalGroupInviteDataSource
+import proton.android.pass.data.impl.local.LocalGroupInviteDataSourceImpl
+import proton.android.pass.data.impl.local.LocalItemDataSource
+import proton.android.pass.data.impl.local.LocalItemDataSourceImpl
+import proton.android.pass.data.impl.local.LocalPopularServicesDataSource
+import proton.android.pass.data.impl.local.LocalPopularServicesDataSourceImpl
+import proton.android.pass.data.impl.local.LocalLiveTelemetryDataSource
+import proton.android.pass.data.impl.local.LocalLiveTelemetryDataSourceImpl
+import proton.android.pass.data.impl.local.LocalLiveTelemetryGrowthDataSource
+import proton.android.pass.data.impl.local.LocalLiveTelemetryGrowthDataSourceImpl
+import proton.android.pass.data.impl.local.LocalOrganizationSettingsDataSource
+import proton.android.pass.data.impl.local.LocalOrganizationSettingsDataSourceImpl
+import proton.android.pass.data.impl.local.LocalPasswordHistoryEntryDataSource
+import proton.android.pass.data.impl.local.LocalPasswordHistoryEntryDataSourceImpl
+import proton.android.pass.data.impl.local.LocalPlanDataSource
+import proton.android.pass.data.impl.local.LocalPlanDataSourceImpl
+import proton.android.pass.data.impl.local.LocalSearchEntryDataSource
+import proton.android.pass.data.impl.local.LocalSearchEntryDataSourceImpl
+import proton.android.pass.data.impl.local.LocalShareDataSource
+import proton.android.pass.data.impl.local.LocalShareDataSourceImpl
+import proton.android.pass.data.impl.local.LocalShareKeyDataSource
+import proton.android.pass.data.impl.local.LocalShareKeyDataSourceImpl
+import proton.android.pass.data.impl.local.LocalTelemetryGrowthDataSource
+import proton.android.pass.data.impl.local.LocalTelemetryGrowthDataSourceImpl
+import proton.android.pass.data.impl.local.LocalTelemetryDataSource
+import proton.android.pass.data.impl.local.LocalTelemetryDataSourceImpl
+import proton.android.pass.data.impl.local.LocalUserAccessDataDataSource
+import proton.android.pass.data.impl.local.LocalUserAccessDataDataSourceImpl
+import proton.android.pass.data.impl.local.LocalUserEventDataSource
+import proton.android.pass.data.impl.local.LocalUserEventDataSourceImpl
+import proton.android.pass.data.impl.local.LocalUserInviteDataSource
+import proton.android.pass.data.impl.local.LocalUserInviteDataSourceImpl
+import proton.android.pass.data.impl.local.assetlink.LocalAssetLinkDataSource
+import proton.android.pass.data.impl.local.assetlink.LocalAssetLinkDataSourceImpl
+import proton.android.pass.data.impl.local.attachments.LocalAttachmentsDataSource
+import proton.android.pass.data.impl.local.attachments.LocalAttachmentsDataSourceImpl
+import proton.android.pass.data.impl.local.inappmessages.LocalInAppMessagesDataSource
+import proton.android.pass.data.impl.local.inappmessages.LocalInAppMessagesDataSourceImpl
+import proton.android.pass.data.impl.local.securelinks.SecureLinksLocalDataSource
+import proton.android.pass.data.impl.local.securelinks.SecureLinksLocalDataSourceImpl
+import proton.android.pass.data.impl.local.shares.LocalShareInvitesDataSource
+import proton.android.pass.data.impl.local.shares.LocalShareInvitesDataSourceImpl
+import proton.android.pass.data.impl.local.shares.LocalShareMembersDataSource
+import proton.android.pass.data.impl.local.shares.LocalShareMembersDataSourceImpl
+import proton.android.pass.data.impl.local.simplelogin.LocalSimpleLoginDataSource
+import proton.android.pass.data.impl.local.simplelogin.LocalSimpleLoginDataSourceImpl
+import javax.inject.Singleton
+
+@Suppress("TooManyFunctions")
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class DataLocalDataSourceModule {
+
+    @Binds
+    abstract fun bindLocalItemDataSource(impl: LocalItemDataSourceImpl): LocalItemDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalPopularServicesDataSource(
+        impl: LocalPopularServicesDataSourceImpl
+    ): LocalPopularServicesDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalAppLockTypeDataSource(impl: LocalAppLockTypeDataSourceImpl): LocalAppLockTypeDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalShareDataSource(impl: LocalShareDataSourceImpl): LocalShareDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalFolderDataSource(impl: LocalFolderDataSourceImpl): LocalFolderDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalFolderKeyDataSource(impl: LocalFolderKeyDataSourceImpl): LocalFolderKeyDataSource
+
+    @Binds
+    abstract fun bindLocalShareKeyDataSource(impl: LocalShareKeyDataSourceImpl): LocalShareKeyDataSource
+
+    @Binds
+    abstract fun bindLocalEventDataSource(impl: LocalEventDataSourceImpl): LocalEventDataSource
+
+    @Binds
+    abstract fun bindLocalTelemetryDataSource(impl: LocalTelemetryDataSourceImpl): LocalTelemetryDataSource
+
+    @Binds
+    abstract fun bindLocalTelemetryGrowthDataSource(
+        impl: LocalTelemetryGrowthDataSourceImpl
+    ): LocalTelemetryGrowthDataSource
+
+    @Binds
+    abstract fun bindLocalSearchEntryDataSource(impl: LocalSearchEntryDataSourceImpl): LocalSearchEntryDataSource
+
+    @Binds
+    abstract fun bindLocalPlanLimitsDataSource(impl: LocalPlanDataSourceImpl): LocalPlanDataSource
+
+    @Binds
+    abstract fun bindLocalDataMigrationDataSource(impl: LocalDataMigrationDataSourceImpl): LocalDataMigrationDataSource
+
+    @Binds
+    abstract fun bindLocalUserInviteDataSource(impl: LocalUserInviteDataSourceImpl): LocalUserInviteDataSource
+
+    @Binds
+    abstract fun bindLocalGroupInviteDataSource(impl: LocalGroupInviteDataSourceImpl): LocalGroupInviteDataSource
+
+    @Binds
+    abstract fun bindLocalUserAccessDataDataSource(
+        impl: LocalUserAccessDataDataSourceImpl
+    ): LocalUserAccessDataDataSource
+
+    @Binds
+    abstract fun bindLocalOrganizationSettingsDataSource(
+        impl: LocalOrganizationSettingsDataSourceImpl
+    ): LocalOrganizationSettingsDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalSentinelDataSource(impl: LocalSentinelDataSourceImpl): LocalSentinelDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalBreachesDataSource(impl: LocalBreachDataSourceImpl): LocalBreachDataSource
+
+    @[Binds Singleton]
+    abstract fun bindSecureLinksLocalDataSource(impl: SecureLinksLocalDataSourceImpl): SecureLinksLocalDataSource
+
+    @Binds
+    abstract fun bindLocalLiveTelemetryDataSource(impl: LocalLiveTelemetryDataSourceImpl): LocalLiveTelemetryDataSource
+
+    @Binds
+    abstract fun bindLocalLiveTelemetryGrowthDataSource(
+        impl: LocalLiveTelemetryGrowthDataSourceImpl
+    ): LocalLiveTelemetryGrowthDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalSimpleLoginDataSource(impl: LocalSimpleLoginDataSourceImpl): LocalSimpleLoginDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalAssetLinkDataSource(impl: LocalAssetLinkDataSourceImpl): LocalAssetLinkDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalInAppMessagesDataSource(impl: LocalInAppMessagesDataSourceImpl): LocalInAppMessagesDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalShareMembersDataSource(impl: LocalShareMembersDataSourceImpl): LocalShareMembersDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalShareInvitesDataSource(impl: LocalShareInvitesDataSourceImpl): LocalShareInvitesDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalAttachmentsDataSource(impl: LocalAttachmentsDataSourceImpl): LocalAttachmentsDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalUserEventDataSource(impl: LocalUserEventDataSourceImpl): LocalUserEventDataSource
+
+    @[Binds Singleton]
+    abstract fun bindPasswordHistorySource(
+        impl: LocalPasswordHistoryEntryDataSourceImpl
+    ): LocalPasswordHistoryEntryDataSource
+
+    @[Binds Singleton]
+    abstract fun bindLocalCompromisedPasswordDataSource(
+        impl: LocalCompromisedPasswordDataSourceImpl
+    ): LocalCompromisedPasswordDataSource
+}

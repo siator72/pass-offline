@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="enter_your_pin_code">Syötä PIN-koodisi</string>
+  <string name="unlock">Avaa</string>
+  <plurals name="enter_your_pin_code_error">
+    <item quantity="one">Virheellinen PIN-koodi. %d yritys jäljellä.</item>
+    <item quantity="other">Virheellinen PIN-koodi. %d yritystä jäljellä.</item>
+  </plurals>
+  <string name="auth_unlock_app_title">Avaa Proton Pass</string>
+  <string name="auth_unlock_app_subtitle">Syötä tunnuksen %s pääsalasana</string>
+  <string name="auth_unlock_app_extra_password_subtitle">Syötä tunnuksen %s lisäsalasana</string>
+  <string name="auth_unlock_app_subtitle_account_switch">Syötä pääsalasana tilille:</string>
+  <string name="auth_unlock_app_extra_password_subtitle_account_switch">Syötä lisäsalasana tunnukselle:</string>
+  <string name="auth_master_password_label">Pääsalasana</string>
+  <string name="auth_action_reveal_password">Näytä pääsalasana</string>
+  <string name="auth_action_conceal_password">Piilota pääsalasana</string>
+  <string name="auth_action_enter_pin_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Syötä sen sijaan PIN-koodi</string>
+  <string name="auth_action_enter_fingerprint_instead" comment="This text shows under the Master password input, in case the user dismissed the PIN input">Käytä sen sijaan sormenjälkeä</string>
+  <string name="auth_unlock_button">Avaa</string>
+  <string name="auth_error_empty_password">Salasana ei voi olla tyhjä</string>
+  <string name="auth_error_pin_cannot_be_empty">PIN-koodi ei voi olla tyhjä</string>
+  <string name="auth_extra_password_label">Syötä lisäsalasanasi</string>
+  <string name="auth_extra_password_error">Virhe tunnistauduttaessa lisäsalasanalla</string>
+  <string name="auth_extra_password_too_many_attempts">Liian monta epäonnistunutta kirjautumisyritystä. Sinut on kirjattu ulos.</string>
+  <string name="auth_biometric_enrollment_changed">Biometriset tietosi ovat muuttuneet. Ota biometrinen lukituksen avaus uudelleen käyttöön Asetuksissa.</string>
+  <string name="auth_error_wrong_password_no_attempts">Virheellinen salasana</string>
+  <plurals name="auth_error_wrong_password">
+    <item quantity="one">Virheellinen salasana. %d yritys jäljellä</item>
+    <item quantity="other">Virheellinen salasana. %d yritystä jäljellä</item>
+  </plurals>
+  <plurals name="auth_attempts_remaining">
+    <item quantity="one">%d yritys jäljellä</item>
+    <item quantity="other">%d yritystä jäljellä</item>
+  </plurals>
+  <string name="auth_pin_too_many_attempts">Liian monta virheellistä PIN-yritystä. Kaikki käyttäjäsi on kirjattu ulos.</string>
+  <string name="auth_pin_too_many_attempts_dismiss">Liian monta epäonnistunutta PIN-yritystä</string>
+</resources>

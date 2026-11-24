@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">別名管理</string>
+  <string name="simple_login_sync_management_domain_label">網域</string>
+  <string name="simple_login_sync_management_domain_title">別名的預設網域</string>
+  <string name="simple_login_sync_management_domain_option_blank">未選定</string>
+  <string name="simple_login_sync_management_mailboxes_label">電郵信箱</string>
+  <string name="simple_login_sync_management_mailboxes_description">電郵信箱是將傳送至別名的電子郵件轉寄的目的地。這是您慣用的電郵信箱，例如 Gmail、Outlook、Proton Mail 等。</string>
+  <string name="simple_login_sync_management_mailbox_default">預設值</string>
+  <string name="simple_login_sync_management_mailbox_unverified">未驗證的電郵信箱</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">未驗證的電郵信箱變更</string>
+  <string name="simple_login_sync_management_vault_title">SimpleLogin 同步</string>
+  <string name="simple_login_sync_management_no_vault_description">You need at least one vault to manage SimpleLogin sync settings.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">擷取 SL 別名詳細資料時發生錯誤</string>
+  <string name="simple_login_sync_management_mailboxes_title">別名的預設電郵信箱</string>
+  <string name="simple_login_sync_management_dialog_title_domains">別名的預設網域</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">別名的預設電郵信箱</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">同步別名</string>
+  <string name="simple_login_sync_enable_snackbar_error">啟用 SimpleLogin 別名同步時發生錯誤</string>
+  <string name="simple_login_sync_enable_snackbar_success">SimpleLogin 別名同步已成功啟用</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">新增電郵信箱</string>
+  <string name="simple_login_sync_mailbox_create_message_error">新增電郵信箱時發生錯誤</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">變更電郵信箱</string>
+  <string name="simple_login_sync_mailbox_change_message_error">變更電郵信箱時發生錯誤</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">電郵位址已在使用中</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">確認您的電郵信箱</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">We sent a verification code to %s. Enter it below:</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">您的電郵位址</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">無效的電郵信箱驗證碼</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">無效的電郵信箱驗證碼已達上限，電郵信箱已被刪除</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">驗證電郵信箱時發生錯誤</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">電郵信箱已成功驗證</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">傳送驗證碼時發生錯誤</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">驗證碼已成功傳送</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">刪除電郵信箱</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">所有使用電郵信箱 %s 的別名也將被刪除。若要繼續接收電子郵件，請將這些別名轉移到其他電郵信箱：</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">轉移別名</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">至電郵信箱</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">刪除電郵信箱</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">轉移並刪除電郵信箱</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">刪除電郵信箱時發生錯誤</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">電郵信箱已成功刪除</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">轉移別名至</string>
+  <string name="simple_login_sync_mailbox_delete_warning">請注意，別名一旦刪除，就無法恢復。</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">預設網域</string>
+  <string name="simple_login_sync_domain_select_title_none">無</string>
+  <string name="simple_login_sync_domain_select_description_none">沒有網域</string>
+  <string name="simple_login_sync_domain_select_description_custom">您的網域</string>
+  <string name="simple_login_sync_domain_select_description_free">公開網域</string>
+  <string name="simple_login_sync_domain_select_description_premium">頂級質子版網域</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">擷取 SL 別名網域時發生錯誤</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">更新 SL 別名網域時發生錯誤</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">SL 別名網域已成功更新</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">無法顯示電郵信箱選項</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">更新預設電郵信箱時發生錯誤</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">預設電郵信箱已成功更新</string>
+  <string name="simple_login_sync_mailbox_change_email_option">變更電郵信箱</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">取消電郵信箱變更</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">取消電郵信箱電郵變更時發生錯誤</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">電郵信箱電郵變更已取消</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">預設 SL 保管庫</string>
+  <string name="simple_login_sync_shared_default_vault_description">SimpleLogin 別名將匯入此保管庫。</string>
+</resources>

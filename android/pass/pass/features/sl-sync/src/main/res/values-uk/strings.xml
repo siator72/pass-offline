@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">Керування псевдонімом</string>
+  <string name="simple_login_sync_management_domain_label">Домен</string>
+  <string name="simple_login_sync_management_domain_title">Типовий домен для псевдоніма</string>
+  <string name="simple_login_sync_management_domain_option_blank">Не вибрано</string>
+  <string name="simple_login_sync_management_mailboxes_label">Поштові скриньки</string>
+  <string name="simple_login_sync_management_mailboxes_description">Поштова скринька - це місце, куди пересилаються листи, надіслані на псевдонім. Це ваша звичайна поштова скринька, наприклад, Gmail, Outlook, Proton Mail тощо.</string>
+  <string name="simple_login_sync_management_mailbox_default">Типовий</string>
+  <string name="simple_login_sync_management_mailbox_unverified">Непідтверджена поштова скринька</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">Непідтверджена зміна скриньки</string>
+  <string name="simple_login_sync_management_vault_title">Синхронізація SimpleLogin</string>
+  <string name="simple_login_sync_management_no_vault_description">You need at least one vault to manage SimpleLogin sync settings.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">Виникла помилка при отриманні даних про псевдонім SL</string>
+  <string name="simple_login_sync_management_mailboxes_title">Типова поштова скринька для псевдоніма</string>
+  <string name="simple_login_sync_management_dialog_title_domains">Типовий домен для псевдоніма</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">Типова поштова скринька для псевдоніма</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">Синхронізувати псевдоніми</string>
+  <string name="simple_login_sync_enable_snackbar_error">Виникла помилка увімкнення синхронізації псевдонімів SimpleLogin</string>
+  <string name="simple_login_sync_enable_snackbar_success">Синхронізацію псевдонімів SimpleLogin успішно ввімкнено</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">Додати поштову скриньку</string>
+  <string name="simple_login_sync_mailbox_create_message_error">Помилка при додаванні поштової скриньки</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">Змінити скриньку</string>
+  <string name="simple_login_sync_mailbox_change_message_error">Помилка при зміні поштової скриньки</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">Поштова адреса вже використовується</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">Підтвердьте Вашу поштову скриньку</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">Ми надіслали код підтвердження на %s. Введіть його нижче:</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">ваша адреса електронної пошти</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">Невірний код підтвердження поштової скриньки</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">Досягнуто ліміт невірного коду перевірки поштової скриньки, скриньку видалено</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">Виникла помилка при перевірці поштової скриньки</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">Поштову скриньку успішно перевірено</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">Виникла помилка при надсиланні коду підтвердження</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">Код підтвердження успішно відправлено</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">Видалити поштову скриньку</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">Усі псевдоніми, що використовують поштову скриньку %s, також будуть видалені. Аби продовжувати отримувати листи, перенесіть ці псевдоніми до іншої поштової скриньки:</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">Перенести псевдоніми</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">До поштової скриньки</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">Видалити поштову скриньку</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">Перенести та видалити поштову скриньку</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">Виникла помилка при видаленні поштової скриньки</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">Поштову скриньку успішно видалено</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">Перенести псевдоніми до</string>
+  <string name="simple_login_sync_mailbox_delete_warning">Зверніть увагу, що після видалення псевдоніми не можна відновити</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">Типовий домен</string>
+  <string name="simple_login_sync_domain_select_title_none">без блокування</string>
+  <string name="simple_login_sync_domain_select_description_none">Домен відсутній</string>
+  <string name="simple_login_sync_domain_select_description_custom">Ваш домен</string>
+  <string name="simple_login_sync_domain_select_description_free">Публічний домен</string>
+  <string name="simple_login_sync_domain_select_description_premium">Преміум домен</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">Виникла помилка при отриманні псевдонімів SL доменів</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">Помилка при оновленні домену SL псевдоніма</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">Псевдонімний домен SL успішно оновлено</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">Не вдається показати параметри поштової скриньки</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">Виникла помилка при оновленні типової поштової скриньки</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">Типову поштову скриньку успішно оновлено</string>
+  <string name="simple_login_sync_mailbox_change_email_option">Змінити скриньку</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">Скасувати зміну скриньки</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">Помилка при скасуванні зміни поштової адреси</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">Зміну поштової скриньки скасовано</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">Типове сховище SL</string>
+  <string name="simple_login_sync_shared_default_vault_description">Псевдоніми SimpleLogin буде імпортовано до цього сховища.</string>
+</resources>

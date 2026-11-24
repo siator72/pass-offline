@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="description_field_label">문제가 무엇인가요?</string>
+  <string name="description_field_hint">문제를 설명해주세요. 설명이 구체적일수록 더 좋습니다. 오류 메시지가 있다면 뭐라고 적혀있는지 알려주세요.</string>
+  <string name="email_field_label">이메일</string>
+  <string name="email_field_hint">이메일</string>
+  <string name="attach_image_button">이미지 첨부</string>
+  <string name="categories_title">문제가 무엇인가요?</string>
+  <string name="report_toolbar_title">문제 보고하기</string>
+  <string name="send_report_button">보고서 보내기</string>
+  <string name="cancel_tips_button">취소하기</string>
+  <string name="contact_us_button">문의하기</string>
+  <string name="hint_tips_screen">소용이 없었나요?</string>
+  <string name="report_reason_autofill">자동 완성</string>
+  <string name="report_reason_sharing">공유</string>
+  <string name="report_reason_sync">동기화</string>
+  <string name="report_reason_passkeys">패스키</string>
+  <string name="report_reason_other">기타</string>
+  <string name="tips_title">%1$s에 대한 빠른 문제 해결</string>
+  <string name="tips_subtitle">이 팁들이 문제를 더 빨리 해결하는데 도움이 될 수 있습니다.</string>
+  <string name="autofill_tip_restart">자동 완성 서비스 비활성화 후 활성화를 시도하세요.</string>
+  <string name="autofill_tip_browser">타 브라우저를 시도하세요.</string>
+  <string name="autofill_tip_another_website">다른 웹사이트에서 시도해보세요.</string>
+  <string name="sharing_tip_vault_sharing_guide">금고 공유에 문제가 발생하나요? 가이드를 살펴보세요.</string>
+  <string name="sharing_tip_secure_links_guide">안전한 링크에 문제가 발생하나요? 가이드를 살펴보세요.</string>
+  <string name="sync_tip_force_refresh">화면이 비어있나요? 강제 동기화를 시도해보세요.</string>
+  <string name="send_logs_label">로그 전송</string>
+  <string name="report_sending_success">보고서를 정상적으로 보냈습니다.</string>
+  <string name="report_sending_error">보고서 전송 오류.</string>
+  <string name="tips_passkey_check_guide">문제 발생시 가이드를 참고하세요.</string>
+  <string name="tips_passkey_android_not_supported">사용자의 Android 버전이 너무 낮음. 기기를 업그레이드해주세요.</string>
+  <string name="tips_passkey_supported">패스키를 지원함</string>
+  <string name="tips_passkey_not_supported">패스키를 미지원함</string>
+  <string name="report_steps" comment="Indicator showing report progress">%2$d 단계 중 %1$d 단계</string>
+  <string name="description_cannot_be_blank">설명은 비울 수 없습니다</string>
+  <string name="description_is_too_short">설명이 너무 짧습니다</string>
+  <string name="description_is_too_long">설명이 너무 깁니다</string>
+  <string name="email_cannot_be_blank">이메일을 비울 수 없습니다</string>
+  <string name="email_invalid">올바르지 않은 이메일 주소</string>
+</resources>

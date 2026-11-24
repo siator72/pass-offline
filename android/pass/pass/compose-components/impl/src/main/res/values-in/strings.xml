@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Judul (A-Z)</string>
+  <string name="sort_by_title_desc">Judul (Z-A)</string>
+  <string name="sort_by_creation_asc">Terlama ke terbaru</string>
+  <string name="sort_by_creation_desc">Terbaru ke terlama</string>
+  <string name="sort_by_modification_date">Baru digunakan</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Semua</string>
+  <string name="item_list_header_pinned_search_results">Disematkan</string>
+  <string name="item_list_header_logins_type">Entri masuk</string>
+  <string name="item_list_header_logins_totp_type">Entri masuk dengan TOTP</string>
+  <string name="item_list_header_aliases_type">Alias</string>
+  <string name="item_list_header_notes_type">Catatan</string>
+  <string name="item_list_header_credit_cards_type">Kartu kredit</string>
+  <plurals name="item_list_header_results">
+    <item quantity="other">hasil</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Identitas</string>
+  <string name="item_list_header_custom_type">Item khusus</string>
+  <string name="item_list_header_shared_with_me">Dibagikan dengan saya</string>
+  <string name="item_list_header_shared_by_me">Dibagikan oleh saya</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Konfirmasi</string>
+  <string name="bottomsheet_cancel_button">Batalkan</string>
+  <string name="bottomsheet_move_to_trash">Pindahkan ke sampah</string>
+  <string name="bottomsheet_pin_item">Sematkan</string>
+  <string name="bottomsheet_unpin_item">Lepas sematan</string>
+  <string name="bottomsheet_view_item_history">Lihat riwayat</string>
+  <string name="bottomsheet_monitor_exclude">Kecualikan dari pemantauan</string>
+  <string name="bottomsheet_monitor_include">Sertakan dalam pemantauan</string>
+  <string name="bottomsheet_migrate_item_v2">Pindahkan</string>
+  <string name="bottomsheet_create_folder">Buat folder</string>
+  <string name="folder_tree_create_folder">Buat folder</string>
+  <string name="bottomsheet_rename_folder">Ubah nama</string>
+  <string name="bottomsheet_create_sub_folder">Create sub-folder</string>
+  <string name="bottomsheet_move_folder">Move folder</string>
+  <string name="bottomsheet_move_all_items_in_folder">Pindahkan semua item</string>
+  <string name="bottomsheet_copy_item_note">Salin catatan</string>
+  <string name="bottomsheet_delete_permanently">Hapus secara permanen</string>
+  <string name="bottomsheet_restore">Pulihkan</string>
+  <string name="bottomsheet_leave">Keluar</string>
+  <string name="bottomsheet_duplicate">Gandakan</string>
+  <string name="bottomsheet_no_actions">Tidak ada tindakan yang tersedia</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Buka menu tindakan item</string>
+  <string name="action_upgrade_now">Tingkatkan sekarang</string>
+  <string name="action_not_now">Tidak sekarang</string>
+  <string name="action_learn_more">Pelajari lebih lanjut</string>
+  <string name="action_enable">Aktifkan</string>
+  <string name="action_view_details">Lihat rincian</string>
+  <string name="action_see_all">Lihat semua</string>
+  <string name="action_confirm">Konfirmasi</string>
+  <string name="action_cancel">Batalkan</string>
+  <string name="action_continue">Lanjutkan</string>
+  <string name="action_retry">Coba lagi</string>
+  <string name="action_edit">Sunting</string>
+  <string name="action_add">Tambah</string>
+  <string name="action_delete">Hapus</string>
+  <string name="action_make_default">Jadikan bawaan</string>
+  <string name="action_verify">Verifikasi</string>
+  <string name="action_close">Tutup</string>
+  <string name="action_update">Perbarui</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Tambahkan item pertama Anda</string>
+  <string name="empty_search_results_title">Tidak ada hasil yang ditemukan</string>
+  <string name="empty_list_open_extension">Kunjungi ekstensi web</string>
+  <string name="empty_list_create_item_button">Buat item baru</string>
+  <!-- Field -->
+  <string name="field_title_title">Judul</string>
+  <string name="field_title_hint">Tanpa judul</string>
+  <string name="field_title_required">Judul diperlukan</string>
+  <string name="small_cross_icon_content_description">Ikon silang kecil</string>
+  <string name="field_note_title">Catatan</string>
+  <string name="field_note_hint">Tambah catatan</string>
+  <string name="linked_apps_title">Aplikasi yang ditautkan</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Offline</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Ikon aplikasi tidak ada</string>
+  <string name="add_item_icon_content_description">Tambah ikon item</string>
+  <string name="navigate_back_icon_content_description">Ikon navigasi kembali</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Daftar item</string>
+  <string name="bottom_bar_add_item_icon_content_description">Tambahkan item</string>
+  <string name="bottom_bar_profile_icon_content_description">Profil</string>
+  <string name="bottom_bar_security_center_icon_content_description">Pusat keamanan</string>
+  <string name="bottom_bar_explore_icon_content_description">Explore</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Hari ini</string>
+  <string name="most_recent_yesterday">Kemarin</string>
+  <string name="most_recent_this_week">Minggu ini</string>
+  <string name="most_recent_last_two_weeks">Dua minggu terakhir</string>
+  <string name="most_recent_last_30_days">Bulan lalu</string>
+  <string name="most_recent_last_60_days">60 hari terakhir</string>
+  <string name="most_recent_last_90_days">90 hari terakhir</string>
+  <string name="most_recent_within_the_last_year">Dalam setahun ke belakang</string>
+  <string name="most_recent_more_than_1_year">Lebih lama dari 1 tahun</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Ikon pencarian</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="other">%d item</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Batalkan perubahan?</string>
+  <string name="confirm_close_dialog_message">Anda memiliki perubahan yang belum disimpan. Apakah Anda yakin untuk membatalkan perubahan ini?</string>
+  <string name="confirm_close_dialog_close_button">Buang</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Tingkatkan</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Opsi lanjutan</string>
+  <string name="hide_advanced_options">Sembunyikan opsi lanjutan</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Kuat</string>
+  <string name="label_password_strength_vulnerable">Rentan</string>
+  <string name="label_password_strength_weak">Lemah</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Lihat semua</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Hari ini %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Kemarin %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Alamat alias</string>
+  <string name="item_details_alias_section_alias_disabled_title">Alamat alias (dinonaktifkan)</string>
+  <string name="item_details_alias_section_mailboxes_title">Meneruskan ke</string>
+  <string name="item_details_credit_card_section_cardholder_title">Nama pada kartu</string>
+  <string name="item_details_credit_card_section_card_number_title">Nomor kartu</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Tanggal kedaluwarsa</string>
+  <string name="item_details_credit_card_section_cvv_title">Kode keamanan</string>
+  <string name="item_details_credit_card_section_pin_title">Kode PIN</string>
+  <string name="item_details_login_section_email_title">Alamat email</string>
+  <string name="item_details_login_section_username_title">Nama pengguna</string>
+  <string name="item_details_login_section_password_title">Kata sandi</string>
+  <string name="item_details_login_section_primary_totp_title">Token 2FA (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Situs web</string>
+  <string name="autofill_mode_label_default">Parent domain and subdomains</string>
+  <string name="autofill_mode_label_exact">Exact (sub)domain</string>
+  <string name="autofill_mode_label_never">Never fill on this website</string>
+  <string name="autofill_mode_label_start_with">Starts with</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">Regular expression</string>
+  <string name="autofill_mode_label_exact_path">Exact URL matching</string>
+  <string name="autofill_mode_label_unsupported">This url will be skipped for autofill</string>
+  <string name="login_item_view_alias_button">Tampilkan alias</string>
+  <string name="item_details_identity_section_personal_title">Rincian pribadi</string>
+  <string name="item_details_identity_section_personal_first_name_title">Nama depan</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Nama tengah</string>
+  <string name="item_details_identity_section_personal_last_name_title">Nama belakang</string>
+  <string name="item_details_identity_section_personal_full_name_title">Nama lengkap</string>
+  <string name="item_details_identity_section_personal_email_title">Alamat email</string>
+  <string name="item_details_identity_section_personal_gender_title">Jenis kelamin</string>
+  <string name="item_details_identity_section_personal_phone_title">Nomor telepon</string>
+  <string name="item_details_identity_section_personal_birthday_title">Tanggal lahir</string>
+  <string name="item_details_identity_section_address_title">Rincian alamat</string>
+  <string name="item_details_identity_section_address_organization_title">Organisasi</string>
+  <string name="item_details_identity_section_address_street_address_title">Alamat jalan, P.O. Box</string>
+  <string name="item_details_identity_section_address_floor_title">Lantai</string>
+  <string name="item_details_identity_section_address_city_title">Kota</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">ZIP atau kode pos</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Negara bagian atau provinsi</string>
+  <string name="item_details_identity_section_address_county_title">Daerah</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Negara atau wilayah</string>
+  <string name="item_details_identity_section_contact_title">Rincian kontak</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Nomor jaminan sosial</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Nomor paspor</string>
+  <string name="item_details_identity_section_contact_license_number_title">Nomor lisensi</string>
+  <string name="item_details_identity_section_contact_website_title">Situs Web</string>
+  <string name="item_details_identity_section_contact_x_handle_title">Akun X</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Nomor telepon kedua</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Rincian pekerjaan</string>
+  <string name="item_details_identity_section_work_company_title">Perusahaan</string>
+  <string name="item_details_identity_section_work_occupation_title">Pekerjaan</string>
+  <string name="item_details_identity_section_work_email_title">Alamat email kantor</string>
+  <string name="item_details_identity_section_work_phone_number_title">Nomor telepon kantor</string>
+  <string name="item_details_identity_section_work_personal_website_title">Situs web pribadi</string>
+  <string name="item_details_shared_section_note_title">Catatan</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Pengisian otomatis terakhir</string>
+  <string name="item_details_shared_section_item_history_created_title">Dibuat</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Diubah (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Lihat riwayat item</string>
+  <string name="item_details_shared_section_more_info_header_title">Info lebih lanjut</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Ikon informasi lebih banyak item</string>
+  <string name="item_details_shared_section_more_info_item_id">ID item</string>
+  <string name="item_details_shared_section_more_info_vault_id">ID Brankas</string>
+  <string name="item_details_shared_section_more_info_share_id">Salin ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">Nama (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Kata sandi</string>
+  <string name="item_details_wifi_network_label_security">Keamanan</string>
+  <string name="item_details_ssh_key_label_public_key">Kunci publik</string>
+  <string name="item_details_ssh_key_label_private_key">Kunci pribadi</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Versi aplikasi ini sudah tidak lagi didukung. Silakan perbarui aplikasi Anda.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Passkey</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Tingkatkan paket?</string>
+  <string name="dialog_upgrade_plan_message">Fitur ini tidak tersedia bagi pengguna dengan paket gratis. Apabila Anda ingin menikmati fitur ini dan berbagai fitur keren lainnya, tingkatkan paket Anda dan mulai gunakan fitur ini!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Tingkatkan</string>
+  <string name="dialog_upgrade_plan_action_cancel">Tidak sekarang</string>
+  <!-- Words -->
+  <string name="email_address">Alamat email</string>
+  <string name="email_address_invalid">Alamat email tidak valid</string>
+  <string name="password">Kata sandi</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Tombol untuk menutup tooltip dan tidak menampilkannya kembali</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="other">%d tahun</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="other">%d bulan</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="other">%d minggu</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="other">%d hari</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="other">%d jam</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="other">%d menit</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="other">%d detik</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="other">%d alias</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Catatan disalin</string>
+  <string name="snack_bar_message_item_migration_error">Terdapat kesalahan dalam memindahkan item ini</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Item berhasil dikecualikan dari pemantauan</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Terdapat kesalahan dalam mengecualikan item dari pemantauan</string>
+  <string name="snack_bar_message_item_monitor_included_success">Item berhasil disertakan dalam pemantauan</string>
+  <string name="snack_bar_message_item_monitor_included_error">Terdapat kesalahan dalam menyertakan item pada pemantauan</string>
+  <string name="snack_bar_message_item_pinned_success">Item berhasil disematkan</string>
+  <string name="snack_bar_message_item_pinned_error">Terdapat kesalahan dalam menyematkan item ini</string>
+  <string name="snack_bar_message_item_unpinned_success">Sematan item berhasil dilepas</string>
+  <string name="snack_bar_message_item_unpinned_error">Terdapat kesalahan dalam melepas sematan item ini</string>
+  <string name="snack_bar_message_item_trashed_success">Item berhasil dibuang</string>
+  <string name="snack_bar_message_item_trashed_error">Terdapat kesalahan dalam membuang item ini</string>
+  <string name="snack_bar_message_item_restore_success">Item berhasil dipulihkan</string>
+  <string name="snack_bar_message_item_restore_error">Terdapat kesalahan dalam memulihkan item ini</string>
+  <string name="snack_bar_message_item_delete_success">Item berhasil dihapus</string>
+  <string name="snack_bar_message_item_delete_error">Terdapat kesalahan dalam menghapus item ini</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Aktifkan sinkronisasi SimpleLogin</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="other">Kami mendeteksi bahwa Anda memiliki %d alias yang terdapat SimpleLogin namun tidak ada pada Proton Pass. Apakah Anda ingin mengimpor alias ini?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Sinkronkan alias</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Belum menerima kode verifikasi?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Silakan periksa dalam Spam untuk email bernama “%s”</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Silakan konfirmasi alamat email Anda untuk Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Silakan konfirmasi kotak surat Anda</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Apabila Anda tidak dapat menemukan email tersebut, Anda dapat %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">minta kode baru</string>
+  <string name="field_display_name_title">Nama tampilan</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="other">%1$s berkas</item>
+  </plurals>
+  <string name="attachment_title">Lampiran</string>
+  <string name="attachment_no_files">Unggah berkas dari perangkat Anda</string>
+  <string name="attachment_add_file">Lampirkan berkas</string>
+  <string name="attachment_row_upload_failed">Pengunggahan gagal</string>
+  <string name="attachment_row_retry">Coba lagi</string>
+  <string name="options_menu_content_description">Menu opsi</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="other">%d item terbagi</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="other">%d pengguna</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="other">%d anggota</item>
+  </plurals>
+  <string name="show_network_qr_code">Tampilkan Kode QR Jaringan</string>
+  <string name="expand_collpased_text">lebih banyak</string>
+  <string name="collapse_expanded_text">lebih sedikit</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Kata Sandi Lemah</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Akun ini terindikasi rentan. Kunjungi layanan keamanan kami dan ubah kata sandi Anda.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Compromised password</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">This login password appears in a data breach. Please visit the service and change the password.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="other">%d entri masuk lainnya menggunakan kata sandi yang sama</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Atur 2FA untuk keamanan yang lebih</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Layanan ini menawarkan 2FA. Aktifkan fitur ini untuk meningkatkan keamanan akun.</string>
+  <string name="login_item_monitor_action_ignore">Abaikan</string>
+  <string name="login_item_monitor_action_restore">Restore alert</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Kata sandi yang lemah</string>
+  <string name="login_item_monitor_label_compromised">Compromised password</string>
+  <string name="login_item_monitor_label_reused">Reused password</string>
+  <string name="login_item_monitor_label_missing_2fa">2FA hilang</string>
+  <string name="login_item_reused_passwords_subtitle">Item pada brankas Anda yang menggunakan kata sandi ini.</string>
+  <string name="mfa_limit_reached">Batas 2FA tercapai</string>
+  <string name="activity_in_last_two_weeks">Aktivitas dalam 14 hari terakhir</string>
+  <string name="contacts">Kontak</string>
+  <string name="contacts_section_description">Untuk menjaga agar alamat email pribadi Anda tetap tersembunyi, Anda dapat membuat kontak alias yang menyamarkan alamat Anda.</string>
+  <string name="field_detail_display_name_title">Nama tampilan</string>
+  <string name="display_name_section_description">Nama tampilan ketika mengirimkan email dari alias ini.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="other">%1$s penerusan</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="other">%1$s balasan</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="other">%1$s pemblokiran</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Buat entri masuk</string>
+  <string name="banner_contacts_title">Tahukah Anda?</string>
+  <string name="banner_contacts_subtitle">Setiap kali alias Anda menerima email dari orang lain, kontak baru akan dibuat secara otomatis.</string>
+  <string name="action_reveal">Tampilkan</string>
+  <string name="action_conceal">Sembunyikan</string>
+  <string name="warning_dialog_item_shared_vault_title">Item pada brankas yang dibagikan</string>
+  <string name="warning_dialog_item_shared_title">Item yang dibagikan</string>
+  <string name="warning_dialog_item_shared_vault_creating">Anda sedang membuat item pada brankas yang dibagikan. Pengguna yang berbagi brankas dengan Anda akan memperoleh akses ke item ini dengan segera.</string>
+  <string name="warning_dialog_item_shared_vault_moving">Anda sedang memindahkan item pada brankas yang dibagikan. Pengguna yang berbagi brankas dengan Anda akan memperoleh akses ke item ini dengan segera.</string>
+  <string name="warning_dialog_item_shared_vault_updating">Anda sedang menyunting item pada brankas yang dibagikan. Pengguna yang berbagi brankas dengan Anda akan memperoleh akses ke item ini dengan segera.</string>
+  <string name="warning_dialog_item_shared_updating">Anda sedang menyunting item yang dibagikan. Perubahan yang Anda buat akan terlihat oleh semua orang yang memiliki akses ke item ini dengan segera.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Jangan ingatkan saya lagi</string>
+  <string name="upgrade_to_pass_plus">Tingkatkan ke Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">You are about to be redirected to our website. If you purchase a plan, please restart the app.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Pemisah kata</string>
+  <string name="bottomsheet_option_capitalise">Kapitalkan</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Tanda hubung ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Spasi</string>
+  <string name="bottomsheet_option_word_separator_periods">Titik ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Koma ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Garis bawah ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Nomor</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Angka dan simbol</string>
+  <plurals name="word_count">
+    <item quantity="other">%s kata</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Kekuatan kata sandi</string>
+  <string name="password_check_min_length">Password is too short</string>
+  <string name="password_check_lowercase">Lowercase letters</string>
+  <string name="password_check_uppercase">Uppercase letters</string>
+  <string name="password_check_no_consecutive">No repeated characters</string>
+  <string name="password_check_no_common">No common password</string>
+</resources>

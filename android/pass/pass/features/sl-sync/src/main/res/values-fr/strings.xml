@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">Gestion des alias</string>
+  <string name="simple_login_sync_management_domain_label">Domaine</string>
+  <string name="simple_login_sync_management_domain_title">Domaine par défaut pour les alias</string>
+  <string name="simple_login_sync_management_domain_option_blank">Non sélectionné</string>
+  <string name="simple_login_sync_management_mailboxes_label">Messageries</string>
+  <string name="simple_login_sync_management_mailboxes_description">La boîte de réception est l\'endroit où les e-mails envoyés à un alias sont redirigés. C\'est votre messagerie habituelle, par exemple Gmail, Outlook, Proton Mail, etc.</string>
+  <string name="simple_login_sync_management_mailbox_default">Par défaut</string>
+  <string name="simple_login_sync_management_mailbox_unverified">La messagerie n\'est pas vérifiée.</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">Modification de la messagerie non vérifiée</string>
+  <string name="simple_login_sync_management_vault_title">Synchronisation avec SimpleLogin</string>
+  <string name="simple_login_sync_management_no_vault_description">Vous avez besoin d\'au moins un coffre-fort pour gérer les paramètres de synchronisation SimpleLogin.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">Une erreur est survenue lors de la récupération des informations de l\'alias SL.</string>
+  <string name="simple_login_sync_management_mailboxes_title">Messagerie par défaut pour les alias</string>
+  <string name="simple_login_sync_management_dialog_title_domains">Domaine par défaut pour les alias</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">Messagerie par défaut pour les alias</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">Synchroniser les alias</string>
+  <string name="simple_login_sync_enable_snackbar_error">Une erreur est survenue lors de l\'activation de la synchronisation des alias SimpleLogin.</string>
+  <string name="simple_login_sync_enable_snackbar_success">Les alias SimpleLogin sont synchronisés.</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">Ajouter une messagerie</string>
+  <string name="simple_login_sync_mailbox_create_message_error">Une erreur s\'est produite lors de l\'ajout de la messagerie.</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">Modifier la messagerie</string>
+  <string name="simple_login_sync_mailbox_change_message_error">Une erreur s\'est produite lors de la modification de la messagerie.</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">L\'adresse e-mail est déjà utilisée</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">Confirmez votre messagerie</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">Nous avons envoyé un code de vérification à %s. Veuillez le saisir ci-dessous :</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">votre adresse e-mail</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">Le code de vérification de la messagerie n\'est pas valide.</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">Le nombre limite de codes de vérification non valides de la messagerie invalide a été atteint. La messagerie a été supprimée.</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">Une erreur s\'est produite lors de la vérification de la messagerie.</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">La messagerie a été vérifiée.</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">Une erreur est survenue lors de l\'envoi du code de vérification.</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">Le code de vérification a été envoyé.</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">Supprimer la messagerie</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">Tous les alias utilisant la messagerie %s seront également supprimés. Pour continuer à recevoir des e-mails, transférez ces alias vers une autre messagerie :</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">Transférer les alias</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">Vers la messagerie</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">Supprimer la messagerie</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">Transférer et supprimer la messagerie</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">Une erreur s\'est produite lors de la suppression de la messagerie.</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">La messagerie a été supprimée.</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">Transférer les alias vers</string>
+  <string name="simple_login_sync_mailbox_delete_warning">Une fois supprimé, un alias ne peut pas être restauré.</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">Domaine par défaut</string>
+  <string name="simple_login_sync_domain_select_title_none">aucun</string>
+  <string name="simple_login_sync_domain_select_description_none">Aucun domaine</string>
+  <string name="simple_login_sync_domain_select_description_custom">Votre domaine</string>
+  <string name="simple_login_sync_domain_select_description_free">Domaine public</string>
+  <string name="simple_login_sync_domain_select_description_premium">Domaines premium</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">Une erreur est survenue lors de la récupération des domaines des alias SL.</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">Une erreur est survenue lors de la mise à jour du domaine de l\'alias SL.</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">Le domaine des alias SL a été mis à jour.</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">Les options de messagerie ne peuvent pas être affichées.</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">Une erreur est survenue lors de la mise à jour de la messagerie par défaut.</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">La messagerie par défaut a été mise à jour.</string>
+  <string name="simple_login_sync_mailbox_change_email_option">Modifier la messagerie</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">Annuler la modification de la messagerie</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">Une erreur est survenue lors de l\'annulation de la modification de l\'e-mail de la messagerie.</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">La modification apportée à la messagerie a été annulée.</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">Coffre-fort SL par défaut</string>
+  <string name="simple_login_sync_shared_default_vault_description">Les alias SimpleLogin seront importés dans ce coffre-fort.</string>
+</resources>

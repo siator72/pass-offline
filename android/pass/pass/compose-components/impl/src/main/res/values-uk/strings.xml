@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">За назвою (А-Я)</string>
+  <string name="sort_by_title_desc">За назвою (Я-А)</string>
+  <string name="sort_by_creation_asc">Спочатку найстаріші</string>
+  <string name="sort_by_creation_desc">Спочатку нові</string>
+  <string name="sort_by_modification_date">Нещодавно використано</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Всі</string>
+  <string name="item_list_header_pinned_search_results">Прикріплено</string>
+  <string name="item_list_header_logins_type">Записи входу</string>
+  <string name="item_list_header_logins_totp_type">Вхід з TOTP</string>
+  <string name="item_list_header_aliases_type">Псевдоніми</string>
+  <string name="item_list_header_notes_type">Нотатки</string>
+  <string name="item_list_header_credit_cards_type">Банківські картки</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">результат</item>
+    <item quantity="few">результати</item>
+    <item quantity="many">результатів</item>
+    <item quantity="other">результатів</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Особисті дані</string>
+  <string name="item_list_header_custom_type">Власні елементи</string>
+  <string name="item_list_header_shared_with_me">Поділилися зі мною</string>
+  <string name="item_list_header_shared_by_me">Поширено мною</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Підтвердити</string>
+  <string name="bottomsheet_cancel_button">Скасувати</string>
+  <string name="bottomsheet_move_to_trash">Перемістити до смітника</string>
+  <string name="bottomsheet_pin_item">Прикріпити</string>
+  <string name="bottomsheet_unpin_item">Відкріпити</string>
+  <string name="bottomsheet_view_item_history">Переглянути історію</string>
+  <string name="bottomsheet_monitor_exclude">Виключити з моніторингу</string>
+  <string name="bottomsheet_monitor_include">Включати у моніторинг</string>
+  <string name="bottomsheet_migrate_item_v2">Перемістити</string>
+  <string name="bottomsheet_create_folder">Створити теку</string>
+  <string name="folder_tree_create_folder">Створити теку</string>
+  <string name="bottomsheet_rename_folder">Перейменувати</string>
+  <string name="bottomsheet_create_sub_folder">Створити підтеку</string>
+  <string name="bottomsheet_move_folder">Перемістити теку</string>
+  <string name="bottomsheet_move_all_items_in_folder">Перемістити всі елементи</string>
+  <string name="bottomsheet_copy_item_note">Копіювати нотатку</string>
+  <string name="bottomsheet_delete_permanently">Видалити остаточно</string>
+  <string name="bottomsheet_restore">Відновити</string>
+  <string name="bottomsheet_leave">Покинути</string>
+  <string name="bottomsheet_duplicate">Дублювати</string>
+  <string name="bottomsheet_no_actions">Немає доступних дій</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Відкрити меню дій елемента</string>
+  <string name="action_upgrade_now">Покращити</string>
+  <string name="action_not_now">Не зараз</string>
+  <string name="action_learn_more">Докладніше</string>
+  <string name="action_enable">Увімкнути</string>
+  <string name="action_view_details">Переглянути подробиці</string>
+  <string name="action_see_all">Переглянути все</string>
+  <string name="action_confirm">Підтвердити</string>
+  <string name="action_cancel">Скасувати</string>
+  <string name="action_continue">Продовжити</string>
+  <string name="action_retry">Повторити спробу</string>
+  <string name="action_edit">Змінити</string>
+  <string name="action_add">Додати</string>
+  <string name="action_delete">Видалити</string>
+  <string name="action_make_default">Зробити типовою</string>
+  <string name="action_verify">Перевірити</string>
+  <string name="action_close">Закрити</string>
+  <string name="action_update">Оновити</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Додайте свій перший елемент</string>
+  <string name="empty_search_results_title">Нічого не знайдено</string>
+  <string name="empty_list_open_extension">Відвідати веб розширення</string>
+  <string name="empty_list_create_item_button">Створити новий елемент</string>
+  <!-- Field -->
+  <string name="field_title_title">Назва</string>
+  <string name="field_title_hint">Без назви</string>
+  <string name="field_title_required">Назва обов\'язкова</string>
+  <string name="small_cross_icon_content_description">Піктограма маленький хрест</string>
+  <string name="field_note_title">Нотатка</string>
+  <string name="field_note_hint">Додати нотатку</string>
+  <string name="linked_apps_title">Пов\'язані програми</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Не в мережі</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Відсутня піктограма програми</string>
+  <string name="add_item_icon_content_description">Піктограма додати елемент</string>
+  <string name="navigate_back_icon_content_description">Піктограма назад</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Елементи списку</string>
+  <string name="bottom_bar_add_item_icon_content_description">Додати елемент</string>
+  <string name="bottom_bar_profile_icon_content_description">Профіль</string>
+  <string name="bottom_bar_security_center_icon_content_description">Центр безпеки</string>
+  <string name="bottom_bar_explore_icon_content_description">нижня_панель_дослідження_піктограма_вміст_опис</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Сьогодні</string>
+  <string name="most_recent_yesterday">Вчора</string>
+  <string name="most_recent_this_week">Цього тижня</string>
+  <string name="most_recent_last_two_weeks">Останні два тижні</string>
+  <string name="most_recent_last_30_days">Минулого місяця</string>
+  <string name="most_recent_last_60_days">Останні 60 днів</string>
+  <string name="most_recent_last_90_days">Останні 90 днів</string>
+  <string name="most_recent_within_the_last_year">За останній рік</string>
+  <string name="most_recent_more_than_1_year">Старіше 1 року</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Піктограма пошук</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 елемент</item>
+    <item quantity="few">%d елементи</item>
+    <item quantity="many">%d елементів</item>
+    <item quantity="other">%d елементів</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Відхилити зміни?</string>
+  <string name="confirm_close_dialog_message">У вас є незбережені зміни, ви впевнені, що хочете відхилити їх?</string>
+  <string name="confirm_close_dialog_close_button">Відхилити</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Покращити</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Додаткові параметри</string>
+  <string name="hide_advanced_options">Приховати додаткові параметри</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Надійний</string>
+  <string name="label_password_strength_vulnerable">Вразливий</string>
+  <string name="label_password_strength_weak">Простий</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Переглянути все</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Сьогодні %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Вчора %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Адреса псевдоніма</string>
+  <string name="item_details_alias_section_alias_disabled_title">Адреса псевдоніма (вимкнено)</string>
+  <string name="item_details_alias_section_mailboxes_title">Пересилання на</string>
+  <string name="item_details_credit_card_section_cardholder_title">Ім\'я на картці</string>
+  <string name="item_details_credit_card_section_card_number_title">Номер картки</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Термін дії</string>
+  <string name="item_details_credit_card_section_cvv_title">Код безпеки</string>
+  <string name="item_details_credit_card_section_pin_title">PIN-код</string>
+  <string name="item_details_login_section_email_title">Адреса е-пошти</string>
+  <string name="item_details_login_section_username_title">Ім\'я користувача</string>
+  <string name="item_details_login_section_password_title">Пароль</string>
+  <string name="item_details_login_section_primary_totp_title">Токен 2FA (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Вебсайти</string>
+  <string name="autofill_mode_label_default">Parent domain and subdomains</string>
+  <string name="autofill_mode_label_exact">Exact (sub)domain</string>
+  <string name="autofill_mode_label_never">Never fill on this website</string>
+  <string name="autofill_mode_label_start_with">Starts with</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">Regular expression</string>
+  <string name="autofill_mode_label_exact_path">Exact URL matching</string>
+  <string name="autofill_mode_label_unsupported">This url will be skipped for autofill</string>
+  <string name="login_item_view_alias_button">Переглянути псевдонім</string>
+  <string name="item_details_identity_section_personal_title">Персональні подробиці</string>
+  <string name="item_details_identity_section_personal_first_name_title">Ім\'я</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Середнє ім\'я</string>
+  <string name="item_details_identity_section_personal_last_name_title">Прізвище</string>
+  <string name="item_details_identity_section_personal_full_name_title">Повне ім\'я</string>
+  <string name="item_details_identity_section_personal_email_title">Адреса електронної пошти</string>
+  <string name="item_details_identity_section_personal_gender_title">Стать</string>
+  <string name="item_details_identity_section_personal_phone_title">Номер телефону</string>
+  <string name="item_details_identity_section_personal_birthday_title">День народження</string>
+  <string name="item_details_identity_section_address_title">Деталі адреси</string>
+  <string name="item_details_identity_section_address_organization_title">Організація</string>
+  <string name="item_details_identity_section_address_street_address_title">Вулична адреса, поштова скринька</string>
+  <string name="item_details_identity_section_address_floor_title">Поверх</string>
+  <string name="item_details_identity_section_address_city_title">Місто</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">Поштовий індекс</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Область або район</string>
+  <string name="item_details_identity_section_address_county_title">Округ</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Країна або регіон</string>
+  <string name="item_details_identity_section_contact_title">Подробиці контакту</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Номер соціального страхування</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Номер паспорта</string>
+  <string name="item_details_identity_section_contact_license_number_title">Номер ліцензії</string>
+  <string name="item_details_identity_section_contact_website_title">Вебсайт</string>
+  <string name="item_details_identity_section_contact_x_handle_title">Профіль X</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Додатковий номер телефону</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Робочі деталі</string>
+  <string name="item_details_identity_section_work_company_title">Компанія</string>
+  <string name="item_details_identity_section_work_occupation_title">Вид діяльності</string>
+  <string name="item_details_identity_section_work_email_title">Робоча адреса електронної пошти</string>
+  <string name="item_details_identity_section_work_phone_number_title">Номер робочого телефону</string>
+  <string name="item_details_identity_section_work_personal_website_title">Персональний вебсайт</string>
+  <string name="item_details_shared_section_note_title">Нотатка</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Останнє автозаповнення</string>
+  <string name="item_details_shared_section_item_history_created_title">Створено</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Змінено (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Дивитися історію елемента</string>
+  <string name="item_details_shared_section_more_info_header_title">Докладніше</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Додаткові значки інформації про елемент</string>
+  <string name="item_details_shared_section_more_info_item_id">ID елемента</string>
+  <string name="item_details_shared_section_more_info_vault_id">ID сховища</string>
+  <string name="item_details_shared_section_more_info_share_id">Поділитись ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">Назва (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Пароль</string>
+  <string name="item_details_wifi_network_label_security">Безпека</string>
+  <string name="item_details_ssh_key_label_public_key">Відкритий ключ</string>
+  <string name="item_details_ssh_key_label_private_key">Приватний ключ</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Поточна версія програми більше не підтримується, будь ласка, оновіть програму.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Ключ доступу</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Оновити тариф?</string>
+  <string name="dialog_upgrade_plan_message">Ця функція недоступна для користувачів безплатного тарифу. Якщо ви хочете насолоджуватися нею разом з іншими цікавими функціями, перейдіть на новий тариф і спробуйте!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Покращити</string>
+  <string name="dialog_upgrade_plan_action_cancel">Не зараз</string>
+  <!-- Words -->
+  <string name="email_address">Адреса е-пошти</string>
+  <string name="email_address_invalid">Недійсна адреса електронної пошти</string>
+  <string name="password">Пароль</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Кнопка, щоб відкинути цю підказку і не показувати її більше</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d рік</item>
+    <item quantity="few">%d роки</item>
+    <item quantity="many">%d років</item>
+    <item quantity="other">%d років</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d місяць</item>
+    <item quantity="few">%d місяці</item>
+    <item quantity="many">%d місяців</item>
+    <item quantity="other">%d місяців</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d тиждень</item>
+    <item quantity="few">%d тижні</item>
+    <item quantity="many">%d тижнів</item>
+    <item quantity="other">%d тижнів</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d день</item>
+    <item quantity="few">%d дні</item>
+    <item quantity="many">%d днів</item>
+    <item quantity="other">%d днів</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d година</item>
+    <item quantity="few">%d години</item>
+    <item quantity="many">%d годин</item>
+    <item quantity="other">%d годин</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d хвилина</item>
+    <item quantity="few">%d хвилини</item>
+    <item quantity="many">%d хвилин</item>
+    <item quantity="other">%d хвилин</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d секунда</item>
+    <item quantity="few">%d секунди</item>
+    <item quantity="many">%d секунд</item>
+    <item quantity="other">%d секунд</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d псевдонім</item>
+    <item quantity="few">%d псевдоніми</item>
+    <item quantity="many">%d псевдонімів</item>
+    <item quantity="other">%d псевдонімів</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Вміст нотатки скопійовано</string>
+  <string name="snack_bar_message_item_migration_error">Сталася помилка при міграції цього елемента</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Елемент успішно виключено з моніторингу</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Виникла помилка виключення елемента з моніторингу</string>
+  <string name="snack_bar_message_item_monitor_included_success">Елемент успішно включений у моніторинг</string>
+  <string name="snack_bar_message_item_monitor_included_error">Сталася помилка включення елемента в моніторинг</string>
+  <string name="snack_bar_message_item_pinned_success">Елемент успішно прикріплено</string>
+  <string name="snack_bar_message_item_pinned_error">Помилка закріплення цього елемента</string>
+  <string name="snack_bar_message_item_unpinned_success">Елемент успішно відкріплено</string>
+  <string name="snack_bar_message_item_unpinned_error">Помилка відкріплення цього елемента</string>
+  <string name="snack_bar_message_item_trashed_success">Елемент успішно переміщено в смітник</string>
+  <string name="snack_bar_message_item_trashed_error">Виникла помилка при видаленні цього елемента</string>
+  <string name="snack_bar_message_item_restore_success">Елемент успішно відновлено</string>
+  <string name="snack_bar_message_item_restore_error">Виникла помилка при відновленні цього елемента</string>
+  <string name="snack_bar_message_item_delete_success">Елемент успішно видалено</string>
+  <string name="snack_bar_message_item_delete_error">Виникла помилка при видаленні цього елемента</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Увімкнути синхронізацію SimpleLogin</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">Ми виявили, що у вас є псевдонім %d, який присутній у SimpleLogin, але відсутній у Proton Pass. Бажаєте його імпортувати?</item>
+    <item quantity="few">Ми виявили, що у вас є псевдоніми %d, які присутні в SimpleLogin, але відсутні в Proton Pass. Бажаєте їх імпортувати?</item>
+    <item quantity="many">Ми виявили, що у вас є псевдонімів %d, які присутні в SimpleLogin, але відсутні в Proton Pass. Бажаєте їх імпортувати?</item>
+    <item quantity="other">Ми виявили, що у вас є псевдонімів %d, які присутні в SimpleLogin, але відсутні в Proton Pass. Бажаєте їх імпортувати?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Синхронізувати псевдоніми</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Не отримали код?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Будь ласка, перевірте у Спамі наявність листа з назвою “%s“</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Будь ласка, підтвердьте свою адресу електронної пошти для отримання Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Будь ласка, підтвердьте поштову скриньку</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Якщо ви не можете знайти таку адресу, ви можете ввести %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">запросити новий код</string>
+  <string name="field_display_name_title">Ім\'я</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s файл</item>
+    <item quantity="few">%1$s файлів</item>
+    <item quantity="many">%1$s файли</item>
+    <item quantity="other">%1$s файли</item>
+  </plurals>
+  <string name="attachment_title">Вкладення</string>
+  <string name="attachment_no_files">Вивантажуйте файли зі свого пристрою</string>
+  <string name="attachment_add_file">Вкласти файл</string>
+  <string name="attachment_row_upload_failed">Помилка вивантаження</string>
+  <string name="attachment_row_retry">Повторити спробу</string>
+  <string name="options_menu_content_description">Меню параметрів</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d спільний елемент</item>
+    <item quantity="few">%d спільні елементи</item>
+    <item quantity="many">%d спільних елементів</item>
+    <item quantity="other">%d спільних елементів</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d користувач</item>
+    <item quantity="few">%d користувачі</item>
+    <item quantity="many">%d користувачів</item>
+    <item quantity="other">%d користувачів</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d учасник</item>
+    <item quantity="few">%d учасники</item>
+    <item quantity="many">%d учасники</item>
+    <item quantity="other">%d учасників</item>
+  </plurals>
+  <string name="show_network_qr_code">Показати QR-код мережі</string>
+  <string name="expand_collpased_text">більше</string>
+  <string name="collapse_expanded_text">менше</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Слабкий пароль</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Цей обліковий запис вразливий, відвідайте сервіс та змініть ваш пароль.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Compromised password</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">This login password appears in a data breach. Please visit the service and change the password.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d запис входу використовує той самий пароль</item>
+    <item quantity="few">%d записи входу використовують той самий пароль</item>
+    <item quantity="many">%d записів входу використовують той самий пароль</item>
+    <item quantity="other">%d записів входу використовують той самий пароль</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Налаштуйте 2FA для більшої безпеки</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Цей сервіс пропонує 2FA. Увімкніть це для додаткової безпеки облікового запису.</string>
+  <string name="login_item_monitor_action_ignore">Ігнорувати</string>
+  <string name="login_item_monitor_action_restore">Restore alert</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Слабкий пароль</string>
+  <string name="login_item_monitor_label_compromised">Compromised password</string>
+  <string name="login_item_monitor_label_reused">Reused password</string>
+  <string name="login_item_monitor_label_missing_2fa">Missing 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">Записи входу з ваших сховищ, які використовують цей пароль.</string>
+  <string name="mfa_limit_reached">Досягнуто обмеження 2FA</string>
+  <string name="activity_in_last_two_weeks">Активність за останні 14 днів</string>
+  <string name="contacts">Контакти</string>
+  <string name="contacts_section_description">Щоб приховати свою особисту електронну адресу, ви можете створити псевдонім контакту, який замаскує вашу адресу.</string>
+  <string name="field_detail_display_name_title">Ім\'я</string>
+  <string name="display_name_section_description">Ім\'я, яке показуватиметься під час надсилання електронного листа з цього псевдоніму.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s пересилання</item>
+    <item quantity="few">%1$s пересилань</item>
+    <item quantity="many">%1$s пересилання</item>
+    <item quantity="other">%1$s пересилання</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s відповідь</item>
+    <item quantity="few">%1$s відповіді</item>
+    <item quantity="many">%1$s відповідей</item>
+    <item quantity="other">%1$s відповідей</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s блок</item>
+    <item quantity="few">%1$s блоки</item>
+    <item quantity="many">%1$s блоків</item>
+    <item quantity="other">%1$s блоків</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Створити запис входу</string>
+  <string name="banner_contacts_title">Чи знали ви?</string>
+  <string name="banner_contacts_subtitle">Щоразу, коли ваш псевдонім отримує лист від когось, автоматично створюється новий контакт.</string>
+  <string name="action_reveal">Показати</string>
+  <string name="action_conceal">Приховати</string>
+  <string name="warning_dialog_item_shared_vault_title">Елемент у спільному сховищі</string>
+  <string name="warning_dialog_item_shared_title">Спільний елемент</string>
+  <string name="warning_dialog_item_shared_vault_creating">Ви створюєте елемент у спільному сховищі, і учасники негайно отримають доступ до цього елемента.</string>
+  <string name="warning_dialog_item_shared_vault_moving">You are moving an item to a shared vault and members will immediately gain access to this item.</string>
+  <string name="warning_dialog_item_shared_vault_updating">You are editing an item in a shared vault and members will immediately gain access to this item.</string>
+  <string name="warning_dialog_item_shared_updating">Ви редагуєте спільний елемент. Зміни будуть негайно видимі усім, з ким він поділений.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Більше не нагадувати</string>
+  <string name="upgrade_to_pass_plus">Покращити до Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">You are about to be redirected to our website. If you purchase a plan, please restart the app.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Розділювач слів</string>
+  <string name="bottomsheet_option_capitalise">Великими літерами</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Дефіси ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Пробіли</string>
+  <string name="bottomsheet_option_word_separator_periods">Крапки ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Коми ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Підкреслення ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Цифри</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Цифри та символи</string>
+  <plurals name="word_count">
+    <item quantity="one">%s слово</item>
+    <item quantity="few">%s слова</item>
+    <item quantity="many">%s слів</item>
+    <item quantity="other">%s слів</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Password strength</string>
+  <string name="password_check_min_length">Password is too short</string>
+  <string name="password_check_lowercase">Малі літери</string>
+  <string name="password_check_uppercase">Uppercase letters</string>
+  <string name="password_check_no_consecutive">Без повторюваних символів</string>
+  <string name="password_check_no_common">No common password</string>
+</resources>

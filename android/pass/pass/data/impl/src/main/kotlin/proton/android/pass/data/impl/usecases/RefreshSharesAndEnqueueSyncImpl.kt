@@ -1,0 +1,270 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.usecases
+
+import androidx.work.ExistingWorkPolicy
+import androidx.work.WorkManager
+import proton.android.pass.common.api.safeRunCatchingWithCleanup
+import proton.android.pass.crypto.api.context.EncryptionContextProvider
+import proton.android.pass.data.api.repositories.ItemSyncStatus
+import proton.android.pass.data.api.repositories.ItemSyncStatusRepository
+import proton.android.pass.data.api.repositories.ShareRepository
+import proton.android.pass.data.api.repositories.SyncMode
+import proton.android.pass.data.api.usecases.CreateVault
+import proton.android.pass.data.api.usecases.RefreshSharesAndEnqueueSync
+import proton.android.pass.data.api.usecases.RefreshSharesResult
+import proton.android.pass.data.api.usecases.capabilities.DecideDefaultVaultCreation
+import proton.android.pass.data.api.usecases.capabilities.DefaultVaultDecision
+import proton.android.pass.data.impl.work.FetchItemsWorker
+import proton.android.pass.domain.ShareColor
+import proton.android.pass.domain.ShareIcon
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.entity.NewVault
+import proton.android.pass.data.api.repositories.SyncReason
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.preferences.InternalSettingsRepository
+import javax.inject.Inject
+import proton.android.pass.data.api.repositories.RefreshSharesResult as RepositoryRefreshSharesResult
+
+class RefreshSharesAndEnqueueSyncImpl @Inject constructor(
+    private val defaultVaultContentProvider: DefaultVaultContentProvider,
+    private val shareRepository: ShareRepository,
+    private val itemSyncStatusRepository: ItemSyncStatusRepository,
+    private val encryptionContextProvider: EncryptionContextProvider,
+    private val createVault: CreateVault,
+    private val decideDefaultVaultCreation: DecideDefaultVaultCreation,
+    private val internalSettingsRepository: InternalSettingsRepository,
+    private val workManager: WorkManager
+) : RefreshSharesAndEnqueueSync {
+
+    override suspend fun invoke(
+        userId: UserId,
+        syncType: RefreshSharesAndEnqueueSync.SyncType,
+        workerOrigin: String,
+        syncReason: SyncReason,
+        deferSuccess: Boolean
+    ): RefreshSharesResult {
+        PassLogger.i(
+            TAG,
+            "RefreshSharesAndEnqueueSync started for user: $userId with syncType: $syncType"
+        )
+
+        if (syncType == RefreshSharesAndEnqueueSync.SyncType.FULL) {
+            PassLogger.i(TAG, "FULL sync requested, setting up sync status")
+            itemSyncStatusRepository.clear()
+            itemSyncStatusRepository.setMode(SyncMode.ShownToUser)
+            itemSyncStatusRepository.setReason(syncReason)
+            itemSyncStatusRepository.emit(ItemSyncStatus.SyncStarted)
+        }
+
+        val isFullSync = syncType == RefreshSharesAndEnqueueSync.SyncType.FULL
+
+        return safeRunCatchingWithCleanup(
+            onCancellation = {
+                if (isFullSync) {
+                    PassLogger.i(TAG, "FULL sync cancelled before the item worker was enqueued")
+                    resetVisibleSync()
+                }
+            }
+        ) {
+            val repositoryResult = shareRepository.refreshShares(userId)
+            PassLogger.i(TAG, "Shares for user: $userId refreshed")
+            if (repositoryResult.allShareIds.isEmpty()) {
+                handleEmptyShares(
+                    userId,
+                    repositoryResult.hasInactiveShares,
+                    repositoryResult.hasInvalidGroupShares,
+                    isForceSync = isFullSync,
+                    deferSuccess = deferSuccess
+                )
+            } else {
+                handleNonEmptyShares(userId, repositoryResult, syncType, workerOrigin, deferSuccess)
+            }
+        }.onFailure {
+            if (isFullSync) {
+                PassLogger.w(TAG, "Error during FULL sync")
+                PassLogger.w(TAG, it)
+                failVisibleSync()
+            } else {
+                PassLogger.w(
+                    TAG,
+                    "refreshShares for $userId (syncType=$syncType) failed: " +
+                        "${it::class.simpleName}: ${it.message}"
+                )
+            }
+        }.getOrThrow()
+    }
+
+    /**
+     * Settles the status set before the network work started. Without this, `isSyncing` stays true
+     * whenever the worker never runs, and every later sync skips itself.
+     */
+    private suspend fun failVisibleSync() {
+        itemSyncStatusRepository.setMode(SyncMode.Background)
+        itemSyncStatusRepository.emit(ItemSyncStatus.SyncError.DownloadError())
+    }
+
+    private suspend fun resetVisibleSync() {
+        itemSyncStatusRepository.setMode(SyncMode.Background)
+        itemSyncStatusRepository.emit(ItemSyncStatus.SyncNotStarted)
+    }
+
+    private fun handleNonEmptyShares(
+        userId: UserId,
+        repositoryResult: RepositoryRefreshSharesResult,
+        syncType: RefreshSharesAndEnqueueSync.SyncType,
+        workerOrigin: String,
+        deferSuccess: Boolean
+    ): RefreshSharesResult.SharesFound {
+        val existingShareIds = repositoryResult.allShareIds - repositoryResult.newShareIds
+        val fetchSource = getSharesAndSource(repositoryResult, syncType)
+        PassLogger.i(
+            TAG,
+            "Enqueuing item sync (type=$syncType, source=${fetchSource::class.simpleName}, " +
+                "origin=$workerOrigin)"
+        )
+
+        val shouldFetchFoldersAndItems = when (fetchSource) {
+            is FetchItemsWorker.FetchSource.ForceSync,
+            is FetchItemsWorker.FetchSource.FirstSync -> true
+            is FetchItemsWorker.FetchSource.NewShare -> fetchSource.shareIds.isNotEmpty()
+        }
+
+        if (shouldFetchFoldersAndItems) {
+            enqueueWorker(
+                userId = userId,
+                fetchSource = fetchSource,
+                workerOrigin = workerOrigin,
+                warnings = FetchItemsWorker.SyncWarnings(
+                    hasInactiveShares = repositoryResult.hasInactiveShares,
+                    hasInvalidGroupShares = repositoryResult.hasInvalidGroupShares
+                ),
+                deferSuccess = deferSuccess
+            )
+        }
+
+        return RefreshSharesResult.SharesFound(
+            shareIds = existingShareIds,
+            isWorkerEnqueued = shouldFetchFoldersAndItems,
+            hasInactiveShares = repositoryResult.hasInactiveShares,
+            hasInvalidGroupShares = repositoryResult.hasInvalidGroupShares
+        )
+    }
+
+    private fun getSharesAndSource(
+        result: RepositoryRefreshSharesResult,
+        syncType: RefreshSharesAndEnqueueSync.SyncType
+    ): FetchItemsWorker.FetchSource = when (syncType) {
+        RefreshSharesAndEnqueueSync.SyncType.INCREMENTAL ->
+            if (result.wasFirstSync) {
+                FetchItemsWorker.FetchSource.FirstSync
+            } else {
+                FetchItemsWorker.FetchSource.NewShare(result.newShareIds)
+            }
+        RefreshSharesAndEnqueueSync.SyncType.FULL,
+        RefreshSharesAndEnqueueSync.SyncType.FULL_BACKGROUND ->
+            FetchItemsWorker.FetchSource.ForceSync
+    }
+
+    private fun enqueueWorker(
+        userId: UserId,
+        fetchSource: FetchItemsWorker.FetchSource,
+        workerOrigin: String,
+        warnings: FetchItemsWorker.SyncWarnings,
+        deferSuccess: Boolean
+    ) {
+        val request = FetchItemsWorker.getRequestFor(
+            source = fetchSource,
+            userId = userId,
+            origin = workerOrigin,
+            warnings = warnings,
+            deferSuccess = deferSuccess && fetchSource is FetchItemsWorker.FetchSource.ForceSync
+        )
+        val policy = if (fetchSource is FetchItemsWorker.FetchSource.ForceSync) {
+            ExistingWorkPolicy.REPLACE
+        } else {
+            ExistingWorkPolicy.KEEP
+        }
+        PassLogger.i(TAG, "Enqueuing FetchItemsWorker with source: ${fetchSource::class.simpleName}, policy: $policy")
+        workManager.enqueueUniqueWork(
+            FetchItemsWorker.getOneTimeUniqueWorkName(userId),
+            policy,
+            request
+        )
+    }
+
+    private suspend fun handleEmptyShares(
+        userId: UserId,
+        hasUndecryptableShares: Boolean,
+        hasUndecryptableSharesDueToGroup: Boolean,
+        isForceSync: Boolean,
+        deferSuccess: Boolean
+    ): RefreshSharesResult {
+        return when (decideDefaultVaultCreation(userId, isForceSync)) {
+            DefaultVaultDecision.SkipAlreadyCreated -> {
+                PassLogger.i(TAG, "Default vault already created")
+                if (!deferSuccess) setSyncSuccess(hasUndecryptableShares, hasUndecryptableSharesDueToGroup)
+                RefreshSharesResult.NoSharesSkipped(hasUndecryptableShares, hasUndecryptableSharesDueToGroup)
+            }
+
+            DefaultVaultDecision.SkipNotAllowed -> {
+                PassLogger.i(TAG, "Skipping default vault creation")
+                if (!deferSuccess) setSyncSuccess(hasUndecryptableShares, hasUndecryptableSharesDueToGroup)
+                RefreshSharesResult.NoSharesSkipped(hasUndecryptableShares, hasUndecryptableSharesDueToGroup)
+            }
+
+            DefaultVaultDecision.Create -> {
+                PassLogger.i(TAG, "Creating default vault")
+                createDefaultVault(userId)
+                internalSettingsRepository.setDefaultVaultHasBeenCreated(userId)
+                if (!deferSuccess) setSyncSuccess(hasUndecryptableShares, hasUndecryptableSharesDueToGroup)
+                RefreshSharesResult.NoSharesVaultCreated(hasUndecryptableShares, hasUndecryptableSharesDueToGroup)
+            }
+        }
+    }
+
+    private suspend fun createDefaultVault(userId: UserId) {
+        val vault = encryptionContextProvider.withEncryptionContextSuspendable {
+            NewVault(
+                name = encrypt(defaultVaultContentProvider.name()),
+                description = encrypt(defaultVaultContentProvider.description()),
+                icon = ShareIcon.Icon1,
+                color = ShareColor.Color1
+            )
+        }
+        createVault(userId, vault)
+    }
+
+    private suspend fun setSyncSuccess(
+        hasUndecryptableShares: Boolean,
+        hasUndecryptableSharesDueToGroup: Boolean = false
+    ) {
+        itemSyncStatusRepository.setMode(SyncMode.Background)
+        itemSyncStatusRepository.emit(
+            ItemSyncStatus.SyncSuccess(
+                hasInactiveShares = hasUndecryptableShares,
+                hasInvalidGroupShares = hasUndecryptableSharesDueToGroup
+            )
+        )
+    }
+
+    private companion object {
+        private const val TAG = "RefreshSharesAndEnqueueSyncImpl"
+    }
+}

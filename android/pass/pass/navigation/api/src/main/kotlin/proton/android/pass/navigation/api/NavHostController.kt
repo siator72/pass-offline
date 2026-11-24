@@ -1,0 +1,107 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.navigation.api
+
+import android.content.Context
+import android.os.Bundle
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavDestination
+import androidx.navigation.NavHostController
+import androidx.navigation.Navigator
+import androidx.navigation.compose.ComposeNavigator
+import androidx.navigation.compose.DialogNavigator
+import me.proton.core.crypto.android.keystore.AndroidKeyStoreCrypto
+import me.proton.core.crypto.common.keystore.KeyStoreCrypto
+import proton.android.pass.log.api.PassLogger
+
+@Composable
+fun rememberNavController(vararg navigators: Navigator<out NavDestination>): NavHostController {
+    val context = LocalContext.current
+    return rememberSaveable(
+        inputs = navigators,
+        saver = NavControllerSaver(context, AndroidKeyStoreCrypto.default)
+    ) { createNavController(context) }
+        .apply {
+            for (navigator in navigators) {
+                navigatorProvider.addNavigator(navigator)
+            }
+        }
+}
+
+fun createNavController(context: Context) = NavHostController(context).apply {
+    navigatorProvider.addNavigator(ComposeNavigator())
+    navigatorProvider.addNavigator(DialogNavigator())
+}
+
+/**
+ * Saver to save and restore the NavController across config change and process death.
+ */
+private fun NavControllerSaver(context: Context, keyStoreCrypto: KeyStoreCrypto): Saver<NavHostController, *> = Saver(
+    save = { navController ->
+        runCatching { keyStoreCrypto.encrypt(navController.saveState()) }
+            .onFailure {
+                PassLogger.w(TAG, "Could not encrypt navigation state")
+                PassLogger.w(TAG, it)
+            }
+            .getOrElse { Bundle() }
+    },
+    restore = { bundle ->
+        runCatching { createNavController(context).apply { restoreState(keyStoreCrypto.decrypt(bundle)) } }
+            .onFailure {
+                PassLogger.w(TAG, "Could not restore navigation state")
+                PassLogger.w(TAG, it)
+            }
+            .getOrElse { createNavController(context) }
+    }
+)
+
+internal fun KeyStoreCrypto.encrypt(bundle: Bundle?) = Bundle().apply {
+    if (bundle == null) {
+        return@apply
+    }
+
+    val parcel = android.os.Parcel.obtain()
+    val base64 = try {
+        bundle.writeToParcel(parcel, 0)
+        String(android.util.Base64.encode(parcel.marshall(), android.util.Base64.NO_WRAP))
+    } finally {
+        parcel.recycle()
+    }
+    putString(PROTON_NAV_KEY, encrypt(base64))
+}
+
+internal fun KeyStoreCrypto.decrypt(bundle: Bundle): Bundle {
+    val encrypted = bundle.getString(PROTON_NAV_KEY) ?: return Bundle()
+    val bytes = android.util.Base64.decode(decrypt(encrypted), android.util.Base64.NO_WRAP)
+    val parcel = android.os.Parcel.obtain()
+    return try {
+        parcel.unmarshall(bytes, 0, bytes.size)
+        parcel.setDataPosition(0)
+        Bundle.CREATOR.createFromParcel(parcel)
+    } finally {
+        parcel.recycle()
+    }
+}
+
+private const val PROTON_NAV_KEY = "proton.nav.bundle"
+private const val TAG = "NavHostController"
+

@@ -1,0 +1,125 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.extensions
+
+import kotlinx.datetime.Instant
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.Some
+import proton.android.pass.common.api.getOrElse
+import proton.android.pass.common.api.toOption
+import proton.android.pass.data.impl.responses.CtaResponse
+import proton.android.pass.data.impl.responses.NotificationPromoContentsResponse
+import proton.android.pass.data.impl.responses.NotificationResponse
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.inappmessages.InAppMessage
+import proton.android.pass.domain.inappmessages.InAppMessageCTA
+import proton.android.pass.domain.inappmessages.InAppMessageCTAType
+import proton.android.pass.domain.inappmessages.InAppMessageId
+import proton.android.pass.domain.inappmessages.InAppMessageKey
+import proton.android.pass.domain.inappmessages.InAppMessagePromoContents
+import proton.android.pass.domain.inappmessages.InAppMessagePromoThemedContents
+import proton.android.pass.domain.inappmessages.InAppMessageRange
+import proton.android.pass.domain.inappmessages.InAppMessageStatus
+
+fun List<NotificationResponse>.toDomain(userId: UserId): List<InAppMessage.Remote> = this.map { it.toDomain(userId) }
+
+fun NotificationResponse.toDomain(userId: UserId): InAppMessage.Remote {
+    val baseMessage = BaseMessageData(
+        id = InAppMessageId(this.id),
+        key = InAppMessageKey(this.notificationKey),
+        userId = userId,
+        title = this.content.title,
+        message = this.content.message.toOption(),
+        imageUrl = this.content.imageUrl.toOption(),
+        cta = this.content.cta.toOption().map(CtaResponse::toDomain),
+        state = InAppMessageStatus.fromValue(this.state),
+        priority = this.priority,
+        range = InAppMessageRange(
+            start = Instant.fromEpochSeconds(this.startTime),
+            end = this.endTime?.let(Instant.Companion::fromEpochSeconds).toOption()
+        )
+    )
+
+    return when (this.content.displayType) {
+        0 -> InAppMessage.Remote.Banner(
+            baseMessage.id, baseMessage.key, baseMessage.priority, baseMessage.title,
+            baseMessage.message, baseMessage.imageUrl, baseMessage.cta, baseMessage.state,
+            baseMessage.range, baseMessage.userId
+        )
+        1 -> InAppMessage.Modal(
+            baseMessage.id, baseMessage.key, baseMessage.priority, baseMessage.title,
+            baseMessage.message, baseMessage.imageUrl, baseMessage.cta, baseMessage.state,
+            baseMessage.range, baseMessage.userId
+        )
+        2 -> {
+            val promoContents = this.content.promoContents.toPromoContents().getOrElse {
+                throw IllegalArgumentException("PromoContents is required for Promo mode")
+            }
+            InAppMessage.Promo(
+                baseMessage.id, baseMessage.key, baseMessage.priority, baseMessage.title,
+                baseMessage.message, baseMessage.imageUrl, baseMessage.cta, baseMessage.state,
+                baseMessage.range, baseMessage.userId, promoContents
+            )
+        }
+        else -> throw IllegalArgumentException("Unknown display type: ${this.content.displayType}")
+    }
+}
+
+private data class BaseMessageData(
+    val id: InAppMessageId,
+    val key: InAppMessageKey,
+    val userId: UserId,
+    val title: String,
+    val message: Option<String>,
+    val imageUrl: Option<String>,
+    val cta: Option<InAppMessageCTA>,
+    val state: InAppMessageStatus,
+    val priority: Int,
+    val range: InAppMessageRange
+)
+
+private fun NotificationPromoContentsResponse?.toPromoContents(): Option<InAppMessagePromoContents> =
+    if (this != null) {
+        Some(
+            InAppMessagePromoContents(
+                startMinimised = startMinimised,
+                closePromoText = closePromoText,
+                lightThemeContents = InAppMessagePromoThemedContents(
+                    backgroundImageUrl = lightThemeContents.backgroundImageUrl,
+                    contentImageUrl = lightThemeContents.contentImageUrl,
+                    closePromoTextColor = lightThemeContents.closePromoTextColor
+                ),
+                darkThemeContents = InAppMessagePromoThemedContents(
+                    backgroundImageUrl = darkThemeContents.backgroundImageUrl,
+                    contentImageUrl = darkThemeContents.contentImageUrl,
+                    closePromoTextColor = darkThemeContents.closePromoTextColor
+                )
+            )
+        )
+    } else {
+        None
+    }
+
+private fun CtaResponse.toDomain(): InAppMessageCTA = InAppMessageCTA(
+    text = this.text,
+    route = this.ref,
+    type = InAppMessageCTAType.fromValue(this.type)
+)
+

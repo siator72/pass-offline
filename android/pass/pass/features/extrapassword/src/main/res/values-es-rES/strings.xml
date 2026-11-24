@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="configure_extra_password_continue">Continuar</string>
+  <string name="configure_extra_password_title">Establece la contraseña adicional</string>
+  <string name="configure_extra_password_enter_extra_password">Contraseña adicional</string>
+  <string name="configure_extra_password_repeat_extra_password">Repetir la contraseña</string>
+  <string name="configure_extra_password_description">Se te pedirá esta contraseña durante el inicio de sesión y cuando cambies de una aplicación de Proton a Proton Pass en la web.</string>
+  <string name="configure_extra_password_warning">Precaución: No podrás acceder a tu cuenta de Pass si pierdes esta contraseña.</string>
+  <string name="configure_extra_password_mismatch">Las contraseñas no coinciden.</string>
+  <string name="extra_password_options_remove">Eliminar</string>
+  <string name="info_extra_password_title">Contraseña adicional</string>
+  <string name="info_extra_password_body">Protege Proton Pass con una contraseña adicional.</string>
+  <string name="info_extra_password_button">Establece la contraseña adicional</string>
+  <string name="configure_extra_password_cannot_be_blank">La contraseña no puede estar en blanco.</string>
+  <string name="configure_extra_password_password_too_short">La contraseña adicional debe tener al menos 8 caracteres.</string>
+  <string name="confirm_extra_password_title">Establece la contraseña adicional</string>
+  <string name="confirm_extra_password_body">Se cerrará la sesión y tendrás que volver a iniciarla en todos los dispositivos.</string>
+  <string name="confirm_extra_password_error">No se ha podido configurar la contraseña adicional.</string>
+  <string name="confirm_extra_password_success">La contraseña adicional está configurada.</string>
+</resources>

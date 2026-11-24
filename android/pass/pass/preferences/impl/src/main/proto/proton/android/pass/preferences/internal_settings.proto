@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+import "proton/android/pass/preferences/app_usage.proto";
+import "proton/android/pass/preferences/last_item_autofill.proto";
+import "proton/android/pass/preferences/force_sync_folder_state.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_package = "proton.android.pass.preferences";
+option java_multiple_files = true;
+
+message InternalSettings {
+  int64 last_unlock_time = 1;
+  string declined_update_version = 2;
+  int64 boot_count = 3;
+  int32 home_sorting_option = 4;
+  int32 autofill_sorting_option = 5;
+  string selected_vault = 6; // This is now stored in selected_vault_per_user
+  int32 pin_attempts = 7;
+  // int32 master_password_attempts = 8; This is now stored in master_password_attempts_per_user
+  int32 item_create_count = 9;
+  bool in_app_review_triggered = 10;
+  AppUsage app_usage = 11;
+  int32 item_autofill_count = 12;
+  int32 home_filtering_option = 13;
+  bool dark_web_alias_message_dismissed = 14;
+  LastItemAutofill last_item_autofill = 15;
+  map<string, string> selected_vault_per_user = 16;
+  map<string, int32> master_password_attempts_per_user = 17;
+  bool has_shown_alias_contacts_onboarding = 18;
+  map<string, google.protobuf.Timestamp> last_time_user_has_seen_iam = 19;
+  string persistent_uuid = 20;
+  map<string, bool> is_default_vault_has_been_created = 21;
+  bool has_shown_item_in_shared_vault_warning = 22;
+  bool has_shown_reload_app_warning = 23;
+  bool telemetry_growth_install_event_sent = 24;
+  int64 last_background_timestamp = 25;
+  repeated string telemetry_growth_sent_feature_usage_actions = 26;
+  map<string, int64> search_index_rebuild_time = 27;
+  map<string, string> trusted_autofill_package_fingerprints = 28;
+  map<string, ForceSyncFolderState> force_sync_folder_state = 29;
+}

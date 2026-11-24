@@ -1,0 +1,41 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.api.url
+
+import proton.android.pass.common.api.Option
+
+sealed interface HostInfo {
+    data class Host(
+        val protocol: String,
+        val subdomain: Option<String>,
+        val domain: String,
+        val tld: Option<String>
+    ) : HostInfo
+
+    data class Ip(
+        val ip: String,
+        val protocol: String? = null
+    ) : HostInfo
+
+    data class Unparseable(val protocol: String, val rawHost: String) : HostInfo
+}
+
+interface HostParser {
+    fun parse(url: String): Result<HostInfo>
+}

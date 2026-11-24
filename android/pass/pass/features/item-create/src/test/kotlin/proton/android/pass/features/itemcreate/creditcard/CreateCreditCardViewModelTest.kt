@@ -1,0 +1,410 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.itemcreate.creditcard
+
+import android.content.ContextWrapper
+import app.cash.turbine.test
+import com.google.common.truth.Truth.assertThat
+import kotlinx.collections.immutable.persistentSetOf
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runTest
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import proton.android.pass.data.fakes.usecases.FakeObservePrimaryUserId
+import proton.android.pass.clipboard.fakes.FakeClipboardManager
+import proton.android.pass.common.fakes.FakeAppDispatchers
+import proton.android.pass.commonpresentation.fakes.attachments.FakeAttachmentHandler
+import proton.android.pass.commonui.fakes.FakeSavedStateHandleProvider
+import proton.android.pass.commonuimodels.api.ItemUiModel
+import proton.android.pass.composecomponents.impl.uievents.IsLoadingState
+import proton.android.pass.crypto.fakes.context.FakeEncryptionContext
+import proton.android.pass.crypto.fakes.context.FakeEncryptionContextProvider
+import proton.android.pass.data.fakes.usecases.FakeCanCreateItemsInFolder
+import proton.android.pass.data.fakes.usecases.FakeCanPerformPaidAction
+import proton.android.pass.data.fakes.usecases.FakeCreateItem
+import proton.android.pass.data.fakes.usecases.FakeGetItemById
+import proton.android.pass.data.fakes.usecases.FakeObserveDefaultVault
+import proton.android.pass.data.fakes.usecases.FakeObserveVaultsWithItemCount
+import proton.android.pass.data.fakes.usecases.FakeSetDefaultVault
+import proton.android.pass.data.fakes.usecases.attachments.FakeLinkAttachmentsToItem
+import proton.android.pass.data.fakes.usecases.folders.FakeObserveFolder
+import proton.android.pass.data.fakes.usecases.folders.FakeObserveFoldersByParentId
+import proton.android.pass.data.fakes.usecases.shares.FakeObserveShare
+import proton.android.pass.domain.ItemState
+import proton.android.pass.domain.FolderId
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.VaultWithItemCount
+import proton.android.pass.domain.items.ItemCategory
+import proton.android.pass.domain.toItemContents
+import proton.android.pass.features.itemcreate.ItemCreate
+import proton.android.pass.features.itemcreate.ItemSavedState
+import proton.android.pass.features.itemcreate.common.CommonFieldValidationError
+import proton.android.pass.features.itemcreate.common.CustomFieldDraftRepositoryImpl
+import proton.android.pass.features.itemcreate.common.ShareUiState
+import proton.android.pass.features.itemcreate.common.customfields.CustomFieldHandlerImpl
+import proton.android.pass.features.itemcreate.common.formprocessor.FakeCreditCardItemFormProcessor
+import proton.android.pass.features.itemcreate.common.formprocessor.FormProcessingResult
+import proton.android.pass.inappreview.fakes.FakeInAppReviewTriggerMetrics
+import proton.android.pass.navigation.api.CommonOptionalNavArgId
+import proton.android.pass.notifications.fakes.FakeSnackbarDispatcher
+import proton.android.pass.preferences.FakeInternalSettingsRepository
+import proton.android.pass.preferences.FakePreferenceRepository
+import proton.android.pass.telemetry.api.EventItemType
+import proton.android.pass.telemetry.api.TelemetryGrowthFeatureUsageAction
+import proton.android.pass.telemetry.fakes.FakeTelemetryManager
+import proton.android.pass.telemetry.api.TelemetryGrowthFeatureUsageEvent
+import proton.android.pass.test.MainDispatcherRule
+import proton.android.pass.test.domain.ItemTestFactory
+import proton.android.pass.test.domain.VaultTestFactory
+import proton.android.pass.totp.fakes.FakeTotpManager
+
+class CreateCreditCardViewModelTest {
+
+    @get:Rule
+    val dispatcherRule = MainDispatcherRule()
+
+    private lateinit var instance: CreateCreditCardViewModel
+    private lateinit var totpManager: FakeTotpManager
+    private lateinit var createItem: FakeCreateItem
+    private lateinit var observeVaults: FakeObserveVaultsWithItemCount
+    private lateinit var telemetryManager: FakeTelemetryManager
+    private lateinit var snackbarDispatcher: FakeSnackbarDispatcher
+    private lateinit var canPerformPaidAction: FakeCanPerformPaidAction
+    private lateinit var creditCardItemFormProcessor: FakeCreditCardItemFormProcessor
+    private lateinit var observeShare: FakeObserveShare
+    private lateinit var settingsRepository: FakeInternalSettingsRepository
+    private lateinit var setDefaultVault: FakeSetDefaultVault
+    private lateinit var getItemById: FakeGetItemById
+    private lateinit var fakeCanCreateItemsInFolder: FakeCanCreateItemsInFolder
+
+    @Before
+    fun setUp() {
+        totpManager = FakeTotpManager()
+        createItem = FakeCreateItem()
+        observeVaults = FakeObserveVaultsWithItemCount()
+        telemetryManager = FakeTelemetryManager()
+        snackbarDispatcher = FakeSnackbarDispatcher()
+        canPerformPaidAction = FakeCanPerformPaidAction()
+        creditCardItemFormProcessor = FakeCreditCardItemFormProcessor()
+        observeShare = FakeObserveShare()
+        settingsRepository = FakeInternalSettingsRepository()
+        setDefaultVault = FakeSetDefaultVault()
+        getItemById = FakeGetItemById()
+        fakeCanCreateItemsInFolder = FakeCanCreateItemsInFolder()
+        instance = CreateCreditCardViewModel(
+            observePrimaryUserId = FakeObservePrimaryUserId().apply {
+                emitUserId(UserId("user-id"))
+            },
+            createItem = createItem,
+            snackbarDispatcher = snackbarDispatcher,
+            savedStateHandleProvider = FakeSavedStateHandleProvider().apply {
+                get()[CommonOptionalNavArgId.ShareId.key] = SHARE_ID
+                get()[CommonOptionalNavArgId.ItemId.key] = ITEM_ID
+            },
+            encryptionContextProvider = FakeEncryptionContextProvider(),
+            observeVaults = observeVaults,
+            telemetryManager = telemetryManager,
+            canPerformPaidAction = canPerformPaidAction,
+            inAppReviewTriggerMetrics = FakeInAppReviewTriggerMetrics(),
+            observeDefaultVault = FakeObserveDefaultVault(),
+            setDefaultVault = setDefaultVault,
+            linkAttachmentsToItem = FakeLinkAttachmentsToItem(),
+            attachmentsHandler = FakeAttachmentHandler(),
+            userPreferencesRepository = FakePreferenceRepository(),
+            customFieldHandler = CustomFieldHandlerImpl(FakeTotpManager(), FakeEncryptionContextProvider()),
+            customFieldDraftRepository = CustomFieldDraftRepositoryImpl(),
+            creditCardItemFormProcessor = creditCardItemFormProcessor,
+            clipboardManager = FakeClipboardManager(),
+            getItemById = getItemById,
+            observeShare = observeShare,
+            canCreateItemsInFolder = fakeCanCreateItemsInFolder,
+            settingsRepository = settingsRepository,
+            observeFolder = FakeObserveFolder(),
+            observeFoldersByParentId = FakeObserveFoldersByParentId(),
+            appDispatchers = FakeAppDispatchers()
+        )
+    }
+
+    @Test
+    fun `create item without title should return a BlankTitle validation error`() = runTest {
+        canPerformPaidAction.setResult(false)
+        val vault = VaultTestFactory.create(shareId = ShareId("shareId"), name = "Share")
+        val vaultWithItemCount = VaultWithItemCount(
+            vault = vault,
+            activeItemCount = 1,
+            trashedItemCount = 0
+        )
+        observeVaults.sendResult(Result.success(listOf(vaultWithItemCount)))
+        creditCardItemFormProcessor.setResult(
+            FormProcessingResult.Error(setOf(CommonFieldValidationError.BlankTitle))
+        )
+        instance.createItem()
+
+        val state = CreateCreditCardUiState.Success(
+            shareUiState = ShareUiState.Success(
+                vaultList = listOf(vaultWithItemCount),
+                currentVault = vaultWithItemCount
+            ),
+            baseState = BaseCreditCardUiState.Initial,
+            canDisplayWarningVaultSharedDialog = false
+        )
+
+        instance.state.test {
+            assertThat(awaitItem()).isEqualTo(
+                state.copy(
+                    baseState = state.baseState.copy(
+                        validationErrors = persistentSetOf(CommonFieldValidationError.BlankTitle)
+                    )
+                )
+            )
+        }
+    }
+
+    @Test
+    fun `given valid data when a create item event should return a success event`() = runTest {
+        canPerformPaidAction.setResult(false)
+
+        val item = ItemTestFactory.createCreditCard()
+        val vault = sendInitialVault(item.shareId)
+        val initialState = CreateCreditCardUiState.Success(
+            shareUiState = ShareUiState.Success(
+                vaultList = listOf(vault),
+                currentVault = vault
+            ),
+            baseState = BaseCreditCardUiState.Initial,
+            canDisplayWarningVaultSharedDialog = false
+        )
+        val titleInput = "Title input"
+        instance.onTitleChange(titleInput)
+        assertThat(instance.creditCardItemFormState.title).isEqualTo(titleInput)
+
+        createItem.sendItem(Result.success(item))
+
+        instance.state.test {
+            instance.createItem()
+            val firstItem = awaitItem()
+            val firstExpected = initialState.copy(
+                baseState = initialState.baseState.copy(
+                    isLoading = IsLoadingState.NotLoading.value(),
+                    hasUserEditedContent = true
+                )
+            )
+            assertThat(firstItem).isEqualTo(firstExpected)
+
+            val secondItem = awaitItem()
+            val secondExpected = firstExpected.copy(
+                baseState = firstExpected.baseState.copy(
+                    isLoading = IsLoadingState.NotLoading.value(),
+                    isItemSaved = ItemSavedState.Success(
+                        itemId = item.id,
+                        item = ItemUiModel(
+                            id = item.id,
+                            userId = UserId("user-id"),
+                            shareId = item.shareId,
+                            contents = item.toItemContents { FakeEncryptionContext.decrypt(it) },
+                            createTime = item.createTime,
+                            state = ItemState.Active.value,
+                            modificationTime = item.modificationTime,
+                            lastAutofillTime = item.lastAutofillTime.value(),
+                            isPinned = false,
+                            pinTime = item.pinTime.value(),
+                            category = ItemCategory.CreditCard,
+                            revision = item.revision,
+                            shareCount = item.shareCount,
+                            shareType = item.shareType
+                        )
+                    )
+                )
+            )
+            assertThat(secondItem).isEqualTo(secondExpected)
+        }
+
+        val memory = telemetryManager.getMemory()
+        assertThat(memory.size).isEqualTo(2)
+        assertThat(memory[0]).isEqualTo(ItemCreate(EventItemType.CreditCard))
+        assertThat(memory[1]).isEqualTo(
+            TelemetryGrowthFeatureUsageEvent(TelemetryGrowthFeatureUsageAction.ItemCreatedCreditCard)
+        )
+
+        val message = snackbarDispatcher.snackbarMessage.first().value()!!
+        assertThat(message).isInstanceOf(CreditCardSnackbarMessage.ItemCreated::class.java)
+    }
+
+    @Test
+    fun `if there is an error creating item a message is emitted`() = runTest {
+        val shareId = ShareId("shareId")
+        sendInitialVault(shareId)
+        createItem.sendItem(Result.failure(IllegalStateException("Test")))
+
+        instance.onTitleChange("Some title")
+
+        instance.state.test {
+            instance.createItem()
+
+            val item = awaitItem()
+            assertThat(createItem.hasBeenInvoked()).isTrue()
+
+            assertThat(item).isInstanceOf(CreateCreditCardUiState.Success::class.java)
+            val casted = item as CreateCreditCardUiState.Success
+
+            assertThat(casted.baseState.isLoading).isEqualTo(IsLoadingState.NotLoading.value())
+            assertThat(casted.baseState.isItemSaved).isEqualTo(ItemSavedState.Unknown)
+
+            val message = snackbarDispatcher.snackbarMessage.first().value()!!
+            assertThat(message).isInstanceOf(CreditCardSnackbarMessage.ItemCreationError::class.java)
+        }
+    }
+
+    @Test
+    fun `changeFolder sets selectedFolderId in shareUiState`() = runTest {
+        val shareId = ShareId("shareId")
+        val folderId = FolderId("folderId")
+        sendInitialVault(shareId)
+
+        instance.changeFolder(folderId)
+
+        instance.state.test {
+            val state = awaitItem()
+            assertThat(state).isInstanceOf(CreateCreditCardUiState.Success::class.java)
+            val shareState = (state as CreateCreditCardUiState.Success).shareUiState as? ShareUiState.Success
+            assertThat(shareState?.selectedFolder?.id).isEqualTo(folderId)
+        }
+    }
+
+    @Test
+    fun `changeVault clears selectedFolderId`() = runTest {
+        val shareId = ShareId("shareId")
+        val folderId = FolderId("folderId")
+        sendInitialVault(shareId)
+
+        instance.changeFolder(folderId)
+        instance.changeVault(shareId)
+
+        instance.state.test {
+            val state = awaitItem()
+            assertThat(state).isInstanceOf(CreateCreditCardUiState.Success::class.java)
+            val shareState = (state as CreateCreditCardUiState.Success).shareUiState as? ShareUiState.Success
+            assertThat(shareState?.selectedFolder?.id).isNull()
+        }
+    }
+
+    @Test
+    fun `setDefaultVault is called with correct shareId and null folderId after successful createItem`() = runTest {
+        val shareId = ShareId("shareId")
+        val item = ItemTestFactory.createCreditCard()
+        sendInitialVault(shareId)
+        instance.onTitleChange("Title")
+        createItem.sendItem(Result.success(item))
+
+        instance.state.test {
+            instance.createItem()
+            // Consume emitted states until isItemSaved is set (success), or timeout
+            var found = false
+            while (!found) {
+                val state = awaitItem()
+                if (state is CreateCreditCardUiState.Success &&
+                    state.baseState.isItemSaved is ItemSavedState.Success
+                ) {
+                    found = true
+                }
+            }
+            cancelAndIgnoreRemainingEvents()
+        }
+
+        val memory = setDefaultVault.getMemory()
+        assertThat(memory).isNotEmpty()
+        assertThat(memory.last().shareId).isEqualTo(shareId)
+        assertThat(memory.last().folderId).isNull()
+    }
+
+    @Test
+    fun `duplicateContents sets folder when item is in folder and user can create items in folder`() = runTest {
+        val shareId = ShareId(SHARE_ID)
+        val folderId = FolderId("folder-id")
+        val item = ItemTestFactory.createCreditCard(shareId = shareId).copy(folderId = folderId)
+        getItemById.emit(Result.success(item))
+        fakeCanCreateItemsInFolder.sendValue(true)
+        sendInitialVault(shareId)
+
+        runCatching { instance.duplicateContents(TestContext()) }
+
+        instance.state.test {
+            val shareState = (awaitItem() as? CreateCreditCardUiState.Success)
+                ?.shareUiState as? ShareUiState.Success
+            assertThat(shareState?.selectedFolder?.id).isEqualTo(folderId)
+        }
+    }
+
+    @Test
+    fun `duplicateContents does not set folder when item is in folder but user cannot create items in folder`() =
+        runTest {
+            val shareId = ShareId(SHARE_ID)
+            val folderId = FolderId("folder-id")
+            val item = ItemTestFactory.createCreditCard(shareId = shareId).copy(folderId = folderId)
+            getItemById.emit(Result.success(item))
+            fakeCanCreateItemsInFolder.sendValue(false)
+            sendInitialVault(shareId)
+
+            runCatching { instance.duplicateContents(TestContext()) }
+
+            instance.state.test {
+                val shareState = (awaitItem() as? CreateCreditCardUiState.Success)
+                    ?.shareUiState as? ShareUiState.Success
+                assertThat(shareState?.selectedFolder?.id).isNull()
+            }
+        }
+
+    @Test
+    fun `duplicateContents does not set folder when item is not in a folder`() = runTest {
+        val shareId = ShareId(SHARE_ID)
+        val item = ItemTestFactory.createCreditCard(shareId = shareId)
+        getItemById.emit(Result.success(item))
+        fakeCanCreateItemsInFolder.sendValue(true)
+        sendInitialVault(shareId)
+
+        runCatching { instance.duplicateContents(TestContext()) }
+
+        instance.state.test {
+            val shareState = (awaitItem() as? CreateCreditCardUiState.Success)
+                ?.shareUiState as? ShareUiState.Success
+            assertThat(shareState?.selectedFolder?.id).isNull()
+        }
+    }
+
+    private fun sendInitialVault(shareId: ShareId): VaultWithItemCount {
+        val vault = VaultTestFactory.create(shareId = shareId, name = "Share")
+        val vaultWithItemCount = VaultWithItemCount(
+            vault = vault,
+            activeItemCount = 1,
+            trashedItemCount = 0
+        )
+        observeVaults.sendResult(Result.success(listOf(vaultWithItemCount)))
+        return vaultWithItemCount
+    }
+
+    private class TestContext : ContextWrapper(null)
+
+    companion object {
+        private const val SHARE_ID = "shareId"
+        private const val ITEM_ID = "itemId"
+    }
+
+}

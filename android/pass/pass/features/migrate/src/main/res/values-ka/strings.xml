@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="one">გადავიტანო %d ელემენტი შემდეგ საცავში?</item>
+    <item quantity="other">გადავიტანო %d ელემენტი შემდეგ საცავში?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="one">გადავიტანო %d ელემენტი შემდეგ საქაღალდეში?</item>
+    <item quantity="other">გადავიტანო %d ელემენტი შემდეგ საქაღალდეში?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">გადატანა</string>
+  <string name="migrate_item_success_snackbar">ელემენტები გადატანილია</string>
+  <string name="migrate_item_error_snackbar">ელემენტების გადატანის შეცდომა</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">ზოგიერთი ელემენტის გადატანის შეცდომა</string>
+  <string name="migrate_item_warning_history">სათავსოებს შორის ნივთების გადაადგილებისას ჩვენ შევინარჩუნებთ თითოეულ ნივთზე შესრულებულ ბოლო 50 მოდიფიკაციას</string>
+  <string name="migrate_item_warning_secure_link">ელემენტის დაცული ბმულების წაშლა შეუძლებელია, როცა მისი სხვა საცავში გადატანა მიმდინარეობს</string>
+  <string name="migrate_all_items_success_snackbar">ყველა ელემენტი გადატანილია</string>
+  <string name="migrate_all_items_error_snackbar">ყველა საცავის ელემენტის გადატანის შეცდომა</string>
+  <string name="migrate_init_error_snackbar">მიგრაციის ეკრანის მომზადება შეუძლებელია</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">გადავიტანო საქაღალდე შემდეგ საცავში?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">გადავიტანო საქაღალდე შემდეგ საქაღალდეში?</string>
+  <string name="migrate_folder_success_snackbar">საქაღალდე გადატანილია</string>
+  <string name="migrate_folder_error_snackbar">საქაღალდის გადატანის შეცდომა</string>
+  <string name="migrate_folder_already_same_parent_snackbar">საქაღალდე უკვე ამ ადგილასაა</string>
+  <string name="migrate_dissolve_folder_dialog_title">საქაღალდის შემცველობის გადატანა</string>
+  <string name="migrate_dissolve_folder_dialog_message">ეს საქაღალდე უკვე საცავის ძირითად საქაღალდეშია. მოხდება მისი ელემენტებისა და ქვესაქაღალდეების გადატანა საცავის ზირითად საქაღალდეში.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">გადატანა</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="one">ელემენტი უკვე ამ საქაღალდეშია</item>
+    <item quantity="other">%d items are already in this folder</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">ეს საქაღალდე უკვე ამ ადგილასაა</string>
+  <string name="migrate_disabled_folder_reason_being_moved">მიმდინარეობს ამ საქაღალდის გადატანა</string>
+  <string name="migrate_disabled_folder_reason_descendant">ეს საქაღალდე იმ საქაღალდეშია, რომელშიც გადატანასაც ცდილობთ</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">Moving here would exceed the folder limits</string>
+  <string name="migrate_disabled_vault_reason_no_permission">ამ საცავში ელემენტების შექმნა არ შეგიძლიათ</string>
+  <string name="migrate_disabled_vault_reason_same_vault">ელემენტს იგივე საცავში ვერ გადაიტანთ</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="one">გადავიტანო ელემენტი სხვა საცავში?</item>
+    <item quantity="other">გადავიტანო %d ელემენტი სხვა საცავში?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">ეს ელემენტი ამჟამად გაზიარებულია. მისი სხვა საცავში გადატანა სხვა მომხმარებლებს მასზე წვდომას დაუკავრავს.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="one">ამჟამად გაზიარებულია %d ელემენტი. მისი სხვა საცავში გადატანა სხვა მომხმარებლებს მასზე წვდომას დაუკავრავს.</item>
+    <item quantity="other">ამჟამად გაზიარებულია %d ელემენტი. მისი სხვა საცავში გადატანა სხვა მომხმარებლებს მასზე წვდომას დაუკავრავს.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">აირჩიეთ საცავი</string>
+  <string name="migrate_select_destination_for_source_title">აირჩიეთ სამიზნე ყველა ელემენტის გადასატანად %s-დან</string>
+  <string name="migrate_folder_items_moved_success_snackbar">ელემენტები გადატანილია</string>
+  <string name="migrate_folder_items_moved_error_snackbar">ელემენტების გადატანის შეცდომა</string>
+</resources>

@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Заголовок (А–Я)</string>
+  <string name="sort_by_title_desc">Заголовок (Я-А)</string>
+  <string name="sort_by_creation_asc">От старых к новым</string>
+  <string name="sort_by_creation_desc">От новых к старым</string>
+  <string name="sort_by_modification_date">Недавно использованные</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Все</string>
+  <string name="item_list_header_pinned_search_results">Закреплённые</string>
+  <string name="item_list_header_logins_type">Имена пользователей</string>
+  <string name="item_list_header_logins_totp_type">Имена пользователей с TOTP</string>
+  <string name="item_list_header_aliases_type">Псевдонимы</string>
+  <string name="item_list_header_notes_type">Примечания</string>
+  <string name="item_list_header_credit_cards_type">Банковские карты</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">результат</item>
+    <item quantity="few">результата</item>
+    <item quantity="many">результатов</item>
+    <item quantity="other">результатов</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Личные данные</string>
+  <string name="item_list_header_custom_type">Пользовательские элементы</string>
+  <string name="item_list_header_shared_with_me">В общем доступе со мной</string>
+  <string name="item_list_header_shared_by_me">Я поделился</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Подтвердить</string>
+  <string name="bottomsheet_cancel_button">Отменить</string>
+  <string name="bottomsheet_move_to_trash">Переместить в Корзину</string>
+  <string name="bottomsheet_pin_item">Закрепить</string>
+  <string name="bottomsheet_unpin_item">Открепить</string>
+  <string name="bottomsheet_view_item_history">Посмотреть историю</string>
+  <string name="bottomsheet_monitor_exclude">Исключить из мониторинга</string>
+  <string name="bottomsheet_monitor_include">Включить в мониторинг</string>
+  <string name="bottomsheet_migrate_item_v2">Переместить</string>
+  <string name="bottomsheet_create_folder">Создать папку</string>
+  <string name="folder_tree_create_folder">Создать папку</string>
+  <string name="bottomsheet_rename_folder">Переименовать</string>
+  <string name="bottomsheet_create_sub_folder">Create sub-folder</string>
+  <string name="bottomsheet_move_folder">Move folder</string>
+  <string name="bottomsheet_move_all_items_in_folder">Перенести все элементы</string>
+  <string name="bottomsheet_copy_item_note">Скопировать заметку</string>
+  <string name="bottomsheet_delete_permanently">Удалить безвозвратно</string>
+  <string name="bottomsheet_restore">Восстановить</string>
+  <string name="bottomsheet_leave">Выйти</string>
+  <string name="bottomsheet_duplicate">Дублировать</string>
+  <string name="bottomsheet_no_actions">Нет доступных действий</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Открыть меню действий с элементом</string>
+  <string name="action_upgrade_now">Улучшить сейчас</string>
+  <string name="action_not_now">Не сейчас</string>
+  <string name="action_learn_more">Подробнее</string>
+  <string name="action_enable">Включить</string>
+  <string name="action_view_details">Просмотреть детали</string>
+  <string name="action_see_all">Посмотреть все</string>
+  <string name="action_confirm">Подтвердить</string>
+  <string name="action_cancel">Отменить</string>
+  <string name="action_continue">Продолжить</string>
+  <string name="action_retry">Повторить</string>
+  <string name="action_edit">Редактировать</string>
+  <string name="action_add">Добавить</string>
+  <string name="action_delete">Удалить</string>
+  <string name="action_make_default">Установить по умолчанию</string>
+  <string name="action_verify">Проверить</string>
+  <string name="action_close">Закрыть</string>
+  <string name="action_update">Обновить</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Добавьте свой первый элемент</string>
+  <string name="empty_search_results_title">Ничего не найдено</string>
+  <string name="empty_list_open_extension">Посетить дополнение</string>
+  <string name="empty_list_create_item_button">Создать новый элемент</string>
+  <!-- Field -->
+  <string name="field_title_title">Должность</string>
+  <string name="field_title_hint">Без названия</string>
+  <string name="field_title_required">Название обязательно</string>
+  <string name="small_cross_icon_content_description">Иконка с маленьким крестом</string>
+  <string name="field_note_title">Заметка</string>
+  <string name="field_note_hint">Добавить заметку</string>
+  <string name="linked_apps_title">Связанные приложения</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Офлайн</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Отсутствует иконка приложения</string>
+  <string name="add_item_icon_content_description">Иконка добавления элемента</string>
+  <string name="navigate_back_icon_content_description">Иконка перехода назад</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Элементы списка</string>
+  <string name="bottom_bar_add_item_icon_content_description">Добавить элемент</string>
+  <string name="bottom_bar_profile_icon_content_description">Профиль</string>
+  <string name="bottom_bar_security_center_icon_content_description">Центр безопасности</string>
+  <string name="bottom_bar_explore_icon_content_description">Explore</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Сегодня</string>
+  <string name="most_recent_yesterday">Вчера</string>
+  <string name="most_recent_this_week">Эта неделя</string>
+  <string name="most_recent_last_two_weeks">Последние две недели</string>
+  <string name="most_recent_last_30_days">Последний месяц</string>
+  <string name="most_recent_last_60_days">Последние 60 дней</string>
+  <string name="most_recent_last_90_days">Последние 90 дней</string>
+  <string name="most_recent_within_the_last_year">За последний год</string>
+  <string name="most_recent_more_than_1_year">Старше 1 года</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Иконка поиска</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 элемент</item>
+    <item quantity="few">%d элемента</item>
+    <item quantity="many">%d элементов</item>
+    <item quantity="other">%d элементов</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Сбросить изменения?</string>
+  <string name="confirm_close_dialog_message">У вас есть несохраненные изменения. Вы уверены, что хотите отменить их?</string>
+  <string name="confirm_close_dialog_close_button">Сбросить</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Повысить</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Расширенные параметры</string>
+  <string name="hide_advanced_options">Скрыть расширенные параметры</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Надежный</string>
+  <string name="label_password_strength_vulnerable">Уязвимый</string>
+  <string name="label_password_strength_weak">Слабый</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Увидеть все</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Сегодня %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Вчера %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">дд МММ ЧЧ:мм</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">дд МММ гггг ЧЧ:мм</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Адрес псевдонима</string>
+  <string name="item_details_alias_section_alias_disabled_title">Адрес псевдонима (отключен)</string>
+  <string name="item_details_alias_section_mailboxes_title">Пересылка на</string>
+  <string name="item_details_credit_card_section_cardholder_title">Имя на карте</string>
+  <string name="item_details_credit_card_section_card_number_title">Номер карты</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Срок действия</string>
+  <string name="item_details_credit_card_section_cvv_title">Код безопасности</string>
+  <string name="item_details_credit_card_section_pin_title">PIN-код</string>
+  <string name="item_details_login_section_email_title">Адрес эл. почты</string>
+  <string name="item_details_login_section_username_title">Имя пользователя</string>
+  <string name="item_details_login_section_password_title">Пароль</string>
+  <string name="item_details_login_section_primary_totp_title">Токен 2ФА (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Веб-сайты</string>
+  <string name="autofill_mode_label_default">Parent domain and subdomains</string>
+  <string name="autofill_mode_label_exact">Exact (sub)domain</string>
+  <string name="autofill_mode_label_never">Never fill on this website</string>
+  <string name="autofill_mode_label_start_with">Starts with</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">Regular expression</string>
+  <string name="autofill_mode_label_exact_path">Exact URL matching</string>
+  <string name="autofill_mode_label_unsupported">This url will be skipped for autofill</string>
+  <string name="login_item_view_alias_button">Посмотреть псевдоним</string>
+  <string name="item_details_identity_section_personal_title">Личная информация</string>
+  <string name="item_details_identity_section_personal_first_name_title">Имя</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Отчество</string>
+  <string name="item_details_identity_section_personal_last_name_title">Фамилия</string>
+  <string name="item_details_identity_section_personal_full_name_title">Полное имя</string>
+  <string name="item_details_identity_section_personal_email_title">Адрес эл. почты</string>
+  <string name="item_details_identity_section_personal_gender_title">Пол</string>
+  <string name="item_details_identity_section_personal_phone_title">Номер телефона</string>
+  <string name="item_details_identity_section_personal_birthday_title">День рождения</string>
+  <string name="item_details_identity_section_address_title">Информация о адресе</string>
+  <string name="item_details_identity_section_address_organization_title">Организация</string>
+  <string name="item_details_identity_section_address_street_address_title">Адрес улицы, абонентский ящик</string>
+  <string name="item_details_identity_section_address_floor_title">Этаж</string>
+  <string name="item_details_identity_section_address_city_title">Город</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">ZIP или почтовый индекс:</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Штат или провинция</string>
+  <string name="item_details_identity_section_address_county_title">Страна</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Страна или регион</string>
+  <string name="item_details_identity_section_contact_title">Информация контакта</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Номер социального страхования</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Номер паспорта</string>
+  <string name="item_details_identity_section_contact_license_number_title">Номер лицензии</string>
+  <string name="item_details_identity_section_contact_website_title">Веб-сайт</string>
+  <string name="item_details_identity_section_contact_x_handle_title">Дескриптор Х</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Второй номер телефона</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Информация о работе</string>
+  <string name="item_details_identity_section_work_company_title">Компания</string>
+  <string name="item_details_identity_section_work_occupation_title">Род занятий</string>
+  <string name="item_details_identity_section_work_email_title">Рабочий адрес электронной почты</string>
+  <string name="item_details_identity_section_work_phone_number_title">Рабочий номер телефона</string>
+  <string name="item_details_identity_section_work_personal_website_title">Личный веб-сайт</string>
+  <string name="item_details_shared_section_note_title">Заметка</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Последнее автозаполнение</string>
+  <string name="item_details_shared_section_item_history_created_title">Создано</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Изменено (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Просмотр истории элементов</string>
+  <string name="item_details_shared_section_more_info_header_title">Подробнее</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Значок дополнительной информации об элементе</string>
+  <string name="item_details_shared_section_more_info_item_id">ID элемента</string>
+  <string name="item_details_shared_section_more_info_vault_id">ID хранилища</string>
+  <string name="item_details_shared_section_more_info_share_id">Поделиться ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">Имя (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Пароль</string>
+  <string name="item_details_wifi_network_label_security">Безопасность</string>
+  <string name="item_details_ssh_key_label_public_key">Открытый ключ</string>
+  <string name="item_details_ssh_key_label_private_key">Закрытый ключ</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Версия приложения больше не поддерживается, обновите приложение.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Ключ доступа</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Улучшить тариф?</string>
+  <string name="dialog_upgrade_plan_message">Эта функция недоступна пользователям бесплатного тарифа. Если вы хотите воспользоваться этой функцией, а также другими классными возможностями, перейдите на новый тариф и попробуйте!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Повысить</string>
+  <string name="dialog_upgrade_plan_action_cancel">Не сейчас</string>
+  <!-- Words -->
+  <string name="email_address">Адрес эл. почты</string>
+  <string name="email_address_invalid">Недействительный адрес электронной почты</string>
+  <string name="password">Пароль</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Кнопка, чтобы закрыть подсказку и не показывать ее снова</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d год</item>
+    <item quantity="few">%d года</item>
+    <item quantity="many">%d лет</item>
+    <item quantity="other">%d лет</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d месяц</item>
+    <item quantity="few">%d месяца</item>
+    <item quantity="many">%d месяцев</item>
+    <item quantity="other">%d месяцев</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d неделя</item>
+    <item quantity="few">%d недели</item>
+    <item quantity="many">%d недель</item>
+    <item quantity="other">%d недель</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d день</item>
+    <item quantity="few">%d дня</item>
+    <item quantity="many">%d дней</item>
+    <item quantity="other">%d дней</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d час</item>
+    <item quantity="few">%d часа</item>
+    <item quantity="many">%d часов</item>
+    <item quantity="other">%d часов</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d минута</item>
+    <item quantity="few">%d минут</item>
+    <item quantity="many">%d минуты</item>
+    <item quantity="other">%d минуты</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d секунда</item>
+    <item quantity="few">%d секунды</item>
+    <item quantity="many">%d секунд</item>
+    <item quantity="other">%d секунд</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d псевдоним</item>
+    <item quantity="few">%d псевдонима</item>
+    <item quantity="many">%d псевдонимов</item>
+    <item quantity="other">%d псевдонимов</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Заметка скопирована</string>
+  <string name="snack_bar_message_item_migration_error">Произошла ошибка при миграции этого элемента</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Элемент успешно удален из мониторинга</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Произошла ошибка при исключении элемента из мониторинга</string>
+  <string name="snack_bar_message_item_monitor_included_success">Элемент успешно включен в мониторинг</string>
+  <string name="snack_bar_message_item_monitor_included_error">Произошла ошибка при включении элемента в мониторинг</string>
+  <string name="snack_bar_message_item_pinned_success">Элемент успешно закреплён</string>
+  <string name="snack_bar_message_item_pinned_error">При закреплении элемента произошла ошибка</string>
+  <string name="snack_bar_message_item_unpinned_success">Элемент успешно откреплён</string>
+  <string name="snack_bar_message_item_unpinned_error">При откреплении элемента произошла ошибка</string>
+  <string name="snack_bar_message_item_trashed_success">Элемент успешно помещен в корзину</string>
+  <string name="snack_bar_message_item_trashed_error">Произошла ошибка при удалении этого элемента в корзину</string>
+  <string name="snack_bar_message_item_restore_success">Элемент успешно восстановлен</string>
+  <string name="snack_bar_message_item_restore_error">Произошла ошибка при восстановлении этого элемента</string>
+  <string name="snack_bar_message_item_delete_success">Элемент успешно удалён</string>
+  <string name="snack_bar_message_item_delete_error">Произошла ошибка при удалении этого элемента</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Включить синхронизацию SimpleLogin</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">Мы обнаружили, что у вас есть %d псевдоним, который присутствуют в SimpleLogin, но отсутствуют в Proton Pass. Не хотите ли вы импортировать его?</item>
+    <item quantity="few">Мы обнаружили, что у вас есть %d псевдонима, которые присутствуют в SimpleLogin, но отсутствуют в Proton Pass. Вы хотите их импортировать?</item>
+    <item quantity="many">Мы обнаружили, что у вас есть %d псевдонимов, которые присутствуют в SimpleLogin, но отсутствуют в Proton Pass. Вы хотите их импортировать?</item>
+    <item quantity="other">Мы обнаружили, что у вас есть %d псевдонима, которые присутствуют в SimpleLogin, но отсутствуют в Proton Pass. Вы хотите их импортировать?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Синхронизировать псевдонимы</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Не получили код?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Пожалуйста, проверьте папку Спам на наличие электронного письма под названием “%s“</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Подтвердите свой адрес электронной почты для Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Подтвердите свой почтовый ящик</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Если вы не можете найти такое письмо, вы можете %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">запросить новый код</string>
+  <string name="field_display_name_title">Отображаемое имя</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s файл</item>
+    <item quantity="few">%1$s файла</item>
+    <item quantity="many">%1$s файлов</item>
+    <item quantity="other">%1$s файлов</item>
+  </plurals>
+  <string name="attachment_title">Вложения</string>
+  <string name="attachment_no_files">Загрузить файлы с устройства</string>
+  <string name="attachment_add_file">Вложить файл</string>
+  <string name="attachment_row_upload_failed">Загрузка не удалась</string>
+  <string name="attachment_row_retry">Повторить</string>
+  <string name="options_menu_content_description">Меню параметров</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d общий элемент</item>
+    <item quantity="few">%d общих элемента</item>
+    <item quantity="many">%d общий элементов</item>
+    <item quantity="other">%d общий элементов</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d пользователь</item>
+    <item quantity="few">%d пользователя</item>
+    <item quantity="many">%d пользователей</item>
+    <item quantity="other">%d пользователей</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d участник</item>
+    <item quantity="few">%d участника</item>
+    <item quantity="many">%d участников</item>
+    <item quantity="other">%d участников</item>
+  </plurals>
+  <string name="show_network_qr_code">Показать QR-код сети</string>
+  <string name="expand_collpased_text">больше</string>
+  <string name="collapse_expanded_text">меньше</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Ненадежный пароль</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Этот аккаунт уязвим, посетите службу и смените пароль.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Compromised password</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">This login password appears in a data breach. Please visit the service and change the password.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d другое имя пользователя использует тот же пароль</item>
+    <item quantity="few">%d других имен пользователей используют тот же пароль</item>
+    <item quantity="many">%d других имен пользователей используют тот же пароль</item>
+    <item quantity="other">%d других имен пользователей используют тот же пароль</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Настройте двухфакторную идентификацию для повышения безопасности</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Эта служба предлагает двухфакторную аутентификацию. Включите ее, чтобы обеспечить дополнительную безопасность аккаунта.</string>
+  <string name="login_item_monitor_action_ignore">Игнорировать</string>
+  <string name="login_item_monitor_action_restore">Restore alert</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Слабый пароль</string>
+  <string name="login_item_monitor_label_compromised">Compromised password</string>
+  <string name="login_item_monitor_label_reused">Reused password</string>
+  <string name="login_item_monitor_label_missing_2fa">Missing 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">Элементы из ваших хранилищ, которые используют этот пароль.</string>
+  <string name="mfa_limit_reached">Достигнут предел двухфакторных идентификаций</string>
+  <string name="activity_in_last_two_weeks">Активности за последние 14 дней</string>
+  <string name="contacts">Контакты</string>
+  <string name="contacts_section_description">Чтобы скрыть свой личный адрес электронной почты, вы можете создать контакт псевдонима, который будет маскировать ваш адрес.</string>
+  <string name="field_detail_display_name_title">Отображаемое имя</string>
+  <string name="display_name_section_description">Отображаемое имя при отправке электронной почты с этого псевдонима.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s пересылка</item>
+    <item quantity="few">%1$s пересылки</item>
+    <item quantity="many">%1$s пересылок</item>
+    <item quantity="other">%1$s пересылок</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s ответ</item>
+    <item quantity="few">%1$s ответа</item>
+    <item quantity="many">%1$s ответов</item>
+    <item quantity="other">%1$s ответов</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s блокировка</item>
+    <item quantity="few">%1$s блокировки</item>
+    <item quantity="many">%1$s блокировок</item>
+    <item quantity="other">%1$s блокировок</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Создать логин</string>
+  <string name="banner_contacts_title">Вы знали?</string>
+  <string name="banner_contacts_subtitle">Каждый раз, когда ваш псевдоним получает письмо от кого-то, новый контакт создается автоматически.</string>
+  <string name="action_reveal">Показать</string>
+  <string name="action_conceal">Скрыть</string>
+  <string name="warning_dialog_item_shared_vault_title">Item in a shared vault</string>
+  <string name="warning_dialog_item_shared_title">Общий элемент</string>
+  <string name="warning_dialog_item_shared_vault_creating">You are creating an item in a shared vault and members will immediately gain access to this item.</string>
+  <string name="warning_dialog_item_shared_vault_moving">You are moving an item to a shared vault and members will immediately gain access to this item.</string>
+  <string name="warning_dialog_item_shared_vault_updating">You are editing an item in a shared vault and members will immediately gain access to this item.</string>
+  <string name="warning_dialog_item_shared_updating">You are editing a shared item. Changes will be visible to everyone it\'s shared with immediately.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Больше не напоминать</string>
+  <string name="upgrade_to_pass_plus">Upgrade to Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">You are about to be redirected to our website. If you purchase a plan, please restart the app.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Разделитель слов</string>
+  <string name="bottomsheet_option_capitalise">Прописные</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Дефисы ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Пробелы</string>
+  <string name="bottomsheet_option_word_separator_periods">Точки ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Запятые ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Подчёркивания ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Цифры</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Цифры и символы</string>
+  <plurals name="word_count">
+    <item quantity="one">%s слово</item>
+    <item quantity="few">%s слова</item>
+    <item quantity="many">%s слов</item>
+    <item quantity="other">%s слов</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Надежность пароля</string>
+  <string name="password_check_min_length">Пароль слишком короткий</string>
+  <string name="password_check_lowercase">Lowercase letters</string>
+  <string name="password_check_uppercase">Uppercase letters</string>
+  <string name="password_check_no_consecutive">No repeated characters</string>
+  <string name="password_check_no_common">No common password</string>
+</resources>

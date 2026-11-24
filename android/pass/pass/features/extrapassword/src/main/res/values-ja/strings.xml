@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="configure_extra_password_continue">続行</string>
+  <string name="configure_extra_password_title">追加のパスワードを設定する</string>
+  <string name="configure_extra_password_enter_extra_password">追加パスワード</string>
+  <string name="configure_extra_password_repeat_extra_password">パスワードを再度入力</string>
+  <string name="configure_extra_password_description">ログイン時、および別の Proton アプリから Web 上の Proton Pass に切り替えるときに、このパスワードの入力を求められます。</string>
+  <string name="configure_extra_password_warning">注意: このパスワードを紛失すると、Pass アカウントにアクセスできなくなります。</string>
+  <string name="configure_extra_password_mismatch">パスワードが一致しません</string>
+  <string name="extra_password_options_remove">削除</string>
+  <string name="info_extra_password_title">追加パスワード</string>
+  <string name="info_extra_password_body">追加のパスワードでProton Passを保護</string>
+  <string name="info_extra_password_button">追加のパスワードを設定する</string>
+  <string name="configure_extra_password_cannot_be_blank">パスワードは空白にできません</string>
+  <string name="configure_extra_password_password_too_short">追加のパスワードは最低 8 文字必要です</string>
+  <string name="confirm_extra_password_title">追加のパスワードを設定する</string>
+  <string name="confirm_extra_password_body">ログアウトされ、他の全てのデバイスで再度ログインする必要があります</string>
+  <string name="confirm_extra_password_error">追加のパスワードを設定できませんでした</string>
+  <string name="confirm_extra_password_success">追加のパスワードが設定されました</string>
+</resources>

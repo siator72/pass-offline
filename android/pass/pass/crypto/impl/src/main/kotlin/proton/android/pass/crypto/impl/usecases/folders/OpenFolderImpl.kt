@@ -1,0 +1,72 @@
+/*
+ * Copyright (c) 2025-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.crypto.impl.usecases.folders
+
+import me.proton.core.crypto.common.keystore.EncryptedByteArray
+import proton.android.pass.crypto.api.Base64
+import proton.android.pass.crypto.api.EncryptionKey
+import proton.android.pass.crypto.api.context.EncryptionContextProvider
+import proton.android.pass.crypto.api.context.EncryptionTag
+import proton.android.pass.crypto.api.usecases.folders.EncryptedFolderData
+import proton.android.pass.crypto.api.usecases.folders.OpenFolder
+import proton.android.pass.crypto.api.usecases.folders.OpenFolderOutput
+import proton.android.pass.commonrust.api.ItemContentSerializer
+import proton.android.pass.crypto.impl.Constants.FOLDER_CONTENT_FORMAT_VERSION
+import proton.android.pass.log.api.PassLogger
+import javax.inject.Inject
+
+class OpenFolderImpl @Inject constructor(
+    private val encryptionContextProvider: EncryptionContextProvider,
+    private val itemContentSerializer: ItemContentSerializer
+) : OpenFolder {
+
+    override suspend fun open(encryptedFolder: EncryptedFolderData, parentKey: EncryptionKey): OpenFolderOutput =
+        encryptionContextProvider.withEncryptionContextSuspendable {
+            val decodedFolderKey = Base64.decodeBase64(encryptedFolder.folderKey)
+            val decryptedFolderKey = encryptionContextProvider.withEncryptionContextSuspendable(parentKey) {
+                EncryptionKey(decrypt(EncryptedByteArray(decodedFolderKey), EncryptionTag.FolderKey))
+            }
+            val folderKeyBytes = decryptedFolderKey.value()
+            val decodedContent = Base64.decodeBase64(encryptedFolder.content)
+            val decryptedContent = encryptionContextProvider.withEncryptionContextSuspendable(
+                EncryptionKey(folderKeyBytes.clone())
+            ) {
+                decrypt(EncryptedByteArray(decodedContent), EncryptionTag.FolderContent)
+            }
+            val encryptedFolderKeyForStorage = encrypt(folderKeyBytes)
+            decryptedFolderKey.clear()
+            if (encryptedFolder.contentFormatVersion > FOLDER_CONTENT_FORMAT_VERSION) {
+                PassLogger.w(
+                    TAG,
+                    "Unknown Folder ContentFormatVersion:" +
+                        " ${encryptedFolder.contentFormatVersion}"
+                )
+            }
+            val folderName = itemContentSerializer.deserializeFolder(decryptedContent)
+            OpenFolderOutput(
+                folderName = folderName,
+                originalContent = decryptedContent,
+                reencryptedFolderKey = encryptedFolderKeyForStorage
+            )
+        }
+
+    private companion object {
+        private const val TAG = "OpenFolderImpl"
+    }
+}

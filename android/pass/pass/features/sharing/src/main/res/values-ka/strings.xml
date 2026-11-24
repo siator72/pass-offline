@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sharing_can_view">მთვალიერებელი</string>
+  <string name="sharing_can_edit">რედაქტორი</string>
+  <string name="sharing_can_manage">ადმინისტრატორი</string>
+  <string name="sharing_can_manage_v2">მმართველი</string>
+  <string name="sharing_can_view_description">შეუძლია ამ საცავის ელემენტების დათვალიერება.</string>
+  <string name="sharing_can_edit_description">შეუძლია ამ საცავის ელემენტების ჩასწორება, წაშლა და გატანა.</string>
+  <string name="sharing_can_manage_description">შეუძლია ამ საცავზე წვდომების მინიჭება და ჩამორთმევა.</string>
+  <plurals name="sharing_item_count">
+    <item quantity="one">%d ელემენტი</item>
+    <item quantity="other">%d ელემენტი</item>
+  </plurals>
+  <plurals name="sharing_invite_item_count">
+    <item quantity="one">%d ელემენტი (ნაგვის ყუთში არსებულების ჩათვლით)</item>
+    <item quantity="other">%d ელემენტი (ნაგვის ყუთში არსებულების ჩათვლით)</item>
+  </plurals>
+  <plurals name="sharing_member_count">
+    <item quantity="one">%d წევრი</item>
+    <item quantity="other">%d წევრი</item>
+  </plurals>
+  <string name="sharing_member_count_header">წევრები</string>
+  <string name="shared_via_title">გაზიარება როგორც</string>
+  <string name="shared_via_item_section_title" comment="The placeholder will be replaced by users count. E.g. 2 users">ელემენტების გაზიარება: %s</string>
+  <string name="shared_via_vault_section_title" comment="The placeholder will be replaced by members count. E.g. 2 members">საცავის გაზიარება: %s</string>
+  <string name="share_with_title">გაზიარება</string>
+  <string name="share_with_email_hint">ელფოსტის მისამართი</string>
+  <string name="share_with_email_error">არასწორი ელფოსტის მისამართი</string>
+  <string name="share_with_email_cannot_invite_outside_org">თქვენი ორგანიზაციის გარედან ხალხს ვერ მოიწვევთ. მეტი დეტალებისთვის დაუკავშირდით ადმინისტრატორს</string>
+  <string name="share_with_email_email_already_added">ეს ელფოსტის მისამართი უკვე დაამატეთ</string>
+  <string name="share_permissions_title">წვდომის დონის დაყენება</string>
+  <string name="sharing_reject_invitation">მოსაწვევის უარყოფა</string>
+  <string name="sharing_vault_invitation_title">გაზიარებული საცავის მოსაწვევი</string>
+  <string name="sharing_vault_invitation_subtitle" comment="placeholder is replaced by an email address">%s-ის უნდა, საცავი გაგიზიაროთ.</string>
+  <string name="sharing_vault_invitation_accept">გაზიარებულ საცავთან მიერთება</string>
+  <string name="sharing_item_invitation_title">გაზიარებული ელემენტის მოსაწვევი</string>
+  <string name="sharing_item_invitation_subtitle" comment="placeholder is replaced by an email address">%s უნდა, ელემენტი გაგიზიაროთ.</string>
+  <string name="sharing_item_invitation_accept">მიღება და ელემენტის ნახვა</string>
+  <string name="sharing_group_vault_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s-ს უნდა, რომ გაუზიაროს საცავი თქვენს ჯგუფს %2$s.</string>
+  <string name="sharing_group_item_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s-ს უნდა, გაუზიაროს ელემენტი თქვენს ჯგუფს %2$s.</string>
+  <string name="sharing_group_invitation_accept">მოსაწვევის მიღება</string>
+  <string name="sharing_invite_more">მეტის მოწვევა…</string>
+  <string name="sharing_snackbar_invite_accepted">მოწვევა მიღებულია</string>
+  <string name="sharing_snackbar_invite_accept_error">მოსაწვევის დათანხმების შეცდომა</string>
+  <string name="sharing_snackbar_invite_accept_error_cannot_create_more_vaults">მოსაწვევს ვერ დავეთნახმე, რადგან საცავების ზღვარს მიაღწიეთ</string>
+  <string name="sharing_snackbar_invite_rejected">მოწვევა უარყოფილია</string>
+  <string name="sharing_snackbar_invite_reject_error">მოსაწვევის უარყოფის შეცდომა</string>
+  <string name="sharing_snackbar_invite_sent_success">მოსაწვევი გაგზავნილია</string>
+  <string name="sharing_snackbar_invite_sent_error">მოსაწვევის გაგზავნის შეცდომა</string>
+  <string name="sharing_snackbar_invite_new_users_error">ახალ ი მომხმარებლებისთვის მოსაწვევების გაგზავნა შეუძლებელია</string>
+  <string name="sharing_snackbar_invite_free_user_error">ელემენტზე მოსაწვევები, მხოლოდ, ფასიან მომხმარებლებს შეგიძლიათ, გაუგზავნოთ</string>
+  <string name="sharing_snackbar_cannot_create_invite_error">მისამართის მოწვევა შეუძლებელია</string>
+  <string name="sharing_snackbar_get_vault_members_error">საცავის წევრების მიღება შეუძლებელია</string>
+  <string name="sharing_snackbar_change_permission_success">წვდომები შეიცვალა</string>
+  <string name="sharing_snackbar_change_permission_error">წვდომების შეცვლა შეუძლებელია</string>
+  <string name="sharing_snackbar_remove_member_success">წევრი წაიშალა საცავიდან</string>
+  <string name="sharing_snackbar_remove_member_error">საცავიდან წაშლის შეცდომა</string>
+  <string name="sharing_snackbar_fetch_member_error">წევრების გამოთხოვის შეცდომა</string>
+  <string name="sharing_snackbar_fetch_pending_invites_error">შეცდომა დარჩენილი მოსაწვევების გამოთხოვნისას</string>
+  <string name="share_summary_title">მიმოხილვა და გაზიარება</string>
+  <string name="share_summary_share_vault">საცავის გაზიარება</string>
+  <string name="share_summary_share_item">ელემენტის გაზიარება</string>
+  <string name="share_summary_vault_title">საცავი</string>
+  <string name="share_summary_item_title">ელემენტი</string>
+  <string name="share_summary_access_level_title">წვდომის დონე</string>
+  <string name="share_manage_vault_share_with_more_people">გაუზიარეთ მეტს</string>
+  <plurals name="share_manage_vault_invites_remaining" comment="Text that will be shown in the vault member list, showing the user how many invites they have left for this vault">
+    <item quantity="one">დარჩენილია %d მოწვევა</item>
+    <item quantity="other">დარჩენილია %d მოწვევა</item>
+  </plurals>
+  <plurals name="share_manage_vault_item_count">
+    <item quantity="one">%d ელემენტი</item>
+    <item quantity="other">%d ელემენტი</item>
+  </plurals>
+  <string name="share_manage_vault_invite_pending" comment="Text that will be shown in the vault member list, below the user email when the user has been invited but has not accepted the invitation yet">მოსაწვევი გაგზავნილია</string>
+  <string name="share_manage_vault_invite_pending_user_creation" comment="Text that will be shown in the vault member list, below the user email when the user has not created the account yet">მიმდინარეობს ანგარიშის შექმნა</string>
+  <string name="share_manage_vault_invite_confirm_access" comment="Text that will be shown in the vault member list, on a button, when the invited user has created the account and we want to grant him access to the vault">წვდომის დადასტურება</string>
+  <string name="share_manage_vault_invitations_title" comment="Text that will be used as the title of the list containing the invites for a vault">მოწვევები</string>
+  <string name="share_manage_vault_members_title" comment="Text that will be used as the title of the list containing the members of a vault">წევრები</string>
+  <string name="share_manage_vault_current_user_indicator">თქვენ</string>
+  <string name="share_manage_vault_members_error" comment="Shown when the vault member list fails to load">Couldn\'t load members</string>
+  <string name="share_manage_vault_members_error_retry" comment="Button to retry loading the vault members">თავიდან</string>
+  <string name="share_role_viewer">მთვალიერებელი</string>
+  <string name="share_role_editor">რედაქტორი</string>
+  <string name="share_role_admin">ადმინისტრატორი</string>
+  <string name="share_role_manager">მმართველი</string>
+  <string name="share_role_owner">მფლობელი</string>
+  <string name="sharing_bottomsheet_transfer_ownership">მფლობელობის გადაცემა</string>
+  <string name="sharing_bottomsheet_transfer_ownership_disabled_subtitle" comment="Appears as the subtitle of the sharing_bottomsheet_transfer_ownership when the user cannot transfer the ownership because they only own one vault">თქვენი უკანასკნელი საკუთარი საცავის გადატანა შეუძლებელია.</string>
+  <string name="sharing_bottomsheet_remove_access">წვდომის გაუქმება</string>
+  <string name="sharing_bottomsheet_item_admin_subtitle">შეუძლია ამ ელემენტზე წვდომების მინიჭება და ჩამორთმევა.</string>
+  <string name="sharing_bottomsheet_item_editor_subtitle">შეუძლია ამ ელემენტის ჩასწორება და წაშლა.</string>
+  <string name="sharing_bottomsheet_item_viewer_subtitle">შეუძლია ან ელემენტის დათვალიერება</string>
+  <string name="sharing_bottomsheet_resend_invite">მოსაწვევის თავიდან გაგზავნა</string>
+  <string name="sharing_bottomsheet_cancel_invite">Cancel invitation</string>
+  <string name="sharing_transfer_ownership_confirm_title">მფლობელობის გადაცემა</string>
+  <string name="sharing_transfer_ownership_confirm_message">გადაეცეს ამ საცავის ფლობის უფლება %s-ს?</string>
+  <string name="sharing_snackbar_cancel_invite_success">მოწვევა გაუქმებულია</string>
+  <string name="sharing_snackbar_cancel_invite_error">მოწვევის გაუქმების შეცდომა</string>
+  <string name="sharing_snackbar_resend_invite_success">მოსაწვევი გაგზავნილია</string>
+  <string name="sharing_snackbar_resend_invite_error">მოწვევის თავიდან გაგზავნის შეცდომა</string>
+  <string name="sharing_snackbar_confirm_invite_success">მოსაწვევი დადასტურებულია</string>
+  <string name="sharing_snackbar_confirm_invite_error">მოსაწვევის დადასტურების შეცდომა</string>
+  <string name="sharing_snackbar_too_many_invites_sent">მისამართი, მეტისმეტად, ბევრჯერ მოიწვიეთ</string>
+  <string name="sharing_snackbar_transfer_ownership_success">მფლობელობა გადაცემულია</string>
+  <string name="sharing_snackbar_transfer_ownership_error">მფლობელობის გადაცემის შეცდომა</string>
+  <string name="sharing_invites_info_dialog_title">წევრების ზღვარი</string>
+  <plurals name="sharing_invites_info_dialog_message" comment="Message that will appear when clicking the NUMBER invites left. Param 1: Max members of the vault (will always be greater than one). Param 2: Number of invites left.">
+    <item quantity="one">თქვენს საცავს %1$d-მდე წევრი შეიძლება, ჰყავდეს. კიდევ დაგრჩათ %2$d მოსაწვევი.</item>
+    <item quantity="other">თქვენს საცავს %1$d-მდე წევრი შეიძლება, ჰყავდეს. კიდევ დაგრჩათ %2$d მოსაწვევი.</item>
+  </plurals>
+  <string name="sharing_limit_reached">ამ საცავმა წევრებისა და მოსაწვევებს ზღვარს მიაღწია.</string>
+  <string name="sharing_invites_info_upgrade_text">ასწიეთ ტრაფიკი ახლა, მეტის მოსაწვევად.</string>
+  <string name="sharing_from_item_title" comment="Title for the Share from item bottomsheet">გაზიარება</string>
+  <string name="sharing_from_item_share_this_vault_action" comment="Button for sharing this vault">ამ საცავის გაზიარება</string>
+  <string name="sharing_from_item_move_to_shared_vault_action" comment="Button for moving an item to a shared vault">გადატანა გაზიარებულ საცავში</string>
+  <string name="sharing_from_item_vault_limit_reached_upgrade">ასწიეთ სატარიფო გეგმა მეტი საცავის შესაქმნელად</string>
+  <string name="sharing_from_item_vault_limit_reached">მიაღწიეთ საცავების ზღვარს</string>
+  <string name="share_with_suggestions_title">შეთავაზებები</string>
+  <string name="share_with_recents_title">უახლესი</string>
+  <string name="share_with_remove_email_content_description">ელფოსტის წაშლა</string>
+  <string name="share_with_user_shared_title">სხვა Proton Pass-ის მომხმარებლებთან</string>
+  <string name="share_with_user_shared_description">სასარგებლოა მუდმივი გაზიარებისთვის.</string>
+  <string name="share_with_manage_shared_item_title">წვდომის მართვა</string>
+  <string name="share_with_manage_shared_item_description">წევრებისა და წვდომების გადახედვა.</string>
+  <string name="share_with_secure_link_shared_title">დაცული ბმულით</string>
+  <string name="share_with_secure_link_shared_description">ერთჯერადი გაზიარებისთვის</string>
+  <string name="sharing_edit_permissions_set_access_level_all_members">წვდომის დონის დაყენება ყველაწევრისთვის</string>
+  <string name="sharing_edit_permissions_set_access_level_single_member">წვდომის დონის დაყენება მომხმარებლისთვის %s</string>
+  <string name="sharing_edit_permissions_remove_user">მომხმარებლის წაშლა</string>
+  <string name="sharing_edit_permissions_remove_group">ჯგუფის წაშლა</string>
+  <string name="sharing_error_dialog_title">უცნობი შეცდომა</string>
+  <string name="sharing_error_dialog_message">შეცდომა ამ საცავისთვის მოსაწვვის გაგზავნისას. თუ პრობლემა არ მოგვარდება, დაუკავშირდით მომხმარებლის მხარდაჭერის სერვისს.</string>
+  <string name="sharing_with_no_addresses_can_be_invited">მოსაწვევი მისამართების გარეშე</string>
+  <string name="sharing_with_some_addresses_cannot_be_invited">ზოგიერთი მისამართის მოწვევა შეძლებელია</string>
+</resources>

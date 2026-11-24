@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Actions -->
+  <string name="action_save">Tallenna</string>
+  <string name="action_remove">Poista</string>
+  <!-- Create item bottomsheet -->
+  <string name="action_login">Kirjautumistieto</string>
+  <string name="action_alias">Alias</string>
+  <string name="action_note">Muistiinpano</string>
+  <string name="action_credit_card">Maksukortti</string>
+  <string name="action_password">Salasana</string>
+  <string name="action_identity">Identiteetti</string>
+  <string name="action_more">Lisää</string>
+  <string name="item_type_login_description" comment="Subtitle of the Item Type LOGIN in the Create new item bottomsheet">Lisää sovelluksen tai sivuston kirjautumistiedot.</string>
+  <string name="item_type_alias_description" comment="Subtitle of the Item Type ALIAS in the Create new item bottomsheet">Hanki sähköpostialias, jota voit käyttää uusissa sovelluksissa.</string>
+  <string name="item_type_note_description" comment="Subtitle of the Item Type NOTE in the Create new item bottomsheet">Säilytä PIN- tai muita koodeja, tai muita muistiinpanoja.</string>
+  <string name="item_type_credit_card_description" comment="Subtitle of the Item Type CREDIT CARD in the Create new item bottomsheet">Säilytä maksutapojesi tiedot turvallisesti.</string>
+  <string name="item_type_identity_description" comment="Subtitle of the Item Type IDENTITY in the Create new item bottomsheet">Täytä henkilötietosi</string>
+  <string name="item_type_more_description" comment="Subtitle of the Item Type CUSTOM in the Create new item bottomsheet">Tallenna Wi-Fi, passi, SSH tai mukauta</string>
+  <string name="item_type_password_description" comment="Subtitle of the Item Type PASSWORD in the Create new item bottomsheet">Luo turvallinen salasana.</string>
+  <string name="sticky_button_generate_username">Luo käyttäjätunnus</string>
+  <!-- Create Login -->
+  <string name="field_email_title">Sähköpostiosoite</string>
+  <string name="field_email_hint">Lisää sähköpostiosoite</string>
+  <string name="field_email_error">Virheellinen sähköpostiosoite</string>
+  <string name="field_email_tooltip_title">Lisää käyttäjätunnus-kenttä</string>
+  <string name="field_email_tooltip_description">Lisää kenttä käyttäjätunnukselle napauttamalla tästä.</string>
+  <string name="field_username_title">Käyttäjätunnus</string>
+  <string name="field_username_hint">Lisää käyttäjätunnus</string>
+  <string name="field_username_or_email_title">Käyttäjätunnus tai sähköpostiosoite</string>
+  <string name="field_username_or_email_hint">Lisää käyttäjätunnus tai sähköpostiosoite</string>
+  <string name="field_password_title">Salasana</string>
+  <string name="field_password_hint">Lisää salasana</string>
+  <string name="field_website_address_title">Verkkosivusto</string>
+  <string name="field_website_address_invalid">Virheellinen URL</string>
+  <string name="field_website_address_hint">https://</string>
+  <string name="field_website_add_another">Lisää</string>
+  <string name="sticky_button_generate_password" comment="Sticky button on the Create login screen. When tapped, the Generate password bottomsheet is shown">Luo uusi salasana</string>
+  <string name="sticky_button_create_alias" comment="Sticky button on the Create login screen. When tapped, the Create alias bottomsheet is shown">Hide-my-email</string>
+  <string name="sticky_button_use_account_email" comment="Sticky button on the Create login screen. When tapped, the current user email is autofilled">Käytä osoitetta %s</string>
+  <string name="create_login_item_creation_error">Kirjautumistietoa ei voitu luoda</string>
+  <string name="create_login_item_update_error">Kirjautumistietoa ei voitu päivittää</string>
+  <string name="create_login_init_error">Ongelma kirjautumistiedon tietojen noudossa</string>
+  <string name="create_login_invalid_totp">2FA-tiedot ovat virheellisiä</string>
+  <string name="update_login_attachments_init_error">Ongelma noudettaessa kirjautumistiedon liitteitä</string>
+  <string name="login_link_attachments_error">Liitteiden kytkentä kirjautumistietoon tai kytkösten poisto epäonnistui</string>
+  <string name="login_rename_attachments_error">Kirjautumistiedon liitteiden uudelleennimeäminen epäonnistui</string>
+  <string name="login_created">Kirjautumistieto luotiin</string>
+  <string name="bottomsheet_modify_alias_title">Muokkaa aliasta</string>
+  <string name="bottomsheet_custom_field_type_text">Teksti</string>
+  <string name="bottomsheet_custom_field_type_hidden">Piilotettu</string>
+  <string name="bottomsheet_custom_field_type_totp">2FA-salaisuus (TOTP)</string>
+  <string name="bottomsheet_custom_field_type_date">Päiväys</string>
+  <string name="bottomsheet_custom_field_option_edit">Muokkaa nimeä</string>
+  <string name="bottomsheet_custom_field_option_remove">Poista kenttä</string>
+  <string name="bottomsheet_custom_field_option_remove_content_description">Poista mukautettu kenttä</string>
+  <string name="bottomsheet_custom_section_option_remove">Poista osio</string>
+  <string name="custom_field_hidden_placeholder">Lisää piilotettu teksti</string>
+  <string name="custom_field_hidden_icon_content_description">Mukautetun piilotetun kentän kuvake</string>
+  <string name="custom_field_text_placeholder">Lisää teksti</string>
+  <string name="custom_field_date_placeholder">Lisää päiväys</string>
+  <string name="custom_field_dialog_title">Mukautetun kentän nimi</string>
+  <string name="custom_field_dialog_body">Nimeä mukautettu kenttä</string>
+  <string name="custom_field_dialog_placeholder">Esim. käyttäjätunnus, PIN</string>
+  <string name="custom_section_dialog_title">Syötä osion nimi</string>
+  <string name="custom_section_dialog_placeholder">Nimi</string>
+  <string name="custom_field_options_content_description">Mukautetun kentän valinnat</string>
+  <!-- Create Note -->
+  <string name="create_note_item_creation_error">Muistiinpanoa ei voitu luoda</string>
+  <string name="create_note_item_update_error">Muistiinpanoa ei voitu päivittää</string>
+  <string name="create_note_init_error">Ongelma muistiinpanon tietojen noudossa</string>
+  <string name="update_note_attachments_init_error">Ongelma noudettaessa muistiinpanon liitteitä</string>
+  <string name="note_link_attachments_error">Liitteiden kytkentä muistiinpanoon tai kytkösten poisto epäonnistui</string>
+  <string name="note_rename_attachments_error">Muistiinpanon liitteiden uudelleennimeäminen epäonnistui</string>
+  <string name="note_created">Muistiinpano luotiin</string>
+  <!-- Create Alias -->
+  <string name="field_alias_title">Aliaksen osoite</string>
+  <string name="field_mailboxes_creation_title">Ohjaa osoitteeseen</string>
+  <string name="field_mailboxes_edit_title">Ohjaa osoitteeseen</string>
+  <string name="field_alias_you_are_about_to_create">Luot aliasta</string>
+  <string name="field_alias_prefix">Etuliite</string>
+  <string name="field_alias_suffix">Jälkiliite</string>
+  <string name="alias_bottomsheet_alias_title">Alias</string>
+  <string name="alias_bottomsheet_suffix_title">Jälkiliite</string>
+  <string name="create_alias_item_creation_error">Aliasta ei voitu luoda</string>
+  <string name="create_alias_cannot_create_more_aliases_error">Et voi luoda enempää aliaksia</string>
+  <string name="create_alias_email_not_validated_error">Et voi luoda aliaksia vahvistamatta ensin sähköpostiosoitettasi</string>
+  <string name="alias_rate_limited">Lyhyen ajan sisällä on luotu liian monta aliasta</string>
+  <string name="create_alias_item_update_error">Aliasta ei voitu päivittää</string>
+  <string name="create_alias_init_error">Ongelma aliaksen tietojen noudossa</string>
+  <string name="update_alias_attachments_init_error">Ongelma noudettaessa aliaksen liitteitä</string>
+  <string name="alias_link_attachments_error">Liitteiden kytkentä aliakseen tai kytkösten poisto epäonnistui</string>
+  <string name="alias_rename_attachments_error">Aliaksen liitteiden uudelleennimeäminen epäonnistui</string>
+  <string name="alias_created">Alias luotiin</string>
+  <string name="cannot_retrieve_alias_options">Aliasvaihtoehtojen nouto ei onnistu</string>
+  <string name="alias_mailbox_dialog_title">Ohjaa osoitteeseen</string>
+  <string name="sl_note_info_title">Mikä on SimpleLogin-muistiinpano?</string>
+  <string name="sl_note_info_message_part1" comment="this is the first part of a text compose by this and the following part2 and part3">Pass-kohteiden muistiinpanot salataan kohteiden salausavaimilla ja vain niiden käyttöoikeuden omaavat käyttäjät voivat tarkastella muistiinpanoja.</string>
+  <string name="sl_note_info_message_part2">Edes Proton tai SimpleLogin eivät näe sitä.</string>
+  <string name="sl_note_info_message_part3">SimpleLogin-muistiinpano tallennetaan aliasosoitteen sijaintiin ja vaikka se säilytetäänkin salattuna, se ei ole päästä päähän -salattu, eli kuka tahansa SimpleLogin-tietokantaan pääsevä voi lukea sen.</string>
+  <string name="sl_note_info_content_description">Näytä SL-muistiipanon tietoikkuna</string>
+  <!-- Create note -->
+  <string name="note_hint">Muistiinpano</string>
+  <!-- Create Credit Card -->
+  <string name="field_cardholder_name_title">Kortinhaltijan nimi</string>
+  <string name="field_cardholder_name_hint">Koko nimi</string>
+  <string name="field_card_number_title">Kortin numero</string>
+  <string name="field_card_number_hint">1234 1234 1234 1234</string>
+  <string name="field_card_cvv_title">Turvakoodi</string>
+  <string name="field_card_cvv_hint">123</string>
+  <string name="field_card_pin_title">PIN-koodi</string>
+  <string name="field_card_pin_hint">123456</string>
+  <string name="field_card_expiration_date_title">Voimassaolo päättyy</string>
+  <string name="field_card_expiration_date_hint">KK/VV</string>
+  <string name="field_card_expiration_date_error">Syötä kelvollinen aika muodossa KK/VV</string>
+  <string name="create_credit_card_item_creation_error">Maksukorttia ei voitu luoda</string>
+  <string name="create_credit_card_item_creation_success">Maksukortti luotiin</string>
+  <string name="credit_card_init_error">Ongelma noudettaessa maksukortin tietoja</string>
+  <string name="update_credit_card_attachments_init_error">Ongelma noudettaessa maksukortin liitteitä</string>
+  <string name="credit_card_link_attachments_error">Liitteiden kytkentä maksukorttiin tai kytkösten poisto epäonnistui</string>
+  <string name="credit_card_rename_attachments_error">Maksukortin liitteiden uudelleennimeäminen epäonnistui</string>
+  <string name="credit_card_item_update_error">Maksukorttia ei voitu päivittää</string>
+  <!-- Create Identity -->
+  <string name="identity_field_full_name_title">Koko nimi</string>
+  <string name="identity_field_email_title">Sähköpostiosoite</string>
+  <string name="identity_field_phone_number_title">Puhelinnumero</string>
+  <string name="identity_field_organization_title">Organisaatio</string>
+  <string name="identity_field_street_address_title">Katuosoite, postilokero</string>
+  <string name="identity_field_zip_or_postal_code_title">Postinumero</string>
+  <string name="identity_field_city_title">Kaupunki</string>
+  <string name="identity_field_state_or_province_title">Osavaltio tai maakunta</string>
+  <string name="identity_field_country_or_region_title">Maa tai alue</string>
+  <string name="identity_field_social_security_number_title">Henkilötunnus</string>
+  <string name="identity_field_passport_number_title">Passin numero</string>
+  <string name="identity_field_license_number_title">Ajokortin numero</string>
+  <string name="identity_field_website_title">Verkkosivusto</string>
+  <string name="identity_field_xhandle_title">X-tunnus</string>
+  <string name="identity_field_company_title">Yritys</string>
+  <string name="identity_field_job_title_title">Tehtävänimike</string>
+  <string name="identity_field_first_name_title">Etunimi</string>
+  <string name="identity_field_last_name_title">Sukunimi</string>
+  <string name="identity_field_middle_name_title">Toinen nimi</string>
+  <string name="identity_field_birthdate_title">Syntymäpäivä</string>
+  <string name="identity_field_gender_title">Sukupuoli</string>
+  <string name="identity_field_floor_title">Kerros</string>
+  <string name="identity_field_county_title">Piirikunta</string>
+  <string name="identity_field_linkedin_title">Linkedin</string>
+  <string name="identity_field_reddit_title">Reddit-tunnus</string>
+  <string name="identity_field_facebook_title">Facebook-osoite</string>
+  <string name="identity_field_yahoo_title">Yahoo-tunnus</string>
+  <string name="identity_field_instagram_title">Instagram-tunnus</string>
+  <string name="identity_field_personal_website_title">Henkilökohtainen verkkosivusto</string>
+  <string name="identity_field_work_phone_number_title">Työpuhelin</string>
+  <string name="identity_field_work_email_title">Työsähköposti</string>
+  <string name="identity_add_field_first_name">Etunimi</string>
+  <string name="identity_add_field_middle_name">Toinen nimi</string>
+  <string name="identity_add_field_last_name">Sukunimi</string>
+  <string name="identity_add_field_birthdate">Syntymäpäivä</string>
+  <string name="identity_add_field_gender">Sukupuoli</string>
+  <string name="identity_add_field_floor">Kerros</string>
+  <string name="identity_add_field_county">Piirikunta</string>
+  <string name="identity_add_field_linkedin">Linkedin</string>
+  <string name="identity_add_field_reddit">Reddit-tunnus</string>
+  <string name="identity_add_field_facebook">Facebook-osoite</string>
+  <string name="identity_add_field_yahoo">Yahoo-tunnus</string>
+  <string name="identity_add_field_instagram">Instagram-tunnus</string>
+  <string name="identity_add_field_personal_website">Henkilökohtainen verkkosivusto</string>
+  <string name="identity_add_field_work_phone_number">Työpuhelin</string>
+  <string name="identity_add_field_work_email_address">Työsähköposti</string>
+  <string name="identity_add_field_custom_field">Mukautettu kenttä</string>
+  <string name="identity_section_personal_details">Henkilötiedot</string>
+  <string name="identity_section_address_details">Osoitetiedot</string>
+  <string name="identity_section_contact_details">Yhteystiedot</string>
+  <string name="identity_section_work_details">Työtiedot</string>
+  <string name="identity_bottomsheet_add_field">Lisää kenttä</string>
+  <string name="create_identity_init_error">Ongelma noudettaessa identiteetin tietoja</string>
+  <string name="update_identity_attachments_init_error">Ongelma noudettaessa identiteetin liitteitä</string>
+  <string name="identity_link_attachments_error">Liitteiden kytkentä identiteettiin tai kytkösten poisto epäonnistui</string>
+  <string name="identity_rename_attachments_error">Identiteetin liitteiden uudelleennimeäminen epäonnistui</string>
+  <string name="create_identity_item_creation_error">Identiteettiä ei voitu luoda</string>
+  <string name="create_identity_item_creation_success">Identiteetti luotiin</string>
+  <string name="update_identity_item_creation_success">Identiteettiä muokattiin</string>
+  <string name="update_identity_item_creation_error">Identiteettiä ei voitu päivittää</string>
+  <!--  Common create items  -->
+  <string name="title_create">Luo</string>
+  <string name="title_duplicate" comment="Default title when duplicating an item. Placeholder is the title of the item being duplicated.">%s (kopioitu)</string>
+  <string name="changes_saved">Muutokset tallennettiin</string>
+  <!--  TOTP  -->
+  <string name="totp_create_login_field_title">2FA-salaisuus (TOTP)</string>
+  <string name="totp_create_login_field_invalid">Virheellinen 2FA-salaisuus (TOTP)</string>
+  <string name="totp_create_login_field_placeholder">Lisää 2FA-salaisuus (TOTP)</string>
+  <string name="close_scree_icon_content_description">Sulje ruutu -painike</string>
+  <string name="totp_paste_code_action">Liitä koodi</string>
+  <string name="totp_scan_code_action">Skannaa koodi</string>
+  <string name="camera_permission_explanation">Ominaisuus tarvitsee kameran käyttöoikeuden.</string>
+  <string name="camera_permission_open_settings">Avaa asetukset</string>
+  <!--  TOTP limit  -->
+  <string name="mfa_limit_reached">Kaksivaiheisen tunnistautumisen rajoitus on saavutettu</string>
+  <string name="upgrade">Päivitä</string>
+  <string name="mfa_icon_content_description">Kasivaiheisen tunnistautumisen kuvake</string>
+  <string name="create_alias_content_limit_banner">Luotujen aliasten enimmäismäärä on saavutettu. Luo aliaksia rajattomasti päivittämällä tilauksesi.</string>
+  <string name="snackbar_update_app_to_update_item" comment="This message will appear to users that try to update an item that needs a newer version of the app to do so">Sovellus on päivitettävä tämän kohteen muokkaamiseksi</string>
+  <string name="remove_passkey_dialog_title">Poistetaanko tämä pääsyavain?</string>
+  <string name="remove_passkey_dialog_body" comment="Body of the dialog that asks the user if they want to remove the passkey for an item. Placeholder 1 is the username (such as my_user). Placeholder 2 is the domain (such as google.com)">Haluatko varmasti poistaa pääsyavaimen osoitteen \"%2$s\" käyttäjältä \"%1$s\"?</string>
+  <!-- Attachments -->
+  <string name="banner_title_attachments">Liitteet</string>
+  <string name="banner_body_attachments">Voit liittää kohteisiin tiedostoja parempaa organisointia varten</string>
+  <string name="open_with">Avaa käyttäen:</string>
+  <string name="banner_advanced_options_title">Tiesitkö?</string>
+  <string name="banner_advanced_options_subtitle">Mukauta alias haluamaksesi painamalla rataskuvaketta.</string>
+  <string name="banner_custom_domain_title">Tiesitkö?</string>
+  <string name="banner_custom_domain_subtitle">Lisäämällä oman verkkotunnuksen voit luoda aliaksia, kuten hei@verkkotunnukseni.fi.</string>
+  <string name="banner_custom_domain_button">Lisää verkkotunnus</string>
+  <string name="banner_mailbox_title">Tiesitkö?</string>
+  <string name="banner_mailbox_subtitle">Jaa aliaksia muiden kanssa lisäämällä heidän saapuneet-kansionsa ylimääräiseksi postilaatikoksi.</string>
+  <string name="banner_mailbox_button">Lisää postilaatikko</string>
+  <!-- Suffix -->
+  <string name="suffix_subtitle_premium_domain">Premium-verkkotunnus</string>
+  <string name="suffix_subtitle_public_domain">Julkinen verkkotunnus</string>
+  <string name="suffix_subtitle_private_domain">Oman verkkotunnuksesi</string>
+  <!-- Templates -->
+  <string name="template_item_api_credential">API-tunnistetieto</string>
+  <string name="template_item_database">Tietokanta</string>
+  <string name="template_item_server">Palvelin</string>
+  <string name="template_item_software_license">Ohjelmistolisenssi</string>
+  <string name="template_item_ssh_key">SSH-avain</string>
+  <string name="template_item_wifi_network">Wi-Fi-verkko</string>
+  <string name="template_item_bank_account">Pankkitili</string>
+  <string name="template_item_crypto_wallet">Kryptolompakko</string>
+  <string name="template_item_driver_license">Ajokortti</string>
+  <string name="template_item_medical_record">Terveystiedot</string>
+  <string name="template_item_membership">Jäsenyys</string>
+  <string name="template_item_passport">Passi</string>
+  <string name="template_item_reward_program">Palkitsemisohjelma</string>
+  <string name="template_item_social_security_number">Henkilötunnus</string>
+  <!-- API Credential Fields -->
+  <string name="template_api_credential_field_api_key">API-avain</string>
+  <string name="template_api_credential_field_secret">Salaisuus</string>
+  <string name="template_api_credential_field_expiry_date">Voimassaolo päättyy</string>
+  <string name="template_api_credential_field_permissions">Käyttöoikeudet</string>
+  <!-- Database Fields -->
+  <string name="template_database_field_host">Isäntä</string>
+  <string name="template_database_field_port">Portti</string>
+  <string name="template_database_field_username">Käyttäjätunnus</string>
+  <string name="template_database_field_password">Salasana</string>
+  <string name="template_database_field_database_type">Tietokannan tyyppi</string>
+  <!-- Server Fields -->
+  <string name="template_server_field_ip_address">IP-osoite</string>
+  <string name="template_server_field_hostname">Isäntänimi</string>
+  <string name="template_server_field_os">Käyttöjärjestelmä</string>
+  <string name="template_server_field_username">Käyttäjätunnus</string>
+  <string name="template_server_field_password">Salasana</string>
+  <!-- Software License Fields -->
+  <string name="template_software_license_field_license_key">Lisenssikoodi</string>
+  <string name="template_software_license_field_product">Tuote</string>
+  <string name="template_software_license_field_expiry_date">Voimassaolo päättyy</string>
+  <string name="template_software_license_field_owner">Omistaja</string>
+  <!-- SSH Key Fields -->
+  <string name="template_ssh_key_field_private_key">Yksityinen avain</string>
+  <string name="template_ssh_key_field_public_key">Julkinen avain</string>
+  <string name="template_ssh_key_field_username">Käyttäjätunnus</string>
+  <string name="template_ssh_key_field_host">Isäntä</string>
+  <!-- SSH Key Generation -->
+  <string name="ssh_key_generate_button">Luo</string>
+  <string name="ssh_key_type_ed25519">Ed25519</string>
+  <string name="ssh_key_type_rsa_2048">RSA-2048</string>
+  <string name="ssh_key_type_rsa_4096">RSA-4096</string>
+  <string name="ssh_key_generation_error">SSH-avaimen luonti epäonnistui</string>
+  <!-- WiFi Network Fields -->
+  <string name="template_wifi_network_field_name">Nimi (SSID)</string>
+  <!-- Bank Account Fields -->
+  <string name="template_bank_account_field_bank_name">Pankin nimi</string>
+  <string name="template_bank_account_field_account_number">Tilinumero</string>
+  <string name="template_bank_account_field_routing_number">FW-numero</string>
+  <string name="template_bank_account_field_account_type">Tilin tyyppi</string>
+  <string name="template_bank_account_field_iban">IBAN</string>
+  <string name="template_bank_account_field_swift_bic">SWIFT/BIC</string>
+  <string name="template_bank_account_field_holder_name">Haltijan nimi</string>
+  <!-- Crypto Wallet Fields -->
+  <string name="template_crypto_wallet_field_wallet_name">Lompakon nimi</string>
+  <string name="template_crypto_wallet_field_address">Osoite</string>
+  <string name="template_crypto_wallet_field_private_key">Yksityinen avain</string>
+  <string name="template_crypto_wallet_field_seed_phrase">Siemenlause</string>
+  <string name="template_crypto_wallet_field_network">Verkko</string>
+  <!-- Driver License Fields -->
+  <string name="template_driver_license_field_full_name">Koko nimi</string>
+  <string name="template_driver_license_field_license_number">Ajokortin numero</string>
+  <string name="template_driver_license_field_issuing_state_country">Myöntänyt osavaltio/maa</string>
+  <string name="template_driver_license_field_expiry_date">Voimassaolo päättyy</string>
+  <string name="template_driver_license_field_date_of_birth">Syntymäpäivä</string>
+  <string name="template_driver_license_field_class">Luokka</string>
+  <!-- Medical Record Fields -->
+  <string name="template_medical_record_field_patient_name">Potilaan nimi</string>
+  <string name="template_medical_record_field_record_number">Tietueen numero</string>
+  <string name="template_medical_record_field_medical_conditions">Hoitotarpeet</string>
+  <string name="template_medical_record_field_medications">Lääkkeet</string>
+  <string name="template_medical_record_field_doctor">Lääkäri</string>
+  <string name="template_medical_record_field_hospital">Sairaala</string>
+  <!-- Membership Fields -->
+  <string name="template_membership_field_organization_name">Organisaation nimi</string>
+  <string name="template_membership_field_membership_id">Jäsentunniste</string>
+  <string name="template_membership_field_member_name">Jäsenen nimi</string>
+  <string name="template_membership_field_expiry_date">Voimassaolo päättyy</string>
+  <string name="template_membership_field_tier_level">Taso/versio</string>
+  <!-- Passport Fields -->
+  <string name="template_passport_field_full_name">Koko nimi</string>
+  <string name="template_passport_field_passport_number">Passin numero</string>
+  <string name="template_passport_field_country">Maa</string>
+  <string name="template_passport_field_expiry_date">Voimassaolo päättyy</string>
+  <string name="template_passport_field_date_of_birth">Syntymäpäivä</string>
+  <string name="template_passport_field_issuing_authority">Myöntänyt viranomainen</string>
+  <!-- Reward Program Fields -->
+  <string name="template_reward_program_field_program_name">Ohjelman nimi</string>
+  <string name="template_reward_program_field_member_id">Jäsentunniste</string>
+  <string name="template_reward_program_field_points_balance">Pistesaldo</string>
+  <string name="template_reward_program_field_expiry_date">Voimassaolo päättyy</string>
+  <string name="template_reward_program_field_tier_status">Tila/versio</string>
+  <!-- Social Security Number Fields -->
+  <string name="template_social_security_number_field_full_name">Koko nimi</string>
+  <string name="template_social_security_number_field_ssn">Henkilötunnus</string>
+  <string name="template_social_security_number_field_issuing_country">Myöntänyt maa</string>
+  <string name="template_header_technology">Teknologia</string>
+  <string name="template_header_finance">Rahoitus</string>
+  <string name="template_header_title_personal">Henkilökohtainen</string>
+  <string name="button_start_from_scratch">Aloita alusta</string>
+  <string name="select_template_title">Mukautettu kohde</string>
+  <!-- Custom item screen -->
+  <string name="add_custom_field_button">Lisää kenttä</string>
+  <string name="add_section_button">Lisää osio</string>
+  <string name="add_public_key_placeholder">Lisää julkinen avain</string>
+  <string name="add_private_key_placeholder">Lisää yksityinen avain</string>
+  <string name="add_ssid_name_placeholder">Lisää nimi (SSID)</string>
+  <string name="create_custom_item_init_error">Ongelma noudettaessa mukautetun kohteen tietoja</string>
+  <string name="update_custom_item_attachments_init_error">Ongelma noudettaessa mukautetun kohteen liitteitä</string>
+  <string name="custom_item_link_attachments_error">Liitteiden kytkentä mukautettuun kohteeseen tai kytkösten poisto epäonnistui</string>
+  <string name="custom_item_rename_attachments_error">Mukautetun kohteen liitteiden nimeäminen epäonnistui</string>
+  <string name="create_custom_item_item_creation_error">Mukautettua kohdetta ei voitu luoda</string>
+  <string name="create_custom_item_item_creation_success">Mukautettu kohde luotiin</string>
+  <string name="update_custom_item_item_creation_success">Mukautettu kohde päivitettiin</string>
+  <string name="update_custom_item_item_creation_error">Mukautettua kohdetta ei voitu päivittää</string>
+  <!-- Cannot create items dialog -->
+  <string name="cannot_create_items_dialog_title">Kohteiden luonti ei onnistu</string>
+  <string name="cannot_create_items_dialog_message">Sinulla ei ole holveja muokkaus- tai hallintaoikeuksilla. Yritä luoda holvi pääsovellukseen tai ole yhteydessä organisatiosi tukeen.</string>
+  <string name="wifi_security_type_field_label">Suojauksen tyyppi</string>
+  <string name="functionality_not_available">Tämä toiminnallisuus ei ole käytettävissä laitteellesi.</string>
+  <!-- Autofill URL suggestions screen -->
+  <string name="autofill_suggestions_title">URL-vastaavuus</string>
+  <string name="autofill_suggestions_description">Määritä automaattisen täytön asetukset, jotta voit muuttaa, missä kirjautumistietoja ehdotetaan ja täytetään %s:n osalta.</string>
+  <string name="autofill_suggestions_tab_basic">Perus</string>
+  <string name="autofill_suggestions_tab_advanced">Edistynyt</string>
+  <string name="autofill_suggestions_mode_default">Pääverkkotunnus ja aliverkkotunnukset</string>
+  <string name="autofill_suggestions_mode_exact">Tarkka (ala)verkkotunnus</string>
+  <string name="autofill_suggestions_mode_never">Älä koskaan täytä tällä verkkosivustolla</string>
+  <string name="autofill_suggestions_mode_start_with">Alkaa</string>
+  <string name="autofill_suggestions_mode_pattern">Wildcard pattern</string>
+  <string name="autofill_suggestions_mode_regular_expression">Säännöllinen lauseke</string>
+  <string name="autofill_suggestions_mode_exact_path">Tarkka URL-vastaavuus</string>
+  <string name="autofill_suggestions_android_limitation">Android-laitteilla ei ole käytettävissä lisäasetuksia käyttöjärjestelmän sovellusliittymien (API) rajoitusten vuoksi.</string>
+  <string name="autofill_suggestions_mode_default_badge">OLETUS</string>
+  <string name="autofill_suggestions_url_column">URL</string>
+  <string name="autofill_suggestions_suggested_column">Ehdotukset</string>
+  <string name="field_website_skipped_autofill">Tätä URL-osoitetta ei oteta huomioon automaattisen täytön yhteydessä</string>
+</resources>

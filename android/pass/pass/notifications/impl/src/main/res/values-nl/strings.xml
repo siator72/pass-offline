@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="updates_notification_channel_name">Updates</string>
+  <string name="autofill_notification_channel_name">Autom. aanvullen</string>
+  <string name="autofill_notification_copy_to_clipboard_title">TOTP-code</string>
+  <string name="autofill_notification_copy_to_clipboard_body">De TOTP-code is naar het klembord gekopieerd.</string>
+  <string name="new_item_invite_notification_title">Nieuwe uitnodiging ontvangen</string>
+  <string name="new_item_invite_notification_message" comment="the placeholder will be replaced by an email address">%s wil een kluis delen met u.</string>
+  <string name="new_vault_invite_notification_title">Nieuwe kluis uitnodiging ontvangen</string>
+  <string name="new_vault_invite_notification_message" comment="the placeholder will be replaced by an email address">%s wil een kluis delen met u.</string>
+  <string name="new_group_item_invite_notification_title">Nieuwe uitnodiging voor een groepsitem ontvangen</string>
+  <string name="new_group_item_invite_notification_message" comment="%1$s = inviter email, %2$s = group name">%1$s wil een item delen met uw groep %2$s.</string>
+  <string name="new_group_vault_invite_notification_title">Nieuwe uitnodiging voor groepskluis ontvangen</string>
+  <string name="new_group_vault_invite_notification_message" comment="%1$s = inviter email, %2$s = group name">%1$s wil een kluis delen met uw groep %2$s.</string>
+</resources>

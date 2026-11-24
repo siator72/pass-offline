@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="bottomsheet_delete_permanently">Dauerhaft löschen</string>
+  <string name="alert_confirm_delete_item_dialog_title">Dauerhaft löschen?</string>
+  <string name="alert_confirm_delete_item_dialog_message">Dieser Vorgang kann nicht rückgängig gemacht werden.</string>
+  <string name="alert_confirm_delete_item_dialog_shared_warning_message">Dieses Element wird derzeit geteilt. Wenn du es löschst, wird der Zugang für alle anderen Benutzer gesperrt.</string>
+  <string name="alias_dialog_move_to_trash_title">In Papierkorb verschieben?</string>
+  <string name="alias_dialog_move_to_trash_content">Wenn du einen Alias in den Papierkorb verschiebst, wird er keine E-Mails mehr an dein Postfach weiterleiten.</string>
+  <string name="alias_dialog_move_to_trash_confirm">Bestätigen</string>
+  <string name="delete_alias_confirm">Lösche es, ich werde es nie brauchen</string>
+  <string name="delete_alias_title">%s löschen</string>
+  <string name="delete_alias_enabled_subtitle">"Bitte beachte, dass der Alias nach dem Löschen nicht wiederhergestellt werden kann. Vielleicht möchtest du stattdessen den Alias deaktivieren? "</string>
+  <string name="delete_alias_disabled_subtitle">Bitte beachte, dass der Alias nach dem Löschen nicht wiederhergestellt werden kann. Der Alias ist bereits deaktiviert und kann keine E-Mails an dein Postfach weiterleiten.</string>
+  <plurals name="bulk_delete_alias_title">
+    <item quantity="one">Du bist dabei, %d Alias dauerhaft zu löschen.</item>
+    <item quantity="other">Du bist dabei, %d Aliasse dauerhaft zu löschen.</item>
+  </plurals>
+  <string name="bulk_delete_alias_subtitle">Bitte beachte, dass einmal gelöschte Aliasnamen nicht wiederhergestellt werden können.</string>
+  <string name="bulk_delete_alias_confirm">Verstanden, ich werde sie nie brauchen</string>
+  <string name="delete_alias_disable">Alias deaktivieren</string>
+</resources>

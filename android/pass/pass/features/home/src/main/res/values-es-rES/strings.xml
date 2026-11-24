@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Home -->
+  <string name="home_indexing_banner">Crear índice de búsqueda…</string>
+  <string name="home_indexing_banner_progress">Crear índice de búsqueda… (%1$d/%2$d)</string>
+  <string name="home_empty_vault_title">La caja fuerte está vacía.</string>
+  <string name="home_empty_vault_subtitle">Comienza creando tu primer elemento.</string>
+  <string name="home_empty_folder_title">Tu carpeta está vacía</string>
+  <string name="home_empty_vault_login_title">No se han encontrado inicios de sesión.</string>
+  <string name="home_empty_vault_login_subtitle">Comienza creando tu primer inicio de sesión.</string>
+  <string name="home_empty_vault_aliases_title">No se han encontrado alias.</string>
+  <string name="home_empty_vault_aliases_subtitle">Comienza creando tu primer alias.</string>
+  <string name="home_empty_vault_notes_title">No se han encontrado notas.</string>
+  <string name="home_empty_vault_notes_subtitle">Comienza creando tu primera nota.</string>
+  <string name="home_empty_vault_logins_mfa_title">No se han encontrado inicios de sesión con código TOTP.</string>
+  <string name="home_empty_vault_logins_mfa_subtitle">Comienza creando tu primer inicio de sesión con código TOTP.</string>
+  <string name="home_empty_vault_identity_title">No se han encontrado elementos de identidad.</string>
+  <string name="home_empty_vault_identity_subtitle">Comienza creando tu primer elemento de identidad.</string>
+  <string name="home_empty_vault_custom_item_title">No se ha encontrado ningún elemento personalizado.</string>
+  <string name="home_empty_vault_custom_item_subtitle">Comienza creando tu primer elemento personalizado.</string>
+  <string name="home_empty_vault_cc_title">No se han encontrado tarjetas de crédito.</string>
+  <string name="home_empty_vault_cc_subtitle">Comienza creando tu primer elemento de tarjeta de crédito.</string>
+  <string name="home_empty_shared_items_title">No se han encontrado elementos compartidos.</string>
+  <string name="home_empty_shared_items_with_me_subtitle">No se ha compartido ningún elemento contigo.</string>
+  <string name="home_empty_shared_items_by_me_subtitle">No has compartido ningún elemento.</string>
+  <string name="home_empty_no_vaults_title">No tienes ninguna caja fuerte.</string>
+  <string name="home_empty_no_vaults_subtitle">Contacta con tu administrador.</string>
+  <string name="home_empty_read_only_vault_title">Esta caja fuerte está vacía.</string>
+  <string name="home_empty_read_only_vault_subtitle">No puedes añadir elementos a una caja fuerte de solo lectura.</string>
+  <string name="home_empty_folder_plan_restricted_title">Esta carpeta está vacía</string>
+  <string name="home_empty_folder_plan_restricted_subtitle">Actualiza tu plan para crear elementos dentro de las carpetas.</string>
+  <string name="home_empty_vault_create_login">Crear un inicio de sesión</string>
+  <string name="home_empty_vault_create_alias">Crear un alias de hide-my-email</string>
+  <string name="home_empty_vault_create_note">Crear una nota</string>
+  <string name="home_empty_vault_create_credit_card">Crear una tarjeta de crédito</string>
+  <string name="home_empty_vault_create_identity">Crear una identidad</string>
+  <string name="home_empty_vault_create_custom_item">Crear un elemento personalizado</string>
+  <string name="error_observing_items" comment="Error message shown whenever there is an error loading the items">Error al cargar elementos</string>
+  <string name="error_refreshing">Error al ejecutar la actualización</string>
+  <string name="home_snackbar_login_moved_to_trash">Se ha movido el inicio de sesión a la papelera.</string>
+  <string name="home_snackbar_alias_moved_to_trash">Se ha movido el alias a la papelera.</string>
+  <string name="home_snackbar_note_moved_to_trash">Se ha movido la nota a la papelera.</string>
+  <string name="home_snackbar_credit_card_moved_to_trash">Se ha movido la tarjeta de crédito a la papelera.</string>
+  <string name="home_snackbar_identity_moved_to_trash">Se ha movido la identidad a la papelera.</string>
+  <string name="home_snackbar_custom_moved_to_trash">Se ha movido el elemento personalizado a la papelera.</string>
+  <string name="home_snackbar_move_to_trash_error">El elemento no se ha podido mover a la papelera.</string>
+  <string name="home_snackbar_items_move_to_trash_success">Se han movido los elementos a la papelera.</string>
+  <string name="home_snackbar_items_move_to_trash_error">No se han podido mover los elementos a la papelera.</string>
+  <string name="home_toast_items_selected_read_only">No se pueden seleccionar los elementos de solo lectura.</string>
+  <string name="home_toast_items_selected_shared_with_me">Los elementos compartidos contigo no se pueden seleccionar.</string>
+  <string name="home_autofill_banner_title">Disfruta de la magia del relleno automático</string>
+  <string name="home_autofill_banner_text">Un toque y, ¡listo!, su nombre de usuario y contraseña se completarán instantáneamente.</string>
+  <string name="home_drawer_all_items">Todos los elementos</string>
+  <string name="sl_sync_banner_title">Sincroniza tus alias desde SimpleLogin</string>
+  <plurals name="sl_sync_banner_text">
+    <item quantity="one">Tienes %d alias en SimpleLogin pero no aparece en Proton Pass. ¿Deseas sincronizarlo?</item>
+    <item quantity="other">Tienes %d alias en SimpleLogin pero no aparecen en Proton Pass. ¿Quieres sincronizarlos?</item>
+  </plurals>
+  <string name="home_notification_permission_banner_title">Obtén actualizaciones importantes</string>
+  <string name="home_notification_permission_banner_text">Habilite las notificaciones automáticas para recibir información cuando otros compartan una bóveda con usted.</string>
+  <string name="home_item_invite_banner_title" comment="placeholder is replaced by an email address">%s desea compartir un elemento contigo.</string>
+  <string name="home_group_item_invite_banner_title" comment="%1$s = inviter email, %2$s = group name">%1$s quiere compartir un elemento con tu grupo %2$s.</string>
+  <string name="home_group_invite_banner_title" comment="%1$s = inviter email, %2$s = group name">%1$s quiere compartir una caja fuerte con tu grupo %2$s.</string>
+  <string name="home_item_invite_card_title">Invitación a un elemento compartido</string>
+  <string name="home_vault_invite_card_title">Invitación a una caja fuerte compartida</string>
+  <string name="home_vault_invite_banner_body" comment="placeholder is replaced by an email address">%s desea compartir una caja fuerte contigo.</string>
+  <!-- Common bottomsheet -->
+  <string name="bottomsheet_copy_password">Copiar contraseña</string>
+  <string name="bottomsheet_copy_username">Copiar nombre de usuario</string>
+  <string name="bottomsheet_copy_email">Copiar la dirección de correo electrónico</string>
+  <string name="bottomsheet_copy_number">Copiar el número</string>
+  <string name="bottomsheet_copy_cvv">Copiar el código de seguridad</string>
+  <string name="bottomsheet_copy_note">Copiar la nota</string>
+  <string name="bottomsheet_edit">Editar</string>
+  <string name="bottomsheet_copy_full_name">Copiar el nombre completo</string>
+  <!-- Clipboard -->
+  <string name="alias_copied_to_clipboard">Se ha copiado el alias.</string>
+  <string name="note_copied_to_clipboard">Se ha copiado la nota.</string>
+  <string name="full_name_copied_to_clipboard">Se ha copiado el nombre completo.</string>
+  <string name="email_copied_to_clipboard">Se ha copiado la dirección de correo electrónico.</string>
+  <string name="username_copied_to_clipboard">Se ha copiado el nombre de usuario.</string>
+  <string name="password_copied_to_clipboard">Se ha copiado la contraseña.</string>
+  <string name="credit_card_number_copied_to_clipboard">Se ha copiado el número de tarjeta.</string>
+  <string name="credit_card_cvv_copied_to_clipboard">Se ha copiado el código de seguridad.</string>
+  <string name="item_too_long_copied_to_clipboard" comment="Snackbar message that's shown to the user whenever an action where the content that would be copied to the clipboard cannot be performed due to the size of the text">El contenido es demasiado largo. Se ha copiado parcialmente al portapapeles.</string>
+  <!-- Vault drawer -->
+  <plurals name="vault_drawer_vaults_item_count">
+    <item quantity="one">%d elemento</item>
+    <item quantity="other">%d elementos</item>
+  </plurals>
+  <string name="vault_drawer_create_vault">Crear una caja fuerte</string>
+  <string name="vault_drawer_item_trash">Papelera</string>
+  <!-- Vault management -->
+  <string name="vault_delete_dialog_title">Eliminar caja fuerte</string>
+  <string name="vault_delete_dialog_cancel_action">Cancelar</string>
+  <string name="vault_delete_dialog_delete_action">Eliminar</string>
+  <string name="snackbar_delete_vault_success">caja fuerte eliminada</string>
+  <string name="snackbar_delete_vault_error">caja fuerte no eliminada</string>
+  <!-- Search top bar -->
+  <string name="search_topbar_placeholder_all_items">Buscar en todas los elementos...</string>
+  <string name="search_topbar_placeholder_vault">Buscar en %s…</string>
+  <string name="search_topbar_placeholder_trash">Buscar en la papelera…</string>
+  <string name="search_topbar_placeholder_pinning">Buscar en Anclados...</string>
+  <string name="search_topbar_placeholder_shared_by_me">Buscar en Compartido por mí…</string>
+  <string name="search_topbar_placeholder_shared_with_me">Buscar en Compartido conmigo…</string>
+  <string name="search_topbar_placeholder_folder">Buscar en %s…</string>
+  <string name="search_topbar_placeholder_folder_fallback">Buscar en la carpeta…</string>
+  <string name="home_topbar_title_folder_fallback">Carpeta</string>
+  <string name="item_type_filter_list_icon_content_description">Icono de tipo de elemento</string>
+  <string name="item_type_filter_all">Todos</string>
+  <string name="item_type_filter_login">Inicio de sesión</string>
+  <string name="item_type_filter_alias">Alias</string>
+  <string name="item_type_filter_note">Nota</string>
+  <string name="item_type_filter_credit_card">Tarjeta</string>
+  <string name="item_type_filter_identity">Identidad</string>
+  <string name="item_type_filter_custom_item">Personalizado</string>
+  <string name="item_type_filter_login_totp">Inicio de sesión con código TOTP</string>
+  <string name="item_type_filter_items_shared_with_me">Compartido conmigo</string>
+  <string name="item_type_filter_items_shared_by_me">Compartido por mí</string>
+  <!-- Trash -->
+  <string name="trash_empty_list_title">La papelera está vacía.</string>
+  <string name="trash_empty_list_message">Los elementos movidos a la papelera aparecerán aquí.</string>
+  <string name="bottomsheet_trash_all_items_title">Papelera</string>
+  <string name="bottomsheet_restore_all_items">Restaurar todos los elementos</string>
+  <string name="bottomsheet_empty_trash">Vaciar la papelera</string>
+  <string name="bottomsheet_select_items">Seleccionar los elementos</string>
+  <string name="trash_error_clearing_trash">Error al vaciar la papelera</string>
+  <string name="trash_success_restoring_items">Se han restaurado los elementos.</string>
+  <string name="trash_error_restoring_items">Error al restaurar los elementos</string>
+  <string name="trash_error_deleting_item">Error al eliminar el elemento</string>
+  <string name="trash_success_deleting_item">Se ha eliminado el elemento.</string>
+  <string name="trash_deleting_items_error">Error al eliminar los elementos</string>
+  <string name="trash_deleting_items_success">Se han eliminado los elementos.</string>
+  <!-- Alerts -->
+  <string name="alert_confirm_clear_trash_title">¿Vaciar la papelera?</string>
+  <string name="alert_confirm_clear_trash_message">¿Estás seguro de que quieres vaciar la papelera? Todos sus elementos se eliminarán permanentemente.</string>
+  <string name="alert_confirm_restore_all_title">¿Restaurar todos los elementos?</string>
+  <string name="alert_confirm_restore_all_message">¿Estás seguro de que quieres restaurar todos los elementos eliminados?</string>
+  <plurals name="alert_confirm_restore_items_title">
+    <item quantity="one">¿Restaurar %d elemento?</item>
+    <item quantity="other">¿Restaurar %d elementos?</item>
+  </plurals>
+  <plurals name="alert_confirm_restore_items_message">
+    <item quantity="one">¿Estás seguro de que quieres restaurar el elemento eliminado?</item>
+    <item quantity="other">¿Estás seguro de que quieres restaurar los %d elementos eliminados?</item>
+  </plurals>
+  <plurals name="alert_confirm_trash_items_title">
+    <item quantity="one">¿Mover %d elemento a la papelera?</item>
+    <item quantity="other">¿Mover %d elementos a la papelera?</item>
+  </plurals>
+  <plurals name="alert_confirm_trash_items_message">
+    <item quantity="one">¿Estás seguro de que quieres mover el elemento a la papelera?</item>
+    <item quantity="other">¿Estás seguro de que quieres mover %d elementos a la papelera?</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_title">
+    <item quantity="one">¿Eliminar %d elemento permanentemente?</item>
+    <item quantity="other">¿Eliminar %d elementos permanentemente?</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_message">
+    <item quantity="one">¿Estás seguro de que quieres eliminar el elemento? Esta acción es irreversible.</item>
+    <item quantity="other">¿Estás seguro de que quieres eliminar los %d elementos? Esta acción es irreversible.</item>
+  </plurals>
+  <plurals name="alert_confirm_delete_items_shared_warning_message">
+    <item quantity="one">%d elemento está compartido actualmente. Si lo eliminas, se eliminará el acceso para todos los demás usuarios.</item>
+    <item quantity="other">%d elementos están compartidos actualmente. Si los eliminas, se eliminará el acceso para todos los demás usuarios.</item>
+  </plurals>
+  <!-- Recent search -->
+  <string name="recent_search_header_count">Búsquedas recientes</string>
+  <string name="recent_search_clear">Borrar</string>
+  <string name="recent_search_remove_item">Eliminar de las búsquedas recientes</string>
+  <!-- Pinning -->
+  <string name="home_snackbar_items_pinned_success">Se han anclado los elementos.</string>
+  <string name="home_snackbar_items_pinned_partial_success">Error al anclar algunos elementos</string>
+  <string name="home_snackbar_items_pinned_error">Error al anclar los elementos</string>
+  <string name="home_snackbar_items_unpinned_success">Los elementos han sido desanclados correctamente.</string>
+  <string name="home_snackbar_items_unpinned_partial_success">Error al desanclar algunos elementos</string>
+  <string name="home_snackbar_items_unpinned_error">Error al desanclar los elementos</string>
+  <string name="home_snackbar_items_alias_enabled_success">Se ha activado el alias.</string>
+  <string name="home_snackbar_items_alias_enabled_partial_success">Error al activar algunos alias</string>
+  <string name="home_snackbar_items_alias_enabled_error">Error al activar los alias</string>
+  <string name="home_snackbar_items_alias_disabled_success">Se ha desactivado el alias.</string>
+  <string name="home_snackbar_items_alias_disabled_partial_success">Error al desactivar algunos alias</string>
+  <string name="home_snackbar_items_alias_disabled_error">Error al desactivar los alias</string>
+  <string name="bulk_action_unpin">Desanclar</string>
+  <string name="bulk_action_pin">Anclar</string>
+  <string name="bulk_action_enable_alias">Activar el alias</string>
+  <string name="bulk_action_disable_alias">Desactivar el alias</string>
+  <string name="vault_drawer_organise_vaults">Organizar cajas fuertes</string>
+  <string name="sync_group_vault_warning">Algunas cajas fuertes no están disponibles en este momento debido a un problema con su grupo.</string>
+  <string name="sync_inactive_vault_warning">Algunas cajas fuertes ya no son accesibles debido a un restablecimiento de la contraseña. Reactiva las claves de tu cuenta para recuperar el acceso.</string>
+  <string name="sync_inactive_vault_warning_action">Más información</string>
+</resources>

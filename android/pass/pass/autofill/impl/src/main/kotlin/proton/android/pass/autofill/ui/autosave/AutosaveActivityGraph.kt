@@ -1,0 +1,282 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.autofill.ui.autosave
+
+import androidx.navigation.NavGraphBuilder
+import proton.android.pass.autofill.entities.usernamePassword
+import proton.android.pass.common.api.None
+import proton.android.pass.commonuimodels.api.PackageInfoUi
+import proton.android.pass.features.itemcreate.alias.CreateAliasBottomSheet
+import proton.android.pass.features.itemcreate.bottomsheets.customfield.AddCustomFieldBottomSheetNavItem
+import proton.android.pass.features.itemcreate.bottomsheets.customfield.CustomFieldOptionsBottomSheetNavItem
+import proton.android.pass.features.itemcreate.common.CustomFieldPrefix
+import proton.android.pass.features.itemcreate.common.KEY_FOLDER_SELECTED
+import proton.android.pass.features.itemcreate.common.KEY_VAULT_SELECTED
+import proton.android.pass.features.itemcreate.dialogs.customfield.CustomFieldNameDialogNavItem
+import proton.android.pass.features.itemcreate.dialogs.customfield.EditCustomFieldNameDialogNavItem
+import proton.android.pass.features.itemcreate.login.BaseLoginNavigation
+import proton.android.pass.features.itemcreate.login.CreateLoginNavItem
+import proton.android.pass.features.itemcreate.login.CreateLoginNavigation
+import proton.android.pass.features.itemcreate.login.EditLoginNavItem
+import proton.android.pass.features.itemcreate.login.InitialCreateLoginUiState
+import proton.android.pass.features.itemcreate.login.InitialUpdateLoginUiState
+import proton.android.pass.features.itemcreate.login.createUpdateLoginGraph
+import proton.android.pass.features.itemcreate.totp.CameraTotpNavItem
+import proton.android.pass.features.itemcreate.totp.PhotoPickerTotpNavItem
+import proton.android.pass.features.password.GeneratePasswordBottomsheet
+import proton.android.pass.features.password.GeneratePasswordBottomsheetModeValue
+import proton.android.pass.features.password.GeneratePasswordNavigation
+import proton.android.pass.features.password.dialog.mode.PasswordModeDialog
+import proton.android.pass.features.password.dialog.separator.WordSeparatorDialog
+import proton.android.pass.features.password.generatePasswordBottomsheetGraph
+import proton.android.pass.features.username.GenerateUsernameBottomsheet
+import proton.android.pass.features.username.GenerateUsernameBottomsheetModeValue
+import proton.android.pass.features.username.GenerateUsernameNavigation
+import proton.android.pass.features.username.dialog.separator.UsernameWordSeparatorDialog
+import proton.android.pass.features.username.generateUsernameBottomsheetGraph
+import proton.android.pass.features.vault.VaultNavigation
+import proton.android.pass.features.vault.bottomsheet.select.SelectVaultBottomsheet
+import proton.android.pass.features.vault.vaultGraph
+import proton.android.pass.navigation.api.AppNavigator
+
+@Suppress("ComplexMethod", "LongMethod")
+fun NavGraphBuilder.autosaveActivityGraph(
+    appNavigator: AppNavigator,
+    arguments: AutoSaveArguments,
+    initialUpdateLoginUiState: InitialUpdateLoginUiState? = null,
+    onNavigate: (AutosaveNavigation) -> Unit,
+    dismissBottomSheet: (() -> Unit) -> Unit,
+    onCloseEditScreen: (() -> Unit)? = null
+) {
+    createUpdateLoginGraph(
+        initialCreateLoginUiState = getInitialState(arguments),
+        initialUpdateLoginUiState = initialUpdateLoginUiState,
+        canUseAttachments = false,
+        onNavigate = {
+            val backDestination = when {
+                appNavigator.hasDestinationInStack(CreateLoginNavItem) -> CreateLoginNavItem
+                appNavigator.hasDestinationInStack(EditLoginNavItem) -> EditLoginNavItem
+                else -> null
+            }
+            when (it) {
+                BaseLoginNavigation.CloseScreen -> {
+                    if (onCloseEditScreen != null) {
+                        onCloseEditScreen()
+                    } else {
+                        appNavigator.navigateBack()
+                    }
+                }
+                BaseLoginNavigation.DismissBottomsheet -> dismissBottomSheet {}
+                is BaseLoginNavigation.CreateAlias -> appNavigator.navigate(
+                    destination = CreateAliasBottomSheet,
+                    route = CreateAliasBottomSheet.createNavRoute(
+                        it.shareId,
+                        it.showUpgrade,
+                        it.title
+                    )
+                )
+
+                BaseLoginNavigation.GeneratePassword -> appNavigator.navigate(
+                    destination = GeneratePasswordBottomsheet,
+                    route = GeneratePasswordBottomsheet.buildRoute(
+                        mode = GeneratePasswordBottomsheetModeValue.CancelConfirm
+                    )
+                )
+
+                BaseLoginNavigation.GenerateUsername -> appNavigator.navigate(
+                    destination = GenerateUsernameBottomsheet,
+                    route = GenerateUsernameBottomsheet.buildRoute(
+                        mode = GenerateUsernameBottomsheetModeValue.CancelConfirm
+                    )
+                )
+
+                is BaseLoginNavigation.OnCreateLoginEvent -> when (val event = it.event) {
+                    is CreateLoginNavigation.LoginCreated -> onNavigate(AutosaveNavigation.Success)
+
+                    is CreateLoginNavigation.LoginCreatedWithPasskey -> {
+                        throw IllegalStateException("Cannot create login with passkey from autosave")
+                    }
+
+                    is CreateLoginNavigation.SelectVault -> {
+                        appNavigator.navigate(
+                            destination = SelectVaultBottomsheet,
+                            route = SelectVaultBottomsheet.createNavRoute(event.shareId)
+                        )
+                    }
+                }
+
+                is BaseLoginNavigation.ScanTotp -> {
+                    val prefix = CustomFieldPrefix.fromLogin(backDestination)
+                    appNavigator.navigate(
+                        destination = CameraTotpNavItem(prefix),
+                        route = CameraTotpNavItem(prefix).createNavRoute(index = it.index)
+                    )
+                }
+
+                BaseLoginNavigation.Upgrade -> onNavigate(AutosaveNavigation.Upgrade)
+
+                BaseLoginNavigation.AddCustomField -> appNavigator.navigate(
+                    destination = AddCustomFieldBottomSheetNavItem.CreateLogin,
+                    route = AddCustomFieldBottomSheetNavItem.CreateLogin.buildRoute(None)
+                )
+
+                is BaseLoginNavigation.CustomFieldTypeSelected -> dismissBottomSheet {
+                    appNavigator.navigate(
+                        destination = CustomFieldNameDialogNavItem.CreateLogin,
+                        route = CustomFieldNameDialogNavItem.CreateLogin.buildRoute(
+                            type = it.type,
+                            sectionIndex = None
+                        ),
+                        backDestination = CreateLoginNavItem
+                    )
+                }
+
+                is BaseLoginNavigation.CustomFieldOptions -> appNavigator.navigate(
+                    destination = CustomFieldOptionsBottomSheetNavItem.CreateLogin,
+                    route = CustomFieldOptionsBottomSheetNavItem.CreateLogin.buildRoute(
+                        index = it.index,
+                        sectionIndex = None,
+                        currentTitle = it.currentValue
+                    )
+                )
+
+                is BaseLoginNavigation.EditCustomField -> dismissBottomSheet {
+                    appNavigator.navigate(
+                        destination = EditCustomFieldNameDialogNavItem.CreateLogin,
+                        route = EditCustomFieldNameDialogNavItem.CreateLogin.buildRoute(
+                            index = it.index,
+                            sectionIndex = None,
+                            currentValue = it.currentValue
+                        ),
+                        backDestination = CreateLoginNavItem
+                    )
+                }
+
+                BaseLoginNavigation.RemovedCustomField -> dismissBottomSheet {}
+
+                is BaseLoginNavigation.OnUpdateLoginEvent -> {
+                    onNavigate(AutosaveNavigation.Success)
+                }
+                // Aliases not allowed
+                is BaseLoginNavigation.AliasOptions -> {}
+                BaseLoginNavigation.DeleteAlias -> {}
+                is BaseLoginNavigation.EditAlias -> {}
+                is BaseLoginNavigation.OpenImagePicker -> {
+                    val prefix = CustomFieldPrefix.fromLogin(backDestination)
+                    appNavigator.navigate(
+                        destination = PhotoPickerTotpNavItem(prefix),
+                        route = PhotoPickerTotpNavItem(prefix).createNavRoute(index = it.index),
+                        backDestination = CreateLoginNavItem
+                    )
+                }
+
+                BaseLoginNavigation.TotpCancel -> appNavigator.navigateBack()
+                is BaseLoginNavigation.TotpSuccess ->
+                    appNavigator.navigateBackWithResult(it.results)
+
+                is BaseLoginNavigation.OpenAutofillUrlSuggestions,
+                is BaseLoginNavigation.AutofillUrlSuggestionsResult -> Unit
+
+                BaseLoginNavigation.AddAttachment,
+                BaseLoginNavigation.UpsellAttachments,
+                is BaseLoginNavigation.OpenAttachmentOptions,
+                is BaseLoginNavigation.DeleteAllAttachments,
+                is BaseLoginNavigation.OpenDraftAttachmentOptions ->
+                    throw IllegalStateException("Cannot use attachments from autofill")
+            }
+        }
+    )
+    generatePasswordBottomsheetGraph(
+        onNavigate = {
+            when (it) {
+                GeneratePasswordNavigation.CloseDialog -> appNavigator.navigateBack()
+                GeneratePasswordNavigation.DismissBottomsheet -> dismissBottomSheet {}
+
+                GeneratePasswordNavigation.OnSelectWordSeparator -> appNavigator.navigate(
+                    destination = WordSeparatorDialog
+                )
+
+                GeneratePasswordNavigation.OnSelectPasswordMode -> appNavigator.navigate(
+                    destination = PasswordModeDialog
+                )
+            }
+        }
+    )
+    generateUsernameBottomsheetGraph(
+        onNavigate = { navigation ->
+            when (navigation) {
+                GenerateUsernameNavigation.CloseDialog -> appNavigator.navigateBack()
+                GenerateUsernameNavigation.DismissBottomsheet -> dismissBottomSheet {}
+                GenerateUsernameNavigation.OnSelectWordSeparator -> appNavigator.navigate(
+                    destination = UsernameWordSeparatorDialog
+                )
+            }
+        }
+    )
+    vaultGraph(
+        onNavigate = {
+            when (it) {
+                VaultNavigation.CloseScreen -> appNavigator.navigateBack()
+                VaultNavigation.DismissBottomsheet -> dismissBottomSheet {}
+                VaultNavigation.Upgrade -> onNavigate(AutosaveNavigation.Upgrade)
+                is VaultNavigation.VaultSelected -> dismissBottomSheet {
+                    appNavigator.setResult(mapOf(KEY_VAULT_SELECTED to it.shareId.id, KEY_FOLDER_SELECTED to null))
+                }
+
+                is VaultNavigation.VaultAndFolderSelected -> dismissBottomSheet {
+                    appNavigator.setResult(
+                        mapOf(
+                            KEY_VAULT_SELECTED to it.shareId.id,
+                            KEY_FOLDER_SELECTED to it.folderId.id
+                        )
+                    )
+                }
+
+                is VaultNavigation.VaultEdit,
+                is VaultNavigation.VaultMigrate,
+                is VaultNavigation.VaultMigrateSharedWarning,
+                is VaultNavigation.VaultRemove,
+                is VaultNavigation.VaultShare,
+                is VaultNavigation.VaultLeave,
+                is VaultNavigation.VaultAccess,
+                is VaultNavigation.AddFolder,
+                is VaultNavigation.RemoveFolder,
+                is VaultNavigation.MoveFolder,
+                is VaultNavigation.MoveAllItemsInFolder,
+                is VaultNavigation.RenameFolder -> Unit
+            }
+        }
+    )
+}
+
+private fun getInitialState(arguments: AutoSaveArguments): InitialCreateLoginUiState {
+    val saveInformation = arguments.saveInformation
+    val (username, password) = saveInformation.usernamePassword()
+    val packageInfoUi = arguments.linkedAppInfo?.let {
+        PackageInfoUi(packageName = it.packageName, appName = it.appName)
+    }
+    return InitialCreateLoginUiState(
+        username = username,
+        password = password,
+        url = arguments.website,
+        title = arguments.title,
+        packageInfoUi = packageInfoUi,
+        canCreateAlias = false
+    )
+}

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Профіль</string>
+  <string name="profile_option_settings">Налаштування</string>
+  <string name="profile_option_account">Обліковий запис</string>
+  <string name="profile_help_center">Довідковий центр</string>
+  <string name="profile_security">Безпека</string>
+  <string name="profile_option_autofill_troubleshooting">Autofill troubleshooting</string>
+  <string name="profile_option_feedback">Відгук</string>
+  <string name="profile_option_import_export">Імпорт/експорт</string>
+  <string name="profile_option_tutorial">Як користуватися Proton Pass</string>
+  <string name="profile_option_rating">Оцінити програму</string>
+  <string name="profile_spread_the_word">Spread the word</string>
+  <string name="profile_option_tell_a_friend">Tell a friend</string>
+  <string name="profile_spread_the_word_share_message">I\'m using Proton Pass to keep my passwords secure. Try it: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Автозаповнення</string>
+  <string name="profile_option_autofill_subtitle">Автоматично заповнюйте ім\'я користувача і паролі.</string>
+  <string name="profile_option_secure_links">Безпечні посилання</string>
+  <string name="profile_option_alias_management">Керування псевдонімом</string>
+  <string name="profile_option_generated_passwords">Згенеровані паролі</string>
+  <string name="profile_error_biometry_failed_to_start">Не вдалося запустити біометричну автентифікацію</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Не вдалося здійснити автентифікацію</string>
+  <string name="profile_error_app_lock_update_failed">Could not update the app lock. Please try again.</string>
+  <string name="profile_fingerprint_lock_enabled">Блокування відбитком пальця увімкнено</string>
+  <string name="profile_fingerprint_lock_disabled">Блокування відбитком пальця вимкнено</string>
+  <string name="profile_app_version_copied_to_clipboard">Версію програми скопійовано</string>
+  <string name="feedback_option_reddit">Приєднуйтеся до спільноти Proton на Reddit</string>
+  <string name="feedback_option_mail">Надішліть нам повідомлення</string>
+  <string name="feedback_option_vote_new_features">Голосуйте за нові функції</string>
+  <string name="app_lock_immediately">Негайно</string>
+  <string name="app_lock_one_minute">Через 1 хвилину</string>
+  <string name="app_lock_two_minutes">Через 2 хвилини</string>
+  <string name="app_lock_five_minutes">Через 5 хвилин</string>
+  <string name="app_lock_ten_minutes">Через 10 хвилин</string>
+  <string name="app_lock_one_hour">Через 1 годину</string>
+  <string name="app_lock_four_hours">Через 4 години</string>
+  <string name="app_lock_config_none">Без блокування</string>
+  <string name="app_lock_config_biometric">Біометрія</string>
+  <string name="app_lock_config_pin_code">PIN-код</string>
+  <string name="app_lock_config_app_lock_time">Автоматичне блокування</string>
+  <string name="app_lock_config_password">Пароль</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Системне блокування у разі збою біометрії</string>
+  <string name="configure_pin_set_pin_code">Встановити PIN-код</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Розблокуйте програму за допомогою цього коду</string>
+  <string name="configure_pin_enter_pin_code">Введіть PIN-код</string>
+  <string name="configure_pin_repeat_pin_code">Повторіть PIN-код</string>
+  <string name="configure_pin_continue">Продовжити</string>
+  <string name="configure_pin_pin_does_not_match">PIN-коди відрізняються</string>
+  <string name="configure_pin_pin_too_short">PIN-код закороткий</string>
+  <string name="configure_pin_pin_cannot_be_blank">Потрібно ввести PIN-код</string>
+  <string name="configure_pin_pin_lock_enabled">Блокування PIN-кодом увімкнено</string>
+  <string name="configure_pin_pin_lock_disabled">Блокування PIN-кодом вимкнено</string>
+  <string name="profile_option_lock_with">Спосіб замикання</string>
+  <string name="profile_option_unlock_with">Спосіб відмикання</string>
+  <string name="profile_option_change_pin_code">Змінити PIN-код</string>
+  <string name="profile_passkey_support_section_title">Ключі доступу</string>
+  <string name="profile_passkey_support_subtitle_supported">Passkeys can be supported on this device</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Ваша версія Android не підтримує ключів доступу.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Не вдалося перевірити підтримку ключів доступу</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">За %d день</item>
+    <item quantity="few">За %d дні</item>
+    <item quantity="many">За %d днів</item>
+    <item quantity="other">За %d днів</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">За %d хвилину</item>
+    <item quantity="few">За %d хвилин</item>
+    <item quantity="many">За %d хвилини</item>
+    <item quantity="other">За %d хвилини</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">За %d годину</item>
+    <item quantity="few">За %d години</item>
+    <item quantity="many">За %d години</item>
+    <item quantity="other">За %d години</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Менш ніж за хвилину</string>
+  <string name="account_switcher_manage_account">Керування обліковим записом</string>
+  <string name="account_switcher_sign_in">Увійти</string>
+  <string name="account_switcher_sign_out">Вийти</string>
+  <string name="account_switcher_switch_to">Перейти до</string>
+  <string name="account_switcher_add_account">Додати обліковий запис</string>
+  <string name="account_switcher_remove">Вилучити</string>
+  <string name="filtered_by_logins">Відфільтровано за даними входу. Видалені елементи не показуватимуться</string>
+  <string name="filtered_by_logins_with_mfa">Відфільтровано за даними входу з TOTP. Видалені елементи не показуються</string>
+  <string name="filtered_by_aliases">Відфільтровано за псевдонімами. Видалені елементи не показуються</string>
+  <string name="filtered_by_notes">Відфільтровано за нотатками. Видалені елементи не показуються</string>
+  <string name="filtered_by_credit_cards">Відфільтровано за кредитними картками. Видалені товари не показуються</string>
+  <string name="filtered_by_identities">Відфільтровано за особами. Видалені елементи не показуються</string>
+  <string name="filtered_by_custom_items">Відфільтровано за власними елементами. Видалені елементи не показуються</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Вам потрібно перейти на %1$s, щоб керувати ним</string>
+  <string name="account_switch_confirmation_title">Керування обліковим записом</string>
+  <string name="account_switch_confirmation_confirm">Перемикання і керування</string>
+  <string name="profile_storage_data_title">Сховище</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s зі %2$s</string>
+</resources>

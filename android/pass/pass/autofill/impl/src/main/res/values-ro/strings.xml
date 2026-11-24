@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Luare din Proton Pass</string>
+  <string name="error_loading_items">Nu s-au putut încărca articolele</string>
+  <string name="inline_suggestions_open_app">Deschidere Proton Pass</string>
+  <string name="autofill_associate_web_app_name_dialog_title">Folosire detalii de conectare din „%s” în această aplicație sau site web.</string>
+  <string name="autofill_dialog_associate_and_autofill">Întotdeauna</string>
+  <string name="autofill_dialog_just_autofill">Doar o dată</string>
+  <string name="autofill_dialog_cancel">Anulare</string>
+  <string name="autofill_notification_copy_to_clipboard">Codul TOTP a fost copiat în memorie.</string>
+  <string name="autofill_dialog_associate_title">Utilizare conectare?</string>
+  <string name="autofill_user_logged_out">V-ați deconectat. Reconectați-vă deschizând aplicația.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Confirmare acțiune</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Sunteți pe cale să vă completați automat acreditările într-un site web deschis de aplicația actuală. Aplicația poate avea acces la acreditări după completarea automată - faceți-o doar dacă aveți încredere în aplicație.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">Autocompletare</string>
+  <string name="autofill_confirm_unverified_browser_title">Această aplicație pretinde a fi un navigator web de încredere</string>
+  <string name="autofill_confirm_unverified_browser_body">Această aplicație se identifică ca un navigator web cunoscut, dar Pass nu a putut să o verifice. Certificatul său de semnare nu corespunde cu ceea ce era de așteptat, ceea ce se poate întâmpla dacă navigatorul web este configurat neobișnuit sau dacă o altă aplicație îl impersonifică pentru a vă intercepta datele de autentificare. Continuați numai dacă aveți siguranța că această aplicație este legitimă.</string>
+  <string name="autofill_confirm_dont_ask_again">NU mai întreba pentru această aplicație</string>
+  <string name="autofill_troubleshooting_title">Depanare completare automată</string>
+  <string name="autofill_troubleshooting_subtitle">Verificați ca dispozitivul să fie setat corect pentru completare automată.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">Completarea automată este complet setată</string>
+  <string name="autofill_troubleshooting_verdict_attention">Câteva lucruri vă necesită atenția</string>
+  <string name="autofill_troubleshooting_service_ok">Proton Pass vă este serviciul de autocompletare</string>
+  <string name="autofill_troubleshooting_service_current_other">Setat curent la %1$s.</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Proton Pass nu vă este serviciul de autocompletare</string>
+  <string name="autofill_troubleshooting_service_not_default_body">Setași-l ca implicit pentru autocompletare în toate aplicațiile.</string>
+  <string name="autofill_troubleshooting_service_enable_action">Activare autocompletare</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">Acest dispozitiv nu suportă autocompletarea</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">Navigatoare web inactive detectate</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Activați completarea automată pentru ca Proton Pass să vă poată completa datele de autentificare. Atingeți un navigator web pentru a-i deschide setările.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">Navigatoarele web sunt compatibile</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">Navigatoarele web sunt conectate și pregătite pentru autocompletare.</string>
+  <string name="autofill_troubleshooting_browser_active">Activă</string>
+  <string name="autofill_troubleshooting_inline_info">Sugestiile încorporate apar pe tastatură. Acestea necesită Android 11 sau o versiune ulterioară și o tastatură compatibilă, cum ar fi Gboard.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">Partajare diagnostice</string>
+  <string name="autofill_troubleshooting_open_diagnostics">Diagnostice avansate</string>
+  <string name="autofill_diagnostics_title">Diagnostice avansate</string>
+  <string name="autofill_diagnostics_enable">Activare diagnostice autocompletare</string>
+  <string name="autofill_diagnostics_enable_description">Când este activată, funcția Proton Pass înregistrează ce se întâmplă în timpul completării automate, astfel încât să puteți vedea de ce nu s-a completat. Dezactivați-o când ați terminat.</string>
+  <string name="autofill_diagnostics_instructions">Reproduceți problema completării automate în aplicație sau în navigatorul web, apoi reveniți la acest ecran.</string>
+  <string name="autofill_diagnostics_last_attempt_title">Ultima încercare de autocompletare</string>
+  <string name="autofill_diagnostics_no_attempts">Încă nu s-a înregistrat nici o încercare de autocompletare.</string>
+  <string name="autofill_diagnostics_reason_not_default">Proton Pass nu este serviciul de autocompletare activ, așa că încă nu poate autocompleta nicăieri.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass a oferit sugestii în %1$s.</string>
+  <string name="autofill_diagnostics_outcome_nothing">Completarea automată a fost declanșată în %1$s, dar nu au fost oferite date de autentificare corespunzătoare. Este posibil ca pagina să nu aibă câmpuri de autentificare detectabile sau să nu existe niciun articol pentru acest site.</string>
+  <string name="autofill_diagnostics_outcome_error">Completarea automată a generat o eroare în %1$s.</string>
+  <string name="autofill_diagnostics_recent_title">Încercări recente</string>
+  <string name="autofill_diagnostics_clear">Golire</string>
+  <string name="autofill_diagnostics_share">Partajare cu asistența</string>
+</resources>

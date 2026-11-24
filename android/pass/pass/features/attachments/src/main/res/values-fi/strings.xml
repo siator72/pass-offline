@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">Ota kuva</string>
+  <string name="add_attachment_choose_a_photo_or_video">Valitse kuva tai video</string>
+  <string name="add_attachment_choose_a_file">Valitse tiedosto</string>
+  <string name="attachment_options_rename">Nimeä uudelleen</string>
+  <string name="attachment_options_delete">Poista</string>
+  <string name="attachment_options_download">Lataa</string>
+  <string name="attachment_options_share">Jaa</string>
+  <string name="file_picker_open_error">Tiedostovalitsinta ei voitu avata</string>
+  <string name="media_picker_open_error">Mediavalitsinta ei voitu avata</string>
+  <string name="camera_open_error">Kameraa ei voitu avata</string>
+  <string name="camera_permission_explanation">Ominaisuus tarvitsee kameran käyttöoikeuden.</string>
+  <string name="camera_permission_open_settings">Avaa asetukset</string>
+  <string name="delete_all_attachments_title">Poistetaanko kaikki liitteet?</string>
+  <string name="delete_all_attachments_subtitle">Toimintoa ei ole mahdollista kumota</string>
+  <string name="delete_all_attachments_confirm">Poista kaikki</string>
+  <string name="rename_attachment_dialog_title">Nimeä tiedosto uudelleen</string>
+  <string name="storage_full_title">Tallennustilasi on lähes täynnä.</string>
+  <string name="storage_full_body">Hanki lisää tilaa päivittämällä tilauksesi.</string>
+  <string name="storage_full_upgrade">Päivitä</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%1$s/%2$s</string>
+  <string name="attachments_saved_to_location_success">Liite tallennettiin sijaintiin</string>
+  <string name="attachments_saved_to_location_error">Liitteitä ei voitu tallentaa sijaintiin</string>
+  <string name="attachment_sync_dialog_title_waiting">Odotetaan yhteyttä</string>
+  <string name="attachment_sync_dialog_title_downloading">Ladataan liitteitä</string>
+  <string name="attachment_sync_dialog_title_done">Lataus on valmis</string>
+  <string name="attachment_sync_dialog_title_partial_failure">Lataus epäonnistui</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">Waiting for network connection to download attachments.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">Downloading %1$d/%2$d attachments</string>
+  <string name="attachment_sync_dialog_subtitle_done">All attachments have been downloaded successfully.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">Some attachments could not be downloaded. You can retry the failed ones below.</string>
+  <string name="attachment_sync_dialog_retry_content_description">Retry download</string>
+  <string name="attachment_sync_vault_files_count">%1$d/%2$d tiedostoa</string>
+</resources>

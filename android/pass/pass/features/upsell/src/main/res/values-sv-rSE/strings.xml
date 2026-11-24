@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="upsell_monitor_title">Var säkrare online</string>
+  <string name="upsell_dark_web_monitoring_subtitle">Övervakning av mörka webben är tillgängligt med ett betalt paket. Uppgradera för omedelbar åtkomst.</string>
+  <string name="upsell_missing_2fa_subtitle">Visa en lista över webbplatser där du kan lägga till en andra autentiseringsfaktor för att skydda din närvaro online. Uppgradera för omedelbar åtkomst.</string>
+  <string name="upsell_sentinel_subtitle">Lås upp avancerade säkerhetsfunktioner och detaljerade loggar för att skydda din närvaro online.</string>
+  <string name="upsell_compromised_passwords_subtitle">Kontrollera om dina lösenord har exponerats i dataintrång. Uppgradera för omedelbar åtkomst.</string>
+  <string name="upsell_paid_feature_file_attachments">Filbilagor</string>
+  <string name="upsell_paid_feature_dark_web_monitoring">Övervakning av mörka webben</string>
+  <string name="upsell_paid_feature_sentinel">Proton Sentinel</string>
+  <string name="upsell_paid_feature_authenticator">Integrerad 2FA-autentisering</string>
+  <string name="upsell_paid_feature_unlimited_aliases">Obegränsat antal hide-my-email-alias</string>
+  <string name="upsell_paid_feature_vault_sharing">Valvdelning (upp till 10 personer)</string>
+  <string name="upsell_paid_feature_secure_links">Säkra länkar</string>
+  <string name="upsell_paid_feature_advance_alias_management">Avancerad hantering av alias</string>
+  <string name="upsell_paid_feature_authenticator_essential">Kräver 2FA för organisation</string>
+  <string name="upsell_paid_feature_sso_essential">SSO-integration (kommer snart)</string>
+  <string name="upsell_paid_feature_advance_alias_management_title">Hantera dina alias</string>
+  <string name="upsell_paid_feature_advance_alias_management_subtitle">Avancerad hantering av alias är tillgängligt med ett betalt paket. Uppgradera för omedelbar åtkomst.</string>
+  <string name="upsell_paid_feature_item_sharing_title">Dela snabbt ett objekt</string>
+  <string name="upsell_paid_feature_item_sharing_subtitle">Uppgradera idag så att du kan dela ett objekt med vilken Pass-användare som helst. Och njut av andra premiumfunktioner:</string>
+  <string name="upsell_paid_feature_file_attachments_title">Filbilagor</string>
+  <string name="upsell_button_upgrade">Skaffa Pass Plus</string>
+  <string name="upsell_button_upgrade_unlimited">Skaffa Proton Unlimited</string>
+  <string name="upsell_button_upgrade_essentials">Skaffa Pass Business</string>
+  <string name="price_per_month_type1">%s/månad</string>
+  <string name="upsell_skip">Inte nu</string>
+  <string name="upsell_no_plan">Inget paket tillgängligt</string>
+  <string name="upsell_plan_title">Lås upp premiumfunktioner.</string>
+  <string name="upsell_plan_unlimited_title">Det bästa av Proton med en prenumeration.</string>
+  <string name="upsell_plan_what_included">Vad som är inkluderat</string>
+  <string name="upsell_plan_plus_1">Hide-my-email-alias</string>
+  <string name="upsell_plan_plus_2">Inbyggd 2FA</string>
+  <string name="upsell_plan_plus_3">Valv, objekt och länkdelning</string>
+  <string name="upsell_plan_plus_4">Mappar</string>
+  <string name="upsell_plan_plus_5">Övervakning av mörka webben</string>
+  <string name="upsell_plan_plus_6">Filbilagor</string>
+  <string name="upsell_plan_unlimited_1">Lagringsutrymme</string>
+  <string name="upsell_plan_unlimited_2">Extra e-postadresser</string>
+  <string name="upsell_plan_unlimited_3">VPN-enheter</string>
+  <string name="upsell_plan_unlimited_4">VPN-hastighet</string>
+  <string name="upsell_plan_unlimited_4_col1">Medium</string>
+  <string name="upsell_plan_unlimited_4_col2">Högsta</string>
+  <string name="upsell_plan_plus_welcome_1">Obegränsat antal hide-my-email-alias</string>
+  <string name="upsell_plan_plus_welcome_2">Integrerad 2FA-autentisering</string>
+  <string name="upsell_plan_plus_welcome_3">Säker delning av valv, objekt och länk</string>
+  <string name="upsell_plan_plus_welcome_4">Mappar</string>
+  <string name="upsell_plan_plus_welcome_5">Övervakning av mörka webben</string>
+  <string name="upsell_plan_plus_welcome_6">Filbilagor</string>
+  <string name="upsell_limited_time_offer">Tidsbegränsat erbjudande</string>
+  <string name="upsell_try_pass_plus">Prova Pass Plus för endast</string>
+  <string name="upsell_pass_plus_welcome_offer">Pass Plus välkomsterbjudande</string>
+  <string name="upsell_pass_plus_first_year">Första året</string>
+  <string name="upsell_get_the_best_of_pass">Få det bästa av Pass med detta tidsbegränsade erbjudande.</string>
+  <string name="upsell_get_one_month">Få 1 månad för %s</string>
+  <string name="upsell_get_the_deal">Ta del av erbjudandet</string>
+  <string name="upsell_whats_included">Vad som är inkluderat</string>
+  <string name="upsell_error_google_prices">Problem att hämta priser i Google Play Butik just nu.</string>
+  <string name="upsell_error_general">Ett fel uppstod.</string>
+</resources>

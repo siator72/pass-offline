@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Атрымаць з Proton Pass</string>
+  <string name="error_loading_items">Немагчыма загрузіць элементы</string>
+  <string name="inline_suggestions_open_app">Адкрыць Proton Pass</string>
+  <string name="autofill_associate_web_app_name_dialog_title">Выкарыстоўвайце даныя ўваходу ад \"%s\" у гэтай праграме або на гэтым вэб-сайце.</string>
+  <string name="autofill_dialog_associate_and_autofill">Заўсёды выкарыстоўваць</string>
+  <string name="autofill_dialog_just_autofill">Выкарыстаць адзін раз</string>
+  <string name="autofill_dialog_cancel">Скасаваць</string>
+  <string name="autofill_notification_copy_to_clipboard">TOTP скапіяваны ў буфер абмену</string>
+  <string name="autofill_dialog_associate_title">Выкарыстоўваць запіс уваходу?</string>
+  <string name="autofill_user_logged_out">Вы не ўвайшлі ў сістэму. Адкрыйце праграму і ўвайдзіце паўторна.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Пацвердзіце сваё дзеянне</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Вы збіраецеся аўтаматычна запоўніць свае ўліковыя даныя на вэб-сайце, які адкрыты з дапамогай вашай бягучай праграмы. Гэта праграма будзе мець доступ да вашых уліковых даных. Рабіце дадзенае дзеянне толькі ў выпадку, калі давяраеце ёй.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">Аўтазапоўніць</string>
+  <string name="autofill_confirm_unverified_browser_title">Гэта праграма заяўляе, што з\'яўляецца надзейным браўзерам</string>
+  <string name="autofill_confirm_unverified_browser_body">Гэта праграма ідэнтыфікуе сябе як вядомы браўзер, але Pass не змог яе спраўдзіць. Яе сертыфікат подпісу не адпавядае чаканням. Гэта можа адбыцца ў выпадку, калі браўзер мае нестандартную канфігурацыю або калі іншая праграма выдае сябе за яго, каб перахапіць вашы ўліковыя даныя. Працягвайце толькі ў тым выпадку, калі ўпэўненыя ў яе сапраўднасці.</string>
+  <string name="autofill_confirm_dont_ask_again">Больш не пытацца для гэтай праграмы</string>
+  <string name="autofill_troubleshooting_title">Выпраўленне непаладак з аўтазапаўненнем</string>
+  <string name="autofill_troubleshooting_subtitle">Праверце, ці наладжана ваша прылада для слушнага аўтазапаўнення</string>
+  <string name="autofill_troubleshooting_verdict_all_good">Аўтазапаўненне цалкам наладжана</string>
+  <string name="autofill_troubleshooting_verdict_attention">Некаторыя рэчы патрабуюць вашай увагі</string>
+  <string name="autofill_troubleshooting_service_ok">Proton Pass з\'яўляецца вашым сэрвісам аўтазапаўнення</string>
+  <string name="autofill_troubleshooting_service_current_other">У цяперашні час зададзена на %1$s</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Proton Pass не з\'яўляецца вашым сэрвісам аўтазапаўнення</string>
+  <string name="autofill_troubleshooting_service_not_default_body">Задайце яго прадвызначаным для аўтазапаўнення паміж вашымі праграмамі.</string>
+  <string name="autofill_troubleshooting_service_enable_action">Уключыць аўтазапаўненне</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">Гэта прылада не падтрымлівае аўтазапаўненне</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">Выяўлены неактыўныя браўзеры</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Уключыце аўтазапаўненне і тады Proton Pass зможа запаўняць вашы ўліковыя даныя. Націсніце на браўзер, каб адкрыць яго налады.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">Браўзеры сумяшчальныя з праграмай</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">Вашы браўзеры падключаны і гатовы да аўтазапаўнення.</string>
+  <string name="autofill_troubleshooting_browser_active">Актыўна</string>
+  <string name="autofill_troubleshooting_inline_info">Убудаваныя прапановы з\'явяцца ў вашай клавіятуры. Для гэтага неабходны Android 11 або больш позняя версія, а таксама сумяшчальная клавіятура (напрыклад, Gboard).</string>
+  <string name="autofill_troubleshooting_share_diagnostics">Абагуліць дыягностыку</string>
+  <string name="autofill_troubleshooting_open_diagnostics">Пашыраная дыягностыка</string>
+  <string name="autofill_diagnostics_title">Пашыраная дыягностыка</string>
+  <string name="autofill_diagnostics_enable">Уключыць аўтазапаўненне дыягностык</string>
+  <string name="autofill_diagnostics_enable_description">Proton Pass запісвае ўсё, што адбываецца падчас аўтазапаўнення, калі функцыя ўключана. Такім чынам, вы можаце ўбачыць чаму той або іншы элемент не запаўняецца. Выключыце гэту функцыю, калі адладка будзе завершана.</string>
+  <string name="autofill_diagnostics_instructions">Узнавіце праблему аўтазапаўнення ў праграме або браўзеры, а потым зноў вярніцеся на гэты экран.</string>
+  <string name="autofill_diagnostics_last_attempt_title">Апошняя спроба аўтазапаўенння</string>
+  <string name="autofill_diagnostics_no_attempts">Пакуль што не зарэгістравана спроб аўтазапаўнення.</string>
+  <string name="autofill_diagnostics_reason_not_default">Proton Pass не з\'яўляецца вашым сэрвісам аўтазапаўнення. Пакуль ён нідзе не можа запаўняць.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass прапануе рэкамендацыі ў %1$s.</string>
+  <string name="autofill_diagnostics_outcome_nothing">Аўтазапаўненне выклікана ў %1$s, але не быў прапанаваны адпаведны запіс уваходу. Магчыма, што на старонцы адсутнічаюць выяўленыя палі ўваходу, або ў вас проста адсутнічае элемент для гэтага вэб-сайта.</string>
+  <string name="autofill_diagnostics_outcome_error">Аўзапаўненне выклікала памылку ў %1$s</string>
+  <string name="autofill_diagnostics_recent_title">Апошнія спробы</string>
+  <string name="autofill_diagnostics_clear">Ачысціць</string>
+  <string name="autofill_diagnostics_share">Абагуліць з падтрымкай</string>
+</resources>

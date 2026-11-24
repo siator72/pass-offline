@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Naslov (A-Ž)</string>
+  <string name="sort_by_title_desc">Naslov (Ž-A)</string>
+  <string name="sort_by_creation_asc">Od starejšega do najnovejšega</string>
+  <string name="sort_by_creation_desc">Od najnovejšega do najstarejšega</string>
+  <string name="sort_by_modification_date">Nedavno uporabljeno</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Vse</string>
+  <string name="item_list_header_pinned_search_results">Pripeto</string>
+  <string name="item_list_header_logins_type">Prijave</string>
+  <string name="item_list_header_logins_totp_type">Prijava s TOTP</string>
+  <string name="item_list_header_aliases_type">Vzdevki</string>
+  <string name="item_list_header_notes_type">Opombe</string>
+  <string name="item_list_header_credit_cards_type">Plačilne kartice</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">rezultat</item>
+    <item quantity="two">rezultata</item>
+    <item quantity="few">rezultati</item>
+    <item quantity="other">rezultatov</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Identitete</string>
+  <string name="item_list_header_custom_type">Predmeti po meri</string>
+  <string name="item_list_header_shared_with_me">Deljeno z mano</string>
+  <string name="item_list_header_shared_by_me">Kaj delim z drugimi</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Potrdi</string>
+  <string name="bottomsheet_cancel_button">Prekliči</string>
+  <string name="bottomsheet_move_to_trash">Premakni v smetnjak</string>
+  <string name="bottomsheet_pin_item">Pripni</string>
+  <string name="bottomsheet_unpin_item">Odpni</string>
+  <string name="bottomsheet_view_item_history">Prikaži zgodovino</string>
+  <string name="bottomsheet_monitor_exclude">Izključi iz spremljanja</string>
+  <string name="bottomsheet_monitor_include">Vključi v spremljanje</string>
+  <string name="bottomsheet_migrate_item_v2">Premakni</string>
+  <string name="bottomsheet_create_folder">Ustvari mapo</string>
+  <string name="folder_tree_create_folder">Ustvari mapo</string>
+  <string name="bottomsheet_rename_folder">Preimenuj</string>
+  <string name="bottomsheet_create_sub_folder">Ustvari podmapo</string>
+  <string name="bottomsheet_move_folder">Premakni mapo</string>
+  <string name="bottomsheet_move_all_items_in_folder">Premakni vse predmete</string>
+  <string name="bottomsheet_copy_item_note">Kopiraj opombo</string>
+  <string name="bottomsheet_delete_permanently">Trajno izbriši</string>
+  <string name="bottomsheet_restore">Obnovi</string>
+  <string name="bottomsheet_leave">Zapusti</string>
+  <string name="bottomsheet_duplicate">Podvoji</string>
+  <string name="bottomsheet_no_actions">Na voljo ni nobenih dejanj</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Odpri meni z dejanji predmeta</string>
+  <string name="action_upgrade_now">Nadgradi zdaj</string>
+  <string name="action_not_now">Ne zdaj</string>
+  <string name="action_learn_more">Izvedi več</string>
+  <string name="action_enable">Omogoči</string>
+  <string name="action_view_details">Prikaži podrobnosti</string>
+  <string name="action_see_all">Poglejte vse</string>
+  <string name="action_confirm">Potrdi</string>
+  <string name="action_cancel">Prekliči</string>
+  <string name="action_continue">Nadaljuj</string>
+  <string name="action_retry">Poskusi znova</string>
+  <string name="action_edit">Uredi</string>
+  <string name="action_add">Dodaj</string>
+  <string name="action_delete">Izbriši</string>
+  <string name="action_make_default">Nastavi za privzeto</string>
+  <string name="action_verify">Preveri</string>
+  <string name="action_close">Zapri</string>
+  <string name="action_update">Posodobi</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Dodajte svoj prvi predmet</string>
+  <string name="empty_search_results_title">Ne najdem rezultatov</string>
+  <string name="empty_list_open_extension">Obiščite spletno razširitev</string>
+  <string name="empty_list_create_item_button">Ustvari nov predmet</string>
+  <!-- Field -->
+  <string name="field_title_title">Naslov</string>
+  <string name="field_title_hint">Brez naslova</string>
+  <string name="field_title_required">Vnesite naslov</string>
+  <string name="small_cross_icon_content_description">Ikona majhnega križa</string>
+  <string name="field_note_title">Opomba</string>
+  <string name="field_note_hint">Dodaj opombo</string>
+  <string name="linked_apps_title">Povezane aplikacije</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Brez povezave</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Manjka ikona aplikacije</string>
+  <string name="add_item_icon_content_description">Ikona za dodajanje predmeta</string>
+  <string name="navigate_back_icon_content_description">Ikona za navigacijo nazaj</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Seznam predmetov</string>
+  <string name="bottom_bar_add_item_icon_content_description">Dodaj predmet</string>
+  <string name="bottom_bar_profile_icon_content_description">Profil</string>
+  <string name="bottom_bar_security_center_icon_content_description">Varnostno središče</string>
+  <string name="bottom_bar_explore_icon_content_description">Raziščite</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Danes</string>
+  <string name="most_recent_yesterday">Včeraj</string>
+  <string name="most_recent_this_week">Ta teden</string>
+  <string name="most_recent_last_two_weeks">Zadnja dva tedna</string>
+  <string name="most_recent_last_30_days">Prejšnji mesec</string>
+  <string name="most_recent_last_60_days">Zadnjih 60 dni</string>
+  <string name="most_recent_last_90_days">Zadnjih 90 dni</string>
+  <string name="most_recent_within_the_last_year">V zadnjem letu</string>
+  <string name="most_recent_more_than_1_year">Starejše od 1 leta</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Ikona za iskanje</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 predmet</item>
+    <item quantity="two">%d predmeta</item>
+    <item quantity="few">%d predmeti</item>
+    <item quantity="other">%d predmetov</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Zavrzi spremembe?</string>
+  <string name="confirm_close_dialog_message">Imate neshranjene spremembe. Ste prepričani, da jih želite zavreči?</string>
+  <string name="confirm_close_dialog_close_button">Zavrzi</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Nadgradi</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Napredne nastavitve</string>
+  <string name="hide_advanced_options">Skrij napredne možnosti</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Močno</string>
+  <string name="label_password_strength_vulnerable">Ranljivo</string>
+  <string name="label_password_strength_weak">Šibko</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Poglejte vse</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Danes %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Včeraj %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Naslov vzdevka</string>
+  <string name="item_details_alias_section_alias_disabled_title">Vzdevek naslova (onemogočeno)</string>
+  <string name="item_details_alias_section_mailboxes_title">Posredovanje na</string>
+  <string name="item_details_credit_card_section_cardholder_title">Ime na kartici</string>
+  <string name="item_details_credit_card_section_card_number_title">Številka kartice</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Datum poteka</string>
+  <string name="item_details_credit_card_section_cvv_title">Varnostna koda</string>
+  <string name="item_details_credit_card_section_pin_title">PIN koda</string>
+  <string name="item_details_login_section_email_title">E-poštni naslov</string>
+  <string name="item_details_login_section_username_title">Uporabniško ime</string>
+  <string name="item_details_login_section_password_title">Geslo</string>
+  <string name="item_details_login_section_primary_totp_title">Žeton 2FA (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Spletne strani</string>
+  <string name="autofill_mode_label_default">Parent domain and subdomains</string>
+  <string name="autofill_mode_label_exact">Exact (sub)domain</string>
+  <string name="autofill_mode_label_never">Never fill on this website</string>
+  <string name="autofill_mode_label_start_with">Začne se z</string>
+  <string name="autofill_mode_label_pattern">Wildcard pattern</string>
+  <string name="autofill_mode_label_regular_expression">Regular expression</string>
+  <string name="autofill_mode_label_exact_path">Exact URL matching</string>
+  <string name="autofill_mode_label_unsupported">This url will be skipped for autofill</string>
+  <string name="login_item_view_alias_button">Prikaži vzdevek</string>
+  <string name="item_details_identity_section_personal_title">Osebni podatki</string>
+  <string name="item_details_identity_section_personal_first_name_title">Ime</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Srednje ime</string>
+  <string name="item_details_identity_section_personal_last_name_title">Priimek</string>
+  <string name="item_details_identity_section_personal_full_name_title">Polno ime</string>
+  <string name="item_details_identity_section_personal_email_title">E-poštni naslov</string>
+  <string name="item_details_identity_section_personal_gender_title">Spol</string>
+  <string name="item_details_identity_section_personal_phone_title">Telefonska številka</string>
+  <string name="item_details_identity_section_personal_birthday_title">Rojstni dan</string>
+  <string name="item_details_identity_section_address_title">Podrobnosti naslova</string>
+  <string name="item_details_identity_section_address_organization_title">Organizacija</string>
+  <string name="item_details_identity_section_address_street_address_title">Naslov, poštni predal</string>
+  <string name="item_details_identity_section_address_floor_title">Nadstropje</string>
+  <string name="item_details_identity_section_address_city_title">Mesto</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">Poštna številka</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Država ali pokrajina</string>
+  <string name="item_details_identity_section_address_county_title">Okrožje</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Država ali regija</string>
+  <string name="item_details_identity_section_contact_title">Podrobnosti stika</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Številka socialnega zavarovanja</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Številka potnega lista</string>
+  <string name="item_details_identity_section_contact_license_number_title">Registrska številka</string>
+  <string name="item_details_identity_section_contact_website_title">Spletna stran</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X vzdevek</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Dodatna telefonska številka</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Podatki o delovnem mestu</string>
+  <string name="item_details_identity_section_work_company_title">Podjetje</string>
+  <string name="item_details_identity_section_work_occupation_title">Poklic</string>
+  <string name="item_details_identity_section_work_email_title">Službeni e-poštni naslov</string>
+  <string name="item_details_identity_section_work_phone_number_title">Službena telefonska številka</string>
+  <string name="item_details_identity_section_work_personal_website_title">Osebno spletno mesto</string>
+  <string name="item_details_shared_section_note_title">Opomba</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Zadnje samodejno izpolnjevanje</string>
+  <string name="item_details_shared_section_item_history_created_title">Ustvarjeno</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Spremenjeno (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Prikaži zgodovino predmeta</string>
+  <string name="item_details_shared_section_more_info_header_title">Več informacij</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Ikona za informacije o predmetu</string>
+  <string name="item_details_shared_section_more_info_item_id">ID predmeta</string>
+  <string name="item_details_shared_section_more_info_vault_id">ID trezorja</string>
+  <string name="item_details_shared_section_more_info_share_id">Deli ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">Ime (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Geslo</string>
+  <string name="item_details_wifi_network_label_security">Varnost</string>
+  <string name="item_details_ssh_key_label_public_key">Javni ključ</string>
+  <string name="item_details_ssh_key_label_private_key">Zasebni ključ</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Ta različica ni več podprta, zato priporočamo posodobitev aplikacije.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Identifikacijski ključ</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Nadgradi paket?</string>
+  <string name="dialog_upgrade_plan_message">Ta funkcija ni na voljo za uporabnike brezplačnega paketa. Če želite uporabljati to in še mnogo drugih funkcij, nadgradite paket in jo preizkusite!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Nadgradi</string>
+  <string name="dialog_upgrade_plan_action_cancel">Ne zdaj</string>
+  <!-- Words -->
+  <string name="email_address">E-poštni naslov</string>
+  <string name="email_address_invalid">Neveljaven e-poštni naslov</string>
+  <string name="password">Geslo</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Gumb za zavrnitev namiga in preprečitev njegovega ponovnega prikaza</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d leto</item>
+    <item quantity="two">%d leti</item>
+    <item quantity="few">%d leta</item>
+    <item quantity="other">%d let</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d mesec</item>
+    <item quantity="two">%d months</item>
+    <item quantity="few">%d months</item>
+    <item quantity="other">%d months</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d teden</item>
+    <item quantity="two">%d tedna</item>
+    <item quantity="few">%d tedni</item>
+    <item quantity="other">%d tednov</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d dan</item>
+    <item quantity="two">%d dneva</item>
+    <item quantity="few">%d dnevi</item>
+    <item quantity="other">%d dni</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d ura</item>
+    <item quantity="two">%d uri</item>
+    <item quantity="few">%d ure</item>
+    <item quantity="other">%d ur</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d minuta</item>
+    <item quantity="two">%d minuti</item>
+    <item quantity="few">%d minute</item>
+    <item quantity="other">%d minut</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d sekunda</item>
+    <item quantity="two">%d sekundi</item>
+    <item quantity="few">%d sekunde</item>
+    <item quantity="other">%d sekund</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d vzdevek</item>
+    <item quantity="two">%d vzdevka</item>
+    <item quantity="few">%d vzdevki</item>
+    <item quantity="other">%d vzdevkov</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Opomba je kopirana</string>
+  <string name="snack_bar_message_item_migration_error">Pri prenašanju predmeta je prišlo do napake</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Predmet je bil izključen iz spremljanja.</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Pri izključevanju predmeta iz spremljanja je prišlo do napake</string>
+  <string name="snack_bar_message_item_monitor_included_success">Predmet je bil vključen v spremljanje.</string>
+  <string name="snack_bar_message_item_monitor_included_error">Pri vključitvi predmeta v spremljanje je prišlo do napake</string>
+  <string name="snack_bar_message_item_pinned_success">Predmet je bil pripet.</string>
+  <string name="snack_bar_message_item_pinned_error">Pri pripenjanju tega predmeta je prišlo do napake</string>
+  <string name="snack_bar_message_item_unpinned_success">Predmet je bil odpet.</string>
+  <string name="snack_bar_message_item_unpinned_error">Pri odpenjanju tega predmeta je prišlo do napake</string>
+  <string name="snack_bar_message_item_trashed_success">Predmet je bil premaknjen v smetnjak</string>
+  <string name="snack_bar_message_item_trashed_error">Pri premikanju predmeta v smetnjak je prišlo do napake</string>
+  <string name="snack_bar_message_item_restore_success">Predmet je bil obnovljen</string>
+  <string name="snack_bar_message_item_restore_error">Pri obnavljanju predmeta je prišlo do napake</string>
+  <string name="snack_bar_message_item_delete_success">Predmet je izbrisan</string>
+  <string name="snack_bar_message_item_delete_error">Pri brisanju predmeta je prišlo do napake</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Omogočanje sinhronizacije SimpleLogin</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">Zaznali smo, da imate %d vzdevek, ki je prisoten v SimpleLogin, vendar manjka v Proton Pass. Ali ga želite uvoziti?</item>
+    <item quantity="two">Zaznali smo, da imate v SimpleLogin %d vzdevkov, ki manjkajo v programu Proton Pass. Jih želite uvoziti?</item>
+    <item quantity="few">Zaznali smo, da imate v SimpleLogin %d vzdevkov, ki manjkajo v programu Proton Pass. Jih želite uvoziti?</item>
+    <item quantity="other">Zaznali smo, da imate %d vzdevke, ki so prisotni v SimpleLogin, a jih v programu Proton Pass ni. Jih želite uvoziti?</item>
+  </plurals>
+  <string name="simple_login_widget_action">Sinhroniziranje vzdevkov</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Niste prejeli kode?</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Preverite v mapi Neželena pošta za e-poštno sporočilo z naslovom »%s«</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Prosimo potrdite svoj e-poštni naslov za Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Prosim potrdite svoj poštni predal</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Če takšnega e-poštnega sporočila ne najdete, ga lahko %s</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">zahtevajte novo kodo</string>
+  <string name="field_display_name_title">Prikazno ime</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">Datoteka %1$s</item>
+    <item quantity="two">Datoteki %1$s</item>
+    <item quantity="few">Datotek %1$s</item>
+    <item quantity="other">%1$s datoteki</item>
+  </plurals>
+  <string name="attachment_title">Priponke</string>
+  <string name="attachment_no_files">Naloži datoteke iz vaše naprave</string>
+  <string name="attachment_add_file">Pripni datoteko</string>
+  <string name="attachment_row_upload_failed">Nalaganje ni bilo uspešno</string>
+  <string name="attachment_row_retry">Poskusi znova</string>
+  <string name="options_menu_content_description">Meni z nastavitvami</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d deljeni predmet</item>
+    <item quantity="two">%d deljena predmeta</item>
+    <item quantity="few">%d deljeni predmeti</item>
+    <item quantity="other">%d deljeni predmeti</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d uporabnik</item>
+    <item quantity="two">%d uporabnikov</item>
+    <item quantity="few">%d uporabnikov</item>
+    <item quantity="other">%d uporabnikov</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d član</item>
+    <item quantity="two">%d člana</item>
+    <item quantity="few">%d člani</item>
+    <item quantity="other">%d članov</item>
+  </plurals>
+  <string name="show_network_qr_code">Pokaži QR kodo omrežja</string>
+  <string name="expand_collpased_text">več</string>
+  <string name="collapse_expanded_text">manj</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Šibko geslo</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Ta račun je ranljiv, obiščite storitev in spremenite geslo.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Compromised password</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">This login password appears in a data breach. Please visit the service and change the password.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d druga prijava uporablja isto geslo</item>
+    <item quantity="two">%d drugi prijavi uporabljata isto geslo</item>
+    <item quantity="few">%d druge prijave uporabljajo isto geslo</item>
+    <item quantity="other">%d drugih prijav uporablja isto geslo</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Nastavite 2FA za večjo varnost</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Ta storitev ponuja 2FA. Omogočite ga za dodatno varnost računa.</string>
+  <string name="login_item_monitor_action_ignore">Prezri</string>
+  <string name="login_item_monitor_action_restore">Restore alert</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Šibko geslo</string>
+  <string name="login_item_monitor_label_compromised">Compromised password</string>
+  <string name="login_item_monitor_label_reused">Reused password</string>
+  <string name="login_item_monitor_label_missing_2fa">Missing 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">Predmeti iz vaših trezorjev, ki uporabljajo to geslo.</string>
+  <string name="mfa_limit_reached">Dosežena je omejitev za 2FA</string>
+  <string name="activity_in_last_two_weeks">Dejavnost v zadnjih 14 dneh</string>
+  <string name="contacts">Stiki</string>
+  <string name="contacts_section_description">Če želite skriti svoj osebni e-poštni naslov, lahko ustvarite kontakt z vzdevkom, ki prikrije vaš naslov.</string>
+  <string name="field_detail_display_name_title">Prikazno ime</string>
+  <string name="display_name_section_description">Prikazno ime pri pošiljanju e-pošte s tega vzdevka.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s posredovan</item>
+    <item quantity="two">%1$s posredovana</item>
+    <item quantity="few">%1$s posredovani</item>
+    <item quantity="other">%1$s posredovanih</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s odgovor</item>
+    <item quantity="two">%1$s odgovorov</item>
+    <item quantity="few">%1$s odgovorov</item>
+    <item quantity="other">%1$s odgovorov</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s blokiran</item>
+    <item quantity="two">%1$s blokiranih</item>
+    <item quantity="few">%1$s blokiranih</item>
+    <item quantity="other">%1$s blokiranih</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Ustvarite prijavo</string>
+  <string name="banner_contacts_title">Ali ste vedeli?</string>
+  <string name="banner_contacts_subtitle">Vsakič, ko vaš vzdevek prejme e-pošto od nekoga, se samodejno ustvari nov stik.</string>
+  <string name="action_reveal">Pokaži</string>
+  <string name="action_conceal">Skrij</string>
+  <string name="warning_dialog_item_shared_vault_title">Predmet v skupnem trezorju</string>
+  <string name="warning_dialog_item_shared_title">Predmet v skupni rabi</string>
+  <string name="warning_dialog_item_shared_vault_creating">Ustvarjate predmet v skupnem trezorju in člani bodo takoj dobili dostop do tega elementa.</string>
+  <string name="warning_dialog_item_shared_vault_moving">Predmet premikate v skupni trezor in člani bodo takoj dobili dostop do njega.</string>
+  <string name="warning_dialog_item_shared_vault_updating">Urejate predmet v skupnem trezorju in člani bodo takoj dobili dostop do tega predmeta.</string>
+  <string name="warning_dialog_item_shared_updating">Urejate deljeni predmet. Spremembe bodo takoj vidne vsem, s katerimi je deljen.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Ne opominjaj me več</string>
+  <string name="upgrade_to_pass_plus">Nadgradi na Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">Pravkar boste preusmerjeni na naše spletno mesto. Če kupite paket, ponovno zaženite aplikacijo.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Ločilo besed</string>
+  <string name="bottomsheet_option_capitalise">Napiši veliko začetnico</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Vezaji (-)</string>
+  <string name="bottomsheet_option_word_separator_spaces">Presledki</string>
+  <string name="bottomsheet_option_word_separator_periods">Pike (.)</string>
+  <string name="bottomsheet_option_word_separator_commas">Vejice (,)</string>
+  <string name="bottomsheet_option_word_separator_underscores">Podčrtaji (_)</string>
+  <string name="bottomsheet_option_word_separator_numbers">Številke</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Številke in simboli</string>
+  <plurals name="word_count">
+    <item quantity="one">%s beseda</item>
+    <item quantity="two">%s besedi</item>
+    <item quantity="few">%s besede</item>
+    <item quantity="other">%s besed</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Moč gesla</string>
+  <string name="password_check_min_length">Geslo je prekratko</string>
+  <string name="password_check_lowercase">Lowercase letters</string>
+  <string name="password_check_uppercase">Uppercase letters</string>
+  <string name="password_check_no_consecutive">No repeated characters</string>
+  <string name="password_check_no_common">No common password</string>
+</resources>

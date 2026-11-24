@@ -1,0 +1,193 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.credentials.shared.passkeys.search
+
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.credentials.provider.CallingAppInfo
+import proton.android.pass.browserallowlist.api.PrivilegedBrowserAllowlistProvider
+import proton.android.pass.data.api.url.HostInfo
+import proton.android.pass.data.api.url.HostParser
+import proton.android.pass.data.api.usecases.DigitalAssetLinksResult
+import proton.android.pass.data.api.usecases.VerifyDigitalAssetLinksForCredentialSharing
+import proton.android.pass.common.api.Some
+import proton.android.pass.common.api.toLogToken
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.signingcertificates.SigningCertificateFingerprints
+import javax.inject.Inject
+
+@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+internal class PasskeyOriginVerifier @Inject constructor(
+    private val verifyDigitalAssetLinksForCredentialSharing: VerifyDigitalAssetLinksForCredentialSharing,
+    private val privilegedBrowserAllowlistProvider: PrivilegedBrowserAllowlistProvider,
+    private val hostParser: HostParser
+) {
+
+    internal suspend fun verifyOrigin(
+        callingAppInfo: CallingAppInfo?,
+        requestedRpId: String,
+        dalPolicy: NativeAppDalPolicy
+    ): String? = verify(callingAppInfo, requestedRpId, dalPolicy)?.origin
+
+    internal suspend fun verify(
+        callingAppInfo: CallingAppInfo?,
+        requestedRpId: String,
+        dalPolicy: NativeAppDalPolicy
+    ): OriginVerification? {
+        val (caller, rpToken, callerToken) = validateRequest(callingAppInfo, requestedRpId) ?: return null
+        return if (caller.isOriginPopulated()) {
+            verifyBrowserOrigin(caller, requestedRpId, rpToken, callerToken)?.let(OriginVerification::Verified)
+        } else {
+            verifyNativeAppOrigin(caller, requestedRpId, rpToken, callerToken, dalPolicy)
+        }
+    }
+
+    // Per WebAuthn spec, rp.id is optional on registration: when omitted, it defaults to the
+    // effective domain of the caller's origin. Only meaningful for privileged browsers, since
+    // native callers have no origin to derive a domain from.
+    internal fun deriveRpIdFromBrowserOrigin(callingAppInfo: CallingAppInfo): String? {
+        if (!callingAppInfo.isOriginPopulated()) return null
+        return getBrowserOrigin(callingAppInfo)?.let(::extractHost)
+    }
+
+    private fun validateRequest(
+        callingAppInfo: CallingAppInfo?,
+        requestedRpId: String
+    ): Triple<CallingAppInfo, String, String>? {
+        val rpToken = requestedRpId.toLogToken()
+        if (!isAcceptableRpId(requestedRpId, rpToken)) {
+            return null
+        }
+        if (callingAppInfo == null) {
+            PassLogger.w(TAG, "Rejecting passkey request: no caller identity available rpId=$rpToken")
+            return null
+        }
+        return Triple(callingAppInfo, rpToken, callingAppInfo.packageName.toLogToken())
+    }
+
+    private fun isAcceptableRpId(requestedRpId: String, rpToken: String): Boolean {
+        if (!isValidRpId(requestedRpId)) {
+            PassLogger.w(TAG, "Rejecting passkey request: rpId=$rpToken is not a valid hostname")
+            return false
+        }
+        if (!isRegistrableDomain(hostParser, requestedRpId)) {
+            PassLogger.w(TAG, "Rejecting passkey request: rpId=$rpToken is a public suffix, not a registrable domain")
+            return false
+        }
+        return true
+    }
+
+    private fun getBrowserOrigin(callingAppInfo: CallingAppInfo): String? = runCatching {
+        callingAppInfo.getOrigin(privilegedBrowserAllowlistProvider.json)
+    }.getOrElse {
+        null
+    }
+
+    private fun verifyBrowserOrigin(
+        callingAppInfo: CallingAppInfo,
+        requestedRpId: String,
+        rpToken: String,
+        callerToken: String
+    ): String? {
+        val browserOrigin = getBrowserOrigin(callingAppInfo) ?: run {
+            PassLogger.w(TAG, "Rejecting passkey request: caller=$callerToken not in privileged allowlist")
+            return null
+        }
+        val originHost = extractHost(browserOrigin)
+        if (originHost == null || !isDomainMatch(originHost, requestedRpId)) {
+            val originToken = browserOrigin.toLogToken()
+            PassLogger.w(
+                TAG,
+                "Rejecting passkey request: origin=$originToken " +
+                    "does not match rpId=$rpToken caller=$callerToken"
+            )
+            return null
+        }
+        return browserOrigin
+    }
+
+    private suspend fun verifyNativeAppOrigin(
+        callingAppInfo: CallingAppInfo,
+        requestedRpId: String,
+        rpToken: String,
+        callerToken: String,
+        dalPolicy: NativeAppDalPolicy
+    ): OriginVerification? {
+        val packageName = callingAppInfo.packageName
+
+        if (!SigningCertificateFingerprints.hasSingleSigner(callingAppInfo.signingInfo)) {
+            PassLogger.w(TAG, "Rejecting passkey request: unable to determine signing key caller=$callerToken")
+            return null
+        }
+
+        val certificateFingerprints = SigningCertificateFingerprints.of(callingAppInfo.signingInfo)
+        val dalResult = verifyDigitalAssetLinksForCredentialSharing.verify(
+            website = "https://$requestedRpId",
+            packageName = packageName,
+            certificateFingerprints = certificateFingerprints
+        )
+        if (!isDalAuthorized(dalResult, dalPolicy)) {
+            PassLogger.w(TAG, "Rejecting passkey request: caller=$callerToken not authorized via DAL for rpId=$rpToken")
+            return null
+        }
+        val origin = "https://$requestedRpId"
+        return if (dalResult is DigitalAssetLinksResult.Unreachable) {
+            PassLogger.w(
+                TAG,
+                "DAL unreachable, deferring verification to activity caller=$callerToken rpId=$rpToken"
+            )
+            OriginVerification.Deferred(origin)
+        } else {
+            OriginVerification.Verified(origin)
+        }
+    }
+
+    companion object {
+
+        private const val TAG = "PasskeyOriginVerifier"
+
+        // Per WebAuthn spec, rpId must be a valid hostname: ASCII letters, digits, dots, hyphens.
+        // No scheme, no userinfo, no port, no path — prevents URL injection into DAL fetches.
+        private val rpIdRegex = Regex("^[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?$")
+
+        internal fun isValidRpId(rpId: String): Boolean = rpIdRegex.matches(rpId)
+
+        internal fun isDalAuthorized(result: DigitalAssetLinksResult, policy: NativeAppDalPolicy): Boolean =
+            when (result) {
+                DigitalAssetLinksResult.Verified -> true
+                DigitalAssetLinksResult.NotVerified -> false
+                DigitalAssetLinksResult.Unreachable -> policy == NativeAppDalPolicy.DeferUnreachableToActivity
+            }
+
+        internal fun extractHost(origin: String): String? = runCatching {
+            java.net.URI(origin).host
+        }.getOrNull()
+
+        internal fun isDomainMatch(host: String, rpId: String): Boolean {
+            if (host.equals(rpId, ignoreCase = true)) return true
+            return host.endsWith(".$rpId", ignoreCase = true)
+        }
+
+        internal fun isRegistrableDomain(hostParser: HostParser, rpId: String): Boolean {
+            val hostInfo = hostParser.parse("https://$rpId").getOrNull() ?: return false
+            return hostInfo is HostInfo.Host && hostInfo.tld is Some
+        }
+
+    }
+}

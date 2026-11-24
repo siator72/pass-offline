@@ -1,0 +1,160 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.vault.delete
+
+import app.cash.turbine.test
+import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runTest
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import proton.android.pass.composecomponents.impl.uievents.IsButtonEnabled
+import proton.android.pass.data.fakes.usecases.FakeObserveEncryptedItems
+import proton.android.pass.data.fakes.usecases.FakeDeleteVault
+import proton.android.pass.data.fakes.usecases.FakeGetPrimaryUserId
+import proton.android.pass.data.fakes.usecases.FakeGetVaultByShareId
+import proton.android.pass.features.vault.VaultSnackbarMessage
+import proton.android.pass.navigation.api.CommonNavArgId
+import proton.android.pass.navigation.api.IsLastVault
+import proton.android.pass.notifications.fakes.FakeSnackbarDispatcher
+import proton.android.pass.preferences.FakeInternalSettingsRepository
+import proton.android.pass.test.MainDispatcherRule
+import proton.android.pass.test.SavedStateHandleTestFactory
+import proton.android.pass.test.domain.VaultTestFactory
+
+class DeleteVaultViewModelTest {
+
+    @get:Rule
+    val dispatcher = MainDispatcherRule()
+
+    private lateinit var instance: DeleteVaultViewModel
+    private lateinit var getVaultById: FakeGetVaultByShareId
+    private lateinit var deleteVault: FakeDeleteVault
+    private lateinit var snackbarDispatcher: FakeSnackbarDispatcher
+    private lateinit var observeEncryptedItems: FakeObserveEncryptedItems
+
+    @Before
+    fun setup() {
+        getVaultById = FakeGetVaultByShareId()
+        deleteVault = FakeDeleteVault()
+        snackbarDispatcher = FakeSnackbarDispatcher()
+        observeEncryptedItems = FakeObserveEncryptedItems()
+
+        instance = DeleteVaultViewModel(
+            getVaultByShareId = getVaultById,
+            deleteVault = deleteVault,
+            savedStateHandle = SavedStateHandleTestFactory.create().apply {
+                set(CommonNavArgId.ShareId.key, "123")
+                set(IsLastVault.key, false)
+            },
+            snackbarDispatcher = snackbarDispatcher,
+            observeEncryptedItems = observeEncryptedItems,
+            internalSettingsRepository = FakeInternalSettingsRepository(),
+            getPrimaryUserId = FakeGetPrimaryUserId()
+        )
+    }
+
+    @Test
+    fun `emits initial state`() = runTest {
+        instance.state.test {
+            assertThat(awaitItem()).isEqualTo(DeleteVaultUiState.Initial)
+        }
+    }
+
+    @Test
+    fun `emits right vault name`() = runTest {
+        performSetup()
+
+        instance.state.test {
+            val item = awaitItem()
+            assertThat(item.isLoading).isFalse()
+            assertThat(item.isButtonEnabled).isEqualTo(IsButtonEnabled.Disabled)
+            assertThat(item.vaultName).isEqualTo(VAULT_NAME)
+            assertThat(item.vaultText).isEqualTo("")
+        }
+    }
+
+    @Test
+    fun `holds text changes`() = runTest {
+        performSetup()
+
+        val text = "1234"
+        instance.onTextChange(text)
+        instance.state.test {
+            val item = awaitItem()
+            assertThat(item.vaultText).isEqualTo(text)
+        }
+    }
+
+    @Test
+    fun `allows to delete when text matches vault name`() = runTest {
+        performSetup()
+
+        instance.onTextChange(VAULT_NAME)
+        instance.state.test {
+            val item = awaitItem()
+            assertThat(item.vaultText).isEqualTo(VAULT_NAME)
+            assertThat(item.isButtonEnabled).isEqualTo(IsButtonEnabled.Enabled)
+        }
+    }
+
+    @Test
+    fun `emits success on delete success`() = runTest {
+        performSetup()
+
+        deleteVault.setResult(Result.success(Unit))
+        instance.onDelete()
+        instance.state.test {
+            val item = awaitItem()
+            assertThat(item.isLoading).isFalse()
+            assertThat(item.event).isEqualTo(DeleteVaultEvent.Deleted)
+        }
+
+        val message = snackbarDispatcher.snackbarMessage.first().value()!!
+        assertThat(message).isEqualTo(VaultSnackbarMessage.DeleteVaultSuccess)
+    }
+
+    @Test
+    fun `emits error on delete error`() = runTest {
+        performSetup()
+
+        deleteVault.setResult(Result.failure(IllegalStateException("test")))
+        instance.onDelete()
+        instance.state.test {
+            val item = awaitItem()
+            assertThat(item.isLoading).isFalse()
+            assertThat(item.event).isEqualTo(DeleteVaultEvent.Unknown)
+        }
+
+        val message = snackbarDispatcher.snackbarMessage.first().value()!!
+        assertThat(message).isEqualTo(VaultSnackbarMessage.DeleteVaultError)
+    }
+
+    private fun performSetup() {
+        getVaultById.emitValue(VaultTestFactory.create(name = VAULT_NAME))
+        observeEncryptedItems.emitValue(emptyList())
+        instance.onStart()
+    }
+
+    companion object {
+        private const val VAULT_NAME = "vault"
+    }
+
+}

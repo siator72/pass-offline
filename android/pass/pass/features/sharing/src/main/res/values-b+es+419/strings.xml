@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sharing_can_view">Lector</string>
+  <string name="sharing_can_edit">Editor</string>
+  <string name="sharing_can_manage">Administrador</string>
+  <string name="sharing_can_manage_v2">Administrador</string>
+  <string name="sharing_can_view_description">Permite ver elementos en esta bóveda.</string>
+  <string name="sharing_can_edit_description">Permite crear, editar, eliminar y exportar los elementos en esta bóveda.</string>
+  <string name="sharing_can_manage_description">Permite conceder y revocar acceso a esta bóveda.</string>
+  <plurals name="sharing_item_count">
+    <item quantity="one">%d elemento</item>
+    <item quantity="other">%d elementos</item>
+  </plurals>
+  <plurals name="sharing_invite_item_count">
+    <item quantity="one">%d elemento (incluido de la papelera)</item>
+    <item quantity="other">%d elementos (incluidos los de la papelera)</item>
+  </plurals>
+  <plurals name="sharing_member_count">
+    <item quantity="one">%d miembro</item>
+    <item quantity="other">%d miembros</item>
+  </plurals>
+  <string name="sharing_member_count_header">Miembros</string>
+  <string name="shared_via_title">Compartido por</string>
+  <string name="shared_via_item_section_title" comment="The placeholder will be replaced by users count. E.g. 2 users">Compartir elementos: %s</string>
+  <string name="shared_via_vault_section_title" comment="The placeholder will be replaced by members count. E.g. 2 members">Compartir bóvedas: %s</string>
+  <string name="share_with_title">Compartir con</string>
+  <string name="share_with_email_hint">Dirección de correo</string>
+  <string name="share_with_email_error">Dirección de correo inválida</string>
+  <string name="share_with_email_cannot_invite_outside_org">No puede invitar personas fuera de la organización, contacte con el administrador para más información</string>
+  <string name="share_with_email_email_already_added">Ya ha agregado a esta dirección de correo electrónico.</string>
+  <string name="share_permissions_title">Configurar el nivel de acceso</string>
+  <string name="sharing_reject_invitation">Rechazar invitación</string>
+  <string name="sharing_vault_invitation_title">Invitación a una bóveda compartida</string>
+  <string name="sharing_vault_invitation_subtitle" comment="placeholder is replaced by an email address">%s desea compartir una bóveda con usted.</string>
+  <string name="sharing_vault_invitation_accept">Unirse a la bóveda compartida</string>
+  <string name="sharing_item_invitation_title">Invitación a un elemento compartido</string>
+  <string name="sharing_item_invitation_subtitle" comment="placeholder is replaced by an email address">%s desea compartir un elemento con usted.</string>
+  <string name="sharing_item_invitation_accept">Aceptar y mostrar el elemento</string>
+  <string name="sharing_group_vault_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s desea compartir una bóveda con su grupo %2$s.</string>
+  <string name="sharing_group_item_invitation_subtitle" comment="first placeholder is replaced by an email address, second by a group name">%1$s desea compartir un elemento con su grupo %2$s.</string>
+  <string name="sharing_group_invitation_accept">Aceptar la invitación</string>
+  <string name="sharing_invite_more">Invite más personas…</string>
+  <string name="sharing_snackbar_invite_accepted">Invitación aceptada</string>
+  <string name="sharing_snackbar_invite_accept_error">Error al aceptar la invitación</string>
+  <string name="sharing_snackbar_invite_accept_error_cannot_create_more_vaults">No se pudo aceptar la invitación porque alcanzó el límite de la bóveda</string>
+  <string name="sharing_snackbar_invite_rejected">Invitación rechazada</string>
+  <string name="sharing_snackbar_invite_reject_error">Error al rechazar la invitación</string>
+  <string name="sharing_snackbar_invite_sent_success">Invitación enviada</string>
+  <string name="sharing_snackbar_invite_sent_error">No se pudo enviar la invitación</string>
+  <string name="sharing_snackbar_invite_new_users_error">No se pueden enviar invitaciones a usuarios nuevos</string>
+  <string name="sharing_snackbar_invite_free_user_error">Las invitaciones a elementos solo se pueden enviar a usuarios de pago</string>
+  <string name="sharing_snackbar_cannot_create_invite_error">No se puede invitar esta dirección</string>
+  <string name="sharing_snackbar_get_vault_members_error">No se pudieron obtener los miembros de la bóveda</string>
+  <string name="sharing_snackbar_change_permission_success">Los permisos han cambiado.</string>
+  <string name="sharing_snackbar_change_permission_error">Error al cambiar los permisos</string>
+  <string name="sharing_snackbar_remove_member_success">Se eliminó el miembro de la bóveda.</string>
+  <string name="sharing_snackbar_remove_member_error">Error al eliminar de la bóveda</string>
+  <string name="sharing_snackbar_fetch_member_error">Ocurrió un error al obtener los miembros.</string>
+  <string name="sharing_snackbar_fetch_pending_invites_error">Ocurrió un error al obtener las invitaciones pendientes.</string>
+  <string name="share_summary_title">Revisar y compartir</string>
+  <string name="share_summary_share_vault">Compartir bóveda</string>
+  <string name="share_summary_share_item">Compartir elemento</string>
+  <string name="share_summary_vault_title">Bóveda</string>
+  <string name="share_summary_item_title">Elemento</string>
+  <string name="share_summary_access_level_title">Nivel de acceso</string>
+  <string name="share_manage_vault_share_with_more_people">Compartir con más personas</string>
+  <plurals name="share_manage_vault_invites_remaining" comment="Text that will be shown in the vault member list, showing the user how many invites they have left for this vault">
+    <item quantity="one">Queda %d invitación</item>
+    <item quantity="other">Quedan %d invitaciones</item>
+  </plurals>
+  <plurals name="share_manage_vault_item_count">
+    <item quantity="one">%d elemento</item>
+    <item quantity="other">%d elementos</item>
+  </plurals>
+  <string name="share_manage_vault_invite_pending" comment="Text that will be shown in the vault member list, below the user email when the user has been invited but has not accepted the invitation yet">La invitación fue enviada.</string>
+  <string name="share_manage_vault_invite_pending_user_creation" comment="Text that will be shown in the vault member list, below the user email when the user has not created the account yet">Creación de cuenta pendiente</string>
+  <string name="share_manage_vault_invite_confirm_access" comment="Text that will be shown in the vault member list, on a button, when the invited user has created the account and we want to grant him access to the vault">Confirmar acceso</string>
+  <string name="share_manage_vault_invitations_title" comment="Text that will be used as the title of the list containing the invites for a vault">Invitaciones</string>
+  <string name="share_manage_vault_members_title" comment="Text that will be used as the title of the list containing the members of a vault">Miembros</string>
+  <string name="share_manage_vault_current_user_indicator">Usted</string>
+  <string name="share_manage_vault_members_error" comment="Shown when the vault member list fails to load">No se pudieron cargar los miembros</string>
+  <string name="share_manage_vault_members_error_retry" comment="Button to retry loading the vault members">Reintentar</string>
+  <string name="share_role_viewer">Lector</string>
+  <string name="share_role_editor">Editor</string>
+  <string name="share_role_admin">Administrador</string>
+  <string name="share_role_manager">Administrador</string>
+  <string name="share_role_owner">Propietario</string>
+  <string name="sharing_bottomsheet_transfer_ownership">Transferir la propiedad</string>
+  <string name="sharing_bottomsheet_transfer_ownership_disabled_subtitle" comment="Appears as the subtitle of the sharing_bottomsheet_transfer_ownership when the user cannot transfer the ownership because they only own one vault">No puede transferir su última bóveda propia.</string>
+  <string name="sharing_bottomsheet_remove_access">Revocar el acceso</string>
+  <string name="sharing_bottomsheet_item_admin_subtitle">Puede conceder y revocar acceso a este elemento.</string>
+  <string name="sharing_bottomsheet_item_editor_subtitle">Puede editar y eliminar este elemento.</string>
+  <string name="sharing_bottomsheet_item_viewer_subtitle">Puede ver este elemento.</string>
+  <string name="sharing_bottomsheet_resend_invite">Reenviar la invitación</string>
+  <string name="sharing_bottomsheet_cancel_invite">Cancelar la invitación</string>
+  <string name="sharing_transfer_ownership_confirm_title">Transferir la propiedad</string>
+  <string name="sharing_transfer_ownership_confirm_message">¿Transferir la propiedad de esta bóveda a %s?</string>
+  <string name="sharing_snackbar_cancel_invite_success">La invitación fue cancelada.</string>
+  <string name="sharing_snackbar_cancel_invite_error">Error al cancelar la invitación</string>
+  <string name="sharing_snackbar_resend_invite_success">Invitación reenviada</string>
+  <string name="sharing_snackbar_resend_invite_error">Error al reenviar la invitación</string>
+  <string name="sharing_snackbar_confirm_invite_success">Invitación confirmada</string>
+  <string name="sharing_snackbar_confirm_invite_error">Error al confirmar la invitación</string>
+  <string name="sharing_snackbar_too_many_invites_sent">Se ha invitado a la dirección demasiadas veces</string>
+  <string name="sharing_snackbar_transfer_ownership_success">Propiedad transferida</string>
+  <string name="sharing_snackbar_transfer_ownership_error">Error al transferir la propiedad</string>
+  <string name="sharing_invites_info_dialog_title">Límite de miembros</string>
+  <plurals name="sharing_invites_info_dialog_message" comment="Message that will appear when clicking the NUMBER invites left. Param 1: Max members of the vault (will always be greater than one). Param 2: Number of invites left.">
+    <item quantity="one">Esta bóveda puede tener hasta %1$d miembros. Aún tiene %2$d invitación restante.</item>
+    <item quantity="other">Esta bóveda puede tener hasta %1$d miembros. Aún tiene %2$d invitaciones restantes.</item>
+  </plurals>
+  <string name="sharing_limit_reached">Esta bóveda ha alcanzado el límite de miembros e invitaciones.</string>
+  <string name="sharing_invites_info_upgrade_text">Mejore ahora para invitar a más personas.</string>
+  <string name="sharing_from_item_title" comment="Title for the Share from item bottomsheet">Compartir</string>
+  <string name="sharing_from_item_share_this_vault_action" comment="Button for sharing this vault">Compartir esta bóveda</string>
+  <string name="sharing_from_item_move_to_shared_vault_action" comment="Button for moving an item to a shared vault">Mover a una bóveda compartida</string>
+  <string name="sharing_from_item_vault_limit_reached_upgrade">Mejore para crear más bóvedas</string>
+  <string name="sharing_from_item_vault_limit_reached">Ha alcanzado el límite de bóvedas.</string>
+  <string name="share_with_suggestions_title">Sugerencias</string>
+  <string name="share_with_recents_title">Recientes</string>
+  <string name="share_with_remove_email_content_description">Eliminar el correo electrónico</string>
+  <string name="share_with_user_shared_title">Con otros usuarios de Proton Pass</string>
+  <string name="share_with_user_shared_description">Útil para compartir permanentemente.</string>
+  <string name="share_with_manage_shared_item_title">Gestionar el acceso</string>
+  <string name="share_with_manage_shared_item_description">Consulte todos los miembros y permisos.</string>
+  <string name="share_with_secure_link_shared_title">Vía un enlace seguro</string>
+  <string name="share_with_secure_link_shared_description">Para un uso único.</string>
+  <string name="sharing_edit_permissions_set_access_level_all_members">Configurar nivel de acceso para todos los miembros</string>
+  <string name="sharing_edit_permissions_set_access_level_single_member">Configurar nivel de acceso para %s</string>
+  <string name="sharing_edit_permissions_remove_user">Eliminar el usuario</string>
+  <string name="sharing_edit_permissions_remove_group">Borrar grupo</string>
+  <string name="sharing_error_dialog_title">Error desconocido</string>
+  <string name="sharing_error_dialog_message">No se pudo enviar la invitación de esta bóveda. Si el problema persiste, contáctese con el servicio de atención al cliente.</string>
+  <string name="sharing_with_no_addresses_can_be_invited">No se puede invitar ninguna dirección.</string>
+  <string name="sharing_with_some_addresses_cannot_be_invited">No se pueden invitar algunas direcciones.</string>
+</resources>

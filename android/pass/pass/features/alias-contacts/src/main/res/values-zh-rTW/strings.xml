@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="create_contact_button">創建聯絡人</string>
+  <string name="save_contact_alias">儲存</string>
+  <string name="snackbar_contact_create_success">聯絡人已成功建立</string>
+  <string name="snackbar_contact_create_error">建立聯絡人失敗</string>
+  <string name="create_contact_title">創建聯絡人</string>
+  <string name="detail_contact_title">聯絡人</string>
+  <string name="email_input_error">無效的電子郵件位址</string>
+  <string name="detail_contact_display_name" comment="sender email address">為每個向 %1$s 發送或從其接收電子郵件的電郵地址建立聯絡人</string>
+  <string name="empty_alias_contacts_title">別名聯絡人</string>
+  <string name="empty_alias_contacts_body">為了隱藏您的個人電郵位址，您可以建立一個別名聯絡人以遮罩您的位址。</string>
+  <string name="empty_alias_contacts_learn_more">了解更多</string>
+  <string name="unblock_button">解除封鎖聯絡人</string>
+  <string name="block_button">封鎖聯絡人</string>
+  <string name="contact_created_date" comment="date of creation">Created %1$s ago</string>
+  <string name="no_activity_contact">過去 14 天內沒有活動。</string>
+  <string name="activity_summary" comment="%1$d forwarded, %2$d sent, %3$d blocked will prepend this">在過去 14 天內。</string>
+  <plurals name="forwarded_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="other">%1$d forwarded</item>
+  </plurals>
+  <plurals name="sent_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="other">%1$d 已傳送</item>
+  </plurals>
+  <plurals name="blocked_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="other">%1$d blocked</item>
+  </plurals>
+  <string name="blocked_addresses_subtitle">已封鎖位址</string>
+  <string name="forwarding_addresses_subtitle">轉寄位址</string>
+  <string name="snackbar_contact_block_success">聯絡人已封鎖</string>
+  <string name="snackbar_contact_block_error">無法封鎖聯絡人</string>
+  <string name="snackbar_contact_unblock_success">聯絡人已解除封鎖</string>
+  <string name="snackbar_contact_unblock_error">無法解除封鎖聯絡人</string>
+  <string name="snackbar_delete_contact_success">聯絡人已刪除</string>
+  <string name="snackbar_delete_contact_error">無法刪除聯絡人</string>
+  <string name="snackbar_email_copied_success">郵件地址已複製到剪貼簿</string>
+  <string name="contact_option_send_email">發送電郵</string>
+  <string name="contact_option_copy_address">複製轉寄位址</string>
+  <string name="contact_option_block_contact">封鎖聯絡人</string>
+  <string name="contact_option_unblock_contact">解除封鎖聯絡人</string>
+  <string name="contact_option_delete">刪除</string>
+  <string name="alias_contacts_bottomsheet_title">別名聯絡人</string>
+  <string name="alias_contacts_bottomsheet_subtitle">為了隱藏您的個人電郵位址，您可以建立一個別名聯絡人以遮罩您的位址。</string>
+  <string name="alias_contacts_explanation">運作方式如下：</string>
+  <string name="alias_contacts_bottomsheet_section_1">輸入您想傳送電子郵件的位址。</string>
+  <string name="alias_contacts_bottomsheet_section_2">Proton Pass 將產生一個轉寄位址（也稱為反向別名）。</string>
+  <string name="alias_contacts_bottomsheet_section_3" comment="an email will follow this sentence">將電子郵件傳送至此位址，且將顯示為從</string>
+</resources>

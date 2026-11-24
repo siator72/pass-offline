@@ -1,0 +1,49 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.domain.organizations
+
+data class OrganizationPasswordPolicy(
+    val randomPasswordAllowed: Boolean? = null,
+    val randomPasswordMinLength: Int? = null,
+    val randomPasswordMaxLength: Int? = null,
+    val randomPasswordIncludeNumbers: Boolean? = null,
+    val randomPasswordIncludeSymbols: Boolean? = null,
+    val randomPasswordIncludeUppercase: Boolean? = null,
+    val memorablePasswordAllowed: Boolean? = null,
+    val memorablePasswordMinWords: Int? = null,
+    val memorablePasswordMaxWords: Int? = null,
+    val memorablePasswordCapitalize: Boolean? = null,
+    val memorablePasswordIncludeNumbers: Boolean? = null
+) {
+
+    val canToggleRandomPasswordSymbols: Boolean = randomPasswordIncludeSymbols == null
+
+    val canToggleRandomPasswordNumbers: Boolean = randomPasswordIncludeNumbers == null
+
+    val canToggleRandomPasswordUppercase: Boolean = randomPasswordIncludeUppercase == null
+
+    val canToggleRandomPasswordToMemorable: Boolean = memorablePasswordAllowed != false
+
+    val canToggleMemorablePasswordNumbers: Boolean = memorablePasswordIncludeNumbers == null
+
+    val canToggleMemorablePasswordCapitalize: Boolean = memorablePasswordCapitalize == null
+
+    val canToggleMemorablePasswordToRandom: Boolean = randomPasswordAllowed != false
+
+}

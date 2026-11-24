@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Sorting -->
+  <string name="sort_by_title_asc">Τίτλος (Α-Ω)</string>
+  <string name="sort_by_title_desc">Τίτλος (Ω-Α)</string>
+  <string name="sort_by_creation_asc">Από το παλαιότερο στο νεότερο</string>
+  <string name="sort_by_creation_desc">Από το νεότερο στο παλαιότερο</string>
+  <string name="sort_by_modification_date">Πρόσφατα χρησιμοποιημένο</string>
+  <!-- List header results -->
+  <string name="item_list_header_all_search_results">Όλα</string>
+  <string name="item_list_header_pinned_search_results">Καρφιτσωμένα</string>
+  <string name="item_list_header_logins_type">Συνδέσεις</string>
+  <string name="item_list_header_logins_totp_type">Συνδέσεις με TOTP</string>
+  <string name="item_list_header_aliases_type">Ψευδώνυμα</string>
+  <string name="item_list_header_notes_type">Σημειώσεις</string>
+  <string name="item_list_header_credit_cards_type">Πιστωτικές κάρτες</string>
+  <plurals name="item_list_header_results">
+    <item quantity="one">αποτέλεσμα</item>
+    <item quantity="other">αποτελέσματα</item>
+  </plurals>
+  <string name="item_list_header_identities_type">Ταυτότητες</string>
+  <string name="item_list_header_custom_type">Προσαρμοσμένα στοιχεία</string>
+  <string name="item_list_header_shared_with_me">Σε κοινή χρήση με εμένα</string>
+  <string name="item_list_header_shared_by_me">Κοινοποιημένο από εμένα</string>
+  <!-- Bottomsheets -->
+  <string name="bottomsheet_confirm_button">Επιβεβαίωση</string>
+  <string name="bottomsheet_cancel_button">Ακύρωση</string>
+  <string name="bottomsheet_move_to_trash">Μετακίνηση στα Διαγραμμένα</string>
+  <string name="bottomsheet_pin_item">Καρφίτσωμα</string>
+  <string name="bottomsheet_unpin_item">Ξεκαρφίτσωμα</string>
+  <string name="bottomsheet_view_item_history">Προβολή ιστορικού</string>
+  <string name="bottomsheet_monitor_exclude">Εξαίρεση από την παρακολούθηση</string>
+  <string name="bottomsheet_monitor_include">Συμπερίληψη στην παρακολούθηση</string>
+  <string name="bottomsheet_migrate_item_v2">Μετακίνηση</string>
+  <string name="bottomsheet_create_folder">Δημιουργία φακέλου</string>
+  <string name="folder_tree_create_folder">Δημιουργία φακέλου</string>
+  <string name="bottomsheet_rename_folder">Μετονομασία</string>
+  <string name="bottomsheet_create_sub_folder">Δημιουργία υποφακέλου</string>
+  <string name="bottomsheet_move_folder">Μετακίνηση φακέλου</string>
+  <string name="bottomsheet_move_all_items_in_folder">Μετακίνηση όλων των στοιχείων</string>
+  <string name="bottomsheet_copy_item_note">Αντιγραφή σημείωσης</string>
+  <string name="bottomsheet_delete_permanently">Οριστική διαγραφή</string>
+  <string name="bottomsheet_restore">Επαναφορά</string>
+  <string name="bottomsheet_leave">Αποχώρηση</string>
+  <string name="bottomsheet_duplicate">Διπλότυπο</string>
+  <string name="bottomsheet_no_actions">Δεν υπάρχει διαθέσιμες λειτουργίες</string>
+  <!-- Actions -->
+  <string name="action_content_description_menu" comment="Alt description for accessibility purposes on the three dots button that opens a contextual menu">Άνοιγμα μενού ενεργειών στοιχείου</string>
+  <string name="action_upgrade_now">Αναβάθμιση τώρα</string>
+  <string name="action_not_now">Όχι τώρα</string>
+  <string name="action_learn_more">Μάθετε περισσότερα</string>
+  <string name="action_enable">Ενεργοποίηση</string>
+  <string name="action_view_details">Προβολή λεπτομερειών</string>
+  <string name="action_see_all">Προβολή όλων</string>
+  <string name="action_confirm">Επιβεβαίωση</string>
+  <string name="action_cancel">Ακύρωση</string>
+  <string name="action_continue">Συνέχεια</string>
+  <string name="action_retry">Δοκιμάστε ξανά</string>
+  <string name="action_edit">Επεξεργασία</string>
+  <string name="action_add">Προσθήκη</string>
+  <string name="action_delete">Διαγραφή</string>
+  <string name="action_make_default">Ορισμός ως προεπιλογή</string>
+  <string name="action_verify">Επαλήθευση</string>
+  <string name="action_close">Κλείσιμο</string>
+  <string name="action_update">Ενημέρωση</string>
+  <!-- Empty list -->
+  <string name="empty_list_title">Προσθέστε το πρώτο σας στοιχείο</string>
+  <string name="empty_search_results_title">Δεν βρέθηκε αποτέλεσμα</string>
+  <string name="empty_list_open_extension">Επισκεφτείτε την προέκταση ιστού</string>
+  <string name="empty_list_create_item_button">Δημιουργία νέου στοιχείου</string>
+  <!-- Field -->
+  <string name="field_title_title">Τίτλος</string>
+  <string name="field_title_hint">Χωρίς τίτλο</string>
+  <string name="field_title_required">Απαιτείται τίτλος</string>
+  <string name="small_cross_icon_content_description">Εικονίδιο μικρού σταυρού</string>
+  <string name="field_note_title">Σημείωση</string>
+  <string name="field_note_hint">Προσθήκη σημείωσης</string>
+  <string name="linked_apps_title">Συνδεδεμένες εφαρμογές</string>
+  <!-- Indicator that indicates lack of internet connectivity -->
+  <string name="indicator_no_network">Εκτός σύνδεσης</string>
+  <!-- Icon content description -->
+  <string name="missing_app_icon_content_description">Εικονίδιο εφαρμογής που λείπει</string>
+  <string name="add_item_icon_content_description">Εικονίδιο προσθήκης στοιχείου</string>
+  <string name="navigate_back_icon_content_description">Εικονίδιο πλοήγησης προς τα πίσω</string>
+  <!-- Bottom bar -->
+  <string name="bottom_bar_list_items_icon_content_description">Λίστα στοιχείων</string>
+  <string name="bottom_bar_add_item_icon_content_description">Προσθήκη στοιχείου</string>
+  <string name="bottom_bar_profile_icon_content_description">Προφίλ</string>
+  <string name="bottom_bar_security_center_icon_content_description">Κέντρο ασφαλείας</string>
+  <string name="bottom_bar_explore_icon_content_description">Εξερεύνηση</string>
+  <!-- List group by most recents -->
+  <string name="most_recent_today">Σήμερα</string>
+  <string name="most_recent_yesterday">Χθες</string>
+  <string name="most_recent_this_week">Τρέχουσα εβδομάδα</string>
+  <string name="most_recent_last_two_weeks">Τελευταίες δύο εβδομάδες</string>
+  <string name="most_recent_last_30_days">Προηγούμενος μήνας</string>
+  <string name="most_recent_last_60_days">Τελευταίες 60 ημέρες</string>
+  <string name="most_recent_last_90_days">Τελευταίες 90 ημέρες</string>
+  <string name="most_recent_within_the_last_year">Εντός του τελευταίου έτους</string>
+  <string name="most_recent_more_than_1_year">Παλαιότερα από 1 έτος</string>
+  <!-- Search Top Bar -->
+  <string name="search_topbar_icon_content_description">Εικονίδιο Αναζήτησης</string>
+  <!-- Select Vault BottomSheet -->
+  <plurals name="bottomsheet_select_vault_item_count">
+    <item quantity="one">1 στοιχείο</item>
+    <item quantity="other">%d στοιχεία</item>
+  </plurals>
+  <!-- Confirm close dialog -->
+  <string name="confirm_close_dialog_title">Απόρριψη αλλαγών;</string>
+  <string name="confirm_close_dialog_message">Έχετε μην αποθηκευμένες αλλαγές, είστε σίγουροι πως θέλετε να τις απορρίψετε;</string>
+  <string name="confirm_close_dialog_close_button">Απόρριψη</string>
+  <!-- Upgrade -->
+  <string name="upgrade">Αναβάθμιση</string>
+  <!-- Advanced options -->
+  <string name="show_advanced_options">Προηγμένες επιλογές</string>
+  <string name="hide_advanced_options">Απόκρυψη σύνθετων επιλογών</string>
+  <!-- Labels -->
+  <string name="label_password_strength_strong">Ισχυρός</string>
+  <string name="label_password_strength_vulnerable">Ευάλωτο</string>
+  <string name="label_password_strength_weak">Αδύναμο</string>
+  <!-- Pinning -->
+  <string name="pinning_carousel_see_all">Προβολή όλων</string>
+  <!-- Dates -->
+  <string name="date_today" comment="Pattern to display today's date and time. (e.g. Today 10:25)">Σήμερα %s</string>
+  <string name="date_yesterday" comment="Pattern to display yesterday's date and time. (e.g. Yesterday 10:25)">Χθες %s</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to
+    12 February 12:34
+    -->
+  <string name="date_full_date_format">dd LLLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date in the same year as we are.
+    It would translate to 12 Feb 12:34
+    -->
+  <string name="date_full_date_format_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL HH:mm</string>
+  <!--
+    Pattern used when displaying a date including the year.
+    It would translate to
+    12 February 2023 12:34
+    -->
+  <string name="date_full_date_format_with_year">dd LLLL yyyy HH:mm</string>
+  <!--
+   Pattern used when displaying a date including the year.
+   It would translate to 12 Feb 2023 12:34
+   -->
+  <string name="date_full_date_format_with_year_compact_month" comment="Do not add any extra text when translating as always should have to keep the same length. Please, just reorder the parts according to country locale">dd LLL yyyy HH:mm</string>
+  <!-- Items -->
+  <string name="item_details_alias_section_alias_title">Ψευδώνυμη διεύθυνση</string>
+  <string name="item_details_alias_section_alias_disabled_title">Διεύθυνση ψευδωνύμου (απενεργοποιημένη)</string>
+  <string name="item_details_alias_section_mailboxes_title">Προώθηση σε</string>
+  <string name="item_details_credit_card_section_cardholder_title">Όνομα στην κάρτα</string>
+  <string name="item_details_credit_card_section_card_number_title">Αριθμός κάρτας</string>
+  <string name="item_details_credit_card_section_expiration_date_title">Λήγει στις</string>
+  <string name="item_details_credit_card_section_cvv_title">Αριθμός επαλήθευσης</string>
+  <string name="item_details_credit_card_section_pin_title">Κωδικός PIN</string>
+  <string name="item_details_login_section_email_title">Διεύθυνση ηλεκτρονικού ταχυδρομείου</string>
+  <string name="item_details_login_section_username_title">Όνομα Χρήστη</string>
+  <string name="item_details_login_section_password_title">Κωδικός</string>
+  <string name="item_details_login_section_primary_totp_title">Διακριτικό 2FA (TOTP)</string>
+  <string name="item_details_login_section_websites_title">Ιστοσελίδες</string>
+  <string name="autofill_mode_label_default">Γονικός τομέας και υποτομείς</string>
+  <string name="autofill_mode_label_exact">Ακριβής (υπο)τομέας</string>
+  <string name="autofill_mode_label_never">Ποτέ μην συμπληρώνετε αυτόν τον ιστότοπο</string>
+  <string name="autofill_mode_label_start_with">Ξεκινά με</string>
+  <string name="autofill_mode_label_pattern">Πατέντα μπαλαντέρ</string>
+  <string name="autofill_mode_label_regular_expression">Κανονική έκφραση</string>
+  <string name="autofill_mode_label_exact_path">Ακριβής αντιστοίχιση URL</string>
+  <string name="autofill_mode_label_unsupported">Αυτή η διεύθυνση URL θα παραλειφθεί για αυτόματη συμπλήρωση</string>
+  <string name="login_item_view_alias_button">Προβολή ψευδωνύμου</string>
+  <string name="item_details_identity_section_personal_title">Προσωπικές πληροφορίες</string>
+  <string name="item_details_identity_section_personal_first_name_title">Όνομα</string>
+  <string name="item_details_identity_section_personal_middle_name_title">Πατρώνυμο</string>
+  <string name="item_details_identity_section_personal_last_name_title">Επώνυμο</string>
+  <string name="item_details_identity_section_personal_full_name_title">Ονοματεπώνυμο</string>
+  <string name="item_details_identity_section_personal_email_title">Διεύθυνση ηλεκτρονικού ταχυδρομείου</string>
+  <string name="item_details_identity_section_personal_gender_title">Φύλο</string>
+  <string name="item_details_identity_section_personal_phone_title">Αριθμός τηλεφώνου</string>
+  <string name="item_details_identity_section_personal_birthday_title">Γενέθλια</string>
+  <string name="item_details_identity_section_address_title">Λεπτομέρειες διεύθυνσης</string>
+  <string name="item_details_identity_section_address_organization_title">Οργανισμός</string>
+  <string name="item_details_identity_section_address_street_address_title">Ταχυδρομική διεύθυνση, τ.θ</string>
+  <string name="item_details_identity_section_address_floor_title">Όροφος</string>
+  <string name="item_details_identity_section_address_city_title">Πόλη</string>
+  <string name="item_details_identity_section_address_zip_or_postal_code_title">Τ.Κ ή ταχυδρομικός κώδικας</string>
+  <string name="item_details_identity_section_address_state_or_province_title">Νομός ή επαρχία</string>
+  <string name="item_details_identity_section_address_county_title">Νομός</string>
+  <string name="item_details_identity_section_address_country_or_region_title">Χώρα ή περιοχή</string>
+  <string name="item_details_identity_section_contact_title">Στοιχεία επαφής</string>
+  <string name="item_details_identity_section_contact_social_security_number_title">Αριθμός κοινωνικής ασφάλισης</string>
+  <string name="item_details_identity_section_contact_passport_number_title">Αριθμός διαβατηρίου</string>
+  <string name="item_details_identity_section_contact_license_number_title">Αριθμός άδειας</string>
+  <string name="item_details_identity_section_contact_website_title">Ιστοσελίδα</string>
+  <string name="item_details_identity_section_contact_x_handle_title">X όνομα</string>
+  <string name="item_details_identity_section_contact_secondary_phone_number_title">Δευτερεύων αριθμός τηλεφώνου</string>
+  <string name="item_details_identity_section_contact_linkedin_title">LinkedIn</string>
+  <string name="item_details_identity_section_contact_reddit_title">Reddit</string>
+  <string name="item_details_identity_section_contact_facebook_title">Facebook</string>
+  <string name="item_details_identity_section_contact_yahoo_title">Yahoo</string>
+  <string name="item_details_identity_section_contact_instagram_title">Instagram</string>
+  <string name="item_details_identity_section_work_title">Λεπτομέρειες εργασίας</string>
+  <string name="item_details_identity_section_work_company_title">Εταιρεια</string>
+  <string name="item_details_identity_section_work_occupation_title">Επάγγελμα</string>
+  <string name="item_details_identity_section_work_email_title">Διεύθυνση ηλεκτρονικού ταχυδρομείου εργασίας</string>
+  <string name="item_details_identity_section_work_phone_number_title">Αριθμός τηλεφώνου εργασίας</string>
+  <string name="item_details_identity_section_work_personal_website_title">Προσωπικός ιστότοπος</string>
+  <string name="item_details_shared_section_note_title">Σημείωση</string>
+  <string name="item_details_shared_section_item_history_last_autofill_title">Τελευταία αυτόματη συμπλήρωση</string>
+  <string name="item_details_shared_section_item_history_created_title">Δημιουργήθηκε</string>
+  <string name="item_details_shared_section_item_history_modified_times_title">Τροποποιημένα (%d)</string>
+  <string name="item_details_shared_section_item_history_button_view">Προβολή ιστορικού στοιχείου</string>
+  <string name="item_details_shared_section_more_info_header_title">Περισσότερες πληροφορίες</string>
+  <string name="item_details_shared_section_more_info_header_icon_content_description">Εικονίδιο \"Περισσότερες πληροφορίες στοιχείων\"</string>
+  <string name="item_details_shared_section_more_info_item_id">Αναγνωριστικό Στοιχείου</string>
+  <string name="item_details_shared_section_more_info_vault_id">Vault ID</string>
+  <string name="item_details_shared_section_more_info_share_id">Share ID</string>
+  <string name="item_details_wifi_network_label_ssid_name">Όνομα (SSID)</string>
+  <string name="item_details_wifi_network_label_password">Κωδικός πρόσβασης</string>
+  <string name="item_details_wifi_network_label_security">Ασφάλεια</string>
+  <string name="item_details_ssh_key_label_public_key">Δημόσιο κλειδί</string>
+  <string name="item_details_ssh_key_label_private_key">Ιδιωτικό κλειδί</string>
+  <string name="home_app_needs_update_message" comment="Message displayed when the app needs to be updated">Αυτή η έκδοση της εφαρμογής δεν υποστηρίζεται πλέον, παρακαλούμε ενημερώστε την εφαρμογή σας.</string>
+  <!-- Passkeys -->
+  <string name="passkey_field_label" comment="Label of the passkey field in the edit item screen">Κλειδί πρόσβασης</string>
+  <!-- Upgrade -->
+  <string name="dialog_upgrade_plan_title">Αναβάθμιση πλάνου;</string>
+  <string name="dialog_upgrade_plan_message">Αυτή η λειτουργία δεν είναι διαθέσιμη για χρήστες δωρεάν επιπέδου. Αν θέλετε να το απολαύσετε μαζί με άλλα δροσερά χαρακτηριστικά, αναβαθμίστε το πλάνο σας και δοκιμάστε το!</string>
+  <string name="dialog_upgrade_plan_action_confirm">Αναβάθμιση</string>
+  <string name="dialog_upgrade_plan_action_cancel">Όχι τώρα</string>
+  <!-- Words -->
+  <string name="email_address">Διεύθυνση ηλ. ταχυδρομείου</string>
+  <string name="email_address_invalid">Μη έγκυρη διεύθυνση email</string>
+  <string name="password">Κωδικός πρόσβασης</string>
+  <!-- Tooltips -->
+  <string name="tooltip_dismiss_button_content_description">Κουμπί για να κλείσετε αυτήν τη συμβουλή εργαλείου και να μην την εμφανίσετε ξανά</string>
+  <!-- Time units -->
+  <plurals name="time_unit_years">
+    <item quantity="one">%d έτος</item>
+    <item quantity="other">%d έτη</item>
+  </plurals>
+  <plurals name="time_unit_months">
+    <item quantity="one">%d μήνας</item>
+    <item quantity="other">%d μήνες</item>
+  </plurals>
+  <plurals name="time_unit_weeks">
+    <item quantity="one">%d εβδομάδα</item>
+    <item quantity="other">%d εβδομάδες</item>
+  </plurals>
+  <plurals name="time_unit_days">
+    <item quantity="one">%d ημέρα</item>
+    <item quantity="other">%d ημέρες</item>
+  </plurals>
+  <plurals name="time_unit_hours">
+    <item quantity="one">%d ώρα</item>
+    <item quantity="other">%d ώρες</item>
+  </plurals>
+  <plurals name="time_unit_minutes">
+    <item quantity="one">%d λεπτό</item>
+    <item quantity="other">%d λεπτά</item>
+  </plurals>
+  <plurals name="time_unit_seconds">
+    <item quantity="one">%d δευτερόλεπτο</item>
+    <item quantity="other">%d δευτερόλεπτα</item>
+  </plurals>
+  <plurals name="aliases_count">
+    <item quantity="one">%d ψευδώνυμο</item>
+    <item quantity="other">%d ψευδώνυμα</item>
+  </plurals>
+  <!-- Snack bars -->
+  <string name="snack_bar_message_item_note_copied">Η σημείωση αντιγράφηκε</string>
+  <string name="snack_bar_message_item_migration_error">Παρουσιάστηκε σφάλμα κατά τη μετεγκατάσταση αυτού του στοιχείου</string>
+  <string name="snack_bar_message_item_monitor_excluded_success">Το στοιχείο εξαιρέθηκε επιτυχώς από την παρακολούθηση</string>
+  <string name="snack_bar_message_item_monitor_excluded_error">Παρουσιάστηκε σφάλμα κατά την εξαίρεση στοιχείου από την παρακολούθηση</string>
+  <string name="snack_bar_message_item_monitor_included_success">Το στοιχείο συμπεριλήφθηκε επιτυχώς στην παρακολούθηση</string>
+  <string name="snack_bar_message_item_monitor_included_error">Παρουσιάστηκε σφάλμα κατά τη συμπερίληψη στοιχείου στην παρακολούθηση</string>
+  <string name="snack_bar_message_item_pinned_success">Το στοιχείο καρφιτσώθηκε επιτυχώς</string>
+  <string name="snack_bar_message_item_pinned_error">Παρουσιάστηκε σφάλμα κατά το καρφίτσωμα αυτού του στοιχείου</string>
+  <string name="snack_bar_message_item_unpinned_success">Το στοιχείο ξεκαρφιτσώθηκε επιτυχώς</string>
+  <string name="snack_bar_message_item_unpinned_error">Παρουσιάστηκε σφάλμα κατά το ξεκαρφίτσωμα αυτού του στοιχείου</string>
+  <string name="snack_bar_message_item_trashed_success">Το στοιχείο απορρίφθηκε με επιτυχία</string>
+  <string name="snack_bar_message_item_trashed_error">Παρουσιάστηκε σφάλμα κατά το απόρριψη αυτού του στοιχείου</string>
+  <string name="snack_bar_message_item_restore_success">Το στοιχείο αποκαταστάθηκε με επιτυχία</string>
+  <string name="snack_bar_message_item_restore_error">Παρουσιάστηκε σφάλμα κατά το επαναφορά αυτού του στοιχείου</string>
+  <string name="snack_bar_message_item_delete_success">Το στοιχείο διαγράφηκε με επιτυχία</string>
+  <string name="snack_bar_message_item_delete_error">Παρουσιάστηκε σφάλμα κατά το διαγραφή αυτού του στοιχείου</string>
+  <!-- Simple Login -->
+  <string name="simple_login_widget_title">Ενεργοποιήστε το συγχρονισμό SimpleLogin</string>
+  <plurals name="simple_login_widget_pending_aliases_message">
+    <item quantity="one">Εντοπίσαμε ότι έχετε %d ψευδώνυμο που υπάρχει στο SimpleLogin αλλά λείπει στο Proton Pass. Θέλετε να το εισαγάγετε;</item>
+    <item quantity="other">Εντοπίσαμε ότι έχετε %d ψευδώνυμα που υπάρχουν στο SimpleLogin αλλά λείπουν στο Proton Pass. Θέλετε να τα εισαγάγετε;</item>
+  </plurals>
+  <string name="simple_login_widget_action">Συγχρονισμός ψευδωνύμων</string>
+  <!-- Verification codes -->
+  <string name="verification_code_not_received">Δεν έχετε λάβει τον κωδικό;</string>
+  <string name="verification_code_suggestion_spam" comment="placeholder will be replaced by an email subject">Παρακαλούμε ελέγξτε στα Ανεπιθύμητα σας για ένα μήνυμα που ονομάζεται \"%s\"</string>
+  <string name="verification_code_suggestion_subject_new_email_address">Παρακαλούμε επιβεβαιώστε τη διεύθυνση email σας για το Proton Pass</string>
+  <string name="verification_code_suggestion_subject_new_mailbox">Παρακαλούμε επιβεβαιώστε το γραμματοκιβώτιό σας</string>
+  <string name="verification_code_suggestion_resend" comment="The text that follows is: -request a new code.-">Εάν δεν μπορείτε να βρείτε τέτοια μηνύματα ηλεκτρονικού ταχυδρομείου, μπορείτε να %s.</string>
+  <string name="verification_code_suggestion_resend_link" comment="The text that precedes is: -If you can’t find such email, you can -">ζητήστε ένα νέο κωδικό</string>
+  <string name="field_display_name_title">Εμφανιζόμενο Όνομα</string>
+  <!-- Attachments -->
+  <plurals name="attachment_file_amount">
+    <item quantity="one">%1$s αρχείο</item>
+    <item quantity="other">%1$s αρχεία</item>
+  </plurals>
+  <string name="attachment_title">Συνημμένα</string>
+  <string name="attachment_no_files">Ανεβάστε αρχεία από τη συσκευή σας.</string>
+  <string name="attachment_add_file">Επισύναψη αρχείου</string>
+  <string name="attachment_row_upload_failed">Αποτυχία μεταφόρτωσης</string>
+  <string name="attachment_row_retry">Επανάληψη</string>
+  <string name="options_menu_content_description">Μενού επιλογών</string>
+  <!-- Items -->
+  <plurals name="shared_items_count">
+    <item quantity="one">%d κοινοποιημένο στοιχείο</item>
+    <item quantity="other">%d κοινοποιημένα στοιχεία</item>
+  </plurals>
+  <plurals name="users_count">
+    <item quantity="one">%d χρήστης</item>
+    <item quantity="other">%d χρήστες</item>
+  </plurals>
+  <plurals name="members_count">
+    <item quantity="one">%d μέλος</item>
+    <item quantity="other">%d μέλη</item>
+  </plurals>
+  <string name="show_network_qr_code">Εμφάνιση κωδικού QR του δικτύου</string>
+  <string name="expand_collpased_text">περισσότερα</string>
+  <string name="collapse_expanded_text">λιγότερα</string>
+  <string name="login_item_monitor_widget_weak_pass_title">Αδύναμος Κωδικός Πρόσβασης</string>
+  <string name="login_item_monitor_widget_weak_pass_subtitle">Αυτός ο λογαριασμός είναι ευάλωτος, επισκεφθείτε την υπηρεσία και αλλάξτε τον κωδικό πρόσβασής σας.</string>
+  <string name="login_item_monitor_widget_compromised_pass_title">Παραβιασμένος κωδικός πρόσβασης</string>
+  <string name="login_item_monitor_widget_compromised_pass_subtitle">Αυτός ο κωδικός πρόσβασης σύνδεσης εμφανίζεται σε παραβίαση δεδομένων. Επισκεφτείτε την υπηρεσία και αλλάξτε τον κωδικό πρόσβασης.</string>
+  <plurals name="login_item_monitor_widget_reused_pass_title">
+    <item quantity="one">%d άλλη σύνδεση χρησιμοποιεί τον ίδιο κωδικό πρόσβασης</item>
+    <item quantity="other">%d άλλες συνδέσεις χρησιμοποιούν τον ίδιο κωδικό πρόσβασης</item>
+  </plurals>
+  <string name="login_item_monitor_widget_missing_two_fa_title">Ρυθμίστε το 2FA για περισσότερη ασφάλεια</string>
+  <string name="login_item_monitor_widget_missing_two_fa_subtitle">Αυτή η υπηρεσία προσφέρει 2FA. Ενεργοποιήστε το για πρόσθετη ασφάλεια λογαριασμού.</string>
+  <string name="login_item_monitor_action_ignore">Αγνόηση</string>
+  <string name="login_item_monitor_action_restore">Επαναφορά ειδοποίησης</string>
+  <string name="login_item_monitor_header">Pass Monitor</string>
+  <string name="login_item_monitor_label_weak">Αδύναμος κωδικός πρόσβασης</string>
+  <string name="login_item_monitor_label_compromised">Παραβιασμένος κωδικός πρόσβασης</string>
+  <string name="login_item_monitor_label_reused">Επαναχρησιμοποιημένος κωδικός πρόσβασης</string>
+  <string name="login_item_monitor_label_missing_2fa">Λείπει το 2FA</string>
+  <string name="login_item_reused_passwords_subtitle">Στοιχεία από τις κρύπτες σας που χρησιμοποιούν αυτόν τον κωδικό πρόσβασης.</string>
+  <string name="mfa_limit_reached">Επιτεύχθηκε το όριο 2FA</string>
+  <string name="activity_in_last_two_weeks">Δραστηριότητα στις τελευταίες 14 ημέρες</string>
+  <string name="contacts">Επαφές</string>
+  <string name="contacts_section_description">Για να διατηρήσετε κρυφή την προσωπική σας διεύθυνση ηλεκτρονικού ταχυδρομείου, μπορείτε να δημιουργήσετε μια ψευδώνυμη επαφή που καλύπτει τη διεύθυνσή σας.</string>
+  <string name="field_detail_display_name_title">Προβολή του ονόματος</string>
+  <string name="display_name_section_description">Το εμφανιζόμενο όνομα κατά την αποστολή ενός μηνύματος ηλεκτρονικού ταχυδρομείου από αυτό το ψευδώνυμο.</string>
+  <plurals name="alias_forwards_count">
+    <item quantity="one">%1$s προώθηση</item>
+    <item quantity="other">%1$s προωθήσεις</item>
+  </plurals>
+  <plurals name="alias_replies_count">
+    <item quantity="one">%1$s απάντηση</item>
+    <item quantity="other">%1$s απαντήσεις</item>
+  </plurals>
+  <plurals name="alias_blocks_count">
+    <item quantity="one">%1$s μπλοκ</item>
+    <item quantity="other">%1$s μπλοκ</item>
+  </plurals>
+  <string name="alias_create_login_from_alias">Δημιουργία στοιχείων σύνδεσης</string>
+  <string name="banner_contacts_title">Γνωρίζετε;</string>
+  <string name="banner_contacts_subtitle">Κάθε φορά που το ψευδώνυμό σας λαμβάνει ένα μήνυμα ηλεκτρονικού ταχυδρομείου από κάποιον, μια νέα επαφή δημιουργείται αυτόματα.</string>
+  <string name="action_reveal">Αποκάλυψη</string>
+  <string name="action_conceal">Απόκρυψη</string>
+  <string name="warning_dialog_item_shared_vault_title">Στοιχείο σε κοινόχρηστη κρύπτη</string>
+  <string name="warning_dialog_item_shared_title">Κοινοποιημένο στοιχείο</string>
+  <string name="warning_dialog_item_shared_vault_creating">Δημιουργείτε ένα στοιχείο σε κοινόχρηστη κρύπτη και τα μέλη θα αποκτήσουν αμέσως πρόσβαση σε αυτό.</string>
+  <string name="warning_dialog_item_shared_vault_moving">Μετακινείτε ένα στοιχείο σε κοινόχρηστη κρύπτη και τα μέλη θα αποκτήσουν αμέσως πρόσβαση σε αυτό.</string>
+  <string name="warning_dialog_item_shared_vault_updating">Επεξεργάζεστε ένα στοιχείο σε κοινόχρηστη κρύπτη και τα μέλη θα αποκτήσουν αμέσως πρόσβαση σε αυτό.</string>
+  <string name="warning_dialog_item_shared_updating">Επεξεργάζεστε ένα κοινόχρηστο στοιχείο. Οι αλλαγές θα είναι αμέσως ορατές σε όλους όσους έχουν πρόσβαση σε αυτό.</string>
+  <string name="warning_dialog_item_shared_vault_reminder">Μην μου υπενθυμίσεις ξανά</string>
+  <string name="upgrade_to_pass_plus">Αναβαθμίστε στο Pass Plus</string>
+  <string name="warning_dialog_reload_app_after_purchase_description">Πρόκειται να ανακατευθυνθείτε στην ιστοσελίδα μας. Εάν αγοράσετε ένα πλάνο, παρακαλούμε επανεκκινήστε την εφαρμογή.</string>
+  <!-- Shared word separator dialog (used by password + username generators) -->
+  <string name="word_separator">Διαχωριστής λέξεων</string>
+  <string name="bottomsheet_option_capitalise">Κεφαλαιοποίηση</string>
+  <string name="bottomsheet_option_word_separator_hyphens">Παύλες ( - )</string>
+  <string name="bottomsheet_option_word_separator_spaces">Διαστήματα</string>
+  <string name="bottomsheet_option_word_separator_periods">Τελείες ( . )</string>
+  <string name="bottomsheet_option_word_separator_commas">Κόμματα ( , )</string>
+  <string name="bottomsheet_option_word_separator_underscores">Κάτω παύλες ( _ )</string>
+  <string name="bottomsheet_option_word_separator_numbers">Αριθμοί</string>
+  <string name="bottomsheet_option_word_separator_numbers_and_symbols">Αριθμοί και σύμβολα</string>
+  <plurals name="word_count">
+    <item quantity="one">%s λέξη</item>
+    <item quantity="other">%s λέξεις</item>
+  </plurals>
+  <!-- Password checks (Login create/edit + Generate Password BS) -->
+  <string name="password_strength_prefix">Ισχύς Κωδικού Πρόσβασης</string>
+  <string name="password_check_min_length">Ο κωδικός είναι πολύ σύντομος</string>
+  <string name="password_check_lowercase">Πεζά γράμματα</string>
+  <string name="password_check_uppercase">Κεφαλαία γράμματα</string>
+  <string name="password_check_no_consecutive">Δεν υπάρχουν επαναλαμβανόμενοι χαρακτήρες</string>
+  <string name="password_check_no_common">Δεν υπάρχει κοινός κωδικός πρόσβασης</string>
+</resources>

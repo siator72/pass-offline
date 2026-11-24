@@ -1,0 +1,70 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.ui.shortcuts
+
+import android.app.AlertDialog
+import android.content.Context
+import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import proton.android.pass.R
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.log.api.ShareLogsUseCase
+import javax.inject.Inject
+
+@AndroidEntryPoint
+class ShortcutActivity : FragmentActivity() {
+
+    @Inject
+    lateinit var shareLogsUseCase: ShareLogsUseCase
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val shortcutAction = intent.extras?.getString("shortcutaction")
+        PassLogger.i(TAG, "Started from shortcut $shortcutAction")
+        when (shortcutAction) {
+            "sharelogs" -> confirmShareLogs()
+            else -> finish()
+        }
+    }
+
+    private fun confirmShareLogs() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.shortcut_share_logs_confirmation_title)
+            .setMessage(R.string.shortcut_share_logs_confirmation_message)
+            .setPositiveButton(android.R.string.ok) { _, _ -> onShareLogs() }
+            .setNegativeButton(android.R.string.cancel) { _, _ -> finish() }
+            .setOnCancelListener { finish() }
+            .show()
+    }
+
+    private fun onShareLogs() {
+        lifecycleScope.launch {
+            shareLogsUseCase(this@ShortcutActivity as Context)
+            finish()
+        }
+    }
+
+    companion object {
+        private const val TAG = "ShortcutActivity"
+    }
+}

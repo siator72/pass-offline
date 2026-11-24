@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">Fotografiere</string>
+  <string name="add_attachment_choose_a_photo_or_video">Alegeți o fotografie sau un videoclip</string>
+  <string name="add_attachment_choose_a_file">Alegeți un fișier</string>
+  <string name="attachment_options_rename">Redenumire</string>
+  <string name="attachment_options_delete">Ștergere</string>
+  <string name="attachment_options_download">Descărcare</string>
+  <string name="attachment_options_share">Partajare</string>
+  <string name="file_picker_open_error">Nu s-a putut deschide selectorul de fișiere.</string>
+  <string name="media_picker_open_error">Nu s-a putut deschide selectorul de fișiere.</string>
+  <string name="camera_open_error">Nu s-a putut deschide camera.</string>
+  <string name="camera_permission_explanation">Este necesar accesul la cameră pentru ca funcția să fie disponibilă.</string>
+  <string name="camera_permission_open_settings">Deschidere setări</string>
+  <string name="delete_all_attachments_title">Ștergeți toate atașamentele?</string>
+  <string name="delete_all_attachments_subtitle">Această acțiune nu poate fi anulată</string>
+  <string name="delete_all_attachments_confirm">Ștergere toate</string>
+  <string name="rename_attachment_dialog_title">Redenumire fișier</string>
+  <string name="storage_full_title">Spațiul de stocare este aproape plin.</string>
+  <string name="storage_full_body">Treceți la alt tip de plan pentru a vă mări capacitatea de stocare.</string>
+  <string name="storage_full_upgrade">Modificare</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%1$s din %2$s</string>
+  <string name="attachments_saved_to_location_success">Atașamentul a fost salvat.</string>
+  <string name="attachments_saved_to_location_error">Atașamentul nu s-a putut salva.</string>
+  <string name="attachment_sync_dialog_title_waiting">Se așteaptă conexiunea</string>
+  <string name="attachment_sync_dialog_title_downloading">Se descarcă atașamentele</string>
+  <string name="attachment_sync_dialog_title_done">Descărcare finalizată</string>
+  <string name="attachment_sync_dialog_title_partial_failure">Descărcare eșuată</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">Se așteaptă conexiunea la rețea pentru descărcarea atașamentelor.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">Se descarcă atașamentele: %1$d/%2$d</string>
+  <string name="attachment_sync_dialog_subtitle_done">S-au descărcat toate atașamentele.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">Unele atașamente nu au putut fi descărcate. Puteți reîncerca descărcarea celor nereușite mai jos.</string>
+  <string name="attachment_sync_dialog_retry_content_description">Reîncercare descărcare</string>
+  <string name="attachment_sync_vault_files_count">Fișiere: %1$d/%2$d</string>
+</resources>

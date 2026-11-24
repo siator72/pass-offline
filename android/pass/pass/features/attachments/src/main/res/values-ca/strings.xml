@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">Fes una foto</string>
+  <string name="add_attachment_choose_a_photo_or_video">Escolliu una foto o un vídeo</string>
+  <string name="add_attachment_choose_a_file">Trieu un fitxer</string>
+  <string name="attachment_options_rename">Canvia el nom</string>
+  <string name="attachment_options_delete">Elimina</string>
+  <string name="attachment_options_download">Descarrega</string>
+  <string name="attachment_options_share">Comparteix</string>
+  <string name="file_picker_open_error">No s\'ha pogut obrir el selector de fitxers.</string>
+  <string name="media_picker_open_error">No s\'ha pogut obrir el selector de mèdia.</string>
+  <string name="camera_open_error">No s\'ha pogut obrir la càmera.</string>
+  <string name="camera_permission_explanation">Cal el permís de la càmera per a poder utilitzar aquesta característica.</string>
+  <string name="camera_permission_open_settings">Obre les preferències</string>
+  <string name="delete_all_attachments_title">Voleu eliminar tots els fitxers adjunts?</string>
+  <string name="delete_all_attachments_subtitle">Aquesta acció no es pot desfer.</string>
+  <string name="delete_all_attachments_confirm">Elimina-ho tot</string>
+  <string name="rename_attachment_dialog_title">Canvia el nom del fitxer</string>
+  <string name="storage_full_title">El vostre emmagatzematge és gairebé ple.</string>
+  <string name="storage_full_body">Actualitzeu el pla per a augmentar la capacitat d\'emmagatzematge.</string>
+  <string name="storage_full_upgrade">Millora</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%1$s de %2$s</string>
+  <string name="attachments_saved_to_location_success">S\'ha desat el fitxer adjunt a la ubicació.</string>
+  <string name="attachments_saved_to_location_error">No s\'ha pogut desar el fitxer adjunt a la ubicació.</string>
+  <string name="attachment_sync_dialog_title_waiting">S\'està esperant la connexió</string>
+  <string name="attachment_sync_dialog_title_downloading">S\'estan descarregant els fitxers adjunts</string>
+  <string name="attachment_sync_dialog_title_done">S\'ha completat la descàrrega</string>
+  <string name="attachment_sync_dialog_title_partial_failure">Ha fallat la descàrrega</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">S\'està esperant la connexió a la xarxa per descarregar els fitxers adjunts.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">S\'estan descarregant els fitxers adjunts %1$d/%2$d</string>
+  <string name="attachment_sync_dialog_subtitle_done">Tots els fitxers adjunts s\'han descarregat correctament.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">Alguns fitxers adjunts no s\'han pogut descarregar. Ho podeu tornar a intentar a continuació amb els que han fallat.</string>
+  <string name="attachment_sync_dialog_retry_content_description">Tornar a intentar la descàrrega</string>
+  <string name="attachment_sync_vault_files_count">%1$d / %2$d fitxers</string>
+</resources>

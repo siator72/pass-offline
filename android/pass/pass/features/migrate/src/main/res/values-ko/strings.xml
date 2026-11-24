@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="migrate_item_confirm_title_bottom_sheet">
+    <item quantity="other">다음 금고로 %d개 항목을 이동할까요?</item>
+  </plurals>
+  <plurals name="migrate_item_to_folder_confirm_title_bottom_sheet">
+    <item quantity="other">다음 폴더로 %d개 항목을 이동할까요?</item>
+  </plurals>
+  <string name="migrate_item_confirm_confirm_button">이동</string>
+  <string name="migrate_item_success_snackbar">항목을 이동했습니다.</string>
+  <string name="migrate_item_error_snackbar">항목 이동 오류</string>
+  <string name="migrate_item_some_not_migrated_error_snackbar">항목 이동 오류</string>
+  <string name="migrate_item_warning_history">금고 사이로 항목을 이동할 때 각 항목에 대해 이동된 마지막 50개의 수정 사항이 보존됩니다.</string>
+  <string name="migrate_item_warning_secure_link">다른 금고로 이동하면 이 항목의 안전한 링크가 삭제됩니다.</string>
+  <string name="migrate_all_items_success_snackbar">모든 항목이 삭제되었습니다</string>
+  <string name="migrate_all_items_error_snackbar">모든 금고 항목 이동 중 오류</string>
+  <string name="migrate_init_error_snackbar">마이그레이션 창을 준비할 수 없습니다.</string>
+  <string name="migrate_folder_confirm_title_bottom_sheet">다음 금고로 폴더를 이동할까요?</string>
+  <string name="migrate_folder_to_folder_confirm_title_bottom_sheet">다음 폴더로 폴더를 이동할까요?</string>
+  <string name="migrate_folder_success_snackbar">폴더가 삭제되었습니다.</string>
+  <string name="migrate_folder_error_snackbar">폴더 이동 오류</string>
+  <string name="migrate_folder_already_same_parent_snackbar">폴더가 이미 해당 위치에 존재합니다.</string>
+  <string name="migrate_dissolve_folder_dialog_title">폴더 콘텐츠 이동</string>
+  <string name="migrate_dissolve_folder_dialog_message">폴더가 이미 상위 금고에 존재합니다. 항목 및 하위 폴더를 상위 금고에서 이동됩니다.</string>
+  <string name="migrate_dissolve_folder_dialog_confirm">이동</string>
+  <plurals name="migrate_disabled_folder_reason_same_folder">
+    <item quantity="other">이미 폴더 내에 %d개 항목이 중복됩니다.</item>
+  </plurals>
+  <string name="migrate_disabled_folder_reason_same_location">해당 폴더가 이미 해당 위치에 존재합니다.</string>
+  <string name="migrate_disabled_folder_reason_being_moved">해당 폴더가 이동됩니다.</string>
+  <string name="migrate_disabled_folder_reason_descendant">해당 폴더는 이동되는 폴더 내에 존재합니다.</string>
+  <string name="migrate_disabled_folder_reason_limit_reached">여기로 항목을 이동하면 파일 개수 제한을 초과합니다.</string>
+  <string name="migrate_disabled_vault_reason_no_permission">이 금고 내에서 항목 생성이 불가합니다.</string>
+  <string name="migrate_disabled_vault_reason_same_vault">같은 금고 내에서는 항목 이동이 불가합니다.</string>
+  <plurals name="migrate_items_shared_warning_title">
+    <item quantity="other">%d개 항목을 다른 금고로 이동하시겠어요?</item>
+  </plurals>
+  <string name="migrate_item_shared_warning_message">이 항목은 현재 공유되는 중 입니다. 다른 금고로 이동하면 모든 다른 사용자의 접근 권한이 없어집니다.</string>
+  <plurals name="migrate_items_shared_warning_message">
+    <item quantity="other">%d개 항목이 현재 공유 중입니다. 다른 금고로 이동하면 다른 사용자들과의 접근 권한도 상실됩니다.</item>
+  </plurals>
+  <string name="migrate_select_vault_title">금고 선택</string>
+  <string name="migrate_select_destination_for_source_title">%s(에)서 전체 항목을 이동할 대상 위치를 선택하세요</string>
+  <string name="migrate_folder_items_moved_success_snackbar">항목을 이동했습니다.</string>
+  <string name="migrate_folder_items_moved_error_snackbar">항목 이동 오류</string>
+</resources>

@@ -1,0 +1,73 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.composecomponents.impl.snackbar
+
+import androidx.compose.material.SnackbarDuration
+import androidx.compose.material.SnackbarResult
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.res.stringResource
+import proton.android.pass.composecomponents.impl.messages.PassSnackbarHostState
+import proton.android.pass.notifications.api.SnackbarMessage
+
+@Composable
+fun SnackBarLaunchedEffect(
+    snackBarMessage: SnackbarMessage?,
+    passSnackBarHostState: PassSnackbarHostState,
+    onSnackBarMessageDelivered: ((SnackbarResult)?) -> Unit
+) {
+    snackBarMessage ?: return
+    when (snackBarMessage) {
+        is SnackbarMessage.SimpleMessage -> {
+            LaunchedEffect(snackBarMessage) {
+                passSnackBarHostState.showSnackbar(
+                    snackBarMessage.type,
+                    snackBarMessage.message
+                )
+                onSnackBarMessageDelivered(null)
+            }
+        }
+        is SnackbarMessage.StructuredMessage -> {
+            val snackBarMessageLocale = stringResource(id = snackBarMessage.id)
+            LaunchedEffect(snackBarMessage) {
+                passSnackBarHostState.showSnackbar(
+                    snackBarMessage.type,
+                    snackBarMessageLocale
+                )
+                onSnackBarMessageDelivered(null)
+            }
+        }
+
+        is SnackbarMessage.StructuredMessageWithAction -> {
+            val snackBarMessageLocale = stringResource(id = snackBarMessage.id)
+            val snackBarActionLocale = stringResource(id = snackBarMessage.action)
+            LaunchedEffect(snackBarMessage) {
+                val res = passSnackBarHostState.showSnackbar(
+                    snackBarMessage.type,
+                    snackBarMessageLocale,
+                    snackBarActionLocale,
+                    SnackbarDuration.Long
+                )
+                onSnackBarMessageDelivered(res)
+            }
+        }
+    }
+}
+
+

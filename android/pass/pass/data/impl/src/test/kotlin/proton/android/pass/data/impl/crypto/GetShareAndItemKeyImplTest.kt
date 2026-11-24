@@ -1,0 +1,163 @@
+/*
+ * Copyright (c) 2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.data.impl.crypto
+
+import kotlinx.coroutines.test.runTest
+import me.proton.core.crypto.common.keystore.EncryptedByteArray
+import org.junit.Test
+import proton.android.pass.data.impl.fakes.FakeItemKeyRepository
+import proton.android.pass.data.impl.fakes.FakeShareRepository
+import proton.android.pass.data.impl.repositories.ItemKeyRepository
+import proton.android.pass.domain.AddressId
+import proton.android.pass.domain.ItemId
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.UserId
+import proton.android.pass.domain.key.FolderKey
+import proton.android.pass.domain.key.ItemKey
+import proton.android.pass.test.domain.ShareKeyTestFactory
+import proton.android.pass.test.domain.ShareTestFactory
+import kotlin.test.assertEquals
+
+class GetShareAndItemKeyImplTest {
+
+    private val userId = UserId("user-id")
+    private val addressId = AddressId("address-id")
+    private val shareId = ShareId("share-id")
+    private val itemId = ItemId("item-id")
+
+    @Test
+    fun `invoke returns latest share key mapped as item key for item share`() = runTest {
+        val share = ShareTestFactory.Item.create(id = shareId.id, userId = userId.id)
+        val shareKey = ShareKeyTestFactory.createPrivate()
+        val itemKey = ItemKey(shareKey.rotation, shareKey.key, shareKey.responseKey)
+        val expected = shareKey to itemKey
+        val shareRepository = FakeShareRepository().apply {
+            setGetByIdResult(shareId, Result.success(share))
+        }
+        val itemKeyRepository = FakeItemKeyRepository().apply {
+            emitGetLatestShareAndItemKey(expected)
+        }
+
+        val result = GetShareAndItemKeyImpl(
+            shareRepository = shareRepository,
+            itemKeyRepository = itemKeyRepository
+        ).invoke(userId, addressId, shareId, itemId, decryptionKeyOverride = null)
+
+        assertEquals(expected, result)
+        assertEquals(1, itemKeyRepository.getLatestShareAndItemKeyCallCount)
+        assertEquals(
+            ItemKeyRepository.Scope.SharedItem,
+            itemKeyRepository.lastGetLatestShareAndItemKeyScope
+        )
+    }
+
+    @Test
+    fun `invoke ignores folder override for item share and still uses shared item scope`() = runTest {
+        val share = ShareTestFactory.Item.create(id = shareId.id, userId = userId.id)
+        val shareKey = ShareKeyTestFactory.createPrivate()
+        val itemKey = ItemKey(shareKey.rotation, shareKey.key, shareKey.responseKey)
+        val expected = shareKey to itemKey
+        val folderKey = FolderKey(
+            rotation = 8L,
+            key = EncryptedByteArray(byteArrayOf(4, 4, 4)),
+            responseKey = "folder-response"
+        )
+        val shareRepository = FakeShareRepository().apply {
+            setGetByIdResult(shareId, Result.success(share))
+        }
+        val itemKeyRepository = FakeItemKeyRepository().apply {
+            emitGetLatestShareAndItemKey(expected)
+        }
+
+        val result = GetShareAndItemKeyImpl(
+            shareRepository = shareRepository,
+            itemKeyRepository = itemKeyRepository
+        ).invoke(userId, addressId, shareId, itemId, decryptionKeyOverride = folderKey)
+
+        assertEquals(expected, result)
+        assertEquals(1, itemKeyRepository.getLatestShareAndItemKeyCallCount)
+        assertEquals(
+            ItemKeyRepository.Scope.SharedItem,
+            itemKeyRepository.lastGetLatestShareAndItemKeyScope
+        )
+    }
+
+    @Test
+    fun `invoke delegates to getLatestShareAndItemKey for vault share`() = runTest {
+        val share = ShareTestFactory.Vault.create(id = shareId.id, userId = userId.id)
+        val shareKey = ShareKeyTestFactory.createPrivate()
+        val itemKey = ItemKey(5L, EncryptedByteArray(byteArrayOf(1, 2)), "item-response")
+        val expected = shareKey to itemKey
+        val shareRepository = FakeShareRepository().apply {
+            setGetByIdResult(shareId, Result.success(share))
+        }
+        val itemKeyRepository = FakeItemKeyRepository().apply {
+            emitGetLatestShareAndItemKey(expected)
+        }
+
+        val result = GetShareAndItemKeyImpl(
+            shareRepository = shareRepository,
+            itemKeyRepository = itemKeyRepository
+        ).invoke(userId, addressId, shareId, itemId, decryptionKeyOverride = null)
+
+        assertEquals(expected, result)
+        assertEquals(1, itemKeyRepository.getLatestShareAndItemKeyCallCount)
+        assertEquals(0, itemKeyRepository.getLatestItemKeyCallCount)
+        assertEquals(
+            ItemKeyRepository.Scope.SharedVault(
+                groupEmail = share.groupEmail,
+                decryptionSource = ItemKeyRepository.VaultDecryptionSource.Share
+            ),
+            itemKeyRepository.lastGetLatestShareAndItemKeyScope
+        )
+    }
+
+    @Test
+    fun `invoke maps folder override to vault folder decryption source`() = runTest {
+        val share = ShareTestFactory.Vault.create(id = shareId.id, userId = userId.id)
+        val shareKey = ShareKeyTestFactory.createPrivate()
+        val itemKey = ItemKey(5L, EncryptedByteArray(byteArrayOf(1, 2)), "item-response")
+        val expected = shareKey to itemKey
+        val folderKey = FolderKey(
+            rotation = 8L,
+            key = EncryptedByteArray(byteArrayOf(4, 4, 4)),
+            responseKey = "folder-response"
+        )
+        val shareRepository = FakeShareRepository().apply {
+            setGetByIdResult(shareId, Result.success(share))
+        }
+        val itemKeyRepository = FakeItemKeyRepository().apply {
+            emitGetLatestShareAndItemKey(expected)
+        }
+
+        GetShareAndItemKeyImpl(
+            shareRepository = shareRepository,
+            itemKeyRepository = itemKeyRepository
+        ).invoke(userId, addressId, shareId, itemId, decryptionKeyOverride = folderKey)
+
+        assertEquals(
+            ItemKeyRepository.Scope.SharedVault(
+                groupEmail = share.groupEmail,
+                decryptionSource = ItemKeyRepository.VaultDecryptionSource.Folder(folderKey)
+            ),
+            itemKeyRepository.lastGetLatestShareAndItemKeyScope
+        )
+    }
+
+}

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">個人資料</string>
+  <string name="profile_option_settings">設定</string>
+  <string name="profile_option_account">帳號</string>
+  <string name="profile_help_center">說明中心</string>
+  <string name="profile_security">安全</string>
+  <string name="profile_option_autofill_troubleshooting">Autofill troubleshooting</string>
+  <string name="profile_option_feedback">意見回饋</string>
+  <string name="profile_option_import_export">匯入/匯出</string>
+  <string name="profile_option_tutorial">如何使用Proton Pass</string>
+  <string name="profile_option_rating">為應用程式評分</string>
+  <string name="profile_spread_the_word">Spread the word</string>
+  <string name="profile_option_tell_a_friend">介紹給朋友</string>
+  <string name="profile_spread_the_word_share_message">I\'m using Proton Pass to keep my passwords secure. Try it: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">自動填入</string>
+  <string name="profile_option_autofill_subtitle">自動填入使用者名稱和密碼</string>
+  <string name="profile_option_secure_links">安全加密連結</string>
+  <string name="profile_option_alias_management">別名管理</string>
+  <string name="profile_option_generated_passwords">已生成的密碼</string>
+  <string name="profile_error_biometry_failed_to_start">無法使用生物特徵驗證</string>
+  <string name="profile_error_biometry_failed_to_authenticate">驗證失敗</string>
+  <string name="profile_error_app_lock_update_failed">Could not update the app lock. Please try again.</string>
+  <string name="profile_fingerprint_lock_enabled">啟用指紋鎖</string>
+  <string name="profile_fingerprint_lock_disabled">指紋鎖已停用</string>
+  <string name="profile_app_version_copied_to_clipboard">已複製應用程式版本</string>
+  <string name="feedback_option_reddit">於Reddit查看Proton</string>
+  <string name="feedback_option_mail">傳送訊息給我們</string>
+  <string name="feedback_option_vote_new_features">投票給新功能</string>
+  <string name="app_lock_immediately">立即</string>
+  <string name="app_lock_one_minute">1分鐘後</string>
+  <string name="app_lock_two_minutes">2分鐘後</string>
+  <string name="app_lock_five_minutes">5分鐘後</string>
+  <string name="app_lock_ten_minutes">10分鐘後</string>
+  <string name="app_lock_one_hour">1 小時之後</string>
+  <string name="app_lock_four_hours">4小時之後</string>
+  <string name="app_lock_config_none">無</string>
+  <string name="app_lock_config_biometric">生物特徵辨識</string>
+  <string name="app_lock_config_pin_code">PIN 碼</string>
+  <string name="app_lock_config_app_lock_time">自動鎖定</string>
+  <string name="app_lock_config_password">密碼</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">當生物特徵辨失敗使用系統鎖</string>
+  <string name="configure_pin_set_pin_code">設定 PIN 碼</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">透過代碼解鎖應用程式</string>
+  <string name="configure_pin_enter_pin_code">輸入 PIN 碼</string>
+  <string name="configure_pin_repeat_pin_code">重複輸入 PIN 碼</string>
+  <string name="configure_pin_continue">繼續</string>
+  <string name="configure_pin_pin_does_not_match">此 PIN 碼不相符</string>
+  <string name="configure_pin_pin_too_short">此 PIN 碼太短了</string>
+  <string name="configure_pin_pin_cannot_be_blank">PIN 碼不得空白</string>
+  <string name="configure_pin_pin_lock_enabled">PIN 碼已啟用</string>
+  <string name="configure_pin_pin_lock_disabled">PIN 碼已關閉</string>
+  <string name="profile_option_lock_with">鎖定透過</string>
+  <string name="profile_option_unlock_with">解鎖透過</string>
+  <string name="profile_option_change_pin_code">變更 Pin 碼</string>
+  <string name="profile_passkey_support_section_title">密碼金鑰</string>
+  <string name="profile_passkey_support_subtitle_supported">Passkeys can be supported on this device</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">您的 Android 版本不支援通行密鑰。</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">無法檢查對通行密鑰的支援</string>
+  <plurals name="profile_after_days">
+    <item quantity="other">%d天後</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="other">%d 分鐘之後</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="other">%d小時後</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">少於一分鐘</string>
+  <string name="account_switcher_manage_account">管理帳號</string>
+  <string name="account_switcher_sign_in">登錄</string>
+  <string name="account_switcher_sign_out">退出</string>
+  <string name="account_switcher_switch_to">切換至</string>
+  <string name="account_switcher_add_account">加入帳號</string>
+  <string name="account_switcher_remove">刪除</string>
+  <string name="filtered_by_logins">已依登入篩選。垃圾桶中的項目不會顯示。</string>
+  <string name="filtered_by_logins_with_mfa">已依啟用 TOTP 的登入篩選。垃圾桶中的項目不會顯示。</string>
+  <string name="filtered_by_aliases">已依別名篩選。垃圾桶中的項目不會顯示。</string>
+  <string name="filtered_by_notes">已依筆記篩選。垃圾桶中的項目不會顯示。</string>
+  <string name="filtered_by_credit_cards">已依信用或簽帳卡篩選。垃圾桶中的項目不會顯示。</string>
+  <string name="filtered_by_identities">已依身分篩選。垃圾桶中的項目不會顯示。</string>
+  <string name="filtered_by_custom_items">已依自訂項目篩選。垃圾桶中的項目不會顯示。</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">You need to switch to %1$s in order to manage it</string>
+  <string name="account_switch_confirmation_title">管理帳號</string>
+  <string name="account_switch_confirmation_confirm">切換並管理</string>
+  <string name="profile_storage_data_title">雲端儲存</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s的%2$s</string>
+</resources>

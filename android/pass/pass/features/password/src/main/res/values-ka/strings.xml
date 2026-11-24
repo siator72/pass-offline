@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="generate_password_copy">კოპირება და დახურვა</string>
+  <string name="password_copied_to_clipboard">პაროლი დაკოპირდა</string>
+  <string name="bottomsheet_generate_password_title">პაროლის გენერირება</string>
+  <string name="password_type">ტიპი</string>
+  <string name="special_characters">სპეცსიმბოლოები (!&amp;*)</string>
+  <plurals name="character_count">
+    <item quantity="one">%s სიმბოლო</item>
+    <item quantity="other">%s სიმბოლო</item>
+  </plurals>
+  <string name="bottomsheet_option_capital_letters">მაღალი რეგისტრის სიმბოლოები (A-Z)</string>
+  <string name="bottomsheet_option_include_numbers">რიცხვების ჩათვლით (0-9)</string>
+  <string name="regenerate_password_icon_content_description">პაროლის გენერირების ღილაკი</string>
+  <string name="password_mode_memorable">ადვილად დასამახსოვრებელი პაროლი</string>
+  <string name="password_mode_random">შემთხვევითი პაროლი</string>
+  <string name="password_mode_icon">პაროლის რეჟიმის ხატულა</string>
+  <string name="password_words_separator_icon">პაროლის სიტყვების გამყოფი</string>
+  <string name="password_history_title">გენერირებული პაროლები</string>
+  <string name="password_history_empty">ისტორიის გარეშე</string>
+  <string name="password_history_description">დაგენერირებული პაროლები კვირის განმავლობაში იქნება შენახული.</string>
+  <string name="password_history_today">დღეს, %s</string>
+  <string name="password_history_yesterday">გუშინ, %s</string>
+  <string name="password_history_before_yesterday">%d დღის წინ, %s</string>
+  <string name="password_history_clear_history">ისტორიის გასუფთავება</string>
+  <string name="password_history_remove_from_history">ისტორიიდან წაშლა</string>
+</resources>

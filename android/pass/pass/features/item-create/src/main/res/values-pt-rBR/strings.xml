@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Actions -->
+  <string name="action_save">Salvar</string>
+  <string name="action_remove">Remover</string>
+  <!-- Create item bottomsheet -->
+  <string name="action_login">Início de sessão</string>
+  <string name="action_alias">Alias</string>
+  <string name="action_note">Nota</string>
+  <string name="action_credit_card">Cartão de crédito</string>
+  <string name="action_password">Senha</string>
+  <string name="action_identity">Identidade</string>
+  <string name="action_more">Mais</string>
+  <string name="item_type_login_description" comment="Subtitle of the Item Type LOGIN in the Create new item bottomsheet">Adicione detalhes de início de sessão para um aplicativo ou site</string>
+  <string name="item_type_alias_description" comment="Subtitle of the Item Type ALIAS in the Create new item bottomsheet">Obtenha um alias de e-mail para usar em novos aplicativos</string>
+  <string name="item_type_note_description" comment="Subtitle of the Item Type NOTE in the Create new item bottomsheet">Anote um PIN, código ou nota para si próprio</string>
+  <string name="item_type_credit_card_description" comment="Subtitle of the Item Type CREDIT CARD in the Create new item bottomsheet">Armazene de forma segura suas informações de pagamento</string>
+  <string name="item_type_identity_description" comment="Subtitle of the Item Type IDENTITY in the Create new item bottomsheet">Preencha seus dados pessoais</string>
+  <string name="item_type_more_description" comment="Subtitle of the Item Type CUSTOM in the Create new item bottomsheet">Salve Wi-Fi, passaporte, SSH ou personalizado</string>
+  <string name="item_type_password_description" comment="Subtitle of the Item Type PASSWORD in the Create new item bottomsheet">Gerar uma senha segura</string>
+  <string name="sticky_button_generate_username">Gerar nome de usuário</string>
+  <!-- Create Login -->
+  <string name="field_email_title">Endereço de e-mail</string>
+  <string name="field_email_hint">Adicionar endereços de e-mail</string>
+  <string name="field_email_error">O endereço de e-mail não é valido.</string>
+  <string name="field_email_tooltip_title">Adicionar um campo de nome de usuário</string>
+  <string name="field_email_tooltip_description">Toque aqui para adicionar um campo para um nome de usuário.</string>
+  <string name="field_username_title">Nome de usuário</string>
+  <string name="field_username_hint">Adicionar nome de usuário</string>
+  <string name="field_username_or_email_title">Nome de usuário ou endereço de e-mail</string>
+  <string name="field_username_or_email_hint">Adicionar nome de usuário ou endereço de e-mail</string>
+  <string name="field_password_title">Senha</string>
+  <string name="field_password_hint">Adicionar senha</string>
+  <string name="field_website_address_title">Site</string>
+  <string name="field_website_address_invalid">O URL não é válido.</string>
+  <string name="field_website_address_hint">https://</string>
+  <string name="field_website_add_another">Adicionar</string>
+  <string name="sticky_button_generate_password" comment="Sticky button on the Create login screen. When tapped, the Generate password bottomsheet is shown">Gerar uma nova senha</string>
+  <string name="sticky_button_create_alias" comment="Sticky button on the Create login screen. When tapped, the Create alias bottomsheet is shown">Hide-my-email</string>
+  <string name="sticky_button_use_account_email" comment="Sticky button on the Create login screen. When tapped, the current user email is autofilled">Usar %s</string>
+  <string name="create_login_item_creation_error">Não foi possível criar o início de sessão</string>
+  <string name="create_login_item_update_error">Não foi possível atualizar o início de sessão</string>
+  <string name="create_login_init_error">Problema ao recuperar os detalhes de iniciar sessão.</string>
+  <string name="create_login_invalid_totp">Os conteúdos de A2F não são válidos</string>
+  <string name="update_login_attachments_init_error">Problema ao recuperar os anexos para inciar sessão.</string>
+  <string name="login_link_attachments_error">Falha ao vincular ou desvincular anexos ao conectar-se</string>
+  <string name="login_rename_attachments_error">Falha ao renomear anexos de entrada</string>
+  <string name="login_created">Início de sessão criado</string>
+  <string name="bottomsheet_modify_alias_title">Modificar alias</string>
+  <string name="bottomsheet_custom_field_type_text">Texto</string>
+  <string name="bottomsheet_custom_field_type_hidden">Oculto</string>
+  <string name="bottomsheet_custom_field_type_totp">Chave secreta A2F (TOTP)</string>
+  <string name="bottomsheet_custom_field_type_date">Data</string>
+  <string name="bottomsheet_custom_field_option_edit">Editar nome</string>
+  <string name="bottomsheet_custom_field_option_remove">Remover o campo</string>
+  <string name="bottomsheet_custom_field_option_remove_content_description">Remover o campo personalizado</string>
+  <string name="bottomsheet_custom_section_option_remove">Remover seção</string>
+  <string name="custom_field_hidden_placeholder">Adicionar texto oculto</string>
+  <string name="custom_field_hidden_icon_content_description">Ícone de campo personalizado oculto</string>
+  <string name="custom_field_text_placeholder">Adicionar texto</string>
+  <string name="custom_field_date_placeholder">Adicionar data</string>
+  <string name="custom_field_dialog_title">Nome do campo personalizado</string>
+  <string name="custom_field_dialog_body">Dê um nome ao seu campo personalizado</string>
+  <string name="custom_field_dialog_placeholder">Por exemplo, ID do usuário, PIN</string>
+  <string name="custom_section_dialog_title">Inserir título da seção</string>
+  <string name="custom_section_dialog_placeholder">Título</string>
+  <string name="custom_field_options_content_description">Opções de campo personalizado</string>
+  <!-- Create Note -->
+  <string name="create_note_item_creation_error">Não foi possível criar a nota</string>
+  <string name="create_note_item_update_error">Não foi possível atualizar a nota</string>
+  <string name="create_note_init_error">Problema ao recuperar os detalhes da nota.</string>
+  <string name="update_note_attachments_init_error">Problema ao recuperar anexos de notas</string>
+  <string name="note_link_attachments_error">Falha ao vincular ou desvincular anexos à nota</string>
+  <string name="note_rename_attachments_error">Falha ao renomear anexos de notas</string>
+  <string name="note_created">Nota criada</string>
+  <!-- Create Alias -->
+  <string name="field_alias_title">Endereço do alias</string>
+  <string name="field_mailboxes_creation_title">Encaminhar para</string>
+  <string name="field_mailboxes_edit_title">Encaminhando para</string>
+  <string name="field_alias_you_are_about_to_create">Você está prestes a criar</string>
+  <string name="field_alias_prefix">Prefixo</string>
+  <string name="field_alias_suffix">Sufixo</string>
+  <string name="alias_bottomsheet_alias_title">Alias</string>
+  <string name="alias_bottomsheet_suffix_title">Sufixo</string>
+  <string name="create_alias_item_creation_error">Não foi possível criar o alias</string>
+  <string name="create_alias_cannot_create_more_aliases_error">Você não pode criar mais alias</string>
+  <string name="create_alias_email_not_validated_error">Você não pode criar alias sem antes validar seu e-mail</string>
+  <string name="alias_rate_limited">Muitos alias criados recentemente</string>
+  <string name="create_alias_item_update_error">Não foi possível atualizar o alias</string>
+  <string name="create_alias_init_error">Problema ao recuperar os detalhes do alias.</string>
+  <string name="update_alias_attachments_init_error">Problema ao recuperar anexos de alias</string>
+  <string name="alias_link_attachments_error">Falha ao vincular ou desvincular anexos ao alias</string>
+  <string name="alias_rename_attachments_error">Falha ao renomear anexos de alias</string>
+  <string name="alias_created">Alias criado</string>
+  <string name="cannot_retrieve_alias_options">Não foi possível recuperar as opções de alias</string>
+  <string name="alias_mailbox_dialog_title">Encaminhar para</string>
+  <string name="sl_note_info_title">O que é uma nota do SimpleLogin?</string>
+  <string name="sl_note_info_message_part1" comment="this is the first part of a text compose by this and the following part2 and part3">No Pass, uma nota de item é criptografada com a chave de criptografia do item e somente usuários com acesso ao item podem visualizar a nota.</string>
+  <string name="sl_note_info_message_part2">Nem mesmo o Proton ou o SimpleLogin podem vê-lo.</string>
+  <string name="sl_note_info_message_part3">Uma nota no SimpleLogin é armazenada no mesmo local com o endereço alias e, embora seja protegida por criptografia em repouso, não é criptografada de ponta a ponta, o que significa que qualquer pessoa que tenha acesso ao banco de dados do SimpleLogin pode lê-la.</string>
+  <string name="sl_note_info_content_description">Mostrar caixa de diálogo de informações da nota SimpleLogin</string>
+  <!-- Create note -->
+  <string name="note_hint">Nota</string>
+  <!-- Create Credit Card -->
+  <string name="field_cardholder_name_title">Nome no cartão</string>
+  <string name="field_cardholder_name_hint">Nome completo</string>
+  <string name="field_card_number_title">Número do cartão</string>
+  <string name="field_card_number_hint">1234 1234 1234 1234</string>
+  <string name="field_card_cvv_title">Código de segurança</string>
+  <string name="field_card_cvv_hint">123</string>
+  <string name="field_card_pin_title">PIN</string>
+  <string name="field_card_pin_hint">123456</string>
+  <string name="field_card_expiration_date_title">Data de expiração</string>
+  <string name="field_card_expiration_date_hint">MM/AA</string>
+  <string name="field_card_expiration_date_error">Insira uma data válida no formato MM/AA</string>
+  <string name="create_credit_card_item_creation_error">Não foi possível criar o cartão de crédito</string>
+  <string name="create_credit_card_item_creation_success">Cartão de crédito criado</string>
+  <string name="credit_card_init_error">Problema ao recuperar os detalhes do cartão de crédito.</string>
+  <string name="update_credit_card_attachments_init_error">Problema ao recuperar anexos de cartão de crédito</string>
+  <string name="credit_card_link_attachments_error">Falha ao vincular ou desvincular anexos ao cartão de crédito</string>
+  <string name="credit_card_rename_attachments_error">Falha ao renomear anexos de cartão de crédito</string>
+  <string name="credit_card_item_update_error">Não foi possível atualizar o cartão de crédito.</string>
+  <!-- Create Identity -->
+  <string name="identity_field_full_name_title">Nome completo</string>
+  <string name="identity_field_email_title">E-mail</string>
+  <string name="identity_field_phone_number_title">Número do telefone</string>
+  <string name="identity_field_organization_title">Organização</string>
+  <string name="identity_field_street_address_title">Endereço da rua, Caixa Postal</string>
+  <string name="identity_field_zip_or_postal_code_title">CEP ou código postal</string>
+  <string name="identity_field_city_title">Cidade</string>
+  <string name="identity_field_state_or_province_title">Estado ou província</string>
+  <string name="identity_field_country_or_region_title">País ou região</string>
+  <string name="identity_field_social_security_number_title">CPF</string>
+  <string name="identity_field_passport_number_title">Número do passaporte</string>
+  <string name="identity_field_license_number_title">Número da licença</string>
+  <string name="identity_field_website_title">Site</string>
+  <string name="identity_field_xhandle_title">Usuário no X</string>
+  <string name="identity_field_company_title">Empresa</string>
+  <string name="identity_field_job_title_title">Cargo</string>
+  <string name="identity_field_first_name_title">Primeiro nome</string>
+  <string name="identity_field_last_name_title">Sobrenome</string>
+  <string name="identity_field_middle_name_title">Segundo nome</string>
+  <string name="identity_field_birthdate_title">Data de nascimento</string>
+  <string name="identity_field_gender_title">Gênero</string>
+  <string name="identity_field_floor_title">Piso</string>
+  <string name="identity_field_county_title">Província</string>
+  <string name="identity_field_linkedin_title">Linkedin</string>
+  <string name="identity_field_reddit_title">Nome de usuário no Reddit</string>
+  <string name="identity_field_facebook_title">URL do Facebook</string>
+  <string name="identity_field_yahoo_title">Nome de usuário no Yahoo</string>
+  <string name="identity_field_instagram_title">Nome de usuário no Instagram</string>
+  <string name="identity_field_personal_website_title">URL do site pessoal</string>
+  <string name="identity_field_work_phone_number_title">Número de telefone no trabalho</string>
+  <string name="identity_field_work_email_title">Endereço de e-mail no trabalho</string>
+  <string name="identity_add_field_first_name">Primeiro nome</string>
+  <string name="identity_add_field_middle_name">Segundo nome</string>
+  <string name="identity_add_field_last_name">Sobrenome</string>
+  <string name="identity_add_field_birthdate">Data de nascimento</string>
+  <string name="identity_add_field_gender">Gênero</string>
+  <string name="identity_add_field_floor">Piso</string>
+  <string name="identity_add_field_county">Província</string>
+  <string name="identity_add_field_linkedin">Linkedin</string>
+  <string name="identity_add_field_reddit">Nome de usuário no Reddit</string>
+  <string name="identity_add_field_facebook">URL do Facebook</string>
+  <string name="identity_add_field_yahoo">Nome de usuário no Yahoo</string>
+  <string name="identity_add_field_instagram">Nome de usuário no Instagram</string>
+  <string name="identity_add_field_personal_website">URL do site pessoal</string>
+  <string name="identity_add_field_work_phone_number">Número de telefone no trabalho</string>
+  <string name="identity_add_field_work_email_address">Endereço de e-mail no trabalho</string>
+  <string name="identity_add_field_custom_field">Campo customizado</string>
+  <string name="identity_section_personal_details">Detalhes pessoais</string>
+  <string name="identity_section_address_details">Detalhes do endereço</string>
+  <string name="identity_section_contact_details">Detalhes do contato</string>
+  <string name="identity_section_work_details">Detalhes do trabalho</string>
+  <string name="identity_bottomsheet_add_field">Adicionar campo</string>
+  <string name="create_identity_init_error">Problema ao recuperar os detalhes da identidade.</string>
+  <string name="update_identity_attachments_init_error">Problema ao recuperar anexos de identidade</string>
+  <string name="identity_link_attachments_error">Falha ao vincular ou desvincular anexos à identidade</string>
+  <string name="identity_rename_attachments_error">Falha ao renomear os anexos da identidade</string>
+  <string name="create_identity_item_creation_error">Não foi possível criar a identidade</string>
+  <string name="create_identity_item_creation_success">Identidade criada</string>
+  <string name="update_identity_item_creation_success">Identidade atualizada</string>
+  <string name="update_identity_item_creation_error">Não foi possível atualizar a identidade</string>
+  <!--  Common create items  -->
+  <string name="title_create">Criar</string>
+  <string name="title_duplicate" comment="Default title when duplicating an item. Placeholder is the title of the item being duplicated.">%s (copiado)</string>
+  <string name="changes_saved">Alterações salvas</string>
+  <!--  TOTP  -->
+  <string name="totp_create_login_field_title">Chave secreta A2F (TOTP)</string>
+  <string name="totp_create_login_field_invalid">Chave secreta inválida A2F (TOTP)</string>
+  <string name="totp_create_login_field_placeholder">Adicionar chave secreta A2F (TOTP)</string>
+  <string name="close_scree_icon_content_description">Botão de fechar tela</string>
+  <string name="totp_paste_code_action">Colar o código</string>
+  <string name="totp_scan_code_action">Escanear código</string>
+  <string name="camera_permission_explanation">A autorização da câmera é necessária para que essa função esteja disponível.</string>
+  <string name="camera_permission_open_settings">Abrir configurações</string>
+  <!--  TOTP limit  -->
+  <string name="mfa_limit_reached">Limite A2F atingido</string>
+  <string name="upgrade">Fazer upgrade</string>
+  <string name="mfa_icon_content_description">Ícone de A2F</string>
+  <string name="create_alias_content_limit_banner">Você atingiu o limite de aliases que pode criar. Crie um número ilimitado de aliases quando fizer o upgrade de sua assinatura.</string>
+  <string name="snackbar_update_app_to_update_item" comment="This message will appear to users that try to update an item that needs a newer version of the app to do so">O aplicativo precisa ser atualizado para editar esse item</string>
+  <string name="remove_passkey_dialog_title">Remover essa chave de acesso?</string>
+  <string name="remove_passkey_dialog_body" comment="Body of the dialog that asks the user if they want to remove the passkey for an item. Placeholder 1 is the username (such as my_user). Placeholder 2 is the domain (such as google.com)">Você está prestes a remover a chave de acesso para o usuário \'%1$s\' em \'%2$s\'. Tem certeza?</string>
+  <!-- Attachments -->
+  <string name="banner_title_attachments">Anexos</string>
+  <string name="banner_body_attachments">Você pode anexar arquivos para itens para melhor organização</string>
+  <string name="open_with">Abrir com:</string>
+  <string name="banner_advanced_options_title">Você sabia?</string>
+  <string name="banner_advanced_options_subtitle">Toque no ícone da engrenagem para personalizar o alias que deseja.</string>
+  <string name="banner_custom_domain_title">Você sabia?</string>
+  <string name="banner_custom_domain_subtitle">Adicionando o seu domínio, você pode criar aliases como olá@meu-domínio.br.</string>
+  <string name="banner_custom_domain_button">Adicionar domínio</string>
+  <string name="banner_mailbox_title">Você sabia?</string>
+  <string name="banner_mailbox_subtitle">Compartilhe aliases com outros adicionando sua caixa de entrada como uma caixa de correio adicional.</string>
+  <string name="banner_mailbox_button">Adicionar caixa de correio</string>
+  <!-- Suffix -->
+  <string name="suffix_subtitle_premium_domain">Domínio premium</string>
+  <string name="suffix_subtitle_public_domain">Domínio público</string>
+  <string name="suffix_subtitle_private_domain">Seu domínio</string>
+  <!-- Templates -->
+  <string name="template_item_api_credential">Credencial de API</string>
+  <string name="template_item_database">Base de dados</string>
+  <string name="template_item_server">Servidor</string>
+  <string name="template_item_software_license">Licença de software</string>
+  <string name="template_item_ssh_key">Chave SSH</string>
+  <string name="template_item_wifi_network">Rede Wi-Fi</string>
+  <string name="template_item_bank_account">Conta bancária</string>
+  <string name="template_item_crypto_wallet">Carteira de criptomoedas</string>
+  <string name="template_item_driver_license">Carteira de motorista</string>
+  <string name="template_item_medical_record">Registro médico</string>
+  <string name="template_item_membership">Subscrição</string>
+  <string name="template_item_passport">Passaporte</string>
+  <string name="template_item_reward_program">Programa de recompensas</string>
+  <string name="template_item_social_security_number">Número de segurança social</string>
+  <!-- API Credential Fields -->
+  <string name="template_api_credential_field_api_key">Chave API</string>
+  <string name="template_api_credential_field_secret">Segredo</string>
+  <string name="template_api_credential_field_expiry_date">Data de validade</string>
+  <string name="template_api_credential_field_permissions">Permissões</string>
+  <!-- Database Fields -->
+  <string name="template_database_field_host">Servidor</string>
+  <string name="template_database_field_port">Porta</string>
+  <string name="template_database_field_username">Nome de usuário</string>
+  <string name="template_database_field_password">Senha</string>
+  <string name="template_database_field_database_type">Tipo do banco de dados</string>
+  <!-- Server Fields -->
+  <string name="template_server_field_ip_address">Endereço IP</string>
+  <string name="template_server_field_hostname">Nome do anfitrião</string>
+  <string name="template_server_field_os">Sistema operacional</string>
+  <string name="template_server_field_username">Nome de usuário</string>
+  <string name="template_server_field_password">Senha</string>
+  <!-- Software License Fields -->
+  <string name="template_software_license_field_license_key">Chave de licença</string>
+  <string name="template_software_license_field_product">Produto</string>
+  <string name="template_software_license_field_expiry_date">Data de validade</string>
+  <string name="template_software_license_field_owner">Proprietário</string>
+  <!-- SSH Key Fields -->
+  <string name="template_ssh_key_field_private_key">Chave privada</string>
+  <string name="template_ssh_key_field_public_key">Chave pública</string>
+  <string name="template_ssh_key_field_username">Nome de usuário</string>
+  <string name="template_ssh_key_field_host">Servidor</string>
+  <!-- SSH Key Generation -->
+  <string name="ssh_key_generate_button">Gerar</string>
+  <string name="ssh_key_type_ed25519">Ed25519</string>
+  <string name="ssh_key_type_rsa_2048">RSA-2048</string>
+  <string name="ssh_key_type_rsa_4096">RSA-4096</string>
+  <string name="ssh_key_generation_error">Falha ao gerar chave SSH</string>
+  <!-- WiFi Network Fields -->
+  <string name="template_wifi_network_field_name">Nome (SSID)</string>
+  <!-- Bank Account Fields -->
+  <string name="template_bank_account_field_bank_name">Nome do banco</string>
+  <string name="template_bank_account_field_account_number">Número da conta</string>
+  <string name="template_bank_account_field_routing_number">Número de roteamento</string>
+  <string name="template_bank_account_field_account_type">Tipo de conta</string>
+  <string name="template_bank_account_field_iban">IBAN</string>
+  <string name="template_bank_account_field_swift_bic">SWIFT/BIC</string>
+  <string name="template_bank_account_field_holder_name">Nome do titular</string>
+  <!-- Crypto Wallet Fields -->
+  <string name="template_crypto_wallet_field_wallet_name">Nome da carteira</string>
+  <string name="template_crypto_wallet_field_address">Endereço</string>
+  <string name="template_crypto_wallet_field_private_key">Chave privada</string>
+  <string name="template_crypto_wallet_field_seed_phrase">Frase de recuperação</string>
+  <string name="template_crypto_wallet_field_network">Rede</string>
+  <!-- Driver License Fields -->
+  <string name="template_driver_license_field_full_name">Nome completo</string>
+  <string name="template_driver_license_field_license_number">Número da licença</string>
+  <string name="template_driver_license_field_issuing_state_country">Estado/país Emissor</string>
+  <string name="template_driver_license_field_expiry_date">Data de validade</string>
+  <string name="template_driver_license_field_date_of_birth">Data de nascimento</string>
+  <string name="template_driver_license_field_class">Classe</string>
+  <!-- Medical Record Fields -->
+  <string name="template_medical_record_field_patient_name">Nome do paciente</string>
+  <string name="template_medical_record_field_record_number">Número de registro</string>
+  <string name="template_medical_record_field_medical_conditions">Condições médicas</string>
+  <string name="template_medical_record_field_medications">Medicamentos</string>
+  <string name="template_medical_record_field_doctor">Médico</string>
+  <string name="template_medical_record_field_hospital">Hospital</string>
+  <!-- Membership Fields -->
+  <string name="template_membership_field_organization_name">Nome da organização</string>
+  <string name="template_membership_field_membership_id">Identificação da associação</string>
+  <string name="template_membership_field_member_name">Nome do membro</string>
+  <string name="template_membership_field_expiry_date">Data de expiração</string>
+  <string name="template_membership_field_tier_level">Camada/Nível</string>
+  <!-- Passport Fields -->
+  <string name="template_passport_field_full_name">Nome completo</string>
+  <string name="template_passport_field_passport_number">Número de passaporte</string>
+  <string name="template_passport_field_country">País</string>
+  <string name="template_passport_field_expiry_date">Data de expiração</string>
+  <string name="template_passport_field_date_of_birth">Data de nascimento</string>
+  <string name="template_passport_field_issuing_authority">Autoridade emissora</string>
+  <!-- Reward Program Fields -->
+  <string name="template_reward_program_field_program_name">Nome do programa</string>
+  <string name="template_reward_program_field_member_id">ID de membro</string>
+  <string name="template_reward_program_field_points_balance">Saldo de pontos</string>
+  <string name="template_reward_program_field_expiry_date">Data de expiração</string>
+  <string name="template_reward_program_field_tier_status">Nível</string>
+  <!-- Social Security Number Fields -->
+  <string name="template_social_security_number_field_full_name">Nome completo</string>
+  <string name="template_social_security_number_field_ssn">Número de segurança social</string>
+  <string name="template_social_security_number_field_issuing_country">País emissor</string>
+  <string name="template_header_technology">Tecnologia</string>
+  <string name="template_header_finance">Finanças</string>
+  <string name="template_header_title_personal">Pessoal</string>
+  <string name="button_start_from_scratch">Começar do zero</string>
+  <string name="select_template_title">Item personalizado</string>
+  <!-- Custom item screen -->
+  <string name="add_custom_field_button">Adicionar campo</string>
+  <string name="add_section_button">Adicionar seção</string>
+  <string name="add_public_key_placeholder">Adicionar chave pública</string>
+  <string name="add_private_key_placeholder">Adicionar chave privada</string>
+  <string name="add_ssid_name_placeholder">Adicionar nome (SSID)</string>
+  <string name="create_custom_item_init_error">Problema ao recuperar detalhes do item personalizado</string>
+  <string name="update_custom_item_attachments_init_error">Problema ao recuperar anexos de itens personalizados</string>
+  <string name="custom_item_link_attachments_error">Falha ao vincular ou desvincular anexos do item personalizado</string>
+  <string name="custom_item_rename_attachments_error">Falha ao renomear anexos de itens personalizados</string>
+  <string name="create_custom_item_item_creation_error">Não foi possível criar o item personalizado</string>
+  <string name="create_custom_item_item_creation_success">Item personalizado criado</string>
+  <string name="update_custom_item_item_creation_success">item personalizado atualizado</string>
+  <string name="update_custom_item_item_creation_error">Não foi possível atualizar o item personalizado</string>
+  <!-- Cannot create items dialog -->
+  <string name="cannot_create_items_dialog_title">Não é possível criar itens.</string>
+  <string name="cannot_create_items_dialog_message">Você não tem nenhum cofre com acesso de editor ou administrador. Tente criar um, no aplicativo principal ou peça suporte ao administrador da sua organização.</string>
+  <string name="wifi_security_type_field_label">Tipo de segurança</string>
+  <string name="functionality_not_available">Esta funcionalidade não está disponível para seu dispositivo.</string>
+  <!-- Autofill URL suggestions screen -->
+  <string name="autofill_suggestions_title">Correspondência de URL</string>
+  <string name="autofill_suggestions_description">Ajuste comportamentos de preenchimento automático para alterar onde os ‘logins’ são sugeridos e preenchidos para %s.</string>
+  <string name="autofill_suggestions_tab_basic">Básico</string>
+  <string name="autofill_suggestions_tab_advanced">Avançado</string>
+  <string name="autofill_suggestions_mode_default">Domínio principal e subdomínios</string>
+  <string name="autofill_suggestions_mode_exact">(Sub)domínio exato</string>
+  <string name="autofill_suggestions_mode_never">Nunca preencher neste site</string>
+  <string name="autofill_suggestions_mode_start_with">Iniciar com</string>
+  <string name="autofill_suggestions_mode_pattern">Padrão curinga</string>
+  <string name="autofill_suggestions_mode_regular_expression">Expressão regular</string>
+  <string name="autofill_suggestions_mode_exact_path">Correspondência exata de URL</string>
+  <string name="autofill_suggestions_android_limitation">As regras avançadas não estão disponíveis no Android devido a limitações nas APIs do sistema operacional.</string>
+  <string name="autofill_suggestions_mode_default_badge">PADRÃO</string>
+  <string name="autofill_suggestions_url_column">URL</string>
+  <string name="autofill_suggestions_suggested_column">Recomendado</string>
+  <string name="field_website_skipped_autofill">Esta URL será ignorada pelo preenchimento automático</string>
+</resources>

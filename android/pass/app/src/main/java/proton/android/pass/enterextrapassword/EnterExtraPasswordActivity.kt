@@ -1,0 +1,127 @@
+/*
+ * Copyright (c) 2024-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.enterextrapassword
+
+import android.os.Bundle
+import androidx.activity.compose.setContent
+import androidx.compose.runtime.getValue
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.runBlocking
+import proton.android.pass.autofill.di.UserPreferenceEntryPoint
+import proton.android.pass.commonui.api.PassTheme
+import proton.android.pass.commonui.api.enableEdgeToEdgeProtonPass
+import proton.android.pass.commonui.api.setSecureMode
+import proton.android.pass.composecomponents.impl.theme.isDark
+import proton.android.pass.data.api.usecases.extrapassword.AuthWithExtraPasswordListener
+import proton.android.pass.domain.UserId
+import proton.android.pass.log.api.PassLogger
+import proton.android.pass.notifications.api.SnackbarDispatcher
+import proton.android.pass.preferences.AllowScreenshotsPreference
+import proton.android.pass.preferences.ThemePreference
+import proton.android.pass.preferences.UserPreferencesRepository
+import proton.android.pass.ui.AppNavigation
+import javax.inject.Inject
+
+@AndroidEntryPoint
+class EnterExtraPasswordActivity : FragmentActivity() {
+
+    @Inject
+    lateinit var userPreferencesRepository: UserPreferencesRepository
+
+    @Inject
+    lateinit var snackbarDispatcher: SnackbarDispatcher
+
+    @Inject
+    lateinit var authWithExtraPasswordListener: AuthWithExtraPasswordListener
+
+    private var extraPasswordUserId: UserId? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setSecureMode()
+        super.onCreate(savedInstanceState)
+
+        enableEdgeToEdgeProtonPass()
+
+        val userId = intent.getStringExtra(EXTRA_USER_ID)?.let { UserId(it) } ?: run {
+            PassLogger.w(TAG, "Missing user id")
+            setResult(RESULT_CANCELED)
+            finish()
+            return
+        }
+        extraPasswordUserId = userId
+
+        setContent {
+            val themePreference by userPreferencesRepository.getThemePreference()
+                .collectAsStateWithLifecycle(
+                    runBlocking {
+                        userPreferencesRepository.getThemePreference().firstOrNull() ?: ThemePreference.System
+                    }
+                )
+            val isDark = isDark(themePreference)
+            PassTheme(isDark = isDark) {
+                EnterExtraPasswordApp(
+                    userId = userId,
+                    onNavigate = {
+                        when (it) {
+                            is AppNavigation.Finish -> setResultAndFinish(success = true)
+                            is AppNavigation.ForceSignOut -> setResultAndFinish(success = false)
+                            else -> {}
+                        }
+                    }
+                )
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        if (isFinishing) {
+            extraPasswordUserId?.let(authWithExtraPasswordListener::onAuthWithExtraPasswordCancelled)
+        }
+        super.onDestroy()
+    }
+
+    private fun setResultAndFinish(success: Boolean) {
+        snackbarDispatcher.reset()
+        setResult(if (success) RESULT_OK else RESULT_CANCELED)
+        finish()
+    }
+
+    private fun setSecureMode() {
+        val factory = EntryPointAccessors.fromApplication(
+            context = this,
+            entryPoint = UserPreferenceEntryPoint::class.java
+        )
+        val repository = factory.getRepository()
+        val setting = runBlocking {
+            repository.getAllowScreenshotsPreference()
+                .firstOrNull()
+                ?: AllowScreenshotsPreference.Disabled
+        }
+        setSecureMode(setting)
+    }
+
+    companion object {
+        private const val TAG = "EnterExtraPasswordActivity"
+        const val EXTRA_USER_ID = "extra_user_id"
+    }
+}

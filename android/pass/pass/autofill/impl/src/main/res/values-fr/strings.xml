@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Obtenir depuis Proton Pass</string>
+  <string name="error_loading_items">Impossible de charger les éléments</string>
+  <string name="inline_suggestions_open_app">Ouvrir Proton Pass</string>
+  <string name="autofill_associate_web_app_name_dialog_title">Utiliser les informations de connexion de « %s » pour cette application ou ce site internet.</string>
+  <string name="autofill_dialog_associate_and_autofill">Toujours utiliser</string>
+  <string name="autofill_dialog_just_autofill">Utiliser une fois</string>
+  <string name="autofill_dialog_cancel">Annuler</string>
+  <string name="autofill_notification_copy_to_clipboard">Le mot de passe à usage unique basé sur le temps (TOTP) a été copié dans le presse-papiers.</string>
+  <string name="autofill_dialog_associate_title">Utiliser l\'identifiant ?</string>
+  <string name="autofill_user_logged_out">Vous avez été déconnecté. Veuillez vous reconnecter en ouvrant l\'application.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Confirmez votre action</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Vous êtes sur le point de renseigner automatiquement vos informations d\'identification sur un site internet ouvert par votre application actuelle. L\'application peut avoir accès aux informations d\'identification après le remplissage automatique : faites-le uniquement si vous faites confiance à cette application.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">Remplissage automatique</string>
+  <string name="autofill_confirm_unverified_browser_title">Cette application prétend être un navigateur de confiance.</string>
+  <string name="autofill_confirm_unverified_browser_body">Cette application s\'identifie comme un navigateur connu, mais Pass n\'a pas pu la vérifier. Son certificat de signature ne correspond pas à ce que nous attendons, ce qui peut se produire si le navigateur est configuré de manière inhabituelle ou si une autre application se fait passer pour lui afin d\'intercepter vos identifiants. Ne continuez que si vous êtes certain que cette application est légitime.</string>
+  <string name="autofill_confirm_dont_ask_again">Ne plus me demander pour cette application</string>
+  <string name="autofill_troubleshooting_title">Dépannage du remplissage automatique</string>
+  <string name="autofill_troubleshooting_subtitle">Vérifiez que votre appareil est correctement configuré pour la saisie automatique.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">Le remplissage automatique est pleinement configuré.</string>
+  <string name="autofill_troubleshooting_verdict_attention">Certains éléments nécessitent votre attention.</string>
+  <string name="autofill_troubleshooting_service_ok">Proton Pass est votre service de remplissage automatique.</string>
+  <string name="autofill_troubleshooting_service_current_other">Actuellement défini à %1$s</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Proton Pass n\'est pas votre service de remplissage automatique.</string>
+  <string name="autofill_troubleshooting_service_not_default_body">Définissez-le comme service par défaut pour que le remplissage automatique s\'applique dans toutes vos applications.</string>
+  <string name="autofill_troubleshooting_service_enable_action">Activer le remplissage automatique</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">Ce service ne supporte pas le remplissage automatique.</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">Navigateurs inactifs détectés</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Activez la fonction de remplissage automatique pour que Proton Pass puisse remplir vos identifiants. Appuyez sur un navigateur pour ouvrir ses paramètres.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">Les navigateurs sont compatibles</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">Vos navigateurs sont connectés et prêts au remplissage automatique.</string>
+  <string name="autofill_troubleshooting_browser_active">Actif</string>
+  <string name="autofill_troubleshooting_inline_info">Les suggestions en ligne s\'affichent sur votre clavier. Elles nécessitent Android 11 ou une version ultérieure, ainsi qu\'un clavier compatible, tel que Gboard.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">Partager les diagnostics</string>
+  <string name="autofill_troubleshooting_open_diagnostics">Diagnostics avancés</string>
+  <string name="autofill_diagnostics_title">Diagnostics avancés</string>
+  <string name="autofill_diagnostics_enable">Activer les diagnostics de remplissage automatique</string>
+  <string name="autofill_diagnostics_enable_description">Lorsqu\'il est activé, Proton Pass enregistre ce qui se passe pendant le remplissage automatique afin que vous puissiez comprendre pourquoi le champ n\'a pas été rempli. Désactivez-le lorsque vous avez terminé.</string>
+  <string name="autofill_diagnostics_instructions">Reproduisez le problème de remplissage automatique dans l\'application ou le navigateur, puis revenez sur cet écran.</string>
+  <string name="autofill_diagnostics_last_attempt_title">Dernière tentative de remplissage automatique</string>
+  <string name="autofill_diagnostics_no_attempts">Aucune tentative de remplissage automatique n\'est enregistrée pour le moment.</string>
+  <string name="autofill_diagnostics_reason_not_default">Proton Pass n\'est pas votre service de remplissage automatique, il ne permet donc pas encore le remplissage automatique.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass a proposé des suggestions dans %1$s.</string>
+  <string name="autofill_diagnostics_outcome_nothing">Le remplissage automatique s\'est déclenché dans %1$s, mais aucun identifiant correspondant n\'a été proposé. Il se peut que la page ne comporte aucun champ de connexion détectable, ou que vous n\'ayez aucune entrée enregistrée pour ce site.</string>
+  <string name="autofill_diagnostics_outcome_error">Une erreur est survenue lors du remplissage automatique dans %1$s.</string>
+  <string name="autofill_diagnostics_recent_title">Tentatives récentes</string>
+  <string name="autofill_diagnostics_clear">Vider</string>
+  <string name="autofill_diagnostics_share">Partager avec le support</string>
+</resources>

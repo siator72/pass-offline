@@ -1,0 +1,267 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.itemcreate.login
+
+import app.cash.turbine.test
+import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import proton.android.pass.data.fakes.usecases.FakeObservePrimaryUserId
+import proton.android.pass.clipboard.fakes.FakeClipboardManager
+import proton.android.pass.common.api.PasswordStrength
+import proton.android.pass.common.fakes.FakeAppDispatchers
+import proton.android.pass.commonpresentation.fakes.attachments.FakeAttachmentHandler
+import proton.android.pass.commonrust.fakes.FakeEmailValidator
+import proton.android.pass.commonrust.fakes.FakePasswordScorer
+import proton.android.pass.commonrust.fakes.passwords.strengths.FakePasswordStrengthCalculator
+import proton.android.pass.commonui.fakes.FakeSavedStateHandleProvider
+import proton.android.pass.composecomponents.impl.uievents.IsLoadingState
+import proton.android.pass.crypto.api.context.EncryptionContextProvider
+import proton.android.pass.crypto.fakes.context.FakeEncryptionContext
+import proton.android.pass.crypto.fakes.context.FakeEncryptionContextProvider
+import proton.android.pass.data.api.repositories.DRAFT_PASSWORD_KEY
+import proton.android.pass.data.api.repositories.DRAFT_USERNAME_KEY
+import proton.android.pass.data.api.repositories.DraftRepository
+import proton.android.pass.data.fakes.repositories.FakeDraftRepository
+import proton.android.pass.data.fakes.usecases.FakeCanCreateAlias
+import proton.android.pass.data.fakes.usecases.FakeObserveCurrentUser
+import proton.android.pass.data.fakes.usecases.FakeObserveUpgradeInfo
+import proton.android.pass.data.fakes.usecases.tooltips.FakeDisableTooltip
+import proton.android.pass.data.fakes.usecases.tooltips.FakeObserveTooltipEnabled
+import proton.android.pass.domain.attachments.DraftAttachment
+import proton.android.pass.domain.attachments.FileMetadata
+import proton.android.pass.features.itemcreate.common.CustomFieldDraftRepositoryImpl
+import proton.android.pass.features.itemcreate.common.UIHiddenState
+import proton.android.pass.features.itemcreate.common.customfields.CustomFieldHandlerImpl
+import proton.android.pass.features.itemcreate.common.formprocessor.FakeLoginItemFormProcessor
+import proton.android.pass.notifications.fakes.FakeSnackbarDispatcher
+import proton.android.pass.preferences.FakeFeatureFlagsPreferenceRepository
+import proton.android.pass.preferences.FakePreferenceRepository
+import proton.android.pass.test.MainDispatcherRule
+import proton.android.pass.test.StringTestFactory
+import proton.android.pass.test.domain.UserTestFactory
+import proton.android.pass.totp.fakes.FakeTotpManager
+import java.net.URI
+
+internal class BaseLoginViewModelTest {
+
+    @get:Rule
+    val dispatcherRule = MainDispatcherRule()
+
+    private lateinit var totpManager: FakeTotpManager
+    private lateinit var clipboardManager: FakeClipboardManager
+    private lateinit var observeCurrentUser: FakeObserveCurrentUser
+    private lateinit var baseLoginViewModel: BaseLoginViewModel
+    private lateinit var encryptionContextProvider: EncryptionContextProvider
+    private lateinit var draftRepository: DraftRepository
+    private lateinit var passwordStrengthCalculator: FakePasswordStrengthCalculator
+    private lateinit var emailValidator: FakeEmailValidator
+    private lateinit var attachmentsHandler: FakeAttachmentHandler
+
+    @Before
+    fun setUp() {
+        totpManager = FakeTotpManager()
+        clipboardManager = FakeClipboardManager()
+        observeCurrentUser = FakeObserveCurrentUser().apply { sendUser(UserTestFactory.create()) }
+        draftRepository = FakeDraftRepository()
+        encryptionContextProvider = FakeEncryptionContextProvider()
+        passwordStrengthCalculator = FakePasswordStrengthCalculator()
+        emailValidator = FakeEmailValidator()
+        attachmentsHandler = FakeAttachmentHandler()
+        baseLoginViewModel = object : BaseLoginViewModel(
+            observePrimaryUserId = FakeObservePrimaryUserId(),
+            snackbarDispatcher = FakeSnackbarDispatcher(),
+            clipboardManager = clipboardManager,
+            totpManager = totpManager,
+            draftRepository = draftRepository,
+            observeCurrentUser = observeCurrentUser,
+            observeUpgradeInfo = FakeObserveUpgradeInfo(),
+            encryptionContextProvider = encryptionContextProvider,
+            passwordScorer = FakePasswordScorer(),
+            savedStateHandleProvider = FakeSavedStateHandleProvider(),
+            emailValidator = emailValidator,
+            observeTooltipEnabled = FakeObserveTooltipEnabled(),
+            disableTooltip = FakeDisableTooltip(),
+            userPreferencesRepository = FakePreferenceRepository(),
+            featureFlagsPreferencesRepository = FakeFeatureFlagsPreferenceRepository(),
+            attachmentsHandler = attachmentsHandler,
+            customFieldDraftRepository = CustomFieldDraftRepositoryImpl(),
+            customFieldHandler = CustomFieldHandlerImpl(totpManager, encryptionContextProvider),
+            loginItemFormProcessor = FakeLoginItemFormProcessor(),
+            appDispatchers = FakeAppDispatchers(),
+            canCreateAlias = FakeCanCreateAlias()
+        ) {}
+    }
+
+    @Test
+    internal fun `GIVEN an attachment is uploading WHEN observing the state THEN the form stays editable`() = runTest {
+        attachmentsHandler.blockUploads()
+
+        baseLoginViewModel.baseLoginUiState.test {
+            attachmentsHandler.emitNewAttachment(
+                DraftAttachment.Loading(FileMetadata.unknown(URI("file://attachment")))
+            )
+            advanceUntilIdle()
+
+            assertThat(expectMostRecentItem().isLoadingState)
+                .isEqualTo(IsLoadingState.NotLoading)
+            cancelAndIgnoreRemainingEvents()
+        }
+
+        attachmentsHandler.releaseUploads()
+    }
+
+    @Test
+    fun `when the title has changed the state should hold it`() = runTest {
+        val titleInput = "Title Changed"
+        baseLoginViewModel.onTitleChange(titleInput)
+        assertThat(baseLoginViewModel.loginItemFormState.title).isEqualTo(titleInput)
+    }
+
+    @Test
+    internal fun `GIVEN form is collapsed WHEN email changes THEN email is updated and username is cleared`() =
+        runTest {
+            val emailInput = "user@email.com"
+
+            baseLoginViewModel.onEmailChanged(emailInput)
+
+            assertThat(baseLoginViewModel.loginItemFormState.email).isEqualTo(emailInput)
+            assertThat(baseLoginViewModel.loginItemFormState.username).isEqualTo("")
+        }
+
+    @Test
+    internal fun `GIVEN form is expanded WHEN email changes THEN state email should be updated`() = runTest {
+        val emailInput = "user@email.com"
+        baseLoginViewModel.onUsernameOrEmailManuallyExpanded()
+
+        baseLoginViewModel.onEmailChanged(emailInput)
+
+        assertThat(baseLoginViewModel.loginItemFormState.email).isEqualTo(emailInput)
+    }
+
+    @Test
+    internal fun `GIVEN email validation fails WHEN email changes THEN email is cleared and username is updated`() =
+        runTest {
+            val emailInput = "invalid email"
+            val isValidEmail = false
+            emailValidator.setResult(isValidEmail)
+
+            baseLoginViewModel.onEmailChanged(emailInput)
+
+            assertThat(baseLoginViewModel.loginItemFormState.email).isEqualTo("")
+            assertThat(baseLoginViewModel.loginItemFormState.username).isEqualTo(emailInput)
+        }
+
+    @Test
+    internal fun `WHEN username changes THEN state username should be updated`() = runTest {
+        val usernameInput = "new username"
+
+        baseLoginViewModel.onUsernameChanged(usernameInput)
+
+        assertThat(baseLoginViewModel.loginItemFormState.username).isEqualTo(usernameInput)
+    }
+
+    @Test
+    internal fun `GIVEN form is collapsed WHEN a username is generated THEN username is updated`() = runTest {
+        val generatedUsername = "brave.tiger.42"
+        emailValidator.setResult(false)
+
+        draftRepository.save(DRAFT_USERNAME_KEY, generatedUsername)
+
+        assertThat(baseLoginViewModel.loginItemFormState.username).isEqualTo(generatedUsername)
+        assertThat(baseLoginViewModel.loginItemFormState.email).isEqualTo("")
+    }
+
+    @Test
+    internal fun `GIVEN form is expanded WHEN a username is generated THEN username is updated and email untouched`() =
+        runTest {
+            val emailInput = "user@email.com"
+            val generatedUsername = "brave.tiger.42"
+            baseLoginViewModel.onUsernameOrEmailManuallyExpanded()
+            baseLoginViewModel.onEmailChanged(emailInput)
+
+            draftRepository.save(DRAFT_USERNAME_KEY, generatedUsername)
+
+            assertThat(baseLoginViewModel.loginItemFormState.username).isEqualTo(generatedUsername)
+            assertThat(baseLoginViewModel.loginItemFormState.email).isEqualTo(emailInput)
+        }
+
+    @Test
+    fun `when the password has changed the state should hold it`() = runTest {
+        val passwordInput = "Password Changed"
+        val encryptedPassword = FakeEncryptionContext.encrypt("Password Changed")
+        baseLoginViewModel.onPasswordChange(passwordInput)
+        assertThat(baseLoginViewModel.loginItemFormState.password)
+            .isEqualTo(UIHiddenState.Revealed(encryptedPassword, passwordInput))
+    }
+
+    @Test
+    fun `WHEN password changed by user THEN update password strength state`() = runTest {
+        val newPasswordValue = StringTestFactory.randomString()
+        val expectedPasswordStrength = PasswordStrength.Strong
+        passwordStrengthCalculator.setPasswordStrength(expectedPasswordStrength)
+
+        baseLoginViewModel.onPasswordChange(newPasswordValue)
+
+        assertThat(baseLoginViewModel.loginItemFormState.passwordStrength)
+            .isEqualTo(expectedPasswordStrength)
+    }
+
+    @Test
+    fun `WHEN password changed by automatic generation THEN update password strength state`() {
+        val newPasswordValue = encryptionContextProvider.withEncryptionContext {
+            encrypt(StringTestFactory.randomString())
+        }
+        val expectedPasswordStrength = PasswordStrength.Strong
+        passwordStrengthCalculator.setPasswordStrength(expectedPasswordStrength)
+        draftRepository.save(DRAFT_PASSWORD_KEY, newPasswordValue)
+
+        assertThat(baseLoginViewModel.loginItemFormState.passwordStrength)
+            .isEqualTo(expectedPasswordStrength)
+    }
+
+    @Test
+    fun `when the note has changed the state should hold it`() = runTest {
+        val noteInput = "Note Changed"
+        baseLoginViewModel.onNoteChange(noteInput)
+        assertThat(baseLoginViewModel.loginItemFormState.note).isEqualTo(noteInput)
+    }
+
+    @Test
+    fun `when a website has been changed the state should change it`() = runTest {
+        val url = "proton.me"
+        baseLoginViewModel.onWebsiteChange(url, 0)
+        assertThat(baseLoginViewModel.loginItemFormState.urls).isEqualTo(listOf(url))
+    }
+
+    @Test
+    fun `when a website has been added the state should add it`() = runTest {
+        baseLoginViewModel.onAddWebsite()
+        assertThat(baseLoginViewModel.loginItemFormState.urls).isEqualTo(listOf("", ""))
+    }
+
+    @Test
+    fun `when a website has been removed the state should remove it`() = runTest {
+        baseLoginViewModel.onRemoveWebsite(0)
+        assertThat(baseLoginViewModel.loginItemFormState.urls).isEqualTo(emptyList<String>())
+    }
+}

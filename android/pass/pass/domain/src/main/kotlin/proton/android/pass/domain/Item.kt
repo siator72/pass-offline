@@ -1,0 +1,109 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.domain
+
+import kotlinx.datetime.Instant
+import me.proton.core.crypto.common.keystore.EncryptedByteArray
+import me.proton.core.crypto.common.keystore.EncryptedString
+import me.proton.core.util.kotlin.hasFlag
+import proton.android.pass.common.api.Option
+import proton.android.pass.domain.entity.PackageInfo
+
+@JvmInline
+value class ItemId(val id: String)
+
+@JvmInline
+value class ItemFlags(val value: Int) {
+    fun hasSkippedHealthCheck(): Boolean = value.hasFlag(ItemFlag.SkipHealthCheck.value)
+    fun isEmailBreached(): Boolean = value.hasFlag(ItemFlag.EmailBreached.value)
+    fun isAliasDisabled(): Boolean = value.hasFlag(ItemFlag.AliasDisabled.value)
+    fun hasAttachments(): Boolean = value.hasFlag(ItemFlag.HasAttachments.value)
+    fun hasHadAttachments(): Boolean = value.hasFlag(ItemFlag.HasHadAttachments.value)
+    fun hasSkippedWeakPasswordCheck(): Boolean = value.hasFlag(ItemFlag.SkipWeakPasswordCheck.value)
+    fun hasSkippedCompromisedPasswordCheck(): Boolean = value.hasFlag(ItemFlag.SkipCompromisedPasswordCheck.value)
+    fun hasSkippedReusedPasswordCheck(): Boolean = value.hasFlag(ItemFlag.SkipReusedPasswordCheck.value)
+    fun hasSkipped2FACheck(): Boolean = value.hasFlag(ItemFlag.Skip2FACheck.value)
+}
+
+data class Item(
+    val id: ItemId,
+    val userId: UserId,
+    val itemUuid: String,
+    val revision: Long,
+    val shareId: ShareId,
+    val folderId: FolderId? = null,
+    val itemType: ItemType,
+    val title: EncryptedString,
+    val note: EncryptedString,
+    val content: EncryptedByteArray,
+    val state: Int,
+    val packageInfoSet: Set<PackageInfo>,
+    val createTime: Instant,
+    val modificationTime: Instant,
+    val lastAutofillTime: Option<Instant>,
+    val isPinned: Boolean,
+    val pinTime: Option<Instant>,
+    val itemFlags: ItemFlags,
+    val shareCount: Int,
+    val contentFormatVersion: Int,
+    val shareType: ShareType,
+    val slNote: EncryptedString? = null
+) {
+    val hasPasskeys: Boolean = when (val type = itemType) {
+        is ItemType.Login -> type.passkeys.isNotEmpty()
+        else -> false
+    }
+
+    val hasSkippedHealthCheck: Boolean = itemFlags.hasSkippedHealthCheck()
+    val isEmailBreached: Boolean = itemFlags.isEmailBreached()
+    val hasAttachments: Boolean = itemFlags.hasAttachments()
+    val hasHadAttachments: Boolean = itemFlags.hasHadAttachments()
+    val hasSkippedWeakPasswordCheck: Boolean = itemFlags.hasSkippedWeakPasswordCheck()
+    val hasSkippedCompromisedPasswordCheck: Boolean = itemFlags.hasSkippedCompromisedPasswordCheck()
+    val hasSkippedReusedPasswordCheck: Boolean = itemFlags.hasSkippedReusedPasswordCheck()
+    val hasSkipped2FACheck: Boolean = itemFlags.hasSkipped2FACheck()
+
+    val isShared: Boolean = shareCount > 0
+}
+
+data class ItemEncrypted(
+    val id: ItemId,
+    val userId: UserId,
+    val revision: Long,
+    val shareId: ShareId,
+    val folderId: FolderId? = null,
+    val title: EncryptedString,
+    val note: EncryptedString,
+    val content: EncryptedByteArray,
+    val aliasEmail: String?,
+    val state: Int,
+    val createTime: Instant,
+    val modificationTime: Instant,
+    val lastAutofillTime: Option<Instant>,
+    val isPinned: Boolean,
+    val pinTime: Option<Instant>,
+    val itemFlags: ItemFlags,
+    val shareCount: Int,
+    val shareType: ShareType,
+    val slNote: EncryptedString? = null
+) {
+
+    val isShared: Boolean = shareCount > 0
+
+}

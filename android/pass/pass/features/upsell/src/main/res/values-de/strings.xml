@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="upsell_monitor_title">Bleib online geschützter</string>
+  <string name="upsell_dark_web_monitoring_subtitle">Dark Web-Überwachung ist mit einem kostenpflichtigen Abonnement verfügbar. Upgrade für sofortigen Zugriff.</string>
+  <string name="upsell_missing_2fa_subtitle">Sieh dir eine Liste von Websites an, auf denen du einen zweiten Authentifizierungsfaktor zum Schutz deiner Online-Präsenz hinzufügen kannst. Upgrade für sofortigen Zugriff.</string>
+  <string name="upsell_sentinel_subtitle">Schalte erweiterte Sicherheitsfunktionen und detaillierte Protokolle zum Schutz deiner Online-Präsenz frei.</string>
+  <string name="upsell_compromised_passwords_subtitle">Überprüfe, ob deine Passwörter bei Datenlecks offengelegt wurden. Steige um, für sofortigen Zugriff.</string>
+  <string name="upsell_paid_feature_file_attachments">Dateianhänge</string>
+  <string name="upsell_paid_feature_dark_web_monitoring">Dark Web-Überwachung</string>
+  <string name="upsell_paid_feature_sentinel">Proton Sentinel</string>
+  <string name="upsell_paid_feature_authenticator">Integrierter 2FA-Authentifikator</string>
+  <string name="upsell_paid_feature_unlimited_aliases">Unbegrenzte hide-my-email-Aliasse</string>
+  <string name="upsell_paid_feature_vault_sharing">Tresor teilen (bis zu 10 Personen)</string>
+  <string name="upsell_paid_feature_secure_links">Sichere Links</string>
+  <string name="upsell_paid_feature_advance_alias_management">Erweiterte Alias-Verwaltung</string>
+  <string name="upsell_paid_feature_authenticator_essential">2FA für die Organisation erforderlich</string>
+  <string name="upsell_paid_feature_sso_essential">SSO-Integration (demnächst verfügbar)</string>
+  <string name="upsell_paid_feature_advance_alias_management_title">Verwalte deine Aliasse</string>
+  <string name="upsell_paid_feature_advance_alias_management_subtitle">Die erweiterte Alias-Verwaltung ist mit einem kostenpflichtigen Abonnement verfügbar. Upgrade für sofortigen Zugriff.</string>
+  <string name="upsell_paid_feature_item_sharing_title">Teile schnell einen Eintrag</string>
+  <string name="upsell_paid_feature_item_sharing_subtitle">Upgrade noch heute, damit du Einträge mit jedem Pass-Benutzer teilen kannst. Und genieße weitere Premium-Funktionen:</string>
+  <string name="upsell_paid_feature_file_attachments_title">Dateianhänge</string>
+  <string name="upsell_button_upgrade">Pass Plus holen</string>
+  <string name="upsell_button_upgrade_unlimited">Proton Unlimited holen</string>
+  <string name="upsell_button_upgrade_essentials">Pass Business holen</string>
+  <string name="price_per_month_type1">%s/Monat</string>
+  <string name="upsell_skip">Nicht jetzt</string>
+  <string name="upsell_no_plan">Keine Abonnement verfügbar</string>
+  <string name="upsell_plan_title">Premium-Funktionen freischalten</string>
+  <string name="upsell_plan_unlimited_title">Das Beste von Proton mit einem Abonnement.</string>
+  <string name="upsell_plan_what_included">Was ist enthalten?</string>
+  <string name="upsell_plan_plus_1">Hide-my-email-Aliasse</string>
+  <string name="upsell_plan_plus_2">Integrierte 2FA</string>
+  <string name="upsell_plan_plus_3">Tresor, Eintrag und Linkfreigabe</string>
+  <string name="upsell_plan_plus_4">Ordner</string>
+  <string name="upsell_plan_plus_5">Dark Web-Überwachung</string>
+  <string name="upsell_plan_plus_6">Dateianhänge</string>
+  <string name="upsell_plan_unlimited_1">Speicherplatz</string>
+  <string name="upsell_plan_unlimited_2">Zusätzliche E-Mail-Adressen</string>
+  <string name="upsell_plan_unlimited_3">VPN-Geräte</string>
+  <string name="upsell_plan_unlimited_4">VPN-Geschwindigkeit</string>
+  <string name="upsell_plan_unlimited_4_col1">Mittel</string>
+  <string name="upsell_plan_unlimited_4_col2">Höchste</string>
+  <string name="upsell_plan_plus_welcome_1">Unbegrenzte Anzahl hide-my-email-Aliasse</string>
+  <string name="upsell_plan_plus_welcome_2">Integrierter 2FA-Authentifikator</string>
+  <string name="upsell_plan_plus_welcome_3">Sicherer Tresor, gemeinsame Nutzung von Einträgen und Links</string>
+  <string name="upsell_plan_plus_welcome_4">Ordner</string>
+  <string name="upsell_plan_plus_welcome_5">Dark Web-Überwachung</string>
+  <string name="upsell_plan_plus_welcome_6">Dateianhänge</string>
+  <string name="upsell_limited_time_offer">Zeitlich begrenztes Angebot</string>
+  <string name="upsell_try_pass_plus">Pass Plus ausprobieren</string>
+  <string name="upsell_pass_plus_welcome_offer">Pass Plus • Willkommensangebot</string>
+  <string name="upsell_pass_plus_first_year">Erstes Jahr</string>
+  <string name="upsell_get_the_best_of_pass">Holen Sie sich das Beste aus Pass mit diesem zeitlich begrenzten Angebot.</string>
+  <string name="upsell_get_one_month">Hole dir 1 Monat für %s</string>
+  <string name="upsell_get_the_deal">Deal sichern</string>
+  <string name="upsell_whats_included">Was ist enthalten?</string>
+  <string name="upsell_error_google_prices">Derzeit gibt es Probleme beim Abrufen der Preise aus dem Google Play Store..</string>
+  <string name="upsell_error_general">Es ist ein Fehler aufgetreten.</string>
+</resources>

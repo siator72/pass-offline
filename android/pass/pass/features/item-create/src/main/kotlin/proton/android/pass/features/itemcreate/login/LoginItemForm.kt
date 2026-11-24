@@ -1,0 +1,370 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.features.itemcreate.login
+
+import android.content.pm.PackageManager
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInWindow
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntSize
+import kotlin.math.roundToInt
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableSet
+import kotlinx.collections.immutable.toPersistentSet
+import proton.android.pass.common.api.None
+import proton.android.pass.common.api.Option
+import proton.android.pass.common.api.Some
+import proton.android.pass.common.api.some
+import proton.android.pass.common.api.toOption
+import proton.android.pass.commonui.api.Spacing
+import proton.android.pass.commonuimodels.api.attachments.AttachmentsState
+import proton.android.pass.data.api.usecases.popularservices.PopularService
+import proton.android.pass.composecomponents.impl.attachments.AttachmentSection
+import proton.android.pass.composecomponents.impl.container.roundedContainerNorm
+import proton.android.pass.composecomponents.impl.form.SimpleNoteSection
+import proton.android.pass.composecomponents.impl.form.TitleSection
+import proton.android.pass.composecomponents.impl.item.LinkedAppsListSection
+import proton.android.pass.composecomponents.impl.utils.passItemColors
+import proton.android.pass.domain.CustomFieldType
+import proton.android.pass.domain.ShareId
+import proton.android.pass.domain.items.ItemCategory
+import proton.android.pass.features.itemcreate.attachments.banner.AttachmentBanner
+import proton.android.pass.features.itemcreate.common.CustomFieldValidationError
+import proton.android.pass.features.itemcreate.common.StickyTotpOptions
+import proton.android.pass.features.itemcreate.common.customfields.customFieldsList
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnAttachmentEvent
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnCreateAlias
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnCreatePassword
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnCustomFieldEvent
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnEmailChanged
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnFocusChange
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnLinkedAppDelete
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnNoteChange
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnScanTotp
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnTitleChange
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.OnWebsiteEvent
+import proton.android.pass.features.itemcreate.login.LoginContentEvent.PasteTotp
+import proton.android.pass.features.itemcreate.login.LoginStickyFormOptionsContentType.AddTotp
+import proton.android.pass.features.itemcreate.login.LoginStickyFormOptionsContentType.AliasOptions
+import proton.android.pass.features.itemcreate.login.LoginStickyFormOptionsContentType.GeneratePassword
+import proton.android.pass.features.itemcreate.login.LoginStickyFormOptionsContentType.NoOption
+import proton.android.pass.features.itemcreate.login.LoginStickyFormOptionsContentType.UsernameGenerator
+import proton.android.pass.features.itemcreate.login.passkey.PasskeyEditRow
+import proton.android.pass.features.itemcreate.login.passkey.PasskeysSection
+
+@Composable
+internal fun LoginItemForm(
+    modifier: Modifier = Modifier,
+    loginItemFormState: LoginItemFormState,
+    passkeyState: Option<CreatePasskeyState>,
+    canUseCustomFields: Boolean,
+    isEditAllowed: Boolean,
+    totpUiState: TotpUiState,
+    focusedField: LoginField?,
+    customFieldValidationErrors: ImmutableList<CustomFieldValidationError>,
+    showCreateAliasButton: Boolean,
+    primaryEmail: String?,
+    isUpdate: Boolean,
+    isTitleError: Boolean,
+    isTotpError: Boolean,
+    focusLastWebsite: Boolean,
+    canUpdateUsername: Boolean,
+    websitesWithErrors: ImmutableList<Int>,
+    selectedShareId: ShareId?,
+    hasReachedAliasLimit: Boolean,
+    isUsernameSplitTooltipEnabled: Boolean,
+    isFileAttachmentsEnabled: Boolean,
+    displayFileAttachmentsOnboarding: Boolean,
+    attachmentsState: AttachmentsState,
+    isPasswordChecksEnabled: Boolean,
+    popularServiceSuggestions: ImmutableList<PopularService> = persistentListOf(),
+    canLoadExternalImages: Boolean = false,
+    canShowPopularServices: Boolean = true,
+    onEvent: (LoginContentEvent) -> Unit
+) {
+    Box(modifier = modifier) {
+        val currentStickyFormOption = when (focusedField) {
+            LoginField.Email -> AliasOptions
+            LoginField.Username -> UsernameGenerator
+            LoginField.Password -> GeneratePassword
+            LoginField.PrimaryTotp -> AddTotp
+            is LoginField.CustomField -> when (focusedField.field.type) {
+                CustomFieldType.Totp -> AddTotp
+                else -> NoOption
+            }
+
+            LoginField.Title,
+            null -> NoOption
+        }
+
+        val isCurrentStickyVisible = currentStickyFormOption != NoOption
+
+        val titlePosition = remember { mutableStateOf(IntOffset.Zero) }
+        val titleSize = remember { mutableStateOf(IntSize.Zero) }
+
+        var listBottomPx by remember { mutableFloatStateOf(0f) }
+
+        LazyColumn(
+            modifier = Modifier
+                .testTag(LoginFormTag.LAZY_COLUMN)
+                .onGloballyPositioned { listBottomPx = it.positionInWindow().y + it.size.height }
+                .fillMaxWidth()
+                .padding(horizontal = Spacing.medium)
+        ) {
+            item {
+                AnimatedVisibility(
+                    modifier = Modifier.fillMaxWidth(),
+                    visible = isFileAttachmentsEnabled && displayFileAttachmentsOnboarding
+                ) {
+                    AttachmentBanner(modifier = Modifier.padding(vertical = Spacing.small)) {
+                        onEvent(LoginContentEvent.DismissAttachmentBanner)
+                    }
+                }
+            }
+            item {
+                TitleSection(
+                    modifier = Modifier
+                        .padding(vertical = Spacing.small)
+                        .onGloballyPositioned { coordinates ->
+                            val position = coordinates.positionInWindow()
+                            titlePosition.value =
+                                IntOffset(position.x.roundToInt(), position.y.roundToInt())
+                            titleSize.value = coordinates.size
+                        }
+                        .roundedContainerNorm()
+                        .padding(
+                            start = Spacing.medium,
+                            top = Spacing.medium,
+                            end = Spacing.extraSmall,
+                            bottom = Spacing.medium
+                        ),
+                    value = loginItemFormState.title,
+                    requestFocus = true,
+                    onTitleRequiredError = isTitleError,
+                    enabled = isEditAllowed,
+                    isRounded = true,
+                    onChange = { onEvent(OnTitleChange(it)) },
+                    onFocusChange = { isFocused ->
+                        onEvent(OnFocusChange(LoginField.Title, isFocused))
+                    }
+                )
+            }
+
+            if (passkeyState is Some) {
+                item {
+                    PasskeyEditRow(
+                        modifier = Modifier.padding(vertical = Spacing.extraSmall),
+                        domain = passkeyState.value.domain,
+                        username = passkeyState.value.username,
+                        canDelete = false,
+                        onDeleteClick = {}
+                    )
+                }
+            }
+
+            if (loginItemFormState.hasPasskeys) {
+                item {
+                    PasskeysSection(
+                        modifier = Modifier.padding(vertical = Spacing.extraSmall),
+                        passkeys = loginItemFormState.passkeys.toImmutableList(),
+                        onEvent = onEvent
+                    )
+                }
+            }
+
+            item {
+                MainLoginSection(
+                    modifier = Modifier.padding(vertical = Spacing.extraSmall),
+                    viewportBottomPx = listBottomPx,
+                    loginItemFormState = loginItemFormState,
+                    canUpdateUsername = canUpdateUsername,
+                    selectedShareId = selectedShareId,
+                    totpUiState = totpUiState,
+                    isEditAllowed = isEditAllowed,
+                    isTotpError = isTotpError,
+                    hasReachedAliasLimit = hasReachedAliasLimit,
+                    onEvent = onEvent,
+                    onFocusChange = { field, isFocused ->
+                        onEvent(OnFocusChange(field, isFocused))
+                    },
+                    isUsernameSplitTooltipEnabled = isUsernameSplitTooltipEnabled,
+                    isPasswordChecksEnabled = isPasswordChecksEnabled
+                )
+            }
+
+            item {
+                WebsitesSection(
+                    modifier = Modifier.padding(vertical = Spacing.extraSmall),
+                    websites = loginItemFormState.urls.toImmutableList(),
+                    autofillUrls = loginItemFormState.autofillUrls.toImmutableList(),
+                    isEditAllowed = isEditAllowed,
+                    websitesWithErrors = websitesWithErrors,
+                    focusLastWebsite = focusLastWebsite,
+                    onWebsiteSectionEvent = { onEvent(OnWebsiteEvent(it)) }
+                )
+            }
+
+            item {
+                SimpleNoteSection(
+                    modifier = Modifier.padding(vertical = Spacing.extraSmall),
+                    value = loginItemFormState.note,
+                    enabled = isEditAllowed,
+                    onChange = { onEvent(OnNoteChange(it)) }
+                )
+            }
+
+            customFieldsList(
+                modifier = Modifier.padding(vertical = Spacing.extraSmall),
+                customFields = loginItemFormState.customFields,
+                enabled = isEditAllowed,
+                errors = customFieldValidationErrors.toPersistentSet(),
+                isVisible = true,
+                canCreateCustomFields = canUseCustomFields,
+                sectionIndex = None,
+                focusedField = (focusedField as? LoginField.CustomField)?.field.toOption(),
+                itemCategory = ItemCategory.Login,
+                onEvent = { onEvent(OnCustomFieldEvent(it)) }
+            )
+
+            if (isUpdate) {
+                item {
+                    LinkedAppsListSection(
+                        modifier = Modifier.padding(vertical = Spacing.extraSmall),
+                        packageInfoUiSet = loginItemFormState.packageInfoSet.toImmutableSet(),
+                        isEditable = true,
+                        onLinkedAppDelete = { onEvent(OnLinkedAppDelete(it)) }
+                    )
+                }
+            }
+
+            if (isFileAttachmentsEnabled) {
+                item {
+                    AttachmentSection(
+                        modifier = Modifier.padding(vertical = Spacing.extraSmall),
+                        attachmentsState = attachmentsState,
+                        isDetail = false,
+                        itemColors = passItemColors(ItemCategory.Login),
+                        isEditAllowed = isEditAllowed,
+                        onEvent = { onEvent(OnAttachmentEvent(it)) }
+                    )
+                }
+            }
+
+            if (isCurrentStickyVisible) {
+                item {
+                    Spacer(modifier = Modifier.height(StickyImeRowHeight))
+                }
+            }
+        }
+
+        AnimatedVisibility(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+                .imePadding(),
+            visible = isCurrentStickyVisible
+        ) {
+            when (currentStickyFormOption) {
+                GeneratePassword ->
+                    StickyGeneratePassword(
+                        onClick = { onEvent(OnCreatePassword) }
+                    )
+
+                AliasOptions -> StickyUsernameOptions(
+                    showCreateAliasButton = showCreateAliasButton,
+                    primaryEmail = primaryEmail,
+                    isExpanded = loginItemFormState.isExpanded,
+                    onCreateAliasClick = {
+                        selectedShareId ?: return@StickyUsernameOptions
+                        onEvent(
+                            OnCreateAlias(
+                                shareId = selectedShareId,
+                                hasReachedAliasLimit = hasReachedAliasLimit,
+                                title = loginItemFormState.title.some()
+                            )
+                        )
+                    },
+                    onPrefillCurrentEmailClick = { prefillEmail ->
+                        onEvent(OnEmailChanged(prefillEmail))
+                    },
+                    onGenerateUsernameClick = { onEvent(LoginContentEvent.OnGenerateUsername) }
+                )
+
+                UsernameGenerator -> StickyUsernameGenerator(
+                    onGenerateUsernameClick = { onEvent(LoginContentEvent.OnGenerateUsername) }
+                )
+
+                AddTotp -> {
+                    val context = LocalContext.current
+                    val hasCamera = remember(LocalContext.current) {
+                        context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)
+                    }
+
+                    StickyTotpOptions(
+                        hasCamera = hasCamera,
+                        passItemColors = passItemColors(ItemCategory.Login),
+                        onPasteCode = {
+                            onEvent(PasteTotp)
+                        },
+                        onScanCode = {
+                            val index = (focusedField as? LoginField.CustomField)?.field?.index
+                            onEvent(OnScanTotp(index.toOption()))
+                        }
+                    )
+                }
+
+                NoOption -> {}
+            }
+        }
+
+        if (!isUpdate && canShowPopularServices && focusedField == LoginField.Title) {
+            PopularServiceSuggestionsPopup(
+                services = popularServiceSuggestions,
+                anchorPosition = titlePosition.value,
+                anchorSize = titleSize.value,
+                canLoadExternalImages = canLoadExternalImages,
+                onServiceSelected = { onEvent(LoginContentEvent.OnPopularServiceSelected(it)) }
+            )
+        }
+    }
+}
+
+object LoginFormTag {
+    const val LAZY_COLUMN = "login_form_lazy_column"
+}

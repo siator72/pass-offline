@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="sync_channel">Sincronizar</string>
+  <string name="sync_channel_description">Canal de notificações para a sincronização de itens</string>
+  <string name="syncing_vaults">A sincronizar de cofres e itens</string>
+  <string name="logging_out_free_users">A terminar a sessão dos utilizadores gratuitos adicionais</string>
+  <string name="attachment_download_channel">Attachment downloads</string>
+  <string name="attachment_download_channel_description">Notifications channel for attachment downloads</string>
+  <string name="downloading_attachments">Downloading attachments</string>
+  <string name="downloading_attachments_progress" comment="%1$s is the download progress counter, e.g. 3 / 10">%1$s ficheiros</string>
+  <string name="plan_subscription_auto_renews_monthly">Renovação automática da subscrição a %1$s/mês</string>
+  <string name="plan_subscription_auto_renews_annual">Renovação automática da subscrição a %1$s/ano</string>
+  <string name="plan_welcome_offer_auto_renews_monthly">Oferta de boas-vindas. Renovações automáticas a %1$s/mês</string>
+  <string name="plan_welcome_offer_auto_renews_annual">Oferta de boas-vindas. Renovação automática a %1$s/ano</string>
+</resources>

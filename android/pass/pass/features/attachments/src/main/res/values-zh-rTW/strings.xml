@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="add_attachment_take_a_photo">拍照</string>
+  <string name="add_attachment_choose_a_photo_or_video">選擇照片或影片</string>
+  <string name="add_attachment_choose_a_file">請選擇檔案</string>
+  <string name="attachment_options_rename">重新命名</string>
+  <string name="attachment_options_delete">刪除</string>
+  <string name="attachment_options_download">下載</string>
+  <string name="attachment_options_share">共享</string>
+  <string name="file_picker_open_error">無法開啟檔案選擇器</string>
+  <string name="media_picker_open_error">無法開啟媒體選擇器</string>
+  <string name="camera_open_error">無法開啟相機</string>
+  <string name="camera_permission_explanation">此功能需要鏡頭權限</string>
+  <string name="camera_permission_open_settings">開啟設定</string>
+  <string name="delete_all_attachments_title">刪除所有附件？</string>
+  <string name="delete_all_attachments_subtitle">此動作無法復原</string>
+  <string name="delete_all_attachments_confirm">全部刪除</string>
+  <string name="rename_attachment_dialog_title">重新命名檔案</string>
+  <string name="storage_full_title">您的儲存空間幾乎已滿。</string>
+  <string name="storage_full_body">升級以增加您的儲存容量。</string>
+  <string name="storage_full_upgrade">升級</string>
+  <string name="storage_full_amount" comment="This will show 20MB of 100MB">%2$s 中的 %1$s</string>
+  <string name="attachments_saved_to_location_success">附件已儲存到指定位置</string>
+  <string name="attachments_saved_to_location_error">無法將附件儲存到指定位置</string>
+  <string name="attachment_sync_dialog_title_waiting">Waiting for connection</string>
+  <string name="attachment_sync_dialog_title_downloading">Downloading attachments</string>
+  <string name="attachment_sync_dialog_title_done">下載完成</string>
+  <string name="attachment_sync_dialog_title_partial_failure">下載失敗</string>
+  <string name="attachment_sync_dialog_subtitle_waiting">Waiting for network connection to download attachments.</string>
+  <string name="attachment_sync_dialog_subtitle_downloading">Downloading %1$d/%2$d attachments</string>
+  <string name="attachment_sync_dialog_subtitle_done">All attachments have been downloaded successfully.</string>
+  <string name="attachment_sync_dialog_subtitle_partial_failure">Some attachments could not be downloaded. You can retry the failed ones below.</string>
+  <string name="attachment_sync_dialog_retry_content_description">Retry download</string>
+  <string name="attachment_sync_vault_files_count">%1$d / %2$d files</string>
+</resources>

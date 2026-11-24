@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <string name="create_contact_button">Vytvořit kontakt</string>
+  <string name="save_contact_alias">Uložit</string>
+  <string name="snackbar_contact_create_success">Kontakt úspěšně vytvořen</string>
+  <string name="snackbar_contact_create_error">Kontakt se nepodařilo vytvořit</string>
+  <string name="create_contact_title">Vytvořit kontakt</string>
+  <string name="detail_contact_title">Kontakty</string>
+  <string name="email_input_error">Neplatná e-mailová adresa</string>
+  <string name="detail_contact_display_name" comment="sender email address">Pro každou e-mailovou adresu, která odesílá e-maily nebo přijímá e-maily z %1$s, je vytvořen kontakt</string>
+  <string name="empty_alias_contacts_title">Kontakty aliasu</string>
+  <string name="empty_alias_contacts_body">Chcete-li, aby vaše osobní e-mailová adresa zůstala skrytá, můžete si vytvořit alias kontaktu, který vaši adresu zamaskuje.</string>
+  <string name="empty_alias_contacts_learn_more">Více informací</string>
+  <string name="unblock_button">Odblokovat kontakt</string>
+  <string name="block_button">Blokovat kontakt</string>
+  <string name="contact_created_date" comment="date of creation">Vytvořen před %1$s</string>
+  <string name="no_activity_contact">Žádná aktivita za posledních 14 dní.</string>
+  <string name="activity_summary" comment="%1$d forwarded, %2$d sent, %3$d blocked will prepend this">za posledních 14 dní.</string>
+  <plurals name="forwarded_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="one">%1$d přeposlány</item>
+    <item quantity="few">%1$d přeposlány</item>
+    <item quantity="many">%1$d přeposlány</item>
+    <item quantity="other">%1$d přeposlány</item>
+  </plurals>
+  <plurals name="sent_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="one">%1$d odesláno</item>
+    <item quantity="few">%1$d odeslány</item>
+    <item quantity="many">%1$d odesláno</item>
+    <item quantity="other">%1$d odesláno</item>
+  </plurals>
+  <plurals name="blocked_count" comment="full sentence is %1$d forwarded, %2$d sent, %3$d blocked in the last 14 days.">
+    <item quantity="one">%1$d blokováno</item>
+    <item quantity="few">%1$d blokovány</item>
+    <item quantity="many">%1$d blokováno</item>
+    <item quantity="other">%1$d blokováno</item>
+  </plurals>
+  <string name="blocked_addresses_subtitle">Blokované adresy</string>
+  <string name="forwarding_addresses_subtitle">Adresy přeposílání</string>
+  <string name="snackbar_contact_block_success">Kontakt zablokován</string>
+  <string name="snackbar_contact_block_error">Nelze blokovat kontakt</string>
+  <string name="snackbar_contact_unblock_success">Kontakt odblokován</string>
+  <string name="snackbar_contact_unblock_error">Nelze odblokovat kontakt</string>
+  <string name="snackbar_delete_contact_success">Kontakt smazán</string>
+  <string name="snackbar_delete_contact_error">Kontakt se nepodařilo smazat</string>
+  <string name="snackbar_email_copied_success">E-mail zkopírován do schránky</string>
+  <string name="contact_option_send_email">Poslat e-mail</string>
+  <string name="contact_option_copy_address">Kopírovat adresu přeposílání</string>
+  <string name="contact_option_block_contact">Blokovat kontakt</string>
+  <string name="contact_option_unblock_contact">Odblokovat kontakt</string>
+  <string name="contact_option_delete">Smazat</string>
+  <string name="alias_contacts_bottomsheet_title">Kontakty aliasu</string>
+  <string name="alias_contacts_bottomsheet_subtitle">Chcete-li, aby vaše osobní e-mailová adresa zůstala skrytá, můžete si vytvořit alias kontaktu, který vaši adresu zamaskuje.</string>
+  <string name="alias_contacts_explanation">Funguje to takto:</string>
+  <string name="alias_contacts_bottomsheet_section_1">Zadejte adresu, na kterou chcete poslat e-mail.</string>
+  <string name="alias_contacts_bottomsheet_section_2">Proton Pass vygeneruje adresu pro přeposílání (označovanou také jako reverzní alias).</string>
+  <string name="alias_contacts_bottomsheet_section_3" comment="an email will follow this sentence">Pošlete e-mail na tuto adresu a zobrazí se, že byl odeslán z</string>
+</resources>

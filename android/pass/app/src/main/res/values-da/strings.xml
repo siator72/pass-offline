@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="twenty_vaults">20 bokse</string>
+  <string name="unlimited_email_alias">Ubegrænsede e-mail-aliasser</string>
+  <string name="custom_fields">Brugerdefinerede felter</string>
+  <string name="restart_to_complete_the_update">Genstart for at fuldføre opdateringen</string>
+  <string name="action_restart">Genstart</string>
+  <string name="shortcut_share_logs_title">Del logfiler</string>
+  <string name="shortcut_share_logs_confirmation_title">Del diagnostik-logs?</string>
+  <string name="shortcut_share_logs_confirmation_message">Dette åbner din e-mail-app for at sende diagnostiske logfiler til Proton Pass. Der medfølger ingen data om bokse.</string>
+  <string name="no_account_found">Ingen konto fundet</string>
+  <string name="no_session_found">Ingen session fundet</string>
+  <string name="auth_with_extra_password_failed">Mislykket godkendelse med ekstra adgangskode</string>
+  <string name="auth_only_1_proton_account_failed">Kun 1 gratis Proton-konto er tilladt.</string>
+</resources>

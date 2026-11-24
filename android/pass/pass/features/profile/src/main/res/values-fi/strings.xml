@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Profiili</string>
+  <string name="profile_option_settings">Asetukset</string>
+  <string name="profile_option_account">Tili</string>
+  <string name="profile_help_center">Tukikeskus</string>
+  <string name="profile_security">Suojaus</string>
+  <string name="profile_option_autofill_troubleshooting">Automaattitäytön vianetsintä</string>
+  <string name="profile_option_feedback">Palaute</string>
+  <string name="profile_option_import_export">Tuonti ja vienti</string>
+  <string name="profile_option_tutorial">Miten Proton Passia käytetään</string>
+  <string name="profile_option_rating">Arvioi sovellus</string>
+  <string name="profile_spread_the_word">Levitä sanaa</string>
+  <string name="profile_option_tell_a_friend">Kerro kaverille</string>
+  <string name="profile_spread_the_word_share_message">Käytän Proton Passia salasanojeni suojaamiseen. Kokeile sitä: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Automaattitäyttö</string>
+  <string name="profile_option_autofill_subtitle">Täytä käyttäjätunnukset ja salasanat automaattisesti.</string>
+  <string name="profile_option_secure_links">Suojatut linkit</string>
+  <string name="profile_option_alias_management">Aliashallinta</string>
+  <string name="profile_option_generated_passwords">Luodut salasanat</string>
+  <string name="profile_error_biometry_failed_to_start">Biometristä todennusta ei voitu käynnistää</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Todennus epäonnistui</string>
+  <string name="profile_error_app_lock_update_failed">Could not update the app lock. Please try again.</string>
+  <string name="profile_fingerprint_lock_enabled">Sormenjälkilukitus otettiin käyttöön</string>
+  <string name="profile_fingerprint_lock_disabled">Sormenjälkilukitus poistettiin käytöstä</string>
+  <string name="profile_app_version_copied_to_clipboard">Sovelluksen versio kopioitiin</string>
+  <string name="feedback_option_reddit">Tutustu Protonin Reddit-yhteisöön</string>
+  <string name="feedback_option_mail">Lähetä meille viesti</string>
+  <string name="feedback_option_vote_new_features">Äänestä uusia ominaisuuksia</string>
+  <string name="app_lock_immediately">Välittömästi</string>
+  <string name="app_lock_one_minute">Minuutin kuluttua</string>
+  <string name="app_lock_two_minutes">Kahden minuutin kuluttua</string>
+  <string name="app_lock_five_minutes">Viiden minuutin kuluttua</string>
+  <string name="app_lock_ten_minutes">10 minuutin kuluttua</string>
+  <string name="app_lock_one_hour">Tunnin kuluttua</string>
+  <string name="app_lock_four_hours">4 tunnin kuluttua</string>
+  <string name="app_lock_config_none">Ei määritetty</string>
+  <string name="app_lock_config_biometric">Biometrinen</string>
+  <string name="app_lock_config_pin_code">PIN-koodi</string>
+  <string name="app_lock_config_app_lock_time">Lukitse automaattisesti</string>
+  <string name="app_lock_config_password">Salasana</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Käytä laitteen avaustapaa biometrian epäonnistuessa</string>
+  <string name="configure_pin_set_pin_code">Aseta PIN-koodi</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Avaa sovelluksen lukitus tällä koodilla.</string>
+  <string name="configure_pin_enter_pin_code">Syötä PIN-koodi</string>
+  <string name="configure_pin_repeat_pin_code">Toista PIN-koodi</string>
+  <string name="configure_pin_continue">Jatka</string>
+  <string name="configure_pin_pin_does_not_match">PIN-koodi ei täsmää</string>
+  <string name="configure_pin_pin_too_short">PIN-koodi on liian lyhyt</string>
+  <string name="configure_pin_pin_cannot_be_blank">PIN-koodi ei voi olla tyhjä</string>
+  <string name="configure_pin_pin_lock_enabled">PIN-lukitus otettiin käyttöön</string>
+  <string name="configure_pin_pin_lock_disabled">PIN-lukitus poistettiin käytöstä</string>
+  <string name="profile_option_lock_with">Lukitus</string>
+  <string name="profile_option_unlock_with">Lukituksen avaustapa</string>
+  <string name="profile_option_change_pin_code">Vaihda PIN-koodi</string>
+  <string name="profile_passkey_support_section_title">Pääsyavaimet</string>
+  <string name="profile_passkey_support_subtitle_supported">Tämä laite tukee pääsyavaimia</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Android-versiosi ei tue pääsyavaimia.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Pääsyavaintukea ei voitu tarkastaa</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">%d päivän kuluttua</item>
+    <item quantity="other">%d päivän kuluttua</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">%d minuutin kuluttua</item>
+    <item quantity="other">%d minuutin kuluttua</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">%d tunnin kuluttua</item>
+    <item quantity="other">%d tunnin kuluttua</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Alle minuutti</string>
+  <string name="account_switcher_manage_account">Hallitse tiliä</string>
+  <string name="account_switcher_sign_in">Kirjaudu sisään</string>
+  <string name="account_switcher_sign_out">Kirjaudu ulos</string>
+  <string name="account_switcher_switch_to">Vaihda tiliin</string>
+  <string name="account_switcher_add_account">Lisää tili</string>
+  <string name="account_switcher_remove">Poista</string>
+  <string name="filtered_by_logins">Kirjautumistiedot näytetään. Roskakorissa olevia kohteita ei näytetä.</string>
+  <string name="filtered_by_logins_with_mfa">TOTP:n sisältävät kirjautumistiedot näytetään. Roskakorissa olevia kohteita ei näytetä.</string>
+  <string name="filtered_by_aliases">Aliakset näytetään. Roskakorissa olevia kohteita ei näytetä.</string>
+  <string name="filtered_by_notes">Muistiinpanot näytetään. Roskakorissa olevia kohteita ei näytetä.</string>
+  <string name="filtered_by_credit_cards">Maksukortit näytetään. Roskakorissa olevia kohteita ei näytetä.</string>
+  <string name="filtered_by_identities">Identiteetit näytetään. Roskakorissa olevia kohteita ei näytetä.</string>
+  <string name="filtered_by_custom_items">Mukautetut kohteet näytetään. Poistettuja kohteita ei näytetä.</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Sinun on vaihdettava tiliin %1$s hallitaksesi sitä</string>
+  <string name="account_switch_confirmation_title">Hallitse tiliä</string>
+  <string name="account_switch_confirmation_confirm">Vaihda ja hallitse</string>
+  <string name="profile_storage_data_title">Tallennustila</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s/%2$s</string>
+</resources>

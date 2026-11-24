@@ -1,0 +1,105 @@
+/*
+ * Copyright (c) 2023-2026 Proton AG
+ * This file is part of Proton AG and Proton Pass.
+ *
+ * Proton Pass is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Proton Pass is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package proton.android.pass.domain
+
+@JvmInline
+value class InviteToken(val value: String)
+
+@JvmInline
+value class InviteId(val value: String)
+
+@JvmInline
+value class NewUserInviteId(val value: String)
+
+interface ItemInfo
+
+interface VaultInfo {
+    val memberCount: Int
+    val itemCount: Int
+    val name: String
+    val icon: ShareIcon
+    val color: ShareColor
+}
+
+sealed interface PendingUserInvite {
+    val isFromNewUser: Boolean
+}
+
+sealed interface PendingGroupInvite {
+    val inviteId: InviteId
+    val inviterUserId: String
+    val invitedGroupId: String
+    val invitedEmail: String
+    val targetId: String
+    val remindersSent: Int
+}
+
+sealed interface PendingInvite {
+    val inviteToken: InviteToken
+    val inviterEmail: String
+    val invitedAddressId: String
+
+    data class UserItem(
+        override val inviteToken: InviteToken,
+        override val inviterEmail: String,
+        override val invitedAddressId: String,
+        override val isFromNewUser: Boolean
+    ) : PendingInvite, PendingUserInvite, ItemInfo
+
+    data class UserVault(
+        override val inviteToken: InviteToken,
+        override val inviterEmail: String,
+        override val invitedAddressId: String,
+        override val isFromNewUser: Boolean,
+        override val memberCount: Int,
+        override val itemCount: Int,
+        override val name: String,
+        override val icon: ShareIcon,
+        override val color: ShareColor
+    ) : PendingInvite, PendingUserInvite, VaultInfo
+
+    data class GroupItem(
+        override val inviteToken: InviteToken,
+        override val inviterEmail: String,
+        override val invitedAddressId: String,
+        override val inviteId: InviteId,
+        override val inviterUserId: String,
+        override val invitedGroupId: String,
+        override val invitedEmail: String,
+        override val targetId: String,
+        override val remindersSent: Int
+    ) : PendingInvite, PendingGroupInvite, ItemInfo
+
+    data class GroupVault(
+        override val inviteToken: InviteToken,
+        override val inviterEmail: String,
+        override val invitedAddressId: String,
+        override val inviteId: InviteId,
+        override val inviterUserId: String,
+        override val invitedGroupId: String,
+        override val invitedEmail: String,
+        override val targetId: String,
+        override val remindersSent: Int,
+        override val memberCount: Int,
+        override val itemCount: Int,
+        override val name: String,
+        override val icon: ShareIcon,
+        override val color: ShareColor
+    ) : PendingInvite, PendingGroupInvite, VaultInfo
+}

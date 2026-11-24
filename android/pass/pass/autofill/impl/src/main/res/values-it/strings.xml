@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Ottieni da Proton Pass</string>
+  <string name="error_loading_items">Caricamento degli elementi non riuscito</string>
+  <string name="inline_suggestions_open_app">Apri Proton Pass</string>
+  <string name="autofill_associate_web_app_name_dialog_title">Sei sicuro di voler usare le credenziali di \"%s\" per questa applicazione o sito web?</string>
+  <string name="autofill_dialog_associate_and_autofill">Associa e compila</string>
+  <string name="autofill_dialog_just_autofill">Compila</string>
+  <string name="autofill_dialog_cancel">Annulla</string>
+  <string name="autofill_notification_copy_to_clipboard">TOTP copiato</string>
+  <string name="autofill_dialog_associate_title">Compila la pagina</string>
+  <string name="autofill_user_logged_out">Effettua nuovamente l\'accesso nell\'applicazione</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Applicazione sospetta</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">L\'applicazione da cui hai aperto il sito web può avere accesso alle credenziali che inserisci nella pagina. Sei sicuro di voler compilare questa pagina?</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">Compila</string>
+  <string name="autofill_confirm_unverified_browser_title">Questa app afferma di essere un browser affidabile</string>
+  <string name="autofill_confirm_unverified_browser_body">Questa app si identifica come un browser conosciuto, ma Pass non è riuscito a verificarlo. Il suo certificato di firma non corrisponde a quello previsto, il che può accadere se il browser è configurato in modo insolito o se un\'altra app lo sta impersonando per intercettare le tue credenziali. Continua solo se sei certo che questa app sia legittima.</string>
+  <string name="autofill_confirm_dont_ask_again">Non chiedere più per questa app</string>
+  <string name="autofill_troubleshooting_title">Risoluzione dei problemi di compilazione automatica</string>
+  <string name="autofill_troubleshooting_subtitle">Verifica che il tuo dispositivo sia configurato correttamente per il riempimento automatico.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">Compilazione automatica configurata.</string>
+  <string name="autofill_troubleshooting_verdict_attention">Alcune cose richiedono la tua attenzione</string>
+  <string name="autofill_troubleshooting_service_ok">Proton Pass è il tuo servizio di riempimento automatico</string>
+  <string name="autofill_troubleshooting_service_current_other">Attualmente impostato su %1$s.</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Proton Pass non è il tuo servizio di riempimento automatico</string>
+  <string name="autofill_troubleshooting_service_not_default_body">Impostalo come predefinito per il riempimento automatico in tutte le tue app.</string>
+  <string name="autofill_troubleshooting_service_enable_action">Abilita la compilazione automatica</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">Questo dispositivo non supporta il riempimento automatico</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">Rilevati browser inattivi</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Attiva il riempimento automatico affinché Proton Pass possa inserire le tue credenziali. Tocca un browser per aprirne le impostazioni.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">I browser sono compatibili</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">I tuoi browser sono connessi e pronti per il completamento automatico.</string>
+  <string name="autofill_troubleshooting_browser_active">Attivo</string>
+  <string name="autofill_troubleshooting_inline_info">I suggerimenti in linea vengono visualizzati nella tastiera. Richiedono Android 11 o versioni successive e una tastiera compatibile come Gboard.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">Condividere la diagnostica</string>
+  <string name="autofill_troubleshooting_open_diagnostics">Diagnosi avanzata</string>
+  <string name="autofill_diagnostics_title">Diagnosi avanzata</string>
+  <string name="autofill_diagnostics_enable">Abilita la diagnostica della compilazione automatica</string>
+  <string name="autofill_diagnostics_enable_description">Quando è attivo, Proton Pass registra tutto ciò che accade durante il riempimento automatico, così puoi capire perché non si è compilato correttamente. Disattivalo quando hai finito.</string>
+  <string name="autofill_diagnostics_instructions">Riproduci il problema di compilazione automatica nell\'app o nel browser, quindi torna a questa schermata.</string>
+  <string name="autofill_diagnostics_last_attempt_title">Ultimo tentativo di compilazione automatica</string>
+  <string name="autofill_diagnostics_no_attempts">Nessun tentativo di compilazione automatica registrato finora.</string>
+  <string name="autofill_diagnostics_reason_not_default">Proton Pass non è il tuo servizio di riempimento automatico, quindi al momento non può riempire i moduli da nessuna parte.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass ha offerto suggerimenti in %1$s.</string>
+  <string name="autofill_diagnostics_outcome_nothing">La funzione di compilazione automatica si è attivata in %1$s, ma non è stato offerto alcun login corrispondente. La pagina potrebbe non avere campi di login rilevabili oppure non si dispone di un elemento per questo sito.</string>
+  <string name="autofill_diagnostics_outcome_error">Il riempimento automatico ha riscontrato un errore in %1$s.</string>
+  <string name="autofill_diagnostics_recent_title">Tentativi recenti</string>
+  <string name="autofill_diagnostics_clear">Cancella</string>
+  <string name="autofill_diagnostics_share">Condividi con il supporto</string>
+</resources>

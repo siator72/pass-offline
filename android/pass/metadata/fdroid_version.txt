@@ -1,0 +1,2 @@
+versionName=1.41.5
+versionCode=14105000

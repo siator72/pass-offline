@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="profile_screen_title">Profil</string>
+  <string name="profile_option_settings">Inställningar</string>
+  <string name="profile_option_account">Konto</string>
+  <string name="profile_help_center">Hjälpcenter</string>
+  <string name="profile_security">Säkerhet</string>
+  <string name="profile_option_autofill_troubleshooting">Felsökning av automatisk ifyllning</string>
+  <string name="profile_option_feedback">Feedback</string>
+  <string name="profile_option_import_export">Importera/exportera</string>
+  <string name="profile_option_tutorial">Hur man använder Proton Pass</string>
+  <string name="profile_option_rating">Betygsätt app</string>
+  <string name="profile_spread_the_word">Sprid ordet</string>
+  <string name="profile_option_tell_a_friend">Berätta för en vän</string>
+  <string name="profile_spread_the_word_share_message">I\'m using Proton Pass to keep my passwords secure. Try it: https://proton.me/pass/download</string>
+  <string name="profile_option_autofill">Fyll automatiskt</string>
+  <string name="profile_option_autofill_subtitle">Fyll i dina användarnamn och lösenord automatiskt.</string>
+  <string name="profile_option_secure_links">Säkra länkar</string>
+  <string name="profile_option_alias_management">Aliashantering</string>
+  <string name="profile_option_generated_passwords">Genererade lösenord</string>
+  <string name="profile_error_biometry_failed_to_start">Kunde inte starta den biometriska autentiseringen</string>
+  <string name="profile_error_biometry_failed_to_authenticate">Misslyckades att autentisera</string>
+  <string name="profile_error_app_lock_update_failed">Could not update the app lock. Please try again.</string>
+  <string name="profile_fingerprint_lock_enabled">Fingeravtryckslås aktiverat</string>
+  <string name="profile_fingerprint_lock_disabled">Fingeravtryckslås inaktiverat</string>
+  <string name="profile_app_version_copied_to_clipboard">Appversion kopierad</string>
+  <string name="feedback_option_reddit">Kolla in Proton på Reddit</string>
+  <string name="feedback_option_mail">Skicka oss ett meddelande</string>
+  <string name="feedback_option_vote_new_features">Rösta för nya funktioner</string>
+  <string name="app_lock_immediately">Omedelbart</string>
+  <string name="app_lock_one_minute">Efter 1 minut</string>
+  <string name="app_lock_two_minutes">Efter 2 minuter</string>
+  <string name="app_lock_five_minutes">Efter 5 minuter</string>
+  <string name="app_lock_ten_minutes">Efter 10 minuter</string>
+  <string name="app_lock_one_hour">Efter 1 timme</string>
+  <string name="app_lock_four_hours">Efter 4 timmar</string>
+  <string name="app_lock_config_none">Inget</string>
+  <string name="app_lock_config_biometric">Biometri</string>
+  <string name="app_lock_config_pin_code">PIN-kod</string>
+  <string name="app_lock_config_app_lock_time">Automatiskt lås</string>
+  <string name="app_lock_config_password">Lösenord</string>
+  <string name="app_lock_config_use_system_lock_when_biometric_fails">Använd systemlås när biometri misslyckas</string>
+  <string name="configure_pin_set_pin_code">Ställ in PIN-kod</string>
+  <string name="configure_pin_unlock_the_app_with_this_code">Lås upp appen med denna kod</string>
+  <string name="configure_pin_enter_pin_code">Ange PIN-kod</string>
+  <string name="configure_pin_repeat_pin_code">Upprepa PIN-kod</string>
+  <string name="configure_pin_continue">Fortsätt</string>
+  <string name="configure_pin_pin_does_not_match">PIN-koder matchar inte</string>
+  <string name="configure_pin_pin_too_short">PIN-koden är för kort</string>
+  <string name="configure_pin_pin_cannot_be_blank">PIN-koden kan inte vara tom</string>
+  <string name="configure_pin_pin_lock_enabled">PIN-lås aktiverat</string>
+  <string name="configure_pin_pin_lock_disabled">PIN-lås inaktiverat</string>
+  <string name="profile_option_lock_with">Lås med</string>
+  <string name="profile_option_unlock_with">Lås upp med</string>
+  <string name="profile_option_change_pin_code">Ändra PIN-kod</string>
+  <string name="profile_passkey_support_section_title">Passkeys</string>
+  <string name="profile_passkey_support_subtitle_supported">Passkeys can be supported on this device</string>
+  <string name="profile_passkey_support_subtitle_not_supported_android_version">Din Android-version stöder inte passkeys.</string>
+  <string name="profile_passkey_support_subtitle_not_supported_unknown">Kunde inte kontrollera stöd för passkeys</string>
+  <plurals name="profile_after_days">
+    <item quantity="one">Efter %d dag</item>
+    <item quantity="other">Efter %d dagar</item>
+  </plurals>
+  <plurals name="profile_after_minutes">
+    <item quantity="one">Efter %d minut</item>
+    <item quantity="other">Efter %d minuter</item>
+  </plurals>
+  <plurals name="profile_after_hours">
+    <item quantity="one">Efter %d timme</item>
+    <item quantity="other">Efter %d timmar</item>
+  </plurals>
+  <string name="profile_less_than_a_minute">Mindre än en minut</string>
+  <string name="account_switcher_manage_account">Hantera konto</string>
+  <string name="account_switcher_sign_in">Logga in</string>
+  <string name="account_switcher_sign_out">Logga ut</string>
+  <string name="account_switcher_switch_to">Byt till</string>
+  <string name="account_switcher_add_account">Lägg till konto</string>
+  <string name="account_switcher_remove">Ta bort</string>
+  <string name="filtered_by_logins">Filtrerat efter inloggningar. Kastade objekt visas inte</string>
+  <string name="filtered_by_logins_with_mfa">Filtrerat efter inloggningar med TOTP. Kastade objekt visas inte</string>
+  <string name="filtered_by_aliases">Filtrerat efter alias. Kastade objekt visas inte</string>
+  <string name="filtered_by_notes">Filtrerat efter anteckningar. Kastade objekt visas inte</string>
+  <string name="filtered_by_credit_cards">Filtrerat efter kreditkort. Kastade objekt visas inte</string>
+  <string name="filtered_by_identities">Filtrerat efter identiteter. Kastade objekt visas inte</string>
+  <string name="filtered_by_custom_items">Filtrerat efter anpassade objekt. Kastade objekt visas inte</string>
+  <string name="account_switch_confirmation_body" comment="Placeholder is the email we're switching to">Du måste byta till %1$s för att hantera det</string>
+  <string name="account_switch_confirmation_title">Hantera konto</string>
+  <string name="account_switch_confirmation_confirm">Byt och hantera</string>
+  <string name="profile_storage_data_title">Lagringsutrymme</string>
+  <string name="profile_storage_amount" comment="This will show 20MB of 100MB">%1$s av %2$s</string>
+</resources>

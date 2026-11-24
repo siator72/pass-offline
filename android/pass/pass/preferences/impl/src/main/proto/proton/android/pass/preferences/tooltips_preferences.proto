@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "proton/android/pass/preferences/boolean_pref.proto";
+
+option java_package = "proton.android.pass.preferences";
+option java_multiple_files = true;
+
+message TooltipsPreferences {
+  BooleanPrefProto username_split_enabled = 1;
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2024 Proton AG
+  ~ This file is part of Proton AG and Proton Pass.
+  ~
+  ~ Proton Pass is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Proton Pass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Proton Pass.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<resources>
+  <!-- Management screen -->
+  <string name="simple_login_sync_management_title">ფსევდონიმების მართვა</string>
+  <string name="simple_login_sync_management_domain_label">დომენი</string>
+  <string name="simple_login_sync_management_domain_title">ნაგულისხმევი დომენი ფსევდონიმებისთვის</string>
+  <string name="simple_login_sync_management_domain_option_blank">მონიშნული არაა</string>
+  <string name="simple_login_sync_management_mailboxes_label">საფოსტო ყუთები</string>
+  <string name="simple_login_sync_management_mailboxes_description">საფოსტო ყუთი ადგილია, სადაც ფსევდონიმზე მიღებული ელფოსტებსი გადაგზავნა ხდება. ის ჩვეულებრივი საფოსტო ყუთია, როგორიცაა Gmail, Outlook, Proton Mail და ა.შ.</string>
+  <string name="simple_login_sync_management_mailbox_default">ნაგულისხმევი</string>
+  <string name="simple_login_sync_management_mailbox_unverified">შეუმოწმებელი საფოსტო ყუთი</string>
+  <string name="simple_login_sync_management_mailbox_unverified_change">შეუმოწმებელი საფოსტო ყუთის ცვლილება</string>
+  <string name="simple_login_sync_management_vault_title">SimpleLogin-ის სინქრონიზაცია</string>
+  <string name="simple_login_sync_management_no_vault_description">SimpleLogin-ის სინქრონიზაციის პარამეტრების მართვისთვის საჭიროა, მინიმუმ, ერთი საცავი.</string>
+  <string name="simple_login_sync_management_snackbar_alias_details_fetch_error">შეცდომა SL ფსევდონიმის დეტალების გამოთხოვისას</string>
+  <string name="simple_login_sync_management_mailboxes_title">ნაგულისხმევი საფოსტო ყუთი ფსევდონიმებისთვის</string>
+  <string name="simple_login_sync_management_dialog_title_domains">ნაგულისხმევი დომენი ფსევდონიმებისთვის</string>
+  <string name="simple_login_sync_management_dialog_title_mailboxes">ნაგულისხმევი საფოსტო ყუთი ფსევდონიმებისთვის</string>
+  <!-- Settings screen -->
+  <string name="simple_login_sync_settings_title">ფსევდონიმების სინქი</string>
+  <string name="simple_login_sync_enable_snackbar_error">შეცდომა SimpleLogin-ის ფსევდონიმების სინქრონიზაციის ჩართვისას</string>
+  <string name="simple_login_sync_enable_snackbar_success">SimpleLogin-ის ფსევდონიების სინქრონიზაცია წარმატებით ჩაირთო</string>
+  <!-- Mailbox create screen -->
+  <string name="simple_login_sync_mailbox_create_title">საფოსტო ყუთის დამატება</string>
+  <string name="simple_login_sync_mailbox_create_message_error">შეცდომა საფოსტო ყუთის დამატებისას</string>
+  <!-- Mailbox change screen -->
+  <string name="simple_login_sync_mailbox_change_title">საფოსტო ყუთის შეცვლა</string>
+  <string name="simple_login_sync_mailbox_change_message_error">შეცდომა საფოსტო ყუთის შეცვლისას</string>
+  <string name="simple_login_sync_mailbox_change_email_already_in_use_message_error">ელ-ფოსტა დაკავებულია</string>
+  <!-- Mailbox verify screen -->
+  <string name="simple_login_sync_mailbox_verify_title">დაადასტურეთ თქვენი საფოსტო ყუთი</string>
+  <string name="simple_login_sync_mailbox_verify_subtitle" comment="the placeholder will be replaced by an email address">გადამოწმების კოდი გაგზავნილია მისამართზე %s. შეიყვანეთ ის ქვემოთ:</string>
+  <string name="simple_login_sync_mailbox_verify_email_fallback" comment="this text will replace the placeholder in the subtitle above in case the email address is not available">თქვენი ელფოსტის მისამართი</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_error">არასწორი საფოსტო ყუთის გადამოწმების კოდი</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_code_limit_error">მიღებულია არასწორი საფოსტო ყუთის გადამოწმების კოდების ზღვარი. საფოსტო ყუთი წაიშალა</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_error">შეცდომა საფოსტო ყუთის გადამოწმებისას</string>
+  <string name="simple_login_sync_mailbox_verify_message_verification_success">საფოსტო ყუთი წარმატებით გადამოწმდა</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_error">შეცდომა გადამოწმების კოდის გაგზავნისას</string>
+  <string name="simple_login_sync_mailbox_verify_message_resend_code_success">გადამოწმების კოდი წარმატებით გაიგზავნა</string>
+  <!-- Mailbox delete screen -->
+  <string name="simple_login_sync_mailbox_delete_title">საფოსტო ყუთის წაშლა</string>
+  <string name="simple_login_sync_mailbox_delete_subtitle">ასევე წაიშლება ყველა ფსევდონიმი, რომელიც საფოსტო ყუთს %s იყენებს. ელფოსტის მიღების შესანარჩუნებლად გადაიტანეთ ეს ფსევდონიმები სხვა საფოსტო ყუთში.</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_toggle">ფსევდონიმების გადაცემა</string>
+  <string name="simple_login_sync_mailbox_delete_tranfer_option_mailbox">საფოსტო ყუთში</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete">საფოსტო ყუთის წაშლა</string>
+  <string name="simple_login_sync_mailbox_delete_action_delete_and_transfer">საფოსტო ყუთის გადაცემა და წაშლა</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_error">შეცდომა საფოსტო ყუთის წაშლისას</string>
+  <string name="simple_login_sync_mailbox_delete_message_delete_success">საფოსტო ყუთი წარმატებით წაიშალა</string>
+  <string name="simple_login_sync_mailbox_delete_transfer_dialog_title">ფსევდონიმების გადაცემა სად</string>
+  <string name="simple_login_sync_mailbox_delete_warning">დაიმახსოვრეთ, მას შემდეგ, რაც ფსევდონიმს წაშლით, მას ვერ აღადგენთ</string>
+  <!-- Domain select screen -->
+  <string name="simple_login_sync_domain_select_title">ნაგულისხმევი დომენი</string>
+  <string name="simple_login_sync_domain_select_title_none">არცერთი</string>
+  <string name="simple_login_sync_domain_select_description_none">დომენის გარეშე</string>
+  <string name="simple_login_sync_domain_select_description_custom">თქვენი დომენი</string>
+  <string name="simple_login_sync_domain_select_description_free">საჯარო დომენი</string>
+  <string name="simple_login_sync_domain_select_description_premium">ფასიანი დომენი</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_fetch_error">შეცდომა SL ფსევდონიმის დომენების გამოთხოვისას</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_error">შეცდომა SL-ის ფსევდონიმის დომენის განახლებისას</string>
+  <string name="simple_login_sync_domain_select_snackbar_alias_domain_update_success">SL ფსევდონიმის დომენი წარმატებით განახლდა</string>
+  <!-- Mailbox options screen -->
+  <string name="simple_login_sync_mailbox_options_snackbar_options_error">საფოსტო ყუთი პარამეტრების ჩვენება შეუძლებელია</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_error">შეცდომა საფოსტო ყუთის განახლებისას</string>
+  <string name="simple_login_sync_mailbox_options_snackbar_default_success">ნაგულისხმევი საფოსტო ყუთი წარმატებით განახლდა</string>
+  <string name="simple_login_sync_mailbox_change_email_option">საფოსტო ყუთის შეცვლა</string>
+  <string name="simple_login_sync_mailbox_cancel_change_email_option">საფოსტო ყუთის ცვლილების გაუქმება</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_error">შეცდომა საფოსტო ყუთის ელფოსტის ცვლილების გაუქმებისას</string>
+  <string name="simple_login_sync_mailbox_cancel_email_change_message_delete_success">საფოსტო ყუთის ელფოსტის ცვლილება გაუქმდა</string>
+  <!-- Shared -->
+  <string name="simple_login_sync_shared_default_vault_title">ნაგულისხმევი SL-ის საცავი</string>
+  <string name="simple_login_sync_shared_default_vault_description">SimpleLogin-ის ფსევდონიმების შემოტანა ამ საცავში მოხდება.</string>
+</resources>

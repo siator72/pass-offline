@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="autofill_authenticate_prompt">Obtener de Proton Pass</string>
+  <string name="error_loading_items">No se han podido cargar los elementos.</string>
+  <string name="inline_suggestions_open_app">Abrir Proton Pass</string>
+  <string name="autofill_associate_web_app_name_dialog_title">Utilizar los datos de inicio de sesión de \"%s\" en esta aplicación o este sitio web.</string>
+  <string name="autofill_dialog_associate_and_autofill">Utilizar siempre</string>
+  <string name="autofill_dialog_just_autofill">Utilizar una vez</string>
+  <string name="autofill_dialog_cancel">Cancelar</string>
+  <string name="autofill_notification_copy_to_clipboard">El código TOTP ha sido copiado al portapapeles.</string>
+  <string name="autofill_dialog_associate_title">¿Utilizar el inicio de sesión?</string>
+  <string name="autofill_user_logged_out">Se ha cerrado la sesión. Inicia sesión de nuevo abriendo la aplicación.</string>
+  <string name="autofill_confirm_dangerous_title" comment="Title for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Confirma tu acción</string>
+  <string name="autofill_confirm_dangerous_body" comment="Body for the dialog that will appear when the user clicks on Autofill but we think it may be a dangerous action">Estás por rellenar automáticamente tus credenciales en un sitio web abierto por tu aplicación actual. La aplicación puede tener acceso a la credencial después de completarla. Hazlo solo si confías en la aplicación.</string>
+  <string name="autofill_confirm_button" comment="Confirmation button for actually performing the autofill action">Rellenar automáticamente</string>
+  <string name="autofill_confirm_unverified_browser_title">Esta aplicación afirma ser un navegador de confianza</string>
+  <string name="autofill_confirm_unverified_browser_body">Esta aplicación se identifica como un navegador conocido, pero Pass no ha podido verificarla. Su certificado de firma no coincide con el esperado, algo que puede ocurrir si el navegador tiene una configuración poco habitual o si otra aplicación se está haciendo pasar por él para interceptar tus credenciales. Continúa solo si tienes la certeza de que esta aplicación es legítima.</string>
+  <string name="autofill_confirm_dont_ask_again">No volver a preguntar para esta aplicación</string>
+  <string name="autofill_troubleshooting_title">Autofill troubleshooting</string>
+  <string name="autofill_troubleshooting_subtitle">Check your device is set up correctly for autofill.</string>
+  <string name="autofill_troubleshooting_verdict_all_good">Autofill is fully set up</string>
+  <string name="autofill_troubleshooting_verdict_attention">A few things need your attention</string>
+  <string name="autofill_troubleshooting_service_ok">Proton Pass is your autofill service</string>
+  <string name="autofill_troubleshooting_service_current_other">Currently set to %1$s.</string>
+  <string name="autofill_troubleshooting_service_not_default_title">Proton Pass isn\'t your autofill service</string>
+  <string name="autofill_troubleshooting_service_not_default_body">Set it as the default to autofill across your apps.</string>
+  <string name="autofill_troubleshooting_service_enable_action">Enable autofill</string>
+  <string name="autofill_troubleshooting_service_unsupported_title">This device doesn\'t support autofill</string>
+  <string name="autofill_troubleshooting_browsers_inactive_header">Se han detectado navegadores inactivos</string>
+  <string name="autofill_troubleshooting_browsers_inactive_body">Activa el autorrelleno para que Proton Pass pueda rellenar tus credenciales. Toca un navegador para abrir sus ajustes.</string>
+  <string name="autofill_troubleshooting_browsers_compatible_header">Los navegadores son compatibles</string>
+  <string name="autofill_troubleshooting_browsers_compatible_body">Tus navegadores están conectados y listos para autorrellenar.</string>
+  <string name="autofill_troubleshooting_browser_active">Activo</string>
+  <string name="autofill_troubleshooting_inline_info">Inline suggestions appear in your keyboard. They need Android 11 or later and a compatible keyboard such as Gboard.</string>
+  <string name="autofill_troubleshooting_share_diagnostics">Share diagnostics</string>
+  <string name="autofill_troubleshooting_open_diagnostics">Advanced diagnostics</string>
+  <string name="autofill_diagnostics_title">Advanced diagnostics</string>
+  <string name="autofill_diagnostics_enable">Enable autofill diagnostics</string>
+  <string name="autofill_diagnostics_enable_description">When on, Proton Pass records what happens during autofill so you can see why it didn\'t fill. Turn it off when you\'re done.</string>
+  <string name="autofill_diagnostics_instructions">Reproduce the autofill problem in the app or browser, then come back to this screen.</string>
+  <string name="autofill_diagnostics_last_attempt_title">Last autofill attempt</string>
+  <string name="autofill_diagnostics_no_attempts">No autofill attempt recorded yet.</string>
+  <string name="autofill_diagnostics_reason_not_default">Proton Pass isn\'t your autofill service, so it can\'t fill anywhere yet.</string>
+  <string name="autofill_diagnostics_outcome_offered">Proton Pass offered suggestions in %1$s.</string>
+  <string name="autofill_diagnostics_outcome_nothing">Autofill was triggered in %1$s, but no matching login was offered. The page may have no detectable login fields, or you have no item for this site.</string>
+  <string name="autofill_diagnostics_outcome_error">Autofill ran into an error in %1$s.</string>
+  <string name="autofill_diagnostics_recent_title">Recent attempts</string>
+  <string name="autofill_diagnostics_clear">Borrar</string>
+  <string name="autofill_diagnostics_share">Share with support</string>
+</resources>

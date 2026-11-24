@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="on_boarding_autofill_content_v2">Proton 패스가 로그인 세부사항을 대신 작성합니다. 직접 입력하거나 복사 붙여넣기 할 필요 없습니다.</string>
+  <string name="on_boarding_autofill_title_v2">자동 완성의 마법 경험하기</string>
+  <string name="on_boarding_autofill_button">Proton Pass로 자동 완성</string>
+  <string name="on_boarding_fingerprint_content">오직 당신만 접근할 수 있도록 Proton Pass에 지문 인식 잠금 해제를 설정하세요.</string>
+  <string name="on_boarding_fingerprint_title">가장 민감한 데이터를 보호하세요.</string>
+  <string name="on_boarding_fingerprint_button">지문 잠금 활성화</string>
+  <string name="on_boarding_last_page_content">실제 이메일 주소 공유를 멈추세요. Proton Pass 특전으로 이메일 변경을 통해 숨겨보세요.</string>
+  <string name="on_boarding_last_page_title">받은 편지함에 도착하는 메일을 관리하세요.</string>
+  <string name="on_boarding_last_page_button">Proton Pass 사용 시작</string>
+  <string name="on_boarding_skip">다음에</string>
+  <string name="on_boarding_tutorial_v2">Prootn Pass 사용법 알아보기</string>
+  <string name="on_boarding_pending_invite_content">보안 상의 이유로, 접근이 수락되어야 합니다.</string>
+  <string name="on_boarding_pending_invite_title">공유 데이터에 대한 접근 대기 중</string>
+  <string name="on_boarding_pending_invite_button">Proton Pass에 대해 더 알아보기</string>
+  <string name="error_biometry_failed_to_start">생체 인증을 시작할 수 없습니다</string>
+  <string name="error_biometry_failed_to_authenticate">인증하는데 실패하였습니다</string>
+  <string name="settings_fingerprint_lock_enabled">지문 잠금 활성화됨</string>
+  <string name="error_performing_operation">작업 처리 오류</string>
+  <string name="onboarding_slide_1_title">나의 모든 비밀번호.</string>
+  <string name="onboarding_slide_2_title">나의 받은 편지함 보호하기.</string>
+  <string name="onboarding_slide_3_title">최신 소식 받아보기.</string>
+  <string name="onboarding_slide_4_title">안전하게 공유하기.</string>
+  <string name="onboarding_slide_1_subtitle">가장 안전하게 보관하고 가장 신뢰할 수 있는 개인정보 보호업체의 보호를 받게됩니다.</string>
+  <string name="onboarding_slide_2_subtitle">피싱 위협에 대항하기 위해 Hide-My-Email 별칭을 사용해 보세요.</string>
+  <string name="onboarding_slide_3_subtitle">비밀번호와 민감한 정보를 안전하고 쉽게 공유해 보세요.</string>
+  <string name="onboarding_slide_4_subtitle">내 이메일이 다크 웹에서 발견될 때 알림을 받아보세요.</string>
+  <string name="create_an_account_button">계정 만들기</string>
+  <string name="sign_in_button">로그인</string>
+</resources>

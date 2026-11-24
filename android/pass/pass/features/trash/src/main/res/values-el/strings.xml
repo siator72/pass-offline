@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="bottomsheet_delete_permanently">Οριστική διαγραφή</string>
+  <string name="alert_confirm_delete_item_dialog_title">Οριστική διαγραφή;</string>
+  <string name="alert_confirm_delete_item_dialog_message">Αυτή η ενέργεια είναι μην αναστρέψιμη.</string>
+  <string name="alert_confirm_delete_item_dialog_shared_warning_message">Αυτό το στοιχείο είναι κοινόχρηστο. Αν διαγραφεί, όλοι οι υπόλοιποι χρήστες θα χάσουν την πρόσβασή τους σε αυτό.</string>
+  <string name="alias_dialog_move_to_trash_title">Μετακίνηση στα Διαγραμμένα;</string>
+  <string name="alias_dialog_move_to_trash_content">Εάν μετακινήσετε ένα ψευδώνυμο στα διαγραμμένα, θα σταματήσει να προωθεί μηνύματα ηλεκτρονικού ταχυδρομείου στο γραμματοκιβώτιό σας.</string>
+  <string name="alias_dialog_move_to_trash_confirm">Επιβεβαίωση</string>
+  <string name="delete_alias_confirm">Διαγράψτε το, δε θα το χρειαστώ ποτέ</string>
+  <string name="delete_alias_title">Διαγραφή %s</string>
+  <string name="delete_alias_enabled_subtitle">"Λάβετε υπόψη ότι μετά τη διαγραφή, δεν είναι δυνατή η επαναφορά του ψευδωνύμου. Ίσως θέλετε να απενεργοποιήσετε το ψευδώνυμο; "</string>
+  <string name="delete_alias_disabled_subtitle">Λάβετε υπόψη ότι μετά τη διαγραφή, δεν είναι δυνατή η επαναφορά του ψευδωνύμου. Το ψευδώνυμο είναι ήδη απενεργοποιημένο και δεν προωθεί μηνύματα ηλεκτρονικού ταχυδρομείου στο γραμματοκιβώτιό σας.</string>
+  <plurals name="bulk_delete_alias_title">
+    <item quantity="one">Πρόκειται να διαγράψετε οριστικά %d ψευδώνυμο</item>
+    <item quantity="other">Πρόκειται να διαγράψετε οριστικά %d ψευδώνυμα</item>
+  </plurals>
+  <string name="bulk_delete_alias_subtitle">Λάβετε υπόψη ότι μετά τη διαγραφή, δεν είναι δυνατή η επαναφορά των ψευδωνύμων</string>
+  <string name="bulk_delete_alias_confirm">Κατανοητό, δεν θα τα χρειαστώ ποτέ</string>
+  <string name="delete_alias_disable">Απενεργοποίηση ψευδωνύμου</string>
+</resources>

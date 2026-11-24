@@ -1,0 +1,38 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:width="24dp"
+    android:height="24dp">
+    <path
+        android:pathData="M0 2.5C0 1.11929 1.11929 0 2.5 0H21.5C22.8807 0 24 1.11929 24 2.5V21.5C24 22.8807 22.8807 24 21.5 24H2.5C1.11929 24 0 22.8807 0 21.5V2.5Z"
+        android:fillColor="#DADBE0" />
+    <path
+        android:pathData="M18.99997 9.08332A1.16667 1.16667 0 0 1 16.66663 9.08332A1.16667 1.16667 0 0 1 18.99997 9.08332Z"
+        android:fillColor="#3A3F4A" />
+    <path
+        android:pathData="M7.33334 9.08332A1.16667 1.16667 0 0 1 5 9.08332A1.16667 1.16667 0 0 1 7.33334 9.08332Z"
+        android:fillColor="#3A3F4A" />
+    <path
+        android:pathData="M16.6667 14.3333C16.6667 11.4338 14.5774 9.08334 12 9.08334C9.42271 9.08334 7.33337 11.4338 7.33337 14.3333"
+        android:strokeColor="#3A3F4A"
+        android:strokeWidth="0.583333" />
+    <path
+        android:pathData="M6.75 9.08333L17.25 9.08333"
+        android:strokeColor="#3A3F4A"
+        android:strokeWidth="0.583333" />
+    <path
+        android:pathData="M15.27785 12.8333H18.05564A0.694448 0.694448 0 0 1 18.75009 13.52775V16.30554A0.694448 0.694448 0 0 1 18.05564 16.99999H15.27785A0.694448 0.694448 0 0 1 14.5834 16.30554V13.52775A0.694448 0.694448 0 0 1 15.27785 12.8333Z"
+        android:fillColor="#DADBE0"
+        android:strokeColor="#3A3F4A"
+        android:strokeWidth="2.38096" />
+    <path
+        android:pathData="M5.944328 12.8333H8.722122A0.694448 0.694448 0 0 1 9.41657 13.52775V16.30554A0.694448 0.694448 0 0 1 8.722122 16.99999H5.944328A0.694448 0.694448 0 0 1 5.24988 16.30554V13.52775A0.694448 0.694448 0 0 1 5.944328 12.8333Z"
+        android:fillColor="#DADBE0"
+        android:strokeColor="#3A3F4A"
+        android:strokeWidth="2.38096" />
+    <path
+        android:pathData="M10.66667 7.08334H13.33333A0.666667 0.666667 0 0 1 14 7.750007V10.41667A0.666667 0.666667 0 0 1 13.33333 11.08334H10.66667A0.666667 0.666667 0 0 1 10 10.41667V7.750007A0.666667 0.666667 0 0 1 10.66667 7.08334Z"
+        android:fillColor="#DADBE0"
+        android:strokeColor="#3A3F4A"
+        android:strokeWidth="2.28571" />
+</vector>
