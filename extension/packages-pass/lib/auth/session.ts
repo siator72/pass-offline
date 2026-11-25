@@ -123,14 +123,9 @@ export const syncAuthSession = (session: AuthSession, authStore: AuthStore): Aut
  * NOTE: the `LocalKeyResponse` type is wrong - the `ClientKey` could
  * potentially be `null` if it hasn't be set yet. */
 export const getPersistedSessionKey = async (api: Api, authStore: AuthStore): Promise<Maybe<CryptoKey>> => {
-    const clientKey: MaybeNull<string> =
-        authStore.getClientKey() ??
-        (
-            await api<LocalKeyResponse>({
-                ...getLocalKey(),
-                silence: true,
-            })
-        ).ClientKey;
+    /* Offline build: never hit the API — the client key must come from the
+     * local store only (it is persisted there on session login/persist). */
+    const clientKey: MaybeNull<string> = authStore.getClientKey();
 
     if (!clientKey) return;
 
