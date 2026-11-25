@@ -3,7 +3,9 @@ import { type Lock, LockMode } from '../types';
 
 export const checkSessionLock = async (): Promise<Lock> => {
     try {
-        const { LockInfo } = await api({ url: 'pass/v1/user/session/lock/check', method: 'get' });
+        /* Offline build: server-side lock check removed. The lock state is
+         * resolved from the local auth store only. */
+        const LockInfo = undefined;
         return {
             mode: LockInfo?.Exists ? LockMode.SESSION : LockMode.NONE,
             locked: false,

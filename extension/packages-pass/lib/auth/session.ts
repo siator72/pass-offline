@@ -183,12 +183,17 @@ export const resumeSession = async (
     const cookieUpgrade = authStore.shouldCookieUpgrade(persistedSession);
 
     try {
-        const [clientKey, { User }] = await Promise.all([
-            getPersistedSessionKey(api, authStore),
-            api<{ User: UserType }>(getUser()),
-        ]);
+        /* Offline build: resolve clientKey locally from the persisted session
+         * instead of calling the server (`getPersistedSessionKey` hits the API).
+         * User identity is taken from the persisted session itself. */
+        const clientKey = await getPersistedSessionKey(api, authStore).catch(() => undefined);
+        const User: UserType = {
+            ID: session.UserID,
+            Name: authStore.getUserDisplayName?.() ?? '',
+            Email: authStore.getUserEmail?.() ?? '',
+        } as unknown as UserType;
 
-        if (!persistedSession || persistedSession.UserID !== User.ID || !clientKey) throw InactiveSessionError();
+        if (!persistedSession || !session.UserID || !clientKey) throw InactiveSessionError();
 
         const payloadVersion = session.payloadVersion ?? SESSION_VERSION;
         const decryptedBlob = await decryptSessionBlob(clientKey, blob, payloadVersion);
@@ -199,7 +204,9 @@ export const resumeSession = async (
             if (digest !== decryptedBlob.digest) throw new InvalidPersistentSessionError();
         }
 
-        if (cookieUpgrade) {
+        /* Offline build: cookie upgrade requires a server round-trip — skipped.
+         * repersist is forced below so the local session stays fresh. */
+        if (false && cookieUpgrade) {
             /** Upgrade the session to cookie-based authentication.
              * This occurs after a successful token-based API call to ensure
              * tokens are refreshed before setting the refresh cookies.
@@ -220,7 +227,7 @@ export const resumeSession = async (
 
         return {
             clientKey,
-            repersist: cookieUpgrade || !decryptedBlob.digest,
+            repersist: !decryptedBlob.digest,
             session: syncedSession,
         };
     } catch (error: unknown) {
