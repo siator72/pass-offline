@@ -1,0 +1,369 @@
+packages:
+    - applications/*
+    - ci/bin/update-chargebee-iframe
+    - applications/pass-desktop/native
+    - packages/*
+    - packages/lumo-ui/storybook
+    - packages/wasm/*
+    - packages/pass/docs/starlight
+    - tests/packages/*
+    - utilities/*
+
+# Each workspace declares the type packages it uses. Most list node and webpack-env in
+# compilerOptions.types through tsconfig.base.json, so these ranges are shared here.
+# check:constraints requires every workspace to declare these dependencies as "catalog:"; see
+# utilities/repo-rules/README.md for the exceptions.
+catalog:
+    '@dnd-kit/abstract': ^0.5.3
+    '@dnd-kit/collision': ^0.5.3
+    '@dnd-kit/dom': ^0.5.3
+    '@dnd-kit/helpers': ^0.5.3
+    '@dnd-kit/react': ^0.5.3
+    '@electron-forge/cli': ^7.11.2
+    '@electron-forge/maker-deb': ^7.11.2
+    '@electron-forge/maker-dmg': ^7.11.2
+    '@electron-forge/maker-msix': ^7.11.2
+    '@electron-forge/maker-rpm': ^7.11.2
+    '@electron-forge/maker-squirrel': ^7.11.2
+    '@electron-forge/maker-zip': ^7.11.2
+    '@electron-forge/plugin-auto-unpack-natives': ^7.11.2
+    '@electron-forge/plugin-fuses': ^7.11.2
+    '@electron-forge/plugin-webpack': ^7.11.2
+    '@electron-forge/publisher-github': ^7.11.2
+    '@electron-forge/shared-types': ^7.11.2
+    '@electron/fuses': ^1.8.0
+    # Meet's Lexical. Docs takes its own from the `docs` catalog. `lexical` and every `@lexical/*`
+    # package in one catalog must share one exact version.
+    '@lexical/react': 0.31.2
+    '@lexical/utils': 0.31.2
+    # Must stay on the same version as oxlint.
+    '@oxlint/plugins': 1.94.0
+    '@pmmmwh/react-refresh-webpack-plugin': ^0.6.3
+    '@protontech/crypto': ^2.2.0
+    # Shared so that every workspace importing the Drive SDK resolves the same version.
+    '@protontech/drive-sdk': ^0.24.0
+    '@protontech/logger': ^1.1.0
+    '@protontech/pass-rust-core': 2.3.4
+    '@protontech/proton-apps': ^1.1.0
+    '@protontech/timezone-support': 2.2.0
+    '@reduxjs/toolkit': ^2.15.0
+    '@sentry/browser': ^7.120.4
+    '@sentry/types': ^7.120.4
+    '@tanstack/react-virtual': ^3.14.13
+    '@testing-library/dom': ^10.4.2
+    '@testing-library/jest-dom': ^8.0.0
+    '@testing-library/react': ^16.3.3
+    '@testing-library/user-event': ^14.6.12
+    '@types/chrome': ^0.3.7
+    '@types/history': ^4.7.11
+    '@types/jsdom': ^21.1.7
+    '@types/lodash': ^4.17.27
+    '@types/node': ^26.6.6
+    '@types/react': ^18.3.31
+    '@types/react-dom': ^18.3.7
+    '@types/react-router': ^5.1.20
+    '@types/react-router-dom': ^5.3.3
+    '@types/tinycolor2': ^1.4.6
+    '@types/webpack-env': ^1.18.8
+    '@typescript/native': npm:typescript@^7.0.2
+    '@vercel/webpack-asset-relocator-loader': 1.7.3
+    '@vitejs/plugin-react': ^6.3.0
+    '@vitest/browser-playwright': ^5.1.1
+    '@vitest/coverage-v8': ^5.1.1
+    '@vitest/ui': ^5.1.1
+    browserslist: ^4.29.6
+    clsx: ^2.1.1
+    commander: ^14.0.3
+    copy-webpack-plugin: ^14.0.0
+    core-js: ^3.51.0
+    cross-env: ^10.1.0
+    css-loader: ^7.1.5
+    date-fns: ^4.4.0
+    dompurify: ^3.4.18
+    electron-log: ^5.4.4
+    electron-store: ^8.2.0
+    fake-indexeddb: ^6.2.8
+    fork-ts-checker-webpack-plugin: ^9.2.0
+    formik: ^2.4.9
+    happy-dom: ^21.0.4
+    history: ^4.10.1
+    html-webpack-plugin: ^5.6.8
+    # Keep Lumo and its export tests on the version targeted by the patch below.
+    html2canvas: 1.4.1
+    idb: ^8.0.4
+    jsdom: ^31.0.1
+    jszip: ^3.10.2
+    lexical: 0.31.2
+    lodash: ^4.18.1
+    mini-css-extract-plugin: ^2.10.2
+    msw: 2.12.14
+    oxfmt: 0.79.0
+    oxlint: 1.94.0
+    oxlint-tsgolint: 7.0.2007
+    postcss: ^8.5.33
+    react: ^18.3.1
+    react-dom: ^18.3.1
+    react-redux: ^9.3.1
+    react-router: ^5.3.4
+    react-router-dom: ^5.3.4
+    redux: ^5.0.1
+    redux-saga: ^1.6.0
+    redux-thunk: ^3.1.0
+    sass: ^1.80.3
+    stylelint: ^15.11.0
+    tinycolor2: ^1.6.0
+    ts-loader: ^9.6.2
+    ts-node: ^10.9.2
+    tsx: ^4.23.15
+    ttag: ^1.8.12
+    ttag-cli: ^1.12.0
+    # A few workspaces (including the root) still declare the real `typescript` package directly.
+    typescript: npm:@typescript/typescript6@^6.0.2
+    uuid: ^14.0.3
+    vite: ^8.3.8
+    vitest: ^5.1.1
+    webpack: ^5.112.2
+    webpack-dev-server: ^6.1.0
+    y-protocols: ^1.0.6
+    yjs: ^13.6.15
+    zod: ^4.6.7
+
+catalogs:
+    # Docs' Lexical, at the version @proton-docs/docs-editor needs. A Docs manifest declaring a name
+    # that is also in the default catalog needs an exception (see utilities/repo-rules/README.md).
+    docs:
+        '@lexical/clipboard': 0.34.0
+        '@lexical/code': 0.34.0
+        '@lexical/hashtag': 0.34.0
+        '@lexical/headless': 0.34.0
+        '@lexical/html': 0.34.0
+        '@lexical/link': 0.34.0
+        '@lexical/list': 0.34.0
+        '@lexical/markdown': 0.34.0
+        '@lexical/overflow': 0.34.0
+        '@lexical/react': 0.34.0
+        '@lexical/rich-text': 0.34.0
+        '@lexical/selection': 0.34.0
+        '@lexical/table': 0.34.0
+        '@lexical/text': 0.34.0
+        '@lexical/utils': 0.34.0
+        '@lexical/yjs': 0.34.0
+        lexical: 0.34.0
+
+# Yarn resolved any range that a workspace satisfies to that workspace, including the `*` peer
+# dependencies between @proton packages.
+linkWorkspacePackages: true
+# Yarn never installs missing peer dependencies; pnpm does by default.
+autoInstallPeers: false
+# Fail the install on a cycle between workspace packages, through any dependency type.
+disallowWorkspaceCycles: true
+
+# pnpm's default. electron-forge refuses to package unless node-linker is hoisted or a hoist
+# pattern is set explicitly; the desktop apps package only the webpack output, not node_modules.
+hoistPattern:
+    - '*'
+
+# @electron/rebuild pulls @electron/node-gyp from a GitHub commit, and pnpm has no per-package
+# exception for it. Yarn accepted every git dependency (approvedGitRepositories: '**').
+blockExoticSubdeps: false
+
+minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+    - '@proton/*'
+    - '@proton-meet/*'
+    - '@proton-docs/*'
+    - '@protontech/*'
+    - '@openpgp/*'
+    - '@tpe/*'
+
+allowBuilds:
+    '@parcel/watcher': true
+    '@sentry/cli': true
+    '@swc/core': true
+    electron: true
+    electron-winstaller: true
+    esbuild: true
+    # Builds the custom bundle configured in applications/wallet/package.json.
+    exifreader: true
+    fs-xattr: true
+    macos-alias: true
+    # Copies the service worker into the workerDirectory configured in applications/lumo/package.json.
+    msw: true
+    unix-dgram: true
+    unrs-resolver: true
+    # Only print notices or install shell completion.
+    core-js: false
+    core-js-pure: false
+    es5-ext: false
+    netlify-cli: false
+    protobufjs: false
+    ttag-cli: false
+
+patchedDependencies:
+    '@electron-forge/core@7.11.2': patches/@electron-forge__core@7.11.2.patch
+    # The four @lexical patches are the same as @proton-docs/docs-editor's, which needs them applied.
+    # A code block in a language Prism has no grammar for (`kotlin` from Markdown) is highlighted as
+    # JavaScript, as before 0.34.0. Without it the block is not highlighted and Tab on a selection
+    # in it throws.
+    '@lexical/code@0.34.0': patches/@lexical__code@0.34.0.patch
+    # No direction inversion in right-to-left text, as before 0.34.0. With it the arrow keys select
+    # an inline image and then move the caret back where it came from, never past the image.
+    '@lexical/selection@0.34.0': patches/@lexical__selection@0.34.0.patch
+    # Touch-only fixes: tapping from a cell in one table into another threw "Cell not found in table."
+    # and locked the Docs editor (upstream has the same check from 0.52.0), and a touch drag across
+    # cells selected nothing, which 0.33.0 and 0.34.0 alone break.
+    '@lexical/table@0.34.0': patches/@lexical__table@0.34.0.patch
+    # TabNodes written by Lexical before 0.32.1 can hold more than a tab character, and from 0.32.1
+    # TabNode.setTextContent throws on them, so the paragraph loaded empty. This restores 0.32.0's
+    # direct write; @proton-docs/docs-editor's FixBrokenTabNode then repairs the tab.
+    '@lexical/yjs@0.34.0': patches/@lexical__yjs@0.34.0.patch
+    '@mlc-ai/web-llm@0.2.32': patches/@mlc-ai__web-llm@0.2.32.patch
+    '@pdf-lib/standard-fonts@1.0.0': patches/@pdf-lib__standard-fonts@1.0.0.patch
+    # LUMO-988: copy the full scaled iframe bitmap instead of its top-left quarter.
+    # Reassess on upgrades: remove only when the unpatched replacement passes
+    # tests/lumo/iframe-capture.test.ts in Chromium and WebKit at scales 1 and 2;
+    # otherwise update the patch for the replacement version.
+    html2canvas@1.4.1: patches/html2canvas@1.4.1.patch
+    # Preserve email autolinking without unsupported negative lookbehind on Safari <16.4.
+    # https://github.com/syntax-tree/mdast-util-gfm-autolink-literal/issues/10
+    mdast-util-gfm-autolink-literal@2.0.1: patches/mdast-util-gfm-autolink-literal@2.0.1.patch
+    rfc2047@2.0.1: patches/rfc2047@2.0.1.patch
+
+# Missing peer declarations. Without them, these packages resolve the dependency through pnpm's
+# hidden hoisting directory, which may hold a different version than the workspace uses.
+packageExtensions:
+    # Requires `electron`, which the desktop apps pin to different versions.
+    # electron-log gets no peer. With one, a desktop app on another electron version than
+    # @proton/shared bundles two copies of it and crashes on start.
+    electron-store@8:
+        peerDependencies:
+            electron: '*'
+        peerDependenciesMeta:
+            electron:
+                optional: true
+
+overrides:
+    '@babel/runtime-corejs3@^7.24.4': '7.29.14'
+    '@electron-internal/extract-zip@^1.0.1': '1.0.8'
+    '@humanfs/node@^0.16.6': '0.17.0'
+    '@pdf-lib/standard-fonts@^1.0.0': '1.0.0'
+    '@xhmikosr/downloader@^13.0.0': '16.3.1'
+    '@xmldom/xmldom@^0.8.3': '0.9.12'
+    '@xmldom/xmldom@^0.8.8': '0.9.12'
+    'ajv@6.12.3': '6.15.0'
+    'ajv@8.17.1': '8.20.0'
+    # get-uri@6 still requires ^5. 6.0.0 only disables separate PASV transfer hosts by default,
+    # which get-uri never uses.
+    basic-ftp: '6.2.6'
+    'brace-expansion@1.1.12': '1.1.22'
+    'brace-expansion@2.0.2': '2.1.8'
+    'brace-expansion@5.0.9': '5.0.13'
+    'brace-expansion@^1.1.7': '1.1.22'
+    'brace-expansion@^2.0.1': '2.1.8'
+    'compression@1.8.1': '1.8.2'
+    'cross-spawn@^6.0.0': '7.0.6'
+    'cross-spawn@^6.0.5': '7.0.6'
+    'devalue@^5.8.1': '5.9.4'
+    electron-windows-msix: 'github:Swiip/electron-windows-msix#f1c1f4f46439c7d94569afdedd9561d09d4a1c54'
+    electron-winstaller: '^5.4.4'
+    'dompurify@3.4.16': '3.4.18'
+    'electron>extract-zip': '2.0.1'
+    # yauzl@2 stalls on Node 26, so @electron/packager@18 (Forge 7) exits 0 without a packaged app,
+    # see electron/forge#4277. Drop with Forge 8, whose packager no longer uses extract-zip.
+    'extract-zip>yauzl': '^3.4.0'
+    'fast-uri@^2.0.0': '2.4.8'
+    'fast-uri@^2.1.0': '2.4.8'
+    'fast-uri@^3.0.1': '3.1.9'
+    'fastify@4.28.1': '4.29.1'
+    'follow-redirects@1.16.0': '1.16.3'
+    'form-data@~2.3.2': '2.5.6'
+    'http-proxy-middleware@2.0.7': '2.0.12'
+    'image-size@^0.7.4': 'npm:image-size-next@1.2.2'
+    'image-size@^1.2.1': '2.1.0'
+    immer: '11.2.10'
+    'immutable@^4.3.7': '4.3.9'
+    'immutable@^5.0.2': '5.2.1'
+    'ip-address@^9.0.5': '10.7.6'
+    'js-yaml@4.1.0': '4.3.2'
+    'js-yaml@4.3.1': '4.3.2'
+    'js-yaml@^3.13.1': '3.15.2'
+    'js-yaml@^4.0.0': '4.3.2'
+    json5: '^2.2.3'
+    'jws@^3.2.2': '4.0.1'
+    'jws@^4.0.0': '4.0.1'
+    'launch-editor@2.14.1': '2.14.2'
+    'lodash@4.17.21': '4.18.1'
+    'markdown-it@14.3.2': '14.3.3'
+    'mdast-util-to-hast@^13.0.0': '13.2.2'
+    merge: '^2.1.1'
+    'minimatch@^5.0.1': '5.1.9'
+    'minimatch@^5.1.0': '5.1.9'
+    'minimatch@^9.0.0': '9.0.9'
+    'minimatch@^9.0.3': '9.0.9'
+    'minimatch@^9.0.4': '9.0.9'
+    'multiparty@4.2.3': '4.3.1'
+    # DMG maker on Node 24: 0.2.11 calls the removed util.isDate, nan 2.22.0 doesn't compile.
+    'macos-alias@~0.2.5': '0.2.12'
+    'macos-alias>nan': '2.30.0'
+    'nanoid@^5.0.4': '5.1.16'
+    'nanoid@^5.1.2': '5.1.16'
+    'node-forge@^1': '1.4.3'
+    'node-forge@^1.3.1': '1.4.3'
+    node-gyp: '^11.5.0'
+    # @tpe/quark-client pins 9.0.5 and only imports nodemailer/lib/mail-composer, which 10.x still
+    # exports. 10.0.0 only raised the minimum Node.js version to 20.
+    'nodemailer@9.0.5': '10.6.0'
+    'path-to-regexp@0.1.12': '0.1.13'
+    'path-to-regexp@~0.1.12': '0.1.13'
+    'picomatch@^2.0.4': '2.3.2'
+    'picomatch@^2.2.1': '2.3.2'
+    'picomatch@^2.2.2': '2.3.2'
+    'picomatch@^2.3.1': '2.3.2'
+    'plist@3.1.0': '3.1.1'
+    'plist@^3.0.0': '3.1.1'
+    'plist@^3.0.5': '3.1.1'
+    'plist@^3.1.0': '3.1.1'
+    'protobufjs@^7.2.4': '7.6.6'
+    'protocol-buffers-schema@^3.3.1': '3.6.1'
+    'qs@6.15.3': '6.17.1'
+    'qs@^6.11.1': '6.17.1'
+    'qs@^6.14.0': '6.17.1'
+    'qs@^6.15.2': '6.17.1'
+    'qs@^6.4.0': '6.17.1'
+    'qs@^6.7.0': '6.17.1'
+    'qs@~6.15.1': '6.17.1'
+    'qs@~6.5.2': '6.17.1'
+    'rfc2047@^2.0.1': '2.0.1'
+    safe-buffer: '^5.2.1'
+    'sharp@^0.32.6': '0.35.5'
+    'sharp@^0.34.0': '0.35.5'
+    'sharp@^0.34.3': '0.35.5'
+    # @tpe/minimum-test-set declares simple-git but runs git through child_process instead.
+    'simple-git@^3.33.0': '4.1.0'
+    'svgo@^3.0.0': '3.3.5'
+    'svgo@^3.2.0': '3.3.5'
+    tar: '^7.5.23'
+    'tar-fs@^2.0.0': '2.1.5'
+    'tar-fs@^3.0.4': '3.1.3'
+    terser: '^5.51.2'
+    'tmp@^0.0.33': '0.2.7'
+    'toml@3.0.0': '4.3.0'
+    'toml@^3.0.0': '4.3.0'
+    'toml@4.3.0': '5.0.1'
+    'undici@6.21.1': '6.29.1'
+    'undici@^8.0.0': '8.12.4'
+    'webpack-dev-middleware@^6.1.2': '8.6.1'
+    'webpack-dev-middleware@^8.0.3': '8.6.1'
+    'webpack-dev-server@^4.0.0': '6.1.0'
+    'websocket-driver@>=0.5.1': '0.8.0'
+    'websocket-driver@^0.7.4': '0.8.0'
+    whatwg-url: '^14.2.0'
+    'ws@8.18.0': '8.23.0'
+    'ws@^5.2.0': '5.2.8'
+    'ws@^7.4.6': '7.5.14'
+    'xlsx@0.18.5': 'https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz'
+    'xlsx@^0.18.5': 'https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz'
+    'yaml@^1.7.2': '1.10.3'
+permissions:
+    dotenv:
+        skills: false
