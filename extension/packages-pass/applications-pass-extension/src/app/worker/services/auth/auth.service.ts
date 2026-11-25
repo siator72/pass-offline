@@ -351,6 +351,18 @@ export const createAuthService = (api: Api, authStore: AuthStore) => {
             logger.info('[AuthService] Session resume failure');
             await api.idle();
 
+            /** Offline build: an inactive session (no locally-persisted client
+             * key, eg after a browser restart on a fresh login) is not a
+             * failure — it means there is nothing to resume. Drop to the
+             * login screen instead of the ERROR lobby, otherwise the user is
+             * stuck on a retry loop that can never succeed. */
+            if (err instanceof Error && err.name === 'InactiveSession') {
+                authStore.clear();
+                ctx.setStatus(AppStatus.UNAUTHORIZED);
+                ctx.setBooted(false);
+                return;
+            }
+
             /** When already OFFLINE-booted, a failed online resume attempt (eg from
              * `offlineResume` dispatched on connectivity restore) must not alter app
              * state: the user stays booted offline. Retry scheduling still runs
